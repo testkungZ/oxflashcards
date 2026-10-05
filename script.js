@@ -12,6 +12,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const MAX_SESSIONS = 100;
     const VALID_STATUS = ['known', 'review'];
 
+    const SoundFX = {
+        audioCtx: null,
+        init() {
+            if (!this.audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) this.audioCtx = new AudioContext();
+            }
+            if (this.audioCtx && this.audioCtx.state === 'suspended') {
+                this.audioCtx.resume();
+            }
+        },
+        playTone(frequency, type, attack, decay, vol = 0.3, slideToFreq = null) {
+            if (!this.audioCtx) return;
+            try {
+                const osc = this.audioCtx.createOscillator();
+                const gain = this.audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(frequency, this.audioCtx.currentTime);
+                if (slideToFreq) {
+                    osc.frequency.exponentialRampToValueAtTime(slideToFreq, this.audioCtx.currentTime + attack + decay);
+                }
+                
+                gain.gain.setValueAtTime(0, this.audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(vol, this.audioCtx.currentTime + attack);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + attack + decay);
+                
+                osc.connect(gain);
+                gain.connect(this.audioCtx.destination);
+                osc.start(this.audioCtx.currentTime);
+                osc.stop(this.audioCtx.currentTime + attack + decay);
+            } catch (e) {}
+        },
+        known() {
+            this.init();
+            // เสียงแบบ Duolingo "Correct" (ตริ๊ง-ติ๊ง) 
+            // ใช้ความถี่แบบคอร์ดสว่าง เช่น B5 -> E6
+            this.playTone(987.77, 'sine', 0.02, 0.1, 0.15); 
+            setTimeout(() => this.playTone(1318.51, 'sine', 0.02, 0.4, 0.2), 120); 
+        },
+        review() {
+            this.init();
+            // เสียงแบบ Duolingo "Incorrect" (ตึ-ดึง แบบทุ้ม)
+            // ใช้คลื่น triangle ให้มีเนื้อเสียงทุ้ม และลดระดับเสียงลง
+            this.playTone(349.23, 'triangle', 0.03, 0.15, 0.2); 
+            setTimeout(() => this.playTone(277.18, 'triangle', 0.03, 0.25, 0.2), 130);
+        },
+        next() {
+            this.init();
+            // เสียงแบบ Duolingo "Click/Pop" (ป๊อก)
+            // ใช้ความถี่สูงตกลงมาต่ำอย่างรวดเร็วมาก
+            this.playTone(800, 'sine', 0.01, 0.05, 0.1, 100);
+        }
+    };
+
     const storage = {
         get(key, fallback) {
             try {
@@ -69,6 +123,44 @@ document.addEventListener('DOMContentLoaded', () => {
         return String(str ?? '').replace(/[&<>"']/g, (c) => ({
             '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
         }[c]));
+    }
+
+    /* =========================================================
+     * Categories (Part of Speech) & A–Z groups for the dashboard
+     * ========================================================= */
+    const CATEGORY_META = {
+        noun: { th: 'คำนาม', en: 'Noun', icon: 'N', c1: '#3b82f6', c2: '#06b6d4' },
+        verb: { th: 'คำกริยา', en: 'Verb', icon: 'V', c1: '#8b5cf6', c2: '#ec4899' },
+        adjective: { th: 'คำคุณศัพท์', en: 'Adjective', icon: 'Adj', c1: '#f59e0b', c2: '#f97316' },
+        adverb: { th: 'คำกริยาวิเศษณ์', en: 'Adverb', icon: 'Adv', c1: '#10b981', c2: '#14b8a6' },
+        other: { th: 'อื่น ๆ', en: 'Other', icon: '•', c1: '#64748b', c2: '#94a3b8' }
+    };
+    const catOf = (w) => {
+        const p = String(w.partOfSpeech || '').toLowerCase().trim();
+        return p !== 'other' && CATEGORY_META[p] ? p : 'other';
+    };
+    const categoryIndices = {};
+    const letterIndices = {};
+    const AZ = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    wordsData.forEach((w, i) => {
+        if (keyToIndex.get(keyOf(w)) !== i) return; // skip duplicates
+        (categoryIndices[catOf(w)] ||= []).push(i);
+        const L = String(w.word || '').charAt(0).toUpperCase();
+        (letterIndices[AZ.includes(L) ? L : '#'] ||= []).push(i);
+    });
+    const CATEGORY_IDS = Object.keys(CATEGORY_META).filter((id) => categoryIndices[id] && categoryIndices[id].length);
+
+    function fmtPct(ratio) {
+        const p = ratio * 100;
+        if (p > 0 && p < 10) return p.toFixed(1) + '%';
+        return Math.round(p) + '%';
+    }
+
+    function strengthOf(stat) {
+        if (!stat.studied) return { cls: 'none', label: 'ยังไม่เริ่ม' };
+        if (stat.accuracy < 0.5) return { cls: 'bad', label: 'ต้องเสริมด่วน' };
+        if (stat.accuracy < 0.75) return { cls: 'mid', label: 'ปานกลาง' };
+        return { cls: 'good', label: 'แข็งแรง' };
     }
 
     /* =========================================================
@@ -147,6 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const flashcard = $('flashcard');
     const wordEl = $('word');
     const partOfSpeechEl = $('part-of-speech');
+    const btnSpeak = $('btn-speak');
     const translationEl = $('translation');
     const definitionEl = $('definition');
     const exampleEl = $('example');
@@ -196,13 +289,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const historyWordsPanel = $('history-words');
     const historySessionsCount = $('history-sessions-count');
     const sessionListEl = $('session-list');
-    const filterChips = Array.from(document.querySelectorAll('.filter-chips .chip'));
+    const filterChips = Array.from(document.querySelectorAll('#status-filter .chip'));
     const filterReviewCount = $('filter-review-count');
     const filterKnownCount = $('filter-known-count');
     const wordSearch = $('word-search');
     const historyWordList = $('history-word-list');
     const btnPracticeReview = $('btn-practice-review');
     const practiceReviewLabel = $('practice-review-label');
+    const dashListPanel = $('dash-list-panel');
+    const dashTabIndicator = $('dash-tab-indicator');
+    const catFilterEl = $('cat-filter');
+    const dashRingFg = $('dash-ring-fg');
 
     // Modal & toast
     const modal = $('modal');
@@ -306,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startSession(pickRandom(pool, selectedSize), 'random');
     }
 
-    function startSession(indices, mode) {
+    function startSession(indices, mode, label = '') {
         if (!indices.length) {
             showToast('ไม่มีคำให้ฝึก');
             return;
@@ -314,6 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
         session = {
             id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
             mode,
+            label,
             indices,
             answers: new Array(indices.length).fill(null),
             currentIndex: 0,
@@ -325,13 +423,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function enterSession() {
         resetCardVisual();
-        sessionModeEl.textContent = session.mode === 'review' ? 'โหมดทบทวน' : 'สุ่มคำ';
+        sessionModeEl.textContent = modeLabel(session);
         sessionModeEl.classList.toggle('review', session.mode === 'review');
+        sessionModeEl.classList.toggle('category', session.mode === 'category');
         totalCardsEl.textContent = session.indices.length;
         buildDots();
         renderCard();
         updateSessionStats();
         showScreen('app');
+    }
+
+    function modeLabel(s) {
+        if (s.mode === 'review') return 'โหมดทบทวน';
+        if (s.mode === 'category') return `หมวด${s.label || ''}`;
+        return 'สุ่มคำ';
     }
 
     function saveActiveSession() {
@@ -355,6 +460,10 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function answer(status) {
         if (!session || isAnimating || currentScreen !== 'app') return;
+        
+        if (status === 'known') SoundFX.known();
+        else if (status === 'review') SoundFX.review();
+        
         const i = session.currentIndex;
         const previous = session.answers[i];
 
@@ -376,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnAdvance.style.display = 'none';
 
             if (i < total - 1) {
-                goTo(i + 1, true);
+                goTo(i + 1, false);
             } else if (firstUnanswered === -1) {
                 // Last card answered and everything done -> summary
                 isAnimating = true;
@@ -387,7 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const remaining = session.answers.filter((a) => a === null).length;
                 showToast(`ยังเหลืออีก ${remaining} คำที่ยังไม่ได้ตอบ`);
-                goTo(firstUnanswered, true);
+                goTo(firstUnanswered, false);
             }
         };
 
@@ -472,6 +581,7 @@ document.addEventListener('DOMContentLoaded', () => {
             date: new Date().toISOString(),
             startedAt: session.startedAt,
             mode: session.mode,
+            label: session.label || '',
             size: session.indices.length,
             known,
             review,
@@ -592,23 +702,40 @@ document.addEventListener('DOMContentLoaded', () => {
         window.pendingAdvanceCallback = null;
 
         if (isFlipped) {
-            flashcard.classList.remove('is-flipped');
-            isFlipped = false;
             if (!skipFlipWait) {
-                setTimeout(() => slideTransition(direction, newIndex), 300);
+                // Smooth unflip first, then slide
+                flashcard.classList.remove('is-flipped');
+                isFlipped = false;
+                setTimeout(() => slideTransition(direction, newIndex, false), 500); // 500ms to let flip finish smoothly
+                return;
+            } else {
+                // Slide out while still flipped (prevents wild spinning)
+                slideTransition(direction, newIndex, true);
                 return;
             }
         }
-        slideTransition(direction, newIndex);
+        slideTransition(direction, newIndex, false);
     }
 
-    function slideTransition(direction, newIndex) {
-        flashcard.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
+    function slideTransition(direction, newIndex, hideWhileFlipped) {
+        flashcard.style.transition = 'transform 0.25s cubic-bezier(0.4, 0, 1, 1), opacity 0.2s ease';
         flashcard.style.opacity = '0';
-        flashcard.style.transform = `translateX(${direction > 0 ? '-50px' : '50px'})`;
+        
+        if (hideWhileFlipped) {
+            // X axis is inverted when rotateY(180deg). To slide left visually, we move right (+50px)
+            flashcard.style.transform = `rotateY(180deg) translateX(${direction > 0 ? '50px' : '-50px'})`;
+        } else {
+            flashcard.style.transform = `translateX(${direction > 0 ? '-50px' : '50px'})`;
+        }
 
         setTimeout(() => {
             if (!session) { resetCardVisual(); return; }
+            
+            if (hideWhileFlipped) {
+                flashcard.classList.remove('is-flipped');
+                isFlipped = false;
+            }
+
             session.currentIndex = newIndex;
             saveActiveSession();
             renderCard();
@@ -617,7 +744,7 @@ document.addEventListener('DOMContentLoaded', () => {
             flashcard.style.transform = `translateX(${direction > 0 ? '50px' : '-50px'})`;
             void flashcard.offsetWidth; // force reflow
 
-            flashcard.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease';
+            flashcard.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease';
             flashcard.style.opacity = '1';
             flashcard.style.transform = 'translateX(0)';
 
@@ -626,8 +753,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 flashcard.style.transform = '';
                 flashcard.style.opacity = '';
                 isAnimating = false;
-            }, 400);
-        }, 200);
+            }, 500);
+        }, 250);
     }
 
     function flipCard() {
@@ -636,12 +763,53 @@ document.addEventListener('DOMContentLoaded', () => {
         flashcard.classList.toggle('is-flipped', isFlipped);
     }
 
+    // Preload voices
+    let availableVoices = [];
+    if (window.speechSynthesis) {
+        availableVoices = window.speechSynthesis.getVoices();
+        window.speechSynthesis.onvoiceschanged = () => {
+            availableVoices = window.speechSynthesis.getVoices();
+        };
+    }
+
+    function speakWord(e) {
+        if (e) e.stopPropagation(); // Prevent flipping the card
+        if (!session) return;
+        const word = wordsData[session.indices[session.currentIndex]].word;
+
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'en-US';
+
+        // Try to find a clear human-like female voice
+        const preferredVoice = availableVoices.find(v => 
+            v.name.includes('Google US English') || 
+            v.name.includes('Zira') || 
+            v.name.includes('Samantha') || 
+            v.name.includes('Karen') ||
+            (v.lang === 'en-US' && v.name.includes('Female'))
+        );
+        
+        if (preferredVoice) {
+            utterance.voice = preferredVoice;
+        } else {
+            // Fallback: just try to get any EN-US voice
+            const enVoice = availableVoices.find(v => v.lang.startsWith('en-'));
+            if (enVoice) utterance.voice = enVoice;
+        }
+
+        utterance.rate = 0.85; // Slightly slower for clearer pronunciation
+        window.speechSynthesis.speak(utterance);
+    }
+
+    if (btnSpeak) btnSpeak.addEventListener('click', speakWord);
+
     flashcard.addEventListener('click', flipCard);
-    btnNext.addEventListener('click', () => session && goTo(session.currentIndex + 1));
-    btnPrev.addEventListener('click', () => session && goTo(session.currentIndex - 1));
+    btnNext.addEventListener('click', () => { SoundFX.next(); session && goTo(session.currentIndex + 1); });
+    btnPrev.addEventListener('click', () => { SoundFX.next(); session && goTo(session.currentIndex - 1); });
     btnKnown.addEventListener('click', () => answer('known'));
     btnUnknown.addEventListener('click', () => answer('review'));
     btnAdvance.addEventListener('click', () => {
+        SoundFX.next();
         if (window.pendingAdvanceCallback) window.pendingAdvanceCallback();
     });
     btnHome.addEventListener('click', () => {
@@ -659,8 +827,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentScreen !== 'app' || !session) return;
         if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
 
-        if (e.key === 'ArrowRight') goTo(session.currentIndex + 1);
-        else if (e.key === 'ArrowLeft') goTo(session.currentIndex - 1);
+        if (e.key === 'ArrowRight') { SoundFX.next(); goTo(session.currentIndex + 1); }
+        else if (e.key === 'ArrowLeft') { SoundFX.next(); goTo(session.currentIndex - 1); }
         else if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
             e.preventDefault();
             flipCard();
@@ -774,20 +942,392 @@ document.addEventListener('DOMContentLoaded', () => {
     btnSummaryHistory.addEventListener('click', () => openHistory('summary'));
 
     /* =========================================================
-     * History screen
+     * Dashboard screen (formerly "History")
      * ========================================================= */
-    function openHistory(returnTo) {
+    let historyCatFilter = 'all';
+    let dashTab = 'dash-overview';
+
+    function openHistory(returnTo, tab = 'dash-overview') {
         historyReturnTo = returnTo;
         wordSearch.value = '';
         renderHistory();
         showScreen('history');
+        setDashTab(tab);
     }
 
     function renderHistory() {
         historySessionsCount.textContent = sessions.length;
+        const stats = computeCategoryStats();
+        renderOverview(stats);
+        renderCategories(stats);
+        renderAnalysis(stats);
         renderSessionList();
         renderHistoryWords();
     }
+
+    function setDashTab(panelId) {
+        dashTab = panelId;
+        historyTabs.forEach((t) => {
+            const active = t.dataset.panel === panelId;
+            t.classList.toggle('active', active);
+            t.setAttribute('aria-selected', String(active));
+            const panel = $(t.dataset.panel);
+            if (panel) panel.hidden = !active;
+        });
+        dashListPanel.hidden = !(panelId === 'history-sessions' || panelId === 'history-words');
+        requestAnimationFrame(moveDashIndicator);
+        if (panelId === 'dash-overview') animateDashRing();
+    }
+
+    function moveDashIndicator() {
+        const active = historyTabs.find((t) => t.classList.contains('active'));
+        if (!active || !dashTabIndicator) return;
+        dashTabIndicator.style.width = `${active.offsetWidth}px`;
+        dashTabIndicator.style.transform = `translateX(${active.offsetLeft}px)`;
+        active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    }
+    window.addEventListener('resize', () => { if (currentScreen === 'history') moveDashIndicator(); });
+
+    function computeCategoryStats() {
+        return CATEGORY_IDS.map((id) => {
+            const known = [];
+            const review = [];
+            categoryIndices[id].forEach((i) => {
+                const k = keyOf(wordsData[i]);
+                if (wordStatus[k] === 'known') known.push(k);
+                else if (wordStatus[k] === 'review') review.push(k);
+            });
+            const total = categoryIndices[id].length;
+            const studied = known.length + review.length;
+            return {
+                id, ...CATEGORY_META[id], total, known, review, studied,
+                unseen: total - studied,
+                accuracy: studied ? known.length / studied : null,
+                coverage: total ? studied / total : 0,
+                mastery: total ? known.length / total : 0
+            };
+        });
+    }
+
+    const catStyle = (c) => `--c1:${c.c1};--c2:${c.c2}`;
+    const barWidth = (n, total) => (n > 0 ? Math.max((n / total) * 100, 1.5) : 0);
+
+    function stackBar(known, review, total, big = false) {
+        return `<div class="stack-bar${big ? ' big' : ''}">
+            <span class="seg known" style="width:${barWidth(known, total)}%"></span>
+            <span class="seg review" style="width:${barWidth(review, total)}%"></span>
+        </div>`;
+    }
+
+    function computeStreak() {
+        const days = new Set(sessions.map((s) => new Date(s.date).toDateString()));
+        const d = new Date();
+        if (!days.has(d.toDateString())) d.setDate(d.getDate() - 1);
+        let streak = 0;
+        while (days.has(d.toDateString())) {
+            streak++;
+            d.setDate(d.getDate() - 1);
+        }
+        return streak;
+    }
+
+    /* ---------- Overview ---------- */
+    let dashMastery = 0;
+
+    function animateDashRing() {
+        if (!dashRingFg) return;
+        const shown = dashMastery > 0 ? Math.max(dashMastery, 0.015) : 0;
+        dashRingFg.style.strokeDasharray = RING_CIRC.toFixed(2);
+        dashRingFg.style.transition = 'none';
+        dashRingFg.style.strokeDashoffset = RING_CIRC.toFixed(2);
+        void dashRingFg.getBoundingClientRect();
+        dashRingFg.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1)';
+        dashRingFg.style.strokeDashoffset = (RING_CIRC * (1 - shown)).toFixed(2);
+    }
+
+    function renderOverview(stats) {
+        const c = countStatuses();
+        const studied = c.known + c.review;
+        dashMastery = totalWords ? c.known / totalWords : 0;
+
+        $('dash-mastery-percent').textContent = fmtPct(dashMastery);
+        const level = 1 + Math.floor(c.known / 100);
+        $('dash-level-pill').textContent = `Level ${level} · อีก ${100 - (c.known % 100)} คำเลเวลอัพ`;
+
+        let title;
+        if (studied === 0) title = 'เริ่มต้นการเดินทาง 🌱';
+        else if (dashMastery < 0.1) title = 'กำลังไปได้สวย 🚀';
+        else if (dashMastery < 0.35) title = 'ก้าวหน้าอย่างต่อเนื่อง 💪';
+        else if (dashMastery < 0.7) title = 'ใกล้เป็นเซียนแล้ว 🔥';
+        else title = 'ระดับเซียน 🏆';
+        $('dash-hero-title').textContent = title;
+        $('dash-hero-sub').textContent =
+            `จำได้แล้ว ${c.known.toLocaleString()} จาก ${totalWords.toLocaleString()} คำ · เหลืออีก ${(totalWords - c.known).toLocaleString()} คำ`;
+
+        $('dash-bar-known').style.width = `${barWidth(c.known, totalWords)}%`;
+        $('dash-bar-review').style.width = `${barWidth(c.review, totalWords)}%`;
+        $('dash-lg-known').textContent = c.known.toLocaleString();
+        $('dash-lg-review').textContent = c.review.toLocaleString();
+        $('dash-lg-unseen').textContent = c.unseen.toLocaleString();
+
+        animateNumber($('dash-stat-sessions'), sessions.length);
+        animateNumber($('dash-stat-accuracy'), studied ? Math.round((c.known / studied) * 100) : 0, '%');
+        animateNumber($('dash-stat-streak'), computeStreak());
+        animateNumber($('dash-stat-studied'), studied);
+
+        // Trend chart (oldest -> newest)
+        const trendEl = $('dash-trend');
+        const recent = sessions.slice(0, 10).reverse();
+        trendEl.innerHTML = recent.length
+            ? recent.map((s, i) => {
+                const p = s.size ? Math.round((s.known.length / s.size) * 100) : 0;
+                const d = new Date(s.date);
+                const label = isNaN(d) ? '' : d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
+                return `<div class="trend-col" style="--h:${Math.max(p, 4)}%;--d:${i * 70}ms" title="${escapeHtml(formatDate(s.date))} · ${p}%">
+                    <span class="trend-val">${p}%</span>
+                    <div class="trend-track"><div class="trend-bar ${s.mode}"></div></div>
+                    <span class="trend-label">${escapeHtml(label)}</span>
+                </div>`;
+            }).join('')
+            : `<div class="empty-state big"><span class="empty-icon">📊</span><p>ยังไม่มีข้อมูลรอบการเล่น</p><small>เล่นให้จบ 1 รอบ กราฟจะแสดงที่นี่</small></div>`;
+
+        // Mini category bars
+        $('dash-mini-cats').innerHTML = stats.map((s) => `
+            <div class="mini-cat" style="${catStyle(s)}">
+                <span class="cat-icon sm">${s.icon}</span>
+                <div class="mini-cat-main">
+                    <div class="mini-cat-top"><b>${s.th}</b><span class="muted">${s.known.length}/${s.total.toLocaleString()} · ${fmtPct(s.mastery)}</span></div>
+                    ${stackBar(s.known.length, s.review.length, s.total)}
+                </div>
+            </div>`).join('');
+    }
+
+    /* ---------- Categories ---------- */
+    const CHIP_LIMIT = 60;
+
+    function chipList(keys, status) {
+        if (!keys.length) return '<span class="muted small">— ยังไม่มี —</span>';
+        const sorted = keys.slice().sort((a, b) => a.localeCompare(b));
+        const chips = sorted.slice(0, CHIP_LIMIT).map((k) => {
+            const w = wordsData[keyToIndex.get(k)];
+            return `<span class="word-chip ${status}" title="${escapeHtml(w.translation)}">${escapeHtml(w.word)}<small>${escapeHtml(w.translation)}</small></span>`;
+        }).join('');
+        const more = sorted.length > CHIP_LIMIT
+            ? `<span class="word-chip more">+${sorted.length - CHIP_LIMIT} คำ</span>` : '';
+        return chips + more;
+    }
+
+    function renderCategories(stats) {
+        $('cat-grid').innerHTML = stats.map((s, i) => {
+            const st = strengthOf(s);
+            return `<article class="glass-panel cat-card liquid-card" style="${catStyle(s)};--d:${i * 80}ms">
+                <div class="cat-glow" aria-hidden="true"></div>
+                <div class="cat-head">
+                    <span class="cat-icon">${s.icon}</span>
+                    <div class="cat-title">
+                        <h4>${s.th}</h4>
+                        <small>${s.en} · ${s.total.toLocaleString()} คำ</small>
+                    </div>
+                    <div class="cat-pct">
+                        <b>${fmtPct(s.mastery)}</b>
+                        <span class="pill ${st.cls}">${st.label}</span>
+                    </div>
+                </div>
+                ${stackBar(s.known.length, s.review.length, s.total, true)}
+                <div class="cat-counts">
+                    <span class="known">✓ จำได้ <b>${s.known.length}</b></span>
+                    <span class="review">↻ ทบทวน <b>${s.review.length}</b></span>
+                    <span class="unseen">○ ยังไม่เรียน <b>${s.unseen.toLocaleString()}</b></span>
+                </div>
+                <details class="cat-words review" ${s.review.length ? 'open' : ''}>
+                    <summary><span>↻ คำที่ต้องทบทวน</span><span class="tab-count">${s.review.length}</span></summary>
+                    <div class="chip-wrap">${chipList(s.review, 'review')}</div>
+                </details>
+                <details class="cat-words known">
+                    <summary><span>✓ คำที่จำได้แล้ว</span><span class="tab-count">${s.known.length}</span></summary>
+                    <div class="chip-wrap">${chipList(s.known, 'known')}</div>
+                </details>
+                <button type="button" class="cat-practice" data-practice-cat="${s.id}">
+                    ฝึกหมวด${s.th} <span aria-hidden="true">→</span>
+                </button>
+            </article>`;
+        }).join('');
+    }
+
+    /* ---------- Analysis ---------- */
+    function insightCard({ tone, emoji, kicker, title, sub, text, cat, action, actionLabel }) {
+        const btn = cat
+            ? `<button type="button" class="insight-btn" data-practice-cat="${cat}">${actionLabel || 'ฝึกหมวดนี้'} →</button>`
+            : action ? `<button type="button" class="insight-btn" data-dash-action="${action}">${actionLabel} →</button>` : '';
+        return `<article class="glass-panel insight-card liquid-card tone-${tone}">
+            <span class="insight-emoji">${emoji}</span>
+            <span class="insight-kicker">${kicker}</span>
+            <h4>${title}${sub ? ` <small>${sub}</small>` : ''}</h4>
+            <p>${text}</p>
+            ${btn}
+        </article>`;
+    }
+
+    function renderAnalysis(stats) {
+        const studiedCats = stats.filter((s) => s.studied > 0);
+        const insightGrid = $('insight-grid');
+        const totalReview = countStatuses().review;
+
+        if (!studiedCats.length) {
+            insightGrid.innerHTML = insightCard({
+                tone: 'info', emoji: '🔍', kicker: 'ยังไม่มีข้อมูลพอสำหรับวิเคราะห์',
+                title: 'เริ่มเล่นรอบแรกกันเลย!',
+                text: 'เมื่อคุณตอบการ์ดไปสักพัก ระบบจะวิเคราะห์ว่าหมวดไหนแข็งแรง และหมวดไหนที่คุณยังจำได้ไม่ดี',
+                action: 'start', actionLabel: 'เริ่มเล่น'
+            });
+        } else {
+            const cards = [];
+            const weakest = studiedCats.filter((s) => s.review.length > 0)
+                .sort((a, b) => a.accuracy - b.accuracy || b.review.length - a.review.length)[0];
+            const strongest = studiedCats.slice()
+                .sort((a, b) => b.accuracy - a.accuracy || b.known.length - a.known.length)[0];
+            const leastExplored = stats.slice().sort((a, b) => a.coverage - b.coverage)[0];
+
+            if (weakest) {
+                cards.push(insightCard({
+                    tone: 'bad', emoji: '⚠️', kicker: 'หมวดที่ต้องเสริมมากที่สุด',
+                    title: weakest.th, sub: weakest.en,
+                    text: `ต้องทบทวน <b>${weakest.review.length}</b> คำ · ความแม่นยำ <b>${fmtPct(weakest.accuracy)}</b>`,
+                    cat: weakest.id, actionLabel: 'เสริมหมวดนี้'
+                }));
+            }
+            if (strongest && strongest !== weakest) {
+                cards.push(insightCard({
+                    tone: 'good', emoji: '🏆', kicker: 'หมวดที่แข็งแรงที่สุด',
+                    title: strongest.th, sub: strongest.en,
+                    text: `จำได้ <b>${strongest.known.length}</b> คำ · ความแม่นยำ <b>${fmtPct(strongest.accuracy)}</b>`
+                }));
+            }
+            if (leastExplored) {
+                cards.push(insightCard({
+                    tone: 'mid', emoji: '🧭', kicker: 'หมวดที่ยังเรียนน้อยที่สุด',
+                    title: leastExplored.th, sub: leastExplored.en,
+                    text: `เรียนไปแล้ว <b>${fmtPct(leastExplored.coverage)}</b> (${leastExplored.studied}/${leastExplored.total.toLocaleString()} คำ)`,
+                    cat: leastExplored.id, actionLabel: 'สำรวจหมวดนี้'
+                }));
+            }
+            if (totalReview > 0) {
+                cards.push(insightCard({
+                    tone: 'info', emoji: '🔁', kicker: 'คำค้างทบทวนทั้งหมด',
+                    title: `${totalReview.toLocaleString()} คำ`,
+                    text: 'ทบทวนสม่ำเสมอช่วยย้ายคำเข้าสู่ความจำระยะยาว',
+                    action: 'review-all', actionLabel: 'ทบทวนเลย'
+                }));
+            }
+            insightGrid.innerHTML = cards.join('');
+        }
+
+        // Weakness ranking
+        const ranked = stats.slice().sort((a, b) => {
+            if (!a.studied && !b.studied) return b.total - a.total;
+            if (!a.studied) return 1;
+            if (!b.studied) return -1;
+            return a.accuracy - b.accuracy || b.review.length - a.review.length;
+        });
+        $('weak-list').innerHTML = ranked.map((s, i) => {
+            const st = strengthOf(s);
+            const acc = s.studied ? s.accuracy : 0;
+            return `<div class="weak-row" style="${catStyle(s)};--d:${i * 70}ms">
+                <span class="weak-rank">${i + 1}</span>
+                <span class="cat-icon sm">${s.icon}</span>
+                <div class="weak-main">
+                    <div class="weak-top"><b>${s.th} <small class="muted">${s.en}</small></b><span class="pill ${st.cls}">${st.label}</span></div>
+                    <div class="meter ${st.cls}"><span style="width:${Math.round(acc * 100)}%"></span></div>
+                    <small class="muted">${s.studied
+                        ? `แม่นยำ ${fmtPct(acc)} · ทบทวน ${s.review.length} คำ · เรียนแล้ว ${fmtPct(s.coverage)} ของหมวด`
+                        : `ยังไม่ได้เรียนหมวดนี้ (${s.total.toLocaleString()} คำ)`}</small>
+                </div>
+                <button type="button" class="mini-btn" data-practice-cat="${s.id}">ฝึก</button>
+            </div>`;
+        }).join('');
+
+        // A–Z heatmap
+        const letters = AZ.filter((L) => letterIndices[L]);
+        $('az-heatmap').innerHTML = letters.map((L, i) => {
+            let known = 0;
+            let review = 0;
+            letterIndices[L].forEach((wi) => {
+                const s = wordStatus[keyOf(wordsData[wi])];
+                if (s === 'known') known++;
+                else if (s === 'review') review++;
+            });
+            const total = letterIndices[L].length;
+            const studied = known + review;
+            const st = strengthOf({ studied, accuracy: studied ? known / studied : 0 });
+            const coverage = total ? studied / total : 0;
+            return `<button type="button" class="az-cell s-${st.cls}" style="--fill:${Math.max(coverage * 100, studied ? 6 : 0)}%;--d:${i * 18}ms"
+                data-letter="${L}" data-total="${total}" data-known="${known}" data-review="${review}">
+                <span class="az-letter">${L}</span>
+                <span class="az-pct">${studied ? fmtPct(known / studied) : '–'}</span>
+                <span class="az-fill" aria-hidden="true"></span>
+            </button>`;
+        }).join('');
+        $('az-note').textContent = 'แตะตัวอักษรเพื่อดูรายละเอียด · แถบด้านล่าง = สัดส่วนคำที่เรียนแล้ว';
+    }
+
+    $('az-heatmap').addEventListener('click', (e) => {
+        const cell = e.target.closest('.az-cell');
+        if (!cell) return;
+        document.querySelectorAll('.az-cell.selected').forEach((c) => c.classList.remove('selected'));
+        cell.classList.add('selected');
+        const { letter, total, known, review } = cell.dataset;
+        const studied = Number(known) + Number(review);
+        $('az-note').innerHTML = `<b>ตัว ${letter}</b> · ทั้งหมด ${Number(total).toLocaleString()} คำ · จำได้ <b class="txt-known">${known}</b> · ทบทวน <b class="txt-review">${review}</b>` +
+            (studied ? ` · แม่นยำ <b>${fmtPct(known / studied)}</b>` : ' · ยังไม่ได้เรียน');
+    });
+
+    /* ---------- Practice helpers ---------- */
+    async function confirmReplaceActive(title, confirmText) {
+        if (!loadActiveSession()) return true;
+        return confirmDialog({
+            title,
+            message: 'คุณมีรอบที่ยังเล่นไม่จบอยู่ ถ้าเริ่มรอบใหม่ รอบเดิมจะถูกยกเลิก',
+            confirmText
+        });
+    }
+
+    async function practiceCategory(catId) {
+        const idx = categoryIndices[catId];
+        if (!idx) return;
+        const byStatus = (st) => idx.filter((i) => (wordStatus[keyOf(wordsData[i])] || null) === st);
+        // Priority: words to review -> unseen words -> known words
+        let picked = pickRandom(byStatus('review'), selectedSize);
+        if (picked.length < selectedSize) picked = picked.concat(pickRandom(byStatus(null), selectedSize - picked.length));
+        if (picked.length < selectedSize) picked = picked.concat(pickRandom(byStatus('known'), selectedSize - picked.length));
+        if (!picked.length) { showToast('ไม่มีคำในหมวดนี้'); return; }
+        const label = CATEGORY_META[catId].th;
+        if (!(await confirmReplaceActive(`เริ่มฝึกหมวด${label}?`, 'เริ่มฝึก'))) return;
+        startSession(shuffle(picked), 'category', label);
+    }
+
+    async function practiceReviewWords(catFilter = 'all') {
+        const pool = Object.keys(wordStatus)
+            .filter((k) => wordStatus[k] === 'review')
+            .map((k) => keyToIndex.get(k))
+            .filter((i) => i !== undefined && (catFilter === 'all' || catOf(wordsData[i]) === catFilter));
+        if (!pool.length) return;
+        if (!(await confirmReplaceActive('เริ่มรอบทบทวน?', 'เริ่มรอบทบทวน'))) return;
+        startSession(pickRandom(pool, selectedSize), 'review');
+    }
+
+    // Delegated actions inside the dashboard
+    screens.history.addEventListener('click', (e) => {
+        const catBtn = e.target.closest('[data-practice-cat]');
+        if (catBtn) { practiceCategory(catBtn.dataset.practiceCat); return; }
+        const actBtn = e.target.closest('[data-dash-action]');
+        if (actBtn) {
+            const act = actBtn.dataset.dashAction;
+            if (act === 'start') startRandomSession();
+            else if (act === 'review-all') practiceReviewWords('all');
+        }
+    });
+
+    $('dash-goto-categories').addEventListener('click', () => setDashTab('dash-categories'));
 
     function formatDate(iso) {
         const d = new Date(iso);
@@ -826,7 +1366,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="session-meta">
                             <span class="session-date">${escapeHtml(formatDate(s.date))}</span>
                             <span class="session-tags">
-                                <span class="tag ${s.mode === 'review' ? 'review' : ''}">${s.mode === 'review' ? 'ทบทวน' : 'สุ่มคำ'}</span>
+                                <span class="tag ${s.mode === 'review' ? 'review' : s.mode === 'category' ? 'category' : ''}">${escapeHtml(modeLabel(s))}</span>
                                 <span class="tag">${s.size} คำ</span>
                             </span>
                         </div>
@@ -858,15 +1398,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
     }
 
+    const inCat = (k) => historyCatFilter === 'all' || catOf(wordsData[keyToIndex.get(k)]) === historyCatFilter;
+
+    function renderCatFilter() {
+        const countFor = (id) => Object.keys(wordStatus).filter((k) =>
+            wordStatus[k] === historyFilter && (id === 'all' || catOf(wordsData[keyToIndex.get(k)]) === id)).length;
+        const items = [{ id: 'all', th: 'ทุกหมวด', c1: '#3b82f6', c2: '#8b5cf6' }]
+            .concat(CATEGORY_IDS.map((id) => ({ id, ...CATEGORY_META[id] })));
+        catFilterEl.innerHTML = items.map((it) => `<button type="button" class="chip cat-chip ${historyCatFilter === it.id ? 'active' : ''}"
+            data-cat="${it.id}" style="${catStyle(it)}">${it.th} <span>${countFor(it.id)}</span></button>`).join('');
+    }
+
+    catFilterEl.addEventListener('click', (e) => {
+        const chip = e.target.closest('.cat-chip');
+        if (!chip) return;
+        historyCatFilter = chip.dataset.cat;
+        renderHistoryWords();
+    });
+
     function renderHistoryWords() {
         const c = countStatuses();
         filterReviewCount.textContent = c.review;
         filterKnownCount.textContent = c.known;
         filterChips.forEach((chip) => chip.classList.toggle('active', chip.dataset.filter === historyFilter));
+        renderCatFilter();
 
         const q = wordSearch.value.trim().toLowerCase();
         const keys = Object.keys(wordStatus)
             .filter((k) => wordStatus[k] === historyFilter)
+            .filter(inCat)
             .filter((k) => {
                 if (!q) return true;
                 const w = wordsData[keyToIndex.get(k)];
@@ -878,21 +1438,14 @@ document.addEventListener('DOMContentLoaded', () => {
             ? keys.map((k) => wordListItem(k, historyFilter)).join('')
             : `<li class="empty-state">${q ? 'ไม่พบคำที่ค้นหา' : historyFilter === 'known' ? 'ยังไม่มีคำที่จำได้' : 'ไม่มีคำที่ต้องทบทวน 🎉'}</li>`;
 
-        const reviewCount = c.review;
+        const reviewCount = Object.keys(wordStatus).filter((k) => wordStatus[k] === 'review' && inCat(k)).length;
         const n = Math.min(selectedSize, reviewCount);
+        const catName = historyCatFilter === 'all' ? '' : `หมวด${CATEGORY_META[historyCatFilter].th} `;
         btnPracticeReview.hidden = historyFilter !== 'review' || reviewCount === 0;
-        practiceReviewLabel.textContent = `ฝึกคำที่ต้องทบทวน (สุ่ม ${n} คำ)`;
+        practiceReviewLabel.textContent = `ฝึกคำที่ต้องทบทวน ${catName}(สุ่ม ${n} คำ)`;
     }
 
-    historyTabs.forEach((t) => t.addEventListener('click', () => {
-        const tab = t.dataset.tab;
-        historyTabs.forEach((x) => {
-            x.classList.toggle('active', x === t);
-            x.setAttribute('aria-selected', String(x === t));
-        });
-        historySessionsPanel.hidden = tab !== 'sessions';
-        historyWordsPanel.hidden = tab !== 'words';
-    }));
+    historyTabs.forEach((t) => t.addEventListener('click', () => setDashTab(t.dataset.panel)));
 
     filterChips.forEach((chip) => chip.addEventListener('click', () => {
         historyFilter = chip.dataset.filter;
@@ -901,21 +1454,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     wordSearch.addEventListener('input', renderHistoryWords);
 
-    btnPracticeReview.addEventListener('click', async () => {
-        const pool = Object.keys(wordStatus)
-            .filter((k) => wordStatus[k] === 'review')
-            .map((k) => keyToIndex.get(k));
-        if (!pool.length) return;
-        if (loadActiveSession()) {
-            const ok = await confirmDialog({
-                title: 'เริ่มรอบทบทวน?',
-                message: 'คุณมีรอบที่ยังเล่นไม่จบอยู่ ถ้าเริ่มรอบใหม่ รอบเดิมจะถูกยกเลิก',
-                confirmText: 'เริ่มรอบทบทวน'
-            });
-            if (!ok) return;
-        }
-        startSession(pickRandom(pool, selectedSize), 'review');
-    });
+    btnPracticeReview.addEventListener('click', () => practiceReviewWords(historyCatFilter));
 
     btnHistoryBack.addEventListener('click', () => {
         showScreen(historyReturnTo === 'summary' && lastSummary ? 'summary' : 'welcome');

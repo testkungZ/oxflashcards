@@ -4,25 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oxford 3000 Flashcards | ฝึกคำศัพท์ภาษาอังกฤษ</title>
+    <title>Oxflashcards | ฝึกคำศัพท์ภาษาอังกฤษ</title>
     <meta name="description"
-        content="ฝึกคำศัพท์ Oxford 3000 ด้วย Flashcard สไตล์ Liquid Glass เลือกจำนวนคำต่อรอบ ดูสรุปผล และบันทึกประวัติการเรียน">
+        content="ฝึกคำศัพท์ Oxflashcards ด้วย Flashcard สไตล์ Liquid Glass เลือกจำนวนคำต่อรอบ ดูสรุปผล และบันทึกประวัติการเรียน">
     
     <!-- SEO & Indexing -->
     <meta name="robots" content="index, follow">
-    <meta name="keywords" content="เรียนภาษาอังกฤษ, คำศัพท์ภาษาอังกฤษ, Oxford 3000, Flashcard, ทบทวนคำศัพท์">
+    <meta name="keywords" content="เรียนภาษาอังกฤษ, คำศัพท์ภาษาอังกฤษ, Oxflashcards, Flashcard, ทบทวนคำศัพท์">
     <meta name="google-site-verification" content="0XBc5g6GnmkSlI-GEFfXsFDNGc0tQu2k2byezhuC__Y" />
 
     <!-- Open Graph / Facebook / LINE -->
-    <meta property="og:title" content="Oxford 3000 Flashcards | ฝึกคำศัพท์ภาษาอังกฤษ">
-    <meta property="og:description" content="ฝึกคำศัพท์ Oxford 3000 ด้วย Flashcard สไตล์ Liquid Glass เลือกจำนวนคำต่อรอบ ดูสรุปผล และบันทึกประวัติการเรียน">
+    <meta property="og:title" content="Oxflashcards | ฝึกคำศัพท์ภาษาอังกฤษ">
+    <meta property="og:description" content="ฝึกคำศัพท์ Oxflashcards ด้วย Flashcard สไตล์ Liquid Glass เลือกจำนวนคำต่อรอบ ดูสรุปผล และบันทึกประวัติการเรียน">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://testkungz.github.io/oxflashcards/"> 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Thai:wght@400;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -43,7 +43,7 @@
                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                 </svg>
             </div>
-            <h1>Oxford 3000</h1>
+            <h1>Oxflashcards</h1>
             <p>เรียนรู้คำศัพท์ภาษาอังกฤษที่สำคัญที่สุด 3,000 คำ<br>ด้วยระบบ Flashcard ที่ใช้งานง่ายและสบายตา</p>
 
             <!-- Overall progress -->
@@ -91,14 +91,25 @@
                     </svg>
                     <span>เล่นต่อรอบเดิม <small id="resume-info"></small></span>
                 </button>
-                <button id="btn-history" class="btn link-btn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 3v5h5" />
-                        <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8" />
-                        <path d="M12 7v5l4 2" />
+                <button id="btn-history" class="btn-dashboard" type="button">
+                    <span class="btn-dashboard-shine" aria-hidden="true"></span>
+                    <span class="btn-dashboard-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3v18h18" />
+                            <rect x="7" y="12" width="3" height="6" rx="1" />
+                            <rect x="12" y="8" width="3" height="10" rx="1" />
+                            <rect x="17" y="5" width="3" height="13" rx="1" />
+                        </svg>
+                    </span>
+                    <span class="btn-dashboard-text">
+                        <strong>แดชบอร์ดการเรียน</strong>
+                        <small>สถิติ · หมวดคำ · วิเคราะห์จุดอ่อน</small>
+                    </span>
+                    <svg class="btn-dashboard-chev" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 18l6-6-6-6" />
                     </svg>
-                    ดูประวัติการเรียน
                 </button>
             </div>
         </div>
@@ -116,7 +127,7 @@
                     </svg>
                 </button>
                 <div class="app-title">
-                    <h2>Oxford 3000</h2>
+                    <h2>Oxflashcards</h2>
                     <span class="session-mode" id="session-mode">สุ่มคำ</span>
                 </div>
                 <button id="btn-finish" class="glass-btn btn-finish" title="จบรอบและดูสรุป">
@@ -147,7 +158,16 @@
                                 <div class="card-glass-reflection"></div>
                                 <div class="card-content">
                                     <h3 id="word" class="word">Loading...</h3>
-                                    <p id="part-of-speech" class="part-of-speech"></p>
+                                    <div style="display: flex; gap: 15px; align-items: center; margin-top: 12px;">
+                                        <p id="part-of-speech" class="part-of-speech"></p>
+                                        <button id="btn-speak" class="speak-btn" title="ฟังเสียงอ่าน" aria-label="ฟังเสียงอ่าน">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="hint">แตะเพื่อดูความหมาย</div>
                             </div>
@@ -279,7 +299,7 @@
                 <div class="summary-links">
                     <button id="btn-summary-home" class="btn link-btn">กลับหน้าแรก</button>
                     <span class="dot-sep">•</span>
-                    <button id="btn-summary-history" class="btn link-btn">ดูประวัติทั้งหมด</button>
+                    <button id="btn-summary-history" class="btn link-btn">ดูแดชบอร์ด</button>
                 </div>
             </div>
             <p class="saved-note">
@@ -292,9 +312,9 @@
         </div>
     </section>
 
-    <!-- ===================== History Screen ===================== -->
-    <section id="history-screen" class="screen" aria-label="ประวัติการเรียน">
-        <div class="app-container history-container">
+    <!-- ===================== Dashboard Screen ===================== -->
+    <section id="history-screen" class="screen" aria-label="แดชบอร์ดการเรียน">
+        <div class="app-container history-container dashboard-container">
             <header class="app-header">
                 <button id="btn-history-back" class="glass-btn-icon small" title="ย้อนกลับ" aria-label="ย้อนกลับ">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -303,7 +323,8 @@
                     </svg>
                 </button>
                 <div class="app-title">
-                    <h2>ประวัติการเรียน</h2>
+                    <h2>แดชบอร์ดการเรียน</h2>
+                    <span class="dash-subtitle">วิเคราะห์ความก้าวหน้าของคุณ</span>
                 </div>
                 <button id="btn-clear-history" class="glass-btn btn-finish danger" title="ล้างข้อมูลทั้งหมด">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -316,24 +337,140 @@
                 </button>
             </header>
 
-            <div class="glass-panel history-panel">
-                <div class="tabs" role="tablist" id="history-tabs">
-                    <button type="button" class="tab active" role="tab" id="history-tab-sessions"
-                        data-tab="sessions">รอบที่ผ่านมา <span class="tab-count"
-                            id="history-sessions-count">0</span></button>
-                    <button type="button" class="tab" role="tab" id="history-tab-words"
-                        data-tab="words">คำศัพท์ของฉัน</button>
+            <nav class="tabs dash-tabs" role="tablist" id="history-tabs" aria-label="เมนูแดชบอร์ด">
+                <span class="dash-tab-indicator" id="dash-tab-indicator" aria-hidden="true"></span>
+                <button type="button" class="tab active" role="tab" id="dash-tab-overview" data-panel="dash-overview">
+                    <span class="tab-emoji">✨</span>ภาพรวม</button>
+                <button type="button" class="tab" role="tab" id="dash-tab-categories" data-panel="dash-categories">
+                    <span class="tab-emoji">📚</span>หมวดคำ</button>
+                <button type="button" class="tab" role="tab" id="dash-tab-analysis" data-panel="dash-analysis">
+                    <span class="tab-emoji">🎯</span>วิเคราะห์</button>
+                <button type="button" class="tab" role="tab" id="history-tab-sessions" data-panel="history-sessions">
+                    <span class="tab-emoji">🕒</span>รอบที่ผ่านมา <span class="tab-count" id="history-sessions-count">0</span></button>
+                <button type="button" class="tab" role="tab" id="history-tab-words" data-panel="history-words">
+                    <span class="tab-emoji">📝</span>คำศัพท์ของฉัน</button>
+            </nav>
+
+            <!-- ========== Overview ========== -->
+            <div id="dash-overview" class="tab-panel dash-panel">
+                <div class="glass-panel dash-hero liquid-card">
+                    <div class="score-ring dash-ring">
+                        <svg viewBox="0 0 120 120" width="170" height="170">
+                            <defs>
+                                <linearGradient id="dash-ring-gradient" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#34d399" />
+                                    <stop offset="50%" stop-color="#3b82f6" />
+                                    <stop offset="100%" stop-color="#a855f7" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="ring-bg" cx="60" cy="60" r="52" />
+                            <circle class="ring-fg dash-ring-fg" id="dash-ring-fg" cx="60" cy="60" r="52" />
+                        </svg>
+                        <div class="ring-center">
+                            <span class="ring-percent" id="dash-mastery-percent">0%</span>
+                            <span class="ring-label">จำได้แล้ว</span>
+                        </div>
+                    </div>
+                    <div class="dash-hero-info">
+                        <span class="dash-level-pill" id="dash-level-pill">Level 1</span>
+                        <h3 id="dash-hero-title">เริ่มต้นการเดินทาง</h3>
+                        <p id="dash-hero-sub" class="muted"></p>
+                        <div class="stack-bar big" aria-hidden="true">
+                            <span class="seg known" id="dash-bar-known"></span>
+                            <span class="seg review" id="dash-bar-review"></span>
+                        </div>
+                        <div class="dash-legend">
+                            <span class="lg known"><i></i>จำได้ <b id="dash-lg-known">0</b></span>
+                            <span class="lg review"><i></i>ทบทวน <b id="dash-lg-review">0</b></span>
+                            <span class="lg unseen"><i></i>ยังไม่เรียน <b id="dash-lg-unseen">0</b></span>
+                        </div>
+                    </div>
                 </div>
 
+                <div class="dash-stat-grid">
+                    <div class="glass-panel stat-tile liquid-card" style="--tile-c1:#3b82f6;--tile-c2:#06b6d4">
+                        <span class="stat-tile-icon">🎮</span>
+                        <span class="stat-tile-value" id="dash-stat-sessions">0</span>
+                        <span class="stat-tile-label">รอบที่เล่น</span>
+                    </div>
+                    <div class="glass-panel stat-tile liquid-card" style="--tile-c1:#10b981;--tile-c2:#34d399">
+                        <span class="stat-tile-icon">🎯</span>
+                        <span class="stat-tile-value" id="dash-stat-accuracy">0%</span>
+                        <span class="stat-tile-label">ความแม่นยำ</span>
+                    </div>
+                    <div class="glass-panel stat-tile liquid-card" style="--tile-c1:#f97316;--tile-c2:#f59e0b">
+                        <span class="stat-tile-icon">🔥</span>
+                        <span class="stat-tile-value" id="dash-stat-streak">0</span>
+                        <span class="stat-tile-label">วันติดต่อกัน</span>
+                    </div>
+                    <div class="glass-panel stat-tile liquid-card" style="--tile-c1:#8b5cf6;--tile-c2:#ec4899">
+                        <span class="stat-tile-icon">📖</span>
+                        <span class="stat-tile-value" id="dash-stat-studied">0</span>
+                        <span class="stat-tile-label">คำที่เรียนแล้ว</span>
+                    </div>
+                </div>
+
+                <div class="glass-panel dash-card liquid-card">
+                    <div class="dash-card-head">
+                        <h3>📈 ผลลัพธ์ 10 รอบล่าสุด</h3>
+                        <span class="muted small">% คำที่จำได้ต่อรอบ</span>
+                    </div>
+                    <div class="trend-chart" id="dash-trend"></div>
+                </div>
+
+                <div class="glass-panel dash-card liquid-card">
+                    <div class="dash-card-head">
+                        <h3>🧩 ความคืบหน้ารายหมวด</h3>
+                        <button type="button" class="link-btn" id="dash-goto-categories">ดูทั้งหมด →</button>
+                    </div>
+                    <div class="mini-cats" id="dash-mini-cats"></div>
+                </div>
+            </div>
+
+            <!-- ========== Categories ========== -->
+            <div id="dash-categories" class="tab-panel dash-panel" hidden>
+                <p class="dash-intro muted">แยกคำศัพท์ตามหมวดชนิดคำ (Part of Speech) — กดที่หัวข้อเพื่อดูรายการคำที่จำได้และคำที่ต้องทบทวน</p>
+                <div class="cat-grid" id="cat-grid"></div>
+            </div>
+
+            <!-- ========== Analysis ========== -->
+            <div id="dash-analysis" class="tab-panel dash-panel" hidden>
+                <div class="insight-grid" id="insight-grid"></div>
+
+                <div class="glass-panel dash-card liquid-card">
+                    <div class="dash-card-head">
+                        <h3>💪 ความแข็งแรงรายหมวด</h3>
+                        <span class="muted small">เรียงจากหมวดที่ต้องเสริมมากที่สุด</span>
+                    </div>
+                    <div class="weak-list" id="weak-list"></div>
+                </div>
+
+                <div class="glass-panel dash-card liquid-card">
+                    <div class="dash-card-head">
+                        <h3>🗺️ แผนที่ความจำ A–Z</h3>
+                        <div class="az-legend">
+                            <span><i class="sw bad"></i>อ่อน</span>
+                            <span><i class="sw mid"></i>กลาง</span>
+                            <span><i class="sw good"></i>ดี</span>
+                            <span><i class="sw none"></i>ยังไม่เรียน</span>
+                        </div>
+                    </div>
+                    <div class="az-grid" id="az-heatmap"></div>
+                    <p class="muted small az-note" id="az-note">แตะตัวอักษรเพื่อดูรายละเอียด</p>
+                </div>
+            </div>
+
+            <div class="glass-panel history-panel dash-list-panel" id="dash-list-panel" hidden>
                 <!-- Sessions tab -->
-                <div id="history-sessions" class="tab-panel">
+                <div id="history-sessions" class="tab-panel" hidden>
                     <div class="session-list" id="session-list"></div>
                 </div>
 
                 <!-- Words tab -->
                 <div id="history-words" class="tab-panel" hidden>
+                    <div class="filter-chips cat-filter" id="cat-filter"></div>
                     <div class="words-toolbar">
-                        <div class="filter-chips">
+                        <div class="filter-chips" id="status-filter">
                             <button type="button" class="chip review active" id="filter-review"
                                 data-filter="review">ต้องทบทวน <span id="filter-review-count">0</span></button>
                             <button type="button" class="chip known" id="filter-known" data-filter="known">จำได้แล้ว
