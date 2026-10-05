@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oxford 3000 Flashcards | ฝึกคำศัพท์ภาษาอังกฤษ</title>
+    <meta name="description"
+        content="ฝึกคำศัพท์ Oxford 3000 ด้วย Flashcard สไตล์ Liquid Glass เลือกจำนวนคำต่อรอบ ดูสรุปผล และบันทึกประวัติการเรียน">
+    
+    <!-- SEO & Indexing -->
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="เรียนภาษาอังกฤษ, คำศัพท์ภาษาอังกฤษ, Oxford 3000, Flashcard, ทบทวนคำศัพท์">
+
+    <!-- Open Graph / Facebook / LINE -->
+    <meta property="og:title" content="Oxford 3000 Flashcards | ฝึกคำศัพท์ภาษาอังกฤษ">
+    <meta property="og:description" content="ฝึกคำศัพท์ Oxford 3000 ด้วย Flashcard สไตล์ Liquid Glass เลือกจำนวนคำต่อรอบ ดูสรุปผล และบันทึกประวัติการเรียน">
+    <meta property="og:type" content="website">
+    <!-- ถ้าอัปโหลดเว็บเสร็จแล้ว ให้นำ URL มาใส่ตรงนี้นะครับ -->
+    <meta property="og:url" content="https://your-website-url.com"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Thai:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Background Animated Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- ===================== Welcome Screen ===================== -->
+    <section id="welcome-screen" class="screen active" aria-label="หน้าแรก">
+        <div class="glass-panel welcome-panel">
+            <div class="welcome-icon">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+            </div>
+            <h1>Oxford 3000</h1>
+            <p>เรียนรู้คำศัพท์ภาษาอังกฤษที่สำคัญที่สุด 3,000 คำ<br>ด้วยระบบ Flashcard ที่ใช้งานง่ายและสบายตา</p>
+
+            <!-- Overall progress -->
+            <div class="overall-stats" aria-label="ความคืบหน้าทั้งหมด">
+                <div class="overall-stat known">
+                    <span class="overall-value" id="overall-known">0</span>
+                    <span class="overall-label">จำได้แล้ว</span>
+                </div>
+                <div class="overall-stat review">
+                    <span class="overall-value" id="overall-review">0</span>
+                    <span class="overall-label">ต้องทบทวน</span>
+                </div>
+                <div class="overall-stat unseen">
+                    <span class="overall-value" id="overall-unseen">0</span>
+                    <span class="overall-label">ยังไม่เคยเรียน</span>
+                </div>
+            </div>
+
+            <!-- Word count selector -->
+            <div class="count-selector">
+                <span class="selector-label">เลือกจำนวนคำต่อรอบ</span>
+                <div class="segmented" id="count-segmented" role="radiogroup" aria-label="จำนวนคำต่อรอบ">
+                    <span class="seg-indicator" id="seg-indicator"></span>
+                    <button type="button" class="seg-option" id="count-20" role="radio" data-count="20">20</button>
+                    <button type="button" class="seg-option" id="count-30" role="radio" data-count="30">30</button>
+                    <button type="button" class="seg-option" id="count-40" role="radio" data-count="40">40</button>
+                    <button type="button" class="seg-option" id="count-50" role="radio" data-count="50">50</button>
+                </div>
+                <span class="selector-hint">สุ่มคำจากคลังทั้งหมด <b id="total-words-label">3,000</b> คำ</span>
+            </div>
+
+            <div class="welcome-actions">
+                <button id="btn-start" class="btn btn-primary glass-btn btn-lg">
+                    เริ่มต้น (Get Started)
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
+                        <path d="M5 12h14" />
+                        <path d="M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+                <button id="btn-resume" class="btn glass-btn btn-resume" hidden>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="6 4 20 12 6 20 6 4" />
+                    </svg>
+                    <span>เล่นต่อรอบเดิม <small id="resume-info"></small></span>
+                </button>
+                <button id="btn-history" class="btn link-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3v5h5" />
+                        <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8" />
+                        <path d="M12 7v5l4 2" />
+                    </svg>
+                    ดูประวัติการเรียน
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Main App Screen ===================== -->
+    <section id="app-screen" class="screen" aria-label="Flashcard">
+        <div class="app-container">
+            <header class="app-header">
+                <button id="btn-home" class="glass-btn-icon small" title="กลับหน้าแรก" aria-label="กลับหน้าแรก">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 10.5 12 3l9 7.5" />
+                        <path d="M5 9.5V21h14V9.5" />
+                    </svg>
+                </button>
+                <div class="app-title">
+                    <h2>Oxford 3000</h2>
+                    <span class="session-mode" id="session-mode">สุ่มคำ</span>
+                </div>
+                <button id="btn-finish" class="glass-btn btn-finish" title="จบรอบและดูสรุป">
+                    จบรอบ
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                        <line x1="4" y1="22" x2="4" y2="15" />
+                    </svg>
+                </button>
+            </header>
+
+            <main>
+                <div class="glass-panel main-panel">
+                    <div class="progress-container">
+                        <div class="progress-row">
+                            <span class="card-status" id="card-status"></span>
+                            <div class="progress-text">
+                                <span id="current-index">1</span> / <span id="total-cards">0</span>
+                            </div>
+                        </div>
+                        <div class="session-dots" id="session-dots" aria-label="สถานะคำในรอบนี้"></div>
+                    </div>
+
+                    <div class="flashcard-container" id="flashcard-container">
+                        <div class="flashcard" id="flashcard">
+                            <div class="card-face card-front glass-card">
+                                <div class="card-glass-reflection"></div>
+                                <div class="card-content">
+                                    <h3 id="word" class="word">Loading...</h3>
+                                    <p id="part-of-speech" class="part-of-speech"></p>
+                                </div>
+                                <div class="hint">แตะเพื่อดูความหมาย</div>
+                            </div>
+                            <div class="card-face card-back glass-card">
+                                <div class="card-glass-reflection"></div>
+                                <div class="card-content">
+                                    <h3 id="translation" class="translation"></h3>
+                                    <p id="definition" class="definition"></p>
+                                    <div class="example-box" id="example-box">
+                                        <i>"<span id="example"></span>"</i>
+                                        <div class="example-translation" id="example-translation" style="margin-top: 8px; font-size: 0.9em; color: var(--text-light, #666);"></div>
+                                    </div>
+                                </div>
+                                <div class="hint">แตะเพื่อพลิกกลับ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button id="btn-prev" class="btn btn-secondary glass-btn-icon" aria-label="คำก่อนหน้า">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                        </button>
+                        <div class="action-buttons">
+                            <button id="btn-unknown" class="btn btn-danger glass-btn">ต้องทบทวน</button>
+                            <button id="btn-known" class="btn btn-success glass-btn">จำได้แล้ว!</button>
+                            <button id="btn-advance" class="btn btn-primary glass-btn" style="display: none; width: 100%;">ต่อไป →</button>
+                        </div>
+                        <button id="btn-next" class="btn btn-secondary glass-btn-icon" aria-label="คำถัดไป">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 18l6-6-6-6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-container glass-panel stats-panel">
+                    <div class="stat-box">
+                        <span class="stat-value" id="stat-known">0</span>
+                        <span class="stat-label">จำได้แล้ว</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-box">
+                        <span class="stat-value" id="stat-review">0</span>
+                        <span class="stat-label">ต้องทบทวน</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-box">
+                        <span class="stat-value" id="stat-remaining">0</span>
+                        <span class="stat-label">ยังไม่ตอบ</span>
+                    </div>
+                </div>
+                <p class="kbd-hint">คีย์ลัด: <kbd>←</kbd> <kbd>→</kbd> เปลี่ยนคำ · <kbd>Space</kbd> พลิกการ์ด ·
+                    <kbd>1</kbd> ต้องทบทวน · <kbd>2</kbd> จำได้แล้ว
+                </p>
+            </main>
+        </div>
+    </section>
+
+    <!-- ===================== Summary Screen ===================== -->
+    <section id="summary-screen" class="screen" aria-label="สรุปผล">
+        <div class="glass-panel summary-panel">
+            <div class="summary-header">
+                <span class="summary-emoji" id="summary-emoji">🎉</span>
+                <h2 id="summary-title">จบรอบแล้ว!</h2>
+                <p id="summary-subtitle" class="summary-subtitle"></p>
+            </div>
+
+            <div class="score-ring">
+                <svg viewBox="0 0 120 120" width="160" height="160">
+                    <defs>
+                        <linearGradient id="ring-gradient" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#34d399" />
+                            <stop offset="100%" stop-color="#3b82f6" />
+                        </linearGradient>
+                    </defs>
+                    <circle class="ring-bg" cx="60" cy="60" r="52" />
+                    <circle class="ring-fg" id="ring-fg" cx="60" cy="60" r="52" />
+                </svg>
+                <div class="ring-center">
+                    <span class="ring-percent" id="summary-percent">0%</span>
+                    <span class="ring-label">จำได้</span>
+                </div>
+            </div>
+
+            <div class="summary-stats">
+                <div class="summary-stat known">
+                    <span class="summary-stat-value" id="summary-known">0</span>
+                    <span class="summary-stat-label">จำได้แล้ว</span>
+                </div>
+                <div class="summary-stat review">
+                    <span class="summary-stat-value" id="summary-review">0</span>
+                    <span class="summary-stat-label">ต้องทบทวน</span>
+                </div>
+                <div class="summary-stat skipped" id="summary-skipped-box">
+                    <span class="summary-stat-value" id="summary-skipped">0</span>
+                    <span class="summary-stat-label">ข้าม</span>
+                </div>
+            </div>
+
+            <div class="tabs" role="tablist" id="summary-tabs">
+                <button type="button" class="tab" role="tab" id="summary-tab-review" data-tab="review">ต้องทบทวน <span
+                        class="tab-count" id="summary-tab-review-count">0</span></button>
+                <button type="button" class="tab" role="tab" id="summary-tab-known" data-tab="known">จำได้แล้ว <span
+                        class="tab-count" id="summary-tab-known-count">0</span></button>
+            </div>
+            <ul class="word-list" id="summary-word-list"></ul>
+
+            <div class="summary-actions">
+                <button id="btn-retry-review" class="btn glass-btn btn-danger-solid">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12a9 9 0 1 1-3-6.7L21 8" />
+                        <path d="M21 3v5h-5" />
+                    </svg>
+                    <span>ฝึกคำที่ต้องทบทวน (<span id="retry-count">0</span>)</span>
+                </button>
+                <button id="btn-new-session" class="btn btn-primary glass-btn">
+                    เริ่มรอบใหม่
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+                <div class="summary-links">
+                    <button id="btn-summary-home" class="btn link-btn">กลับหน้าแรก</button>
+                    <span class="dot-sep">•</span>
+                    <button id="btn-summary-history" class="btn link-btn">ดูประวัติทั้งหมด</button>
+                </div>
+            </div>
+            <p class="saved-note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                </svg>
+                บันทึกผลรอบนี้ไว้ในประวัติแล้ว
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================== History Screen ===================== -->
+    <section id="history-screen" class="screen" aria-label="ประวัติการเรียน">
+        <div class="app-container history-container">
+            <header class="app-header">
+                <button id="btn-history-back" class="glass-btn-icon small" title="ย้อนกลับ" aria-label="ย้อนกลับ">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+                <div class="app-title">
+                    <h2>ประวัติการเรียน</h2>
+                </div>
+                <button id="btn-clear-history" class="glass-btn btn-finish danger" title="ล้างข้อมูลทั้งหมด">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 6h18" />
+                        <path d="M8 6V4h8v2" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                    </svg>
+                    ล้าง
+                </button>
+            </header>
+
+            <div class="glass-panel history-panel">
+                <div class="tabs" role="tablist" id="history-tabs">
+                    <button type="button" class="tab active" role="tab" id="history-tab-sessions"
+                        data-tab="sessions">รอบที่ผ่านมา <span class="tab-count"
+                            id="history-sessions-count">0</span></button>
+                    <button type="button" class="tab" role="tab" id="history-tab-words"
+                        data-tab="words">คำศัพท์ของฉัน</button>
+                </div>
+
+                <!-- Sessions tab -->
+                <div id="history-sessions" class="tab-panel">
+                    <div class="session-list" id="session-list"></div>
+                </div>
+
+                <!-- Words tab -->
+                <div id="history-words" class="tab-panel" hidden>
+                    <div class="words-toolbar">
+                        <div class="filter-chips">
+                            <button type="button" class="chip review active" id="filter-review"
+                                data-filter="review">ต้องทบทวน <span id="filter-review-count">0</span></button>
+                            <button type="button" class="chip known" id="filter-known" data-filter="known">จำได้แล้ว
+                                <span id="filter-known-count">0</span></button>
+                        </div>
+                        <div class="search-box">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="7" />
+                                <path d="m21 21-4.3-4.3" />
+                            </svg>
+                            <input type="search" id="word-search" placeholder="ค้นหาคำศัพท์หรือความหมาย..."
+                                autocomplete="off">
+                        </div>
+                    </div>
+                    <ul class="word-list tall" id="history-word-list"></ul>
+                    <button id="btn-practice-review" class="btn glass-btn btn-danger-solid full">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12a9 9 0 1 1-3-6.7L21 8" />
+                            <path d="M21 3v5h-5" />
+                        </svg>
+                        <span id="practice-review-label">ฝึกคำที่ต้องทบทวน</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirm Modal -->
+    <div id="modal" class="modal-overlay" aria-hidden="true">
+        <div class="glass-panel modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <h3 id="modal-title"></h3>
+            <p id="modal-message"></p>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="btn glass-btn">ยกเลิก</button>
+                <button id="modal-confirm" class="btn glass-btn btn-primary">ตกลง</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
