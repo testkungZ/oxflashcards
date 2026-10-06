@@ -7,7 +7,7 @@
     <title>Oxflashcards | ฝึกคำศัพท์ภาษาอังกฤษ</title>
     <meta name="description"
         content="ฝึกคำศัพท์ Oxflashcards ด้วย Flashcard สไตล์ Liquid Glass เลือกจำนวนคำต่อรอบ ดูสรุปผล และบันทึกประวัติการเรียน">
-    
+
     <!-- SEO & Indexing -->
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="เรียนภาษาอังกฤษ, คำศัพท์ภาษาอังกฤษ, Oxflashcards, Flashcard, ทบทวนคำศัพท์">
@@ -15,9 +15,10 @@
 
     <!-- Open Graph / Facebook / LINE -->
     <meta property="og:title" content="Oxflashcards | ฝึกคำศัพท์ภาษาอังกฤษ">
-    <meta property="og:description" content="ฝึกคำศัพท์ Oxflashcards ด้วย Flashcard สไตล์ Liquid Glass เลือกจำนวนคำต่อรอบ ดูสรุปผล และบันทึกประวัติการเรียน">
+    <meta property="og:description"
+        content="ฝึกคำศัพท์ Oxflashcards ด้วย Flashcard สไตล์ Liquid Glass เลือกจำนวนคำต่อรอบ ดูสรุปผล และบันทึกประวัติการเรียน">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://testkungz.github.io/oxflashcards/"> 
+    <meta property="og:url" content="https://testkungz.github.io/oxflashcards/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,14 +65,25 @@
 
             <!-- Word count selector -->
             <div class="count-selector">
-                <span class="selector-label">เลือกจำนวนคำต่อรอบ</span>
-                <div class="segmented" id="count-segmented" role="radiogroup" aria-label="จำนวนคำต่อรอบ">
+                <span class="selector-label">เลือกจำนวนคำต่อรอบ: <span id="count-display" style="color: var(--primary); font-size: 1.2rem; font-weight: 800; margin-left: 5px;">20</span></span>
+                
+                <div class="segmented" id="count-segmented" role="radiogroup" aria-label="จำนวนคำต่อรอบด่วน">
                     <span class="seg-indicator" id="seg-indicator"></span>
                     <button type="button" class="seg-option" id="count-20" role="radio" data-count="20">20</button>
                     <button type="button" class="seg-option" id="count-30" role="radio" data-count="30">30</button>
                     <button type="button" class="seg-option" id="count-40" role="radio" data-count="40">40</button>
                     <button type="button" class="seg-option" id="count-50" role="radio" data-count="50">50</button>
                 </div>
+
+                <!-- Liquid Glass Slider -->
+                <div class="slider-container glass-slider">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-weight: 600; color: var(--text-muted); font-size: 0.85rem;">
+                        <span>1</span>
+                        <span>50</span>
+                    </div>
+                    <input type="range" id="count-slider" min="1" max="50" step="0.01" value="20" class="liquid-slider" aria-label="เลื่อนปรับจำนวนคำ">
+                </div>
+
                 <span class="selector-hint">สุ่มคำจากคลังทั้งหมด <b id="total-words-label">3,000</b> คำ</span>
             </div>
 
@@ -91,11 +103,30 @@
                     </svg>
                     <span>เล่นต่อรอบเดิม <small id="resume-info"></small></span>
                 </button>
+                <button id="btn-quiz-start" class="btn-quiz" type="button">
+                    <span class="btn-dashboard-shine" aria-hidden="true"></span>
+                    <span class="btn-quiz-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <path d="M10.4 12.6a2 2 0 1 1 3 3L8 21l-4 1 1-4Z" />
+                        </svg>
+                    </span>
+                    <span class="btn-quiz-text">
+                        <strong>โหมดตอบคำถาม (Quiz Mode)</strong>
+                        <small>ฝึกทำข้อสอบ · วัดความจำ · ทบทวนอย่างสนุก</small>
+                    </span>
+                    <svg class="btn-quiz-chev" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M9 18l6-6-6-6" />
+                    </svg>
+                </button>
                 <button id="btn-history" class="btn-dashboard" type="button">
                     <span class="btn-dashboard-shine" aria-hidden="true"></span>
                     <span class="btn-dashboard-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                            stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 3v18h18" />
                             <rect x="7" y="12" width="3" height="6" rx="1" />
                             <rect x="12" y="8" width="3" height="10" rx="1" />
@@ -107,7 +138,8 @@
                         <small>สถิติ · หมวดคำ · วิเคราะห์จุดอ่อน</small>
                     </span>
                     <svg class="btn-dashboard-chev" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
                         <path d="M9 18l6-6-6-6" />
                     </svg>
                 </button>
@@ -160,8 +192,11 @@
                                     <h3 id="word" class="word">Loading...</h3>
                                     <div style="display: flex; gap: 15px; align-items: center; margin-top: 12px;">
                                         <p id="part-of-speech" class="part-of-speech"></p>
-                                        <button id="btn-speak" class="speak-btn" title="ฟังเสียงอ่าน" aria-label="ฟังเสียงอ่าน">
-                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <button id="btn-speak" class="speak-btn" title="ฟังเสียงอ่าน"
+                                            aria-label="ฟังเสียงอ่าน">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
                                                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                                                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
@@ -178,7 +213,9 @@
                                     <p id="definition" class="definition"></p>
                                     <div class="example-box" id="example-box">
                                         <i>"<span id="example"></span>"</i>
-                                        <div class="example-translation" id="example-translation" style="margin-top: 8px; font-size: 0.9em; color: var(--text-light, #666);"></div>
+                                        <div class="example-translation" id="example-translation"
+                                            style="margin-top: 8px; font-size: 0.9em; color: var(--text-light, #666);">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="hint">แตะเพื่อพลิกกลับ</div>
@@ -196,7 +233,8 @@
                         <div class="action-buttons">
                             <button id="btn-unknown" class="btn btn-danger glass-btn">ต้องทบทวน</button>
                             <button id="btn-known" class="btn btn-success glass-btn">จำได้แล้ว!</button>
-                            <button id="btn-advance" class="btn btn-primary glass-btn" style="display: none; width: 100%;">ต่อไป →</button>
+                            <button id="btn-advance" class="btn btn-primary glass-btn"
+                                style="display: none; width: 100%;">ต่อไป →</button>
                         </div>
                         <button id="btn-next" class="btn btn-secondary glass-btn-icon" aria-label="คำถัดไป">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -337,18 +375,32 @@
                 </button>
             </header>
 
+            <div class="dash-mode-switcher" id="dash-mode-switcher">
+                <button class="mode-btn active" data-mode="flashcard">Flashcard</button>
+                <button class="mode-btn" data-mode="quiz">Quiz Mode</button>
+            </div>
+            
             <nav class="tabs dash-tabs" role="tablist" id="history-tabs" aria-label="เมนูแดชบอร์ด">
                 <span class="dash-tab-indicator" id="dash-tab-indicator" aria-hidden="true"></span>
-                <button type="button" class="tab active" role="tab" id="dash-tab-overview" data-panel="dash-overview">
+                <button type="button" class="tab active" role="tab" id="dash-tab-overview" data-panel="dash-overview" data-group="flashcard">
                     <span class="tab-emoji">✨</span>ภาพรวม</button>
-                <button type="button" class="tab" role="tab" id="dash-tab-categories" data-panel="dash-categories">
+                <button type="button" class="tab" role="tab" id="dash-tab-categories" data-panel="dash-categories" data-group="flashcard">
                     <span class="tab-emoji">📚</span>หมวดคำ</button>
-                <button type="button" class="tab" role="tab" id="dash-tab-analysis" data-panel="dash-analysis">
+                <button type="button" class="tab" role="tab" id="dash-tab-analysis" data-panel="dash-analysis" data-group="flashcard">
                     <span class="tab-emoji">🎯</span>วิเคราะห์</button>
-                <button type="button" class="tab" role="tab" id="history-tab-sessions" data-panel="history-sessions">
-                    <span class="tab-emoji">🕒</span>รอบที่ผ่านมา <span class="tab-count" id="history-sessions-count">0</span></button>
-                <button type="button" class="tab" role="tab" id="history-tab-words" data-panel="history-words">
+                <button type="button" class="tab" role="tab" id="history-tab-sessions" data-panel="history-sessions" data-group="flashcard">
+                    <span class="tab-emoji">🕒</span>รอบที่ผ่านมา <span class="tab-count"
+                        id="history-sessions-count">0</span></button>
+                <button type="button" class="tab" role="tab" id="history-tab-words" data-panel="history-words" data-group="flashcard">
                     <span class="tab-emoji">📝</span>คำศัพท์ของฉัน</button>
+                <button type="button" class="tab" role="tab" id="dash-tab-quiz" data-panel="dash-quiz" data-group="quiz" style="display: none;">
+                    <span class="tab-emoji">🏆</span>ประวัติ Quiz</button>
+                <button type="button" class="tab" role="tab" id="dash-tab-quiz-overview" data-panel="dash-quiz-overview" data-group="quiz" style="display: none;">
+                    <span class="tab-emoji">📊</span>ภาพรวม Quiz</button>
+                <button type="button" class="tab" role="tab" id="dash-tab-quiz-analysis" data-panel="dash-quiz-analysis" data-group="quiz" style="display: none;">
+                    <span class="tab-emoji">🎯</span>วิเคราะห์ Quiz</button>
+                <button type="button" class="tab" role="tab" id="dash-tab-quiz-mistakes" data-panel="dash-quiz-mistakes" data-group="quiz" style="display: none;">
+                    <span class="tab-emoji">⚠️</span>คำที่พลาดบ่อย</button>
             </nav>
 
             <!-- ========== Overview ========== -->
@@ -429,7 +481,8 @@
 
             <!-- ========== Categories ========== -->
             <div id="dash-categories" class="tab-panel dash-panel" hidden>
-                <p class="dash-intro muted">แยกคำศัพท์ตามหมวดชนิดคำ (Part of Speech) — กดที่หัวข้อเพื่อดูรายการคำที่จำได้และคำที่ต้องทบทวน</p>
+                <p class="dash-intro muted">แยกคำศัพท์ตามหมวดชนิดคำ (Part of Speech) —
+                    กดที่หัวข้อเพื่อดูรายการคำที่จำได้และคำที่ต้องทบทวน</p>
                 <div class="cat-grid" id="cat-grid"></div>
             </div>
 
@@ -496,9 +549,220 @@
                         <span id="practice-review-label">ฝึกคำที่ต้องทบทวน</span>
                     </button>
                 </div>
+            </div> <!-- Close dash-list-panel -->
+            
+            <!-- ========== Quiz Overview ========== -->
+            <div id="dash-quiz-overview" class="tab-panel dash-panel" hidden>
+                <div class="glass-panel dash-hero liquid-card">
+                    <div class="score-ring dash-ring">
+                        <svg viewBox="0 0 120 120" width="170" height="170">
+                            <defs>
+                                <linearGradient id="quiz-ring-gradient" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#f59e0b" />
+                                    <stop offset="50%" stop-color="#ec4899" />
+                                    <stop offset="100%" stop-color="#8b5cf6" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="ring-bg" cx="60" cy="60" r="52" />
+                            <circle class="ring-fg dash-ring-fg" id="quiz-ring-fg" cx="60" cy="60" r="52" stroke="url(#quiz-ring-gradient)" />
+                        </svg>
+                        <div class="ring-center">
+                            <span class="ring-percent" id="quiz-hero-percent">0%</span>
+                            <span class="ring-label">ความแม่นยำเฉลี่ย</span>
+                        </div>
+                    </div>
+                    <div class="dash-hero-info">
+                        <span class="dash-level-pill" id="quiz-hero-pill" style="background: linear-gradient(135deg, #f59e0b, #ec4899); box-shadow: 0 4px 10px rgba(236,72,153,0.3);">ผู้เริ่มต้น</span>
+                        <h3 id="quiz-hero-title">เริ่มการทดสอบแรกเลย!</h3>
+                        <p id="quiz-hero-sub" class="muted">คุณยังไม่ได้ทำแบบทดสอบใดๆ ลองทำเพื่อดูสถิติตรงนี้เลย</p>
+                        <div class="stack-bar big" aria-hidden="true" style="margin-top: 16px;">
+                            <span class="seg known" id="quiz-bar-correct" style="background: linear-gradient(90deg, #34d399, #10b981);"></span>
+                            <span class="seg unseen" id="quiz-bar-wrong" style="background: linear-gradient(90deg, #f87171, #ef4444);"></span>
+                        </div>
+                        <div class="dash-legend">
+                            <span class="lg known"><i style="background: #10b981;"></i>ตอบถูก <b id="quiz-lg-correct">0</b> ข้อ</span>
+                            <span class="lg unseen"><i style="background: #ef4444;"></i>ตอบผิด <b id="quiz-lg-wrong">0</b> ข้อ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-stat-grid" style="margin-bottom: 24px; margin-top: 24px;">
+                    <div class="glass-panel stat-tile liquid-card" style="--tile-c1:#8b5cf6;--tile-c2:#a855f7">
+                        <span class="stat-tile-icon">🏆</span>
+                        <span class="stat-tile-value" id="quiz-stat-total-played">0</span>
+                        <span class="stat-tile-label">จำนวนครั้งที่เล่น</span>
+                    </div>
+                    <div class="glass-panel stat-tile liquid-card" style="--tile-c1:#10b981;--tile-c2:#34d399">
+                        <span class="stat-tile-icon">🎯</span>
+                        <span class="stat-tile-value" id="quiz-stat-avg-score">0%</span>
+                        <span class="stat-tile-label">คะแนนเฉลี่ย</span>
+                    </div>
+                    <div class="glass-panel stat-tile liquid-card" style="--tile-c1:#f59e0b;--tile-c2:#fbbf24">
+                        <span class="stat-tile-icon">⏱️</span>
+                        <span class="stat-tile-value" id="quiz-stat-total-time">0</span>
+                        <span class="stat-tile-label">เวลาที่ใช้รวม</span>
+                    </div>
+                    <div class="glass-panel stat-tile liquid-card" style="--tile-c1:#3b82f6;--tile-c2:#60a5fa">
+                        <span class="stat-tile-icon">🔥</span>
+                        <span class="stat-tile-value" id="quiz-stat-best-score">0%</span>
+                        <span class="stat-tile-label">คะแนนสูงสุด</span>
+                    </div>
+                </div>
+                
+                <div class="glass-panel dash-card liquid-card">
+                    <div class="dash-card-head">
+                        <h3>📈 แนวโน้มคะแนน (10 ครั้งล่าสุด)</h3>
+                    </div>
+                    <div class="trend-chart" id="quiz-trend-chart">
+                        <!-- Chart injected via JS -->
+                    </div>
+                </div>
             </div>
+            
+            <!-- ========== Quiz History ========== -->
+            <div id="dash-quiz" class="tab-panel dash-panel">
+                <div class="glass-panel liquid-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #a855f7;">ประวัติการทำแบบทดสอบ (Quiz Mode)</h3>
+                        <div class="stat-box" style="margin:0;">
+                            <span class="stat-value" id="quiz-avg-score" style="color: #a855f7;">0%</span>
+                            <span class="stat-label">คะแนนเฉลี่ย</span>
+                        </div>
+                    </div>
+                    <div id="quiz-history-list" class="quiz-history-list">
+                        <!-- History items injected via JS -->
+                        <div style="text-align: center; padding: 30px; color: var(--text-muted); font-size: 0.95rem;">
+                            คุณยังไม่เคยทำแบบทดสอบ<br>ลองกด "โหมดตอบคำถาม" จากหน้าแรกดูสิ!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== Quiz Analysis ========== -->
+            <div id="dash-quiz-analysis" class="tab-panel dash-panel" hidden>
+                <div class="glass-panel dash-card liquid-card" style="margin-bottom: 24px;">
+                    <div class="dash-card-head">
+                        <h3>🎯 วิเคราะห์ความแม่นยำตามหมวดหมู่</h3>
+                    </div>
+                    <div id="quiz-analysis-list" style="display: flex; flex-direction: column; gap: 16px; margin-top: 16px;">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== Quiz Mistakes ========== -->
+            <div id="dash-quiz-mistakes" class="tab-panel dash-panel" hidden>
+                <div class="glass-panel dash-card liquid-card" style="margin-bottom: 24px;">
+                    <div class="dash-card-head" style="margin-bottom: 8px;">
+                        <h3>⚠️ คำศัพท์ที่มักจะตอบผิด</h3>
+                        <p class="muted" style="font-size: 0.9rem;">รวบรวมคำศัพท์ที่คุณตอบผิดบ่อยที่สุดจากการทำ Quiz</p>
+                    </div>
+                    <div id="quiz-mistakes-list" class="my-words-grid">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
+
+    <!-- Quiz Screen -->
+    <section id="quiz-screen" class="screen">
+        <div class="app-container">
+            <header class="app-header">
+                <button id="btn-quiz-home" class="glass-btn-icon small" title="ออกจากการทดสอบ" aria-label="ออกจากการทดสอบ">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 10.5 12 3l9 7.5" />
+                        <path d="M5 9.5V21h14V9.5" />
+                    </svg>
+                </button>
+                <div class="app-title">
+                    <h2>แบบทดสอบ 📝</h2>
+                    <span class="session-mode quiz-badge">Quiz Mode</span>
+                </div>
+                <div style="width: 44px;"></div> <!-- Placeholder to balance flex layout -->
+            </header>
+
+            <main>
+                <div class="glass-panel main-panel quiz-panel">
+                    <div class="progress-container">
+                        <div class="progress-row">
+                            <span class="card-status">คะแนน: <b id="quiz-score" style="color:var(--success);">0</b></span>
+                            <div class="progress-text">
+                                ข้อ <span id="quiz-current-index">1</span> / <span id="quiz-total">20</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar-bg" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; overflow: hidden; margin-top: 8px;">
+                             <div id="quiz-progress-fill" style="height: 100%; width: 0%; background: var(--primary); transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);"></div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-container">
+                        <h2 id="quiz-word" class="quiz-word">Loading...</h2>
+                        <div style="display: flex; gap: 12px; align-items: center; justify-content: center; margin-top: 12px; margin-bottom: 24px;">
+                            <span id="quiz-pos" class="part-of-speech" style="margin: 0; padding: 6px 16px; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 20px; background: linear-gradient(135deg, var(--primary), #8b5cf6); color: white; border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);"></span>
+                            <button id="btn-quiz-speak" class="glass-btn-icon small" aria-label="ฟังเสียง" style="width: 44px; height: 44px; border-radius: 50%; margin: 0; background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4)); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-options" id="quiz-options">
+                        <!-- Options injected via JS -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+    <!-- Quiz Setup Modal -->
+    <div id="quiz-setup-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-panel" style="max-width: 400px; background: rgba(255, 255, 255, 0.95); backdrop-filter: none; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid white; border-radius: 24px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h3 style="font-size: 1.8rem; background: linear-gradient(135deg, #a855f7, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">โหมดตอบคำถาม</h3>
+                <p style="color: var(--text-muted); margin-top: 8px;">เลือกจำนวนข้อที่คุณต้องการทดสอบ</p>
+            </div>
+            
+            <div class="slider-container glass-slider" style="margin-bottom: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-weight: 600; color: var(--text-muted); font-size: 0.85rem;">
+                    <span>1</span>
+                    <span id="quiz-count-display" style="color: #a855f7; font-size: 1.2rem; font-weight: 800;">20</span>
+                    <span>50</span>
+                </div>
+                <input type="range" id="quiz-count-slider" min="1" max="50" step="1" value="20" class="liquid-slider" style="--slider-color: #a855f7;">
+            </div>
+            
+            <div style="margin-bottom: 24px;">
+                <label style="display: block; text-align: left; margin-bottom: 8px; font-weight: 600; color: var(--text-color); font-size: 0.95rem;">หมวดคำศัพท์ (Category)</label>
+                <div class="custom-select-wrapper" id="quiz-category-wrapper">
+                    <div class="custom-select-trigger" id="quiz-category-trigger">
+                        <span id="quiz-category-display">🌟 ทั้งหมด (All)</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted);"><path d="m6 9 6 6 6-6"/></svg>
+                    </div>
+                    <div class="custom-options" id="quiz-category-options">
+                        <div class="custom-option selected" data-value="all">🌟 ทั้งหมด (All)</div>
+                        <div class="custom-option" data-value="noun">📦 คำนาม (Noun)</div>
+                        <div class="custom-option" data-value="verb">🏃 คำกริยา (Verb)</div>
+                        <div class="custom-option" data-value="adj">✨ คำคุณศัพท์ (Adjective)</div>
+                        <div class="custom-option" data-value="adv">💨 คำวิเศษณ์ (Adverb)</div>
+                        <div class="custom-option" data-value="prep">📍 คำบุพบท (Preposition)</div>
+                        <div class="custom-option" data-value="conj">🔗 คำสันธาน (Conjunction)</div>
+                        <div class="custom-option" data-value="pron">👤 คำสรรพนาม (Pronoun)</div>
+                        <div class="custom-option" data-value="interj">💥 คำอุทาน (Interjection)</div>
+                    </div>
+                </div>
+                <input type="hidden" id="quiz-category-select" value="all">
+            </div>
+
+            <div class="modal-actions" style="margin-top: 20px;">
+                <button id="btn-quiz-cancel" class="btn glass-btn">ยกเลิก</button>
+                <button id="btn-quiz-confirm" class="btn glass-btn btn-primary" style="background: linear-gradient(135deg, #a855f7, #8b5cf6); border: none;">เริ่มทำข้อสอบ</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Confirm Modal -->
     <div id="modal" class="modal-overlay" aria-hidden="true">

@@ -33,36 +33,76 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (slideToFreq) {
                     osc.frequency.exponentialRampToValueAtTime(slideToFreq, this.audioCtx.currentTime + attack + decay);
                 }
-                
+
                 gain.gain.setValueAtTime(0, this.audioCtx.currentTime);
                 gain.gain.linearRampToValueAtTime(vol, this.audioCtx.currentTime + attack);
                 gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + attack + decay);
-                
+
                 osc.connect(gain);
                 gain.connect(this.audioCtx.destination);
                 osc.start(this.audioCtx.currentTime);
                 osc.stop(this.audioCtx.currentTime + attack + decay);
-            } catch (e) {}
+            } catch (e) { }
         },
         known() {
             this.init();
             // เสียงแบบ Duolingo "Correct" (ตริ๊ง-ติ๊ง) 
             // ใช้ความถี่แบบคอร์ดสว่าง เช่น B5 -> E6
-            this.playTone(987.77, 'sine', 0.02, 0.1, 0.15); 
-            setTimeout(() => this.playTone(1318.51, 'sine', 0.02, 0.4, 0.2), 120); 
+            this.playTone(987.77, 'sine', 0.02, 0.1, 0.15);
+            setTimeout(() => this.playTone(1318.51, 'sine', 0.02, 0.4, 0.2), 120);
         },
         review() {
             this.init();
             // เสียงแบบ Duolingo "Incorrect" (ตึ-ดึง แบบทุ้ม)
             // ใช้คลื่น triangle ให้มีเนื้อเสียงทุ้ม และลดระดับเสียงลง
-            this.playTone(349.23, 'triangle', 0.03, 0.15, 0.2); 
+            this.playTone(349.23, 'triangle', 0.03, 0.15, 0.2);
             setTimeout(() => this.playTone(277.18, 'triangle', 0.03, 0.25, 0.2), 130);
+        },
+        tick() {
+            this.init();
+
+            // Rate limit (Throttle) ป้องกันเสียงรัวเกินไปเวลาลากเร็วๆ (จำกัดให้ดังห่างกันอย่างน้อย 40ms)
+            const now = performance.now();
+            if (this._lastTick && now - this._lastTick < 40) return;
+            this._lastTick = now;
+
+            // เสียง "Mechanical Click" เวอร์ชั่นใหม่ ที่มีความคล้ายสวิตช์แป้นพิมพ์
+            // ใช้ sawtooth wave ที่ดรอปความถี่อย่างเร็วจัด (800 -> 50) จะให้ความรู้สึกเหมือนพลาสติกกระทบกัน
+            // ปรับระดับเสียงลงมาที่ 0.10
+            this.playTone(800, 'sawtooth', 0.002, 0.015, 0.10, 50);
         },
         next() {
             this.init();
             // เสียงแบบ Duolingo "Click/Pop" (ป๊อก)
             // ใช้ความถี่สูงตกลงมาต่ำอย่างรวดเร็วมาก
             this.playTone(800, 'sine', 0.01, 0.05, 0.1, 100);
+        },
+        victory() {
+            this.init();
+
+            // เสียง Victory แบบเกม 8-bit ที่ฟังดูชนะแบบสดใส (Level Up!)
+            const schedule = (freq, type, duration, vol, delay) => {
+                setTimeout(() => {
+                    this.playTone(freq, type, 0.02, duration, vol);
+                }, delay);
+            };
+
+            // โน้ตเพลง "ทะ-ดา-ด๊าาา!" แบบพุ่งขึ้น (G4 -> C5 -> E5 -> คอร์ด C Major)
+            schedule(392.00, 'sine', 0.1, 0.2, 0);     // G4 (ทะ)
+            schedule(523.25, 'sine', 0.1, 0.2, 100);   // C5 (ดา)
+            schedule(659.25, 'sine', 0.1, 0.2, 200);   // E5 (ดี)
+
+            // คอร์ดจบแบบสดใสและลากยาว (C Major)
+            schedule(523.25, 'triangle', 0.8, 0.2, 300); // C5
+            schedule(659.25, 'triangle', 0.8, 0.2, 300); // E5
+            schedule(783.99, 'sine', 0.8, 0.3, 300);     // G5 (ด๊าาา!)
+
+            // เสียงวิ้งๆ ระยิบระยับ (Sparkles) เหมือนได้รับรางวัล
+            for (let i = 0; i < 7; i++) {
+                setTimeout(() => {
+                    this.playTone(1046.50 + Math.random() * 800, 'sine', 0.01, 0.1, 0.05);
+                }, 300 + (i * 60) + Math.random() * 30);
+            }
         }
     };
 
@@ -199,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let wordStatus = loadWordStatus();
     let sessions = loadSessions();
     const prefs = storage.get(STORAGE.prefs, {});
-    let selectedSize = SESSION_SIZES.includes(prefs.size) ? prefs.size : 20;
+    let selectedSize = typeof prefs.size === 'number' && prefs.size >= 1 && prefs.size <= 50 ? prefs.size : 20;
 
     /* =========================================================
      * Session state (in memory)
@@ -221,7 +261,8 @@ document.addEventListener('DOMContentLoaded', () => {
         welcome: $('welcome-screen'),
         app: $('app-screen'),
         summary: $('summary-screen'),
-        history: $('history-screen')
+        history: $('history-screen'),
+        quiz: $('quiz-screen')
     };
 
     // Welcome
@@ -230,6 +271,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const overallUnseenEl = $('overall-unseen');
     const segOptions = Array.from(document.querySelectorAll('.seg-option'));
     const segIndicator = $('seg-indicator');
+    const countSlider = $('count-slider');
+    const countDisplay = $('count-display');
     const btnStart = $('btn-start');
     const btnResume = $('btn-resume');
     const resumeInfo = $('resume-info');
@@ -309,6 +352,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalCancel = $('modal-cancel');
     const toastEl = $('toast');
 
+    // Quiz
+    const btnQuizStart = $('btn-quiz-start');
+    const btnQuizHome = $('btn-quiz-home');
+    const quizWord = $('quiz-word');
+    const btnQuizSpeak = $('btn-quiz-speak');
+    const quizOptions = $('quiz-options');
+    const quizCurrentIndex = $('quiz-current-index');
+    const quizTotal = $('quiz-total');
+    const quizScoreEl = $('quiz-score');
+    const quizProgressFill = $('quiz-progress-fill');
+
     /* =========================================================
      * Screen management
      * ========================================================= */
@@ -354,25 +408,98 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSegmented();
     }
 
-    function updateSegmented() {
+    function updateSegmented(skipSliderUpdate = false) {
         const idx = SESSION_SIZES.indexOf(selectedSize);
         segOptions.forEach((btn, i) => {
             const active = i === idx;
             btn.classList.toggle('active', active);
             btn.setAttribute('aria-checked', String(active));
         });
-        segIndicator.style.transform = `translateX(${idx * 100}%)`;
+
+        if (idx >= 0) {
+            segIndicator.style.display = 'block';
+            segIndicator.style.transform = `translateX(${idx * 100}%)`;
+        } else {
+            segIndicator.style.display = 'none';
+        }
+
+        if (!skipSliderUpdate) {
+            if (countSlider) countSlider.value = selectedSize;
+        }
+
+        if (countDisplay && countDisplay.textContent != selectedSize) {
+            countDisplay.textContent = selectedSize;
+            countDisplay.classList.remove('pop-anim');
+            void countDisplay.offsetWidth; // force reflow
+            countDisplay.classList.add('pop-anim');
+        }
+    }
+
+    let sliderAnimFrame = null;
+    function animateSliderTo(targetValue) {
+        if (!countSlider) return;
+        if (sliderAnimFrame) cancelAnimationFrame(sliderAnimFrame);
+
+        const startValue = Number(countSlider.value);
+        const endValue = Number(targetValue);
+        const duration = 400; // 400ms for smooth slide
+        const startTime = performance.now();
+
+        function step(currentTime) {
+            const elapsed = currentTime - startTime;
+            let progress = elapsed / duration;
+            if (progress > 1) progress = 1;
+
+            const easeOut = 1 - Math.pow(1 - progress, 3); // cubic ease out
+            const currentVal = startValue + (endValue - startValue) * easeOut;
+            countSlider.value = currentVal;
+
+            const displayVal = Math.round(currentVal);
+            if (countDisplay && countDisplay.textContent != displayVal) {
+                countDisplay.textContent = displayVal;
+            }
+
+            if (progress < 1) {
+                sliderAnimFrame = requestAnimationFrame(step);
+            } else {
+                selectedSize = endValue;
+                storage.set(STORAGE.prefs, { size: endValue });
+                updateSegmented(false); // final pop animation
+            }
+        }
+        sliderAnimFrame = requestAnimationFrame(step);
     }
 
     segOptions.forEach((btn) => {
         btn.addEventListener('click', () => {
             const size = Number(btn.dataset.count);
             if (!SESSION_SIZES.includes(size)) return;
+
             selectedSize = size;
-            storage.set(STORAGE.prefs, { size });
-            updateSegmented();
+            updateSegmented(true); // update buttons immediately, skip jumping slider
+            animateSliderTo(size);
         });
     });
+
+    if (countSlider) {
+        countSlider.addEventListener('input', (e) => {
+            if (sliderAnimFrame) cancelAnimationFrame(sliderAnimFrame);
+            const size = Math.round(Number(e.target.value));
+
+            if (selectedSize !== size) {
+                SoundFX.tick(); // เล่นเสียง "ตึด" เบาๆ ตอนที่เลขเปลี่ยน
+                selectedSize = size;
+                storage.set(STORAGE.prefs, { size });
+                updateSegmented(true); // update display and buttons, but don't snap the thumb while dragging
+            }
+        });
+
+        countSlider.addEventListener('change', (e) => {
+            const size = Math.round(Number(e.target.value));
+            selectedSize = size;
+            updateSegmented(false); // snap thumb to integer on release
+        });
+    }
 
     btnStart.addEventListener('click', async () => {
         if (loadActiveSession()) {
@@ -460,10 +587,10 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function answer(status) {
         if (!session || isAnimating || currentScreen !== 'app') return;
-        
+
         if (status === 'known') SoundFX.known();
         else if (status === 'review') SoundFX.review();
-        
+
         const i = session.currentIndex;
         const previous = session.answers[i];
 
@@ -599,6 +726,12 @@ document.addEventListener('DOMContentLoaded', () => {
         resetCardVisual();
         lastSummary = record;
         renderSummary(record);
+
+        // Play victory sound if at least some words were answered
+        if (record.known.length > 0 || record.review.length > 0) {
+            SoundFX.victory();
+        }
+
         showScreen('summary');
     }
 
@@ -720,7 +853,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function slideTransition(direction, newIndex, hideWhileFlipped) {
         flashcard.style.transition = 'transform 0.25s cubic-bezier(0.4, 0, 1, 1), opacity 0.2s ease';
         flashcard.style.opacity = '0';
-        
+
         if (hideWhileFlipped) {
             // X axis is inverted when rotateY(180deg). To slide left visually, we move right (+50px)
             flashcard.style.transform = `rotateY(180deg) translateX(${direction > 0 ? '50px' : '-50px'})`;
@@ -730,7 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             if (!session) { resetCardVisual(); return; }
-            
+
             if (hideWhileFlipped) {
                 flashcard.classList.remove('is-flipped');
                 isFlipped = false;
@@ -757,8 +890,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 250);
     }
 
-    function flipCard() {
+    function flipCard(e) {
         if (isAnimating || !session) return;
+        // ป้องกันไม่ให้พลิกการ์ดเวลากดปุ่มฟังเสียง
+        if (e && e.target && e.target.closest && e.target.closest('.speak-btn')) return;
+
         isFlipped = !isFlipped;
         flashcard.classList.toggle('is-flipped', isFlipped);
     }
@@ -772,23 +908,55 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    let enginesAwake = false;
+    function wakeUpEngines() {
+        if (enginesAwake) return;
+
+        // 1. Wake up Speech Engine (speeds up initial TTS)
+        if (window.speechSynthesis) {
+            const utterance = new SpeechSynthesisUtterance('');
+            utterance.volume = 0;
+            utterance.rate = 2.0;
+            window.speechSynthesis.speak(utterance);
+            window.speechSynthesis.cancel();
+        }
+
+        // 2. Wake up SoundFX Engine (prevents lag on the first sound effect)
+        SoundFX.init();
+        if (SoundFX.audioCtx && SoundFX.audioCtx.state === 'suspended') {
+            SoundFX.audioCtx.resume();
+        }
+
+        enginesAwake = true;
+    }
+
+    // Wake up engines on the first user interaction
+    document.addEventListener('click', wakeUpEngines, { once: true });
+    document.addEventListener('touchstart', wakeUpEngines, { once: true });
+    document.addEventListener('keydown', wakeUpEngines, { once: true });
+
     function speakWord(e) {
         if (e) e.stopPropagation(); // Prevent flipping the card
         if (!session) return;
         const word = wordsData[session.indices[session.currentIndex]].word;
 
+        // Cancel any ongoing speech to reset the engine (helps prevent clipping at the start)
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+        }
+
         const utterance = new SpeechSynthesisUtterance(word);
         utterance.lang = 'en-US';
 
         // Try to find a clear human-like female voice
-        const preferredVoice = availableVoices.find(v => 
-            v.name.includes('Google US English') || 
-            v.name.includes('Zira') || 
-            v.name.includes('Samantha') || 
+        const preferredVoice = availableVoices.find(v =>
+            v.name.includes('Google US English') ||
+            v.name.includes('Zira') ||
+            v.name.includes('Samantha') ||
             v.name.includes('Karen') ||
             (v.lang === 'en-US' && v.name.includes('Female'))
         );
-        
+
         if (preferredVoice) {
             utterance.voice = preferredVoice;
         } else {
@@ -798,12 +966,115 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         utterance.rate = 0.85; // Slightly slower for clearer pronunciation
-        window.speechSynthesis.speak(utterance);
+
+        // A tiny delay before speaking helps the engine catch up and prevents the first letter from being cut off
+        setTimeout(() => {
+            window.speechSynthesis.speak(utterance);
+        }, 50);
     }
 
     if (btnSpeak) btnSpeak.addEventListener('click', speakWord);
 
-    flashcard.addEventListener('click', flipCard);
+    // =========================================================
+    // Swipe Gestures (Tinder-like)
+    // =========================================================
+    let startX = 0, startY = 0;
+    let isSwiping = false;
+    let dragDeltaX = 0;
+    let isDragAction = false;
+
+    flashcard.style.touchAction = 'pan-y'; // Prevent browser back/forward swipe navigation
+
+    flashcard.addEventListener('pointerdown', (e) => {
+        // Only accept primary pointer (left click or touch)
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        if (e.target.closest('.speak-btn')) return;
+        if (isAnimating || !session) return;
+
+        isSwiping = true;
+        isDragAction = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        dragDeltaX = 0;
+
+        flashcard.setPointerCapture(e.pointerId);
+        flashcard.style.transition = 'none'; // Remove transition for instant following
+    });
+
+    flashcard.addEventListener('pointermove', (e) => {
+        if (!isSwiping) return;
+
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+
+        if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+            isDragAction = true;
+        }
+
+        dragDeltaX = deltaX;
+
+        const rotateY = isFlipped ? 180 : 0;
+        const rotateZ = deltaX * 0.05; // Slight tilt
+        flashcard.style.transform = `translateX(${deltaX}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+
+        const targetCard = isFlipped ? flashcard.querySelector('.card-back') : flashcard.querySelector('.card-front');
+        if (deltaX < -50) { // Swipe Left (จำได้แล้ว)
+            targetCard.style.borderColor = 'var(--success)';
+            targetCard.style.boxShadow = '0 0 30px rgba(16, 185, 129, 0.4)';
+        } else if (deltaX > 50) { // Swipe Right (ต้องทบทวน)
+            targetCard.style.borderColor = 'var(--danger)';
+            targetCard.style.boxShadow = '0 0 30px rgba(239, 68, 68, 0.4)';
+        } else {
+            targetCard.style.borderColor = '';
+            targetCard.style.boxShadow = '';
+        }
+    });
+
+    function resetSwipeVisuals() {
+        flashcard.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+        flashcard.style.transform = '';
+        const cards = flashcard.querySelectorAll('.glass-card');
+        cards.forEach(c => {
+            c.style.borderColor = '';
+            c.style.boxShadow = '';
+        });
+
+        setTimeout(() => {
+            if (!isSwiping && !isAnimating) {
+                flashcard.style.transition = '';
+            }
+        }, 400);
+    }
+
+    function handlePointerEnd(e) {
+        if (!isSwiping) return;
+        isSwiping = false;
+        flashcard.releasePointerCapture(e.pointerId);
+
+        const threshold = 100; // pixels to trigger swipe action
+
+        if (dragDeltaX < -threshold) { // Swipe Left
+            resetSwipeVisuals();
+            answer('known');
+        } else if (dragDeltaX > threshold) { // Swipe Right
+            resetSwipeVisuals();
+            answer('review');
+        } else {
+            resetSwipeVisuals();
+        }
+    }
+
+    flashcard.addEventListener('pointerup', handlePointerEnd);
+    flashcard.addEventListener('pointercancel', handlePointerEnd);
+
+    flashcard.addEventListener('click', (e) => {
+        if (isDragAction) {
+            e.preventDefault();
+            return;
+        }
+        flipCard(e);
+    });
+
     btnNext.addEventListener('click', () => { SoundFX.next(); session && goTo(session.currentIndex + 1); });
     btnPrev.addEventListener('click', () => { SoundFX.next(); session && goTo(session.currentIndex - 1); });
     btnKnown.addEventListener('click', () => answer('known'));
@@ -1239,8 +1510,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="weak-top"><b>${s.th} <small class="muted">${s.en}</small></b><span class="pill ${st.cls}">${st.label}</span></div>
                     <div class="meter ${st.cls}"><span style="width:${Math.round(acc * 100)}%"></span></div>
                     <small class="muted">${s.studied
-                        ? `แม่นยำ ${fmtPct(acc)} · ทบทวน ${s.review.length} คำ · เรียนแล้ว ${fmtPct(s.coverage)} ของหมวด`
-                        : `ยังไม่ได้เรียนหมวดนี้ (${s.total.toLocaleString()} คำ)`}</small>
+                    ? `แม่นยำ ${fmtPct(acc)} · ทบทวน ${s.review.length} คำ · เรียนแล้ว ${fmtPct(s.coverage)} ของหมวด`
+                    : `ยังไม่ได้เรียนหมวดนี้ (${s.total.toLocaleString()} คำ)`}</small>
                 </div>
                 <button type="button" class="mini-btn" data-practice-cat="${s.id}">ฝึก</button>
             </div>`;
@@ -1447,6 +1718,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     historyTabs.forEach((t) => t.addEventListener('click', () => setDashTab(t.dataset.panel)));
 
+    const modeBtns = document.querySelectorAll('.dash-mode-switcher .mode-btn');
+    modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active state of buttons
+            modeBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const mode = btn.dataset.mode;
+            let firstVisibleTab = null;
+
+            // Toggle visibility of tabs based on group
+            historyTabs.forEach(t => {
+                if (t.dataset.group === mode) {
+                    t.style.display = '';
+                    if (!firstVisibleTab) firstVisibleTab = t.dataset.panel;
+                } else {
+                    t.style.display = 'none';
+                }
+            });
+
+            // Automatically switch to the first tab in the new mode
+            if (firstVisibleTab) {
+                setDashTab(firstVisibleTab);
+            }
+        });
+    });
+
     filterChips.forEach((chip) => chip.addEventListener('click', () => {
         historyFilter = chip.dataset.filter;
         renderHistoryWords();
@@ -1509,12 +1807,582 @@ document.addEventListener('DOMContentLoaded', () => {
     modalCancel.addEventListener('click', () => closeModal(false));
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(false); });
 
+    // Custom Select Logic for Quiz Category
+    const quizCatWrapper = document.getElementById('quiz-category-wrapper');
+    const quizCatTrigger = document.getElementById('quiz-category-trigger');
+    const quizCatOptions = document.querySelectorAll('.custom-option');
+    const quizCatDisplay = document.getElementById('quiz-category-display');
+    const quizCatInput = document.getElementById('quiz-category-select');
+
+    if (quizCatWrapper) {
+        quizCatTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            quizCatWrapper.classList.toggle('open');
+        });
+
+        quizCatOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                quizCatOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+
+                quizCatDisplay.innerHTML = option.innerHTML;
+                quizCatInput.value = option.dataset.value;
+                quizCatWrapper.classList.remove('open');
+            });
+        });
+
+        document.addEventListener('click', () => {
+            quizCatWrapper.classList.remove('open');
+        });
+    }
+
     let toastTimer = null;
     function showToast(msg) {
         toastEl.textContent = msg;
         toastEl.classList.add('show');
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2600);
+    }
+
+    function renderQuizHistory() {
+        const listEl = document.getElementById('quiz-history-list');
+        const avgEl = document.getElementById('quiz-avg-score');
+        if (!listEl || !avgEl) return;
+
+        let quizHistory = [];
+        try {
+            const stored = localStorage.getItem('oxford3000_quiz_history');
+            if (stored) quizHistory = JSON.parse(stored);
+        } catch (e) { }
+
+        if (quizHistory.length === 0) {
+            listEl.innerHTML = `<div style="text-align: center; padding: 30px; color: var(--text-muted); font-size: 0.95rem;">คุณยังไม่เคยทำแบบทดสอบ<br>ลองกด "โหมดตอบคำถาม" จากหน้าแรกดูสิ!</div>`;
+            avgEl.textContent = '0%';
+            return;
+        }
+
+        let totalPercent = 0;
+        let totalTime = 0;
+        let bestScore = 0;
+        let totalQuestions = 0;
+        let totalCorrect = 0;
+        let totalWrong = 0;
+
+        listEl.innerHTML = '';
+        quizHistory.forEach(item => {
+            totalPercent += item.percent;
+            totalTime += (item.timeSpent || 0);
+            if (item.percent > bestScore) bestScore = item.percent;
+
+            totalQuestions += item.total;
+            totalCorrect += item.score;
+            totalWrong += (item.total - item.score);
+
+            const dateStr = new Date(item.date).toLocaleString('th-TH', {
+                day: 'numeric', month: 'short', year: '2-digit', hour: '2-digit', minute: '2-digit'
+            });
+
+            const isPerfect = item.percent === 100;
+            const accuracyColor = isPerfect ? '#10b981' : (item.percent >= 75 ? '#3b82f6' : (item.percent >= 50 ? '#f59e0b' : '#ef4444'));
+            const catMeta = CATEGORY_META[item.category];
+            const categoryLabel = catMeta ? catMeta.th : 'ทั้งหมด';
+
+            let incorrectHtml = '';
+            if (item.incorrectWords && item.incorrectWords.length > 0) {
+                const words = item.incorrectWords.slice(0, 10).map(w => `<span style="display:inline-flex; align-items:center; padding:4px 10px; border-radius:12px; background:rgba(239,68,68,0.08); color:#ef4444; font-size:0.8rem; margin-right:6px; margin-top:8px; border:1px solid rgba(239,68,68,0.2); font-weight:500;">${escapeHtml(w.word)}</span>`).join('');
+                const more = item.incorrectWords.length > 10 ? `<span style="font-size:0.8rem; color:var(--text-muted); margin-left:6px; font-weight:500;">+${item.incorrectWords.length - 10} คำ</span>` : '';
+                incorrectHtml = `<div style="margin-top: 16px; padding-top: 16px; border-top: 1px dashed rgba(0,0,0,0.1);">
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2px; font-weight: 600;">คำที่ตอบผิด:</div>
+                    <div style="display: flex; flex-wrap: wrap;">${words}${more}</div>
+                </div>`;
+            } else if (item.percent === 100) {
+                incorrectHtml = `<div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed rgba(0,0,0,0.1); font-size: 0.85rem; color: #10b981; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                    <span>✨</span> ทำคะแนนได้เต็มสมบูรณ์แบบ!
+                </div>`;
+            }
+
+            let timeSpentHtml = '';
+            if (item.timeSpent) {
+                const mins = Math.floor(item.timeSpent / 60);
+                const secs = item.timeSpent % 60;
+                const timeStr = mins > 0 ? `${mins} นาที ${secs} วินาที` : `${secs} วินาที`;
+                timeSpentHtml = `
+                    <div class="qhc-meta-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        ใช้เวลา ${timeStr}
+                    </div>
+                `;
+            }
+
+            const div = document.createElement('div');
+            div.className = 'glass-panel liquid-card quiz-history-card';
+
+            div.innerHTML = `
+                <div class="qhc-main">
+                    <div class="qhc-ring" style="background: ${accuracyColor}15; color: ${accuracyColor}; box-shadow: inset 0 0 0 2px ${accuracyColor}30;">
+                        ${item.percent}%
+                    </div>
+                    <div class="qhc-info">
+                        <div class="qhc-title">
+                            ทดสอบ ${item.total} ข้อ 
+                            <span class="qhc-tag">หมวด${categoryLabel}</span>
+                        </div>
+                        <div class="qhc-meta">
+                            <div class="qhc-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                ${dateStr}
+                            </div>
+                            ${timeSpentHtml}
+                        </div>
+                    </div>
+                    <div class="qhc-score" style="color: ${accuracyColor};">
+                        ${item.score}<span>/${item.total}</span>
+                    </div>
+                </div>
+                ${incorrectHtml}
+            `;
+            listEl.appendChild(div);
+        });
+
+        const avgScore = quizHistory.length > 0 ? Math.round(totalPercent / quizHistory.length) : 0;
+        avgEl.textContent = avgScore + '%';
+
+        // Update Quiz Hero Section
+        const heroPercent = document.getElementById('quiz-hero-percent');
+        const heroRingFg = document.getElementById('quiz-ring-fg');
+        const heroTitle = document.getElementById('quiz-hero-title');
+        const heroSub = document.getElementById('quiz-hero-sub');
+        const heroPill = document.getElementById('quiz-hero-pill');
+        const barCorrect = document.getElementById('quiz-bar-correct');
+        const barWrong = document.getElementById('quiz-bar-wrong');
+        const lgCorrect = document.getElementById('quiz-lg-correct');
+        const lgWrong = document.getElementById('quiz-lg-wrong');
+
+        if (heroPercent) {
+            heroPercent.textContent = avgScore + '%';
+
+            // Ring animation (52 radius -> 326.72 circumference)
+            const c = 2 * Math.PI * 52;
+            const offset = c - (avgScore / 100) * c;
+            if (heroRingFg) {
+                heroRingFg.style.strokeDasharray = c;
+                heroRingFg.style.strokeDashoffset = c;
+                setTimeout(() => { heroRingFg.style.strokeDashoffset = offset; }, 100);
+            }
+
+            let rank = 'ผู้เริ่มต้น';
+            let title = 'เริ่มต้นการทดสอบ';
+            if (quizHistory.length >= 20) {
+                rank = 'มาสเตอร์'; title = 'ปรมาจารย์ด้านคำศัพท์!';
+            } else if (quizHistory.length >= 10) {
+                rank = 'นักสู้'; title = 'ทักษะของคุณกำลังพัฒนาอย่างรวดเร็ว!';
+            } else if (quizHistory.length >= 5) {
+                rank = 'หน้าใหม่ไฟแรง'; title = 'เริ่มต้นได้ดีมาก ลุยต่อไป!';
+            }
+            if (heroTitle) heroTitle.textContent = title;
+            if (heroPill) heroPill.textContent = rank;
+            if (heroSub) heroSub.textContent = `คุณทำแบบทดสอบไปแล้วทั้งหมด ${quizHistory.length} ครั้ง (รวม ${totalQuestions} คำถาม)`;
+
+            if (barCorrect && barWrong && lgCorrect && lgWrong) {
+                const correctPct = totalQuestions === 0 ? 0 : (totalCorrect / totalQuestions) * 100;
+                const wrongPct = totalQuestions === 0 ? 0 : (totalWrong / totalQuestions) * 100;
+
+                barCorrect.style.width = correctPct + '%';
+                barWrong.style.width = wrongPct + '%';
+                lgCorrect.textContent = totalCorrect;
+                lgWrong.textContent = totalWrong;
+            }
+        }
+
+        // Update Quiz Analysis Tab
+        const analysisList = document.getElementById('quiz-analysis-list');
+        if (analysisList) {
+            analysisList.innerHTML = '';
+
+            // Calculate stats by category
+            const catStats = {};
+            quizHistory.forEach(item => {
+                const c = item.category === 'all' ? 'mixed' : item.category;
+                if (!catStats[c]) catStats[c] = { total: 0, score: 0, played: 0 };
+                catStats[c].total += item.total;
+                catStats[c].score += item.score;
+                catStats[c].played += 1;
+            });
+
+            if (Object.keys(catStats).length === 0) {
+                analysisList.innerHTML = '<div class="muted" style="text-align:center; padding:20px;">ยังไม่มีข้อมูลมากพอ</div>';
+            } else {
+                Object.keys(catStats).forEach(c => {
+                    const stats = catStats[c];
+                    const pct = Math.round((stats.score / stats.total) * 100);
+                    const meta = CATEGORY_META[c] || { th: 'รวม (Mixed)', color: '#8b5cf6', icon: '🌟' };
+
+                    const div = document.createElement('div');
+                    div.className = 'quiz-analysis-card';
+                    div.innerHTML = `
+                        <div class="qac-head">
+                            <div class="qac-icon-group">
+                                <div class="qac-icon" style="background: ${meta.color}15; color: ${meta.color};">${meta.icon}</div>
+                                <div class="qac-text">
+                                    <div class="qac-title">${meta.th}</div>
+                                    <div class="qac-subtitle">เล่นไป ${stats.played} ครั้ง (${stats.total} คำถาม)</div>
+                                </div>
+                            </div>
+                            <div class="qac-percent" style="color: ${meta.color};">${pct}%</div>
+                        </div>
+                        <div class="qac-bar-bg">
+                            <div class="qac-bar-fill" style="width: ${pct}%; background: ${meta.color};"></div>
+                        </div>
+                    `;
+                    analysisList.appendChild(div);
+                });
+            }
+        }
+
+        // Update Quiz Mistakes Tab
+        const mistakesList = document.getElementById('quiz-mistakes-list');
+        if (mistakesList) {
+            mistakesList.innerHTML = '';
+
+            const mistakeCounts = {};
+            quizHistory.forEach(item => {
+                if (item.incorrectWords) {
+                    item.incorrectWords.forEach(w => {
+                        if (!mistakeCounts[w.word]) mistakeCounts[w.word] = { ...w, count: 0 };
+                        mistakeCounts[w.word].count++;
+                    });
+                }
+            });
+
+            const sortedMistakes = Object.values(mistakeCounts).sort((a, b) => b.count - a.count);
+
+            if (sortedMistakes.length === 0) {
+                mistakesList.innerHTML = '<div class="muted" style="text-align:center; padding:20px; grid-column: 1/-1;">ยอดเยี่ยม! คุณยังไม่มีคำศัพท์ที่ตอบผิดเลย 🎉</div>';
+            } else {
+                sortedMistakes.forEach(w => {
+                    const meta = CATEGORY_META[w.category] || CATEGORY_META['noun'];
+                    const div = document.createElement('div');
+                    div.className = 'word-card';
+                    div.innerHTML = `
+                        <div class="word-card-head">
+                            <h4 class="word-en">${w.word}</h4>
+                            <div class="word-tag" style="color: ${meta.color}; background: ${meta.color}15;">${meta.icon} ${meta.th}</div>
+                        </div>
+                        <p class="word-th">${w.meaning}</p>
+                        <div style="margin-top: 12px; font-size: 0.8rem; color: #ef4444; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 8px; display: inline-block; font-weight: 600;">
+                            ตอบผิด ${w.count} ครั้ง
+                        </div>
+                    `;
+                    mistakesList.appendChild(div);
+                });
+            }
+        }
+
+        // Update Quiz Overview Tab Stats
+        const statTotalPlayed = document.getElementById('quiz-stat-total-played');
+        const statAvgScore = document.getElementById('quiz-stat-avg-score');
+        const statTotalTime = document.getElementById('quiz-stat-total-time');
+        const statBestScore = document.getElementById('quiz-stat-best-score');
+
+        if (statTotalPlayed) statTotalPlayed.textContent = quizHistory.length;
+        if (statAvgScore) statAvgScore.textContent = avgScore + '%';
+        if (statBestScore) statBestScore.textContent = bestScore + '%';
+
+        if (statTotalTime) {
+            const mins = Math.floor(totalTime / 60);
+            const secs = totalTime % 60;
+            statTotalTime.textContent = mins > 0 ? `${mins}น ${secs}ว` : `${secs}ว`;
+        }
+
+        // Render Trend Chart
+        const chartEl = document.getElementById('quiz-trend-chart');
+        if (chartEl) {
+            if (quizHistory.length === 0) {
+                chartEl.innerHTML = '<div class="muted" style="text-align:center; padding:20px;">ยังไม่มีข้อมูลมากพอ</div>';
+            } else {
+                const recent = quizHistory.slice(0, 10).reverse();
+                chartEl.innerHTML = '';
+                recent.forEach((item, i) => {
+                    const d = new Date(item.date);
+                    const label = isNaN(d) ? '' : d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
+
+                    const bar = document.createElement('div');
+                    bar.className = 'trend-col';
+                    const h = Math.max(5, item.percent);
+                    bar.style.setProperty('--h', `${h}%`);
+                    bar.style.setProperty('--d', `${i * 70}ms`);
+                    bar.title = `${label} • ${item.percent}%`;
+
+                    const color = item.percent >= 75 ? 'linear-gradient(to top, #3b82f6, #60a5fa)' :
+                        (item.percent >= 50 ? 'linear-gradient(to top, #f59e0b, #fcd34d)' :
+                            'linear-gradient(to top, #ef4444, #fca5a5)');
+
+                    bar.innerHTML = `
+                        <span class="trend-val">${item.percent}%</span>
+                        <div class="trend-track">
+                            <div class="trend-bar" style="background: ${color}; box-shadow: 0 4px 10px ${color.split(',')[1].trim()}40;"></div>
+                        </div>
+                        <span class="trend-label">${escapeHtml(label)}</span>
+                    `;
+                    chartEl.appendChild(bar);
+                });
+            }
+        }
+    }
+
+    // Call it initially
+    renderQuizHistory();
+
+    /* =========================================================
+     * Quiz Mode Logic
+     * ========================================================= */
+    let quizSession = null;
+    let quizOptionsData = [];
+    let quizAnswered = false;
+
+    // Quiz Modal Elements
+    const quizSetupModal = document.getElementById('quiz-setup-modal');
+    const quizCountSlider = document.getElementById('quiz-count-slider');
+    const quizCountDisplay = document.getElementById('quiz-count-display');
+    const btnQuizCancel = document.getElementById('btn-quiz-cancel');
+    const btnQuizConfirm = document.getElementById('btn-quiz-confirm');
+
+    if (quizCountSlider && quizCountDisplay) {
+        let lastQuizSize = parseInt(quizCountSlider.value, 10);
+        quizCountSlider.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value, 10);
+            if (val !== lastQuizSize) {
+                SoundFX.tick();
+                lastQuizSize = val;
+            }
+            quizCountDisplay.textContent = val;
+            // Add a little liquid effect on slide
+            const ratio = (val - e.target.min) / (e.target.max - e.target.min);
+            e.target.style.background = `linear-gradient(90deg, #a855f7 ${ratio * 100}%, rgba(0,0,0,0.1) ${ratio * 100}%)`;
+        });
+
+        // Init background
+        const initRatio = (quizCountSlider.value - quizCountSlider.min) / (quizCountSlider.max - quizCountSlider.min);
+        quizCountSlider.style.background = `linear-gradient(90deg, #a855f7 ${initRatio * 100}%, rgba(0,0,0,0.1) ${initRatio * 100}%)`;
+    }
+
+    if (btnQuizStart && quizSetupModal) {
+        btnQuizStart.addEventListener('click', () => {
+            quizSetupModal.classList.add('open');
+            quizSetupModal.setAttribute('aria-hidden', 'false');
+        });
+    }
+
+    if (btnQuizCancel && quizSetupModal) {
+        btnQuizCancel.addEventListener('click', () => {
+            quizSetupModal.classList.remove('open');
+            quizSetupModal.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    if (btnQuizConfirm && quizSetupModal) {
+        btnQuizConfirm.addEventListener('click', () => {
+            quizSetupModal.classList.remove('open');
+            quizSetupModal.setAttribute('aria-hidden', 'true');
+
+            const selectedSize = parseInt(quizCountSlider.value, 10);
+            const selectedCat = document.getElementById('quiz-category-select').value;
+
+            let pool = [];
+            if (selectedCat === 'all') {
+                pool = Array.from({ length: totalWords }, (_, i) => i);
+            } else {
+                pool = Array.from({ length: totalWords }, (_, i) => i).filter(i => wordsData[i].partOfSpeech === selectedCat);
+            }
+
+            if (pool.length === 0) {
+                showToast('ไม่พบคำศัพท์ในหมวดหมู่นี้');
+                return;
+            }
+
+            const actualSize = Math.min(selectedSize, pool.length);
+            const indices = pickRandom(pool, actualSize);
+
+            quizSession = {
+                indices,
+                currentIndex: 0,
+                score: 0,
+                incorrectWords: [],
+                category: selectedCat,
+                startTime: Date.now()
+            };
+            showScreen('quiz');
+            renderQuizQuestion();
+        });
+    }
+
+    if (btnQuizHome) {
+        btnQuizHome.addEventListener('click', async () => {
+            if (quizSession && quizSession.currentIndex < quizSession.indices.length) {
+                const ok = await confirmDialog({
+                    title: 'ออกจากการทำแบบทดสอบ?',
+                    message: 'คุณยังทำแบบทดสอบไม่เสร็จ ต้องการออกไปหน้าแรกหรือไม่?',
+                    confirmText: 'ออก'
+                });
+                if (!ok) return;
+            }
+            quizSession = null;
+            showScreen('welcome');
+        });
+    }
+
+    if (btnQuizSpeak) {
+        btnQuizSpeak.addEventListener('click', () => {
+            if (!quizSession) return;
+            const word = wordsData[quizSession.indices[quizSession.currentIndex]].word;
+            // Use existing speak engine
+            speakWordOverride(word);
+        });
+    }
+
+    function speakWordOverride(text) {
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        const preferredVoice = availableVoices.find(v =>
+            v.name.includes('Google US English') ||
+            v.name.includes('Zira') ||
+            v.name.includes('Samantha') ||
+            v.name.includes('Karen') ||
+            (v.lang === 'en-US' && v.name.includes('Female'))
+        );
+        if (preferredVoice) utterance.voice = preferredVoice;
+        else {
+            const enVoice = availableVoices.find(v => v.lang.startsWith('en-'));
+            if (enVoice) utterance.voice = enVoice;
+        }
+        utterance.rate = 0.85;
+        setTimeout(() => window.speechSynthesis.speak(utterance), 50);
+    }
+
+    function renderQuizQuestion() {
+        if (!quizSession) return;
+        if (quizSession.currentIndex >= quizSession.indices.length) {
+            // End of quiz
+            SoundFX.victory();
+            showToast(`สุดยอด! คุณทำคะแนนได้ ${quizSession.score} / ${quizSession.indices.length} 🎉`);
+
+            // Save Quiz History
+            let quizHistory = [];
+            try {
+                const stored = localStorage.getItem('oxford3000_quiz_history');
+                if (stored) quizHistory = JSON.parse(stored);
+            } catch (e) { }
+
+            const timeSpentSec = Math.round((Date.now() - quizSession.startTime) / 1000);
+
+            quizHistory.unshift({
+                date: new Date().toISOString(),
+                score: quizSession.score,
+                total: quizSession.indices.length,
+                percent: Math.round((quizSession.score / quizSession.indices.length) * 100),
+                incorrectWords: quizSession.incorrectWords,
+                category: quizSession.category || 'all',
+                timeSpent: timeSpentSec
+            });
+
+            if (quizHistory.length > 50) quizHistory.pop(); // Keep last 50
+            localStorage.setItem('oxford3000_quiz_history', JSON.stringify(quizHistory));
+
+            // Refresh dashboard
+            if (typeof renderHistory === 'function') renderHistory();
+            if (typeof renderQuizHistory === 'function') renderQuizHistory();
+
+            quizSession = null;
+            showScreen('welcome');
+            return;
+        }
+
+        quizAnswered = false;
+        const index = quizSession.indices[quizSession.currentIndex];
+        const correctWord = wordsData[index];
+
+        quizWord.textContent = correctWord.word;
+        document.getElementById('quiz-pos').textContent = correctWord.partOfSpeech;
+        quizCurrentIndex.textContent = quizSession.currentIndex + 1;
+        quizTotal.textContent = quizSession.indices.length;
+        quizScoreEl.textContent = quizSession.score;
+        quizProgressFill.style.width = `${((quizSession.currentIndex) / quizSession.indices.length) * 100}%`;
+
+        // Generate 3 wrong options, ensuring translations are unique and not the same as the correct word's translation
+        const options = [{ text: correctWord.translation, isCorrect: true }];
+        const usedTranslations = new Set([correctWord.translation]);
+
+        let pool = Array.from({ length: totalWords }, (_, i) => i).filter(i => i !== index);
+        // Shuffle pool once
+        for (let i = pool.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
+
+        for (let i = 0; i < pool.length && options.length < 4; i++) {
+            const w = wordsData[pool[i]];
+            if (w && w.translation && !usedTranslations.has(w.translation)) {
+                usedTranslations.add(w.translation);
+                options.push({ text: w.translation, isCorrect: false });
+            }
+        }
+
+        // Shuffle options
+        options.sort(() => Math.random() - 0.5);
+        quizOptionsData = options;
+
+        quizOptions.innerHTML = '';
+        const prefixes = ['A', 'B', 'C', 'D'];
+        options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-btn';
+            btn.innerHTML = `<span style="display: flex; align-items: center; gap: 12px; width: 100%;"><span style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 12px; background: rgba(255, 255, 255, 0.6); color: var(--primary); font-weight: 800; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">${prefixes[idx]}</span><span style="flex: 1; text-align: left; padding-right: 12px;">${opt.text}</span></span>`;
+            btn.onclick = () => handleQuizAnswer(idx, btn);
+            quizOptions.appendChild(btn);
+        });
+
+        // Autoplay sound
+        speakWordOverride(correctWord.word);
+    }
+
+    function handleQuizAnswer(selectedIndex, btnElement) {
+        if (quizAnswered || !quizSession) return;
+        quizAnswered = true;
+
+        const isCorrect = quizOptionsData[selectedIndex].isCorrect;
+        const buttons = quizOptions.querySelectorAll('.quiz-btn');
+        let correctBtn = null;
+
+        quizOptionsData.forEach((opt, idx) => {
+            if (opt.isCorrect) correctBtn = buttons[idx];
+        });
+
+        const index = quizSession.indices[quizSession.currentIndex];
+        const correctWordData = wordsData[index];
+
+        if (isCorrect) {
+            SoundFX.known();
+            btnElement.classList.add('correct');
+            quizSession.score++;
+            quizScoreEl.textContent = quizSession.score;
+        } else {
+            SoundFX.review();
+            btnElement.classList.add('wrong');
+            if (correctBtn) correctBtn.classList.add('correct');
+            quizSession.incorrectWords.push({
+                word: correctWordData.word,
+                translation: correctWordData.translation
+            });
+        }
+
+        // Wait a bit before next question
+        setTimeout(() => {
+            if (quizSession) {
+                quizSession.currentIndex++;
+                renderQuizQuestion();
+            }
+        }, 1200);
     }
 
     /* =========================================================
