@@ -621,15 +621,15 @@
             
             <!-- ========== Quiz History ========== -->
             <div id="dash-quiz" class="tab-panel dash-panel">
-                <div class="glass-panel liquid-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #a855f7;">ประวัติการทำแบบทดสอบ (Quiz Mode)</h3>
-                        <div class="stat-box" style="margin:0;">
-                            <span class="stat-value" id="quiz-avg-score" style="color: #a855f7;">0%</span>
-                            <span class="stat-label">คะแนนเฉลี่ย</span>
+                <div class="glass-panel dash-card liquid-card" style="margin-bottom: 24px;">
+                    <div class="dash-card-head" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="color: #a855f7; margin: 0; font-size: 1.15rem;">🏆 ประวัติการทดสอบ</h3>
+                        <div style="background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.9); padding: 8px 16px; border-radius: 14px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                            <span id="quiz-avg-score" style="color: #a855f7; display: block; font-size: 1.4rem; font-weight: 800; line-height: 1;">0%</span>
+                            <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">คะแนนเฉลี่ย</span>
                         </div>
                     </div>
-                    <div id="quiz-history-list" class="quiz-history-list">
+                    <div id="quiz-history-list" class="quiz-history-list grid-list">
                         <!-- History items injected via JS -->
                         <div style="text-align: center; padding: 30px; color: var(--text-muted); font-size: 0.95rem;">
                             คุณยังไม่เคยทำแบบทดสอบ<br>ลองกด "โหมดตอบคำถาม" จากหน้าแรกดูสิ!
@@ -642,10 +642,16 @@
             <div id="dash-quiz-analysis" class="tab-panel dash-panel" hidden>
                 <div class="glass-panel dash-card liquid-card" style="margin-bottom: 24px;">
                     <div class="dash-card-head">
-                        <h3>🎯 วิเคราะห์ความแม่นยำตามหมวดหมู่</h3>
+                        <h3 style="color: #000000; font-size: 1.15rem; font-weight: 800;">🎯 วิเคราะห์ความแม่นยำตามหมวดหมู่</h3>
                     </div>
-                    <div id="quiz-analysis-list" style="display: flex; flex-direction: column; gap: 16px; margin-top: 16px;">
+                    <div id="quiz-analysis-list" class="quiz-analysis-list grid-list">
                         <!-- Injected via JS -->
+                    </div>
+                    <div class="glass-panel liquid-card" style="margin-top: 24px; padding: 20px; text-align: center; background: rgba(255,255,255,0.4);">
+                        <h4 style="margin-bottom: 16px; color: #4c1d95; font-size: 1.3rem; font-weight: 900; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">🕸️ สเตตัสความรู้ของคุณ</h4>
+                        <div style="position: relative; height: 320px; width: 100%;">
+                            <canvas id="quiz-radar-chart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -657,7 +663,7 @@
                         <h3>⚠️ คำศัพท์ที่มักจะตอบผิด</h3>
                         <p class="muted" style="font-size: 0.9rem;">รวบรวมคำศัพท์ที่คุณตอบผิดบ่อยที่สุดจากการทำ Quiz</p>
                     </div>
-                    <div id="quiz-mistakes-list" class="my-words-grid">
+                    <div id="quiz-mistakes-list" class="my-words-grid grid-list">
                         <!-- Injected via JS -->
                     </div>
                 </div>
@@ -780,6 +786,7 @@
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <script src="data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 

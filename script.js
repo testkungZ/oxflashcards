@@ -23,40 +23,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.audioCtx.resume();
             }
         },
-        playTone(frequency, type, attack, decay, vol = 0.3, slideToFreq = null) {
+        playTone(frequency, type, attack, decay, vol = 0.3, slideToFreq = null, startTimeOffset = 0) {
             if (!this.audioCtx) return;
             try {
+                const now = this.audioCtx.currentTime + startTimeOffset;
                 const osc = this.audioCtx.createOscillator();
                 const gain = this.audioCtx.createGain();
                 osc.type = type;
-                osc.frequency.setValueAtTime(frequency, this.audioCtx.currentTime);
+                osc.frequency.setValueAtTime(frequency, now);
                 if (slideToFreq) {
-                    osc.frequency.exponentialRampToValueAtTime(slideToFreq, this.audioCtx.currentTime + attack + decay);
+                    osc.frequency.exponentialRampToValueAtTime(slideToFreq, now + attack + decay);
                 }
 
-                gain.gain.setValueAtTime(0, this.audioCtx.currentTime);
-                gain.gain.linearRampToValueAtTime(vol, this.audioCtx.currentTime + attack);
-                gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + attack + decay);
+                gain.gain.setValueAtTime(0, now);
+                gain.gain.linearRampToValueAtTime(vol, now + attack);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + attack + decay);
 
                 osc.connect(gain);
                 gain.connect(this.audioCtx.destination);
-                osc.start(this.audioCtx.currentTime);
-                osc.stop(this.audioCtx.currentTime + attack + decay);
+                osc.start(now);
+                osc.stop(now + attack + decay);
             } catch (e) { }
         },
         known() {
             this.init();
             // เสียงแบบ Duolingo "Correct" (ตริ๊ง-ติ๊ง) 
             // ใช้ความถี่แบบคอร์ดสว่าง เช่น B5 -> E6
-            this.playTone(987.77, 'sine', 0.02, 0.1, 0.15);
-            setTimeout(() => this.playTone(1318.51, 'sine', 0.02, 0.4, 0.2), 120);
+            this.playTone(987.77, 'sine', 0.02, 0.1, 0.15, null, 0);
+            this.playTone(1318.51, 'sine', 0.02, 0.4, 0.2, null, 0.12);
         },
         review() {
             this.init();
             // เสียงแบบ Duolingo "Incorrect" (ตึ-ดึง แบบทุ้ม)
             // ใช้คลื่น triangle ให้มีเนื้อเสียงทุ้ม และลดระดับเสียงลง
-            this.playTone(349.23, 'triangle', 0.03, 0.15, 0.2);
-            setTimeout(() => this.playTone(277.18, 'triangle', 0.03, 0.25, 0.2), 130);
+            this.playTone(349.23, 'triangle', 0.03, 0.15, 0.2, null, 0);
+            this.playTone(277.18, 'triangle', 0.03, 0.25, 0.2, null, 0.13);
         },
         tick() {
             this.init();
@@ -82,9 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // เสียง Victory แบบเกม 8-bit ที่ฟังดูชนะแบบสดใส (Level Up!)
             const schedule = (freq, type, duration, vol, delay) => {
-                setTimeout(() => {
-                    this.playTone(freq, type, 0.02, duration, vol);
-                }, delay);
+                this.playTone(freq, type, 0.02, duration, vol, null, delay / 1000);
             };
 
             // โน้ตเพลง "ทะ-ดา-ด๊าาา!" แบบพุ่งขึ้น (G4 -> C5 -> E5 -> คอร์ด C Major)
@@ -99,9 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // เสียงวิ้งๆ ระยิบระยับ (Sparkles) เหมือนได้รับรางวัล
             for (let i = 0; i < 7; i++) {
-                setTimeout(() => {
-                    this.playTone(1046.50 + Math.random() * 800, 'sine', 0.01, 0.1, 0.05);
-                }, 300 + (i * 60) + Math.random() * 30);
+                this.playTone(1046.50 + Math.random() * 800, 'sine', 0.01, 0.1, 0.05, null, (300 + (i * 60) + Math.random() * 30) / 1000);
             }
         }
     };
@@ -771,6 +768,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateAnswerUI();
         updateDots();
+
+        // เล่นเสียงอ่านอัตโนมัติเมื่อเปิดการ์ดใหม่
+        if (typeof speakWordOverride === 'function') {
+            speakWordOverride(word.word);
+        }
     }
 
     function updateAnswerUI() {
@@ -1857,7 +1859,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (e) { }
 
         if (quizHistory.length === 0) {
-            listEl.innerHTML = `<div style="text-align: center; padding: 30px; color: var(--text-muted); font-size: 0.95rem;">คุณยังไม่เคยทำแบบทดสอบ<br>ลองกด "โหมดตอบคำถาม" จากหน้าแรกดูสิ!</div>`;
+            listEl.innerHTML = `<div class="empty-state big" style="grid-column: 1 / -1;">
+                <span class="empty-icon">🏆</span>
+                <p>คุณยังไม่เคยทำแบบทดสอบ</p>
+                <span class="muted small">ลองกด "โหมดตอบคำถาม" จากหน้าแรกดูสิ!</span>
+            </div>`;
             avgEl.textContent = '0%';
             return;
         }
@@ -2011,32 +2017,159 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (Object.keys(catStats).length === 0) {
-                analysisList.innerHTML = '<div class="muted" style="text-align:center; padding:20px;">ยังไม่มีข้อมูลมากพอ</div>';
+                analysisList.innerHTML = `<div class="empty-state big" style="grid-column: 1 / -1;">
+                    <span class="empty-icon">🎯</span>
+                    <p>ยังไม่มีข้อมูลวิเคราะห์</p>
+                    <span class="muted small">ทำแบบทดสอบให้มากขึ้น เพื่อดูความก้าวหน้าในแต่ละหมวดหมู่</span>
+                </div>`;
             } else {
+                // วิเคราะห์จุดอ่อน/จุดแข็ง
+                const catArray = Object.keys(catStats).map(c => {
+                    const stats = catStats[c];
+                    return {
+                        id: c,
+                        meta: CATEGORY_META[c] || { th: 'รวม (Mixed)', color: '#8b5cf6', icon: '🌟' },
+                        accuracy: stats.score / stats.total,
+                        ...stats
+                    };
+                }).filter(c => c.total >= 5); // ต้องตอบอย่างน้อย 5 ข้อถึงจะวิเคราะห์ผล
+
+                let insightsHtml = '';
+                if (catArray.length > 0) {
+                    catArray.sort((a, b) => a.accuracy - b.accuracy);
+                    const weakest = catArray[0];
+                    const strongest = catArray[catArray.length - 1];
+
+                    const cards = [];
+                    
+                    // จุดอ่อน
+                    if (weakest.accuracy <= 0.75) {
+                        cards.push(`
+                            <article class="glass-panel insight-card liquid-card tone-bad">
+                                <span class="insight-emoji">⚠️</span>
+                                <span class="insight-kicker">หมวดที่ต้องเสริมด่วน</span>
+                                <h4>${weakest.meta.th}</h4>
+                                <p style="font-size: 1.05rem; color: #1e293b; line-height: 1.5; margin-top: 4px;">ความแม่นยำเพียง <b>${Math.round(weakest.accuracy * 100)}%</b> ลองกลับไปเล่น Flashcard หมวดนี้เพิ่มดูนะ!</p>
+                                <button onclick="startTargetedPractice('${weakest.id}')" style="margin-top: 16px; font-size: 1rem; padding: 12px 24px; border-radius: 12px; border: none; background: linear-gradient(135deg, #ef4444, #dc2626); color: white; cursor: pointer; box-shadow: 0 4px 12px rgba(239,68,68,0.4); font-family: inherit; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; align-self: flex-start;">🎯 ติวหมวดนี้ด่วน</button>
+                            </article>
+                        `);
+                    }
+                    
+                    // จุดแข็ง
+                    if (strongest.accuracy >= 0.8 && strongest.id !== weakest.id) {
+                        cards.push(`
+                            <article class="glass-panel insight-card liquid-card tone-good">
+                                <span class="insight-emoji">🏆</span>
+                                <span class="insight-kicker">หมวดที่แข็งแกร่งที่สุด</span>
+                                <h4>${strongest.meta.th}</h4>
+                                <p style="font-size: 1.05rem; color: #1e293b; line-height: 1.5; margin-top: 4px;">ความแม่นยำสูงถึง <b>${Math.round(strongest.accuracy * 100)}%</b> คุณมาถูกทางแล้ว ยอดเยี่ยมมาก!</p>
+                            </article>
+                        `);
+                    }
+
+                    if (cards.length > 0) {
+                        insightsHtml = `<div class="insight-grid" style="grid-column: 1 / -1; margin-bottom: 12px;">${cards.join('')}</div>`;
+                    }
+                }
+
+                let html = insightsHtml;
+                
                 Object.keys(catStats).forEach(c => {
                     const stats = catStats[c];
                     const pct = Math.round((stats.score / stats.total) * 100);
                     const meta = CATEGORY_META[c] || { th: 'รวม (Mixed)', color: '#8b5cf6', icon: '🌟' };
 
-                    const div = document.createElement('div');
-                    div.className = 'quiz-analysis-card';
-                    div.innerHTML = `
-                        <div class="qac-head">
-                            <div class="qac-icon-group">
-                                <div class="qac-icon" style="background: ${meta.color}15; color: ${meta.color};">${meta.icon}</div>
-                                <div class="qac-text">
-                                    <div class="qac-title">${meta.th}</div>
-                                    <div class="qac-subtitle">เล่นไป ${stats.played} ครั้ง (${stats.total} คำถาม)</div>
+                    html += `
+                        <div class="quiz-analysis-card">
+                            <div class="qac-head">
+                                <div class="qac-icon-group">
+                                    <div class="qac-icon" style="background: ${meta.color}15; color: ${meta.color};">${meta.icon}</div>
+                                    <div class="qac-text">
+                                        <div class="qac-title">${meta.th}</div>
+                                        <div class="qac-subtitle">เล่นไป ${stats.played} ครั้ง (${stats.total} คำถาม)</div>
+                                    </div>
                                 </div>
+                                <div class="qac-percent" style="color: ${meta.color};">${pct}%</div>
                             </div>
-                            <div class="qac-percent" style="color: ${meta.color};">${pct}%</div>
-                        </div>
-                        <div class="qac-bar-bg">
-                            <div class="qac-bar-fill" style="width: ${pct}%; background: ${meta.color};"></div>
+                            <div class="qac-bar-bg">
+                                <div class="qac-bar-fill" style="width: ${pct}%; background: ${meta.color};"></div>
+                            </div>
                         </div>
                     `;
-                    analysisList.appendChild(div);
                 });
+                analysisList.innerHTML = html;
+
+                // Render Radar Chart
+                const ctx = document.getElementById('quiz-radar-chart');
+                if (ctx && window.Chart) {
+                    if (window.quizRadar) window.quizRadar.destroy();
+                    
+                    // Use predefined categories to always form a polygon
+                    const targetCats = ['noun', 'verb', 'adjective', 'adverb', 'mixed'];
+                    const labels = targetCats.map(k => {
+                        const meta = CATEGORY_META[k] || { th: 'รวม (Mixed)' };
+                        return meta.th.split(' ')[0];
+                    });
+                    const dataPoints = targetCats.map(k => {
+                        const found = catArray.find(c => c.id === k);
+                        return found ? Math.round(found.accuracy * 100) : 0;
+                    });
+
+                    window.quizRadar = new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'ความแม่นยำ (%)',
+                                data: dataPoints,
+                                backgroundColor: 'rgba(139, 92, 246, 0.4)', // Rich fill color
+                                borderColor: '#7c3aed', // Darker purple border
+                                pointBackgroundColor: '#7c3aed',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: '#7c3aed',
+                                borderWidth: 3, // Thicker border
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            scales: {
+                                r: {
+                                    min: 0,
+                                    max: 100,
+                                    angleLines: { 
+                                        color: 'rgba(0, 0, 0, 0.15)', // Softer spokes
+                                        lineWidth: 1 // Thinner
+                                    },
+                                    grid: { 
+                                        color: 'rgba(0, 0, 0, 0.15)', // Softer web rings
+                                        lineWidth: 1
+                                    },
+                                    pointLabels: { 
+                                        font: { family: 'Prompt', size: 14, weight: '700' }, // Elegant bold labels
+                                        color: '#1e293b' // Deep slate (not pure black)
+                                    },
+                                    ticks: {
+                                        stepSize: 20,
+                                        backdropColor: 'transparent',
+                                        color: '#475569', // Slate gray
+                                        font: { size: 11, weight: '600' }
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: {
+                                    backgroundColor: 'rgba(30, 41, 59, 0.95)',
+                                    titleFont: { family: 'Prompt', size: 14 },
+                                    bodyFont: { family: 'Prompt', size: 14, weight: 'bold' },
+                                    padding: 12,
+                                    displayColors: false
+                                }
+                            }
+                        }
+                    });
+                }
             }
         }
 
@@ -2058,7 +2191,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const sortedMistakes = Object.values(mistakeCounts).sort((a, b) => b.count - a.count);
 
             if (sortedMistakes.length === 0) {
-                mistakesList.innerHTML = '<div class="muted" style="text-align:center; padding:20px; grid-column: 1/-1;">ยอดเยี่ยม! คุณยังไม่มีคำศัพท์ที่ตอบผิดเลย 🎉</div>';
+                mistakesList.innerHTML = `<div class="empty-state big" style="grid-column: 1 / -1;">
+                    <span class="empty-icon">✨</span>
+                    <p>ยอดเยี่ยม!</p>
+                    <span class="muted small">คุณยังไม่มีคำศัพท์ที่ตอบผิดเลย 🎉 คำที่คุณตอบผิดบ่อยๆ จะมารวมอยู่ที่นี่</span>
+                </div>`;
             } else {
                 sortedMistakes.forEach(w => {
                     const meta = CATEGORY_META[w.category] || CATEGORY_META['noun'];
@@ -2069,7 +2206,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h4 class="word-en">${w.word}</h4>
                             <div class="word-tag" style="color: ${meta.color}; background: ${meta.color}15;">${meta.icon} ${meta.th}</div>
                         </div>
-                        <p class="word-th">${w.meaning}</p>
+                        <p class="word-th">${w.translation || w.meaning || ''}</p>
                         <div style="margin-top: 12px; font-size: 0.8rem; color: #ef4444; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 8px; display: inline-block; font-weight: 600;">
                             ตอบผิด ${w.count} ครั้ง
                         </div>
@@ -2092,14 +2229,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (statTotalTime) {
             const mins = Math.floor(totalTime / 60);
             const secs = totalTime % 60;
-            statTotalTime.textContent = mins > 0 ? `${mins}น ${secs}ว` : `${secs}ว`;
+            statTotalTime.innerHTML = mins > 0 
+                ? `${mins} <span style="font-size: 0.7em;">นาที</span> ${secs} <span style="font-size: 0.7em;">วิ</span>` 
+                : `${secs} <span style="font-size: 0.7em;">วิ</span>`;
         }
 
         // Render Trend Chart
         const chartEl = document.getElementById('quiz-trend-chart');
         if (chartEl) {
             if (quizHistory.length === 0) {
-                chartEl.innerHTML = '<div class="muted" style="text-align:center; padding:20px;">ยังไม่มีข้อมูลมากพอ</div>';
+                chartEl.innerHTML = `<div class="empty-state big" style="grid-column: 1 / -1;">
+                    <span class="empty-icon">📈</span>
+                    <p>ไม่มีข้อมูลกราฟ</p>
+                    <span class="muted small">เริ่มทำแบบทดสอบครั้งแรก เพื่อสร้างกราฟสถิติของคุณ</span>
+                </div>`;
             } else {
                 const recent = quizHistory.slice(0, 10).reverse();
                 chartEl.innerHTML = '';
@@ -2309,19 +2452,37 @@ document.addEventListener('DOMContentLoaded', () => {
         quizScoreEl.textContent = quizSession.score;
         quizProgressFill.style.width = `${((quizSession.currentIndex) / quizSession.indices.length) * 100}%`;
 
-        // Generate 3 wrong options, ensuring translations are unique and not the same as the correct word's translation
+        // Generate 3 wrong options, prioritizing words with the SAME partOfSpeech
         const options = [{ text: correctWord.translation, isCorrect: true }];
         const usedTranslations = new Set([correctWord.translation]);
 
-        let pool = Array.from({ length: totalWords }, (_, i) => i).filter(i => i !== index);
-        // Shuffle pool once
-        for (let i = pool.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [pool[i], pool[j]] = [pool[j], pool[i]];
+        const matchingPool = [];
+        const otherPool = [];
+
+        for (let i = 0; i < totalWords; i++) {
+            if (i === index) continue;
+            if (wordsData[i] && wordsData[i].partOfSpeech === correctWord.partOfSpeech) {
+                matchingPool.push(i);
+            } else {
+                otherPool.push(i);
+            }
         }
 
-        for (let i = 0; i < pool.length && options.length < 4; i++) {
-            const w = wordsData[pool[i]];
+        // Shuffle arrays
+        const shuffleArray = (arr) => {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        };
+        shuffleArray(matchingPool);
+        shuffleArray(otherPool);
+
+        // Combine pools (matching POS first)
+        const combinedPool = [...matchingPool, ...otherPool];
+
+        for (let i = 0; i < combinedPool.length && options.length < 4; i++) {
+            const w = wordsData[combinedPool[i]];
             if (w && w.translation && !usedTranslations.has(w.translation)) {
                 usedTranslations.add(w.translation);
                 options.push({ text: w.translation, isCorrect: false });
@@ -2398,5 +2559,24 @@ document.addEventListener('DOMContentLoaded', () => {
         getSessions: () => JSON.parse(JSON.stringify(sessions)),
         isAnimating: () => isAnimating,
         currentScreen: () => currentScreen
+    };
+
+    // Expose Targeted Practice
+    window.startTargetedPractice = function(category) {
+        if (category === 'mixed') category = 'all';
+        let pool = Array.from({ length: totalWords }, (_, i) => i);
+        if (category !== 'all') {
+            pool = pool.filter(i => wordsData[i].partOfSpeech === category);
+        }
+        
+        if (pool.length === 0) {
+            showToast('ไม่พบคำศัพท์ในหมวดหมู่นี้');
+            return;
+        }
+        
+        const size = Math.min(20, pool.length);
+        const indices = pickRandom(pool, size);
+        
+        startSession(indices, 'category', CATEGORY_META[category] ? CATEGORY_META[category].th : 'ติวเข้มด่วน');
     };
 });
