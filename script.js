@@ -2041,7 +2041,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const strongest = catArray[catArray.length - 1];
 
                     const cards = [];
-                    
+
                     // จุดอ่อน
                     if (weakest.accuracy <= 0.75) {
                         cards.push(`
@@ -2054,7 +2054,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </article>
                         `);
                     }
-                    
+
                     // จุดแข็ง
                     if (strongest.accuracy >= 0.8 && strongest.id !== weakest.id) {
                         cards.push(`
@@ -2073,7 +2073,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 let html = insightsHtml;
-                
+
                 Object.keys(catStats).forEach(c => {
                     const stats = catStats[c];
                     const pct = Math.round((stats.score / stats.total) * 100);
@@ -2100,9 +2100,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 analysisList.innerHTML = html;
 
                 // Render Radar Chart
-                const ctx = document.getElementById('quiz-radar-chart');
-                if (ctx && window.Chart) {
+                const canvasEl = document.getElementById('quiz-radar-chart');
+                if (canvasEl && window.Chart) {
+                    const ctx = canvasEl.getContext('2d');
                     if (window.quizRadar) window.quizRadar.destroy();
+                    
+                    // Create Liquid Glass Gradient for fill
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                    gradient.addColorStop(0, 'rgba(168, 85, 247, 0.7)');  // Top bright purple
+                    gradient.addColorStop(1, 'rgba(139, 92, 246, 0.0)');  // Bottom transparent purple
+
+                    // Apply CSS 3D Drop Shadow to canvas
+                    canvasEl.style.filter = 'drop-shadow(0px 10px 15px rgba(139, 92, 246, 0.4))';
                     
                     // Use predefined categories to always form a polygon
                     const targetCats = ['noun', 'verb', 'adjective', 'adverb', 'mixed'];
@@ -2115,19 +2124,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         return found ? Math.round(found.accuracy * 100) : 0;
                     });
 
-                    window.quizRadar = new Chart(ctx, {
+                    window.quizRadar = new Chart(canvasEl, {
                         type: 'radar',
                         data: {
                             labels: labels,
                             datasets: [{
                                 label: 'ความแม่นยำ (%)',
                                 data: dataPoints,
-                                backgroundColor: 'rgba(139, 92, 246, 0.4)', // Rich fill color
-                                borderColor: '#7c3aed', // Darker purple border
-                                pointBackgroundColor: '#7c3aed',
-                                pointBorderColor: '#fff',
-                                pointHoverBackgroundColor: '#fff',
-                                pointHoverBorderColor: '#7c3aed',
+                                fill: true, // MUST BE TRUE for radar background!
+                                backgroundColor: gradient, // Liquid gradient
+                                borderColor: '#8b5cf6', // Glowy purple border
+                                pointBackgroundColor: '#fff', // White dots
+                                pointBorderColor: '#a855f7',
+                                pointHoverBackgroundColor: '#a855f7',
+                                pointHoverBorderColor: '#fff',
+                                pointRadius: 4,
+                                pointHoverRadius: 6,
                                 borderWidth: 3, // Thicker border
                             }]
                         },
@@ -2137,23 +2149,24 @@ document.addEventListener('DOMContentLoaded', () => {
                                 r: {
                                     min: 0,
                                     max: 100,
-                                    angleLines: { 
-                                        color: 'rgba(0, 0, 0, 0.15)', // Softer spokes
-                                        lineWidth: 1 // Thinner
-                                    },
-                                    grid: { 
-                                        color: 'rgba(0, 0, 0, 0.15)', // Softer web rings
+                                    angleLines: {
+                                        color: 'rgba(0, 0, 0, 0.1)', // Softer spokes
                                         lineWidth: 1
                                     },
-                                    pointLabels: { 
-                                        font: { family: 'Prompt', size: 14, weight: '700' }, // Elegant bold labels
-                                        color: '#1e293b' // Deep slate (not pure black)
+                                    grid: {
+                                        color: 'rgba(0, 0, 0, 0.1)', // Softer web rings
+                                        lineWidth: 1
+                                    },
+                                    pointLabels: {
+                                        font: { family: 'Prompt', size: 14, weight: '800' }, // Bold modern labels
+                                        color: '#334155' // Deep slate
                                     },
                                     ticks: {
                                         stepSize: 20,
                                         backdropColor: 'transparent',
-                                        color: '#475569', // Slate gray
-                                        font: { size: 11, weight: '600' }
+                                        color: '#64748b',
+                                        font: { size: 11, weight: '600' },
+                                        z: 1 // Keep ticks on top
                                     }
                                 }
                             },
@@ -2229,8 +2242,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (statTotalTime) {
             const mins = Math.floor(totalTime / 60);
             const secs = totalTime % 60;
-            statTotalTime.innerHTML = mins > 0 
-                ? `${mins} <span style="font-size: 0.7em;">นาที</span> ${secs} <span style="font-size: 0.7em;">วิ</span>` 
+            statTotalTime.innerHTML = mins > 0
+                ? `${mins} <span style="font-size: 0.7em;">นาที</span> ${secs} <span style="font-size: 0.7em;">วิ</span>`
                 : `${secs} <span style="font-size: 0.7em;">วิ</span>`;
         }
 
@@ -2562,21 +2575,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Expose Targeted Practice
-    window.startTargetedPractice = function(category) {
+    window.startTargetedPractice = function (category) {
         if (category === 'mixed') category = 'all';
         let pool = Array.from({ length: totalWords }, (_, i) => i);
         if (category !== 'all') {
             pool = pool.filter(i => wordsData[i].partOfSpeech === category);
         }
-        
+
         if (pool.length === 0) {
             showToast('ไม่พบคำศัพท์ในหมวดหมู่นี้');
             return;
         }
-        
+
         const size = Math.min(20, pool.length);
         const indices = pickRandom(pool, size);
-        
+
         startSession(indices, 'category', CATEGORY_META[category] ? CATEGORY_META[category].th : 'ติวเข้มด่วน');
     };
 });
