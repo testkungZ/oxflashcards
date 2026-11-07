@@ -12,9 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const MAX_SESSIONS = 100;
     const VALID_STATUS = ['known', 'review'];
 
+    let isSoundMuted = false;
     const SoundFX = {
         audioCtx: null,
         init() {
+            if (isSoundMuted) return;
             if (!this.audioCtx) {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 if (AudioContext) this.audioCtx = new AudioContext();
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         playTone(frequency, type, attack, decay, vol = 0.3, slideToFreq = null, startTimeOffset = 0) {
-            if (!this.audioCtx) return;
+            if (isSoundMuted || !this.audioCtx) return;
             try {
                 const now = this.audioCtx.currentTime + startTimeOffset;
                 const osc = this.audioCtx.createOscillator();
@@ -126,6 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    isSoundMuted = storage.get('ox3k_sound_muted', false);
+
     /* =========================================================
      * Word helpers
      * ========================================================= */
@@ -166,11 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
      * Categories (Part of Speech) & A–Z groups for the dashboard
      * ========================================================= */
     const CATEGORY_META = {
-        noun: { th: 'คำนาม', en: 'Noun', icon: 'N', c1: '#3b82f6', c2: '#06b6d4' },
-        verb: { th: 'คำกริยา', en: 'Verb', icon: 'V', c1: '#8b5cf6', c2: '#ec4899' },
-        adjective: { th: 'คำคุณศัพท์', en: 'Adjective', icon: 'Adj', c1: '#f59e0b', c2: '#f97316' },
-        adverb: { th: 'คำกริยาวิเศษณ์', en: 'Adverb', icon: 'Adv', c1: '#10b981', c2: '#14b8a6' },
-        other: { th: 'อื่น ๆ', en: 'Other', icon: '•', c1: '#64748b', c2: '#94a3b8' }
+        noun: { th: 'คำนาม', en: 'Noun', icon: '📦', c1: '#3b82f6', c2: '#06b6d4' },
+        verb: { th: 'คำกริยา', en: 'Verb', icon: '🏃', c1: '#8b5cf6', c2: '#ec4899' },
+        adjective: { th: 'คำคุณศัพท์', en: 'Adjective', icon: '✨', c1: '#f59e0b', c2: '#f97316' },
+        adverb: { th: 'คำกริยาวิเศษณ์', en: 'Adverb', icon: '💨', c1: '#10b981', c2: '#14b8a6' },
+        preposition: { th: 'คำบุพบท', en: 'Preposition', icon: '📍', c1: '#0284c7', c2: '#38bdf8' },
+        pronoun: { th: 'คำสรรพนาม', en: 'Pronoun', icon: '👤', c1: '#7c3aed', c2: '#c084fc' },
+        conjunction: { th: 'คำสันธาน', en: 'Conjunction', icon: '🔗', c1: '#d97706', c2: '#fde047' },
+        other: { th: 'อื่น ๆ', en: 'Other', icon: '🌟', c1: '#64748b', c2: '#94a3b8' }
     };
     const catOf = (w) => {
         const p = String(w.partOfSpeech || '').toLowerCase().trim();
@@ -259,7 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
         app: $('app-screen'),
         summary: $('summary-screen'),
         history: $('history-screen'),
-        quiz: $('quiz-screen')
+        quiz: $('quiz-screen'),
+        'quiz-summary': $('quiz-summary-screen')
     };
 
     // Welcome
@@ -742,6 +750,11 @@ document.addEventListener('DOMContentLoaded', () => {
         partOfSpeechEl.textContent = word.partOfSpeech || 'word';
         translationEl.textContent = word.translation;
 
+        const phoneticEl = $('phonetic');
+        if (phoneticEl) {
+            phoneticEl.textContent = word.phonetic || '';
+        }
+
         if (word.definition) {
             definitionEl.style.display = 'block';
             definitionEl.textContent = word.definition;
@@ -941,41 +954,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e) e.stopPropagation(); // Prevent flipping the card
         if (!session) return;
         const word = wordsData[session.indices[session.currentIndex]].word;
-
-        // Cancel any ongoing speech to reset the engine (helps prevent clipping at the start)
-        if (window.speechSynthesis) {
-            window.speechSynthesis.cancel();
-        }
-
-        const utterance = new SpeechSynthesisUtterance(word);
-        utterance.lang = 'en-US';
-
-        // Try to find a clear human-like female voice
-        const preferredVoice = availableVoices.find(v =>
-            v.name.includes('Google US English') ||
-            v.name.includes('Zira') ||
-            v.name.includes('Samantha') ||
-            v.name.includes('Karen') ||
-            (v.lang === 'en-US' && v.name.includes('Female'))
-        );
-
-        if (preferredVoice) {
-            utterance.voice = preferredVoice;
-        } else {
-            // Fallback: just try to get any EN-US voice
-            const enVoice = availableVoices.find(v => v.lang.startsWith('en-'));
-            if (enVoice) utterance.voice = enVoice;
-        }
-
-        utterance.rate = 0.85; // Slightly slower for clearer pronunciation
-
-        // A tiny delay before speaking helps the engine catch up and prevents the first letter from being cut off
-        setTimeout(() => {
-            window.speechSynthesis.speak(utterance);
-        }, 50);
+        speakWordOverride(word, true);
     }
 
     if (btnSpeak) btnSpeak.addEventListener('click', speakWord);
+
+    const btnSpeakExample = document.getElementById('btn-speak-example');
+    if (btnSpeakExample) {
+        btnSpeakExample.addEventListener('click', (e) => {
+            if (e) e.stopPropagation();
+            if (!session) return;
+            const word = wordsData[session.indices[session.currentIndex]];
+            if (word && word.example) {
+                speakWordOverride(word.example, true);
+            }
+        });
+    }
 
     // =========================================================
     // Swipe Gestures (Tinder-like)
@@ -1020,10 +1014,10 @@ document.addEventListener('DOMContentLoaded', () => {
         flashcard.style.transform = `translateX(${deltaX}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
 
         const targetCard = isFlipped ? flashcard.querySelector('.card-back') : flashcard.querySelector('.card-front');
-        if (deltaX < -50) { // Swipe Left (จำได้แล้ว)
+        if (deltaX < -50) { // Swipe Left (จำได้แล้ว - เขียว)
             targetCard.style.borderColor = 'var(--success)';
             targetCard.style.boxShadow = '0 0 30px rgba(16, 185, 129, 0.4)';
-        } else if (deltaX > 50) { // Swipe Right (ต้องทบทวน)
+        } else if (deltaX > 50) { // Swipe Right (ต้องทบทวน - แดง)
             targetCard.style.borderColor = 'var(--danger)';
             targetCard.style.boxShadow = '0 0 30px rgba(239, 68, 68, 0.4)';
         } else {
@@ -1055,10 +1049,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const threshold = 100; // pixels to trigger swipe action
 
-        if (dragDeltaX < -threshold) { // Swipe Left
+        if (dragDeltaX < -threshold) { // Swipe Left (จำได้แล้ว!)
             resetSwipeVisuals();
             answer('known');
-        } else if (dragDeltaX > threshold) { // Swipe Right
+        } else if (dragDeltaX > threshold) { // Swipe Right (ต้องทบทวน)
             resetSwipeVisuals();
             answer('review');
         } else {
@@ -1097,16 +1091,40 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape') closeModal(false);
             return;
         }
-        if (currentScreen !== 'app' || !session) return;
         if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+
+        // Quiz Screen Shortcuts
+        if (currentScreen === 'quiz' && quizSession) {
+            const buttons = quizOptions.querySelectorAll('.quiz-btn');
+            const key = e.key.toLowerCase();
+            let optionIndex = -1;
+            if (key === '1' || key === 'a') optionIndex = 0;
+            else if (key === '2' || key === 'b') optionIndex = 1;
+            else if (key === '3' || key === 'c') optionIndex = 2;
+            else if (key === '4' || key === 'd') optionIndex = 3;
+            else if (e.key === ' ' || key === 'r') {
+                e.preventDefault();
+                if (btnQuizSpeak) btnQuizSpeak.click();
+                return;
+            }
+
+            if (optionIndex >= 0 && buttons[optionIndex] && !quizAnswered) {
+                e.preventDefault();
+                buttons[optionIndex].click();
+            }
+            return;
+        }
+
+        // Flashcard App Screen Shortcuts
+        if (currentScreen !== 'app' || !session) return;
 
         if (e.key === 'ArrowRight') { SoundFX.next(); goTo(session.currentIndex + 1); }
         else if (e.key === 'ArrowLeft') { SoundFX.next(); goTo(session.currentIndex - 1); }
         else if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
             e.preventDefault();
             flipCard();
-        } else if (e.key === '1') answer('review');
-        else if (e.key === '2') answer('known');
+        } else if (e.key === '1') answer('known');
+        else if (e.key === '2') answer('review');
     });
 
     /* =========================================================
@@ -1224,7 +1242,21 @@ document.addEventListener('DOMContentLoaded', () => {
         historyReturnTo = returnTo;
         wordSearch.value = '';
         renderHistory();
+        if (typeof renderQuizHistory === 'function') renderQuizHistory();
         showScreen('history');
+
+        // Sync mode switcher buttons & tab visibility
+        const isQuizTab = tab.startsWith('dash-quiz');
+        const targetMode = isQuizTab ? 'quiz' : 'flashcard';
+        const modeBtns = document.querySelectorAll('.dash-mode-switcher .mode-btn');
+        modeBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.mode === targetMode);
+        });
+
+        historyTabs.forEach(t => {
+            t.style.display = (t.dataset.group === targetMode) ? '' : 'none';
+        });
+
         setDashTab(tab);
     }
 
@@ -1763,7 +1795,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnClearHistory.addEventListener('click', async () => {
         const ok = await confirmDialog({
             title: 'ล้างข้อมูลทั้งหมด?',
-            message: 'ประวัติทุกรอบและสถานะคำศัพท์ทั้งหมด (จำได้/ต้องทบทวน) จะถูกลบถาวร',
+            message: 'ประวัติทุกรอบและสถานะคำศัพท์ทั้งหมด (รวมทั้งประวัติ Quiz) จะถูกลบถาวร',
             confirmText: 'ลบทั้งหมด',
             danger: true
         });
@@ -1774,9 +1806,75 @@ document.addEventListener('DOMContentLoaded', () => {
         storage.remove(STORAGE.sessions);
         storage.remove(STORAGE.status);
         storage.remove(STORAGE.active);
+        try { localStorage.removeItem('oxford3000_quiz_history'); } catch (e) { }
         renderHistory();
+        if (typeof renderQuizHistory === 'function') renderQuizHistory();
         showToast('ล้างข้อมูลเรียบร้อยแล้ว');
     });
+
+    const btnExportData = document.getElementById('btn-export-data');
+    if (btnExportData) {
+        btnExportData.addEventListener('click', () => {
+            const backupData = {
+                version: '1.0',
+                date: new Date().toISOString(),
+                status: storage.get(STORAGE.status, {}),
+                sessions: storage.get(STORAGE.sessions, []),
+                quizHistory: storage.get('oxford3000_quiz_history', []),
+                prefs: storage.get(STORAGE.prefs, {})
+            };
+            const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `oxflashcards_backup_${new Date().toISOString().slice(0, 10)}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('ส่งออกไฟล์สำรองข้อมูลเรียบร้อย 💾');
+        });
+    }
+
+    const importFileInput = document.getElementById('import-data-file');
+    if (importFileInput) {
+        importFileInput.addEventListener('change', (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async (evt) => {
+                try {
+                    const imported = JSON.parse(evt.target.result);
+                    if (imported && (imported.status || imported.sessions || imported.quizHistory)) {
+                        const ok = await confirmDialog({
+                            title: 'นำเข้าข้อมูลสำรอง?',
+                            message: 'ข้อมูลปัจจุบันจะถูกเขียนทับด้วยข้อมูลจากไฟล์สำรอง ต้องการดำเนินการต่อหรือไม่?',
+                            confirmText: 'นำเข้า'
+                        });
+                        if (!ok) {
+                            importFileInput.value = '';
+                            return;
+                        }
+                        if (imported.status) storage.set(STORAGE.status, imported.status);
+                        if (imported.sessions) storage.set(STORAGE.sessions, imported.sessions);
+                        if (imported.quizHistory) storage.set('oxford3000_quiz_history', imported.quizHistory);
+                        if (imported.prefs) storage.set(STORAGE.prefs, imported.prefs);
+
+                        wordStatus = loadWordStatus();
+                        sessions = loadSessions();
+                        renderHistory();
+                        if (typeof renderQuizHistory === 'function') renderQuizHistory();
+                        renderWelcome();
+                        showToast('นำเข้าข้อมูลสำเร็จเรียบร้อย! 🎉');
+                    } else {
+                        showToast('รูปแบบไฟล์สำรองไม่ถูกต้อง');
+                    }
+                } catch (err) {
+                    showToast('เกิดข้อผิดพลาดในการอ่านไฟล์');
+                }
+                importFileInput.value = '';
+            };
+            reader.readAsText(file);
+        });
+    }
 
     /* =========================================================
      * Modal & toast
@@ -2188,6 +2286,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update Quiz Mistakes Tab
         const mistakesList = document.getElementById('quiz-mistakes-list');
+        const actionBox = document.getElementById('quiz-mistakes-action-box');
+        const totalCountEl = document.getElementById('quiz-mistakes-total-count');
+        const btnPractice = document.getElementById('btn-practice-quiz-mistakes');
+
         if (mistakesList) {
             mistakesList.innerHTML = '';
 
@@ -2204,24 +2306,62 @@ document.addEventListener('DOMContentLoaded', () => {
             const sortedMistakes = Object.values(mistakeCounts).sort((a, b) => b.count - a.count);
 
             if (sortedMistakes.length === 0) {
+                if (actionBox) actionBox.style.display = 'none';
                 mistakesList.innerHTML = `<div class="empty-state big" style="grid-column: 1 / -1;">
                     <span class="empty-icon">✨</span>
                     <p>ยอดเยี่ยม!</p>
                     <span class="muted small">คุณยังไม่มีคำศัพท์ที่ตอบผิดเลย 🎉 คำที่คุณตอบผิดบ่อยๆ จะมารวมอยู่ที่นี่</span>
                 </div>`;
             } else {
+                if (actionBox) {
+                    actionBox.style.display = 'block';
+                    if (totalCountEl) totalCountEl.textContent = sortedMistakes.length;
+                    if (btnPractice) {
+                        btnPractice.onclick = () => {
+                            const mistakeIndices = [];
+                            sortedMistakes.forEach(m => {
+                                const idx = wordsData.findIndex(item => item.word.toLowerCase() === m.word.toLowerCase());
+                                if (idx !== -1 && !mistakeIndices.includes(idx)) mistakeIndices.push(idx);
+                            });
+                            if (mistakeIndices.length > 0) {
+                                quizSession = {
+                                    indices: mistakeIndices,
+                                    currentIndex: 0,
+                                    score: 0,
+                                    incorrectWords: [],
+                                    category: 'all',
+                                    startTime: Date.now()
+                                };
+                                showScreen('quiz');
+                                renderQuizQuestion();
+                            } else {
+                                showToast('ไม่พบคำศัพท์ในระบบ');
+                            }
+                        };
+                    }
+                }
+
                 sortedMistakes.forEach(w => {
-                    const meta = CATEGORY_META[w.category] || CATEGORY_META['noun'];
+                    const matchedWord = wordsData.find(item => item.word.toLowerCase() === w.word.toLowerCase());
+                    const pos = (matchedWord && matchedWord.partOfSpeech) || w.category || 'noun';
+                    const meta = CATEGORY_META[pos] || CATEGORY_META['noun'];
+                    const phonetic = (matchedWord && matchedWord.phonetic) || '';
                     const div = document.createElement('div');
                     div.className = 'word-card';
                     div.innerHTML = `
                         <div class="word-card-head">
-                            <h4 class="word-en">${w.word}</h4>
-                            <div class="word-tag" style="color: ${meta.color}; background: ${meta.color}15;">${meta.icon} ${meta.th}</div>
+                            <h4 class="word-en">${escapeHtml(w.word)}</h4>
+                            <div style="display:flex; align-items:center; gap:6px;">
+                                ${phonetic ? `<span class="phonetic" style="font-size:0.8rem; padding:2px 6px;">${escapeHtml(phonetic)}</span>` : ''}
+                                <div class="word-tag" style="color: ${meta.c1 || meta.color}; background: ${(meta.c1 || meta.color)}15;">${meta.icon} ${meta.th}</div>
+                            </div>
                         </div>
-                        <p class="word-th">${w.translation || w.meaning || ''}</p>
-                        <div style="margin-top: 12px; font-size: 0.8rem; color: #ef4444; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 8px; display: inline-block; font-weight: 600;">
-                            ตอบผิด ${w.count} ครั้ง
+                        <p class="word-th">${escapeHtml(w.translation || w.meaning || '')}</p>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 12px;">
+                            <span style="font-size: 0.8rem; color: #ef4444; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 8px; font-weight: 600;">
+                                ตอบผิด ${w.count} ครั้ง
+                            </span>
+                            <button class="glass-btn-icon small speak-btn" onclick="speakWordOverride('${escapeHtml(w.word)}', true)" title="ฟังเสียง" style="width:34px; height:34px;">🔊</button>
                         </div>
                     `;
                     mistakesList.appendChild(div);
@@ -2392,14 +2532,16 @@ document.addEventListener('DOMContentLoaded', () => {
         btnQuizSpeak.addEventListener('click', () => {
             if (!quizSession) return;
             const word = wordsData[quizSession.indices[quizSession.currentIndex]].word;
-            // Use existing speak engine
-            speakWordOverride(word);
+            speakWordOverride(word, true);
         });
     }
 
-    function speakWordOverride(text) {
+    function speakWordOverride(text, isManual = false) {
+        if (!text) return;
+        if (isSoundMuted && !isManual) return;
         if (window.speechSynthesis) window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
         const preferredVoice = availableVoices.find(v =>
             v.name.includes('Google US English') ||
             v.name.includes('Zira') ||
@@ -2413,7 +2555,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (enVoice) utterance.voice = enVoice;
         }
         utterance.rate = 0.85;
-        setTimeout(() => window.speechSynthesis.speak(utterance), 50);
+        setTimeout(() => {
+            if (window.speechSynthesis) window.speechSynthesis.speak(utterance);
+        }, 50);
     }
 
     function renderQuizQuestion() {
@@ -2423,6 +2567,16 @@ document.addEventListener('DOMContentLoaded', () => {
             SoundFX.victory();
             showToast(`สุดยอด! คุณทำคะแนนได้ ${quizSession.score} / ${quizSession.indices.length} 🎉`);
 
+            const timeSpentSec = Math.round((Date.now() - quizSession.startTime) / 1000);
+            const finishedQuiz = {
+                indices: quizSession.indices,
+                score: quizSession.score,
+                incorrectWords: [...quizSession.incorrectWords],
+                category: quizSession.category || 'all',
+                timeSpent: timeSpentSec,
+                date: new Date().toISOString()
+            };
+
             // Save Quiz History
             let quizHistory = [];
             try {
@@ -2430,16 +2584,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (stored) quizHistory = JSON.parse(stored);
             } catch (e) { }
 
-            const timeSpentSec = Math.round((Date.now() - quizSession.startTime) / 1000);
-
             quizHistory.unshift({
-                date: new Date().toISOString(),
-                score: quizSession.score,
-                total: quizSession.indices.length,
-                percent: Math.round((quizSession.score / quizSession.indices.length) * 100),
-                incorrectWords: quizSession.incorrectWords,
-                category: quizSession.category || 'all',
-                timeSpent: timeSpentSec
+                date: finishedQuiz.date,
+                score: finishedQuiz.score,
+                total: finishedQuiz.indices.length,
+                percent: Math.round((finishedQuiz.score / finishedQuiz.indices.length) * 100),
+                incorrectWords: finishedQuiz.incorrectWords,
+                category: finishedQuiz.category,
+                timeSpent: finishedQuiz.timeSpent
             });
 
             if (quizHistory.length > 50) quizHistory.pop(); // Keep last 50
@@ -2450,7 +2602,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (typeof renderQuizHistory === 'function') renderQuizHistory();
 
             quizSession = null;
-            showScreen('welcome');
+            renderQuizSummary(finishedQuiz);
+            showScreen('quiz-summary');
             return;
         }
 
@@ -2459,7 +2612,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const correctWord = wordsData[index];
 
         quizWord.textContent = correctWord.word;
-        document.getElementById('quiz-pos').textContent = correctWord.partOfSpeech;
+        const qPos = document.getElementById('quiz-pos');
+        if (qPos) {
+            const meta = CATEGORY_META[correctWord.partOfSpeech] || { th: correctWord.partOfSpeech };
+            qPos.textContent = meta.th;
+        }
+        const qPhonetic = document.getElementById('quiz-phonetic');
+        if (qPhonetic) qPhonetic.textContent = correctWord.phonetic || '';
+
         quizCurrentIndex.textContent = quizSession.currentIndex + 1;
         quizTotal.textContent = quizSession.indices.length;
         quizScoreEl.textContent = quizSession.score;
@@ -2516,8 +2676,8 @@ document.addEventListener('DOMContentLoaded', () => {
             quizOptions.appendChild(btn);
         });
 
-        // Autoplay sound
-        speakWordOverride(correctWord.word);
+        // Autoplay sound if not muted
+        speakWordOverride(correctWord.word, false);
     }
 
     function handleQuizAnswer(selectedIndex, btnElement) {
@@ -2546,7 +2706,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (correctBtn) correctBtn.classList.add('correct');
             quizSession.incorrectWords.push({
                 word: correctWordData.word,
-                translation: correctWordData.translation
+                translation: correctWordData.translation,
+                phonetic: correctWordData.phonetic || '',
+                partOfSpeech: correctWordData.partOfSpeech || 'noun'
             });
         }
 
@@ -2557,6 +2719,186 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderQuizQuestion();
             }
         }, 1200);
+    }
+
+    /* =========================================================
+     * Quiz Summary Screen Logic
+     * ========================================================= */
+    function renderQuizSummary(record) {
+        const percent = record.indices.length ? Math.round((record.score / record.indices.length) * 100) : 0;
+        const total = record.indices.length;
+        const wrong = total - record.score;
+
+        let emoji = '🎉';
+        let title = 'จบรอบทดสอบแล้ว!';
+        if (percent === 100) { emoji = '👑'; title = 'ยอดเยี่ยม สมบูรณ์แบบ 100%!'; }
+        else if (percent >= 80) { emoji = '🎉'; title = 'ผ่านเกณฑ์ระดับยอดเยี่ยม!'; }
+        else if (percent >= 50) { emoji = '👍'; title = 'ทำได้ดี! พัฒนาขึ้นเรื่อยๆ'; }
+        else { emoji = '💪'; title = 'สู้ต่อไป! ทบทวนจุดที่ผิดอีกนิด'; }
+
+        const emojiEl = document.getElementById('quiz-summary-emoji');
+        const titleEl = document.getElementById('quiz-summary-title');
+        const subtitleEl = document.getElementById('quiz-summary-subtitle');
+        const percentEl = document.getElementById('quiz-summary-percent');
+        const ringFg = document.getElementById('quiz-summary-ring-fg');
+        const correctEl = document.getElementById('quiz-summary-correct');
+        const wrongEl = document.getElementById('quiz-summary-wrong');
+        const timeEl = document.getElementById('quiz-summary-time');
+
+        if (emojiEl) emojiEl.textContent = emoji;
+        if (titleEl) titleEl.textContent = title;
+        if (subtitleEl) {
+            const catMeta = CATEGORY_META[record.category];
+            const catLabel = catMeta ? catMeta.th : 'ทั้งหมด';
+            subtitleEl.textContent = `หมวด${catLabel} · ทั้งหมด ${total} ข้อ`;
+        }
+        if (percentEl) percentEl.textContent = percent + '%';
+        if (correctEl) correctEl.textContent = record.score;
+        if (wrongEl) wrongEl.textContent = wrong;
+
+        if (timeEl) {
+            const m = Math.floor((record.timeSpent || 0) / 60);
+            const s = (record.timeSpent || 0) % 60;
+            timeEl.textContent = m > 0 ? `${m}m ${s}s` : `${s}s`;
+        }
+
+        if (ringFg) {
+            const c = 2 * Math.PI * 52;
+            const offset = c - (percent / 100) * c;
+            ringFg.style.strokeDasharray = c;
+            ringFg.style.strokeDashoffset = c;
+            setTimeout(() => { ringFg.style.strokeDashoffset = offset; }, 100);
+        }
+
+        // Mistakes list
+        const wrap = document.getElementById('quiz-summary-mistakes-wrap');
+        const countEl = document.getElementById('quiz-summary-mistakes-count');
+        const listEl = document.getElementById('quiz-summary-mistakes-list');
+        const btnRetryMistakes = document.getElementById('btn-quiz-retry-mistakes');
+        const retryCountEl = document.getElementById('quiz-retry-count');
+
+        if (record.incorrectWords && record.incorrectWords.length > 0) {
+            if (wrap) wrap.style.display = 'block';
+            if (countEl) countEl.textContent = record.incorrectWords.length;
+            if (btnRetryMistakes) {
+                btnRetryMistakes.style.display = 'inline-flex';
+                if (retryCountEl) retryCountEl.textContent = record.incorrectWords.length;
+                btnRetryMistakes.onclick = () => {
+                    const indices = [];
+                    record.incorrectWords.forEach(w => {
+                        const idx = wordsData.findIndex(item => item.word.toLowerCase() === w.word.toLowerCase());
+                        if (idx !== -1 && !indices.includes(idx)) indices.push(idx);
+                    });
+                    if (indices.length > 0) {
+                        quizSession = {
+                            indices,
+                            currentIndex: 0,
+                            score: 0,
+                            incorrectWords: [],
+                            category: record.category || 'all',
+                            startTime: Date.now()
+                        };
+                        showScreen('quiz');
+                        renderQuizQuestion();
+                    }
+                };
+            }
+
+            if (listEl) {
+                listEl.innerHTML = '';
+                record.incorrectWords.forEach(w => {
+                    const li = document.createElement('li');
+                    li.className = 'quiz-mistake-item';
+                    const posMeta = CATEGORY_META[w.partOfSpeech] || { th: w.partOfSpeech || '' };
+                    li.innerHTML = `
+                        <div class="qmi-left">
+                            <span class="qmi-word">${escapeHtml(w.word)}</span>
+                            ${w.phonetic ? `<span class="phonetic" style="font-size:0.8rem; padding:2px 6px;">${escapeHtml(w.phonetic)}</span>` : ''}
+                            <span class="part-of-speech" style="font-size:0.75rem; padding: 2px 8px;">${escapeHtml(posMeta.th)}</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span class="qmi-trans">${escapeHtml(w.translation)}</span>
+                            <button class="glass-btn-icon small speak-btn" onclick="speakWordOverride('${escapeHtml(w.word)}', true)" title="ฟังเสียง" style="width:34px; height:34px;">🔊</button>
+                        </div>
+                    `;
+                    listEl.appendChild(li);
+                });
+            }
+        } else {
+            if (wrap) wrap.style.display = 'none';
+            if (btnRetryMistakes) btnRetryMistakes.style.display = 'none';
+        }
+
+        const btnRetryAll = document.getElementById('btn-quiz-retry-all');
+        if (btnRetryAll) {
+            btnRetryAll.onclick = () => {
+                let pool = [];
+                if (record.category === 'all') {
+                    pool = Array.from({ length: totalWords }, (_, i) => i);
+                } else {
+                    pool = Array.from({ length: totalWords }, (_, i) => i).filter(i => wordsData[i].partOfSpeech === record.category);
+                }
+                const actualSize = Math.min(record.indices.length, pool.length);
+                const indices = pickRandom(pool, actualSize);
+                quizSession = {
+                    indices,
+                    currentIndex: 0,
+                    score: 0,
+                    incorrectWords: [],
+                    category: record.category,
+                    startTime: Date.now()
+                };
+                showScreen('quiz');
+                renderQuizQuestion();
+            };
+        }
+
+        const btnHome = document.getElementById('btn-quiz-summary-home');
+        if (btnHome) btnHome.onclick = () => showScreen('welcome');
+
+        const btnHistory = document.getElementById('btn-quiz-summary-history');
+        if (btnHistory) btnHistory.onclick = () => openHistory('welcome', 'dash-quiz-overview');
+    }
+
+    /* =========================================================
+     * Sound Toggle System
+     * ========================================================= */
+    function updateSoundUI() {
+        const buttons = document.querySelectorAll('.sound-toggle-btn');
+        buttons.forEach(btn => {
+            btn.classList.toggle('muted', isSoundMuted);
+            const icon = btn.querySelector('.sound-icon');
+            if (icon) icon.textContent = isSoundMuted ? '🔇' : '🔊';
+            btn.title = isSoundMuted ? 'เปิดเสียง (Muted)' : 'ปิดเสียง (Sound On)';
+            btn.setAttribute('aria-label', btn.title);
+        });
+    }
+
+    function toggleSoundMute() {
+        isSoundMuted = !isSoundMuted;
+        storage.set('ox3k_sound_muted', isSoundMuted);
+        updateSoundUI();
+        showToast(isSoundMuted ? 'ปิดเสียงแล้ว 🔇' : 'เปิดเสียงแล้ว 🔊');
+        if (!isSoundMuted) SoundFX.next();
+    }
+
+    document.querySelectorAll('.sound-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSoundMute();
+        });
+    });
+    updateSoundUI();
+
+    /* =========================================================
+     * PWA Service Worker Registration
+     * ========================================================= */
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./service-worker.js').catch(err => {
+                console.log('SW registration failed:', err);
+            });
+        });
     }
 
     /* =========================================================
