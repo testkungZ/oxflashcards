@@ -76,6 +76,23 @@
                 </div>
             </div>
 
+            <!-- Daily Goal Compact Widget -->
+            <div class="welcome-daily-goal glass-panel" id="welcome-daily-goal">
+                <div class="wdg-main">
+                    <span class="wdg-icon" aria-hidden="true">🎯</span>
+                    <div class="wdg-text">
+                        <div class="wdg-header-row">
+                            <strong>เป้าหมายประจำวัน</strong>
+                            <span class="wdg-streak" id="welcome-goal-streak">🔥 0 วัน</span>
+                        </div>
+                        <div class="wdg-bar-track">
+                            <div class="wdg-bar-fill" id="welcome-goal-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <span class="wdg-count" id="welcome-goal-text">0/20</span>
+                </div>
+            </div>
+
             <!-- Word count selector -->
             <div class="count-selector">
                 <span class="selector-label">เลือกจำนวนคำต่อรอบ: <span id="count-display" style="color: var(--primary); font-size: 1.2rem; font-weight: 800; margin-left: 5px;">20</span></span>
@@ -452,6 +469,58 @@
 
             <!-- ========== Overview ========== -->
             <div id="dash-overview" class="tab-panel dash-panel">
+                <!-- Smart Study Recommendation Card -->
+                <div class="glass-panel smart-rec-card liquid-card" id="smart-rec-card">
+                    <div class="smart-rec-badge">💡 คำแนะนำการเรียนรู้วันนี้</div>
+                    <div class="smart-rec-body">
+                        <div class="smart-rec-icon" id="smart-rec-icon">⚡</div>
+                        <div class="smart-rec-content">
+                            <h4 id="smart-rec-title">พร้อมสำหรับรอบใหม่!</h4>
+                            <p id="smart-rec-desc" class="muted">วิเคราะห์ความก้าวหน้าเพื่อค้นหาคำที่เหมาะกับคุณที่สุด...</p>
+                        </div>
+                        <button type="button" class="btn btn-primary glass-btn smart-rec-btn" id="smart-rec-action-btn">
+                            เริ่มฝึกทันที
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Daily Goal Detailed Widget -->
+                <div class="glass-panel daily-goal-widget liquid-card" id="daily-goal-widget">
+                    <div class="dgw-header">
+                        <div class="dgw-title-group">
+                            <span class="dgw-icon">🎯</span>
+                            <div>
+                                <h4>เป้าหมายการเรียนประจำวัน</h4>
+                                <span class="muted small" id="dgw-date-label">วันนี้</span>
+                            </div>
+                        </div>
+                        <div class="dgw-streak-pill" id="dgw-streak-pill">
+                            🔥 <span id="dgw-streak-count">0 วันติดต่อกัน</span>
+                        </div>
+                    </div>
+                    <div class="dgw-progress-row">
+                        <div class="dgw-numbers">
+                            <span class="dgw-current" id="dgw-current">0</span>
+                            <span class="dgw-slash">/</span>
+                            <span class="dgw-target" id="dgw-target">20</span>
+                            <span class="dgw-unit">คำ</span>
+                        </div>
+                        <div class="dgw-badge" id="dgw-status-badge">กำลังเรียนรู้</div>
+                    </div>
+                    <div class="dgw-bar-track">
+                        <div class="dgw-bar-fill" id="dgw-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="dgw-footer">
+                        <span class="muted small">ปรับเป้าหมาย:</span>
+                        <div class="dgw-target-chips" id="dgw-target-chips">
+                            <button type="button" class="chip-sm" data-goal="10">10</button>
+                            <button type="button" class="chip-sm active" data-goal="20">20</button>
+                            <button type="button" class="chip-sm" data-goal="30">30</button>
+                            <button type="button" class="chip-sm" data-goal="50">50</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="glass-panel dash-hero liquid-card">
                     <div class="score-ring dash-ring">
                         <svg viewBox="0 0 120 120" width="170" height="170">
@@ -509,6 +578,52 @@
                     </div>
                 </div>
 
+                <!-- Mastery Levels Breakdown -->
+                <div class="glass-panel mastery-breakdown-card liquid-card">
+                    <div class="dash-card-head">
+                        <h3>🧠 ระดับความจำ (Retention Levels)</h3>
+                        <span class="muted small">วิเคราะห์ความแม่นยำรายคำ</span>
+                    </div>
+                    <div class="mastery-grid">
+                        <div class="mastery-tile m-mastered">
+                            <div class="m-tile-top">
+                                <span class="m-icon">🟢</span>
+                                <span class="m-badge">ชำนาญ</span>
+                            </div>
+                            <span class="m-val" id="mastery-cnt-mastered">0</span>
+                            <span class="m-label">จำได้แม่นยำ</span>
+                            <small class="muted">จำได้ต่อเนื่อง 2+ ครั้ง</small>
+                        </div>
+                        <div class="mastery-tile m-learning">
+                            <div class="m-tile-top">
+                                <span class="m-icon">🟡</span>
+                                <span class="m-badge">กำลังจำ</span>
+                            </div>
+                            <span class="m-val" id="mastery-cnt-learning">0</span>
+                            <span class="m-label">กำลังเรียนรู้</span>
+                            <small class="muted">เพิ่งตอบถูก 1 ครั้ง</small>
+                        </div>
+                        <div class="mastery-tile m-review">
+                            <div class="m-tile-top">
+                                <span class="m-icon">🔴</span>
+                                <span class="m-badge">ต้องซ้ำ</span>
+                            </div>
+                            <span class="m-val" id="mastery-cnt-review">0</span>
+                            <span class="m-label">ต้องทบทวน</span>
+                            <small class="muted">ตอบผิดหรือลืม</small>
+                        </div>
+                        <div class="mastery-tile m-unseen">
+                            <div class="m-tile-top">
+                                <span class="m-icon">⚪</span>
+                                <span class="m-badge">ใหม่</span>
+                            </div>
+                            <span class="m-val" id="mastery-cnt-unseen">0</span>
+                            <span class="m-label">ยังไม่เคยเรียน</span>
+                            <small class="muted">ยังไม่เคยเจอ</small>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="glass-panel dash-card liquid-card">
                     <div class="dash-card-head">
                         <h3>📈 ผลลัพธ์ 10 รอบล่าสุด</h3>
@@ -557,6 +672,7 @@
                     </div>
                     <div class="az-grid" id="az-heatmap"></div>
                     <p class="muted small az-note" id="az-note">แตะตัวอักษรเพื่อดูรายละเอียด</p>
+                    <div id="az-action-container" class="az-action-container" style="display: none; margin-top: 12px; text-align: center;"></div>
                 </div>
             </div>
 

@@ -6,7 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
         status: 'ox3k_wordStatus_v1',     // { "word|pos": "known" | "review" }
         sessions: 'ox3k_sessions_v1',     // [ session records ]
         active: 'ox3k_activeSession_v1',  // in-progress session (for resume)
-        prefs: 'ox3k_prefs_v1'            // { size: 20 }
+        prefs: 'ox3k_prefs_v1',           // { size: 20 }
+        dailyGoal: 'ox3k_daily_goal_v1',  // { target: 20, date: 'YYYY-MM-DD', count: 0 }
+        mastery: 'ox3k_word_mastery_v1',  // { [key]: { streak, reviewCount, lastStudied } }
+        theme: 'ox3k_theme_mode'          // 'light' | 'dark'
     };
     const SESSION_SIZES = [20, 30, 40, 50];
     const MAX_SESSIONS = 100;
@@ -240,10 +243,163 @@ document.addEventListener('DOMContentLoaded', () => {
         return s;
     }
 
+    function getTodayDateString() {
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        const d = String(now.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+
+    function loadDailyGoal() {
+        const raw = storage.get(STORAGE.dailyGoal, {});
+        const today = getTodayDateString();
+        const target = typeof raw.target === 'number' && raw.target > 0 ? raw.target : 20;
+        if (raw.date !== today) {
+            return { target, date: today, count: 0 };
+        }
+        return { target, date: today, count: typeof raw.count === 'number' ? raw.count : 0 };
+    }
+
+    function saveDailyGoal(goal) {
+        storage.set(STORAGE.dailyGoal, goal);
+    }
+
+    function loadWordMastery() {
+        const raw = storage.get(STORAGE.mastery, {});
+        return (raw && typeof raw === 'object' && !Array.isArray(raw)) ? raw : {};
+    }
+
+    function saveWordMastery(m) {
+        storage.set(STORAGE.mastery, m);
+    }
+
     let wordStatus = loadWordStatus();
     let sessions = loadSessions();
+    let dailyGoal = loadDailyGoal();
+    let wordMastery = loadWordMastery();
     const prefs = storage.get(STORAGE.prefs, {});
     let selectedSize = typeof prefs.size === 'number' && prefs.size >= 1 && prefs.size <= 50 ? prefs.size : 20;
+
+    function getWordMasteryLevel(key) {
+        const st = wordStatus[key];
+        if (!st) return 'unseen';
+        if (st === 'review') return 'review';
+        const m = wordMastery[key];
+        if (m && m.streak >= 2) return 'mastered';
+        return 'learning';
+    }
+
+    function recordWordMastery(key, status) {
+        const currM = wordMastery[key] || { streak: 0, reviewCount: 0 };
+        if (status === 'known') {
+            currM.streak = (currM.streak || 0) + 1;
+        } else if (status === 'review') {
+            currM.streak = 0;
+            currM.reviewCount = (currM.reviewCount || 0) + 1;
+        }
+        currM.lastStudied = new Date().toISOString();
+        wordMastery[key] = currM;
+        saveWordMastery(wordMastery);
+    }
+
+    function recordDailyGoalProgress(amount = 1) {
+        const today = getTodayDateString();
+        if (dailyGoal.date !== today) {
+            dailyGoal = { target: dailyGoal.target || 20, date: today, count: 0 };
+        }
+        const prevCount = dailyGoal.count;
+        dailyGoal.count += amount;
+        saveDailyGoal(dailyGoal);
+        updateDailyGoalUI();
+        if (prevCount < dailyGoal.target && dailyGoal.count >= dailyGoal.target) {
+            showToast('🎉 ยินดีด้วย! คุณพิชิตเป้าหมายการเรียนประจำวันแล้ว');
+            SoundFX.victory();
+        }
+    }
+
+    function updateDailyGoalUI() {
+        const today = getTodayDateString();
+        if (dailyGoal.date !== today) {
+            dailyGoal = { target: dailyGoal.target || 20, date: today, count: 0 };
+            saveDailyGoal(dailyGoal);
+        }
+        const streak = computeStreak();
+        const pct = Math.min(100, Math.round((dailyGoal.count / dailyGoal.target) * 100));
+
+        // 1. Welcome screen widget
+        const wStreak = $('welcome-goal-streak');
+        const wBar = $('welcome-goal-bar');
+        const wText = $('welcome-goal-text');
+        if (wStreak) wStreak.textContent = `🔥 ${streak} วัน`;
+        if (wBar) wBar.style.width = `${pct}%`;
+        if (wText) wText.textContent = `${dailyGoal.count}/${dailyGoal.target}`;
+
+        // 2. Dashboard screen widget
+        const dCurrent = $('dgw-current');
+        const dTarget = $('dgw-target');
+        const dBar = $('dgw-bar-fill');
+        const dStreak = $('dgw-streak-count');
+        const dBadge = $('dgw-status-badge');
+        if (dCurrent) dCurrent.textContent = dailyGoal.count;
+        if (dTarget) dTarget.textContent = dailyGoal.target;
+        if (dBar) dBar.style.width = `${pct}%`;
+        if (dStreak) dStreak.textContent = `${streak} วันติดต่อกัน`;
+        if (dBadge) {
+            if (dailyGoal.count >= dailyGoal.target) {
+                dBadge.className = 'dgw-badge completed';
+                dBadge.textContent = '🎉 สำเร็จเป้าหมายแล้ว';
+            } else {
+                dBadge.className = 'dgw-badge';
+                dBadge.textContent = `เหลืออีก ${dailyGoal.target - dailyGoal.count} คำ`;
+            }
+        }
+
+        // Target chips in dashboard
+        const chips = document.querySelectorAll('#dgw-target-chips .chip-sm');
+        chips.forEach((c) => {
+            c.classList.toggle('active', Number(c.dataset.goal) === dailyGoal.target);
+        });
+    }
+
+    function computeMasteryBreakdown() {
+        let mastered = 0, learning = 0, review = 0, unseen = 0;
+        keyToIndex.forEach((_, key) => {
+            const lvl = getWordMasteryLevel(key);
+            if (lvl === 'mastered') mastered++;
+            else if (lvl === 'learning') learning++;
+            else if (lvl === 'review') review++;
+            else unseen++;
+        });
+
+        const elMastered = $('mastery-cnt-mastered');
+        const elLearning = $('mastery-cnt-learning');
+        const elReview = $('mastery-cnt-review');
+        const elUnseen = $('mastery-cnt-unseen');
+        if (elMastered) animateNumber(elMastered, mastered);
+        if (elLearning) animateNumber(elLearning, learning);
+        if (elReview) animateNumber(elReview, review);
+        if (elUnseen) animateNumber(elUnseen, unseen);
+    }
+
+    function initTheme() {
+        const savedTheme = storage.get(STORAGE.theme, 'light');
+        applyTheme(savedTheme);
+    }
+
+    function applyTheme(theme) {
+        const isDark = theme === 'dark';
+        document.body.classList.toggle('dark-theme', isDark);
+        storage.set(STORAGE.theme, isDark ? 'dark' : 'light');
+        document.querySelectorAll('.theme-toggle-btn .theme-icon').forEach(el => {
+            el.textContent = isDark ? '☀️' : '🌙';
+        });
+    }
+
+    function toggleTheme() {
+        const isCurrentDark = document.body.classList.contains('dark-theme');
+        applyTheme(isCurrentDark ? 'light' : 'dark');
+    }
 
     /* =========================================================
      * Session state (in memory)
@@ -600,8 +756,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const previous = session.answers[i];
 
         session.answers[i] = status;
-        wordStatus[keyOf(wordsData[session.indices[i]])] = status;
+        const wordKey = keyOf(wordsData[session.indices[i]]);
+        wordStatus[wordKey] = status;
         storage.set(STORAGE.status, wordStatus);
+
+        recordWordMastery(wordKey, status);
+        if (previous === null) {
+            recordDailyGoalProgress(1);
+        }
         saveActiveSession();
 
         updateSessionStats(previous !== status ? status : null);
@@ -748,6 +910,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wordEl.textContent = word.word;
         wordEl.classList.toggle('long', word.word.length > 11);
         partOfSpeechEl.textContent = word.partOfSpeech || 'word';
+        partOfSpeechEl.className = 'part-of-speech pos-' + catOf(word);
         translationEl.textContent = word.translation;
 
         const phoneticEl = $('phonetic');
@@ -958,18 +1121,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (btnSpeak) btnSpeak.addEventListener('click', speakWord);
-
-    const btnSpeakExample = document.getElementById('btn-speak-example');
-    if (btnSpeakExample) {
-        btnSpeakExample.addEventListener('click', (e) => {
-            if (e) e.stopPropagation();
-            if (!session) return;
-            const word = wordsData[session.indices[session.currentIndex]];
-            if (word && word.example) {
-                speakWordOverride(word.example, true);
-            }
-        });
-    }
 
     // =========================================================
     // Swipe Gestures (Tinder-like)
@@ -1188,13 +1339,58 @@ document.addEventListener('DOMContentLoaded', () => {
         const idx = keyToIndex.get(key);
         if (idx === undefined) return '';
         const w = wordsData[idx];
-        return `<li class="word-item ${status}">
-            <span class="word-item-dot"></span>
-            <div class="word-item-main">
-                <span class="word-item-word">${escapeHtml(w.word)}</span>
-                <span class="word-item-pos">${escapeHtml(w.partOfSpeech || 'word')}</span>
+        const lvl = getWordMasteryLevel(key);
+        const lvlBadge = lvl === 'mastered' ? '🟢 ชำนาญ' : lvl === 'learning' ? '🟡 กำลังจำ' : '🔴 ต้องซ้ำ';
+        const cat = catOf(w);
+
+        const safeWord = escapeHtml(w.word);
+        const safeTrans = escapeHtml(w.translation);
+        const safePhonetic = escapeHtml(w.phonetic || '');
+        const safePos = escapeHtml(w.partOfSpeech || 'word');
+        const safeDef = escapeHtml(w.definition || '');
+        const safeEx = escapeHtml(w.example || '');
+        const safeExTh = escapeHtml(w.exampleTranslation || '');
+
+        return `<li class="word-item ${status}" data-word-key="${escapeHtml(key)}">
+            <div class="word-item-row">
+                <div class="word-item-left">
+                    <span class="word-item-dot"></span>
+                    <button type="button" class="word-item-speak-btn speak-btn" data-speak-word="${safeWord}" title="ฟังเสียงอ่าน" aria-label="ฟังเสียงอ่าน">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                    </button>
+                    <div class="word-item-main">
+                        <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                            <span class="word-item-word">${safeWord}</span>
+                            ${safePhonetic ? `<span class="word-item-phonetic">${safePhonetic}</span>` : ''}
+                            <span class="pos-badge ${cat}">${safePos}</span>
+                            <span class="pill-sm ${lvl}">${lvlBadge}</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="word-item-trans">${safeTrans}</span>
+                    <span class="word-item-expand-arrow" style="opacity: 0.5; font-size: 0.8rem;">▾</span>
+                </div>
             </div>
-            <span class="word-item-trans">${escapeHtml(w.translation)}</span>
+            ${(safeDef || safeEx) ? `
+            <div class="word-item-drawer">
+                ${safeDef ? `<div class="wid-def"><b>ความหมาย:</b> ${safeDef}</div>` : ''}
+                ${safeEx ? `
+                <div class="wid-example">
+                    <span>"${safeEx}"</span>
+                    <button type="button" class="glass-btn-icon small word-item-speak-btn speak-btn" data-speak-example="${safeEx}" title="ฟังตัวอย่าง" style="width: 26px; height: 26px;">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                    </button>
+                </div>
+                ${safeExTh ? `<div class="wid-example-th">"${safeExTh}"</div>` : ''}
+                ` : ''}
+            </div>` : ''}
         </li>`;
     }
 
@@ -1325,7 +1521,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function computeStreak() {
-        const days = new Set(sessions.map((s) => new Date(s.date).toDateString()));
+        let quizHistory = [];
+        try {
+            const stored = localStorage.getItem('oxford3000_quiz_history');
+            if (stored) quizHistory = JSON.parse(stored);
+        } catch (e) { }
+
+        const allDates = [
+            ...sessions.map((s) => s.date),
+            ...quizHistory.map((q) => q.date)
+        ];
+        const days = new Set(allDates.filter(Boolean).map((d) => new Date(d).toDateString()));
         const d = new Date();
         if (!days.has(d.toDateString())) d.setDate(d.getDate() - 1);
         let streak = 0;
@@ -1405,6 +1611,75 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${stackBar(s.known.length, s.review.length, s.total)}
                 </div>
             </div>`).join('');
+
+        updateSmartRecommendation(stats, c);
+        updateDailyGoalUI();
+        computeMasteryBreakdown();
+    }
+
+    function updateSmartRecommendation(stats, counts) {
+        const recCard = $('smart-rec-card');
+        if (!recCard) return;
+        const iconEl = $('smart-rec-icon');
+        const titleEl = $('smart-rec-title');
+        const descEl = $('smart-rec-desc');
+        const btnEl = $('smart-rec-action-btn');
+
+        // Priority 1: Words needing review
+        if (counts.review > 0) {
+            iconEl.textContent = '⚡';
+            titleEl.textContent = `มีคำที่ต้องทบทวน ${counts.review.toLocaleString()} คำ`;
+            descEl.textContent = 'ทบทวนคำเหล่านี้ซ้ำทันทีเพื่อย้ายคำเข้าสู่ความจำระยะยาวอย่างถาวร';
+            const n = Math.min(selectedSize, counts.review);
+            btnEl.textContent = `ทบทวนทันที (${n} คำ)`;
+            btnEl.onclick = () => practiceReviewWords('all');
+            return;
+        }
+
+        // Priority 2: Daily goal remaining
+        if (dailyGoal.count < dailyGoal.target) {
+            const rem = dailyGoal.target - dailyGoal.count;
+            iconEl.textContent = '🎯';
+            titleEl.textContent = `เป้าหมายวันนี้ขาดอีก ${rem} คำ`;
+            descEl.textContent = `อีกเพียงรอบเดียวก็พิชิตเป้าหมายประจำวัน ${dailyGoal.target} คำแล้ว!`;
+            const n = Math.min(selectedSize, rem);
+            btnEl.textContent = `เริ่มรอบด่วน (${n} คำ)`;
+            btnEl.onclick = () => {
+                const pool = Array.from({ length: totalWords }, (_, i) => i);
+                startSession(pickRandom(pool, n), 'random');
+            };
+            return;
+        }
+
+        // Priority 3: Weakest category
+        const studiedCats = stats.filter(s => s.studied && s.accuracy < 0.75);
+        if (studiedCats.length > 0) {
+            const weakest = studiedCats.slice().sort((a, b) => a.accuracy - b.accuracy)[0];
+            iconEl.textContent = weakest.icon || '💪';
+            titleEl.textContent = `เสริมความมั่นใจหมวด${weakest.th}`;
+            descEl.textContent = `หมวดนี้มีความแม่นยำ ${fmtPct(weakest.accuracy)} แนะนำให้ฝึกเพิ่มเพื่อปิดจุดอ่อน`;
+            btnEl.textContent = `ฝึกหมวด${weakest.th} ทันที`;
+            btnEl.onclick = () => practiceCategory(weakest.id);
+            return;
+        }
+
+        // Priority 4: All caught up / Ready for new words!
+        iconEl.textContent = '🌟';
+        titleEl.textContent = 'ยอดเยี่ยมมาก! บรรลุเป้าหมายครบถ้วน 🎉';
+        descEl.textContent = 'ทบทวนคำศัพท์ครบหมดแล้ว พร้อมที่จะก้าวหน้าและเรียนรู้คำศัพท์ใหม่ต่อไป';
+        btnEl.textContent = `เรียนคำใหม่ (${selectedSize} คำ)`;
+        btnEl.onclick = () => practiceUnseenWords();
+    }
+
+    async function practiceUnseenWords() {
+        const pool = Array.from({ length: totalWords }, (_, i) => i)
+            .filter((i) => !wordStatus[keyOf(wordsData[i])]);
+        if (!pool.length) {
+            showToast('คุณเรียนครบทั้ง 3,000 คำแล้ว! 🎉');
+            return;
+        }
+        if (!(await confirmReplaceActive('เริ่มเรียนรู้คำใหม่?', 'เริ่มเรียน'))) return;
+        startSession(pickRandom(pool, selectedSize), 'random', 'คำใหม่');
     }
 
     /* ---------- Categories ---------- */
@@ -1584,7 +1859,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const studied = Number(known) + Number(review);
         $('az-note').innerHTML = `<b>ตัว ${letter}</b> · ทั้งหมด ${Number(total).toLocaleString()} คำ · จำได้ <b class="txt-known">${known}</b> · ทบทวน <b class="txt-review">${review}</b>` +
             (studied ? ` · แม่นยำ <b>${fmtPct(known / studied)}</b>` : ' · ยังไม่ได้เรียน');
+
+        const actContainer = $('az-action-container');
+        if (actContainer) {
+            const n = Math.min(selectedSize, Number(total));
+            actContainer.innerHTML = `<button type="button" class="btn btn-primary glass-btn btn-sm" id="btn-practice-letter" data-letter="${letter}">
+                🚀 เริ่มฝึกคำขึ้นต้นด้วยตัว ${letter} (${n} คำ)
+            </button>`;
+            actContainer.style.display = 'block';
+        }
     });
+
+    const azActContainer = $('az-action-container');
+    if (azActContainer) {
+        azActContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('#btn-practice-letter');
+            if (btn && btn.dataset.letter) {
+                practiceLetter(btn.dataset.letter);
+            }
+        });
+    }
+
+    async function practiceLetter(letter) {
+        const idx = letterIndices[letter];
+        if (!idx || !idx.length) {
+            showToast('ไม่มีคำที่ขึ้นต้นด้วยตัว ' + letter);
+            return;
+        }
+        const byStatus = (st) => idx.filter((i) => (wordStatus[keyOf(wordsData[i])] || null) === st);
+        let picked = pickRandom(byStatus('review'), selectedSize);
+        if (picked.length < selectedSize) picked = picked.concat(pickRandom(byStatus(null), selectedSize - picked.length));
+        if (picked.length < selectedSize) picked = picked.concat(pickRandom(byStatus('known'), selectedSize - picked.length));
+        if (!picked.length) return;
+        if (!(await confirmReplaceActive(`เริ่มฝึกคำขึ้นต้นตัว ${letter}?`, 'เริ่มฝึก'))) return;
+        startSession(shuffle(picked), 'category', `ตัวอักษร ${letter}`);
+    }
 
     /* ---------- Practice helpers ---------- */
     async function confirmReplaceActive(title, confirmText) {
@@ -1802,79 +2111,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!ok) return;
         sessions = [];
         wordStatus = {};
+        wordMastery = {};
+        dailyGoal = { target: dailyGoal.target || 20, date: getTodayDateString(), count: 0 };
         lastSummary = null;
         storage.remove(STORAGE.sessions);
         storage.remove(STORAGE.status);
         storage.remove(STORAGE.active);
+        storage.remove(STORAGE.mastery);
+        storage.remove(STORAGE.dailyGoal);
         try { localStorage.removeItem('oxford3000_quiz_history'); } catch (e) { }
+        renderWelcome();
         renderHistory();
         if (typeof renderQuizHistory === 'function') renderQuizHistory();
+        updateDailyGoalUI();
         showToast('ล้างข้อมูลเรียบร้อยแล้ว');
     });
-
-    const btnExportData = document.getElementById('btn-export-data');
-    if (btnExportData) {
-        btnExportData.addEventListener('click', () => {
-            const backupData = {
-                version: '1.0',
-                date: new Date().toISOString(),
-                status: storage.get(STORAGE.status, {}),
-                sessions: storage.get(STORAGE.sessions, []),
-                quizHistory: storage.get('oxford3000_quiz_history', []),
-                prefs: storage.get(STORAGE.prefs, {})
-            };
-            const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `oxflashcards_backup_${new Date().toISOString().slice(0, 10)}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            showToast('ส่งออกไฟล์สำรองข้อมูลเรียบร้อย 💾');
-        });
-    }
-
-    const importFileInput = document.getElementById('import-data-file');
-    if (importFileInput) {
-        importFileInput.addEventListener('change', (e) => {
-            const file = e.target.files && e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = async (evt) => {
-                try {
-                    const imported = JSON.parse(evt.target.result);
-                    if (imported && (imported.status || imported.sessions || imported.quizHistory)) {
-                        const ok = await confirmDialog({
-                            title: 'นำเข้าข้อมูลสำรอง?',
-                            message: 'ข้อมูลปัจจุบันจะถูกเขียนทับด้วยข้อมูลจากไฟล์สำรอง ต้องการดำเนินการต่อหรือไม่?',
-                            confirmText: 'นำเข้า'
-                        });
-                        if (!ok) {
-                            importFileInput.value = '';
-                            return;
-                        }
-                        if (imported.status) storage.set(STORAGE.status, imported.status);
-                        if (imported.sessions) storage.set(STORAGE.sessions, imported.sessions);
-                        if (imported.quizHistory) storage.set('oxford3000_quiz_history', imported.quizHistory);
-                        if (imported.prefs) storage.set(STORAGE.prefs, imported.prefs);
-
-                        wordStatus = loadWordStatus();
-                        sessions = loadSessions();
-                        renderHistory();
-                        if (typeof renderQuizHistory === 'function') renderQuizHistory();
-                        renderWelcome();
-                        showToast('นำเข้าข้อมูลสำเร็จเรียบร้อย! 🎉');
-                    } else {
-                        showToast('รูปแบบไฟล์สำรองไม่ถูกต้อง');
-                    }
-                } catch (err) {
-                    showToast('เกิดข้อผิดพลาดในการอ่านไฟล์');
-                }
-                importFileInput.value = '';
-            };
-            reader.readAsText(file);
-        });
-    }
 
     /* =========================================================
      * Modal & toast
@@ -2536,10 +2787,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function speakWordOverride(text, isManual = false) {
+    let currentSpeakingBtn = null;
+
+    function clearSpeakingState() {
+        if (currentSpeakingBtn) {
+            currentSpeakingBtn.classList.remove('is-speaking');
+            currentSpeakingBtn = null;
+        }
+        document.querySelectorAll('.is-speaking').forEach(b => b.classList.remove('is-speaking'));
+    }
+
+    function speakWordOverride(text, isManual = false, targetBtn = null) {
         if (!text) return;
         if (isSoundMuted && !isManual) return;
-        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+            clearSpeakingState();
+        }
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'en-US';
         const preferredVoice = availableVoices.find(v =>
@@ -2555,10 +2819,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if (enVoice) utterance.voice = enVoice;
         }
         utterance.rate = 0.85;
+
+        const btn = targetBtn || (btnSpeak && btnSpeak.offsetParent !== null ? btnSpeak : null);
+        if (btn) {
+            utterance.onstart = () => {
+                clearSpeakingState();
+                currentSpeakingBtn = btn;
+                btn.classList.add('is-speaking');
+            };
+            utterance.onend = () => {
+                clearSpeakingState();
+            };
+            utterance.onerror = () => {
+                clearSpeakingState();
+            };
+        }
+
         setTimeout(() => {
             if (window.speechSynthesis) window.speechSynthesis.speak(utterance);
         }, 50);
     }
+    window.speakWordOverride = speakWordOverride;
 
     function renderQuizQuestion() {
         if (!quizSession) return;
@@ -2695,15 +2976,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const index = quizSession.indices[quizSession.currentIndex];
         const correctWordData = wordsData[index];
 
+        recordDailyGoalProgress(1);
+        const wKey = keyOf(correctWordData);
+
         if (isCorrect) {
             SoundFX.known();
             btnElement.classList.add('correct');
             quizSession.score++;
             quizScoreEl.textContent = quizSession.score;
+            recordWordMastery(wKey, 'known');
         } else {
             SoundFX.review();
             btnElement.classList.add('wrong');
             if (correctBtn) correctBtn.classList.add('correct');
+            recordWordMastery(wKey, 'review');
             quizSession.incorrectWords.push({
                 word: correctWordData.word,
                 translation: correctWordData.translation,
@@ -2818,11 +3104,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div style="display:flex; align-items:center; gap:8px;">
                             <span class="qmi-trans">${escapeHtml(w.translation)}</span>
-                            <button class="glass-btn-icon small speak-btn" onclick="speakWordOverride('${escapeHtml(w.word)}', true)" title="ฟังเสียง" style="width:34px; height:34px;">🔊</button>
+                            <button type="button" class="glass-btn-icon small speak-btn" data-speak-word="${escapeHtml(w.word)}" title="ฟังเสียง" style="width:34px; height:34px;">🔊</button>
                         </div>
                     `;
                     listEl.appendChild(li);
                 });
+                listEl.onclick = (e) => {
+                    const sBtn = e.target.closest('[data-speak-word]');
+                    if (sBtn) {
+                        speakWordOverride(sBtn.dataset.speakWord, true, sBtn);
+                    }
+                };
             }
         } else {
             if (wrap) wrap.style.display = 'none';
@@ -2891,13 +3183,147 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSoundUI();
 
     /* =========================================================
-     * PWA Service Worker Registration
+     * Theme & UI Wiring
      * ========================================================= */
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./service-worker.js').catch(err => {
-                console.log('SW registration failed:', err);
-            });
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleTheme();
+        });
+    });
+    initTheme();
+
+    /* =========================================================
+     * Example Sentence TTS
+     * ========================================================= */
+    const btnSpeakExample = $('btn-speak-example');
+    if (btnSpeakExample) {
+        btnSpeakExample.addEventListener('click', (e) => {
+            if (e) e.stopPropagation();
+            if (!session) return;
+            const word = wordsData[session.indices[session.currentIndex]];
+            if (word && word.example) {
+                speakWordOverride(word.example, true, btnSpeakExample);
+            }
+        });
+    }
+
+    /* =========================================================
+     * Word List Interactive Actions (Audio + Expand Drawer)
+     * ========================================================= */
+    function wireWordListEvents(listEl) {
+        if (!listEl) return;
+        listEl.addEventListener('click', (e) => {
+            const speakBtn = e.target.closest('[data-speak-word]');
+            if (speakBtn) {
+                e.stopPropagation();
+                speakWordOverride(speakBtn.dataset.speakWord, true, speakBtn);
+                return;
+            }
+            const speakExBtn = e.target.closest('[data-speak-example]');
+            if (speakExBtn) {
+                e.stopPropagation();
+                speakWordOverride(speakExBtn.dataset.speakExample, true, speakExBtn);
+                return;
+            }
+            const row = e.target.closest('.word-item');
+            if (row) {
+                row.classList.toggle('is-expanded');
+                const arrow = row.querySelector('.word-item-expand-arrow');
+                if (arrow) arrow.textContent = row.classList.contains('is-expanded') ? '▴' : '▾';
+            }
+        });
+    }
+    wireWordListEvents(historyWordList);
+    wireWordListEvents(summaryWordList);
+
+    /* =========================================================
+     * Target Chips for Daily Goal
+     * ========================================================= */
+    const targetChipsContainer = $('dgw-target-chips');
+    if (targetChipsContainer) {
+        targetChipsContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-goal]');
+            if (!btn) return;
+            const newTarget = Number(btn.dataset.goal);
+            if (newTarget > 0) {
+                dailyGoal.target = newTarget;
+                saveDailyGoal(dailyGoal);
+                updateDailyGoalUI();
+                SoundFX.tick();
+            }
+        });
+    }
+
+    /* =========================================================
+     * Export & Import Learning Data
+     * ========================================================= */
+    const btnExport = $('btn-export-data');
+    if (btnExport) {
+        btnExport.addEventListener('click', () => {
+            const data = {
+                wordStatus,
+                sessions,
+                quizHistory: storage.get('oxford3000_quiz_history', []),
+                dailyGoal,
+                wordMastery,
+                exportedAt: new Date().toISOString(),
+                version: 'ox3k_v2'
+            };
+            const jsonStr = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `oxflashcards_backup_${getTodayDateString()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('สำรองข้อมูลเรียบร้อยแล้ว 💾');
+        });
+    }
+
+    const importInput = $('import-data-file');
+    if (importInput) {
+        importInput.addEventListener('change', (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+                try {
+                    const parsed = JSON.parse(evt.target.result);
+                    if (!parsed || typeof parsed !== 'object') throw new Error('Invalid JSON');
+                    if (parsed.wordStatus) {
+                        wordStatus = parsed.wordStatus;
+                        storage.set(STORAGE.status, wordStatus);
+                    }
+                    if (Array.isArray(parsed.sessions)) {
+                        sessions = parsed.sessions;
+                        storage.set(STORAGE.sessions, sessions);
+                    }
+                    if (Array.isArray(parsed.quizHistory)) {
+                        storage.set('oxford3000_quiz_history', parsed.quizHistory);
+                    }
+                    if (parsed.dailyGoal) {
+                        dailyGoal = parsed.dailyGoal;
+                        storage.set(STORAGE.dailyGoal, dailyGoal);
+                    }
+                    if (parsed.wordMastery) {
+                        wordMastery = parsed.wordMastery;
+                        storage.set(STORAGE.mastery, wordMastery);
+                    }
+                    renderWelcome();
+                    renderHistory();
+                    if (typeof renderQuizHistory === 'function') renderQuizHistory();
+                    updateDailyGoalUI();
+                    showToast('นำเข้าข้อมูลสำเร็จแล้ว 🎉');
+                } catch (err) {
+                    showToast('ไฟล์ข้อมูลไม่ถูกต้อง ไม่สามารถนำเข้าได้');
+                }
+                importInput.value = '';
+            };
+            reader.readAsText(file);
         });
     }
 
@@ -2905,6 +3331,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * Init
      * ========================================================= */
     renderWelcome();
+    updateDailyGoalUI();
 
     // Expose a tiny API for automated testing / debugging
     window.__flashcardApp = {
