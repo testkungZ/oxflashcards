@@ -3426,9 +3426,248 @@ select,
     .btn-dashboard-text small {
         font-size: 0.72rem;
     }
+
+    /* Mobile Responsive Polish for New Features */
+    .smart-rec-card {
+        padding: 14px 16px;
+        border-radius: 16px;
+        margin-bottom: 14px;
+    }
+
+    .smart-rec-body {
+        gap: 12px;
+    }
+
+    .smart-rec-content h4 {
+        font-size: 1.05rem;
+    }
+
+    .smart-rec-content p {
+        font-size: 0.85rem;
+    }
+
+    .smart-rec-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        padding: 11px;
+        font-size: 0.95rem;
+        border-radius: 14px;
+    }
+
+    .daily-goal-widget {
+        padding: 16px 14px;
+        border-radius: 16px;
+        margin-bottom: 16px;
+    }
+
+    .dgw-current {
+        font-size: 1.8rem;
+    }
+
+    .dgw-target {
+        font-size: 1.2rem;
+    }
+
+    .dgw-streak-pill {
+        font-size: 0.78rem;
+        padding: 3px 10px;
+    }
+
+    .dgw-footer {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .dgw-target-chips {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dgw-target-chips .chip-sm {
+        flex: 1;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 0.85rem;
+    }
+
+    .mastery-breakdown-card {
+        padding: 16px 14px;
+        border-radius: 16px;
+        margin-bottom: 16px;
+    }
+
+    .mastery-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px;
+    }
+
+    .mastery-tile {
+        padding: 12px 10px;
+        border-radius: 12px;
+    }
+
+    .m-val {
+        font-size: 1.35rem;
+    }
+
+    .m-label {
+        font-size: 0.82rem;
+    }
+
+    .mastery-tile small {
+        font-size: 0.7rem;
+    }
+
+    .welcome-daily-goal {
+        padding: 10px 14px;
+        border-radius: 14px;
+    }
+
+    .wdg-icon {
+        font-size: 1.25rem;
+    }
+
+    .wdg-header-row strong {
+        font-size: 0.82rem;
+    }
+
+    .wdg-streak {
+        font-size: 0.8rem;
+    }
+
+    .wdg-count {
+        font-size: 0.88rem;
+    }
+
+    .word-item {
+        padding: 10px 12px !important;
+    }
+
+    .word-item-row {
+        gap: 8px;
+    }
+
+    .word-item-word {
+        font-size: 0.98rem;
+    }
+
+    .word-item-trans {
+        font-size: 0.88rem;
+        max-width: 120px;
+        text-align: right;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .word-item-phonetic {
+        font-size: 0.75rem;
+    }
+
+    .pos-badge {
+        font-size: 0.7rem;
+        padding: 1px 6px;
+    }
+
+    .pill-sm {
+        font-size: 0.68rem;
+        padding: 1px 5px;
+    }
+
+    .word-item-drawer {
+        padding: 10px;
+        font-size: 0.84rem;
+    }
+
+    .az-action-container .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+    }
+}
+
+/* =========================================================
+ * Tablet Specific Polish (601px - 1024px)
+ * ========================================================= */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .app-container {
+        max-width: 720px;
+        padding: 1.5rem;
+    }
+
+    .mastery-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 10px;
+    }
+
+    .dash-stat-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    .flashcard-container {
+        height: 360px;
+        max-width: 580px;
+        margin: 0 auto 1.5rem auto;
+    }
+
+    .controls {
+        max-width: 580px;
+        margin: 0 auto;
+    }
+
+    .smart-rec-body {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .smart-rec-btn {
+        width: auto;
+    }
+}
+
+/* Safe Area Insets for Mobile Notches */
+@supports (padding: max(0px)) {
+    body {
+        padding-top: max(0.5rem, env(safe-area-inset-top));
+        padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+        padding-left: max(0.5rem, env(safe-area-inset-left));
+        padding-right: max(0.5rem, env(safe-area-inset-right));
+    }
 }
 
 @media (max-width: 400px) {
+    .app-header {
+        gap: 6px;
+    }
+
+    .app-title h2 {
+        font-size: 1.15rem;
+    }
+
+    .dash-subtitle {
+        display: none;
+    }
+
+    .btn-finish {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .word-item-trans {
+        max-width: 90px;
+    }
+
+    .word-item-speak-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .welcome-daily-goal {
+        padding: 8px 10px;
+    }
     .glass-btn {
         font-size: 0.8rem;
     }
