@@ -1476,18 +1476,38 @@ document.addEventListener('DOMContentLoaded', () => {
             if (panel) panel.hidden = !active;
         });
         dashListPanel.hidden = !(panelId === 'history-sessions' || panelId === 'history-words');
-        requestAnimationFrame(moveDashIndicator);
+        requestAnimationFrame(() => moveDashIndicator(true));
         if (panelId === 'dash-overview') animateDashRing();
     }
 
-    function moveDashIndicator() {
-        const active = historyTabs.find((t) => t.classList.contains('active'));
+    function moveDashIndicator(scrollTabContainer = false) {
+        const active = historyTabs.find((t) => t.classList.contains('active') && t.style.display !== 'none');
         if (!active || !dashTabIndicator) return;
         dashTabIndicator.style.width = `${active.offsetWidth}px`;
         dashTabIndicator.style.transform = `translateX(${active.offsetLeft}px)`;
-        active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+
+        // Scroll ONLY the tab bar container horizontally, NEVER scroll the window or page!
+        if (scrollTabContainer) {
+            const nav = active.closest('.dash-tabs');
+            if (nav) {
+                const navLeft = nav.getBoundingClientRect().left;
+                const activeLeft = active.getBoundingClientRect().left;
+                const offset = activeLeft - navLeft + nav.scrollLeft - (nav.clientWidth / 2) + (active.clientWidth / 2);
+                nav.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+            }
+        }
     }
-    window.addEventListener('resize', () => { if (currentScreen === 'history') moveDashIndicator(); });
+
+    let lastWindowWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+        // Only recompute if window width changed (ignore mobile address bar height-only resize when scrolling!)
+        if (window.innerWidth !== lastWindowWidth) {
+            lastWindowWidth = window.innerWidth;
+            if (currentScreen === 'history') {
+                moveDashIndicator(false);
+            }
+        }
+    });
 
     function computeCategoryStats() {
         return CATEGORY_IDS.map((id) => {
