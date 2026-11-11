@@ -52,19 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
         status: 'ox3k_wordStatus_v1',     // { "word|pos": "known" | "review" }
         sessions: 'ox3k_sessions_v1',     // [ session records ]
         active: 'ox3k_activeSession_v1',  // in-progress session (for resume)
-        prefs: 'ox3k_prefs_v1',           // { size: 20 }
-        dailyGoal: 'ox3k_daily_goal_v1',  // { target: 20, date: 'YYYY-MM-DD', count: 0 }
+        prefs: 'ox3k_prefs_v1',           // { size: 20, sizeUpdatedAt, accentUpdatedAt }
+        dailyGoal: 'ox3k_daily_goal_v1',  // { target: 20, targetUpdatedAt, date: 'YYYY-MM-DD', count: 0 }
         mastery: 'ox3k_word_mastery_v1',  // { [key]: { streak, reviewCount, lastStudied, nextReviewAt, intervalDays } }
         bookmarks: 'ox3k_bookmarks_v1',   // [ "word|pos", ... ]
         ActivityLog: 'ox3k_activity_v1',  // { "YYYY-MM-DD": count }
         theme: 'ox3k_theme_mode',         // 'light' | 'dark'
         accent: 'ox3k_accent_v1',         // 'US' | 'UK'
         sbConfig: 'ox3k_sb_config_v1',    // { url, anonKey, syncId, lastSyncedAt }
-        fbConfig: 'ox3k_fb_config_v1'     // { config, autoSync, lastSyncedAt, lastEmail }
+        fbConfig: 'ox3k_fb_config_v1'     // { config, autoSync, lastSyncedAt, lastEmail, lastUid }
     };
 
     /** @type {(() => void)|null} */
     let scheduleGoogleAutoSync = null;
+    /** @type {(() => boolean)|null} */
+    let isGoogleSignedIn = null;
+    /** @type {(() => Promise<boolean>)|null} */
+    let clearGoogleCloudData = null;
+    /** @type {(() => void)|null} */
+    let clearGoogleOwnership = null;
 
     const ICON_SVG = {
         moon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>',
@@ -576,10 +582,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const raw = storage.get(STORAGE.dailyGoal, {});
         const today = getTodayDateString();
         const target = typeof raw.target === 'number' && raw.target > 0 ? raw.target : 20;
+        const targetUpdatedAt = typeof raw.targetUpdatedAt === 'number' && raw.targetUpdatedAt > 0 ? raw.targetUpdatedAt : 0;
         if (raw.date !== today) {
-            return { target, date: today, count: 0 };
+            return { target, targetUpdatedAt, date: today, count: 0 };
         }
-        return { target, date: today, count: typeof raw.count === 'number' ? raw.count : 0 };
+        return { target, targetUpdatedAt, date: today, count: typeof raw.count === 'number' ? raw.count : 0 };
     }
 
     function saveDailyGoal(goal) {
@@ -623,12 +630,29 @@ document.addEventListener('DOMContentLoaded', () => {
     let bookmarkedWords = loadBookmarks();
     let activityLog = loadActivityLog();
     const prefs = storage.get(STORAGE.prefs, {});
-    let selectedSize = typeof prefs.size === 'number' && prefs.size >= 1 && prefs.size <= 50 ? prefs.size : 20;
+    let selectedSize = typeof prefs.size === 'number' && prefs.size >= 1 && prefs.size <= 50 ? Math.round(prefs.size) : 20;
+    let prefsMeta = {
+        sizeUpdatedAt: typeof prefs.sizeUpdatedAt === 'number' && prefs.sizeUpdatedAt > 0 ? prefs.sizeUpdatedAt : 0,
+        accentUpdatedAt: typeof prefs.accentUpdatedAt === 'number' && prefs.accentUpdatedAt > 0 ? prefs.accentUpdatedAt : 0
+    };
     let selectedCefr = 'all';
     let historyCefrFilter = 'all';
     let qsCefrFilter = 'all';
     let qsFocusIndex = -1;
     let preferredAccent = localStorage.getItem(STORAGE.accent) === 'UK' ? 'UK' : 'US';
+
+    /** @param {{ touchSize?: boolean, touchAccent?: boolean }} [opts] */
+    function savePrefsState(opts = {}) {
+        const now = Date.now();
+        if (opts.touchSize) prefsMeta.sizeUpdatedAt = now;
+        if (opts.touchAccent) prefsMeta.accentUpdatedAt = now;
+        storage.set(STORAGE.prefs, {
+            size: selectedSize,
+            sizeUpdatedAt: prefsMeta.sizeUpdatedAt || 0,
+            accentUpdatedAt: prefsMeta.accentUpdatedAt || 0
+        });
+        try { localStorage.setItem(STORAGE.accent, preferredAccent); } catch (_) {}
+    }
     /** @type {Map<string, string|null>} */
     const audioUrlCache = new Map();
     /** @type {HTMLAudioElement|null} */
@@ -717,7 +741,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function recordDailyGoalProgress(amount = 1) {
         const today = getTodayDateString();
         if (dailyGoal.date !== today) {
-            dailyGoal = { target: dailyGoal.target || 20, date: today, count: 0 };
+            dailyGoal = {
+                target: dailyGoal.target || 20,
+                targetUpdatedAt: dailyGoal.targetUpdatedAt || 0,
+                date: today,
+                count: 0
+            };
         }
         const prevCount = dailyGoal.count;
         dailyGoal.count += amount;
@@ -736,7 +765,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateDailyGoalUI() {
         const today = getTodayDateString();
         if (dailyGoal.date !== today) {
-            dailyGoal = { target: dailyGoal.target || 20, date: today, count: 0 };
+            dailyGoal = {
+                target: dailyGoal.target || 20,
+                targetUpdatedAt: dailyGoal.targetUpdatedAt || 0,
+                date: today,
+                count: 0
+            };
             saveDailyGoal(dailyGoal);
         }
         const streak = computeStreak();
@@ -1072,8 +1106,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 sliderAnimFrame = requestAnimationFrame(step);
             } else {
                 selectedSize = endValue;
-                storage.set(STORAGE.prefs, { size: endValue });
+                savePrefsState({ touchSize: true });
                 updateSegmented(false); // final pop animation
+                if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
             }
         }
         sliderAnimFrame = requestAnimationFrame(step);
@@ -1098,15 +1133,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (selectedSize !== size) {
                 SoundFX.tick(); // เล่นเสียง "ตึด" เบาๆ ตอนที่เลขเปลี่ยน
                 selectedSize = size;
-                storage.set(STORAGE.prefs, { size });
+                savePrefsState({ touchSize: true });
                 updateSegmented(true); // update display and buttons, but don't snap the thumb while dragging
+                if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
             }
         });
 
         countSlider.addEventListener('change', (e) => {
             const size = Math.round(Number(e.target.value));
             selectedSize = size;
+            savePrefsState({ touchSize: true });
             updateSegmented(false); // snap thumb to integer on release
+            if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
         });
     }
 
@@ -2870,18 +2908,18 @@ document.addEventListener('DOMContentLoaded', () => {
         showScreen(historyReturnTo === 'summary' && lastSummary ? 'summary' : 'welcome');
     });
 
-    btnClearHistory.addEventListener('click', async () => {
-        const ok = await confirmDialog({
-            title: 'ล้างข้อมูลทั้งหมด?',
-            message: 'ประวัติทุกรอบและสถานะคำศัพท์ทั้งหมด (รวมทั้งประวัติ Quiz) จะถูกลบถาวร',
-            confirmText: 'ลบทั้งหมด',
-            danger: true
-        });
-        if (!ok) return;
+    /** @param {{ keepGoalTarget?: boolean }} [opts] */
+    function resetLocalStudyData(opts = {}) {
+        const keepGoalTarget = !!opts.keepGoalTarget;
         sessions = [];
         wordStatus = {};
         wordMastery = {};
-        dailyGoal = { target: dailyGoal.target || 20, date: getTodayDateString(), count: 0 };
+        dailyGoal = {
+            target: keepGoalTarget ? (dailyGoal.target || 20) : 20,
+            targetUpdatedAt: keepGoalTarget ? (dailyGoal.targetUpdatedAt || 0) : 0,
+            date: getTodayDateString(),
+            count: 0
+        };
         lastSummary = null;
         storage.remove(STORAGE.sessions);
         storage.remove(STORAGE.status);
@@ -2893,11 +2931,33 @@ document.addEventListener('DOMContentLoaded', () => {
         storage.remove(STORAGE.bookmarks);
         storage.remove(STORAGE.ActivityLog);
         try { localStorage.removeItem('oxford3000_quiz_history'); } catch (e) { }
+        if (clearGoogleOwnership) clearGoogleOwnership();
         renderWelcome();
         renderHistory();
         if (typeof renderQuizHistory === 'function') renderQuizHistory();
         updateDailyGoalUI();
-        showToast('ล้างข้อมูลเรียบร้อยแล้ว');
+    }
+
+    btnClearHistory.addEventListener('click', async () => {
+        const signedIn = !!(isGoogleSignedIn && isGoogleSignedIn());
+        const ok = await confirmDialog({
+            title: 'ล้างข้อมูลทั้งหมด?',
+            message: signedIn
+                ? 'ประวัติทุกรอบ สถานะคำศัพท์ทั้งหมด (รวมทั้งประวัติ Quiz) และข้อมูลซิงค์บนบัญชี Google นี้จะถูกลบถาวร'
+                : 'ประวัติทุกรอบและสถานะคำศัพท์ทั้งหมด (รวมทั้งประวัติ Quiz) จะถูกลบถาวร',
+            confirmText: 'ลบทั้งหมด',
+            danger: true
+        });
+        if (!ok) return;
+        resetLocalStudyData({ keepGoalTarget: false });
+        if (signedIn && clearGoogleCloudData) {
+            const cloudCleared = await clearGoogleCloudData();
+            showToast(cloudCleared
+                ? 'ล้างข้อมูลในเครื่องและบนบัญชี Google เรียบร้อยแล้ว'
+                : 'ล้างข้อมูลในเครื่องแล้ว (ไม่สามารถลบข้อมูลบน Cloud ได้ชั่วคราว)');
+        } else {
+            showToast('ล้างข้อมูลเรียบร้อยแล้ว');
+        }
     });
 
     /* =========================================================
@@ -4192,14 +4252,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetChipsContainer = $('dgw-target-chips');
     if (targetChipsContainer) {
         targetChipsContainer.addEventListener('click', (e) => {
-            const btn = e.target.closest('[data-goal]');
+            const btn = e.target instanceof Element ? e.target.closest('[data-goal]') : null;
             if (!btn) return;
-            const newTarget = Number(btn.dataset.goal);
-            if (newTarget > 0) {
+            const newTarget = Number(/** @type {HTMLElement} */ (btn).dataset.goal);
+            if (Number.isFinite(newTarget) && newTarget > 0) {
                 dailyGoal.target = newTarget;
+                dailyGoal.targetUpdatedAt = Date.now();
                 saveDailyGoal(dailyGoal);
                 updateDailyGoalUI();
                 SoundFX.tick();
+                if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
             }
         });
     }
@@ -4218,6 +4280,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 wordMastery,
                 bookmarks: Array.from(bookmarkedWords),
                 activityLog,
+                prefs: {
+                    size: selectedSize,
+                    sizeUpdatedAt: prefsMeta.sizeUpdatedAt || 0,
+                    accent: preferredAccent,
+                    accentUpdatedAt: prefsMeta.accentUpdatedAt || 0
+                },
                 exportedAt: new Date().toISOString(),
                 version: 'ox3k_v2'
             };
@@ -4235,48 +4303,116 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const importInput = $('import-data-file');
+    const importInput = /** @type {HTMLInputElement|null} */ ($('import-data-file'));
     if (importInput) {
         importInput.addEventListener('change', (e) => {
-            const file = e.target.files && e.target.files[0];
+            const target = /** @type {HTMLInputElement|null} */ (e.target);
+            const file = target && target.files && target.files[0];
             if (!file) return;
             const reader = new FileReader();
             reader.onload = (evt) => {
                 try {
-                    const parsed = JSON.parse(evt.target.result);
-                    if (!parsed || typeof parsed !== 'object') throw new Error('Invalid JSON');
-                    if (parsed.wordStatus) {
-                        wordStatus = parsed.wordStatus;
+                    const rawText = evt && evt.target ? String(evt.target.result || '') : '';
+                    const parsed = JSON.parse(rawText);
+                    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+                        throw new Error('Invalid JSON');
+                    }
+
+                    const hasRecognizedKey = ['wordStatus', 'sessions', 'quizHistory', 'dailyGoal', 'wordMastery', 'bookmarks', 'activityLog', 'prefs']
+                        .some((key) => Object.prototype.hasOwnProperty.call(parsed, key));
+                    if (!hasRecognizedKey) throw new Error('Unrecognized backup format');
+
+                    if (parsed.wordStatus && typeof parsed.wordStatus === 'object' && !Array.isArray(parsed.wordStatus)) {
+                        const cleanStatus = {};
+                        for (const [k, v] of Object.entries(parsed.wordStatus)) {
+                            if (keyToIndex.has(k) && VALID_STATUS.includes(v)) {
+                                cleanStatus[k] = v;
+                            }
+                        }
+                        wordStatus = cleanStatus;
                         storage.set(STORAGE.status, wordStatus);
                     }
                     if (Array.isArray(parsed.sessions)) {
-                        sessions = parsed.sessions;
+                        sessions = parsed.sessions
+                            .filter((s) => s && typeof s === 'object' && Array.isArray(s.known))
+                            .slice(0, MAX_SESSIONS);
                         storage.set(STORAGE.sessions, sessions);
                     }
                     if (Array.isArray(parsed.quizHistory)) {
-                        storage.set('oxford3000_quiz_history', parsed.quizHistory);
+                        const cleanQh = parsed.quizHistory
+                            .filter((q) => q && typeof q === 'object' && q.date && typeof q.total === 'number')
+                            .slice(0, 50);
+                        storage.set('oxford3000_quiz_history', cleanQh);
                     }
-                    if (parsed.dailyGoal) {
-                        dailyGoal = parsed.dailyGoal;
-                        storage.set(STORAGE.dailyGoal, dailyGoal);
+                    if (parsed.dailyGoal && typeof parsed.dailyGoal === 'object' && !Array.isArray(parsed.dailyGoal)) {
+                        const today = getTodayDateString();
+                        const importedTarget = Number(parsed.dailyGoal.target);
+                        const validTarget = Number.isFinite(importedTarget) && importedTarget > 0 ? importedTarget : (dailyGoal.target || 20);
+                        const importedCount = parsed.dailyGoal.date === today && Number.isFinite(Number(parsed.dailyGoal.count))
+                            ? Math.max(0, Number(parsed.dailyGoal.count))
+                            : 0;
+                        dailyGoal = {
+                            target: validTarget,
+                            targetUpdatedAt: Number(parsed.dailyGoal.targetUpdatedAt) || Date.now(),
+                            date: today,
+                            count: importedCount
+                        };
+                        saveDailyGoal(dailyGoal);
                     }
-                    if (parsed.wordMastery) {
-                        wordMastery = parsed.wordMastery;
+                    if (parsed.wordMastery && typeof parsed.wordMastery === 'object' && !Array.isArray(parsed.wordMastery)) {
+                        const cleanMastery = {};
+                        for (const [k, m] of Object.entries(parsed.wordMastery)) {
+                            if (keyToIndex.has(k) && m && typeof m === 'object') {
+                                cleanMastery[k] = m;
+                            }
+                        }
+                        wordMastery = cleanMastery;
                         storage.set(STORAGE.mastery, wordMastery);
                     }
                     if (Array.isArray(parsed.bookmarks)) {
-                        bookmarkedWords = new Set(parsed.bookmarks.filter(k => keyToIndex.has(k)));
+                        bookmarkedWords = new Set(parsed.bookmarks.filter((k) => typeof k === 'string' && keyToIndex.has(k)));
                         saveBookmarks();
                     }
-                    if (parsed.activityLog && typeof parsed.activityLog === 'object') {
-                        activityLog = parsed.activityLog;
+                    if (parsed.activityLog && typeof parsed.activityLog === 'object' && !Array.isArray(parsed.activityLog)) {
+                        const cleanLog = {};
+                        for (const [day, cnt] of Object.entries(parsed.activityLog)) {
+                            const n = Number(cnt);
+                            if (/^\d{4}-\d{2}-\d{2}$/.test(day) && Number.isFinite(n) && n >= 0) {
+                                cleanLog[day] = n;
+                            }
+                        }
+                        activityLog = cleanLog;
                         saveActivityLog(activityLog);
                     }
+                    if (parsed.prefs && typeof parsed.prefs === 'object' && !Array.isArray(parsed.prefs)) {
+                        const pSize = Number(parsed.prefs.size);
+                        let importedPrefs = false;
+                        if (Number.isFinite(pSize) && pSize >= 1 && pSize <= 50) {
+                            selectedSize = Math.round(pSize);
+                            prefsMeta.sizeUpdatedAt = Number(parsed.prefs.sizeUpdatedAt) || Date.now();
+                            importedPrefs = true;
+                        }
+                        if (parsed.prefs.accent === 'US' || parsed.prefs.accent === 'UK') {
+                            preferredAccent = parsed.prefs.accent;
+                            prefsMeta.accentUpdatedAt = Number(parsed.prefs.accentUpdatedAt) || Date.now();
+                            importedPrefs = true;
+                        }
+                        if (importedPrefs) {
+                            savePrefsState();
+                            if (typeof syncAccentButtonsUI === 'function') syncAccentButtonsUI();
+                        }
+                    }
+
                     renderWelcome();
                     renderHistory();
                     if (typeof renderQuizHistory === 'function') renderQuizHistory();
                     updateDailyGoalUI();
-                    showToast('นำเข้าข้อมูลสำเร็จแล้ว');
+                    if (typeof renderSyncSummary === 'function' && $('sync-modal')?.classList.contains('open')) {
+                        renderSyncSummary();
+                    }
+                    if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
+                    const willAutoSync = !!(isGoogleSignedIn && isGoogleSignedIn() && typeof OxGoogleSync !== 'undefined' && OxGoogleSync.getAutoSync() && !OxGoogleSync.hasAccountConflict());
+                    showToast(willAutoSync ? 'นำเข้าข้อมูลสำเร็จ กำลังซิงก์ขึ้น Google...' : 'นำเข้าข้อมูลสำเร็จแล้ว');
                 } catch (err) {
                     showToast('ไฟล์ข้อมูลไม่ถูกต้อง ไม่สามารถนำเข้าได้');
                 }
@@ -4610,9 +4746,10 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             preferredAccent = preferredAccent === 'US' ? 'UK' : 'US';
-            try { localStorage.setItem(STORAGE.accent, preferredAccent); } catch (_) {}
+            savePrefsState({ touchAccent: true });
             syncAccentButtonsUI();
             SoundFX.tick();
+            if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
             showToast(`เปลี่ยนสำเนียงเสียงอ่านเป็น ${preferredAccent === 'UK' ? 'อังกฤษ (UK)' : 'อเมริกัน (US)'}`);
         });
     });
@@ -4622,7 +4759,27 @@ document.addEventListener('DOMContentLoaded', () => {
      * Pillar 7: Cross-Device Smart Merge Engine (OxSync & OxGoogleSync)
      * ========================================================= */
     const OxSync = {
+        hasLocalStudyData() {
+            if (Object.keys(wordStatus).length > 0) return true;
+            if (Object.keys(wordMastery).length > 0) return true;
+            if (bookmarkedWords.size > 0) return true;
+            if (sessions.length > 0) return true;
+            if (Object.keys(activityLog).length > 0) return true;
+            if (dailyGoal && Number(dailyGoal.count || 0) > 0) return true;
+            try {
+                const rawQh = localStorage.getItem('oxford3000_quiz_history');
+                const parsedQh = rawQh ? JSON.parse(rawQh) : [];
+                if (Array.isArray(parsedQh) && parsedQh.length > 0) return true;
+            } catch (_) {}
+            return false;
+        },
         buildPayload() {
+            let quizHistory = [];
+            try {
+                const rawQh = localStorage.getItem('oxford3000_quiz_history');
+                const parsedQh = rawQh ? JSON.parse(rawQh) : [];
+                if (Array.isArray(parsedQh)) quizHistory = parsedQh.slice(0, 50);
+            } catch (_) {}
             return {
                 v: 1,
                 exportedAt: Date.now(),
@@ -4630,9 +4787,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 mastery: { ...wordMastery },
                 bookmarks: Array.from(bookmarkedWords),
                 sessions: sessions.slice(0, 60),
+                quizHistory,
                 activityLog: { ...activityLog },
-                dailyGoal: { ...dailyGoal },
-                prefs: { size: selectedSize, accent: preferredAccent }
+                dailyGoal: { ...dailyGoal, targetUpdatedAt: dailyGoal.targetUpdatedAt || 0 },
+                prefs: {
+                    size: selectedSize,
+                    sizeUpdatedAt: prefsMeta.sizeUpdatedAt || 0,
+                    accent: preferredAccent,
+                    accentUpdatedAt: prefsMeta.accentUpdatedAt || 0,
+                    updatedAt: Math.max(prefsMeta.sizeUpdatedAt || 0, prefsMeta.accentUpdatedAt || 0)
+                }
             };
         },
         /** @param {any} remote */
@@ -4698,6 +4862,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 storage.set(STORAGE.sessions, sessions);
             }
 
+            let quizzesAdded = 0;
+            if (Array.isArray(remote.quizHistory)) {
+                let localQh = [];
+                try {
+                    const rawQh = localStorage.getItem('oxford3000_quiz_history');
+                    const parsedQh = rawQh ? JSON.parse(rawQh) : [];
+                    if (Array.isArray(parsedQh)) localQh = parsedQh;
+                } catch (_) {}
+                const seenQh = new Set(localQh.map(q => `${q.date || ''}|${q.score || 0}|${q.total || 0}|${q.category || ''}`));
+                for (const rq of remote.quizHistory) {
+                    if (!rq || typeof rq !== 'object' || !rq.date || typeof rq.total !== 'number') continue;
+                    const qSig = `${rq.date || ''}|${rq.score || 0}|${rq.total || 0}|${rq.category || ''}`;
+                    if (!seenQh.has(qSig)) {
+                        seenQh.add(qSig);
+                        localQh.push(rq);
+                        quizzesAdded++;
+                    }
+                }
+                localQh.sort((a, b) => toMs(b.date) - toMs(a.date));
+                localQh = localQh.slice(0, 50);
+                try {
+                    localStorage.setItem('oxford3000_quiz_history', JSON.stringify(localQh));
+                } catch (_) {}
+            }
+
             if (remote.activityLog && typeof remote.activityLog === 'object') {
                 for (const [day, cnt] of Object.entries(remote.activityLog)) {
                     activityLog[day] = Math.max(Number(activityLog[day] || 0), Number(cnt || 0));
@@ -4706,18 +4895,73 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const today = getTodayDateString();
-            if (remote.dailyGoal && remote.dailyGoal.date === today) {
+            if (remote.dailyGoal && typeof remote.dailyGoal === 'object') {
+                const remoteTarget = Number(remote.dailyGoal.target);
+                const validRemoteTarget = Number.isFinite(remoteTarget) && remoteTarget > 0 ? remoteTarget : 0;
+                const localTargetTs = Number(dailyGoal.targetUpdatedAt || 0);
+                const remoteTargetTs = Number(remote.dailyGoal.targetUpdatedAt || 0);
+
                 if (dailyGoal.date !== today) {
-                    dailyGoal = { target: Number(remote.dailyGoal.target || 20), date: today, count: Number(remote.dailyGoal.count || 0) };
-                } else {
+                    dailyGoal = {
+                        target: dailyGoal.target || 20,
+                        targetUpdatedAt: localTargetTs,
+                        date: today,
+                        count: 0
+                    };
+                }
+
+                if (validRemoteTarget > 0) {
+                    if (remoteTargetTs > localTargetTs) {
+                        dailyGoal.target = validRemoteTarget;
+                        dailyGoal.targetUpdatedAt = remoteTargetTs;
+                    } else if (remoteTargetTs === localTargetTs && remoteTargetTs === 0) {
+                        dailyGoal.target = Math.max(Number(dailyGoal.target || 20), validRemoteTarget);
+                    }
+                }
+
+                if (remote.dailyGoal.date === today) {
                     dailyGoal.count = Math.max(Number(dailyGoal.count || 0), Number(remote.dailyGoal.count || 0));
-                    dailyGoal.target = Math.max(Number(dailyGoal.target || 20), Number(remote.dailyGoal.target || 20));
                 }
                 saveDailyGoal(dailyGoal);
             }
 
+            if (remote.prefs && typeof remote.prefs === 'object') {
+                let prefsChanged = false;
+                const rSize = Number(remote.prefs.size);
+                const rSizeTs = Number(remote.prefs.sizeUpdatedAt || remote.prefs.updatedAt || 0);
+                const lSizeTs = Number(prefsMeta.sizeUpdatedAt || 0);
+                if (Number.isFinite(rSize) && rSize >= 1 && rSize <= 50) {
+                    const isLegacyNoTs = lSizeTs === 0 && remote.prefs.sizeUpdatedAt === undefined && Math.round(rSize) !== selectedSize;
+                    if (rSizeTs > lSizeTs || isLegacyNoTs) {
+                        selectedSize = Math.round(rSize);
+                        if (rSizeTs > 0) prefsMeta.sizeUpdatedAt = rSizeTs;
+                        prefsChanged = true;
+                    }
+                }
+
+                const rAcc = remote.prefs.accent;
+                const rAccTs = Number(remote.prefs.accentUpdatedAt || remote.prefs.updatedAt || 0);
+                const lAccTs = Number(prefsMeta.accentUpdatedAt || 0);
+                if (rAcc === 'US' || rAcc === 'UK') {
+                    const isLegacyAccNoTs = lAccTs === 0 && remote.prefs.accentUpdatedAt === undefined && rAcc !== preferredAccent;
+                    if (rAccTs > lAccTs || isLegacyAccNoTs) {
+                        preferredAccent = rAcc;
+                        if (rAccTs > 0) prefsMeta.accentUpdatedAt = rAccTs;
+                        prefsChanged = true;
+                    }
+                }
+
+                if (prefsChanged) {
+                    savePrefsState();
+                    syncAccentButtonsUI();
+                }
+            }
+
             renderWelcome();
             updateDailyGoalUI();
+            if (typeof renderQuizHistory === 'function' && (quizzesAdded > 0 || currentScreen === 'history')) {
+                renderQuizHistory();
+            }
             if (currentScreen === 'history') {
                 renderHistory();
             }
@@ -4725,6 +4969,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 wordsAdded,
                 totalTracked: Object.keys(wordStatus).length,
                 sessionsAdded,
+                quizzesAdded,
                 bookmarksTotal: bookmarkedWords.size
             };
         },
@@ -4764,6 +5009,8 @@ document.addEventListener('DOMContentLoaded', () => {
             user: null,
             syncing: false,
             lastError: '',
+            /** @type {{ prevUid: string, prevEmail: string, newUid: string, newEmail: string }|null} */
+            accountConflict: null,
             /** @type {Promise<any>|null} */
             sdkPromise: null,
             /** @type {{ appMod: any, authMod: any, fsMod: any, app: any, auth: any, db: any }|null} */
@@ -4772,6 +5019,7 @@ document.addEventListener('DOMContentLoaded', () => {
             unsubAuth: null,
             /** @type {ReturnType<typeof setTimeout>|null} */
             debounceTimer: null,
+            lastAutoPullAt: 0,
             initializedConfigKey: '',
             listenerReadyKey: ''
         },
@@ -4816,7 +5064,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return /** @type {{apiKey: string, authDomain: string, projectId: string, storageBucket?: string, messagingSenderId?: string, appId?: string, measurementId?: string}} */ (extracted);
         },
 
-        /** @returns {{ config?: any, autoSync?: boolean, lastSyncedAt?: number, lastEmail?: string }} */
+        /** @returns {{ config?: any, autoSync?: boolean, lastSyncedAt?: number, lastEmail?: string, lastUid?: string }} */
         readStore() {
             try {
                 const raw = localStorage.getItem(STORAGE.fbConfig);
@@ -4826,7 +5074,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
 
-        /** @param {{ config?: any, autoSync?: boolean, lastSyncedAt?: number, lastEmail?: string }} patch */
+        /** @param {{ config?: any, autoSync?: boolean, lastSyncedAt?: number, lastEmail?: string, lastUid?: string }} patch */
         saveStore(patch) {
             try {
                 const next = { ...this.readStore(), ...patch };
@@ -4835,6 +5083,30 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (_) {
                 return {};
             }
+        },
+
+        clearOwnership() {
+            this.saveStore({ lastUid: '', lastEmail: '', lastSyncedAt: 0 });
+            this._state.accountConflict = null;
+        },
+
+        hasAccountConflict() {
+            return !!this._state.accountConflict;
+        },
+
+        /** @param {any} err @param {string} [fallback] */
+        formatAuthError(err, fallback = 'ไม่สามารถเข้าสู่ระบบ Google ได้') {
+            const code = err && err.code ? String(err.code) : '';
+            if (code === 'auth/unauthorized-domain') {
+                return 'โดเมนนี้ยังไม่ได้เพิ่มใน Authorized domains ของ Firebase Authentication';
+            }
+            if (code === 'auth/account-exists-with-different-credential') {
+                return 'อีเมลนี้ถูกผูกกับวิธีเข้าสู่ระบบอื่นไว้แล้ว';
+            }
+            if (code === 'auth/network-request-failed') {
+                return 'เชื่อมต่อเครือข่าย Google ไม่สำเร็จ กรุณาลองใหม่';
+            }
+            return (err && err.message) ? String(err.message) : fallback;
         },
 
         getConfig() {
@@ -4926,7 +5198,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const app = appMod.initializeApp(cfg, appName);
                     const auth = authMod.getAuth(app);
                     const db = fsMod.getFirestore(app);
-                    try { await authMod.getRedirectResult(auth); } catch (_) {}
+                    try {
+                        await authMod.getRedirectResult(auth);
+                    } catch (redirErr) {
+                        const redirMsg = this.formatAuthError(redirErr, 'เข้าสู่ระบบ Google แบบเปลี่ยนหน้าไม่สำเร็จ');
+                        this._state.lastError = redirMsg;
+                        showToast(redirMsg);
+                    }
                     const mods = { appMod, authMod, fsMod, app, auth, db };
                     this._state.modules = mods;
                     return mods;
@@ -4938,6 +5216,55 @@ document.addEventListener('DOMContentLoaded', () => {
                 this._state.sdkPromise = null;
                 this._state.modules = null;
                 throw err;
+            }
+        },
+
+        /** @param {{ uid: string, email: string }} user */
+        detectAccountConflict(user) {
+            const store = this.readStore();
+            const prevUid = store.lastUid || '';
+            const prevEmail = store.lastEmail || '';
+            const newUid = user.uid || '';
+            const newEmail = user.email || '';
+            const isDifferentAccount = prevUid
+                ? (!!newUid && prevUid !== newUid)
+                : (!!prevEmail && !!newEmail && prevEmail.toLowerCase() !== newEmail.toLowerCase());
+            if (isDifferentAccount && OxSync.hasLocalStudyData()) {
+                return { prevUid, prevEmail, newUid, newEmail };
+            }
+            return null;
+        },
+
+        /** @param {any} fbUser @param {{ skipAutoSync?: boolean }} [opts] */
+        handleAuthUser(fbUser, opts = {}) {
+            if (fbUser) {
+                this._state.user = {
+                    uid: fbUser.uid || '',
+                    displayName: fbUser.displayName || '',
+                    email: fbUser.email || '',
+                    photoURL: fbUser.photoURL || ''
+                };
+                this._state.lastError = '';
+                const conflict = this.detectAccountConflict(this._state.user);
+                if (conflict) {
+                    this._state.accountConflict = conflict;
+                    this.refreshUI();
+                    showToast('ตรวจพบการเปลี่ยนบัญชี Google กรุณาเลือกวิธีจัดการข้อมูลเดิมในเครื่อง');
+                    if (typeof renderSyncSummary === 'function' && syncModal && syncModal.classList.contains('open')) {
+                        renderSyncSummary();
+                    }
+                    return;
+                }
+                this._state.accountConflict = null;
+                this.saveStore({ lastUid: this._state.user.uid, lastEmail: this._state.user.email });
+                this.refreshUI();
+                if (!opts.skipAutoSync && this.getAutoSync()) {
+                    this.syncWithFirestore({ silent: true });
+                }
+            } else {
+                this._state.user = null;
+                this._state.accountConflict = null;
+                this.refreshUI();
             }
         },
 
@@ -4956,24 +5283,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 this._state.listenerReadyKey = cfgKey;
                 this._state.unsubAuth = mods.authMod.onAuthStateChanged(mods.auth, (fbUser) => {
-                    if (fbUser) {
-                        this._state.user = {
-                            uid: fbUser.uid || '',
-                            displayName: fbUser.displayName || '',
-                            email: fbUser.email || '',
-                            photoURL: fbUser.photoURL || ''
-                        };
-                        this._state.lastError = '';
-                        this.saveStore({ lastEmail: this._state.user.email });
-                        this.refreshUI();
-                        if (this.getAutoSync()) {
-                            this.syncWithFirestore({ silent: true });
-                        }
-                    } else {
-                        this._state.user = null;
-                        this.refreshUI();
-                    }
+                    this.handleAuthUser(fbUser);
                 });
+                if (this._state.lastError) this.refreshUI();
                 return mods;
             } catch (_) {
                 return null;
@@ -5014,7 +5326,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } catch (err) {
-                const msg = err && err.message ? err.message : 'ไม่สามารถเข้าสู่ระบบ Google ได้';
+                const msg = this.formatAuthError(err);
                 this._state.lastError = msg;
                 showToast(msg);
             } finally {
@@ -5034,9 +5346,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (_) {}
             this._state.user = null;
+            this._state.accountConflict = null;
             this._state.lastError = '';
             this.refreshUI();
             showToast('ออกจากระบบ Google แล้ว');
+        },
+
+        /** @param {'use-cloud'|'merge-local'} mode */
+        async resolveAccountConflict(mode) {
+            const user = this._state.user;
+            if (!user || !this._state.accountConflict) {
+                return { ok: false, reason: 'no_conflict' };
+            }
+            if (mode === 'use-cloud') {
+                resetLocalStudyData({ keepGoalTarget: false });
+                this.saveStore({ lastUid: user.uid, lastEmail: user.email || '', lastSyncedAt: 0 });
+                this._state.accountConflict = null;
+                this._state.lastError = '';
+                this.refreshUI();
+                const res = await this.syncWithFirestore({ silent: true });
+                if (res && res.ok) {
+                    showToast('ล้างข้อมูลบัญชีเดิมและซิงค์ข้อมูลบัญชีใหม่แล้ว');
+                } else {
+                    showToast('ล้างข้อมูลบัญชีเดิมแล้ว พร้อมใช้งานสำหรับบัญชีใหม่');
+                }
+                return res;
+            }
+            if (mode === 'merge-local') {
+                this.saveStore({ lastUid: user.uid, lastEmail: user.email || '' });
+                this._state.accountConflict = null;
+                this._state.lastError = '';
+                this.refreshUI();
+                const res = await this.syncWithFirestore({ silent: true });
+                if (res && res.ok) {
+                    showToast('รวมข้อมูลในเครื่องเข้ากับบัญชีใหม่เรียบร้อยแล้ว');
+                } else {
+                    showToast('อนุญาตใช้ข้อมูลเดิมร่วมกับบัญชีใหม่แล้ว');
+                }
+                return res;
+            }
+            return { ok: false, reason: 'invalid_mode' };
         },
 
         /** @param {{ silent?: boolean }} [opts] */
@@ -5045,15 +5394,30 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!this._state.user || this._state.syncing || this.isFileProtocol()) {
                 return { ok: false, reason: 'unavailable' };
             }
+            if (this._state.accountConflict) {
+                if (!silent) {
+                    showToast('กรุณาเลือกวิธีจัดการข้อมูลเดิมในเครื่องก่อนเริ่มซิงค์');
+                }
+                return { ok: false, reason: 'account_conflict' };
+            }
             if (typeof navigator !== 'undefined' && navigator.onLine === false) {
                 return { ok: false, reason: 'offline' };
             }
+            if (this._state.debounceTimer) {
+                clearTimeout(this._state.debounceTimer);
+                this._state.debounceTimer = null;
+            }
+            const activeUid = this._state.user.uid;
+            const activeEmail = this._state.user.email || '';
             this._state.syncing = true;
             this.refreshUI();
             try {
                 const { fsMod, db } = await this.ensureSdk();
-                const userRef = fsMod.doc(db, 'oxford_users', this._state.user.uid);
+                const userRef = fsMod.doc(db, 'oxford_users', activeUid);
                 const snap = await fsMod.getDoc(userRef);
+                if (!this._state.user || this._state.user.uid !== activeUid) {
+                    return { ok: false, reason: 'signed_out' };
+                }
                 if (snap && snap.exists()) {
                     const remoteData = snap.data();
                     if (remoteData && remoteData.payload) {
@@ -5063,13 +5427,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const mergedPayload = OxSync.buildPayload();
                 const now = Date.now();
                 await fsMod.setDoc(userRef, {
-                    uid: this._state.user.uid,
-                    email: this._state.user.email || '',
+                    uid: activeUid,
+                    email: activeEmail,
                     updatedAt: now,
                     version: 1,
                     payload: mergedPayload
                 }, { merge: true });
-                this.saveStore({ lastSyncedAt: now, lastEmail: this._state.user.email || '' });
+                this._state.lastAutoPullAt = now;
+                this.saveStore({ lastSyncedAt: now, lastUid: activeUid, lastEmail: activeEmail });
                 this._state.lastError = '';
                 if (!silent) {
                     showToast('ซิงค์ข้อมูลกับบัญชี Google สำเร็จแล้ว');
@@ -5090,12 +5455,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 return { ok: false, error: msg };
             } finally {
                 this._state.syncing = false;
+                if (typeof renderSyncSummary === 'function' && syncModal && syncModal.classList.contains('open')) {
+                    renderSyncSummary();
+                } else {
+                    this.refreshUI();
+                }
+            }
+        },
+
+        /** @param {number} [minIntervalMs] */
+        syncIfStale(minIntervalMs = 30000) {
+            if (!this._state.user || !this.getAutoSync() || this._state.syncing || this._state.accountConflict || this.isFileProtocol()) return;
+            if (typeof navigator !== 'undefined' && navigator.onLine === false) return;
+            if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
+            if (Date.now() - this._state.lastAutoPullAt < minIntervalMs) return;
+            this._state.lastAutoPullAt = Date.now();
+            this.syncWithFirestore({ silent: true });
+        },
+
+        async clearCloudData() {
+            if (this._state.debounceTimer) {
+                clearTimeout(this._state.debounceTimer);
+                this._state.debounceTimer = null;
+            }
+            if (!this._state.user || this.isFileProtocol()) return false;
+            if (typeof navigator !== 'undefined' && navigator.onLine === false) return false;
+            try {
+                const { fsMod, db } = await this.ensureSdk();
+                const userRef = fsMod.doc(db, 'oxford_users', this._state.user.uid);
+                if (typeof fsMod.deleteDoc === 'function') {
+                    await fsMod.deleteDoc(userRef);
+                } else {
+                    await fsMod.setDoc(userRef, {
+                        uid: this._state.user.uid,
+                        email: this._state.user.email || '',
+                        updatedAt: Date.now(),
+                        version: 1,
+                        payload: OxSync.buildPayload()
+                    });
+                }
+                this._state.lastAutoPullAt = Date.now();
+                this.saveStore({ lastSyncedAt: 0 });
+                this._state.lastError = '';
                 this.refreshUI();
+                return true;
+            } catch (_) {
+                return false;
             }
         },
 
         scheduleAutoSync() {
-            if (!this._state.user || !this.getAutoSync() || this.isFileProtocol()) return;
+            if (!this._state.user || !this.getAutoSync() || this._state.accountConflict || this.isFileProtocol()) return;
             if (this._state.debounceTimer) {
                 clearTimeout(this._state.debounceTimer);
             }
@@ -5103,6 +5513,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 this._state.debounceTimer = null;
                 this.syncWithFirestore({ silent: true });
             }, 2500);
+        },
+
+        /** @param {HTMLImageElement|null} imgEl @param {Element|null} iconEl @param {string} photoURL */
+        _applyButtonAvatar(imgEl, iconEl, photoURL) {
+            const iconHtmlEl = /** @type {HTMLElement|null} */ (iconEl);
+            if (!imgEl) return;
+            if (photoURL) {
+                imgEl.onerror = () => {
+                    imgEl.hidden = true;
+                    if (iconHtmlEl) iconHtmlEl.style.display = '';
+                };
+                imgEl.src = photoURL;
+                imgEl.hidden = false;
+                if (iconHtmlEl) iconHtmlEl.style.display = 'none';
+            } else {
+                imgEl.hidden = true;
+                imgEl.removeAttribute('src');
+                if (iconHtmlEl) iconHtmlEl.style.display = '';
+            }
         },
 
         refreshUI() {
@@ -5114,6 +5543,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const signedOutBox = $('google-signed-out-box');
             const signedInBox = $('google-signed-in-box');
+            const conflictBox = $('sync-account-conflict-box');
+            const conflictDesc = $('sync-conflict-desc');
+            const syncNowBtn = /** @type {HTMLButtonElement|null} */ ($('btn-google-sync-now'));
             const profilePhoto = /** @type {HTMLImageElement|null} */ ($('google-profile-photo'));
             const profileFallback = $('google-profile-fallback');
             const profileName = $('google-profile-name');
@@ -5121,11 +5553,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const syncBadge = $('google-sync-badge');
             const statusText = $('sync-status-text');
             const headerAvatar = /** @type {HTMLImageElement|null} */ ($('sync-user-avatar'));
+            const dashAvatar = /** @type {HTMLImageElement|null} */ ($('dash-sync-user-avatar'));
             const syncBtn = $('btn-welcome-sync');
             const syncLabel = $('sync-btn-label');
             const dashSyncBtn = $('btn-dash-sync');
-            const googleIcon = syncBtn ? /** @type {HTMLElement|null} */ (syncBtn.querySelector('.sync-google-icon')) : null;
+            const googleIcon = syncBtn ? syncBtn.querySelector('.sync-google-icon') : null;
+            const dashGoogleIcon = dashSyncBtn ? dashSyncBtn.querySelector('.dash-sync-google-icon') : null;
             const user = this._state.user;
+            const conflict = this._state.accountConflict;
 
             if (user) {
                 if (signedOutBox) signedOutBox.hidden = true;
@@ -5133,16 +5568,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (profileName) profileName.textContent = user.displayName || user.email || 'บัญชี Google';
                 if (profileEmail) profileEmail.textContent = user.email || '';
 
+                if (conflictBox) {
+                    conflictBox.hidden = !conflict;
+                    if (conflict && conflictDesc) {
+                        const prevLabel = conflict.prevEmail ? ` (${conflict.prevEmail})` : '';
+                        const nextLabel = conflict.newEmail ? ` (${conflict.newEmail})` : '';
+                        conflictDesc.textContent = `ในเครื่องยังมีประวัติคำศัพท์จากบัญชีเดิม${prevLabel} อยู่ หากรวมทันทีข้อมูลอาจปนกับบัญชีใหม่${nextLabel} กรุณาเลือกวิธีจัดการ:`;
+                    }
+                }
+                if (syncNowBtn) syncNowBtn.disabled = !!conflict;
+
                 const shortName = (user.displayName || '').trim().split(/\s+/)[0] || '';
+                const statusTitle = conflict
+                    ? `รอยืนยันการสลับบัญชี: ${user.email || user.displayName || 'บัญชีใหม่'}`
+                    : `บัญชี Google: ${user.email || user.displayName || 'เชื่อมต่อแล้ว'}`;
                 if (syncBtn) {
                     syncBtn.classList.add('is-signed-in');
-                    syncBtn.title = `บัญชี Google: ${user.email || user.displayName || 'เชื่อมต่อแล้ว'}`;
+                    syncBtn.title = statusTitle;
                 }
                 if (dashSyncBtn) {
-                    dashSyncBtn.title = `ซิงก์ Google (${user.email || 'เชื่อมต่อแล้ว'})`;
+                    dashSyncBtn.classList.add('is-signed-in');
+                    dashSyncBtn.title = conflict
+                        ? `รอยืนยันการสลับบัญชี (${user.email || 'บัญชีใหม่'})`
+                        : `ซิงก์ Google (${user.email || 'เชื่อมต่อแล้ว'})`;
                 }
                 if (syncLabel) {
-                    syncLabel.textContent = shortName ? shortName.slice(0, 10) : 'ซิงค์แล้ว';
+                    syncLabel.textContent = conflict ? 'ยืนยันบัญชี' : (shortName ? shortName.slice(0, 10) : 'ซิงค์แล้ว');
                 }
 
                 const initial = ((user.displayName || user.email || 'G').trim().charAt(0) || 'G').toUpperCase();
@@ -5165,7 +5616,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const store = this.readStore();
                 if (syncBadge) {
-                    if (this._state.syncing) {
+                    if (conflict) {
+                        syncBadge.textContent = 'รอยืนยันสลับบัญชี';
+                        syncBadge.className = 'sync-badge warn';
+                        syncBadge.title = 'กรุณาเลือกว่าจะล้างข้อมูลเดิมหรือรวมเข้าบัญชีใหม่';
+                    } else if (this._state.syncing) {
                         syncBadge.textContent = 'กำลังซิงค์...';
                         syncBadge.className = 'sync-badge pending';
                     } else if (this._state.lastError) {
@@ -5186,7 +5641,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (statusText) {
-                    if (this._state.syncing) {
+                    if (conflict) {
+                        statusText.textContent = 'ตรวจพบการเปลี่ยนบัญชี Google กรุณาเลือกวิธีจัดการข้อมูล';
+                    } else if (this._state.syncing) {
                         statusText.textContent = 'กำลังซิงก์ข้อมูลกับ Google...';
                     } else if (this._state.lastError) {
                         statusText.textContent = this._state.lastError;
@@ -5200,43 +5657,49 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                if (headerAvatar) {
-                    if (user.photoURL) {
-                        headerAvatar.onerror = () => {
-                            headerAvatar.hidden = true;
-                            if (googleIcon) googleIcon.style.display = '';
-                        };
-                        headerAvatar.src = user.photoURL;
-                        headerAvatar.hidden = false;
-                        if (googleIcon) googleIcon.style.display = 'none';
-                    } else {
-                        headerAvatar.hidden = true;
-                        if (googleIcon) googleIcon.style.display = '';
-                    }
-                }
+                this._applyButtonAvatar(headerAvatar, googleIcon, user.photoURL || '');
+                this._applyButtonAvatar(dashAvatar, dashGoogleIcon, user.photoURL || '');
             } else {
                 if (signedOutBox) signedOutBox.hidden = false;
                 if (signedInBox) signedInBox.hidden = true;
+                if (conflictBox) conflictBox.hidden = true;
+                if (syncNowBtn) syncNowBtn.disabled = false;
                 if (syncBtn) {
                     syncBtn.classList.remove('is-signed-in');
                     syncBtn.title = 'เข้าสู่ระบบด้วย Google เพื่อซิงก์ข้ามอุปกรณ์';
                 }
-                if (dashSyncBtn) dashSyncBtn.title = 'เข้าสู่ระบบด้วย Google';
-                if (syncLabel) syncLabel.textContent = 'ล็อกอิน';
-                if (statusText) statusText.textContent = 'เข้าสู่ระบบเพื่อซิงก์ความจำข้ามมือถือและคอม';
-                if (headerAvatar) {
-                    headerAvatar.hidden = true;
-                    headerAvatar.removeAttribute('src');
+                if (dashSyncBtn) {
+                    dashSyncBtn.classList.remove('is-signed-in');
+                    dashSyncBtn.title = 'เข้าสู่ระบบด้วย Google';
                 }
-                if (googleIcon) googleIcon.style.display = '';
+                if (syncLabel) syncLabel.textContent = 'ล็อกอิน';
+                if (statusText) {
+                    statusText.textContent = this._state.lastError || 'เข้าสู่ระบบเพื่อซิงก์ความจำข้ามมือถือและคอม';
+                }
+                this._applyButtonAvatar(headerAvatar, googleIcon, '');
+                this._applyButtonAvatar(dashAvatar, dashGoogleIcon, '');
             }
 
-            const dot = $('sync-status-dot');
-            if (dot) dot.classList.toggle('online', !!user);
+            const dotState = !user
+                ? ''
+                : (conflict || this._state.lastError)
+                    ? 'warn'
+                    : this._state.syncing
+                        ? 'pending'
+                        : 'online';
+            ['sync-status-dot', 'dash-sync-status-dot'].forEach((id) => {
+                const dot = $(id);
+                if (!dot) return;
+                dot.classList.remove('online', 'is-synced', 'pending', 'warn');
+                if (dotState) dot.classList.add(dotState);
+            });
         }
     };
 
     scheduleGoogleAutoSync = () => OxGoogleSync.scheduleAutoSync();
+    isGoogleSignedIn = () => !!OxGoogleSync._state.user;
+    clearGoogleCloudData = () => OxGoogleSync.clearCloudData();
+    clearGoogleOwnership = () => OxGoogleSync.clearOwnership();
 
     const syncModal = $('sync-modal');
     function renderSyncSummary() {
@@ -5256,6 +5719,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSyncSummary();
         syncModal.classList.add('open');
         syncModal.setAttribute('aria-hidden', 'false');
+        OxGoogleSync.syncIfStale(15000);
     }
     function closeSyncModal() {
         if (!syncModal) return;
@@ -5280,6 +5744,23 @@ document.addEventListener('DOMContentLoaded', () => {
         OxGoogleSync.signOut();
     });
 
+    async function handleConflictResolutionClick(mode) {
+        const useCloudBtn = /** @type {HTMLButtonElement|null} */ ($('btn-conflict-use-cloud'));
+        const mergeLocalBtn = /** @type {HTMLButtonElement|null} */ ($('btn-conflict-merge-local'));
+        if (useCloudBtn) useCloudBtn.disabled = true;
+        if (mergeLocalBtn) mergeLocalBtn.disabled = true;
+        try {
+            await OxGoogleSync.resolveAccountConflict(mode);
+        } finally {
+            if (useCloudBtn) useCloudBtn.disabled = false;
+            if (mergeLocalBtn) mergeLocalBtn.disabled = false;
+            if (typeof renderSyncSummary === 'function') renderSyncSummary();
+        }
+    }
+
+    $('btn-conflict-use-cloud')?.addEventListener('click', () => handleConflictResolutionClick('use-cloud'));
+    $('btn-conflict-merge-local')?.addEventListener('click', () => handleConflictResolutionClick('merge-local'));
+
     $('google-auto-sync-toggle')?.addEventListener('change', (e) => {
         const el = /** @type {HTMLInputElement|null} */ (e.target);
         if (!el) return;
@@ -5288,6 +5769,16 @@ document.addEventListener('DOMContentLoaded', () => {
             OxGoogleSync.syncWithFirestore({ silent: true });
         }
         showToast(el.checked ? 'เปิดซิงค์อัตโนมัติแล้ว' : 'ปิดซิงค์อัตโนมัติชั่วคราว');
+    });
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            OxGoogleSync.syncIfStale(30000);
+        }
+    });
+
+    window.addEventListener('online', () => {
+        OxGoogleSync.syncIfStale(5000);
     });
 
     OxGoogleSync.refreshUI();
@@ -5335,16 +5826,23 @@ document.addEventListener('DOMContentLoaded', () => {
         getAccent: () => preferredAccent,
         setAccent: (acc) => {
             preferredAccent = acc === 'UK' ? 'UK' : 'US';
-            try { localStorage.setItem(STORAGE.accent, preferredAccent); } catch (_) {}
+            savePrefsState({ touchAccent: true });
             syncAccentButtonsUI();
+            if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
         },
+        getPrefs: () => ({ size: selectedSize, accent: preferredAccent, ...prefsMeta }),
+        getDailyGoal: () => ({ ...dailyGoal }),
         getCefrFilter: () => selectedCefr,
         setCefrFilter: (lvl) => { selectedCefr = lvl || 'all'; syncWelcomeCefrUI(); },
         buildSyncCode: () => OxSync.encodeCode(OxSync.buildPayload()),
         applySyncCode: (code) => OxSync.mergePayload(OxSync.decodeCode(code)),
         parseFirebaseConfig: (raw) => OxGoogleSync.parseConfig(raw),
+        getAccountConflict: () => OxGoogleSync._state.accountConflict ? { ...OxGoogleSync._state.accountConflict } : null,
+        resolveAccountConflict: (mode) => OxGoogleSync.resolveAccountConflict(mode),
+        applyAuthUserForTest: (fbUser, opts) => OxGoogleSync.handleAuthUser(fbUser, opts),
         getGoogleSyncState: () => {
             const cfg = OxGoogleSync.getConfig();
+            const store = OxGoogleSync.readStore();
             return {
                 hasConfig: !!cfg,
                 hasCustomConfig: !!OxGoogleSync.getCustomConfig(),
@@ -5354,6 +5852,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 signedIn: !!OxGoogleSync._state.user,
                 syncing: OxGoogleSync._state.syncing,
                 email: OxGoogleSync._state.user ? OxGoogleSync._state.user.email : '',
+                lastUid: store.lastUid || '',
+                hasConflict: !!OxGoogleSync._state.accountConflict,
                 isFileProtocol: OxGoogleSync.isFileProtocol(),
                 lastError: OxGoogleSync._state.lastError
             };

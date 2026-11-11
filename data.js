@@ -472,7 +472,7 @@ const wordsData = [
         "definition": "Consider in detail and subject to an analysis in order to discover essential features or meaning",
         "example": "We need to analyse the data.",
         "exampleTranslation": "พวกเราจำเป็นต้องวิเคราะห์ข้อมูล",
-        "phonetic": "",
+        "phonetic": "/ˈænəlaɪz/",
         "cefr": "B1",
         "collocations": [
             "analyse data",
@@ -1022,7 +1022,7 @@ const wordsData = [
         "definition": "Except for; other than",
         "example": "Apart from this, everything is fine.",
         "exampleTranslation": "นอกเหนือจากนี้ ทุกอย่างเรียบร้อยดี",
-        "phonetic": "",
+        "phonetic": "/əˈpɑːrt frəm/",
         "cefr": "B2",
         "collocations": [
             "apart from that",
@@ -1923,7 +1923,7 @@ const wordsData = [
         "definition": "Except for; apart from",
         "example": "Aside from that, I have no idea.",
         "exampleTranslation": "นอกเหนือจากนั้น ฉันไม่รู้เลย",
-        "phonetic": "",
+        "phonetic": "/əˈsaɪd frəm/",
         "cefr": "B2",
         "collocations": [
             "aside from that",
@@ -2943,7 +2943,7 @@ const wordsData = [
         "definition": "Annoyed and irritable",
         "example": "He gets bad-tempered when he is tired.",
         "exampleTranslation": "เขาอารมณ์เสียเมื่อเขาเหนื่อย",
-        "phonetic": "",
+        "phonetic": "/ˌbæd ˈtɛmpərd/",
         "cefr": "B2",
         "collocations": [
             "become bad-tempered",
@@ -3768,7 +3768,7 @@ const wordsData = [
         "definition": "The action or reaction of something (as a machine or substance) under specified circumstances",
         "example": "His behaviour is unacceptable.",
         "exampleTranslation": "พฤติกรรมของเขาเป็นสิ่งที่ยอมรับไม่ได้",
-        "phonetic": "",
+        "phonetic": "/bɪˈheɪvjər/",
         "cefr": "A2",
         "wordFamily": [
             "conduct"
@@ -6993,7 +6993,7 @@ const wordsData = [
         "definition": "A metric unit of length equal to one hundredth of a meter",
         "example": "The insect is one centimetre long.",
         "exampleTranslation": "แมลงมีความยาวหนึ่งเซนติเมตร",
-        "phonetic": "",
+        "phonetic": "/ˈsɛntɪmiːtər/",
         "cefr": "B2",
         "collocations": [
             "ten centimetres",
@@ -7686,7 +7686,7 @@ const wordsData = [
         "definition": "A written order directing a bank to pay money",
         "example": "Can I pay by cheque?",
         "exampleTranslation": "ฉันสามารถจ่ายด้วยเช็คได้ไหม?",
-        "phonetic": "",
+        "phonetic": "/tʃɛk/",
         "cefr": "A1",
         "collocations": [
             "write a cheque",
@@ -8802,7 +8802,7 @@ const wordsData = [
         "definition": "Any material used for its color",
         "example": "What is your favorite colour?",
         "exampleTranslation": "สีโปรดของคุณคือสีอะไร?",
-        "phonetic": "",
+        "phonetic": "/ˈkʌlər/",
         "cefr": "A1",
         "collocations": [
             "bright colour",
@@ -11692,7 +11692,7 @@ const wordsData = [
         "definition": "A small plastic card issued by a bank, business, etc., allowing the holder to purchase goods or services on credit",
         "example": "I left my credit card at home.",
         "exampleTranslation": "ฉันลืมบัตรเครดิตไว้ที่บ้าน",
-        "phonetic": "",
+        "phonetic": "/ˈkrɛdɪt kɑːrd/",
         "cefr": "B2",
         "collocations": [
             "use a credit card",
@@ -16184,7 +16184,7 @@ const wordsData = [
         "definition": "Used to refer to every one of two or more people or things, when the action or relationship involves both or all of them",
         "example": "They love each other.",
         "exampleTranslation": "พวกเขารักกัน",
-        "phonetic": "",
+        "phonetic": "/iːtʃ ˈʌðər/",
         "cefr": "B2",
         "collocations": [
             "support each other",
@@ -17776,7 +17776,7 @@ const wordsData = [
         "definition": "An instance of questioning",
         "example": "I made an enquiry about the flight.",
         "exampleTranslation": "ฉันได้ทำการสอบถามเกี่ยวกับเที่ยวบิน",
-        "phonetic": "",
+        "phonetic": "/ɪnˈkwaɪəri/",
         "cefr": "B2",
         "collocations": [
             "make an enquiry",
@@ -20371,7 +20371,7 @@ const wordsData = [
         "definition": "A feeling of favorable regard",
         "example": "Can you do me a favour?",
         "exampleTranslation": "คุณช่วยอะไรฉันหน่อยได้ไหม?",
-        "phonetic": "",
+        "phonetic": "/ˈfeɪvər/",
         "cefr": "B1"
     },
     {
@@ -20381,7 +20381,7 @@ const wordsData = [
         "definition": "Appealing to the general public",
         "example": "Blue is my favourite colour.",
         "exampleTranslation": "สีฟ้าคือสีโปรดของฉัน",
-        "phonetic": "",
+        "phonetic": "/ˈfeɪvərɪt/",
         "cefr": "A1",
         "wordFamily": [
             "pet"
@@ -21324,7 +21324,7 @@ const wordsData = [
         "definition": "The general atmosphere of a place or situation and the effect that it has on people",
         "example": "Which flavour of ice cream do you want?",
         "exampleTranslation": "คุณต้องการไอศกรีมรสอะไร?",
-        "phonetic": "",
+        "phonetic": "/ˈfleɪvər/",
         "cefr": "B2",
         "wordFamily": [
             "feel",
@@ -24530,10 +24530,10 @@ const wordsData = [
         "word": "have to",
         "partOfSpeech": "verb",
         "translation": "ต้อง",
-        "definition": "",
+        "definition": "To be required or obliged to do something; must",
         "example": "I have to go now.",
         "exampleTranslation": "ฉันต้องไปแล้ว",
-        "phonetic": "",
+        "phonetic": "/ˈhæv tuː/",
         "cefr": "A1"
     },
     {
@@ -25423,7 +25423,7 @@ const wordsData = [
     {
         "word": "holy",
         "partOfSpeech": "adjective",
-        "translation": "ศักดิѻสิทธิѻ",
+        "translation": "ศักดิ์สิทธิ์",
         "definition": "Belonging to or derived from or associated with a divine power",
         "example": "The Bible is a holy book.",
         "exampleTranslation": "คัมภีร์ไบเบิลเป็นหนังสือศักดิ์สิทธิ์",
@@ -25503,11 +25503,11 @@ const wordsData = [
     {
         "word": "honour",
         "partOfSpeech": "noun",
-        "translation": "เกียรติยศ, ศักดิѻศรี",
+        "translation": "เกียรติยศ, ศักดิ์ศรี",
         "definition": "The state of being honored",
         "example": "It is an honour to meet you.",
         "exampleTranslation": "เป็นเกียรติอย่างยิ่งที่ได้พบคุณ",
-        "phonetic": "",
+        "phonetic": "/ˈɑːnər/",
         "cefr": "B2",
         "wordFamily": [
             "award",
@@ -25876,7 +25876,7 @@ const wordsData = [
         "definition": "A characteristic (habitual or relatively temporary) state of feeling",
         "example": "She has a good sense of humour.",
         "exampleTranslation": "เธอมีอารมณ์ขันที่ดี",
-        "phonetic": "",
+        "phonetic": "/ˈhjuːmər/",
         "cefr": "B2",
         "collocations": [
             "sense of humour",
@@ -26074,7 +26074,7 @@ const wordsData = [
         "definition": "A soft frozen food made with sweetened and flavored milk fat",
         "example": "I want chocolate ice cream.",
         "exampleTranslation": "ฉันต้องการไอศกรีมช็อกโกแลต",
-        "phonetic": "",
+        "phonetic": "/ˈaɪs kriːm/",
         "cefr": "A1",
         "collocations": [
             "ice cream cone",
@@ -27393,7 +27393,7 @@ const wordsData = [
     {
         "word": "innocent",
         "partOfSpeech": "noun",
-        "translation": "ไร้เดียงสา บริสุทธิѻ",
+        "translation": "ไร้เดียงสา บริสุทธิ์",
         "definition": "A person who lacks knowledge of evil",
         "example": "The man was found innocent.",
         "exampleTranslation": "ชายคนนั้นถูกตัดสินว่าบริสุทธิ์",
@@ -27537,7 +27537,7 @@ const wordsData = [
         "definition": "In place of",
         "example": "Let us walk instead of driving.",
         "exampleTranslation": "เดินแทนการขับรถกันเถอะ",
-        "phonetic": "",
+        "phonetic": "/ɪnˈstɛd əv/",
         "cefr": "B2",
         "collocations": [
             "instead of",
@@ -28580,7 +28580,7 @@ const wordsData = [
         "definition": "An adornment (as a bracelet or ring or necklace) made of precious metals and set with gems (or imitation gems)",
         "example": "She wears a lot of gold jewellery.",
         "exampleTranslation": "เธอสวมเครื่องประดับทองมากมาย",
-        "phonetic": "",
+        "phonetic": "/ˈdʒuːəlri/",
         "cefr": "A2"
     },
     {
@@ -29101,7 +29101,7 @@ const wordsData = [
         "definition": "A metric unit of length equal to 1000 meters (or 0.621371 miles)",
         "example": "The beach is two kilometres away.",
         "exampleTranslation": "ชายหาดอยู่ห่างออกไปสองกิโลเมตร",
-        "phonetic": "",
+        "phonetic": "/kɪˈlɑːmɪtər/",
         "cefr": "A1"
     },
     {
@@ -30668,7 +30668,7 @@ const wordsData = [
         "definition": "A metric unit of capacity, formerly defined as the volume of one kilogram of pure water under standard conditions; now equal to 1,000 cubic centimeters (or approximately 1.75 pints)",
         "example": "I drink two litres of water a day.",
         "exampleTranslation": "ฉันดื่มน้ำสองลิตรต่อวัน",
-        "phonetic": "",
+        "phonetic": "/ˈliːtər/",
         "cefr": "B2",
         "collocations": [
             "litre of water",
@@ -32777,7 +32777,7 @@ const wordsData = [
         "definition": "The basic unit of length adopted under the Systeme International d'Unites (approximately 1.094 yards)",
         "example": "The pool is 50 metres long.",
         "exampleTranslation": "สระว่ายน้ำยาว 50 เมตร",
-        "phonetic": "",
+        "phonetic": "/ˈmiːtər/",
         "cefr": "A1"
     },
     {
@@ -32939,7 +32939,7 @@ const wordsData = [
         "definition": "A metric unit of length equal to one thousandth of a meter",
         "example": "The paper is two millimetres thick.",
         "exampleTranslation": "กระดาษหนาสองมิลลิเมตร",
-        "phonetic": "",
+        "phonetic": "/ˈmɪlɪmiːtər/",
         "cefr": "B2",
         "collocations": [
             "one millimetre",
@@ -33314,7 +33314,7 @@ const wordsData = [
         "definition": "A portable telephone that uses wireless technology to send and receive phone signals",
         "example": "I bought a new mobile phone.",
         "exampleTranslation": "ฉันซื้อโทรศัพท์มือถือเครื่องใหม่",
-        "phonetic": "",
+        "phonetic": "/ˌmoʊbaɪl ˈfoʊn/",
         "cefr": "B2",
         "collocations": [
             "call on mobile phone",
@@ -33861,10 +33861,10 @@ const wordsData = [
         "word": "movie theater",
         "partOfSpeech": "noun",
         "translation": "โรงภาพยนตร์",
-        "definition": "",
+        "definition": "A building or room in which films are shown; a cinema",
         "example": "The movie theater is closed.",
         "exampleTranslation": "โรงภาพยนตร์ปิดแล้ว",
-        "phonetic": "",
+        "phonetic": "/ˈmuːvi θiːətər/",
         "cefr": "B2"
     },
     {
@@ -34598,7 +34598,7 @@ const wordsData = [
         "definition": "A person who lives (or is located) near another",
         "example": "My neighbour is very friendly.",
         "exampleTranslation": "เพื่อนบ้านของฉันเป็นมิตรมาก",
-        "phonetic": "",
+        "phonetic": "/ˈneɪbər/",
         "cefr": "A1",
         "wordFamily": [
             "neighbourhood"
@@ -34611,7 +34611,7 @@ const wordsData = [
         "definition": "A surrounding or nearby region",
         "example": "We live in a quiet neighbourhood.",
         "exampleTranslation": "พวกเราอาศัยอยู่ในละแวกบ้านที่เงียบสงบ",
-        "phonetic": "",
+        "phonetic": "/ˈneɪbərhʊd/",
         "cefr": "B1",
         "wordFamily": [
             "local",
@@ -34872,10 +34872,10 @@ const wordsData = [
         "word": "next to",
         "partOfSpeech": "adjective",
         "translation": "อยู่ติดกับ",
-        "definition": "",
+        "definition": "Directly beside or adjacent to someone or something",
         "example": "She is sitting next to me.",
         "exampleTranslation": "เธอนั่งอยู่ข้างๆ ฉัน",
-        "phonetic": "",
+        "phonetic": "/ˈnɛkst tuː/",
         "cefr": "A1"
     },
     {
@@ -35022,10 +35022,10 @@ const wordsData = [
         "word": "no one",
         "partOfSpeech": "pronoun",
         "translation": "ไม่มีใคร",
-        "definition": "",
+        "definition": "Not any person; nobody",
         "example": "No one knows the truth.",
         "exampleTranslation": "ไม่มีใครรู้ความจริง",
-        "phonetic": "/nˈun/",
+        "phonetic": "/ˈnoʊ wʌn/",
         "cefr": "A1"
     },
     {
@@ -35355,7 +35355,7 @@ const wordsData = [
     {
         "word": "now",
         "partOfSpeech": "adverb",
-        "translation": "เดีѺยวนี้",
+        "translation": "เดี๋ยวนี้",
         "definition": "In the historical present; at this point in the narration of a series of past events",
         "example": "I want it right now.",
         "exampleTranslation": "ฉันต้องการมันเดี๋ยวนี้",
@@ -35845,7 +35845,7 @@ const wordsData = [
         "definition": "The action of attacking an enemy",
         "example": "It is a criminal offence.",
         "exampleTranslation": "มันเป็นความผิดทางอาญา",
-        "phonetic": "",
+        "phonetic": "/əˈfɛns/",
         "cefr": "B2",
         "collocations": [
             "commit an offence",
@@ -36179,10 +36179,10 @@ const wordsData = [
         "word": "one another",
         "partOfSpeech": "noun",
         "translation": "ซึ่งกันและกัน",
-        "definition": "",
+        "definition": "Each other; used when two or more people or things are involved in the same action",
         "example": "They help one another.",
         "exampleTranslation": "พวกเขาช่วยเหลือซึ่งกันและกัน",
-        "phonetic": "",
+        "phonetic": "/ˌwʌn əˈnʌðər/",
         "cefr": "B2"
     },
     {
@@ -36748,7 +36748,7 @@ const wordsData = [
         "definition": "Used to indicate duty or correctness, typically when criticizing someone's actions",
         "example": "You ought to apologize.",
         "exampleTranslation": "คุณควรจะขอโทษ",
-        "phonetic": "",
+        "phonetic": "/ˈɔːt tuː/",
         "cefr": "B2",
         "collocations": [
             "ought to be",
@@ -39877,10 +39877,10 @@ const wordsData = [
         "word": "post office",
         "partOfSpeech": "noun",
         "translation": "ที่ทําการไปรษณีย์",
-        "definition": "",
+        "definition": "A public office or building where mail is received, sorted, and sent and stamps are sold",
         "example": "Where is the nearest post office?",
         "exampleTranslation": "ที่ทำการไปรษณีย์ที่ใกล้ที่สุดอยู่ที่ไหน?",
-        "phonetic": "",
+        "phonetic": "/ˈpoʊst ɔːfɪs/",
         "cefr": "B2"
     },
     {
@@ -40100,7 +40100,7 @@ const wordsData = [
         "definition": "Engage in a rehearsal (of)",
         "example": "I practise playing the piano every day.",
         "exampleTranslation": "ฉันฝึกเล่นเปียโนทุกวัน",
-        "phonetic": "",
+        "phonetic": "/ˈpræktɪs/",
         "cefr": "A1",
         "wordFamily": [
             "exercise",
@@ -40643,10 +40643,10 @@ const wordsData = [
         "word": "prime minister",
         "partOfSpeech": "adjective",
         "translation": "นายกรัฐมนตรี",
-        "definition": "",
+        "definition": "The head of government and leader of the cabinet in a parliamentary system",
         "example": "The prime minister spoke to the press.",
         "exampleTranslation": "นายกรัฐมนตรีพูดคุยกับสื่อมวลชน",
-        "phonetic": "",
+        "phonetic": "/ˌpraɪm ˈmɪnɪstər/",
         "cefr": "B2"
     },
     {
@@ -41855,7 +41855,7 @@ const wordsData = [
     {
         "word": "pure",
         "partOfSpeech": "adjective",
-        "translation": "บริสุทธิѻ",
+        "translation": "บริสุทธิ์",
         "definition": "Free of extraneous elements of any kind",
         "example": "This ring is made of pure gold.",
         "exampleTranslation": "แหวนวงนี้ทำจากทองคำบริสุทธิ์",
@@ -41873,7 +41873,7 @@ const wordsData = [
     {
         "word": "purely",
         "partOfSpeech": "adverb",
-        "translation": "อย่างบริสุทธิѻ",
+        "translation": "อย่างบริสุทธิ์",
         "definition": "Restricted to something",
         "example": "It was purely an accident.",
         "exampleTranslation": "มันเป็นแค่อุบัติเหตุจริงๆ",
@@ -46569,7 +46569,7 @@ const wordsData = [
     {
         "word": "scream",
         "partOfSpeech": "verb",
-        "translation": "(ส่ง)เสียงร้องกรีѹด",
+        "translation": "(ส่ง)เสียงร้องกรี๊ด",
         "definition": "Utter a sudden loud cry",
         "example": "She screamed when she saw the mouse.",
         "exampleTranslation": "เธอกรีดร้องเมื่อเห็นหนู",
@@ -48937,7 +48937,7 @@ const wordsData = [
         "definition": "Having or showing knowledge and skill and aptitude",
         "example": "He is a skilful player.",
         "exampleTranslation": "เขาเป็นผู้เล่นที่มีทักษะ",
-        "phonetic": "",
+        "phonetic": "/ˈskɪlfəl/",
         "cefr": "B2",
         "collocations": [
             "skilful performance",
@@ -49246,7 +49246,7 @@ const wordsData = [
     {
         "word": "smart",
         "partOfSpeech": "adjective",
-        "translation": "ฉลาด เนีѹยบ",
+        "translation": "ฉลาด เนี๊ยบ",
         "definition": "Showing mental alertness and calculation and resourcefulness",
         "example": "He is a smart student.",
         "exampleTranslation": "เขาเป็นนักเรียนที่ฉลาด",
@@ -52891,10 +52891,10 @@ const wordsData = [
         "word": "swimming pool",
         "partOfSpeech": "noun",
         "translation": "สระว่ายนํ้า",
-        "definition": "",
+        "definition": "An artificial pool designed and built for swimming",
         "example": "The hotel has a swimming pool.",
         "exampleTranslation": "โรงแรมมีสระว่ายน้ำ",
-        "phonetic": "",
+        "phonetic": "/ˈswɪmɪŋ puːl/",
         "cefr": "B2"
     },
     {
@@ -54579,7 +54579,7 @@ const wordsData = [
     {
         "word": "ticket",
         "partOfSpeech": "noun",
-        "translation": "ตัѺว",
+        "translation": "ตั๋ว",
         "definition": "A commercial document showing that the holder is entitled to something (as to ride on public transportation or to enter a public entertainment)",
         "example": "I bought a movie ticket.",
         "exampleTranslation": "ฉันซื้อตั๋วดูหนัง",
@@ -54729,7 +54729,7 @@ const wordsData = [
     {
         "word": "tiny",
         "partOfSpeech": "adjective",
-        "translation": "เล็กมาก, จิѺว",
+        "translation": "เล็กมาก, จิ๋ว",
         "definition": "Very small",
         "example": "The baby has tiny hands.",
         "exampleTranslation": "ทารกมีมือที่เล็กจิ๋ว",
@@ -57397,7 +57397,7 @@ const wordsData = [
         "definition": "In an inverted position",
         "example": "The painting was hung upside down.",
         "exampleTranslation": "ภาพวาดถูกแขวนกลับหัว",
-        "phonetic": "",
+        "phonetic": "/ˌʌpsaɪd ˈdaʊn/",
         "cefr": "B2",
         "collocations": [
             "hang upside down",
@@ -57576,7 +57576,7 @@ const wordsData = [
         "definition": "Accustomed, habituated",
         "example": "I used to play tennis.",
         "exampleTranslation": "ฉันเคยเล่นเทนนิส",
-        "phonetic": "",
+        "phonetic": "/ˈjuːst tuː/",
         "cefr": "A2",
         "collocations": [
             "used to live",
@@ -59169,10 +59169,10 @@ const wordsData = [
         "word": "well known",
         "partOfSpeech": "adverb",
         "translation": "เป็นที่รู้จักดี",
-        "definition": "",
+        "definition": "Widely recognized or familiar to many people; famous",
         "example": "He is a well known author.",
         "exampleTranslation": "เขาเป็นนักเขียนที่มีชื่อเสียง",
-        "phonetic": "",
+        "phonetic": "/ˌwɛl ˈnoʊn/",
         "cefr": "B2"
     },
     {
