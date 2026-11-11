@@ -8,8 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
         active: 'ox3k_activeSession_v1',  // in-progress session (for resume)
         prefs: 'ox3k_prefs_v1',           // { size: 20 }
         dailyGoal: 'ox3k_daily_goal_v1',  // { target: 20, date: 'YYYY-MM-DD', count: 0 }
-        mastery: 'ox3k_word_mastery_v1',  // { [key]: { streak, reviewCount, lastStudied } }
+        mastery: 'ox3k_word_mastery_v1',  // { [key]: { streak, reviewCount, lastStudied, nextReviewAt, intervalDays } }
+        bookmarks: 'ox3k_bookmarks_v1',   // [ "word|pos", ... ]
+        ActivityLog: 'ox3k_activity_v1',  // { "YYYY-MM-DD": count }
         theme: 'ox3k_theme_mode'          // 'light' | 'dark'
+    };
+
+    const ICON_SVG = {
+        moon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>',
+        sun: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>',
+        volOn: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>',
+        volOff: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>',
+        star: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+        zap: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+        target: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+        award: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>',
+        compass: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
+        layers: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>'
     };
     const SESSION_SIZES = [20, 30, 40, 50];
     const MAX_SESSIONS = 100;
@@ -173,14 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
      * Categories (Part of Speech) & A–Z groups for the dashboard
      * ========================================================= */
     const CATEGORY_META = {
-        noun: { th: 'คำนาม', en: 'Noun', icon: '📦', c1: '#3b82f6', c2: '#06b6d4' },
-        verb: { th: 'คำกริยา', en: 'Verb', icon: '🏃', c1: '#8b5cf6', c2: '#ec4899' },
-        adjective: { th: 'คำคุณศัพท์', en: 'Adjective', icon: '✨', c1: '#f59e0b', c2: '#f97316' },
-        adverb: { th: 'คำกริยาวิเศษณ์', en: 'Adverb', icon: '💨', c1: '#10b981', c2: '#14b8a6' },
-        preposition: { th: 'คำบุพบท', en: 'Preposition', icon: '📍', c1: '#0284c7', c2: '#38bdf8' },
-        pronoun: { th: 'คำสรรพนาม', en: 'Pronoun', icon: '👤', c1: '#7c3aed', c2: '#c084fc' },
-        conjunction: { th: 'คำสันธาน', en: 'Conjunction', icon: '🔗', c1: '#d97706', c2: '#fde047' },
-        other: { th: 'อื่น ๆ', en: 'Other', icon: '🌟', c1: '#64748b', c2: '#94a3b8' }
+        noun: { th: 'คำนาม', en: 'Noun', icon: 'N', c1: '#4f46e5', c2: '#3b82f6' },
+        verb: { th: 'คำกริยา', en: 'Verb', icon: 'V', c1: '#7c3aed', c2: '#6366f1' },
+        adjective: { th: 'คำคุณศัพท์', en: 'Adjective', icon: 'Adj', c1: '#d97706', c2: '#f59e0b' },
+        adverb: { th: 'คำกริยาวิเศษณ์', en: 'Adverb', icon: 'Adv', c1: '#059669', c2: '#10b981' },
+        preposition: { th: 'คำบุพบท', en: 'Preposition', icon: 'Prep', c1: '#0284c7', c2: '#38bdf8' },
+        pronoun: { th: 'คำสรรพนาม', en: 'Pronoun', icon: 'Pron', c1: '#6366f1', c2: '#818cf8' },
+        conjunction: { th: 'คำสันธาน', en: 'Conjunction', icon: 'Conj', c1: '#ea580c', c2: '#f97316' },
+        other: { th: 'อื่น ๆ', en: 'Other', icon: 'Etc', c1: '#475569', c2: '#64748b' }
     };
     const catOf = (w) => {
         const p = String(w.partOfSpeech || '').toLowerCase().trim();
@@ -274,12 +289,54 @@ document.addEventListener('DOMContentLoaded', () => {
         storage.set(STORAGE.mastery, m);
     }
 
+    const SRS_INTERVALS = [0, 1, 3, 7, 14, 30, 60];
+
+    function loadBookmarks() {
+        const raw = storage.get(STORAGE.bookmarks, []);
+        if (!Array.isArray(raw)) return new Set();
+        return new Set(raw.filter((k) => keyToIndex.has(k)));
+    }
+
+    function saveBookmarks() {
+        storage.set(STORAGE.bookmarks, Array.from(bookmarkedWords));
+    }
+
+    function loadActivityLog() {
+        const raw = storage.get(STORAGE.ActivityLog, {});
+        return (raw && typeof raw === 'object' && !Array.isArray(raw)) ? raw : {};
+    }
+
+    function saveActivityLog(log) {
+        storage.set(STORAGE.ActivityLog, log);
+    }
+
     let wordStatus = loadWordStatus();
     let sessions = loadSessions();
     let dailyGoal = loadDailyGoal();
     let wordMastery = loadWordMastery();
+    let bookmarkedWords = loadBookmarks();
+    let activityLog = loadActivityLog();
     const prefs = storage.get(STORAGE.prefs, {});
     let selectedSize = typeof prefs.size === 'number' && prefs.size >= 1 && prefs.size <= 50 ? prefs.size : 20;
+
+    function isBookmarked(key) {
+        return bookmarkedWords.has(key);
+    }
+
+    function toggleBookmark(key) {
+        if (!keyToIndex.has(key)) return false;
+        if (bookmarkedWords.has(key)) {
+            bookmarkedWords.delete(key);
+            showToast('นำออกจากคำศัพท์ที่ปักหมุดแล้ว');
+        } else {
+            bookmarkedWords.add(key);
+            showToast('ปักหมุดคำศัพท์สำคัญแล้ว ★');
+        }
+        saveBookmarks();
+        SoundFX.tick();
+        updateStarUIEverywhere(key);
+        return bookmarkedWords.has(key);
+    }
 
     function getWordMasteryLevel(key) {
         const st = wordStatus[key];
@@ -290,13 +347,50 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'learning';
     }
 
+    function isWordDueSRS(key) {
+        const st = wordStatus[key];
+        if (!st) return false;
+        if (st === 'review') return true;
+        const m = wordMastery[key];
+        if (m && m.nextReviewAt && m.nextReviewAt <= Date.now()) return true;
+        return false;
+    }
+
+    function getDueWordIndices() {
+        const due = [];
+        keyToIndex.forEach((idx, key) => {
+            if (isWordDueSRS(key)) due.push(idx);
+        });
+        return due;
+    }
+
+    function getSRSStatusText(key) {
+        const st = wordStatus[key];
+        if (!st) return { text: 'คำใหม่', cls: '' };
+        if (st === 'review') return { text: 'ต้องทบทวนซ้ำ', cls: 'srs-review' };
+        const m = wordMastery[key];
+        const days = m && m.intervalDays ? m.intervalDays : 1;
+        if (m && m.nextReviewAt && m.nextReviewAt <= Date.now()) {
+            return { text: 'ครบกำหนดทบทวนวันนี้', cls: 'srs-review' };
+        }
+        if (m && m.streak >= 2) {
+            return { text: `ความจำระยะยาว · รอบ ${days} วัน`, cls: 'srs-mastered' };
+        }
+        return { text: `กำลังจำ · รอบ ${days} วัน`, cls: 'srs-learning' };
+    }
+
     function recordWordMastery(key, status) {
         const currM = wordMastery[key] || { streak: 0, reviewCount: 0 };
         if (status === 'known') {
             currM.streak = (currM.streak || 0) + 1;
+            const days = SRS_INTERVALS[Math.min(currM.streak, SRS_INTERVALS.length - 1)];
+            currM.intervalDays = days;
+            currM.nextReviewAt = Date.now() + (days * 86400000);
         } else if (status === 'review') {
             currM.streak = 0;
             currM.reviewCount = (currM.reviewCount || 0) + 1;
+            currM.intervalDays = 0;
+            currM.nextReviewAt = Date.now();
         }
         currM.lastStudied = new Date().toISOString();
         wordMastery[key] = currM;
@@ -311,6 +405,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const prevCount = dailyGoal.count;
         dailyGoal.count += amount;
         saveDailyGoal(dailyGoal);
+        activityLog[today] = Math.max(activityLog[today] || 0, dailyGoal.count);
+        saveActivityLog(activityLog);
         updateDailyGoalUI();
         if (prevCount < dailyGoal.target && dailyGoal.count >= dailyGoal.target) {
             showToast('🎉 ยินดีด้วย! คุณพิชิตเป้าหมายการเรียนประจำวันแล้ว');
@@ -392,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('dark-theme', isDark);
         storage.set(STORAGE.theme, isDark ? 'dark' : 'light');
         document.querySelectorAll('.theme-toggle-btn .theme-icon').forEach(el => {
-            el.textContent = isDark ? '☀️' : '🌙';
+            el.innerHTML = isDark ? ICON_SVG.sun : ICON_SVG.moon;
         });
     }
 
@@ -567,6 +663,35 @@ document.addEventListener('DOMContentLoaded', () => {
             btnResume.hidden = true;
         }
         updateSegmented();
+        updateWelcomeSmartStrip();
+    }
+
+    function updateWelcomeSmartStrip() {
+        const dueIndices = getDueWordIndices();
+        const srsDot = $('welcome-srs-dot');
+        const srsText = $('welcome-srs-text');
+        const srsBadge = $('welcome-srs-badge');
+        if (srsText && srsBadge && srsDot) {
+            if (dueIndices.length > 0) {
+                srsDot.classList.add('has-due');
+                srsText.textContent = `ครบกำหนดทบทวนวันนี้ ${dueIndices.length.toLocaleString()} คำ (SRS Due)`;
+                srsBadge.textContent = `ทบทวน ${Math.min(selectedSize, dueIndices.length)} คำ →`;
+            } else {
+                srsDot.classList.remove('has-due');
+                const studiedCount = Object.keys(wordStatus).length;
+                srsText.textContent = studiedCount > 0
+                    ? 'ทบทวนครบตามรอบความจำแล้ว · ความจำระยะยาวคงที่'
+                    : 'ระบบ Spaced Repetition (SRS) คำนวณรอบทบทวนอัตโนมัติ';
+                srsBadge.textContent = 'เรียนคำใหม่ →';
+            }
+        }
+        const starredBtn = $('btn-welcome-starred');
+        const starredCnt = $('welcome-starred-count');
+        if (starredBtn && starredCnt) {
+            const n = bookmarkedWords.size;
+            starredCnt.textContent = `${n} คำปักหมุด`;
+            starredBtn.hidden = n === 0;
+        }
     }
 
     function updateSegmented(skipSliderUpdate = false) {
@@ -681,14 +806,22 @@ document.addEventListener('DOMContentLoaded', () => {
         enterSession();
     });
 
-    btnHistory.addEventListener('click', () => openHistory('welcome'));
+    btnHistory.addEventListener('click', () => {
+        openHistory('welcome');
+    });
 
     /* =========================================================
      * Session lifecycle
      * ========================================================= */
     function startRandomSession() {
-        const pool = Array.from({ length: totalWords }, (_, i) => i);
-        startSession(pickRandom(pool, selectedSize), 'random');
+        // Smart SRS-prioritized selection: Due words (up to 40% of session) + Unseen/Random words
+        const due = getDueWordIndices();
+        const duePickCount = Math.min(due.length, Math.ceil(selectedSize * 0.4));
+        const pickedDue = pickRandom(due, duePickCount);
+        const pickedSet = new Set(pickedDue);
+        const remainingPool = Array.from({ length: totalWords }, (_, i) => i).filter(i => !pickedSet.has(i));
+        const pickedRest = pickRandom(remainingPool, selectedSize - pickedDue.length);
+        startSession(shuffle([...pickedDue, ...pickedRest]), 'random');
     }
 
     function startSession(indices, mode, label = '') {
@@ -944,6 +1077,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateAnswerUI();
         updateDots();
+        updateCardStarAndSRS();
 
         // เล่นเสียงอ่านอัตโนมัติเมื่อเปิดการ์ดใหม่
         if (typeof speakWordOverride === 'function') {
@@ -1068,10 +1202,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 250);
     }
 
+    function updateCardStarAndSRS() {
+        if (!session) return;
+        const w = wordsData[session.indices[session.currentIndex]];
+        if (!w) return;
+        const key = keyOf(w);
+        const starred = isBookmarked(key);
+        const starFront = $('btn-star-card');
+        const starBack = $('btn-star-card-back');
+        if (starFront) starFront.classList.toggle('is-starred', starred);
+        if (starBack) starBack.classList.toggle('is-starred', starred);
+
+        const srs = getSRSStatusText(key);
+        const badgeFront = $('card-srs-badge');
+        const badgeBack = $('card-srs-badge-back');
+        if (badgeFront) {
+            badgeFront.textContent = srs.text;
+            badgeFront.className = 'card-srs-badge ' + srs.cls;
+        }
+        if (badgeBack) {
+            badgeBack.textContent = srs.text;
+            badgeBack.className = 'card-srs-badge ' + srs.cls;
+        }
+    }
+
+    function updateStarUIEverywhere(key) {
+        const starred = isBookmarked(key);
+        document.querySelectorAll(`[data-star-key="${CSS.escape ? CSS.escape(key) : key.replace(/"/g, '\"')}"]`).forEach(btn => {
+            btn.classList.toggle('is-starred', starred);
+        });
+        const fStarCount = $('filter-starred-count');
+        if (fStarCount) fStarCount.textContent = bookmarkedWords.size;
+        updateCardStarAndSRS();
+        updateWelcomeSmartStrip();
+    }
+
     function flipCard(e) {
         if (isAnimating || !session) return;
-        // ป้องกันไม่ให้พลิกการ์ดเวลากดปุ่มฟังเสียง
-        if (e && e.target && e.target.closest && e.target.closest('.speak-btn')) return;
+        // ป้องกันไม่ให้พลิกการ์ดเวลากดปุ่มฟังเสียงหรือปุ่มปักหมุดดาว
+        if (e && e.target && e.target.closest && (e.target.closest('.speak-btn') || e.target.closest('.card-star-btn'))) return;
 
         isFlipped = !isFlipped;
         flashcard.classList.toggle('is-flipped', isFlipped);
@@ -1135,7 +1304,7 @@ document.addEventListener('DOMContentLoaded', () => {
     flashcard.addEventListener('pointerdown', (e) => {
         // Only accept primary pointer (left click or touch)
         if (e.pointerType === 'mouse' && e.button !== 0) return;
-        if (e.target.closest('.speak-btn')) return;
+        if (e.target.closest('.speak-btn') || e.target.closest('.card-star-btn')) return;
         if (isAnimating || !session) return;
 
         isSwiping = true;
@@ -1340,8 +1509,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (idx === undefined) return '';
         const w = wordsData[idx];
         const lvl = getWordMasteryLevel(key);
-        const lvlBadge = lvl === 'mastered' ? '🟢 ชำนาญ' : lvl === 'learning' ? '🟡 กำลังจำ' : '🔴 ต้องซ้ำ';
+        const m = wordMastery[key];
+        const days = m && m.intervalDays ? m.intervalDays : 0;
+        const lvlBadge = lvl === 'mastered'
+            ? `ชำนาญ${days ? ` · ${days}d` : ''}`
+            : lvl === 'learning'
+                ? `กำลังจำ${days ? ` · ${days}d` : ''}`
+                : lvl === 'review' ? 'ต้องซ้ำ' : 'ใหม่';
         const cat = catOf(w);
+        const starred = isBookmarked(key);
 
         const safeWord = escapeHtml(w.word);
         const safeTrans = escapeHtml(w.translation);
@@ -1351,10 +1527,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const safeEx = escapeHtml(w.example || '');
         const safeExTh = escapeHtml(w.exampleTranslation || '');
 
-        return `<li class="word-item ${status}" data-word-key="${escapeHtml(key)}">
+        return `<li class="word-item ${status || 'unseen'}" data-word-key="${escapeHtml(key)}">
             <div class="word-item-row">
                 <div class="word-item-left">
-                    <span class="word-item-dot"></span>
+                    <span class="status-dot dot-${lvl}"></span>
                     <button type="button" class="word-item-speak-btn speak-btn" data-speak-word="${safeWord}" title="ฟังเสียงอ่าน" aria-label="ฟังเสียงอ่าน">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -1370,8 +1546,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 6px;">
                     <span class="word-item-trans">${safeTrans}</span>
+                    <button type="button" class="word-star-btn ${starred ? 'is-starred' : ''}" data-star-key="${escapeHtml(key)}" title="ปักหมุดคำศัพท์สำคัญ" aria-label="ปักหมุดคำศัพท์สำคัญ">
+                        ${ICON_SVG.star}
+                    </button>
                     <span class="word-item-expand-arrow" style="opacity: 0.5; font-size: 0.8rem;">▾</span>
                 </div>
             </div>
@@ -1635,6 +1814,77 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSmartRecommendation(stats, c);
         updateDailyGoalUI();
         computeMasteryBreakdown();
+        renderActivityHeatmap();
+    }
+
+    function renderActivityHeatmap() {
+        const container = $('dash-activity-heatmap');
+        const activeDaysEl = $('heatmap-active-days');
+        const detailNote = $('heatmap-detail-note');
+        if (!container) return;
+
+        // Aggregate daily counts from activityLog, sessions, and quizHistory
+        const countsByDate = { ...activityLog };
+        const toDateKey = (iso) => {
+            const d = new Date(iso);
+            if (isNaN(d)) return '';
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${y}-${m}-${day}`;
+        };
+
+        const sessionCounts = {};
+        sessions.forEach(s => {
+            const k = toDateKey(s.date);
+            if (k) sessionCounts[k] = (sessionCounts[k] || 0) + (s.known.length + s.review.length);
+        });
+        try {
+            const qh = JSON.parse(localStorage.getItem('oxford3000_quiz_history') || '[]');
+            qh.forEach(q => {
+                const k = toDateKey(q.date);
+                if (k) sessionCounts[k] = (sessionCounts[k] || 0) + (q.total || 0);
+            });
+        } catch (e) { }
+
+        Object.keys(sessionCounts).forEach(k => {
+            countsByDate[k] = Math.max(countsByDate[k] || 0, sessionCounts[k]);
+        });
+        if (dailyGoal && dailyGoal.date) {
+            countsByDate[dailyGoal.date] = Math.max(countsByDate[dailyGoal.date] || 0, dailyGoal.count || 0);
+        }
+
+        const cells = [];
+        let activeDays = 0;
+        const today = new Date();
+        for (let offset = 27; offset >= 0; offset--) {
+            const d = new Date(today);
+            d.setDate(today.getDate() - offset);
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            const key = `${y}-${m}-${day}`;
+            const count = countsByDate[key] || 0;
+            if (count > 0) activeDays++;
+            const lv = count === 0 ? 0 : count < 10 ? 1 : count < 20 ? 2 : count < 40 ? 3 : 4;
+            const label = d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
+            cells.push(`<button type="button" class="hm-cell lv-${lv}" data-hm-date="${escapeHtml(label)}" data-hm-count="${count}" title="${escapeHtml(label)}: ${count} คำ">${d.getDate()}</button>`);
+        }
+
+        container.innerHTML = cells.join('');
+        if (activeDaysEl) activeDaysEl.textContent = `เรียนแล้ว ${activeDays} / 28 วัน`;
+
+        container.onclick = (e) => {
+            const cell = e.target.closest('.hm-cell');
+            if (!cell || !detailNote) return;
+            container.querySelectorAll('.hm-cell.selected').forEach(c => c.classList.remove('selected'));
+            cell.classList.add('selected');
+            const dt = cell.dataset.hmDate;
+            const cnt = Number(cell.dataset.hmCount || 0);
+            detailNote.innerHTML = cnt > 0
+                ? `<b>${escapeHtml(dt)}</b> · เรียนและทบทวนไปทั้งหมด <b>${cnt} คำ</b>`
+                : `<b>${escapeHtml(dt)}</b> · ยังไม่มีการบันทึกคำศัพท์ในวันนี้`;
+        };
     }
 
     function updateSmartRecommendation(stats, counts) {
@@ -1647,7 +1897,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Priority 1: Words needing review
         if (counts.review > 0) {
-            iconEl.textContent = '⚡';
+            iconEl.innerHTML = ICON_SVG.zap;
             titleEl.textContent = `มีคำที่ต้องทบทวน ${counts.review.toLocaleString()} คำ`;
             descEl.textContent = 'ทบทวนคำเหล่านี้ซ้ำทันทีเพื่อย้ายคำเข้าสู่ความจำระยะยาวอย่างถาวร';
             const n = Math.min(selectedSize, counts.review);
@@ -1659,7 +1909,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Priority 2: Daily goal remaining
         if (dailyGoal.count < dailyGoal.target) {
             const rem = dailyGoal.target - dailyGoal.count;
-            iconEl.textContent = '🎯';
+            iconEl.innerHTML = ICON_SVG.target;
             titleEl.textContent = `เป้าหมายวันนี้ขาดอีก ${rem} คำ`;
             descEl.textContent = `อีกเพียงรอบเดียวก็พิชิตเป้าหมายประจำวัน ${dailyGoal.target} คำแล้ว!`;
             const n = Math.min(selectedSize, rem);
@@ -1675,7 +1925,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const studiedCats = stats.filter(s => s.studied && s.accuracy < 0.75);
         if (studiedCats.length > 0) {
             const weakest = studiedCats.slice().sort((a, b) => a.accuracy - b.accuracy)[0];
-            iconEl.textContent = weakest.icon || '💪';
+            iconEl.innerHTML = ICON_SVG.compass;
             titleEl.textContent = `เสริมความมั่นใจหมวด${weakest.th}`;
             descEl.textContent = `หมวดนี้มีความแม่นยำ ${fmtPct(weakest.accuracy)} แนะนำให้ฝึกเพิ่มเพื่อปิดจุดอ่อน`;
             btnEl.textContent = `ฝึกหมวด${weakest.th} ทันที`;
@@ -1684,7 +1934,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Priority 4: All caught up / Ready for new words!
-        iconEl.textContent = '🌟';
+        iconEl.innerHTML = ICON_SVG.award;
         titleEl.textContent = 'ยอดเยี่ยมมาก! บรรลุเป้าหมายครบถ้วน 🎉';
         descEl.textContent = 'ทบทวนคำศัพท์ครบหมดแล้ว พร้อมที่จะก้าวหน้าและเรียนรู้คำศัพท์ใหม่ต่อไป';
         btnEl.textContent = `เรียนคำใหม่ (${selectedSize} คำ)`;
@@ -2035,8 +2285,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const inCat = (k) => historyCatFilter === 'all' || catOf(wordsData[keyToIndex.get(k)]) === historyCatFilter;
 
     function renderCatFilter() {
-        const countFor = (id) => Object.keys(wordStatus).filter((k) =>
-            wordStatus[k] === historyFilter && (id === 'all' || catOf(wordsData[keyToIndex.get(k)]) === id)).length;
+        const baseKeys = historyFilter === 'starred'
+            ? Array.from(bookmarkedWords)
+            : Object.keys(wordStatus).filter((k) => wordStatus[k] === historyFilter);
+        const countFor = (id) => baseKeys.filter((k) =>
+            keyToIndex.has(k) && (id === 'all' || catOf(wordsData[keyToIndex.get(k)]) === id)).length;
         const items = [{ id: 'all', th: 'ทุกหมวด', c1: '#3b82f6', c2: '#8b5cf6' }]
             .concat(CATEGORY_IDS.map((id) => ({ id, ...CATEGORY_META[id] })));
         catFilterEl.innerHTML = items.map((it) => `<button type="button" class="chip cat-chip ${historyCatFilter === it.id ? 'active' : ''}"
@@ -2054,12 +2307,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const c = countStatuses();
         filterReviewCount.textContent = c.review;
         filterKnownCount.textContent = c.known;
+        const fStarCount = $('filter-starred-count');
+        if (fStarCount) fStarCount.textContent = bookmarkedWords.size;
+
         filterChips.forEach((chip) => chip.classList.toggle('active', chip.dataset.filter === historyFilter));
         renderCatFilter();
 
         const q = wordSearch.value.trim().toLowerCase();
-        const keys = Object.keys(wordStatus)
-            .filter((k) => wordStatus[k] === historyFilter)
+        const sourceKeys = historyFilter === 'starred'
+            ? Array.from(bookmarkedWords)
+            : Object.keys(wordStatus).filter((k) => wordStatus[k] === historyFilter);
+
+        const keys = sourceKeys
+            .filter((k) => keyToIndex.has(k))
             .filter(inCat)
             .filter((k) => {
                 if (!q) return true;
@@ -2069,14 +2329,21 @@ document.addEventListener('DOMContentLoaded', () => {
             .sort((a, b) => a.localeCompare(b));
 
         historyWordList.innerHTML = keys.length
-            ? keys.map((k) => wordListItem(k, historyFilter)).join('')
-            : `<li class="empty-state">${q ? 'ไม่พบคำที่ค้นหา' : historyFilter === 'known' ? 'ยังไม่มีคำที่จำได้' : 'ไม่มีคำที่ต้องทบทวน 🎉'}</li>`;
+            ? keys.map((k) => wordListItem(k, wordStatus[k] || 'review')).join('')
+            : `<li class="empty-state">${q ? 'ไม่พบคำที่ค้นหา' : historyFilter === 'starred' ? 'ยังไม่มีคำที่ปักหมุด ★ (กดรูปดาวบนการ์ดหรือรายการคำเพื่อปักหมุด)' : historyFilter === 'known' ? 'ยังไม่มีคำที่จำได้' : 'ไม่มีคำที่ต้องทบทวน'}</li>`;
 
-        const reviewCount = Object.keys(wordStatus).filter((k) => wordStatus[k] === 'review' && inCat(k)).length;
-        const n = Math.min(selectedSize, reviewCount);
-        const catName = historyCatFilter === 'all' ? '' : `หมวด${CATEGORY_META[historyCatFilter].th} `;
-        btnPracticeReview.hidden = historyFilter !== 'review' || reviewCount === 0;
-        practiceReviewLabel.textContent = `ฝึกคำที่ต้องทบทวน ${catName}(สุ่ม ${n} คำ)`;
+        if (historyFilter === 'starred') {
+            const starCount = keys.length;
+            const n = Math.min(selectedSize, starCount);
+            btnPracticeReview.hidden = starCount === 0;
+            practiceReviewLabel.textContent = `ฝึกคำที่ปักหมุด ★ (${n} คำ)`;
+        } else {
+            const reviewCount = Object.keys(wordStatus).filter((k) => wordStatus[k] === 'review' && inCat(k)).length;
+            const n = Math.min(selectedSize, reviewCount);
+            const catName = historyCatFilter === 'all' ? '' : `หมวด${CATEGORY_META[historyCatFilter].th} `;
+            btnPracticeReview.hidden = historyFilter !== 'review' || reviewCount === 0;
+            practiceReviewLabel.textContent = `ฝึกคำที่ต้องทบทวน ${catName}(สุ่ม ${n} คำ)`;
+        }
     }
 
     historyTabs.forEach((t) => t.addEventListener('click', () => setDashTab(t.dataset.panel)));
@@ -2115,7 +2382,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     wordSearch.addEventListener('input', renderHistoryWords);
 
-    btnPracticeReview.addEventListener('click', () => practiceReviewWords(historyCatFilter));
+    btnPracticeReview.addEventListener('click', async () => {
+        if (historyFilter === 'starred') {
+            const pool = Array.from(bookmarkedWords)
+                .map((k) => keyToIndex.get(k))
+                .filter((i) => i !== undefined && (historyCatFilter === 'all' || catOf(wordsData[i]) === historyCatFilter));
+            if (!pool.length) return;
+            if (!(await confirmReplaceActive('เริ่มฝึกคำที่ปักหมุด?', 'เริ่มฝึก'))) return;
+            startSession(pickRandom(pool, selectedSize), 'category', 'คำที่ปักหมุด ★');
+            return;
+        }
+        practiceReviewWords(historyCatFilter);
+    });
 
     btnHistoryBack.addEventListener('click', () => {
         showScreen(historyReturnTo === 'summary' && lastSummary ? 'summary' : 'welcome');
@@ -2137,8 +2415,12 @@ document.addEventListener('DOMContentLoaded', () => {
         storage.remove(STORAGE.sessions);
         storage.remove(STORAGE.status);
         storage.remove(STORAGE.active);
+        bookmarkedWords = new Set();
+        activityLog = {};
         storage.remove(STORAGE.mastery);
         storage.remove(STORAGE.dailyGoal);
+        storage.remove(STORAGE.bookmarks);
+        storage.remove(STORAGE.ActivityLog);
         try { localStorage.removeItem('oxford3000_quiz_history'); } catch (e) { }
         renderWelcome();
         renderHistory();
@@ -2755,6 +3037,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const selectedSize = parseInt(quizCountSlider.value, 10);
             const selectedCat = document.getElementById('quiz-category-select').value;
+            const modeInput = document.getElementById('quiz-mode-input');
+            const selectedQuizMode = modeInput ? modeInput.value : 'choice';
 
             let pool = [];
             if (selectedCat === 'all') {
@@ -2777,6 +3061,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 score: 0,
                 incorrectWords: [],
                 category: selectedCat,
+                mode: selectedQuizMode,
+                revealedChars: 1,
                 startTime: Date.now()
             };
             showScreen('quiz');
@@ -2909,30 +3195,105 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         quizAnswered = false;
+        quizSession.revealedChars = 1;
         const index = quizSession.indices[quizSession.currentIndex];
         const correctWord = wordsData[index];
+        const qMode = quizSession.mode || 'choice';
 
-        quizWord.textContent = correctWord.word;
+        const modeTag = $('quiz-active-mode-tag');
+        const contextBox = $('quiz-context-box');
+        const contextSent = $('quiz-context-sentence');
+        const contextTrans = $('quiz-context-trans');
+        const spellingBox = $('quiz-spelling-box');
+        const spellHintEl = $('quiz-spell-hint');
+        const spellInput = $('quiz-spelling-input');
+        const spellFeedback = $('quiz-spell-feedback');
+
+        const MODE_LABELS = {
+            choice: 'Multiple Choice · ทายคำแปล 4 ตัวเลือก',
+            cloze: 'Context Cloze · เติมคำศัพท์ในประโยค',
+            listening: 'Listening Dictation · ฟังเสียงทายความหมาย',
+            spelling: 'Spelling Challenge · พิมพ์สะกดคำศัพท์'
+        };
+        if (modeTag) modeTag.textContent = MODE_LABELS[qMode] || MODE_LABELS.choice;
+
         const qPos = document.getElementById('quiz-pos');
         if (qPos) {
             const meta = CATEGORY_META[correctWord.partOfSpeech] || { th: correctWord.partOfSpeech };
             qPos.textContent = meta.th;
+            qPos.className = 'part-of-speech pos-' + catOf(correctWord);
         }
         const qPhonetic = document.getElementById('quiz-phonetic');
-        if (qPhonetic) qPhonetic.textContent = correctWord.phonetic || '';
 
         quizCurrentIndex.textContent = quizSession.currentIndex + 1;
         quizTotal.textContent = quizSession.indices.length;
         quizScoreEl.textContent = quizSession.score;
         quizProgressFill.style.width = `${((quizSession.currentIndex) / quizSession.indices.length) * 100}%`;
 
-        // Generate 3 wrong options, prioritizing words with the SAME partOfSpeech
-        const options = [{ text: correctWord.translation, isCorrect: true }];
-        const usedTranslations = new Set([correctWord.translation]);
+        // Configure UI per mode
+        if (qMode === 'cloze') {
+            quizWord.textContent = correctWord.translation;
+            if (qPhonetic) qPhonetic.textContent = '';
+            if (contextBox && contextSent && contextTrans) {
+                contextBox.hidden = false;
+                const rawEx = correctWord.example || `Please remember the word "${correctWord.word}" in this context.`;
+                const escapedW = correctWord.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const re = new RegExp(`\\b${escapedW}(?:s|es|ed|ing)?\\b`, 'gi');
+                const masked = rawEx.replace(re, '<span class="cloze-blank">_____</span>');
+                contextSent.innerHTML = masked.includes('cloze-blank')
+                    ? masked
+                    : `${escapeHtml(rawEx)} (<span class="cloze-blank">_____</span>)`;
+                contextTrans.textContent = correctWord.exampleTranslation || correctWord.definition || '';
+            }
+        } else if (qMode === 'listening') {
+            quizWord.textContent = 'ฟังเสียงแล้วเลือกความหมาย';
+            if (qPhonetic) qPhonetic.textContent = 'กดปุ่มลำโพงเพื่อฟังซ้ำ';
+            if (contextBox) contextBox.hidden = true;
+        } else if (qMode === 'spelling') {
+            quizWord.textContent = correctWord.translation;
+            if (qPhonetic) qPhonetic.textContent = correctWord.phonetic || '';
+            if (contextBox && contextSent && contextTrans) {
+                if (correctWord.definition) {
+                    contextBox.hidden = false;
+                    contextSent.textContent = correctWord.definition;
+                    contextTrans.textContent = '';
+                } else {
+                    contextBox.hidden = true;
+                }
+            }
+        } else {
+            quizWord.textContent = correctWord.word;
+            if (qPhonetic) qPhonetic.textContent = correctWord.phonetic || '';
+            if (contextBox) contextBox.hidden = true;
+        }
+
+        if (qMode === 'spelling') {
+            quizOptions.hidden = true;
+            if (spellingBox) {
+                spellingBox.hidden = false;
+                if (spellFeedback) spellFeedback.hidden = true;
+                if (spellInput) {
+                    spellInput.value = '';
+                    spellInput.disabled = false;
+                    setTimeout(() => spellInput.focus(), 40);
+                }
+                updateSpellingHintDisplay(correctWord.word, 1);
+            }
+            speakWordOverride(correctWord.word, false);
+            return;
+        }
+
+        quizOptions.hidden = false;
+        if (spellingBox) spellingBox.hidden = true;
+
+        // Build 4 options (English words for Cloze mode; Thai translations for Choice/Listening)
+        const useEnglishOptions = qMode === 'cloze';
+        const correctText = useEnglishOptions ? correctWord.word : correctWord.translation;
+        const options = [{ text: correctText, isCorrect: true }];
+        const usedSet = new Set([correctText]);
 
         const matchingPool = [];
         const otherPool = [];
-
         for (let i = 0; i < totalWords; i++) {
             if (i === index) continue;
             if (wordsData[i] && wordsData[i].partOfSpeech === correctWord.partOfSpeech) {
@@ -2942,28 +3303,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Shuffle arrays
-        const shuffleArray = (arr) => {
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-        };
-        shuffleArray(matchingPool);
-        shuffleArray(otherPool);
-
-        // Combine pools (matching POS first)
-        const combinedPool = [...matchingPool, ...otherPool];
-
+        const combinedPool = [...shuffle(matchingPool), ...shuffle(otherPool)];
         for (let i = 0; i < combinedPool.length && options.length < 4; i++) {
             const w = wordsData[combinedPool[i]];
-            if (w && w.translation && !usedTranslations.has(w.translation)) {
-                usedTranslations.add(w.translation);
-                options.push({ text: w.translation, isCorrect: false });
+            const candidate = useEnglishOptions ? w.word : w.translation;
+            if (w && candidate && !usedSet.has(candidate)) {
+                usedSet.add(candidate);
+                options.push({ text: candidate, isCorrect: false });
             }
         }
 
-        // Shuffle options
         options.sort(() => Math.random() - 0.5);
         quizOptionsData = options;
 
@@ -2972,13 +3321,25 @@ document.addEventListener('DOMContentLoaded', () => {
         options.forEach((opt, idx) => {
             const btn = document.createElement('button');
             btn.className = 'quiz-btn';
-            btn.innerHTML = `<span style="display: flex; align-items: center; gap: 12px; width: 100%;"><span style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 12px; background: rgba(255, 255, 255, 0.6); color: var(--primary); font-weight: 800; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">${prefixes[idx]}</span><span style="flex: 1; text-align: left; padding-right: 12px;">${opt.text}</span></span>`;
+            btn.innerHTML = `<span style="display: flex; align-items: center; gap: 12px; width: 100%;"><span style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 12px; background: rgba(79, 70, 229, 0.1); color: var(--primary); font-weight: 800; font-size: 1.05rem;">${prefixes[idx]}</span><span style="flex: 1; text-align: left; padding-right: 12px;">${escapeHtml(opt.text)}</span></span>`;
             btn.onclick = () => handleQuizAnswer(idx, btn);
             quizOptions.appendChild(btn);
         });
 
-        // Autoplay sound if not muted
-        speakWordOverride(correctWord.word, false);
+        if (qMode !== 'cloze') {
+            speakWordOverride(correctWord.word, false);
+        }
+    }
+
+    function updateSpellingHintDisplay(word, revealCount) {
+        const spellHintEl = $('quiz-spell-hint');
+        if (!spellHintEl) return;
+        const chars = word.split('');
+        const masked = chars.map((ch, idx) => {
+            if (ch === ' ' || ch === '-') return ch;
+            return idx < revealCount ? ch : '_';
+        }).join(' ');
+        spellHintEl.textContent = `${masked}  (${word.length} ตัวอักษร)`;
     }
 
     function handleQuizAnswer(selectedIndex, btnElement) {
@@ -2996,6 +3357,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const index = quizSession.indices[quizSession.currentIndex];
         const correctWordData = wordsData[index];
 
+        if (quizSession.mode === 'listening') {
+            quizWord.textContent = correctWordData.word;
+            const qPhon = document.getElementById('quiz-phonetic');
+            if (qPhon) qPhon.textContent = correctWordData.phonetic || '';
+        } else if (quizSession.mode === 'cloze') {
+            const blankEl = document.querySelector('#quiz-context-sentence .cloze-blank');
+            if (blankEl) blankEl.textContent = correctWordData.word;
+            speakWordOverride(correctWordData.word, false);
+        }
         recordDailyGoalProgress(1);
         const wKey = keyOf(correctWordData);
 
@@ -3180,7 +3550,7 @@ document.addEventListener('DOMContentLoaded', () => {
         buttons.forEach(btn => {
             btn.classList.toggle('muted', isSoundMuted);
             const icon = btn.querySelector('.sound-icon');
-            if (icon) icon.textContent = isSoundMuted ? '🔇' : '🔊';
+            if (icon) icon.innerHTML = isSoundMuted ? ICON_SVG.volOff : ICON_SVG.volOn;
             btn.title = isSoundMuted ? 'เปิดเสียง (Muted)' : 'ปิดเสียง (Sound On)';
             btn.setAttribute('aria-label', btn.title);
         });
@@ -3234,6 +3604,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function wireWordListEvents(listEl) {
         if (!listEl) return;
         listEl.addEventListener('click', (e) => {
+            const starBtn = e.target.closest('[data-star-key]');
+            if (starBtn) {
+                e.stopPropagation();
+                toggleBookmark(starBtn.dataset.starKey);
+                if (currentScreen === 'history' && historyFilter === 'starred') {
+                    renderHistoryWords();
+                }
+                return;
+            }
             const speakBtn = e.target.closest('[data-speak-word]');
             if (speakBtn) {
                 e.stopPropagation();
@@ -3287,6 +3666,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 quizHistory: storage.get('oxford3000_quiz_history', []),
                 dailyGoal,
                 wordMastery,
+                bookmarks: Array.from(bookmarkedWords),
+                activityLog,
                 exportedAt: new Date().toISOString(),
                 version: 'ox3k_v2'
             };
@@ -3333,6 +3714,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         wordMastery = parsed.wordMastery;
                         storage.set(STORAGE.mastery, wordMastery);
                     }
+                    if (Array.isArray(parsed.bookmarks)) {
+                        bookmarkedWords = new Set(parsed.bookmarks.filter(k => keyToIndex.has(k)));
+                        saveBookmarks();
+                    }
+                    if (parsed.activityLog && typeof parsed.activityLog === 'object') {
+                        activityLog = parsed.activityLog;
+                        saveActivityLog(activityLog);
+                    }
                     renderWelcome();
                     renderHistory();
                     if (typeof renderQuizHistory === 'function') renderQuizHistory();
@@ -3348,6 +3737,244 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================================
+     * Pro Upgrade Wiring: SRS, Bookmarks, Spelling Mode, Quick Search (Ctrl+K / /)
+     * ========================================================= */
+    // 1. Card Star / Bookmark Buttons & Keyboard 'S'
+    const btnStarFront = $('btn-star-card');
+    const btnStarBack = $('btn-star-card-back');
+    const handleCardStarClick = (e) => {
+        if (e) e.stopPropagation();
+        if (!session) return;
+        const w = wordsData[session.indices[session.currentIndex]];
+        if (w) toggleBookmark(keyOf(w));
+    };
+    if (btnStarFront) btnStarFront.addEventListener('click', handleCardStarClick);
+    if (btnStarBack) btnStarBack.addEventListener('click', handleCardStarClick);
+
+    // 2. Welcome SRS Due & Starred Practice Buttons
+    const btnWelcomeSRS = $('btn-welcome-srs');
+    if (btnWelcomeSRS) {
+        btnWelcomeSRS.addEventListener('click', async () => {
+            const due = getDueWordIndices();
+            if (due.length > 0) {
+                if (!(await confirmReplaceActive('เริ่มทบทวนตามรอบความจำ (SRS)?', 'เริ่มทบทวน'))) return;
+                startSession(pickRandom(due, selectedSize), 'review', 'SRS Due');
+            } else {
+                practiceUnseenWords();
+            }
+        });
+    }
+    const btnWelcomeStarred = $('btn-welcome-starred');
+    if (btnWelcomeStarred) {
+        btnWelcomeStarred.addEventListener('click', async () => {
+            const pool = Array.from(bookmarkedWords).map(k => keyToIndex.get(k)).filter(i => i !== undefined);
+            if (!pool.length) return;
+            if (!(await confirmReplaceActive('เริ่มฝึกคำศัพท์ที่ปักหมุด?', 'เริ่มฝึก'))) return;
+            startSession(pickRandom(pool, selectedSize), 'category', 'คำที่ปักหมุด ★');
+        });
+    }
+
+    // 3. Quiz Mode Selector (4 Modes) & Spelling Mode Handlers
+    const quizModeSelector = $('quiz-mode-selector');
+    const quizModeInput = $('quiz-mode-input');
+    if (quizModeSelector && quizModeInput) {
+        quizModeSelector.addEventListener('click', (e) => {
+            const card = e.target.closest('[data-quiz-mode]');
+            if (!card) return;
+            SoundFX.tick();
+            quizModeSelector.querySelectorAll('.quiz-mode-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            quizModeInput.value = card.dataset.quizMode;
+        });
+    }
+
+    const btnQuizHint = $('btn-quiz-hint');
+    const btnQuizSubmitSpell = $('btn-quiz-submit-spell');
+    const quizSpellingInput = $('quiz-spelling-input');
+
+    if (btnQuizHint) {
+        btnQuizHint.addEventListener('click', () => {
+            if (!quizSession || quizAnswered) return;
+            const w = wordsData[quizSession.indices[quizSession.currentIndex]];
+            if (!w) return;
+            quizSession.revealedChars = Math.min(w.word.length, (quizSession.revealedChars || 1) + 1);
+            updateSpellingHintDisplay(w.word, quizSession.revealedChars);
+            SoundFX.tick();
+            if (quizSpellingInput) quizSpellingInput.focus();
+        });
+    }
+
+    function submitQuizSpelling() {
+        if (!quizSession || quizAnswered || quizSession.mode !== 'spelling') return;
+        const index = quizSession.indices[quizSession.currentIndex];
+        const correctWordData = wordsData[index];
+        const typed = (quizSpellingInput ? quizSpellingInput.value : '').trim().toLowerCase();
+        if (!typed) {
+            showToast('กรุณาพิมพ์คำศัพท์ก่อนส่งคำตอบ');
+            return;
+        }
+        quizAnswered = true;
+        if (quizSpellingInput) quizSpellingInput.disabled = true;
+
+        const target = correctWordData.word.trim().toLowerCase();
+        const isCorrect = typed === target;
+        const feedbackEl = $('quiz-spell-feedback');
+        const wKey = keyOf(correctWordData);
+
+        recordDailyGoalProgress(1);
+        updateSpellingHintDisplay(correctWordData.word, correctWordData.word.length);
+        speakWordOverride(correctWordData.word, false);
+
+        if (isCorrect) {
+            SoundFX.known();
+            quizSession.score++;
+            quizScoreEl.textContent = quizSession.score;
+            recordWordMastery(wKey, 'known');
+            if (feedbackEl) {
+                feedbackEl.hidden = false;
+                feedbackEl.className = 'quiz-spell-feedback correct';
+                feedbackEl.textContent = `✓ ถูกต้อง! "${correctWordData.word}" (${correctWordData.translation})`;
+            }
+        } else {
+            SoundFX.review();
+            recordWordMastery(wKey, 'review');
+            quizSession.incorrectWords.push({
+                word: correctWordData.word,
+                translation: correctWordData.translation,
+                phonetic: correctWordData.phonetic || '',
+                partOfSpeech: correctWordData.partOfSpeech || 'noun'
+            });
+            if (feedbackEl) {
+                feedbackEl.hidden = false;
+                feedbackEl.className = 'quiz-spell-feedback wrong';
+                feedbackEl.textContent = `✗ คำที่ถูกคือ "${correctWordData.word}" (คุณพิมพ์: "${typed}")`;
+            }
+        }
+
+        setTimeout(() => {
+            if (quizSession) {
+                quizSession.currentIndex++;
+                renderQuizQuestion();
+            }
+        }, 1400);
+    }
+
+    if (btnQuizSubmitSpell) {
+        btnQuizSubmitSpell.addEventListener('click', submitQuizSpelling);
+    }
+    if (quizSpellingInput) {
+        quizSpellingInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submitQuizSpelling();
+            }
+        });
+    }
+
+    // 4. Quick Dictionary Search Command Palette (#quick-search-modal)
+    const quickSearchModal = $('quick-search-modal');
+    const quickSearchInput = $('quick-search-input');
+    const quickSearchClose = $('quick-search-close');
+    const quickSearchFilters = $('quick-search-filters');
+    const quickSearchResults = $('quick-search-results');
+    const quickSearchCount = $('quick-search-count');
+    let qsActiveFilter = 'all';
+
+    function openQuickSearch() {
+        if (!quickSearchModal) return;
+        quickSearchModal.classList.add('open');
+        quickSearchModal.setAttribute('aria-hidden', 'false');
+        renderQuickSearchResults();
+        setTimeout(() => quickSearchInput && quickSearchInput.focus(), 40);
+    }
+
+    function closeQuickSearch() {
+        if (!quickSearchModal) return;
+        quickSearchModal.classList.remove('open');
+        quickSearchModal.setAttribute('aria-hidden', 'true');
+    }
+
+    function renderQuickSearchResults() {
+        if (!quickSearchResults) return;
+        const q = (quickSearchInput ? quickSearchInput.value : '').trim().toLowerCase();
+        const matchedKeys = [];
+
+        keyToIndex.forEach((idx, key) => {
+            if (qsActiveFilter === 'starred' && !bookmarkedWords.has(key)) return;
+            if (qsActiveFilter === 'due' && !isWordDueSRS(key)) return;
+            if (qsActiveFilter === 'review' && wordStatus[key] !== 'review') return;
+
+            if (q) {
+                const w = wordsData[idx];
+                const matchW = w.word.toLowerCase().includes(q);
+                const matchT = String(w.translation || '').toLowerCase().includes(q);
+                const matchD = String(w.definition || '').toLowerCase().includes(q);
+                if (!matchW && !matchT && !matchD) return;
+            }
+            matchedKeys.push(key);
+        });
+
+        if (quickSearchCount) {
+            quickSearchCount.textContent = `${matchedKeys.length.toLocaleString()} คำ`;
+        }
+
+        const topKeys = matchedKeys.slice(0, 25);
+        quickSearchResults.innerHTML = topKeys.length
+            ? topKeys.map(k => wordListItem(k, wordStatus[k] || 'unseen')).join('')
+            : `<li class="empty-state">ไม่พบคำศัพท์ที่ตรงกับเงื่อนไข</li>`;
+    }
+
+    wireWordListEvents(quickSearchResults);
+
+    if ($('btn-welcome-search')) $('btn-welcome-search').addEventListener('click', openQuickSearch);
+    if ($('btn-app-search')) $('btn-app-search').addEventListener('click', openQuickSearch);
+    if (quickSearchClose) quickSearchClose.addEventListener('click', closeQuickSearch);
+    if (quickSearchModal) {
+        quickSearchModal.addEventListener('click', (e) => {
+            if (e.target === quickSearchModal) closeQuickSearch();
+        });
+    }
+    if (quickSearchInput) {
+        quickSearchInput.addEventListener('input', renderQuickSearchResults);
+    }
+    if (quickSearchFilters) {
+        quickSearchFilters.addEventListener('click', (e) => {
+            const chip = e.target.closest('[data-qs-filter]');
+            if (!chip) return;
+            qsActiveFilter = chip.dataset.qsFilter;
+            quickSearchFilters.querySelectorAll('.qs-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            renderQuickSearchResults();
+        });
+    }
+
+    // Global Keyboard Shortcuts: '/' or Ctrl+K for Quick Search, 'S' for Star card, Esc to close
+    document.addEventListener('keydown', (e) => {
+        if (quickSearchModal && quickSearchModal.classList.contains('open')) {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                closeQuickSearch();
+            }
+            return;
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openQuickSearch();
+            return;
+        }
+        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+        if (e.key === '/') {
+            e.preventDefault();
+            openQuickSearch();
+            return;
+        }
+        if (e.key.toLowerCase() === 's' && currentScreen === 'app' && session) {
+            e.preventDefault();
+            handleCardStarClick();
+        }
+    });
+
+    /* =========================================================
      * Init
      * ========================================================= */
     renderWelcome();
@@ -3356,6 +3983,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Expose a tiny API for automated testing / debugging
     window.__flashcardApp = {
         getSession: () => session && JSON.parse(JSON.stringify(session)),
+        getQuizSession: () => quizSession && JSON.parse(JSON.stringify(quizSession)),
         getCounts: () => session && getSessionCounts(),
         getWordStatus: () => ({ ...wordStatus }),
         getSessions: () => JSON.parse(JSON.stringify(sessions)),

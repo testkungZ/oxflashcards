@@ -6077,3 +6077,917 @@ body.dark-theme .word-item-drawer {
     align-items: center;
     gap: 6px;
 }
+
+/* =========================================================
+ * PRO WEB APP UPGRADE: Design System, SRS, Active Recall, Command Palette
+ * ========================================================= */
+
+/* 1. Typography & Tabular Numerals Discipline */
+.tabular-nums,
+.overall-value,
+.stat-value,
+.stat-tile-value,
+.m-val,
+.ring-percent,
+.dgw-current,
+.dgw-target,
+.wdg-count,
+.session-percent,
+.tab-count,
+#count-display,
+#quiz-count-display,
+#quiz-score,
+#quiz-current-index,
+#quiz-total {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+}
+
+.word,
+.quiz-word {
+    letter-spacing: -0.025em;
+}
+
+/* 2. Custom Monoline SVG Icon Containers & Status Dots */
+.tab-emoji {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+.tab-emoji svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1.85;
+}
+.theme-icon,
+.sound-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.svg-accent-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(79, 70, 229, 0.1);
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+body.dark-theme .svg-accent-box {
+    background: rgba(99, 102, 241, 0.18);
+    color: #818cf8;
+}
+.svg-icon-orb {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.14), rgba(59, 130, 246, 0.1));
+    border: 1px solid rgba(99, 102, 241, 0.22);
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+body.dark-theme .svg-icon-orb {
+    background: rgba(99, 102, 241, 0.16);
+    border-color: rgba(129, 140, 248, 0.25);
+    color: #a5b4fc;
+}
+.svg-tile-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: rgba(79, 70, 229, 0.09);
+    color: var(--tile-c1, var(--primary));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+body.dark-theme .svg-tile-badge {
+    background: rgba(255, 255, 255, 0.07);
+    color: #a5b4fc;
+}
+.sec-heading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+.sec-heading svg {
+    color: var(--primary);
+    flex-shrink: 0;
+}
+body.dark-theme .sec-heading svg {
+    color: #818cf8;
+}
+
+/* Status Dots replacing Emoji Circles */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+.dot-mastered {
+    background: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+.dot-learning {
+    background: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+}
+.dot-review {
+    background: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+}
+.dot-unseen {
+    background: #94a3b8;
+    box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.18);
+}
+
+/* 3. Welcome Top Bar & Quick Search Trigger Pill */
+.welcome-top-bar {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    left: 20px;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+}
+.welcome-top-bar > * {
+    pointer-events: auto;
+}
+.glass-search-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 12px 0 13px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+    transition: all 0.2s ease;
+}
+.glass-search-pill:hover {
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--text-main);
+    border-color: rgba(99, 102, 241, 0.35);
+    transform: translateY(-1px);
+}
+.glass-search-pill kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: rgba(15, 23, 42, 0.06);
+    color: var(--text-muted);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+body.dark-theme .glass-search-pill {
+    background: rgba(30, 41, 59, 0.72);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #94a3b8;
+}
+body.dark-theme .glass-search-pill:hover {
+    background: rgba(30, 41, 59, 0.92);
+    color: #f8fafc;
+    border-color: rgba(129, 140, 248, 0.4);
+}
+body.dark-theme .glass-search-pill kbd {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #cbd5e1;
+}
+
+/* 4. Welcome SRS Smart Strip & Starred Deck Button */
+.welcome-smart-strip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: -6px 0 16px;
+}
+.srs-pill-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.52);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    min-width: 0;
+}
+.srs-pill-btn:hover {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(99, 102, 241, 0.35);
+    transform: translateY(-1px);
+}
+body.dark-theme .srs-pill-btn {
+    background: rgba(30, 41, 59, 0.58);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+body.dark-theme .srs-pill-btn:hover {
+    background: rgba(30, 41, 59, 0.82);
+    border-color: rgba(129, 140, 248, 0.35);
+}
+.srs-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    flex-shrink: 0;
+}
+.srs-dot.has-due {
+    background: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
+}
+.srs-label {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.srs-action-tag {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--primary);
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(79, 70, 229, 0.1);
+    flex-shrink: 0;
+}
+body.dark-theme .srs-action-tag {
+    background: rgba(129, 140, 248, 0.16);
+    color: #a5b4fc;
+}
+.starred-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 9px 12px;
+    border-radius: 13px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.32);
+    color: #d97706;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+.starred-pill-btn[hidden] {
+    display: none !important;
+}
+.starred-pill-btn svg {
+    width: 15px;
+    height: 15px;
+    fill: #f59e0b;
+    stroke: #f59e0b;
+}
+.starred-pill-btn:hover {
+    background: rgba(245, 158, 11, 0.2);
+    transform: translateY(-1px);
+}
+body.dark-theme .starred-pill-btn {
+    background: rgba(245, 158, 11, 0.16);
+    color: #fbbf24;
+}
+
+/* 5. Flashcard Top Meta (SRS Badge + Bookmark Star Button) */
+.card-top-meta {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 4;
+    pointer-events: none;
+}
+.card-srs-badge {
+    font-size: 0.73rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.05);
+    color: var(--text-muted);
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    letter-spacing: 0.01em;
+}
+body.dark-theme .card-srs-badge {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+}
+.card-srs-badge.srs-mastered {
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+    border-color: rgba(16, 185, 129, 0.25);
+}
+.card-srs-badge.srs-learning {
+    background: rgba(245, 158, 11, 0.12);
+    color: #d97706;
+    border-color: rgba(245, 158, 11, 0.25);
+}
+.card-srs-badge.srs-review {
+    background: rgba(239, 68, 68, 0.12);
+    color: #dc2626;
+    border-color: rgba(239, 68, 68, 0.25);
+}
+.card-star-btn {
+    pointer-events: auto;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.65);
+    color: #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+body.dark-theme .card-star-btn {
+    background: rgba(30, 41, 59, 0.7);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #64748b;
+}
+.card-star-btn:hover {
+    transform: scale(1.1);
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.4);
+}
+.card-star-btn.is-starred {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.14);
+    border-color: rgba(245, 158, 11, 0.4);
+}
+.card-star-btn.is-starred svg {
+    fill: #f59e0b;
+    stroke: #f59e0b;
+}
+
+/* Word list star toggle button */
+.word-star-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    flex-shrink: 0;
+}
+.word-star-btn:hover {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+.word-star-btn.is-starred {
+    color: #f59e0b;
+}
+.word-star-btn.is-starred svg {
+    fill: #f59e0b;
+    stroke: #f59e0b;
+}
+.chip.starred.active {
+    background: rgba(245, 158, 11, 0.16);
+    color: #d97706;
+    border-color: rgba(245, 158, 11, 0.4);
+}
+body.dark-theme .chip.starred.active {
+    color: #fbbf24;
+}
+
+/* 6. 28-Day Study Consistency Activity Heatmap */
+.activity-heatmap-wrap {
+    margin-top: 12px;
+}
+.activity-heatmap {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    gap: 6px;
+}
+.hm-cell {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    background: rgba(15, 23, 42, 0.06);
+    border: 1px solid rgba(15, 23, 42, 0.05);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+body.dark-theme .hm-cell {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+.hm-cell:hover,
+.hm-cell.selected {
+    transform: scale(1.12);
+    z-index: 2;
+    box-shadow: 0 3px 10px rgba(79, 70, 229, 0.25);
+    border-color: var(--primary);
+}
+.hm-cell.lv-1, .hm-lv.lv-1 {
+    background: rgba(79, 70, 229, 0.22);
+    border-color: rgba(79, 70, 229, 0.3);
+    color: var(--text-main);
+}
+.hm-cell.lv-2, .hm-lv.lv-2 {
+    background: rgba(79, 70, 229, 0.45);
+    border-color: rgba(79, 70, 229, 0.55);
+    color: #ffffff;
+}
+.hm-cell.lv-3, .hm-lv.lv-3 {
+    background: rgba(79, 70, 229, 0.72);
+    border-color: rgba(79, 70, 229, 0.8);
+    color: #ffffff;
+}
+.hm-cell.lv-4, .hm-lv.lv-4 {
+    background: #4f46e5;
+    border-color: #4338ca;
+    color: #ffffff;
+}
+.activity-heatmap-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+.heatmap-legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.hm-lv {
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+    display: inline-block;
+    background: rgba(15, 23, 42, 0.08);
+}
+body.dark-theme .hm-lv.lv-0 {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* 7. Quiz Setup Panel & 4 Active Recall Mode Selector (Dark Mode Ready) */
+.quiz-setup-panel {
+    max-width: 440px !important;
+    width: 100%;
+    padding: 24px !important;
+    border-radius: 24px !important;
+}
+.quiz-setup-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+.quiz-setup-header h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0 0 4px;
+}
+.quiz-setup-header p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+.setup-label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 0.88rem;
+}
+.quiz-mode-section {
+    margin-bottom: 18px;
+}
+.quiz-mode-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+.quiz-mode-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.03);
+    border: 1.5px solid rgba(15, 23, 42, 0.08);
+    color: var(--text-main);
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+body.dark-theme .quiz-mode-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.quiz-mode-card strong {
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+.quiz-mode-card small {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+}
+.quiz-mode-card:hover {
+    border-color: rgba(79, 70, 229, 0.4);
+    background: rgba(79, 70, 229, 0.05);
+}
+.quiz-mode-card.active {
+    border-color: var(--primary);
+    background: rgba(79, 70, 229, 0.1);
+    box-shadow: 0 2px 10px rgba(79, 70, 229, 0.15);
+}
+.quiz-mode-card.active strong {
+    color: var(--primary);
+}
+body.dark-theme .quiz-mode-card.active {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: #818cf8;
+}
+body.dark-theme .quiz-mode-card.active strong {
+    color: #a5b4fc;
+}
+
+/* 8. Active Recall Modes in Quiz Screen (Cloze, Listening, Spelling) */
+.quiz-mode-tag-wrap {
+    margin-bottom: 8px;
+}
+.quiz-active-mode-tag {
+    display: inline-block;
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(79, 70, 229, 0.1);
+    color: var(--primary);
+    letter-spacing: 0.02em;
+}
+body.dark-theme .quiz-active-mode-tag {
+    background: rgba(129, 140, 248, 0.16);
+    color: #a5b4fc;
+}
+.quiz-meta-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    margin-bottom: 22px;
+}
+.quiz-speak-orb {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    color: var(--primary) !important;
+}
+.quiz-context-box {
+    margin: 12px auto 4px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    max-width: 520px;
+}
+body.dark-theme .quiz-context-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.quiz-context-sentence {
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin: 0;
+}
+.quiz-context-sentence .cloze-blank {
+    display: inline-block;
+    min-width: 76px;
+    padding: 0 8px;
+    margin: 0 3px;
+    border-bottom: 2.5px solid var(--primary);
+    color: var(--primary);
+    font-weight: 800;
+    text-align: center;
+}
+.quiz-context-trans {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    margin: 6px 0 0;
+}
+
+/* Spelling Box */
+.quiz-spelling-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+.quiz-spelling-box[hidden],
+.quiz-context-box[hidden],
+.quiz-options[hidden] {
+    display: none !important;
+}
+.quiz-spell-hint {
+    font-family: 'Inter', monospace;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--primary);
+    text-align: center;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(79, 70, 229, 0.06);
+}
+body.dark-theme .quiz-spell-hint {
+    background: rgba(129, 140, 248, 0.12);
+    color: #a5b4fc;
+}
+.quiz-spell-input-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+.quiz-spelling-input {
+    flex: 1;
+    height: 46px;
+    padding: 0 16px;
+    border-radius: 14px;
+    border: 1.5px solid rgba(15, 23, 42, 0.15);
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--text-main);
+    font-family: 'Inter', 'Prompt', sans-serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 0;
+}
+body.dark-theme .quiz-spelling-input {
+    background: rgba(15, 23, 42, 0.65);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #f8fafc;
+}
+.quiz-spelling-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+}
+.quiz-spell-feedback {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-align: center;
+}
+.quiz-spell-feedback.correct {
+    background: rgba(16, 185, 129, 0.14);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.quiz-spell-feedback.wrong {
+    background: rgba(239, 68, 68, 0.14);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+body.dark-theme .quiz-spell-feedback.correct { color: #34d399; }
+body.dark-theme .quiz-spell-feedback.wrong { color: #f87171; }
+
+/* Quiz Dashboard Theme-Safe Panels */
+.quiz-avg-pill {
+    background: rgba(79, 70, 229, 0.08);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+    padding: 8px 16px;
+    border-radius: 14px;
+    text-align: center;
+}
+.quiz-avg-pill span {
+    color: var(--primary);
+    display: block;
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+.quiz-avg-pill small {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+body.dark-theme .quiz-avg-pill {
+    background: rgba(129, 140, 248, 0.14);
+    border-color: rgba(129, 140, 248, 0.25);
+}
+body.dark-theme .quiz-avg-pill span {
+    color: #a5b4fc;
+}
+.quiz-radar-panel {
+    margin-top: 24px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 9. Quick Dictionary Search Command Palette Modal (#quick-search-modal) */
+.quick-search-overlay {
+    align-items: flex-start !important;
+    padding-top: min(10vh, 64px) !important;
+}
+.quick-search-dialog {
+    width: min(640px, 94vw);
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    border-radius: 22px !important;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22) !important;
+}
+body.dark-theme .quick-search-dialog {
+    background: rgba(15, 23, 42, 0.92) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55) !important;
+}
+.qs-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+body.dark-theme .qs-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+.qs-search-icon {
+    color: var(--primary);
+    display: inline-flex;
+    flex-shrink: 0;
+}
+.qs-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    min-width: 0;
+}
+.qs-input::placeholder {
+    color: var(--text-muted);
+}
+.qs-close-btn {
+    padding: 4px 9px;
+    border-radius: 8px;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: rgba(15, 23, 42, 0.04);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+body.dark-theme .qs-close-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.14);
+    color: #cbd5e1;
+}
+.qs-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 18px;
+    background: rgba(15, 23, 42, 0.02);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    flex-wrap: wrap;
+}
+body.dark-theme .qs-toolbar {
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom-color: rgba(255, 255, 255, 0.07);
+}
+.qs-filters {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.qs-chip {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+body.dark-theme .qs-chip {
+    border-color: rgba(255, 255, 255, 0.12);
+}
+.qs-chip.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+}
+.qs-count {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+.qs-results {
+    padding: 12px 16px !important;
+    margin: 0 !important;
+    overflow-y: auto;
+    max-height: 56vh;
+}
+
+/* Responsive adjustments for Mobile & Small Screens */
+@media (max-width: 600px) {
+    .glass-search-pill span,
+    .glass-search-pill kbd {
+        display: none;
+    }
+    .glass-search-pill {
+        width: 38px;
+        padding: 0;
+        justify-content: center;
+    }
+    .activity-heatmap {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .quiz-mode-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .quiz-spell-input-row {
+        flex-wrap: wrap;
+    }
+    .quiz-spelling-input {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+    .quiz-spell-input-row .btn {
+        flex: 1;
+    }
+}
