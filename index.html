@@ -38,6 +38,7 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
+    <canvas id="celebration-canvas" class="celebration-canvas" aria-hidden="true"></canvas>
 
     <!-- ===================== Welcome Screen ===================== -->
     <section id="welcome-screen" class="screen active" aria-label="หน้าแรก">
@@ -46,6 +47,12 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 <span>ค้นหาคำศัพท์...</span>
                 <kbd>/</kbd>
+            </button>
+            <button id="btn-welcome-accent" class="glass-accent-pill accent-toggle-btn" type="button" title="สลับสำเนียงเสียงอ่าน US / UK" aria-label="สลับสำเนียง US/UK">US</button>
+            <button id="btn-welcome-sync" class="glass-btn-icon small sync-open-btn" type="button" title="ซิงก์ข้อมูลข้ามอุปกรณ์ / Google Sync" aria-label="ซิงก์ข้อมูลข้ามอุปกรณ์">
+                <svg class="sync-cloud-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="M12 12v6"/><path d="m15 15-3-3-3 3"/></svg>
+                <img id="sync-user-avatar" class="sync-user-avatar" alt="บัญชี Google" hidden>
+                <span class="sync-status-dot" id="sync-status-dot"></span>
             </button>
             <button id="btn-welcome-theme" class="glass-btn-icon small theme-toggle-btn" title="สลับโหมดมืด/สว่าง" aria-label="สลับโหมดมืด/สว่าง">
                 <span class="theme-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
@@ -132,6 +139,13 @@
                     <input type="range" id="count-slider" min="1" max="50" step="0.01" value="20" class="liquid-slider" aria-label="เลื่อนปรับจำนวนคำ">
                 </div>
 
+                <div class="welcome-cefr-bar" id="welcome-cefr-pills" role="radiogroup" aria-label="เลือกระดับความยาก CEFR">
+                    <button type="button" class="cefr-pill active" data-cefr="all">ทุกระดับ</button>
+                    <button type="button" class="cefr-pill cefr-a1" data-cefr="A1">A1</button>
+                    <button type="button" class="cefr-pill cefr-a2" data-cefr="A2">A2</button>
+                    <button type="button" class="cefr-pill cefr-b1" data-cefr="B1">B1</button>
+                    <button type="button" class="cefr-pill cefr-b2" data-cefr="B2">B2</button>
+                </div>
                 <span class="selector-hint">สุ่มคำจากคลังทั้งหมด <b id="total-words-label">3,000</b> คำ</span>
             </div>
 
@@ -248,25 +262,30 @@
                             <div class="card-face card-front glass-card">
                                 <div class="card-glass-reflection"></div>
                                 <div class="card-top-meta">
-                                    <span class="card-srs-badge" id="card-srs-badge">คำใหม่</span>
+                                    <div class="card-badges-left">
+                                        <span class="card-srs-badge" id="card-srs-badge">คำใหม่</span>
+                                        <span class="cefr-badge cefr-a1" id="card-cefr-badge">A1</span>
+                                    </div>
                                     <button type="button" id="btn-star-card" class="card-star-btn" title="ปักหมุดคำศัพท์สำคัญ (กด S)" aria-label="ปักหมุดคำศัพท์สำคัญ">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                     </button>
                                 </div>
                                 <div class="card-content">
                                     <h3 id="word" class="word">Loading...</h3>
-                                    <div style="display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 12px;">
+                                    <div class="card-word-meta">
                                         <span id="phonetic" class="phonetic"></span>
                                         <p id="part-of-speech" class="part-of-speech"></p>
+                                        <button type="button" id="btn-card-accent" class="mini-accent-btn accent-toggle-btn" title="สลับสำเนียง US / UK">US</button>
                                         <button id="btn-speak" class="speak-btn" title="ฟังเสียงอ่าน"
                                             aria-label="ฟังเสียงอ่าน">
-                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                            <svg class="speak-svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                                                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
                                             </svg>
+                                            <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
                                         </button>
                                     </div>
                                 </div>
@@ -275,7 +294,10 @@
                             <div class="card-face card-back glass-card">
                                 <div class="card-glass-reflection"></div>
                                 <div class="card-top-meta">
-                                    <span class="card-srs-badge" id="card-srs-badge-back">คำใหม่</span>
+                                    <div class="card-badges-left">
+                                        <span class="card-srs-badge" id="card-srs-badge-back">คำใหม่</span>
+                                        <span class="cefr-badge cefr-a1" id="card-cefr-badge-back">A1</span>
+                                    </div>
                                     <button type="button" id="btn-star-card-back" class="card-star-btn" title="ปักหมุดคำศัพท์สำคัญ (กด S)" aria-label="ปักหมุดคำศัพท์สำคัญ">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                     </button>
@@ -287,14 +309,25 @@
                                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
                                             <i>"<span id="example"></span>"</i>
                                             <button id="btn-speak-example" class="glass-btn-icon small speak-btn" title="ฟังเสียงประโยคตัวอย่าง" aria-label="ฟังเสียงประโยคตัวอย่าง" style="width: 32px; height: 32px; flex-shrink: 0; margin-top: -2px;">
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <svg class="speak-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                                     <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                                                 </svg>
+                                                <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
                                             </button>
                                         </div>
                                         <div class="example-translation" id="example-translation"
                                             style="margin-top: 8px; font-size: 0.9em; color: var(--text-muted);">
+                                        </div>
+                                    </div>
+                                    <div class="card-lexical-box" id="card-lexical-box" hidden>
+                                        <div class="lex-row" id="card-collocations-row" hidden>
+                                            <span class="lex-label">คำใช้คู่กัน:</span>
+                                            <div class="lex-pills" id="card-collocations"></div>
+                                        </div>
+                                        <div class="lex-row" id="card-family-row" hidden>
+                                            <span class="lex-label">คำตระกูลเดียวกัน:</span>
+                                            <div class="lex-pills" id="card-word-family"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -352,7 +385,7 @@
     <section id="summary-screen" class="screen" aria-label="สรุปผล">
         <div class="glass-panel summary-panel">
             <div class="summary-header">
-                <span class="summary-emoji" id="summary-emoji">🎉</span>
+                <span class="summary-emoji summary-emblem" id="summary-emoji" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
                 <h2 id="summary-title">จบรอบแล้ว!</h2>
                 <p id="summary-subtitle" class="summary-subtitle"></p>
             </div>
@@ -445,6 +478,9 @@
                     <span class="dash-subtitle">วิเคราะห์ความก้าวหน้าของคุณ</span>
                 </div>
                 <div style="display: flex; gap: 6px; align-items: center;">
+                    <button id="btn-dash-sync" class="glass-btn-icon small sync-open-btn" type="button" title="ซิงก์ข้ามอุปกรณ์ / Cloud Sync" aria-label="ซิงก์ข้ามอุปกรณ์">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="M12 12v6"/><path d="m15 15-3-3-3 3"/></svg>
+                    </button>
                     <button id="btn-export-data" class="glass-btn-icon small" title="สำรองข้อมูล (Export JSON)" aria-label="สำรองข้อมูล">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -657,6 +693,15 @@
                     </div>
                 </div>
 
+                <!-- CEFR Level Progression Card (A1-B2) -->
+                <div class="glass-panel dash-card liquid-card" id="dash-cefr-card">
+                    <div class="dash-card-head">
+                        <h3 class="sec-heading"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg> ความคืบหน้าตามระดับ CEFR (A1–B2)</h3>
+                        <span class="muted small">คลิกที่ระดับเพื่อเริ่มฝึกทันที</span>
+                    </div>
+                    <div class="cefr-progress-grid" id="dash-cefr-grid"></div>
+                </div>
+
                 <!-- 28-Day Study Consistency Activity Heatmap -->
                 <div class="glass-panel dash-card liquid-card" id="dash-activity-card">
                     <div class="dash-card-head">
@@ -740,6 +785,7 @@
 
                 <!-- Words tab -->
                 <div id="history-words" class="tab-panel" hidden>
+                    <div class="filter-chips cefr-filter-row" id="cefr-filter"></div>
                     <div class="filter-chips cat-filter" id="cat-filter"></div>
                     <div class="words-toolbar">
                         <div class="filter-chips" id="status-filter">
@@ -880,7 +926,7 @@
             <div id="dash-quiz-mistakes" class="tab-panel dash-panel" hidden>
                 <div class="glass-panel dash-card liquid-card" style="margin-bottom: 24px;">
                     <div class="dash-card-head" style="margin-bottom: 8px;">
-                        <h3>⚠️ คำศัพท์ที่มักจะตอบผิด</h3>
+                        <h3 class="sec-heading"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> คำศัพท์ที่มักจะตอบผิด</h3>
                         <p class="muted" style="font-size: 0.9rem;">รวบรวมคำศัพท์ที่คุณตอบผิดบ่อยที่สุดจากการทำ Quiz</p>
                     </div>
                     <div id="quiz-mistakes-action-box" style="margin-top: 12px; margin-bottom: 20px; display: none;">
@@ -889,7 +935,7 @@
                                 <circle cx="12" cy="12" r="10" />
                                 <polygon points="10 8 16 12 10 16 10 8" />
                             </svg>
-                            <span>🎯 เริ่มทำแบบทดสอบเฉพาะคำที่ตอบผิด (<span id="quiz-mistakes-total-count">0</span> คำ)</span>
+                            <span>เริ่มทำแบบทดสอบเฉพาะคำที่ตอบผิด (<span id="quiz-mistakes-total-count">0</span> คำ)</span>
                         </button>
                     </div>
                     <div id="quiz-mistakes-list" class="my-words-grid grid-list">
@@ -913,11 +959,11 @@
                     </svg>
                 </button>
                 <div class="app-title">
-                    <h2>แบบทดสอบ 📝</h2>
+                    <h2>แบบทดสอบ</h2>
                     <span class="session-mode quiz-badge">Quiz Mode</span>
                 </div>
                 <button id="btn-quiz-sound" class="glass-btn-icon small sound-toggle-btn" title="เปิด/ปิดเสียง" aria-label="เปิด/ปิดเสียง">
-                    <span class="sound-icon">🔊</span>
+                    <span class="sound-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></span>
                 </button>
             </header>
 
@@ -947,11 +993,14 @@
                         <div class="quiz-meta-bar">
                             <span id="quiz-phonetic" class="phonetic"></span>
                             <span id="quiz-pos" class="part-of-speech"></span>
-                            <button id="btn-quiz-speak" class="glass-btn-icon small quiz-speak-orb" aria-label="ฟังเสียง" title="ฟังเสียงคำศัพท์ (Space)">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <span id="quiz-cefr-badge" class="cefr-badge cefr-a1">A1</span>
+                            <button type="button" id="btn-quiz-accent" class="mini-accent-btn accent-toggle-btn" title="สลับสำเนียง US / UK">US</button>
+                            <button id="btn-quiz-speak" class="glass-btn-icon small speak-btn quiz-speak-orb" aria-label="ฟังเสียง" title="ฟังเสียงคำศัพท์ (Space)">
+                                <svg class="speak-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                     <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                                 </svg>
+                                <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
                             </button>
                         </div>
                     </div>
@@ -980,7 +1029,7 @@
     <section id="quiz-summary-screen" class="screen" aria-label="สรุปผลแบบทดสอบ">
         <div class="glass-panel summary-panel quiz-summary-panel">
             <div class="summary-header">
-                <span class="summary-emoji" id="quiz-summary-emoji">🎉</span>
+                <span class="summary-emoji summary-emblem" id="quiz-summary-emoji" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
                 <h2 id="quiz-summary-title">จบรอบทดสอบแล้ว!</h2>
                 <p id="quiz-summary-subtitle" class="summary-subtitle"></p>
             </div>
@@ -1020,8 +1069,8 @@
 
             <div id="quiz-summary-mistakes-wrap" style="width: 100%; margin-top: 18px;">
                 <div class="dash-card-head" style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="font-size: 1rem; color: #ef4444; margin: 0; display: flex; align-items: center; gap: 6px;">
-                        <span>⚠️</span> คำที่ตอบผิดในรอบนี้ (<span id="quiz-summary-mistakes-count">0</span>)
+                    <h3 class="sec-heading" style="font-size: 1rem; color: var(--danger); margin: 0;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> คำที่ตอบผิดในรอบนี้ (<span id="quiz-summary-mistakes-count">0</span>)
                     </h3>
                 </div>
                 <ul class="word-list" id="quiz-summary-mistakes-list" style="max-height: 240px; overflow-y: auto;"></ul>
@@ -1036,8 +1085,9 @@
                     </svg>
                     <span>ฝึกทำเฉพาะคำที่ตอบผิด (<span id="quiz-retry-count">0</span>)</span>
                 </button>
-                <button id="btn-quiz-retry-all" class="btn btn-primary glass-btn" style="background: linear-gradient(135deg, #a855f7, #6366f1); border: none;">
-                    🔄 เริ่มทดสอบรอบใหม่
+                <button id="btn-quiz-retry-all" class="btn btn-primary glass-btn">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+                    เริ่มทดสอบรอบใหม่
                 </button>
                 <div class="summary-links">
                     <button id="btn-quiz-summary-home" class="btn link-btn">กลับหน้าแรก</button>
@@ -1095,6 +1145,18 @@
                 <input type="range" id="quiz-count-slider" min="1" max="50" step="1" value="20" class="liquid-slider">
             </div>
             
+            <div style="margin-bottom: 16px;">
+                <label class="setup-label">ระดับความยาก (CEFR Level)</label>
+                <div class="quiz-cefr-pills" id="quiz-cefr-selector" role="radiogroup" aria-label="ระดับ CEFR">
+                    <button type="button" class="cefr-pill active" data-quiz-cefr="all">ทุกระดับ</button>
+                    <button type="button" class="cefr-pill cefr-a1" data-quiz-cefr="A1">A1</button>
+                    <button type="button" class="cefr-pill cefr-a2" data-quiz-cefr="A2">A2</button>
+                    <button type="button" class="cefr-pill cefr-b1" data-quiz-cefr="B1">B1</button>
+                    <button type="button" class="cefr-pill cefr-b2" data-quiz-cefr="B2">B2</button>
+                </div>
+                <input type="hidden" id="quiz-cefr-input" value="all">
+            </div>
+
             <div style="margin-bottom: 20px;">
                 <label class="setup-label">หมวดคำศัพท์ (Category)</label>
                 <div class="custom-select-wrapper" id="quiz-category-wrapper">
@@ -1140,7 +1202,139 @@
                 </div>
                 <span class="qs-count tabular-nums" id="quick-search-count">3,191 คำ</span>
             </div>
+            <div class="qs-cefr-bar" id="quick-search-cefr-filters">
+                <button type="button" class="qs-cefr-chip active" data-qs-cefr="all">ทุกระดับ</button>
+                <button type="button" class="qs-cefr-chip" data-qs-cefr="A1">A1</button>
+                <button type="button" class="qs-cefr-chip" data-qs-cefr="A2">A2</button>
+                <button type="button" class="qs-cefr-chip" data-qs-cefr="B1">B1</button>
+                <button type="button" class="qs-cefr-chip" data-qs-cefr="B2">B2</button>
+                <span class="qs-fuzzy-badge">Fuzzy Search Ready</span>
+            </div>
             <ul class="qs-results word-list" id="quick-search-results"></ul>
+            <div class="qs-footer-hints">
+                <span><kbd>↑</kbd> <kbd>↓</kbd> เลือกคำ</span>
+                <span><kbd>Enter</kbd> เปิด/ฟังเสียง</span>
+                <span><kbd>S</kbd> ปักหมุด</span>
+                <span><kbd>Esc</kbd> ปิด</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cloud Sync & Cross-Device Smart Merge Modal -->
+    <div id="sync-modal" class="modal-overlay" aria-hidden="true">
+        <div class="glass-panel modal-panel sync-modal-panel" role="dialog" aria-modal="true" aria-label="ซิงก์ข้อมูลข้ามอุปกรณ์">
+            <div class="sync-modal-head">
+                <div>
+                    <h3>ซิงก์ข้อมูลข้ามอุปกรณ์ (Sync)</h3>
+                    <p class="muted small" id="sb-status-text">บันทึกในเครื่อง (Local-First) · พร้อม Smart Merge</p>
+                </div>
+                <button type="button" id="btn-sync-close" class="qs-close-btn" title="ปิด">ปิด</button>
+            </div>
+            <div class="sync-tabs">
+                <button type="button" class="sync-tab-btn active" id="sync-tab-google" data-sync-pane="sync-pane-google">บัญชี Google</button>
+                <button type="button" class="sync-tab-btn" id="sync-tab-code" data-sync-pane="sync-pane-code">รหัสพกพา</button>
+                <button type="button" class="sync-tab-btn" id="sync-tab-cloud" data-sync-pane="sync-pane-cloud">Supabase</button>
+            </div>
+            <div class="sync-summary-box" id="sync-local-summary"></div>
+
+            <div id="sync-pane-google" class="sync-pane">
+                <div id="fb-file-protocol-warn" class="sync-warn-banner" hidden>
+                    กำลังเปิดแบบไฟล์ในเครื่อง (<code>file://</code>) — Google Login ต้องเปิดผ่าน <code>http://localhost</code> หรือเว็บ <code>https://</code> (ระหว่างเปิดแบบไฟล์สามารถใช้แท็บ <b>รหัสพกพา</b> แทนได้)
+                </div>
+
+                <div id="google-signed-out-box" class="google-auth-box">
+                    <p class="muted small" style="margin: 0 0 12px; line-height: 1.55;">
+                        เข้าสู่ระบบด้วยบัญชี <b>Google</b> เพื่อเก็บความจำ SRS, คำที่จำได้, คำปักหมุด และประวัติ Quiz ข้ามคอมพิวเตอร์และมือถือแบบอัตโนมัติ
+                    </p>
+                    <button type="button" id="btn-google-signin" class="google-signin-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24Z"/>
+                            <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14Z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96Z"/>
+                        </svg>
+                        <span>เข้าสู่ระบบด้วย Google</span>
+                    </button>
+                </div>
+
+                <div id="google-signed-in-box" class="google-profile-card" hidden>
+                    <div class="gp-header">
+                        <img id="google-profile-photo" class="gp-avatar" alt="Google Profile" hidden>
+                        <div id="google-profile-fallback" class="gp-avatar-fallback" aria-hidden="true">G</div>
+                        <div class="gp-meta">
+                            <b id="google-profile-name">ผู้ใช้ Google</b>
+                            <span id="google-profile-email" class="muted small"></span>
+                        </div>
+                        <span id="google-sync-badge" class="cefr-badge cefr-a1">เชื่อมต่อแล้ว</span>
+                    </div>
+                    <label class="gp-autosync-row">
+                        <input type="checkbox" id="google-auto-sync-toggle" checked>
+                        <span>ซิงก์อัตโนมัติเมื่อทบทวนคำหรือจบ Quiz</span>
+                    </label>
+                    <div class="sync-cloud-actions" style="margin-top: 10px;">
+                        <button type="button" id="btn-google-sync-now" class="btn btn-primary glass-btn">ซิงก์ตอนนี้ (Merge)</button>
+                        <button type="button" id="btn-google-signout" class="btn glass-btn">ออกจากระบบ</button>
+                    </div>
+                </div>
+
+                <details id="fb-setup-details" class="fb-setup-box">
+                    <summary>ตั้งค่า Firebase Project เอง (เปิดใช้ค่าเริ่มต้นของเว็บแล้ว)</summary>
+                    <div class="fb-setup-body">
+                        <ol class="fb-steps">
+                            <li>สร้างโปรเจกต์ฟรีที่ <b>Firebase Console</b> &rarr; เปิด <b>Authentication &rarr; Google</b></li>
+                            <li>เปิด <b>Firestore Database</b> แล้วกด <b>คัดลอก Rules</b> ด้านล่างไปวาง</li>
+                            <li>คัดลอก <code>firebaseConfig</code> จาก <i>Project Settings</i> มาวางด้านล่าง</li>
+                        </ol>
+                        <textarea id="fb-config-input" class="sync-textarea" rows="4" placeholder='วาง const firebaseConfig = { apiKey: "...", authDomain: "...", projectId: "..." }; หรือ JSON ที่นี่'></textarea>
+                        <div class="fb-setup-actions">
+                            <button type="button" id="btn-fb-save-config" class="btn btn-primary glass-btn btn-sm">บันทึก Config</button>
+                            <button type="button" id="btn-copy-fb-rules" class="btn glass-btn btn-sm">คัดลอก Rules</button>
+                            <button type="button" id="btn-fb-clear-config" class="btn glass-btn btn-sm">ล้างค่า</button>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div id="sync-pane-code" class="sync-pane" hidden>
+                <div class="sync-block">
+                    <label class="setup-label">1. สร้างรหัสซิงก์จากเครื่องนี้</label>
+                    <div class="sync-row">
+                        <input type="text" id="sync-code-output" class="sync-input" readonly placeholder="กดปุ่มเพื่อสร้างรหัส...">
+                        <button type="button" id="btn-gen-sync-code" class="btn btn-primary glass-btn btn-sm">สร้าง &amp; คัดลอก</button>
+                    </div>
+                </div>
+                <div class="sync-block">
+                    <label class="setup-label">2. นำรหัสจากเครื่องอื่นมา Smart Merge (ไม่ทับข้อมูลใหม่)</label>
+                    <textarea id="sync-code-input" class="sync-textarea" rows="3" placeholder="วางรหัส OX3K1:... ที่นี่"></textarea>
+                    <button type="button" id="btn-apply-sync-code" class="btn glass-btn full" style="margin-top: 8px;">รวมข้อมูลเข้าด้วยกัน (Smart Merge)</button>
+                </div>
+            </div>
+
+            <div id="sync-pane-cloud" class="sync-pane" hidden>
+                <p class="muted small" style="text-align: left; margin-bottom: 10px; line-height: 1.5;">
+                    เชื่อมต่อฐานข้อมูล <b>Supabase</b> ส่วนตัวของคุณเพื่อซิงก์ความจำ SRS ข้ามมือถือ-คอมอัตโนมัติ (ไม่มีค่าใช้จ่าย)
+                </p>
+                <div class="sync-block">
+                    <label class="setup-label">Supabase Project URL</label>
+                    <input type="url" id="sb-url" class="sync-input" placeholder="https://your-project.supabase.co" autocomplete="off">
+                </div>
+                <div class="sync-block">
+                    <label class="setup-label">Supabase Anon Public Key</label>
+                    <input type="password" id="sb-anon-key" class="sync-input" placeholder="eyJhbGciOi..." autocomplete="off">
+                </div>
+                <div class="sync-block">
+                    <label class="setup-label">Sync Room ID / อีเมลส่วนตัว</label>
+                    <input type="text" id="sb-sync-id" class="sync-input" placeholder="เช่น my-oxford-deck-01" autocomplete="off">
+                </div>
+                <div class="sync-cloud-actions">
+                    <button type="button" id="btn-sb-save" class="btn glass-btn btn-sm">บันทึกค่า</button>
+                    <button type="button" id="btn-copy-sb-sql" class="btn glass-btn btn-sm">คัดลอก SQL สร้างตาราง</button>
+                </div>
+                <div class="sync-cloud-actions" style="margin-top: 8px;">
+                    <button type="button" id="btn-sb-push" class="btn btn-primary glass-btn">อัปโหลดขึ้น Cloud (Push)</button>
+                    <button type="button" id="btn-sb-pull" class="btn glass-btn">ดึงมารวม (Pull &amp; Merge)</button>
+                </div>
+            </div>
         </div>
     </div>
 

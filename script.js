@@ -1,7 +1,53 @@
+// @ts-check
+
+/**
+ * @typedef {'A1'|'A2'|'B1'|'B2'} CefrLevel
+ * @typedef {Object} VocabWord
+ * @property {string} word
+ * @property {string} partOfSpeech
+ * @property {string} translation
+ * @property {string} [definition]
+ * @property {string} [example]
+ * @property {string} [exampleTranslation]
+ * @property {string} [phonetic]
+ * @property {CefrLevel} [cefr]
+ * @property {string[]} [collocations]
+ * @property {string[]} [synonyms]
+ * @property {string[]} [wordFamily]
+ *
+ * @typedef {Object} WordMastery
+ * @property {number} streak
+ * @property {number} reviewCount
+ * @property {string|number} lastStudied
+ * @property {number} nextReviewAt
+ * @property {number} intervalDays
+ *
+ * @typedef {Object} SyncConfig
+ * @property {string} url
+ * @property {string} anonKey
+ * @property {string} syncId
+ * @property {number} [lastSyncedAt]
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
     /* =========================================================
      * Constants & storage helpers
      * ========================================================= */
+    /**
+     * Built-in Firebase Web App config for zero-setup Google Sign-In across all devices/users.
+     * Custom configs pasted in the Sync modal override this locally.
+     * @type {{apiKey: string, authDomain: string, projectId: string, storageBucket?: string, messagingSenderId?: string, appId?: string, measurementId?: string}|null}
+     */
+    const FIREBASE_DEFAULT_CONFIG = {
+        apiKey: "AIzaSyAe95HLQAt1C4z0plmQmSz755tzb73kDm8",
+        authDomain: "oxflashcard.firebaseapp.com",
+        projectId: "oxflashcard",
+        storageBucket: "oxflashcard.firebasestorage.app",
+        messagingSenderId: "441794795147",
+        appId: "1:441794795147:web:872eeee84189165e62e68e",
+        measurementId: "G-36GSY6NCFC"
+    };
+
     const STORAGE = {
         status: 'ox3k_wordStatus_v1',     // { "word|pos": "known" | "review" }
         sessions: 'ox3k_sessions_v1',     // [ session records ]
@@ -11,8 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mastery: 'ox3k_word_mastery_v1',  // { [key]: { streak, reviewCount, lastStudied, nextReviewAt, intervalDays } }
         bookmarks: 'ox3k_bookmarks_v1',   // [ "word|pos", ... ]
         ActivityLog: 'ox3k_activity_v1',  // { "YYYY-MM-DD": count }
-        theme: 'ox3k_theme_mode'          // 'light' | 'dark'
+        theme: 'ox3k_theme_mode',         // 'light' | 'dark'
+        accent: 'ox3k_accent_v1',         // 'US' | 'UK'
+        sbConfig: 'ox3k_sb_config_v1',    // { url, anonKey, syncId, lastSyncedAt }
+        fbConfig: 'ox3k_fb_config_v1'     // { config, autoSync, lastSyncedAt, lastEmail }
     };
+
+    /** @type {(() => void)|null} */
+    let scheduleGoogleAutoSync = null;
 
     const ICON_SVG = {
         moon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>',
@@ -24,7 +76,261 @@ document.addEventListener('DOMContentLoaded', () => {
         target: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
         award: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>',
         compass: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
-        layers: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>'
+        layers: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+        trophy: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
+        sparkles: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>',
+        alert: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>',
+        refresh: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>',
+        search: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
+        book: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+        sprout: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8Z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2Z"/></svg>',
+        flame: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>'
+    };
+
+    const prefersReducedMotion = () =>
+        typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------------------------------------------------------
+     * Pillar 1: Native WAAPI Spring Physics (OxMotion)
+     * --------------------------------------------------------- */
+    const OxMotion = {
+        /** @param {HTMLElement|null} el */
+        cancel(el) {
+            if (!el) return;
+            const anyEl = /** @type {any} */ (el);
+            if (anyEl._oxAnim && typeof anyEl._oxAnim.cancel === 'function') {
+                try { anyEl._oxAnim.cancel(); } catch (_) {}
+                anyEl._oxAnim = null;
+            }
+        },
+        /** @param {HTMLElement|null} el */
+        springSnap(el) {
+            if (!el) return;
+            this.cancel(el);
+            const fromTf = el.style.transform;
+            const isFlipped = el.classList.contains('is-flipped') || el.classList.contains('flipped');
+            el.style.transform = '';
+            if (!fromTf || fromTf === 'none' || typeof el.animate !== 'function' || prefersReducedMotion()) return;
+            const targetTf = isFlipped ? 'rotateY(180deg)' : 'translate3d(0px, 0px, 0px) rotate(0deg)';
+            try {
+                const anim = el.animate(
+                    [{ transform: fromTf }, { transform: targetTf }],
+                    { duration: 360, easing: 'cubic-bezier(0.22, 1.38, 0.36, 1)', fill: 'none' }
+                );
+                /** @type {any} */ (el)._oxAnim = anim;
+                anim.onfinish = () => { /** @type {any} */ (el)._oxAnim = null; };
+            } catch (_) {}
+        },
+        /** @param {HTMLElement|null} el */
+        springPop(el) {
+            if (!el || typeof el.animate !== 'function' || prefersReducedMotion()) return;
+            try {
+                el.animate(
+                    [
+                        { transform: 'scale(1)' },
+                        { transform: 'scale(1.16)' },
+                        { transform: 'scale(1)' }
+                    ],
+                    { duration: 300, easing: 'cubic-bezier(0.22, 1.4, 0.36, 1)', fill: 'none' }
+                );
+            } catch (_) {}
+        },
+        /** @param {HTMLElement|null} el */
+        springEnter(el) {
+            if (!el || typeof el.animate !== 'function' || prefersReducedMotion()) return;
+            try {
+                el.animate(
+                    [
+                        { opacity: 0.45, transform: 'translate3d(0, 8px, 0) scale(0.97)' },
+                        { opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' }
+                    ],
+                    { duration: 280, easing: 'cubic-bezier(0.22, 1.32, 0.36, 1)', fill: 'none' }
+                );
+            } catch (_) {}
+        }
+    };
+
+    /* ---------------------------------------------------------
+     * Pillar 2: Celebration Confetti Engine (OxConfetti)
+     * --------------------------------------------------------- */
+    const OxConfetti = (() => {
+        let rafId = 0;
+        const COLORS = ['#4f46e5', '#10b981', '#f59e0b', '#ec4899', '#0ea5e9', '#8b5cf6'];
+        /** @param {'good'|'goal'|'perfect'} [intensity] */
+        function launch(intensity = 'good') {
+            if (prefersReducedMotion()) return;
+            const canvas = /** @type {HTMLCanvasElement|null} */ (document.getElementById('celebration-canvas'));
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            if (rafId) cancelAnimationFrame(rafId);
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            canvas.width = Math.floor(w * dpr);
+            canvas.height = Math.floor(h * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const count = intensity === 'perfect' ? 85 : (intensity === 'goal' ? 68 : 44);
+            const particles = [];
+            for (let i = 0; i < count; i++) {
+                const fromLeft = i % 3 === 0;
+                const fromRight = i % 3 === 1;
+                const originX = fromLeft ? w * 0.22 : (fromRight ? w * 0.78 : w * 0.5);
+                const angle = (fromLeft ? -0.9 : fromRight ? -2.2 : -Math.PI / 2) + (Math.random() - 0.5) * 1.1;
+                const speed = 5 + Math.random() * 8.5;
+                particles.push({
+                    x: originX + (Math.random() - 0.5) * 40,
+                    y: intensity === 'goal' ? h * 0.18 : h * 0.32,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 1.5,
+                    size: 5 + Math.random() * 5,
+                    color: COLORS[i % COLORS.length],
+                    rot: Math.random() * Math.PI * 2,
+                    vRot: (Math.random() - 0.5) * 0.24,
+                    shape: i % 4 === 0 ? 'circle' : 'rect',
+                    alpha: 1
+                });
+            }
+
+            const start = performance.now();
+            const tick = (now) => {
+                const elapsed = now - start;
+                ctx.clearRect(0, 0, w, h);
+                let alive = 0;
+                for (const p of particles) {
+                    p.vy += 0.24;
+                    p.vx *= 0.99;
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.rot += p.vRot;
+                    if (elapsed > 1400) p.alpha = Math.max(0, p.alpha - 0.025);
+                    if (p.alpha > 0.02 && p.y < h + 30) {
+                        alive++;
+                        ctx.save();
+                        ctx.globalAlpha = p.alpha;
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate(p.rot);
+                        ctx.fillStyle = p.color;
+                        if (p.shape === 'circle') {
+                            ctx.beginPath();
+                            ctx.arc(0, 0, p.size * 0.45, 0, Math.PI * 2);
+                            ctx.fill();
+                        } else {
+                            ctx.fillRect(-p.size / 2, -p.size * 0.3, p.size, p.size * 0.6);
+                        }
+                        ctx.restore();
+                    }
+                }
+                if (alive > 0 && elapsed < 2600) {
+                    rafId = requestAnimationFrame(tick);
+                } else {
+                    ctx.clearRect(0, 0, w, h);
+                    rafId = 0;
+                }
+            };
+            rafId = requestAnimationFrame(tick);
+        }
+        return { launch };
+    })();
+
+    /* ---------------------------------------------------------
+     * Pillar 3: Typo-Tolerant Fuzzy Search Engine (OxFuzzy)
+     * --------------------------------------------------------- */
+    const OxFuzzy = {
+        /** @param {string} a @param {string} b @param {number} [maxDist] */
+        levenshtein(a, b, maxDist = 2) {
+            const m = a.length;
+            const n = b.length;
+            if (Math.abs(m - n) > maxDist) return maxDist + 1;
+            const prev = new Array(n + 1);
+            const curr = new Array(n + 1);
+            for (let j = 0; j <= n; j++) prev[j] = j;
+            for (let i = 1; i <= m; i++) {
+                curr[0] = i;
+                let rowMin = curr[0];
+                const ca = a.charCodeAt(i - 1);
+                for (let j = 1; j <= n; j++) {
+                    const cost = ca === b.charCodeAt(j - 1) ? 0 : 1;
+                    const val = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
+                    curr[j] = val;
+                    if (val < rowMin) rowMin = val;
+                }
+                if (rowMin > maxDist) return maxDist + 1;
+                for (let j = 0; j <= n; j++) prev[j] = curr[j];
+            }
+            return prev[n];
+        },
+        /** @param {VocabWord} w @param {string} rawQ */
+        scoreWord(w, rawQ) {
+            const q = String(rawQ || '').trim().toLowerCase();
+            if (!q) return 1;
+            const word = (w.word || '').toLowerCase();
+            const trans = (w.translation || '').toLowerCase();
+            if (word === q) return 1000;
+            if (word.startsWith(q)) return 860 - Math.min(40, word.length);
+            const subIdx = word.indexOf(q);
+            if (subIdx !== -1) return 680 - subIdx;
+            if (trans.includes(q)) return 620;
+            if ((w.partOfSpeech || '').toLowerCase().includes(q)) return 540;
+            if (Array.isArray(w.synonyms) && w.synonyms.some(s => s.toLowerCase().includes(q))) return 510;
+            if (Array.isArray(w.collocations) && w.collocations.some(c => c.toLowerCase().includes(q))) return 490;
+            if (Array.isArray(w.wordFamily) && w.wordFamily.some(f => f.toLowerCase().includes(q))) return 470;
+            if ((w.definition || '').toLowerCase().includes(q) || (w.example || '').toLowerCase().includes(q)) return 410;
+
+            if (/^[a-z\-']+$/.test(q) && q.length >= 3) {
+                let qi = 0;
+                let firstHit = -1;
+                let lastHit = 0;
+                for (let wi = 0; wi < word.length && qi < q.length; wi++) {
+                    if (word[wi] === q[qi]) {
+                        if (firstHit === -1) firstHit = wi;
+                        lastHit = wi;
+                        qi++;
+                    }
+                }
+                if (qi === q.length) {
+                    const spanPenalty = (lastHit - firstHit) - q.length;
+                    if (spanPenalty <= 4) return 360 - spanPenalty * 20;
+                }
+                const maxD = q.length >= 5 ? 2 : 1;
+                const dist = this.levenshtein(word, q, maxD);
+                if (dist <= maxD) return 300 - dist * 75 - Math.abs(word.length - q.length);
+            }
+            return 0;
+        },
+        /** @param {string} rawText @param {string} query */
+        highlightMatch(rawText, query) {
+            const text = String(rawText || '');
+            const q = String(query || '').trim();
+            if (!q) return escapeHtml(text);
+            const idx = text.toLowerCase().indexOf(q.toLowerCase());
+            if (idx === -1) return escapeHtml(text);
+            const before = text.slice(0, idx);
+            const match = text.slice(idx, idx + q.length);
+            const after = text.slice(idx + q.length);
+            return `${escapeHtml(before)}<mark class="qs-mark">${escapeHtml(match)}</mark>${escapeHtml(after)}`;
+        }
+    };
+
+    /* ---------------------------------------------------------
+     * Pillar 5: CEFR Level Helper (OxCefr)
+     * --------------------------------------------------------- */
+    const OxCefr = {
+        /** @param {string|undefined} cefr */
+        getClass(cefr) {
+            const c = String(cefr || 'A1').toLowerCase();
+            return ['cefr-a1', 'cefr-a2', 'cefr-b1', 'cefr-b2'].includes('cefr-' + c) ? ('cefr-' + c) : 'cefr-a1';
+        },
+        /** @param {HTMLElement|null} el @param {string|undefined} cefr */
+        applyBadge(el, cefr) {
+            if (!el) return;
+            const lvl = (cefr && ['A1', 'A2', 'B1', 'B2'].includes(cefr)) ? cefr : 'A1';
+            el.textContent = lvl;
+            el.classList.remove('cefr-a1', 'cefr-a2', 'cefr-b1', 'cefr-b2');
+            el.classList.add('cefr-' + lvl.toLowerCase());
+        }
     };
     const SESSION_SIZES = [20, 30, 40, 50];
     const MAX_SESSIONS = 100;
@@ -318,6 +624,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let activityLog = loadActivityLog();
     const prefs = storage.get(STORAGE.prefs, {});
     let selectedSize = typeof prefs.size === 'number' && prefs.size >= 1 && prefs.size <= 50 ? prefs.size : 20;
+    let selectedCefr = 'all';
+    let historyCefrFilter = 'all';
+    let qsCefrFilter = 'all';
+    let qsFocusIndex = -1;
+    let preferredAccent = localStorage.getItem(STORAGE.accent) === 'UK' ? 'UK' : 'US';
+    /** @type {Map<string, string|null>} */
+    const audioUrlCache = new Map();
+    /** @type {HTMLAudioElement|null} */
+    let activeAudioEl = null;
+    let speakResetTimer = null;
 
     function isBookmarked(key) {
         return bookmarkedWords.has(key);
@@ -335,6 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveBookmarks();
         SoundFX.tick();
         updateStarUIEverywhere(key);
+        if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
         return bookmarkedWords.has(key);
     }
 
@@ -409,9 +726,11 @@ document.addEventListener('DOMContentLoaded', () => {
         saveActivityLog(activityLog);
         updateDailyGoalUI();
         if (prevCount < dailyGoal.target && dailyGoal.count >= dailyGoal.target) {
-            showToast('🎉 ยินดีด้วย! คุณพิชิตเป้าหมายการเรียนประจำวันแล้ว');
+            OxConfetti.launch('goal');
+            showToast('ยินดีด้วย! คุณพิชิตเป้าหมายการเรียนประจำวันแล้ว');
             SoundFX.victory();
         }
+        if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
     }
 
     function updateDailyGoalUI() {
@@ -427,7 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const wStreak = $('welcome-goal-streak');
         const wBar = $('welcome-goal-bar');
         const wText = $('welcome-goal-text');
-        if (wStreak) wStreak.textContent = `🔥 ${streak} วัน`;
+        if (wStreak) wStreak.innerHTML = `${ICON_SVG.flame} <span>${streak} วัน</span>`;
         if (wBar) wBar.style.width = `${pct}%`;
         if (wText) wText.textContent = `${dailyGoal.count}/${dailyGoal.target}`;
 
@@ -444,7 +763,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dBadge) {
             if (dailyGoal.count >= dailyGoal.target) {
                 dBadge.className = 'dgw-badge completed';
-                dBadge.textContent = '🎉 สำเร็จเป้าหมายแล้ว';
+                dBadge.textContent = 'สำเร็จเป้าหมายแล้ว';
             } else {
                 dBadge.className = 'dgw-badge';
                 dBadge.textContent = `เหลืออีก ${dailyGoal.target - dailyGoal.count} คำ`;
@@ -495,6 +814,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleTheme() {
         const isCurrentDark = document.body.classList.contains('dark-theme');
         applyTheme(isCurrentDark ? 'light' : 'dark');
+        if (currentScreen === 'history') {
+            if (dashTab === 'dash-overview') renderOverview(computeCategoryStats());
+            if (typeof renderQuizHistory === 'function') renderQuizHistory();
+        }
     }
 
     /* =========================================================
@@ -652,7 +975,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overallKnownEl.textContent = c.known.toLocaleString();
         overallReviewEl.textContent = c.review.toLocaleString();
         overallUnseenEl.textContent = c.unseen.toLocaleString();
-        $('total-words-label').textContent = totalWords.toLocaleString();
+        $('total-words-label').textContent = getEligibleIndices(selectedCefr).length.toLocaleString();
 
         const active = loadActiveSession();
         if (active) {
@@ -813,15 +1136,32 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =========================================================
      * Session lifecycle
      * ========================================================= */
-    function startRandomSession() {
-        // Smart SRS-prioritized selection: Due words (up to 40% of session) + Unseen/Random words
-        const due = getDueWordIndices();
+    function getEligibleIndices(cefr = selectedCefr) {
+        const lvl = typeof cefr === 'string' ? cefr : 'all';
+        const out = [];
+        for (let i = 0; i < totalWords; i++) {
+            if (lvl === 'all' || wordsData[i].cefr === lvl) out.push(i);
+        }
+        return out;
+    }
+
+    function startRandomSession(cefrOverride = null) {
+        // Smart SRS-prioritized selection constrained by CEFR deck if chosen
+        const lvl = (typeof cefrOverride === 'string' && cefrOverride) ? cefrOverride : (selectedCefr || 'all');
+        const eligible = getEligibleIndices(lvl);
+        const eligibleSet = new Set(eligible);
+        const due = getDueWordIndices().filter(i => eligibleSet.has(i));
         const duePickCount = Math.min(due.length, Math.ceil(selectedSize * 0.4));
         const pickedDue = pickRandom(due, duePickCount);
         const pickedSet = new Set(pickedDue);
-        const remainingPool = Array.from({ length: totalWords }, (_, i) => i).filter(i => !pickedSet.has(i));
-        const pickedRest = pickRandom(remainingPool, selectedSize - pickedDue.length);
-        startSession(shuffle([...pickedDue, ...pickedRest]), 'random');
+        const remainingPool = eligible.filter(i => !pickedSet.has(i));
+        const pickedRest = pickRandom(remainingPool, Math.max(0, selectedSize - pickedDue.length));
+        const picked = shuffle([...pickedDue, ...pickedRest]);
+        if (!picked.length) {
+            showToast('ไม่พบคำศัพท์ในระดับ CEFR ที่เลือก');
+            return;
+        }
+        startSession(picked, 'random', lvl === 'all' ? '' : `ระดับ ${lvl}`);
     }
 
     function startSession(indices, mode, label = '') {
@@ -857,7 +1197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function modeLabel(s) {
         if (s.mode === 'review') return 'โหมดทบทวน';
         if (s.mode === 'category') return `หมวด${s.label || ''}`;
-        return 'สุ่มคำ';
+        return s.label ? `สุ่มคำ · ${s.label}` : 'สุ่มคำ';
     }
 
     function saveActiveSession() {
@@ -958,10 +1298,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (changed === 'review') bump(statReviewEl);
     }
 
+    function setSummaryEmblem(el, pct) {
+        if (!el) return;
+        el.classList.remove('tier-gold', 'tier-good');
+        if (pct >= 90) {
+            el.classList.add('tier-gold');
+            el.innerHTML = ICON_SVG.trophy;
+        } else if (pct >= 70) {
+            el.classList.add('tier-good');
+            el.innerHTML = ICON_SVG.award;
+        } else if (pct >= 40) {
+            el.innerHTML = ICON_SVG.zap;
+        } else {
+            el.innerHTML = ICON_SVG.sprout;
+        }
+    }
+
     function bump(el) {
         el.classList.remove('bump');
         void el.offsetWidth;
         el.classList.add('bump');
+        OxMotion.springPop(el);
     }
 
     async function requestFinish() {
@@ -1021,18 +1378,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sessions.length > MAX_SESSIONS) sessions = sessions.slice(0, MAX_SESSIONS);
         storage.set(STORAGE.sessions, sessions);
         storage.remove(STORAGE.active);
+        if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
 
         session = null;
         resetCardVisual();
         lastSummary = record;
         renderSummary(record);
 
-        // Play victory sound if at least some words were answered
+        // Play victory sound & launch confetti when accuracy >= 70%
         if (record.known.length > 0 || record.review.length > 0) {
             SoundFX.victory();
         }
-
+        const donePct = record.size ? Math.round((record.known.length / record.size) * 100) : 0;
         showScreen('summary');
+        if (donePct >= 70) {
+            OxConfetti.launch(donePct === 100 ? 'perfect' : 'good');
+        }
     }
 
     /* =========================================================
@@ -1046,9 +1407,40 @@ document.addEventListener('DOMContentLoaded', () => {
         partOfSpeechEl.className = 'part-of-speech pos-' + catOf(word);
         translationEl.textContent = word.translation;
 
+        OxMotion.cancel(flashcard);
         const phoneticEl = $('phonetic');
         if (phoneticEl) {
             phoneticEl.textContent = word.phonetic || '';
+        }
+        OxCefr.applyBadge($('card-cefr-badge'), word.cefr);
+        OxCefr.applyBadge($('card-cefr-badge-back'), word.cefr);
+
+        const lexBox = $('card-lexical-box');
+        const colRow = $('card-collocations-row');
+        const colContainer = $('card-collocations');
+        const famRow = $('card-family-row');
+        const famContainer = $('card-word-family');
+        if (lexBox && colRow && colContainer && famRow && famContainer) {
+            const cols = Array.isArray(word.collocations) ? word.collocations.slice(0, 4) : [];
+            const fams = Array.isArray(word.wordFamily) ? word.wordFamily.slice(0, 4) : [];
+            if (cols.length > 0) {
+                colContainer.innerHTML = cols.map(c => `<span class="lex-chip">${escapeHtml(c)}</span>`).join('');
+                colRow.hidden = false;
+            } else {
+                colContainer.innerHTML = '';
+                colRow.hidden = true;
+            }
+            if (fams.length > 0) {
+                famContainer.innerHTML = fams.map(f => {
+                    const lookup = f.replace(/\s*\([^()]*\)\s*$/, '').trim();
+                    return `<button type="button" class="lex-chip family-chip" data-family-word="${escapeHtml(lookup)}" title="เปิดดูคำนี้ในคลังคำศัพท์">${escapeHtml(f)}</button>`;
+                }).join('');
+                famRow.hidden = false;
+            } else {
+                famContainer.innerHTML = '';
+                famRow.hidden = true;
+            }
+            lexBox.hidden = (cols.length === 0 && fams.length === 0);
         }
 
         if (word.definition) {
@@ -1347,8 +1739,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function resetSwipeVisuals() {
-        flashcard.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-        flashcard.style.transform = '';
+        flashcard.style.transition = '';
+        OxMotion.springSnap(flashcard);
         const cards = flashcard.querySelectorAll('.glass-card');
         cards.forEach(c => {
             c.style.borderColor = '';
@@ -1459,13 +1851,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const reviewN = record.review.length;
         const percent = record.size ? Math.round((knownN / record.size) * 100) : 0;
 
-        let emoji, title;
-        if (percent >= 90) { emoji = '🏆'; title = 'ยอดเยี่ยมมาก!'; }
-        else if (percent >= 70) { emoji = '🎉'; title = 'เก่งมาก!'; }
-        else if (percent >= 40) { emoji = '💪'; title = 'ทำได้ดี สู้ต่อไป!'; }
-        else { emoji = '🌱'; title = 'ค่อย ๆ เรียนรู้ไปนะ'; }
+        let title;
+        if (percent >= 90) { title = 'ยอดเยี่ยมมาก!'; }
+        else if (percent >= 70) { title = 'เก่งมาก!'; }
+        else if (percent >= 40) { title = 'ทำได้ดี สู้ต่อไป!'; }
+        else { title = 'ค่อย ๆ เรียนรู้ไปนะ'; }
 
-        summaryEmojiEl.textContent = emoji;
+        setSummaryEmblem(summaryEmojiEl, percent);
         summaryTitleEl.textContent = title;
         summarySubtitleEl.textContent = `คุณจำได้ ${knownN} จาก ${record.size} คำในรอบนี้`;
 
@@ -1501,10 +1893,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const keys = summaryTab === 'known' ? lastSummary.known : lastSummary.review;
         summaryWordList.innerHTML = keys.length
             ? keys.map((k) => wordListItem(k, summaryTab)).join('')
-            : `<li class="empty-state">${summaryTab === 'known' ? 'ยังไม่มีคำที่จำได้ในรอบนี้' : 'ไม่มีคำที่ต้องทบทวน เยี่ยมมาก! 🎉'}</li>`;
+            : `<li class="empty-state">${summaryTab === 'known' ? 'ยังไม่มีคำที่จำได้ในรอบนี้' : 'ไม่มีคำที่ต้องทบทวน เยี่ยมมาก!'}</li>`;
     }
 
-    function wordListItem(key, status) {
+    function wordListItem(key, status, highlightQ = '') {
         const idx = keyToIndex.get(key);
         if (idx === undefined) return '';
         const w = wordsData[idx];
@@ -1520,26 +1912,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const starred = isBookmarked(key);
 
         const safeWord = escapeHtml(w.word);
-        const safeTrans = escapeHtml(w.translation);
+        const dispWord = highlightQ ? OxFuzzy.highlightMatch(w.word, highlightQ) : safeWord;
+        const dispTrans = highlightQ ? OxFuzzy.highlightMatch(w.translation, highlightQ) : escapeHtml(w.translation);
+        const cefrHtml = w.cefr ? `<span class="cefr-badge ${OxCefr.getClass(w.cefr)}">${escapeHtml(w.cefr)}</span>` : '';
         const safePhonetic = escapeHtml(w.phonetic || '');
         const safePos = escapeHtml(w.partOfSpeech || 'word');
         const safeDef = escapeHtml(w.definition || '');
         const safeEx = escapeHtml(w.example || '');
         const safeExTh = escapeHtml(w.exampleTranslation || '');
+        const extraCols = Array.isArray(w.collocations) ? w.collocations.slice(0, 3) : [];
+        const extraSyns = Array.isArray(w.synonyms) ? w.synonyms.slice(0, 3) : [];
+        const extraHtml = (extraCols.length || extraSyns.length)
+            ? `<div class="wid-extra-chips">${extraCols.map(c => `<span class="lex-chip">${escapeHtml(c)}</span>`).join('')}${extraSyns.map(s => `<span class="lex-chip">≈ ${escapeHtml(s)}</span>`).join('')}</div>`
+            : '';
 
         return `<li class="word-item ${status || 'unseen'}" data-word-key="${escapeHtml(key)}">
             <div class="word-item-row">
                 <div class="word-item-left">
                     <span class="status-dot dot-${lvl}"></span>
                     <button type="button" class="word-item-speak-btn speak-btn" data-speak-word="${safeWord}" title="ฟังเสียงอ่าน" aria-label="ฟังเสียงอ่าน">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="speak-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                             <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                         </svg>
+                        <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
                     </button>
                     <div class="word-item-main">
                         <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                            <span class="word-item-word">${safeWord}</span>
+                            <span class="word-item-word">${dispWord}</span>
+                            ${cefrHtml}
                             ${safePhonetic ? `<span class="word-item-phonetic">${safePhonetic}</span>` : ''}
                             <span class="pos-badge ${cat}">${safePos}</span>
                             <span class="pill-sm ${lvl}">${lvlBadge}</span>
@@ -1547,28 +1948,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 6px;">
-                    <span class="word-item-trans">${safeTrans}</span>
+                    <span class="word-item-trans">${dispTrans}</span>
                     <button type="button" class="word-star-btn ${starred ? 'is-starred' : ''}" data-star-key="${escapeHtml(key)}" title="ปักหมุดคำศัพท์สำคัญ" aria-label="ปักหมุดคำศัพท์สำคัญ">
                         ${ICON_SVG.star}
                     </button>
                     <span class="word-item-expand-arrow" style="opacity: 0.5; font-size: 0.8rem;">▾</span>
                 </div>
             </div>
-            ${(safeDef || safeEx) ? `
+            ${(safeDef || safeEx || extraHtml) ? `
             <div class="word-item-drawer">
                 ${safeDef ? `<div class="wid-def"><b>ความหมาย:</b> ${safeDef}</div>` : ''}
                 ${safeEx ? `
                 <div class="wid-example">
                     <span>"${safeEx}"</span>
                     <button type="button" class="glass-btn-icon small word-item-speak-btn speak-btn" data-speak-example="${safeEx}" title="ฟังตัวอย่าง" style="width: 26px; height: 26px;">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="speak-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                             <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                         </svg>
+                        <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
                     </button>
                 </div>
                 ${safeExTh ? `<div class="wid-example-th">"${safeExTh}"</div>` : ''}
                 ` : ''}
+                ${extraHtml}
             </div>` : ''}
         </li>`;
     }
@@ -1765,11 +2168,11 @@ document.addEventListener('DOMContentLoaded', () => {
         $('dash-level-pill').textContent = `Level ${level} · อีก ${100 - (c.known % 100)} คำเลเวลอัพ`;
 
         let title;
-        if (studied === 0) title = 'เริ่มต้นการเดินทาง 🌱';
-        else if (dashMastery < 0.1) title = 'กำลังไปได้สวย 🚀';
-        else if (dashMastery < 0.35) title = 'ก้าวหน้าอย่างต่อเนื่อง 💪';
-        else if (dashMastery < 0.7) title = 'ใกล้เป็นเซียนแล้ว 🔥';
-        else title = 'ระดับเซียน 🏆';
+        if (studied === 0) title = 'เริ่มต้นการเดินทาง';
+        else if (dashMastery < 0.1) title = 'กำลังไปได้สวย';
+        else if (dashMastery < 0.35) title = 'ก้าวหน้าอย่างต่อเนื่อง';
+        else if (dashMastery < 0.7) title = 'ใกล้เป็นเซียนแล้ว';
+        else title = 'ระดับเซียนด้านคำศัพท์';
         $('dash-hero-title').textContent = title;
         $('dash-hero-sub').textContent =
             `จำได้แล้ว ${c.known.toLocaleString()} จาก ${totalWords.toLocaleString()} คำ · เหลืออีก ${(totalWords - c.known).toLocaleString()} คำ`;
@@ -1799,7 +2202,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="trend-label">${escapeHtml(label)}</span>
                 </div>`;
             }).join('')
-            : `<div class="empty-state big"><span class="empty-icon">📊</span><p>ยังไม่มีข้อมูลรอบการเล่น</p><small>เล่นให้จบ 1 รอบ กราฟจะแสดงที่นี่</small></div>`;
+            : `<div class="empty-state big"><span class="empty-icon">${ICON_SVG.layers}</span><p>ยังไม่มีข้อมูลรอบการเล่น</p><small>เล่นให้จบ 1 รอบ กราฟจะแสดงที่นี่</small></div>`;
 
         // Mini category bars
         $('dash-mini-cats').innerHTML = stats.map((s) => `
@@ -1814,6 +2217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSmartRecommendation(stats, c);
         updateDailyGoalUI();
         computeMasteryBreakdown();
+        renderCefrBreakdown();
         renderActivityHeatmap();
     }
 
@@ -1935,7 +2339,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Priority 4: All caught up / Ready for new words!
         iconEl.innerHTML = ICON_SVG.award;
-        titleEl.textContent = 'ยอดเยี่ยมมาก! บรรลุเป้าหมายครบถ้วน 🎉';
+        titleEl.textContent = 'ยอดเยี่ยมมาก! บรรลุเป้าหมายครบถ้วน';
         descEl.textContent = 'ทบทวนคำศัพท์ครบหมดแล้ว พร้อมที่จะก้าวหน้าและเรียนรู้คำศัพท์ใหม่ต่อไป';
         btnEl.textContent = `เรียนคำใหม่ (${selectedSize} คำ)`;
         btnEl.onclick = () => practiceUnseenWords();
@@ -1945,7 +2349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pool = Array.from({ length: totalWords }, (_, i) => i)
             .filter((i) => !wordStatus[keyOf(wordsData[i])]);
         if (!pool.length) {
-            showToast('คุณเรียนครบทั้ง 3,000 คำแล้ว! 🎉');
+            showToast('คุณเรียนครบทั้งคลังคำศัพท์แล้ว!');
             return;
         }
         if (!(await confirmReplaceActive('เริ่มเรียนรู้คำใหม่?', 'เริ่มเรียน'))) return;
@@ -2025,7 +2429,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!studiedCats.length) {
             insightGrid.innerHTML = insightCard({
-                tone: 'info', emoji: '🔍', kicker: 'ยังไม่มีข้อมูลพอสำหรับวิเคราะห์',
+                tone: 'info', emoji: ICON_SVG.search, kicker: 'ยังไม่มีข้อมูลพอสำหรับวิเคราะห์',
                 title: 'เริ่มเล่นรอบแรกกันเลย!',
                 text: 'เมื่อคุณตอบการ์ดไปสักพัก ระบบจะวิเคราะห์ว่าหมวดไหนแข็งแรง และหมวดไหนที่คุณยังจำได้ไม่ดี',
                 action: 'start', actionLabel: 'เริ่มเล่น'
@@ -2040,7 +2444,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (weakest) {
                 cards.push(insightCard({
-                    tone: 'bad', emoji: '⚠️', kicker: 'หมวดที่ต้องเสริมมากที่สุด',
+                    tone: 'bad', emoji: ICON_SVG.alert, kicker: 'หมวดที่ต้องเสริมมากที่สุด',
                     title: weakest.th, sub: weakest.en,
                     text: `ต้องทบทวน <b>${weakest.review.length}</b> คำ · ความแม่นยำ <b>${fmtPct(weakest.accuracy)}</b>`,
                     cat: weakest.id, actionLabel: 'เสริมหมวดนี้'
@@ -2048,14 +2452,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (strongest && strongest !== weakest) {
                 cards.push(insightCard({
-                    tone: 'good', emoji: '🏆', kicker: 'หมวดที่แข็งแรงที่สุด',
+                    tone: 'good', emoji: ICON_SVG.trophy, kicker: 'หมวดที่แข็งแรงที่สุด',
                     title: strongest.th, sub: strongest.en,
                     text: `จำได้ <b>${strongest.known.length}</b> คำ · ความแม่นยำ <b>${fmtPct(strongest.accuracy)}</b>`
                 }));
             }
             if (leastExplored) {
                 cards.push(insightCard({
-                    tone: 'mid', emoji: '🧭', kicker: 'หมวดที่ยังเรียนน้อยที่สุด',
+                    tone: 'mid', emoji: ICON_SVG.compass, kicker: 'หมวดที่ยังเรียนน้อยที่สุด',
                     title: leastExplored.th, sub: leastExplored.en,
                     text: `เรียนไปแล้ว <b>${fmtPct(leastExplored.coverage)}</b> (${leastExplored.studied}/${leastExplored.total.toLocaleString()} คำ)`,
                     cat: leastExplored.id, actionLabel: 'สำรวจหมวดนี้'
@@ -2063,7 +2467,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (totalReview > 0) {
                 cards.push(insightCard({
-                    tone: 'info', emoji: '🔁', kicker: 'คำค้างทบทวนทั้งหมด',
+                    tone: 'info', emoji: ICON_SVG.refresh, kicker: 'คำค้างทบทวนทั้งหมด',
                     title: `${totalReview.toLocaleString()} คำ`,
                     text: 'ทบทวนสม่ำเสมอช่วยย้ายคำเข้าสู่ความจำระยะยาว',
                     action: 'review-all', actionLabel: 'ทบทวนเลย'
@@ -2134,7 +2538,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (actContainer) {
             const n = Math.min(selectedSize, Number(total));
             actContainer.innerHTML = `<button type="button" class="btn btn-primary glass-btn btn-sm" id="btn-practice-letter" data-letter="${letter}">
-                🚀 เริ่มฝึกคำขึ้นต้นด้วยตัว ${letter} (${n} คำ)
+                เริ่มฝึกคำขึ้นต้นด้วยตัว ${letter} (${n} คำ)
             </button>`;
             actContainer.style.display = 'block';
         }
@@ -2225,7 +2629,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderSessionList() {
         if (!sessions.length) {
             sessionListEl.innerHTML = `<div class="empty-state big">
-                <span class="empty-icon">📚</span>
+                <span class="empty-icon">${ICON_SVG.book}</span>
                 <p>ยังไม่มีประวัติการเรียน</p>
                 <small>เล่นให้จบ 1 รอบ แล้วผลจะถูกบันทึกไว้ที่นี่</small>
             </div>`;
@@ -2303,6 +2707,46 @@ document.addEventListener('DOMContentLoaded', () => {
         renderHistoryWords();
     });
 
+    function renderCefrBreakdown() {
+        const grid = $('dash-cefr-grid');
+        if (!grid) return;
+        const meta = [
+            { lvl: 'A1', label: 'พื้นฐาน (A1)' },
+            { lvl: 'A2', label: 'ระดับต้น (A2)' },
+            { lvl: 'B1', label: 'ระดับกลาง (B1)' },
+            { lvl: 'B2', label: 'กลาง-สูง (B2)' }
+        ];
+        grid.innerHTML = meta.map(m => {
+            let total = 0;
+            let known = 0;
+            for (let i = 0; i < totalWords; i++) {
+                const w = wordsData[i];
+                if (w.cefr === m.lvl) {
+                    total++;
+                    if (wordStatus[keyOf(w)] === 'known') known++;
+                }
+            }
+            const pct = total > 0 ? Math.round((known / total) * 100) : 0;
+            return `<button type="button" class="cefr-prog-tile" data-dash-cefr="${m.lvl}">
+                <div class="cefr-prog-top">
+                    <span class="cefr-prog-name"><span class="cefr-badge ${OxCefr.getClass(m.lvl)}">${m.lvl}</span> ${m.label}</span>
+                    <span class="cefr-prog-count tabular-nums">${known}/${total} (${pct}%)</span>
+                </div>
+                <div class="cefr-prog-track"><div class="cefr-prog-fill ${OxCefr.getClass(m.lvl)}" style="width:${pct}%"></div></div>
+            </button>`;
+        }).join('');
+        grid.querySelectorAll('.cefr-prog-tile').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lvl = /** @type {HTMLElement} */ (btn).dataset.dashCefr || 'all';
+                selectedCefr = lvl;
+                syncWelcomeCefrUI();
+                startRandomSession(lvl);
+            });
+        });
+    }
+
+    const inCefr = (k) => historyCefrFilter === 'all' || wordsData[keyToIndex.get(k)].cefr === historyCefrFilter;
+
     function renderHistoryWords() {
         const c = countStatuses();
         filterReviewCount.textContent = c.review;
@@ -2311,6 +2755,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fStarCount) fStarCount.textContent = bookmarkedWords.size;
 
         filterChips.forEach((chip) => chip.classList.toggle('active', chip.dataset.filter === historyFilter));
+
+        const cefrFilterEl = $('cefr-filter');
+        if (cefrFilterEl && !cefrFilterEl.dataset.built) {
+            cefrFilterEl.dataset.built = '1';
+            const cefrOpts = [
+                { id: 'all', label: 'ทุกระดับ CEFR' },
+                { id: 'A1', label: 'A1' },
+                { id: 'A2', label: 'A2' },
+                { id: 'B1', label: 'B1' },
+                { id: 'B2', label: 'B2' }
+            ];
+            cefrFilterEl.innerHTML = cefrOpts.map(o =>
+                `<button type="button" class="chip ${historyCefrFilter === o.id ? 'active' : ''}" data-cefr="${o.id}">${o.label}</button>`
+            ).join('');
+            cefrFilterEl.addEventListener('click', (e) => {
+                const chip = e.target instanceof Element ? e.target.closest('[data-cefr]') : null;
+                if (!chip) return;
+                historyCefrFilter = /** @type {HTMLElement} */ (chip).dataset.cefr || 'all';
+                cefrFilterEl.querySelectorAll('.chip').forEach(b => b.classList.toggle('active', b === chip));
+                renderHistoryWords();
+            });
+        }
+
         renderCatFilter();
 
         const q = wordSearch.value.trim().toLowerCase();
@@ -2318,18 +2785,22 @@ document.addEventListener('DOMContentLoaded', () => {
             ? Array.from(bookmarkedWords)
             : Object.keys(wordStatus).filter((k) => wordStatus[k] === historyFilter);
 
-        const keys = sourceKeys
-            .filter((k) => keyToIndex.has(k))
-            .filter(inCat)
-            .filter((k) => {
-                if (!q) return true;
-                const w = wordsData[keyToIndex.get(k)];
-                return w.word.toLowerCase().includes(q) || String(w.translation).toLowerCase().includes(q);
-            })
-            .sort((a, b) => a.localeCompare(b));
+        const scoredKeys = [];
+        for (const k of sourceKeys) {
+            if (!keyToIndex.has(k) || !inCat(k) || !inCefr(k)) continue;
+            const w = wordsData[keyToIndex.get(k)];
+            const score = q ? OxFuzzy.scoreWord(w, q) : 1;
+            if (score > 0) scoredKeys.push({ key: k, score });
+        }
+        if (q) {
+            scoredKeys.sort((a, b) => (b.score - a.score) || a.key.localeCompare(b.key));
+        } else {
+            scoredKeys.sort((a, b) => a.key.localeCompare(b.key));
+        }
+        const keys = scoredKeys.map(x => x.key);
 
         historyWordList.innerHTML = keys.length
-            ? keys.map((k) => wordListItem(k, wordStatus[k] || 'review')).join('')
+            ? keys.map((k) => wordListItem(k, wordStatus[k] || 'review', q)).join('')
             : `<li class="empty-state">${q ? 'ไม่พบคำที่ค้นหา' : historyFilter === 'starred' ? 'ยังไม่มีคำที่ปักหมุด ★ (กดรูปดาวบนการ์ดหรือรายการคำเพื่อปักหมุด)' : historyFilter === 'known' ? 'ยังไม่มีคำที่จำได้' : 'ไม่มีคำที่ต้องทบทวน'}</li>`;
 
         if (historyFilter === 'starred') {
@@ -2511,7 +2982,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (quizHistory.length === 0) {
             listEl.innerHTML = `<div class="empty-state big" style="grid-column: 1 / -1;">
-                <span class="empty-icon">🏆</span>
+                <span class="empty-icon">${ICON_SVG.trophy}</span>
                 <p>คุณยังไม่เคยทำแบบทดสอบ</p>
                 <span class="muted small">ลองกด "โหมดตอบคำถาม" จากหน้าแรกดูสิ!</span>
             </div>`;
@@ -2554,8 +3025,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="display: flex; flex-wrap: wrap;">${words}${more}</div>
                 </div>`;
             } else if (item.percent === 100) {
-                incorrectHtml = `<div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed rgba(0,0,0,0.1); font-size: 0.85rem; color: #10b981; font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                    <span>✨</span> ทำคะแนนได้เต็มสมบูรณ์แบบ!
+                incorrectHtml = `<div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed rgba(128,128,128,0.2); font-size: 0.85rem; color: #10b981; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                    ${ICON_SVG.sparkles} ทำคะแนนได้เต็มสมบูรณ์แบบ
                 </div>`;
             }
 
@@ -2669,7 +3140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (Object.keys(catStats).length === 0) {
                 analysisList.innerHTML = `<div class="empty-state big" style="grid-column: 1 / -1;">
-                    <span class="empty-icon">🎯</span>
+                    <span class="empty-icon">${ICON_SVG.target}</span>
                     <p>ยังไม่มีข้อมูลวิเคราะห์</p>
                     <span class="muted small">ทำแบบทดสอบให้มากขึ้น เพื่อดูความก้าวหน้าในแต่ละหมวดหมู่</span>
                 </div>`;
@@ -2697,11 +3168,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (weakest.accuracy <= 0.75) {
                         cards.push(`
                             <article class="glass-panel insight-card liquid-card tone-bad">
-                                <span class="insight-emoji">⚠️</span>
+                                <span class="insight-emoji">${ICON_SVG.alert}</span>
                                 <span class="insight-kicker">หมวดที่ต้องเสริมด่วน</span>
                                 <h4>${weakest.meta.th}</h4>
-                                <p style="font-size: 1.05rem; color: #1e293b; line-height: 1.5; margin-top: 4px;">ความแม่นยำเพียง <b>${Math.round(weakest.accuracy * 100)}%</b> ลองกลับไปเล่น Flashcard หมวดนี้เพิ่มดูนะ!</p>
-                                <button onclick="startTargetedPractice('${weakest.id}')" style="margin-top: 16px; font-size: 1rem; padding: 12px 24px; border-radius: 12px; border: none; background: linear-gradient(135deg, #ef4444, #dc2626); color: white; cursor: pointer; box-shadow: 0 4px 12px rgba(239,68,68,0.4); font-family: inherit; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; align-self: flex-start;">🎯 ติวหมวดนี้ด่วน</button>
+                                <p style="font-size: 1.05rem; color: var(--text-main); line-height: 1.5; margin-top: 4px;">ความแม่นยำเพียง <b>${Math.round(weakest.accuracy * 100)}%</b> ลองกลับไปเล่น Flashcard หมวดนี้เพิ่มดูนะ</p>
+                                <button onclick="startTargetedPractice('${weakest.id}')" style="margin-top: 16px; font-size: 1rem; padding: 12px 24px; border-radius: 12px; border: none; background: linear-gradient(135deg, #ef4444, #dc2626); color: white; cursor: pointer; box-shadow: 0 4px 12px rgba(239,68,68,0.4); font-family: inherit; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; align-self: flex-start;">ติวหมวดนี้ด่วน</button>
                             </article>
                         `);
                     }
@@ -2710,10 +3181,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (strongest.accuracy >= 0.8 && strongest.id !== weakest.id) {
                         cards.push(`
                             <article class="glass-panel insight-card liquid-card tone-good">
-                                <span class="insight-emoji">🏆</span>
+                                <span class="insight-emoji">${ICON_SVG.trophy}</span>
                                 <span class="insight-kicker">หมวดที่แข็งแกร่งที่สุด</span>
                                 <h4>${strongest.meta.th}</h4>
-                                <p style="font-size: 1.05rem; color: #1e293b; line-height: 1.5; margin-top: 4px;">ความแม่นยำสูงถึง <b>${Math.round(strongest.accuracy * 100)}%</b> คุณมาถูกทางแล้ว ยอดเยี่ยมมาก!</p>
+                                <p style="font-size: 1.05rem; color: var(--text-main); line-height: 1.5; margin-top: 4px;">ความแม่นยำสูงถึง <b>${Math.round(strongest.accuracy * 100)}%</b> คุณมาถูกทางแล้ว ยอดเยี่ยมมาก</p>
                             </article>
                         `);
                     }
@@ -2801,16 +3272,16 @@ document.addEventListener('DOMContentLoaded', () => {
                                     min: 0,
                                     max: 100,
                                     angleLines: {
-                                        color: 'rgba(0, 0, 0, 0.1)', // Softer spokes
+                                        color: document.body.classList.contains('dark-theme') ? 'rgba(255, 255, 255, 0.12)' : 'rgba(15, 23, 42, 0.1)',
                                         lineWidth: 1
                                     },
                                     grid: {
-                                        color: 'rgba(0, 0, 0, 0.1)', // Softer web rings
+                                        color: document.body.classList.contains('dark-theme') ? 'rgba(255, 255, 255, 0.12)' : 'rgba(15, 23, 42, 0.1)',
                                         lineWidth: 1
                                     },
                                     pointLabels: {
-                                        font: { family: 'Prompt', size: 14, weight: '800' }, // Bold modern labels
-                                        color: '#334155' // Deep slate
+                                        font: { family: 'Prompt', size: 14, weight: '800' },
+                                        color: document.body.classList.contains('dark-theme') ? '#cbd5e1' : '#334155'
                                     },
                                     ticks: {
                                         stepSize: 20,
@@ -2914,7 +3385,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span style="font-size: 0.8rem; color: #ef4444; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 8px; font-weight: 600;">
                                 ตอบผิด ${w.count} ครั้ง
                             </span>
-                            <button class="glass-btn-icon small speak-btn" onclick="speakWordOverride('${escapeHtml(w.word)}', true)" title="ฟังเสียง" style="width:34px; height:34px;">🔊</button>
+                            <button class="glass-btn-icon small speak-btn" onclick="speakWordOverride('${escapeHtml(w.word)}', true, this)" title="ฟังเสียง" style="width:34px; height:34px;"><span class="speak-svg" style="display:inline-flex;">${ICON_SVG.volOn}</span><span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span></button>
                         </div>
                     `;
                     mistakesList.appendChild(div);
@@ -2945,7 +3416,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (chartEl) {
             if (quizHistory.length === 0) {
                 chartEl.innerHTML = `<div class="empty-state big" style="grid-column: 1 / -1;">
-                    <span class="empty-icon">📈</span>
+                    <span class="empty-icon">${ICON_SVG.layers}</span>
                     <p>ไม่มีข้อมูลกราฟ</p>
                     <span class="muted small">เริ่มทำแบบทดสอบครั้งแรก เพื่อสร้างกราฟสถิติของคุณ</span>
                 </div>`;
@@ -3037,14 +3508,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const selectedSize = parseInt(quizCountSlider.value, 10);
             const selectedCat = document.getElementById('quiz-category-select').value;
+            const cefrInput = document.getElementById('quiz-cefr-input');
+            const selectedQuizCefr = cefrInput ? cefrInput.value : 'all';
             const modeInput = document.getElementById('quiz-mode-input');
             const selectedQuizMode = modeInput ? modeInput.value : 'choice';
 
             let pool = [];
-            if (selectedCat === 'all') {
-                pool = Array.from({ length: totalWords }, (_, i) => i);
-            } else {
-                pool = Array.from({ length: totalWords }, (_, i) => i).filter(i => wordsData[i].partOfSpeech === selectedCat);
+            for (let i = 0; i < totalWords; i++) {
+                const w = wordsData[i];
+                if (selectedCat !== 'all' && w.partOfSpeech !== selectedCat) continue;
+                if (selectedQuizCefr !== 'all' && w.cefr !== selectedQuizCefr) continue;
+                pool.push(i);
             }
 
             if (pool.length === 0) {
@@ -3096,6 +3570,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSpeakingBtn = null;
 
     function clearSpeakingState() {
+        if (speakResetTimer) {
+            clearTimeout(speakResetTimer);
+            speakResetTimer = null;
+        }
         if (currentSpeakingBtn) {
             currentSpeakingBtn.classList.remove('is-speaking');
             currentSpeakingBtn = null;
@@ -3103,47 +3581,113 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.is-speaking').forEach(b => b.classList.remove('is-speaking'));
     }
 
+    function setSpeakingState(btn, timeoutMs = 2800) {
+        clearSpeakingState();
+        if (!btn) return;
+        currentSpeakingBtn = btn;
+        btn.classList.add('is-speaking');
+        speakResetTimer = setTimeout(() => clearSpeakingState(), timeoutMs);
+    }
+
+    function speakViaWebSpeech(text, btn) {
+        if (!window.speechSynthesis) {
+            clearSpeakingState();
+            return;
+        }
+        const langTag = preferredAccent === 'UK' ? 'en-GB' : 'en-US';
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = langTag;
+        const voicesList = (typeof availableVoices !== 'undefined' && Array.isArray(availableVoices) && availableVoices.length)
+            ? availableVoices
+            : (window.speechSynthesis.getVoices() || []);
+        const exact = voicesList.find(v =>
+            v.lang && v.lang.replace('_', '-') === langTag &&
+            (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('Samantha') || v.name.includes('Zira'))
+        ) || voicesList.find(v => v.lang && v.lang.replace('_', '-').startsWith(langTag))
+            || voicesList.find(v => v.lang && v.lang.startsWith('en'));
+        if (exact) utterance.voice = exact;
+        utterance.rate = text.includes(' ') ? 0.92 : 0.86;
+
+        if (btn) {
+            utterance.onstart = () => setSpeakingState(btn, text.includes(' ') ? 4200 : 2800);
+            utterance.onend = () => clearSpeakingState();
+            utterance.onerror = () => clearSpeakingState();
+        }
+        setTimeout(() => {
+            try {
+                if (window.speechSynthesis) window.speechSynthesis.speak(utterance);
+            } catch (_) {
+                clearSpeakingState();
+            }
+        }, 40);
+    }
+
+    async function tryPlayDictionaryMp3(wordText, btn) {
+        const clean = String(wordText || '').trim().toLowerCase();
+        if (!clean || /\s/.test(clean) || clean.length > 26 || navigator.onLine === false) return false;
+        const cacheKey = `${clean}|${preferredAccent}`;
+        let audioUrl = audioUrlCache.get(cacheKey);
+        if (audioUrl === undefined) {
+            audioUrl = null;
+            try {
+                const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+                const tid = ctrl ? setTimeout(() => ctrl.abort(), 1100) : null;
+                const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(clean)}`, ctrl ? { signal: ctrl.signal } : undefined);
+                if (tid) clearTimeout(tid);
+                if (res && res.ok) {
+                    const data = await res.json();
+                    const phs = Array.isArray(data?.[0]?.phonetics) ? data[0].phonetics : [];
+                    const urls = phs.map(p => p?.audio).filter(u => typeof u === 'string' && u.startsWith('http'));
+                    const wantUk = preferredAccent === 'UK';
+                    const matched = urls.find(u => wantUk ? /-uk[\.\-]/i.test(u) : /-us[\.\-]/i.test(u));
+                    if (matched) audioUrl = matched;
+                    else if (!wantUk && urls.length > 0) audioUrl = urls.find(u => !/-uk[\.\-]/i.test(u)) || null;
+                }
+            } catch (_) {
+                audioUrl = null;
+            }
+            audioUrlCache.set(cacheKey, audioUrl);
+        }
+        if (!audioUrl) return false;
+        try {
+            if (activeAudioEl) {
+                activeAudioEl.pause();
+                activeAudioEl.currentTime = 0;
+            }
+            const audio = activeAudioEl || new Audio();
+            activeAudioEl = audio;
+            audio.src = audioUrl;
+            audio.onended = () => clearSpeakingState();
+            audio.onerror = () => clearSpeakingState();
+            if (btn) setSpeakingState(btn, 2800);
+            await audio.play();
+            return true;
+        } catch (_) {
+            return false;
+        }
+    }
+
     function speakWordOverride(text, isManual = false, targetBtn = null) {
         if (!text) return;
         if (isSoundMuted && !isManual) return;
-        if (window.speechSynthesis) {
-            window.speechSynthesis.cancel();
-            clearSpeakingState();
-        }
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        const preferredVoice = availableVoices.find(v =>
-            v.name.includes('Google US English') ||
-            v.name.includes('Zira') ||
-            v.name.includes('Samantha') ||
-            v.name.includes('Karen') ||
-            (v.lang === 'en-US' && v.name.includes('Female'))
-        );
-        if (preferredVoice) utterance.voice = preferredVoice;
-        else {
-            const enVoice = availableVoices.find(v => v.lang.startsWith('en-'));
-            if (enVoice) utterance.voice = enVoice;
-        }
-        utterance.rate = 0.85;
+        const clean = String(text).trim();
+        if (!clean) return;
+        try {
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+        } catch (_) {}
 
-        const btn = targetBtn || (btnSpeak && btnSpeak.offsetParent !== null ? btnSpeak : null);
-        if (btn) {
-            utterance.onstart = () => {
-                clearSpeakingState();
-                currentSpeakingBtn = btn;
-                btn.classList.add('is-speaking');
-            };
-            utterance.onend = () => {
-                clearSpeakingState();
-            };
-            utterance.onerror = () => {
-                clearSpeakingState();
-            };
-        }
+        const btn = targetBtn || (btnQuizSpeak && btnQuizSpeak.offsetParent !== null ? btnQuizSpeak : (btnSpeak && btnSpeak.offsetParent !== null ? btnSpeak : null));
+        if (btn) setSpeakingState(btn, clean.includes(' ') ? 4200 : 2800);
 
-        setTimeout(() => {
-            if (window.speechSynthesis) window.speechSynthesis.speak(utterance);
-        }, 50);
+        if (isManual && !clean.includes(' ') && navigator.onLine !== false) {
+            tryPlayDictionaryMp3(clean, btn).then(played => {
+                if (!played) speakViaWebSpeech(clean, btn);
+            }).catch(() => speakViaWebSpeech(clean, btn));
+        } else {
+            speakViaWebSpeech(clean, btn);
+        }
     }
     window.speakWordOverride = speakWordOverride;
 
@@ -3152,7 +3696,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (quizSession.currentIndex >= quizSession.indices.length) {
             // End of quiz
             SoundFX.victory();
-            showToast(`สุดยอด! คุณทำคะแนนได้ ${quizSession.score} / ${quizSession.indices.length} 🎉`);
+            const qPct = quizSession.indices.length ? Math.round((quizSession.score / quizSession.indices.length) * 100) : 0;
+            if (qPct >= 70) {
+                OxConfetti.launch(qPct === 100 ? 'perfect' : 'good');
+            }
+            showToast(`สุดยอด! คุณทำคะแนนได้ ${quizSession.score} / ${quizSession.indices.length}`);
 
             const timeSpentSec = Math.round((Date.now() - quizSession.startTime) / 1000);
             const finishedQuiz = {
@@ -3183,6 +3731,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (quizHistory.length > 50) quizHistory.pop(); // Keep last 50
             localStorage.setItem('oxford3000_quiz_history', JSON.stringify(quizHistory));
+            if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
 
             // Refresh dashboard
             if (typeof renderHistory === 'function') renderHistory();
@@ -3223,6 +3772,8 @@ document.addEventListener('DOMContentLoaded', () => {
             qPos.textContent = meta.th;
             qPos.className = 'part-of-speech pos-' + catOf(correctWord);
         }
+        OxCefr.applyBadge($('quiz-cefr-badge'), correctWord.cefr);
+        OxMotion.springEnter(quizWord);
         const qPhonetic = document.getElementById('quiz-phonetic');
 
         quizCurrentIndex.textContent = quizSession.currentIndex + 1;
@@ -3405,12 +3956,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = record.indices.length;
         const wrong = total - record.score;
 
-        let emoji = '🎉';
         let title = 'จบรอบทดสอบแล้ว!';
-        if (percent === 100) { emoji = '👑'; title = 'ยอดเยี่ยม สมบูรณ์แบบ 100%!'; }
-        else if (percent >= 80) { emoji = '🎉'; title = 'ผ่านเกณฑ์ระดับยอดเยี่ยม!'; }
-        else if (percent >= 50) { emoji = '👍'; title = 'ทำได้ดี! พัฒนาขึ้นเรื่อยๆ'; }
-        else { emoji = '💪'; title = 'สู้ต่อไป! ทบทวนจุดที่ผิดอีกนิด'; }
+        if (percent === 100) { title = 'ยอดเยี่ยม สมบูรณ์แบบ 100%!'; }
+        else if (percent >= 80) { title = 'ผ่านเกณฑ์ระดับยอดเยี่ยม!'; }
+        else if (percent >= 50) { title = 'ทำได้ดี! พัฒนาขึ้นเรื่อยๆ'; }
+        else { title = 'สู้ต่อไป! ทบทวนจุดที่ผิดอีกนิด'; }
 
         const emojiEl = document.getElementById('quiz-summary-emoji');
         const titleEl = document.getElementById('quiz-summary-title');
@@ -3421,7 +3971,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const wrongEl = document.getElementById('quiz-summary-wrong');
         const timeEl = document.getElementById('quiz-summary-time');
 
-        if (emojiEl) emojiEl.textContent = emoji;
+        setSummaryEmblem(emojiEl, percent);
         if (titleEl) titleEl.textContent = title;
         if (subtitleEl) {
             const catMeta = CATEGORY_META[record.category];
@@ -3494,7 +4044,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div style="display:flex; align-items:center; gap:8px;">
                             <span class="qmi-trans">${escapeHtml(w.translation)}</span>
-                            <button type="button" class="glass-btn-icon small speak-btn" data-speak-word="${escapeHtml(w.word)}" title="ฟังเสียง" style="width:34px; height:34px;">🔊</button>
+                            <button type="button" class="glass-btn-icon small speak-btn" data-speak-word="${escapeHtml(w.word)}" title="ฟังเสียง" style="width:34px; height:34px;"><span class="speak-svg" style="display:inline-flex;">${ICON_SVG.volOn}</span><span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span></button>
                         </div>
                     `;
                     listEl.appendChild(li);
@@ -3560,7 +4110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isSoundMuted = !isSoundMuted;
         storage.set('ox3k_sound_muted', isSoundMuted);
         updateSoundUI();
-        showToast(isSoundMuted ? 'ปิดเสียงแล้ว 🔇' : 'เปิดเสียงแล้ว 🔊');
+        showToast(isSoundMuted ? 'ปิดเสียงอัตโนมัติแล้ว (กดปุ่มลำโพงฟังได้)' : 'เปิดเสียงอ่านอัตโนมัติแล้ว');
         if (!isSoundMuted) SoundFX.next();
     }
 
@@ -3681,7 +4231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            showToast('สำรองข้อมูลเรียบร้อยแล้ว 💾');
+            showToast('สำรองข้อมูลเรียบร้อยแล้ว');
         });
     }
 
@@ -3726,7 +4276,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderHistory();
                     if (typeof renderQuizHistory === 'function') renderQuizHistory();
                     updateDailyGoalUI();
-                    showToast('นำเข้าข้อมูลสำเร็จแล้ว 🎉');
+                    showToast('นำเข้าข้อมูลสำเร็จแล้ว');
                 } catch (err) {
                     showToast('ไฟล์ข้อมูลไม่ถูกต้อง ไม่สามารถนำเข้าได้');
                 }
@@ -3897,31 +4447,51 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderQuickSearchResults() {
         if (!quickSearchResults) return;
         const q = (quickSearchInput ? quickSearchInput.value : '').trim().toLowerCase();
-        const matchedKeys = [];
+        const scored = [];
 
         keyToIndex.forEach((idx, key) => {
             if (qsActiveFilter === 'starred' && !bookmarkedWords.has(key)) return;
             if (qsActiveFilter === 'due' && !isWordDueSRS(key)) return;
             if (qsActiveFilter === 'review' && wordStatus[key] !== 'review') return;
 
-            if (q) {
-                const w = wordsData[idx];
-                const matchW = w.word.toLowerCase().includes(q);
-                const matchT = String(w.translation || '').toLowerCase().includes(q);
-                const matchD = String(w.definition || '').toLowerCase().includes(q);
-                if (!matchW && !matchT && !matchD) return;
-            }
-            matchedKeys.push(key);
+            const w = wordsData[idx];
+            if (qsCefrFilter !== 'all' && w.cefr !== qsCefrFilter) return;
+
+            const score = q ? OxFuzzy.scoreWord(w, q) : 1;
+            if (score > 0) scored.push({ key, word: w.word, score });
         });
 
-        if (quickSearchCount) {
-            quickSearchCount.textContent = `${matchedKeys.length.toLocaleString()} คำ`;
+        if (q) {
+            scored.sort((a, b) => (b.score - a.score) || a.word.localeCompare(b.word));
         }
 
-        const topKeys = matchedKeys.slice(0, 25);
-        quickSearchResults.innerHTML = topKeys.length
-            ? topKeys.map(k => wordListItem(k, wordStatus[k] || 'unseen')).join('')
-            : `<li class="empty-state">ไม่พบคำศัพท์ที่ตรงกับเงื่อนไข</li>`;
+        if (quickSearchCount) {
+            quickSearchCount.textContent = `${scored.length.toLocaleString()} คำ`;
+        }
+
+        const topItems = scored.slice(0, 40);
+        if (!topItems.length) {
+            qsFocusIndex = -1;
+            quickSearchResults.innerHTML = `<li class="empty-state">ไม่พบคำศัพท์ที่ตรงกับเงื่อนไข</li>`;
+            return;
+        }
+        qsFocusIndex = q ? 0 : -1;
+        quickSearchResults.innerHTML = topItems.map((it, i) => {
+            let html = wordListItem(it.key, wordStatus[it.key] || 'unseen', q);
+            if (i === qsFocusIndex) {
+                html = html.replace('class="word-item ', 'class="word-item qs-focused ');
+            }
+            return html;
+        }).join('');
+    }
+
+    function updateQsFocus(newIdx) {
+        if (!quickSearchResults) return;
+        const items = Array.from(quickSearchResults.querySelectorAll('.word-item'));
+        if (!items.length) { qsFocusIndex = -1; return; }
+        qsFocusIndex = ((newIdx % items.length) + items.length) % items.length;
+        items.forEach((li, i) => li.classList.toggle('qs-focused', i === qsFocusIndex));
+        items[qsFocusIndex].scrollIntoView({ block: 'nearest' });
     }
 
     wireWordListEvents(quickSearchResults);
@@ -3936,17 +4506,1041 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (quickSearchInput) {
         quickSearchInput.addEventListener('input', renderQuickSearchResults);
+        quickSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                updateQsFocus(qsFocusIndex + 1);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                updateQsFocus(qsFocusIndex <= 0 ? 0 : qsFocusIndex - 1);
+            } else if (e.key === 'Enter') {
+                const items = quickSearchResults ? Array.from(quickSearchResults.querySelectorAll('.word-item')) : [];
+                const targetLi = items[qsFocusIndex >= 0 ? qsFocusIndex : 0];
+                if (targetLi) {
+                    e.preventDefault();
+                    targetLi.classList.toggle('is-expanded');
+                    const spkBtn = targetLi.querySelector('.word-item-speak-btn');
+                    const spkWord = spkBtn ? spkBtn.getAttribute('data-speak-word') : '';
+                    if (spkWord) speakWordOverride(spkWord, true, spkBtn);
+                }
+            }
+        });
     }
     if (quickSearchFilters) {
         quickSearchFilters.addEventListener('click', (e) => {
-            const chip = e.target.closest('[data-qs-filter]');
+            const chip = e.target instanceof Element ? e.target.closest('[data-qs-filter]') : null;
             if (!chip) return;
-            qsActiveFilter = chip.dataset.qsFilter;
+            qsActiveFilter = /** @type {HTMLElement} */ (chip).dataset.qsFilter || 'all';
             quickSearchFilters.querySelectorAll('.qs-chip').forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
             renderQuickSearchResults();
         });
     }
+    const qsCefrBar = $('quick-search-cefr-filters');
+    if (qsCefrBar) {
+        qsCefrBar.addEventListener('click', (e) => {
+            const chip = e.target instanceof Element ? e.target.closest('[data-qs-cefr]') : null;
+            if (!chip) return;
+            qsCefrFilter = /** @type {HTMLElement} */ (chip).dataset.qsCefr || 'all';
+            qsCefrBar.querySelectorAll('.qs-cefr-chip').forEach(c => c.classList.toggle('active', c === chip));
+            renderQuickSearchResults();
+        });
+    }
+
+    // Welcome CEFR Deck Selector & UI Sync
+    function syncWelcomeCefrUI() {
+        document.querySelectorAll('#welcome-cefr-pills .cefr-pill').forEach(btn => {
+            btn.classList.toggle('active', (/** @type {HTMLElement} */ (btn).dataset.cefr || 'all') === selectedCefr);
+        });
+        const lbl = $('total-words-label');
+        if (lbl) lbl.textContent = getEligibleIndices(selectedCefr).length.toLocaleString();
+    }
+    const welcomeCefrBar = $('welcome-cefr-pills');
+    if (welcomeCefrBar) {
+        welcomeCefrBar.addEventListener('click', (e) => {
+            const btn = e.target instanceof Element ? e.target.closest('[data-cefr]') : null;
+            if (!btn) return;
+            selectedCefr = /** @type {HTMLElement} */ (btn).dataset.cefr || 'all';
+            syncWelcomeCefrUI();
+            SoundFX.tick();
+        });
+    }
+    syncWelcomeCefrUI();
+
+    // Quiz Setup CEFR Level Selector
+    const quizCefrSelector = $('quiz-cefr-selector');
+    if (quizCefrSelector) {
+        quizCefrSelector.addEventListener('click', (e) => {
+            const btn = e.target instanceof Element ? e.target.closest('[data-quiz-cefr]') : null;
+            if (!btn) return;
+            const val = /** @type {HTMLElement} */ (btn).dataset.quizCefr || 'all';
+            const input = /** @type {HTMLInputElement|null} */ ($('quiz-cefr-input'));
+            if (input) input.value = val;
+            quizCefrSelector.querySelectorAll('.cefr-pill').forEach(b => b.classList.toggle('active', b === btn));
+            SoundFX.tick();
+        });
+    }
+
+    // Clickable Word Family chips on Flashcard Back -> Open Quick Search directly on related word
+    const cardWordFamilyEl = $('card-word-family');
+    if (cardWordFamilyEl) {
+        cardWordFamilyEl.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const btn = e.target instanceof Element ? e.target.closest('.family-chip') : null;
+            if (!btn) return;
+            const targetWord = btn.getAttribute('data-family-word') || '';
+            if (!targetWord) return;
+            openQuickSearch();
+            if (quickSearchInput) {
+                quickSearchInput.value = targetWord;
+                renderQuickSearchResults();
+            }
+            speakWordOverride(targetWord, true);
+        });
+    }
+
+    // US / UK Accent Switcher Buttons
+    function syncAccentButtonsUI() {
+        document.querySelectorAll('.accent-toggle-btn').forEach(btn => {
+            btn.textContent = preferredAccent;
+            btn.classList.toggle('is-uk', preferredAccent === 'UK');
+        });
+    }
+    document.querySelectorAll('.accent-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            preferredAccent = preferredAccent === 'US' ? 'UK' : 'US';
+            try { localStorage.setItem(STORAGE.accent, preferredAccent); } catch (_) {}
+            syncAccentButtonsUI();
+            SoundFX.tick();
+            showToast(`เปลี่ยนสำเนียงเสียงอ่านเป็น ${preferredAccent === 'UK' ? 'อังกฤษ (UK)' : 'อเมริกัน (US)'}`);
+        });
+    });
+    syncAccentButtonsUI();
+
+    /* =========================================================
+     * Pillar 7: Cloud Sync & Cross-Device Smart Merge Engine (OxSync)
+     * ========================================================= */
+    const SUPABASE_SCHEMA_SQL = `-- Run once in Supabase Dashboard -> SQL Editor
+create table if not exists public.oxford_user_sync (
+  sync_id text primary key,
+  payload jsonb not null,
+  updated_at timestamptz not null default now()
+);
+alter table public.oxford_user_sync enable row level security;
+create policy "Allow anon read/write by room id"
+  on public.oxford_user_sync
+  for all
+  to anon
+  using (true)
+  with check (true);`;
+
+    const OxSync = {
+        getConfig() {
+            const raw = storage.get(STORAGE.sbConfig, null);
+            return (raw && typeof raw === 'object') ? raw : { url: '', anonKey: '', syncId: '', lastSyncedAt: 0 };
+        },
+        /** @param {SyncConfig} cfg */
+        saveConfig(cfg) {
+            storage.set(STORAGE.sbConfig, cfg);
+            this.refreshStatusUI();
+        },
+        buildPayload() {
+            return {
+                v: 1,
+                exportedAt: Date.now(),
+                status: { ...wordStatus },
+                mastery: { ...wordMastery },
+                bookmarks: Array.from(bookmarkedWords),
+                sessions: sessions.slice(0, 60),
+                activityLog: { ...activityLog },
+                dailyGoal: { ...dailyGoal },
+                prefs: { size: selectedSize, accent: preferredAccent }
+            };
+        },
+        /** @param {any} remote */
+        mergePayload(remote) {
+            if (!remote || typeof remote !== 'object') {
+                throw new Error('ข้อมูลซิงก์ไม่ถูกต้อง');
+            }
+            const toMs = (v) => {
+                if (typeof v === 'number') return v;
+                if (typeof v === 'string') return new Date(v).getTime() || 0;
+                return 0;
+            };
+            const remoteMastery = (remote.mastery && typeof remote.mastery === 'object') ? remote.mastery : {};
+            const mergedMastery = { ...wordMastery };
+            for (const [k, rm] of Object.entries(remoteMastery)) {
+                if (!rm || typeof rm !== 'object' || !keyToIndex.has(k)) continue;
+                const lm = mergedMastery[k];
+                const rTs = toMs(rm.lastStudied);
+                const lTs = lm ? toMs(lm.lastStudied) : 0;
+                if (!lm || rTs > lTs || (rTs === lTs && (rm.reviewCount || 0) > (lm.reviewCount || 0))) {
+                    mergedMastery[k] = rm;
+                }
+            }
+            wordMastery = mergedMastery;
+            saveWordMastery(wordMastery);
+
+            const remoteStatus = (remote.status && typeof remote.status === 'object') ? remote.status : {};
+            let wordsAdded = 0;
+            for (const [k, rVal] of Object.entries(remoteStatus)) {
+                if (!keyToIndex.has(k) || !VALID_STATUS.includes(rVal)) continue;
+                if (!wordStatus[k]) {
+                    wordStatus[k] = rVal;
+                    wordsAdded++;
+                } else if (wordStatus[k] !== rVal) {
+                    const rTs = toMs(remoteMastery[k]?.lastStudied);
+                    const lTs = toMs(wordMastery[k]?.lastStudied);
+                    if (rTs > lTs) wordStatus[k] = rVal;
+                }
+            }
+            storage.set(STORAGE.status, wordStatus);
+
+            if (Array.isArray(remote.bookmarks)) {
+                remote.bookmarks.forEach(k => {
+                    if (typeof k === 'string' && keyToIndex.has(k)) bookmarkedWords.add(k);
+                });
+                saveBookmarks();
+            }
+
+            const seenSig = new Set(sessions.map(s => `${s.date || s.id || ''}|${s.mode || ''}|${s.size || 0}`));
+            let sessionsAdded = 0;
+            if (Array.isArray(remote.sessions)) {
+                for (const rs of remote.sessions) {
+                    if (!rs || typeof rs !== 'object' || !Array.isArray(rs.known)) continue;
+                    const sig = `${rs.date || rs.id || ''}|${rs.mode || ''}|${rs.size || 0}`;
+                    if (!seenSig.has(sig)) {
+                        seenSig.add(sig);
+                        sessions.push(rs);
+                        sessionsAdded++;
+                    }
+                }
+                sessions.sort((a, b) => toMs(b.date) - toMs(a.date));
+                sessions = sessions.slice(0, MAX_SESSIONS);
+                storage.set(STORAGE.sessions, sessions);
+            }
+
+            if (remote.activityLog && typeof remote.activityLog === 'object') {
+                for (const [day, cnt] of Object.entries(remote.activityLog)) {
+                    activityLog[day] = Math.max(Number(activityLog[day] || 0), Number(cnt || 0));
+                }
+                saveActivityLog(activityLog);
+            }
+
+            const today = getTodayDateString();
+            if (remote.dailyGoal && remote.dailyGoal.date === today) {
+                if (dailyGoal.date !== today) {
+                    dailyGoal = { target: Number(remote.dailyGoal.target || 20), date: today, count: Number(remote.dailyGoal.count || 0) };
+                } else {
+                    dailyGoal.count = Math.max(Number(dailyGoal.count || 0), Number(remote.dailyGoal.count || 0));
+                    dailyGoal.target = Math.max(Number(dailyGoal.target || 20), Number(remote.dailyGoal.target || 20));
+                }
+                saveDailyGoal(dailyGoal);
+            }
+
+            renderWelcome();
+            updateDailyGoalUI();
+            if (currentScreen === 'history') {
+                renderHistory();
+            }
+            return {
+                wordsAdded,
+                totalTracked: Object.keys(wordStatus).length,
+                sessionsAdded,
+                bookmarksTotal: bookmarkedWords.size
+            };
+        },
+        encodeCode(payload) {
+            const json = JSON.stringify(payload);
+            const bytes = new TextEncoder().encode(json);
+            let bin = '';
+            for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+            const b64 = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+            return `OX3K1:${b64}`;
+        },
+        /** @param {string} raw */
+        decodeCode(raw) {
+            const trimmed = String(raw || '').trim();
+            if (!trimmed.startsWith('OX3K1:')) {
+                throw new Error('รูปแบบรหัสไม่ถูกต้อง (ต้องขึ้นต้นด้วย OX3K1:)');
+            }
+            let b64 = trimmed.slice(6).replace(/-/g, '+').replace(/_/g, '/');
+            while (b64.length % 4) b64 += '=';
+            const bin = atob(b64);
+            const bytes = new Uint8Array(bin.length);
+            for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+            const json = new TextDecoder().decode(bytes);
+            return JSON.parse(json);
+        },
+        async pushToCloud() {
+            const cfg = this.getConfig();
+            if (!cfg.url || !cfg.anonKey || !cfg.syncId) {
+                throw new Error('กรุณากรอก URL, Anon Key และ Sync Room ID ให้ครบ');
+            }
+            const cleanUrl = cfg.url.replace(/\/+$/, '');
+            const endpoint = `${cleanUrl}/rest/v1/oxford_user_sync?on_conflict=sync_id`;
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': cfg.anonKey,
+                    'Authorization': `Bearer ${cfg.anonKey}`,
+                    'Prefer': 'resolution=merge-duplicates'
+                },
+                body: JSON.stringify({
+                    sync_id: cfg.syncId,
+                    payload: this.buildPayload(),
+                    updated_at: new Date().toISOString()
+                })
+            });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            cfg.lastSyncedAt = Date.now();
+            this.saveConfig(cfg);
+            return true;
+        },
+        async pullFromCloud() {
+            const cfg = this.getConfig();
+            if (!cfg.url || !cfg.anonKey || !cfg.syncId) {
+                throw new Error('กรุณากรอก URL, Anon Key และ Sync Room ID ให้ครบ');
+            }
+            const cleanUrl = cfg.url.replace(/\/+$/, '');
+            const endpoint = `${cleanUrl}/rest/v1/oxford_user_sync?sync_id=eq.${encodeURIComponent(cfg.syncId)}&select=payload,updated_at`;
+            const res = await fetch(endpoint, {
+                headers: {
+                    'apikey': cfg.anonKey,
+                    'Authorization': `Bearer ${cfg.anonKey}`
+                }
+            });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const rows = await res.json();
+            if (!Array.isArray(rows) || rows.length === 0 || !rows[0]?.payload) {
+                throw new Error('ยังไม่มีข้อมูลสำหรับ Room ID นี้บน Cloud');
+            }
+            const merged = this.mergePayload(rows[0].payload);
+            cfg.lastSyncedAt = Date.now();
+            this.saveConfig(cfg);
+            return merged;
+        },
+        refreshStatusUI() {
+            const cfg = this.getConfig();
+            const dot = $('sync-status-dot');
+            const sub = $('sb-status-text');
+            const hasCloud = !!(cfg.url && cfg.anonKey && cfg.syncId);
+            if (dot) dot.classList.toggle('is-synced', hasCloud && !!cfg.lastSyncedAt);
+            if (sub) {
+                if (hasCloud && cfg.lastSyncedAt) {
+                    sub.textContent = `ซิงก์ Cloud ล่าสุด ${new Date(cfg.lastSyncedAt).toLocaleTimeString('th-TH')}`;
+                } else if (hasCloud) {
+                    sub.textContent = 'ตั้งค่า Cloud แล้ว · พร้อมกด Push / Pull';
+                } else {
+                    sub.textContent = 'บันทึกในเครื่อง (Local-First) · พร้อม Smart Merge';
+                }
+            }
+        }
+    };
+
+    const FIREBASE_SDK_BASE = 'https://www.gstatic.com/firebasejs/10.14.1';
+    const FIRESTORE_RULES_SNIPPET = [
+        'rules_version = \'2\';',
+        'service cloud.firestore {',
+        '  match /databases/{database}/documents {',
+        '    match /oxford_users/{userId} {',
+        '      allow read, write: if request.auth != null && request.auth.uid == userId;',
+        '    }',
+        '  }',
+        '}'
+    ].join('\n');
+
+    /**
+     * Two-way Google Sign-In & Cloud Firestore Sync engine (Firebase JS v10 Modular ESM).
+     * Lazy-loads SDK only when configured, online, and served over http/https.
+     */
+    const OxGoogleSync = {
+        _state: {
+            /** @type {{ uid: string, displayName: string, email: string, photoURL: string }|null} */
+            user: null,
+            syncing: false,
+            lastError: '',
+            /** @type {Promise<any>|null} */
+            sdkPromise: null,
+            /** @type {{ appMod: any, authMod: any, fsMod: any, app: any, auth: any, db: any }|null} */
+            modules: null,
+            /** @type {(() => void)|null} */
+            unsubAuth: null,
+            /** @type {ReturnType<typeof setTimeout>|null} */
+            debounceTimer: null,
+            initializedConfigKey: '',
+            listenerReadyKey: ''
+        },
+
+        isFileProtocol() {
+            return typeof window !== 'undefined' && !!window.location && window.location.protocol === 'file:';
+        },
+
+        /**
+         * Parses JSON or a raw JS snippet (`const firebaseConfig = { ... };`) safely without eval.
+         * @param {string} raw
+         */
+        parseConfig(raw) {
+            if (!raw || typeof raw !== 'string') return null;
+            const trimmed = raw.trim();
+            if (!trimmed) return null;
+            const allowed = ['apiKey', 'authDomain', 'projectId', 'storageBucket', 'messagingSenderId', 'appId', 'measurementId'];
+            /** @type {Record<string, string>} */
+            const extracted = {};
+            try {
+                const parsed = JSON.parse(trimmed);
+                if (parsed && typeof parsed === 'object') {
+                    allowed.forEach((key) => {
+                        if (typeof parsed[key] === 'string' && parsed[key].trim()) {
+                            extracted[key] = parsed[key].trim();
+                        }
+                    });
+                }
+            } catch (_) {
+                const withoutLineComments = trimmed.replace(/^\s*\/\/.*$/gm, '');
+                allowed.forEach((key) => {
+                    const re = new RegExp('["\']?' + key + '["\']?\\s*:\\s*["\']([^"\']+)["\']');
+                    const match = withoutLineComments.match(re);
+                    if (match && match[1] && match[1].trim()) {
+                        extracted[key] = match[1].trim();
+                    }
+                });
+            }
+            if (!extracted.apiKey || !extracted.authDomain || !extracted.projectId) {
+                return null;
+            }
+            return /** @type {{apiKey: string, authDomain: string, projectId: string, storageBucket?: string, messagingSenderId?: string, appId?: string, measurementId?: string}} */ (extracted);
+        },
+
+        /** @returns {{ config?: any, autoSync?: boolean, lastSyncedAt?: number, lastEmail?: string }} */
+        readStore() {
+            try {
+                const raw = localStorage.getItem(STORAGE.fbConfig);
+                return raw ? (JSON.parse(raw) || {}) : {};
+            } catch (_) {
+                return {};
+            }
+        },
+
+        /** @param {{ config?: any, autoSync?: boolean, lastSyncedAt?: number, lastEmail?: string }} patch */
+        saveStore(patch) {
+            try {
+                const next = { ...this.readStore(), ...patch };
+                localStorage.setItem(STORAGE.fbConfig, JSON.stringify(next));
+                return next;
+            } catch (_) {
+                return {};
+            }
+        },
+
+        getConfig() {
+            const stored = this.readStore();
+            if (stored && stored.config && stored.config.apiKey && stored.config.authDomain && stored.config.projectId) {
+                return stored.config;
+            }
+            return FIREBASE_DEFAULT_CONFIG || null;
+        },
+
+        getCustomConfig() {
+            const stored = this.readStore();
+            return (stored && stored.config) ? stored.config : null;
+        },
+
+        /** @param {{apiKey: string, authDomain: string, projectId: string, storageBucket?: string, messagingSenderId?: string, appId?: string, measurementId?: string}} cfg */
+        saveConfig(cfg) {
+            const prevKey = JSON.stringify(this.getConfig() || null);
+            const nextKey = JSON.stringify(cfg);
+            this.saveStore({ config: cfg });
+            if (prevKey !== nextKey) {
+                this.resetSdkState();
+            }
+        },
+
+        resetSdkState() {
+            if (typeof this._state.unsubAuth === 'function') {
+                try { this._state.unsubAuth(); } catch (_) {}
+            }
+            this._state.unsubAuth = null;
+            this._state.sdkPromise = null;
+            this._state.modules = null;
+            this._state.initializedConfigKey = '';
+            this._state.listenerReadyKey = '';
+            this._state.user = null;
+            this._state.lastError = '';
+        },
+
+        clearConfig() {
+            if (this._state.debounceTimer) {
+                clearTimeout(this._state.debounceTimer);
+                this._state.debounceTimer = null;
+            }
+            try { localStorage.removeItem(STORAGE.fbConfig); } catch (_) {}
+            this.resetSdkState();
+        },
+
+        getAutoSync() {
+            const stored = this.readStore();
+            return stored.autoSync !== false;
+        },
+
+        /** @param {boolean} flag */
+        setAutoSync(flag) {
+            this.saveStore({ autoSync: !!flag });
+        },
+
+        async ensureSdk() {
+            const cfg = this.getConfig();
+            if (!cfg) {
+                throw new Error('กรุณาวาง Firebase Config ก่อนเข้าสู่ระบบ');
+            }
+            if (this.isFileProtocol()) {
+                throw new Error('Google Login ใช้ไม่ได้เมื่อเปิดแบบ file:// กรุณาเปิดผ่าน http:// หรือ https://');
+            }
+            if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+                throw new Error('ขณะนี้เครื่องออฟไลน์อยู่ ไม่สามารถเชื่อมต่อ Google ได้');
+            }
+            const cfgKey = JSON.stringify(cfg);
+            if (this._state.modules && this._state.initializedConfigKey === cfgKey) {
+                return this._state.modules;
+            }
+            if (!this._state.sdkPromise || this._state.initializedConfigKey !== cfgKey) {
+                this._state.initializedConfigKey = cfgKey;
+                this._state.sdkPromise = (async () => {
+                    const [appMod, authMod, fsMod] = await Promise.all([
+                        // @ts-ignore - runtime ESM CDN import
+                        import(`${FIREBASE_SDK_BASE}/firebase-app.js`),
+                        // @ts-ignore - runtime ESM CDN import
+                        import(`${FIREBASE_SDK_BASE}/firebase-auth.js`),
+                        // @ts-ignore - runtime ESM CDN import
+                        import(`${FIREBASE_SDK_BASE}/firebase-firestore.js`)
+                    ]);
+                    const appName = 'oxflashcards';
+                    const existing = appMod.getApps().find((a) => a && a.name === appName);
+                    if (existing && typeof appMod.deleteApp === 'function') {
+                        try { await appMod.deleteApp(existing); } catch (_) {}
+                    }
+                    const app = appMod.initializeApp(cfg, appName);
+                    const auth = authMod.getAuth(app);
+                    const db = fsMod.getFirestore(app);
+                    try { await authMod.getRedirectResult(auth); } catch (_) {}
+                    const mods = { appMod, authMod, fsMod, app, auth, db };
+                    this._state.modules = mods;
+                    return mods;
+                })();
+            }
+            try {
+                return await this._state.sdkPromise;
+            } catch (err) {
+                this._state.sdkPromise = null;
+                this._state.modules = null;
+                throw err;
+            }
+        },
+
+        async initAuthListener() {
+            const cfg = this.getConfig();
+            if (!cfg || this.isFileProtocol()) return null;
+            if (typeof navigator !== 'undefined' && navigator.onLine === false) return null;
+            const cfgKey = JSON.stringify(cfg);
+            if (this._state.listenerReadyKey === cfgKey && this._state.unsubAuth) {
+                return this._state.modules;
+            }
+            try {
+                const mods = await this.ensureSdk();
+                if (typeof this._state.unsubAuth === 'function') {
+                    try { this._state.unsubAuth(); } catch (_) {}
+                }
+                this._state.listenerReadyKey = cfgKey;
+                this._state.unsubAuth = mods.authMod.onAuthStateChanged(mods.auth, (fbUser) => {
+                    if (fbUser) {
+                        this._state.user = {
+                            uid: fbUser.uid || '',
+                            displayName: fbUser.displayName || '',
+                            email: fbUser.email || '',
+                            photoURL: fbUser.photoURL || ''
+                        };
+                        this._state.lastError = '';
+                        this.saveStore({ lastEmail: this._state.user.email });
+                        this.refreshUI();
+                        if (this.getAutoSync()) {
+                            this.syncWithFirestore({ silent: true });
+                        }
+                    } else {
+                        this._state.user = null;
+                        this.refreshUI();
+                    }
+                });
+                return mods;
+            } catch (_) {
+                return null;
+            }
+        },
+
+        async signInWithGoogle() {
+            if (this.isFileProtocol()) {
+                this.refreshUI();
+                showToast('Google Login ใช้ไม่ได้บน file:// กรุณาเปิดผ่าน http://localhost หรือเว็บ https://');
+                return;
+            }
+            if (!this.getConfig()) {
+                const details = /** @type {HTMLDetailsElement|null} */ ($('fb-setup-details'));
+                if (details) details.open = true;
+                const input = $('fb-config-input');
+                if (input) input.focus();
+                showToast('กรุณาวาง Firebase Config ด้านล่างก่อนเข้าสู่ระบบ Google');
+                return;
+            }
+            const btn = /** @type {HTMLButtonElement|null} */ ($('btn-google-signin'));
+            if (btn) btn.disabled = true;
+            try {
+                const mods = await this.initAuthListener();
+                if (!mods) throw new Error('เริ่มต้นระบบ Google Sign-In ไม่สำเร็จ');
+                const provider = new mods.authMod.GoogleAuthProvider();
+                provider.setCustomParameters({ prompt: 'select_account' });
+                try {
+                    await mods.authMod.signInWithPopup(mods.auth, provider);
+                    showToast('เข้าสู่ระบบ Google สำเร็จ กำลังซิงค์ข้อมูล...');
+                } catch (err) {
+                    const code = err && err.code ? String(err.code) : '';
+                    if (code === 'auth/popup-blocked' || code === 'auth/operation-not-supported-in-this-environment') {
+                        showToast('เบราว์เซอร์บล็อกป๊อปอัป กำลังเปลี่ยนหน้าไปล็อกอิน Google...');
+                        await mods.authMod.signInWithRedirect(mods.auth, provider);
+                    } else if (code === 'auth/popup-closed-by-user') {
+                        showToast('ยกเลิกการเข้าสู่ระบบ');
+                    } else if (code === 'auth/unauthorized-domain') {
+                        throw new Error('โดเมนนี้ยังไม่ได้เพิ่มใน Authorized domains ของ Firebase Authentication');
+                    } else {
+                        throw err;
+                    }
+                }
+            } catch (err) {
+                const msg = err && err.message ? err.message : 'ไม่สามารถเข้าสู่ระบบ Google ได้';
+                this._state.lastError = msg;
+                showToast(msg);
+            } finally {
+                if (btn) btn.disabled = false;
+                this.refreshUI();
+            }
+        },
+
+        async signOut() {
+            if (this._state.debounceTimer) {
+                clearTimeout(this._state.debounceTimer);
+                this._state.debounceTimer = null;
+            }
+            try {
+                if (this._state.modules && this._state.modules.authMod && this._state.modules.auth) {
+                    await this._state.modules.authMod.signOut(this._state.modules.auth);
+                }
+            } catch (_) {}
+            this._state.user = null;
+            this._state.lastError = '';
+            this.refreshUI();
+            showToast('ออกจากระบบ Google แล้ว');
+        },
+
+        /** @param {{ silent?: boolean }} [opts] */
+        async syncWithFirestore(opts = { silent: false }) {
+            const silent = !!(opts && opts.silent);
+            if (!this._state.user || this._state.syncing || this.isFileProtocol()) {
+                return { ok: false, reason: 'unavailable' };
+            }
+            if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+                return { ok: false, reason: 'offline' };
+            }
+            this._state.syncing = true;
+            this.refreshUI();
+            try {
+                const { fsMod, db } = await this.ensureSdk();
+                const userRef = fsMod.doc(db, 'oxford_users', this._state.user.uid);
+                const snap = await fsMod.getDoc(userRef);
+                if (snap && snap.exists()) {
+                    const remoteData = snap.data();
+                    if (remoteData && remoteData.payload) {
+                        OxSync.mergePayload(remoteData.payload);
+                    }
+                }
+                const mergedPayload = OxSync.buildPayload();
+                const now = Date.now();
+                await fsMod.setDoc(userRef, {
+                    uid: this._state.user.uid,
+                    email: this._state.user.email || '',
+                    updatedAt: now,
+                    version: 1,
+                    payload: mergedPayload
+                }, { merge: true });
+                this.saveStore({ lastSyncedAt: now, lastEmail: this._state.user.email || '' });
+                this._state.lastError = '';
+                if (!silent) {
+                    showToast('ซิงค์ข้อมูลกับบัญชี Google สำเร็จแล้ว');
+                }
+                return { ok: true };
+            } catch (err) {
+                const code = err && err.code ? String(err.code) : '';
+                let msg = err && err.message ? err.message : 'เกิดข้อผิดพลาดระหว่างซิงค์';
+                if (code === 'permission-denied') {
+                    msg = 'ยังไม่ได้ตั้งค่า Firestore Rules ใน Firebase Console';
+                } else if (code === 'unavailable') {
+                    msg = 'เชื่อมต่อเซิร์ฟเวอร์ Google ไม่ได้ชั่วคราว';
+                }
+                this._state.lastError = msg;
+                if (!silent) {
+                    showToast('ซิงค์ไม่สำเร็จ: ' + msg);
+                }
+                return { ok: false, error: msg };
+            } finally {
+                this._state.syncing = false;
+                this.refreshUI();
+            }
+        },
+
+        scheduleAutoSync() {
+            if (!this._state.user || !this.getAutoSync() || this.isFileProtocol()) return;
+            if (this._state.debounceTimer) {
+                clearTimeout(this._state.debounceTimer);
+            }
+            this._state.debounceTimer = setTimeout(() => {
+                this._state.debounceTimer = null;
+                this.syncWithFirestore({ silent: true });
+            }, 2500);
+        },
+
+        refreshUI() {
+            const warn = $('fb-file-protocol-warn');
+            if (warn) warn.hidden = !this.isFileProtocol();
+
+            const cfgInput = /** @type {HTMLTextAreaElement|null} */ ($('fb-config-input'));
+            const customCfg = this.getCustomConfig();
+            if (cfgInput && document.activeElement !== cfgInput) {
+                cfgInput.value = customCfg ? JSON.stringify(customCfg, null, 2) : '';
+            }
+
+            const autoToggle = /** @type {HTMLInputElement|null} */ ($('google-auto-sync-toggle'));
+            if (autoToggle) autoToggle.checked = this.getAutoSync();
+
+            const signedOutBox = $('google-signed-out-box');
+            const signedInBox = $('google-signed-in-box');
+            const profilePhoto = /** @type {HTMLImageElement|null} */ ($('google-profile-photo'));
+            const profileFallback = $('google-profile-fallback');
+            const profileName = $('google-profile-name');
+            const profileEmail = $('google-profile-email');
+            const syncBadge = $('google-sync-badge');
+            const headerAvatar = /** @type {HTMLImageElement|null} */ ($('sync-user-avatar'));
+            const syncBtn = $('btn-welcome-sync');
+            const cloudSvg = syncBtn ? /** @type {HTMLElement|null} */ (syncBtn.querySelector('.sync-cloud-svg')) : null;
+            const user = this._state.user;
+
+            if (user) {
+                if (signedOutBox) signedOutBox.hidden = true;
+                if (signedInBox) signedInBox.hidden = false;
+                if (profileName) profileName.textContent = user.displayName || user.email || 'บัญชี Google';
+                if (profileEmail) profileEmail.textContent = user.email || '';
+
+                const initial = ((user.displayName || user.email || 'G').trim().charAt(0) || 'G').toUpperCase();
+                if (profilePhoto && profileFallback) {
+                    if (user.photoURL) {
+                        profilePhoto.onerror = () => {
+                            profilePhoto.hidden = true;
+                            profileFallback.hidden = false;
+                            profileFallback.textContent = initial;
+                        };
+                        profilePhoto.src = user.photoURL;
+                        profilePhoto.hidden = false;
+                        profileFallback.hidden = true;
+                    } else {
+                        profilePhoto.hidden = true;
+                        profileFallback.hidden = false;
+                        profileFallback.textContent = initial;
+                    }
+                }
+
+                if (syncBadge) {
+                    const store = this.readStore();
+                    if (this._state.syncing) {
+                        syncBadge.textContent = 'กำลังซิงค์...';
+                        syncBadge.className = 'sync-badge pending';
+                    } else if (this._state.lastError) {
+                        syncBadge.textContent = 'ซิงค์ติดขัด';
+                        syncBadge.className = 'sync-badge warn';
+                        syncBadge.title = this._state.lastError;
+                    } else if (store.lastSyncedAt) {
+                        const dt = new Date(store.lastSyncedAt);
+                        const hh = String(dt.getHours()).padStart(2, '0');
+                        const mm = String(dt.getMinutes()).padStart(2, '0');
+                        syncBadge.textContent = `ซิงค์แล้ว ${hh}:${mm}`;
+                        syncBadge.className = 'sync-badge ok';
+                        syncBadge.title = '';
+                    } else {
+                        syncBadge.textContent = 'เชื่อมต่อแล้ว';
+                        syncBadge.className = 'sync-badge ok';
+                    }
+                }
+
+                if (headerAvatar) {
+                    if (user.photoURL) {
+                        headerAvatar.onerror = () => {
+                            headerAvatar.hidden = true;
+                            if (cloudSvg) cloudSvg.style.display = '';
+                        };
+                        headerAvatar.src = user.photoURL;
+                        headerAvatar.hidden = false;
+                        if (cloudSvg) cloudSvg.style.display = 'none';
+                    } else {
+                        headerAvatar.hidden = true;
+                        if (cloudSvg) cloudSvg.style.display = '';
+                    }
+                }
+            } else {
+                if (signedOutBox) signedOutBox.hidden = false;
+                if (signedInBox) signedInBox.hidden = true;
+                if (headerAvatar) {
+                    headerAvatar.hidden = true;
+                    headerAvatar.removeAttribute('src');
+                }
+                if (cloudSvg) cloudSvg.style.display = '';
+            }
+
+            const dot = $('sync-status-dot');
+            if (dot) {
+                const sbCfg = OxSync.getConfig();
+                const sbActive = !!(sbCfg.url && sbCfg.anonKey && sbCfg.syncId);
+                dot.classList.toggle('online', !!(user || sbActive));
+            }
+        }
+    };
+
+    scheduleGoogleAutoSync = () => OxGoogleSync.scheduleAutoSync();
+
+    const syncModal = $('sync-modal');
+    function renderSyncSummary() {
+        const box = $('sync-local-summary');
+        if (box) {
+            const c = countStatuses();
+            box.innerHTML = `
+                <div class="sync-stat-mini"><b class="tabular-nums">${c.known}</b><span>จำได้แล้ว</span></div>
+                <div class="sync-stat-mini"><b class="tabular-nums">${bookmarkedWords.size}</b><span>คำปักหมุด</span></div>
+                <div class="sync-stat-mini"><b class="tabular-nums">${sessions.length}</b><span>รอบที่ฝึก</span></div>`;
+        }
+        const cfg = OxSync.getConfig();
+        const u = /** @type {HTMLInputElement|null} */ ($('sb-url'));
+        const k = /** @type {HTMLInputElement|null} */ ($('sb-anon-key'));
+        const sid = /** @type {HTMLInputElement|null} */ ($('sb-sync-id'));
+        if (u && !u.value) u.value = cfg.url || '';
+        if (k && !k.value) k.value = cfg.anonKey || '';
+        if (sid && !sid.value) sid.value = cfg.syncId || '';
+        OxSync.refreshStatusUI();
+        OxGoogleSync.refreshUI();
+    }
+
+    function openSyncModal() {
+        if (!syncModal) return;
+        renderSyncSummary();
+        syncModal.classList.add('open');
+        syncModal.setAttribute('aria-hidden', 'false');
+    }
+    function closeSyncModal() {
+        if (!syncModal) return;
+        syncModal.classList.remove('open');
+        syncModal.setAttribute('aria-hidden', 'true');
+    }
+
+    document.querySelectorAll('.sync-open-btn').forEach(btn => btn.addEventListener('click', openSyncModal));
+    const btnSyncClose = $('btn-sync-close');
+    if (btnSyncClose) btnSyncClose.addEventListener('click', closeSyncModal);
+    if (syncModal) syncModal.addEventListener('click', (e) => { if (e.target === syncModal) closeSyncModal(); });
+
+    document.querySelectorAll('.sync-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const paneId = /** @type {HTMLElement} */ (btn).dataset.syncPane;
+            document.querySelectorAll('.sync-tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+            document.querySelectorAll('.sync-pane').forEach(p => { /** @type {HTMLElement} */ (p).hidden = (p.id !== paneId); });
+        });
+    });
+
+    const btnGenSyncCode = $('btn-gen-sync-code');
+    if (btnGenSyncCode) {
+        btnGenSyncCode.addEventListener('click', () => {
+            const code = OxSync.encodeCode(OxSync.buildPayload());
+            const out = /** @type {HTMLInputElement|null} */ ($('sync-code-output'));
+            if (out) { out.value = code; out.select(); }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(code).catch(() => {});
+            }
+            showToast('สร้างและคัดลอกรหัสซิงก์แล้ว');
+        });
+    }
+
+    const btnApplySyncCode = $('btn-apply-sync-code');
+    if (btnApplySyncCode) {
+        btnApplySyncCode.addEventListener('click', () => {
+            const inp = /** @type {HTMLTextAreaElement|null} */ ($('sync-code-input'));
+            const code = inp ? inp.value : '';
+            if (!code.trim()) {
+                showToast('กรุณาวางรหัส OX3K1:... ก่อนรวมข้อมูล');
+                return;
+            }
+            try {
+                const payload = OxSync.decodeCode(code);
+                const res = OxSync.mergePayload(payload);
+                if (inp) inp.value = '';
+                renderSyncSummary();
+                showToast(`Smart Merge สำเร็จ: เพิ่มคำใหม่ ${res.wordsAdded} คำ`);
+            } catch (err) {
+                showToast(err instanceof Error ? err.message : 'รหัสซิงก์ไม่ถูกต้อง');
+            }
+        });
+    }
+
+    const btnSbSave = $('btn-sb-save');
+    if (btnSbSave) {
+        btnSbSave.addEventListener('click', () => {
+            const url = (/** @type {HTMLInputElement|null} */ ($('sb-url'))?.value || '').trim();
+            const anonKey = (/** @type {HTMLInputElement|null} */ ($('sb-anon-key'))?.value || '').trim();
+            const syncId = (/** @type {HTMLInputElement|null} */ ($('sb-sync-id'))?.value || '').trim();
+            OxSync.saveConfig({ url, anonKey, syncId, lastSyncedAt: 0 });
+            showToast('บันทึกการตั้งค่า Supabase แล้ว');
+        });
+    }
+
+    const btnCopySbSql = $('btn-copy-sb-sql');
+    if (btnCopySbSql) {
+        btnCopySbSql.addEventListener('click', () => {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(SUPABASE_SCHEMA_SQL).catch(() => {});
+            }
+            showToast('คัดลอกคำสั่ง SQL สร้างตาราง Supabase แล้ว');
+        });
+    }
+
+    const btnSbPush = /** @type {HTMLButtonElement|null} */ ($('btn-sb-push'));
+    if (btnSbPush) {
+        btnSbPush.addEventListener('click', async () => {
+            btnSbPush.disabled = true;
+            try {
+                await OxSync.pushToCloud();
+                renderSyncSummary();
+                showToast('อัปโหลดข้อมูลขึ้น Cloud สำเร็จ');
+            } catch (err) {
+                showToast(`Push ไม่สำเร็จ: ${err instanceof Error ? err.message : 'Network error'}`);
+            } finally {
+                btnSbPush.disabled = false;
+            }
+        });
+    }
+
+    const btnSbPull = /** @type {HTMLButtonElement|null} */ ($('btn-sb-pull'));
+    if (btnSbPull) {
+        btnSbPull.addEventListener('click', async () => {
+            btnSbPull.disabled = true;
+            try {
+                const res = await OxSync.pullFromCloud();
+                renderSyncSummary();
+                showToast(`ดึงและ Smart Merge สำเร็จ (+${res.wordsAdded} คำใหม่)`);
+            } catch (err) {
+                showToast(`Pull ไม่สำเร็จ: ${err instanceof Error ? err.message : 'Network error'}`);
+            } finally {
+                btnSbPull.disabled = false;
+            }
+        });
+    }
+
+    OxSync.refreshStatusUI();
+
+    /** @param {'google'|'code'|'cloud'} tabName */
+    function setActiveSyncTab(tabName) {
+        const tabs = [
+            { name: 'google', tab: $('sync-tab-google'), pane: $('sync-pane-google') },
+            { name: 'code', tab: $('sync-tab-code'), pane: $('sync-pane-code') },
+            { name: 'cloud', tab: $('sync-tab-cloud'), pane: $('sync-pane-cloud') }
+        ];
+        tabs.forEach((item) => {
+            const active = item.name === tabName;
+            if (item.tab) {
+                item.tab.classList.toggle('active', active);
+                item.tab.setAttribute('aria-selected', active ? 'true' : 'false');
+            }
+            if (item.pane) {
+                item.pane.hidden = !active;
+            }
+        });
+    }
+
+    $('sync-tab-google')?.addEventListener('click', () => setActiveSyncTab('google'));
+    $('sync-tab-code')?.addEventListener('click', () => setActiveSyncTab('code'));
+    $('sync-tab-cloud')?.addEventListener('click', () => setActiveSyncTab('cloud'));
+    $('btn-sb-save')?.addEventListener('click', () => setTimeout(() => OxGoogleSync.refreshUI(), 50));
+    $('btn-sb-push')?.addEventListener('click', () => setTimeout(() => OxGoogleSync.refreshUI(), 150));
+    $('btn-sb-pull')?.addEventListener('click', () => setTimeout(() => OxGoogleSync.refreshUI(), 150));
+
+    $('btn-google-signin')?.addEventListener('click', () => {
+        OxGoogleSync.signInWithGoogle();
+    });
+
+    $('btn-google-sync-now')?.addEventListener('click', () => {
+        OxGoogleSync.syncWithFirestore({ silent: false });
+    });
+
+    $('btn-google-signout')?.addEventListener('click', () => {
+        OxGoogleSync.signOut();
+    });
+
+    $('google-auto-sync-toggle')?.addEventListener('change', (e) => {
+        const el = /** @type {HTMLInputElement|null} */ (e.target);
+        if (!el) return;
+        OxGoogleSync.setAutoSync(el.checked);
+        if (el.checked && OxGoogleSync._state.user) {
+            OxGoogleSync.syncWithFirestore({ silent: true });
+        }
+        showToast(el.checked ? 'เปิดซิงค์อัตโนมัติแล้ว' : 'ปิดซิงค์อัตโนมัติชั่วคราว');
+    });
+
+    $('btn-fb-save-config')?.addEventListener('click', () => {
+        const input = /** @type {HTMLTextAreaElement|null} */ ($('fb-config-input'));
+        const parsed = OxGoogleSync.parseConfig(input ? input.value : '');
+        if (!parsed) {
+            showToast('รูปแบบ Firebase Config ไม่ถูกต้อง กรุณาวางทั้งบล็อก firebaseConfig');
+            return;
+        }
+        OxGoogleSync.saveConfig(parsed);
+        if (input) input.value = JSON.stringify(parsed, null, 2);
+        OxGoogleSync.refreshUI();
+        OxGoogleSync.initAuthListener();
+        showToast('บันทึก Firebase Config แล้ว กดเข้าสู่ระบบ Google ได้เลย');
+    });
+
+    $('btn-copy-fb-rules')?.addEventListener('click', async () => {
+        let copied = false;
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(FIRESTORE_RULES_SNIPPET);
+                copied = true;
+            }
+        } catch (_) {}
+        if (!copied) {
+            const ta = document.createElement('textarea');
+            ta.value = FIRESTORE_RULES_SNIPPET;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { copied = document.execCommand('copy'); } catch (_) {}
+            ta.remove();
+        }
+        showToast(copied ? 'คัดลอก Firestore Rules แล้ว' : 'ไม่สามารถคัดลอกอัตโนมัติได้');
+    });
+
+    $('btn-fb-clear-config')?.addEventListener('click', () => {
+        OxGoogleSync.clearConfig();
+        const input = /** @type {HTMLTextAreaElement|null} */ ($('fb-config-input'));
+        if (input) input.value = '';
+        OxGoogleSync.refreshUI();
+        showToast('ล้าง Firebase Config แล้ว');
+    });
+
+    OxGoogleSync.refreshUI();
+    OxGoogleSync.initAuthListener();
 
     // Global Keyboard Shortcuts: '/' or Ctrl+K for Quick Search, 'S' for Star card, Esc to close
     document.addEventListener('keydown', (e) => {
@@ -3987,6 +5581,42 @@ document.addEventListener('DOMContentLoaded', () => {
         getCounts: () => session && getSessionCounts(),
         getWordStatus: () => ({ ...wordStatus }),
         getSessions: () => JSON.parse(JSON.stringify(sessions)),
+        getAccent: () => preferredAccent,
+        setAccent: (acc) => {
+            preferredAccent = acc === 'UK' ? 'UK' : 'US';
+            try { localStorage.setItem(STORAGE.accent, preferredAccent); } catch (_) {}
+            syncAccentButtonsUI();
+        },
+        getCefrFilter: () => selectedCefr,
+        setCefrFilter: (lvl) => { selectedCefr = lvl || 'all'; syncWelcomeCefrUI(); },
+        buildSyncCode: () => OxSync.encodeCode(OxSync.buildPayload()),
+        applySyncCode: (code) => OxSync.mergePayload(OxSync.decodeCode(code)),
+        parseFirebaseConfig: (raw) => OxGoogleSync.parseConfig(raw),
+        getGoogleSyncState: () => {
+            const cfg = OxGoogleSync.getConfig();
+            return {
+                hasConfig: !!cfg,
+                hasCustomConfig: !!OxGoogleSync.getCustomConfig(),
+                hasBuiltInConfig: !!FIREBASE_DEFAULT_CONFIG,
+                projectId: cfg && cfg.projectId ? cfg.projectId : '',
+                autoSync: OxGoogleSync.getAutoSync(),
+                signedIn: !!OxGoogleSync._state.user,
+                syncing: OxGoogleSync._state.syncing,
+                email: OxGoogleSync._state.user ? OxGoogleSync._state.user.email : '',
+                isFileProtocol: OxGoogleSync.isFileProtocol(),
+                lastError: OxGoogleSync._state.lastError
+            };
+        },
+        setFirebaseConfig: (rawOrObj) => {
+            const raw = typeof rawOrObj === 'string' ? rawOrObj : JSON.stringify(rawOrObj || {});
+            const cfg = OxGoogleSync.parseConfig(raw);
+            if (!cfg) return false;
+            OxGoogleSync.saveConfig(cfg);
+            OxGoogleSync.refreshUI();
+            return true;
+        },
+        fuzzyMatch: (q) => wordsData.map((w) => ({ word: w.word, cefr: w.cefr, score: OxFuzzy.scoreWord(w, q) }))
+            .filter(x => x.score > 0).sort((a, b) => b.score - a.score).slice(0, 10),
         isAnimating: () => isAnimating,
         currentScreen: () => currentScreen
     };
