@@ -4619,32 +4619,9 @@ document.addEventListener('DOMContentLoaded', () => {
     syncAccentButtonsUI();
 
     /* =========================================================
-     * Pillar 7: Cloud Sync & Cross-Device Smart Merge Engine (OxSync)
+     * Pillar 7: Cross-Device Smart Merge Engine (OxSync & OxGoogleSync)
      * ========================================================= */
-    const SUPABASE_SCHEMA_SQL = `-- Run once in Supabase Dashboard -> SQL Editor
-create table if not exists public.oxford_user_sync (
-  sync_id text primary key,
-  payload jsonb not null,
-  updated_at timestamptz not null default now()
-);
-alter table public.oxford_user_sync enable row level security;
-create policy "Allow anon read/write by room id"
-  on public.oxford_user_sync
-  for all
-  to anon
-  using (true)
-  with check (true);`;
-
     const OxSync = {
-        getConfig() {
-            const raw = storage.get(STORAGE.sbConfig, null);
-            return (raw && typeof raw === 'object') ? raw : { url: '', anonKey: '', syncId: '', lastSyncedAt: 0 };
-        },
-        /** @param {SyncConfig} cfg */
-        saveConfig(cfg) {
-            storage.set(STORAGE.sbConfig, cfg);
-            this.refreshStatusUI();
-        },
         buildPayload() {
             return {
                 v: 1,
@@ -4772,85 +4749,10 @@ create policy "Allow anon read/write by room id"
             for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
             const json = new TextDecoder().decode(bytes);
             return JSON.parse(json);
-        },
-        async pushToCloud() {
-            const cfg = this.getConfig();
-            if (!cfg.url || !cfg.anonKey || !cfg.syncId) {
-                throw new Error('กรุณากรอก URL, Anon Key และ Sync Room ID ให้ครบ');
-            }
-            const cleanUrl = cfg.url.replace(/\/+$/, '');
-            const endpoint = `${cleanUrl}/rest/v1/oxford_user_sync?on_conflict=sync_id`;
-            const res = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': cfg.anonKey,
-                    'Authorization': `Bearer ${cfg.anonKey}`,
-                    'Prefer': 'resolution=merge-duplicates'
-                },
-                body: JSON.stringify({
-                    sync_id: cfg.syncId,
-                    payload: this.buildPayload(),
-                    updated_at: new Date().toISOString()
-                })
-            });
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            cfg.lastSyncedAt = Date.now();
-            this.saveConfig(cfg);
-            return true;
-        },
-        async pullFromCloud() {
-            const cfg = this.getConfig();
-            if (!cfg.url || !cfg.anonKey || !cfg.syncId) {
-                throw new Error('กรุณากรอก URL, Anon Key และ Sync Room ID ให้ครบ');
-            }
-            const cleanUrl = cfg.url.replace(/\/+$/, '');
-            const endpoint = `${cleanUrl}/rest/v1/oxford_user_sync?sync_id=eq.${encodeURIComponent(cfg.syncId)}&select=payload,updated_at`;
-            const res = await fetch(endpoint, {
-                headers: {
-                    'apikey': cfg.anonKey,
-                    'Authorization': `Bearer ${cfg.anonKey}`
-                }
-            });
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const rows = await res.json();
-            if (!Array.isArray(rows) || rows.length === 0 || !rows[0]?.payload) {
-                throw new Error('ยังไม่มีข้อมูลสำหรับ Room ID นี้บน Cloud');
-            }
-            const merged = this.mergePayload(rows[0].payload);
-            cfg.lastSyncedAt = Date.now();
-            this.saveConfig(cfg);
-            return merged;
-        },
-        refreshStatusUI() {
-            const cfg = this.getConfig();
-            const dot = $('sync-status-dot');
-            const sub = $('sb-status-text');
-            const hasCloud = !!(cfg.url && cfg.anonKey && cfg.syncId);
-            if (dot) dot.classList.toggle('is-synced', hasCloud && !!cfg.lastSyncedAt);
-            if (sub) {
-                if (hasCloud && cfg.lastSyncedAt) {
-                    sub.textContent = `ซิงก์ Cloud ล่าสุด ${new Date(cfg.lastSyncedAt).toLocaleTimeString('th-TH')}`;
-                } else if (hasCloud) {
-                    sub.textContent = 'ตั้งค่า Cloud แล้ว · พร้อมกด Push / Pull';
-                } else {
-                    sub.textContent = 'บันทึกในเครื่อง (Local-First) · พร้อม Smart Merge';
-                }
-            }
         }
     };
 
     const FIREBASE_SDK_BASE = 'https://www.gstatic.com/firebasejs/10.14.1';
-    const FIRESTORE_RULES_SNIPPET = [
-        'rules_version = \'2\';',
-        'service cloud.firestore {',
-        '  match /databases/{database}/documents {',
-        '    match /oxford_users/{userId} {',
-        '      allow read, write: if request.auth != null && request.auth.uid == userId;',
-        '    }',
-        '  }',
-        '}'
-    ].join('\n');
 
     /**
      * Two-way Google Sign-In & Cloud Firestore Sync engine (Firebase JS v10 Modular ESM).
@@ -5085,11 +4987,7 @@ create policy "Allow anon read/write by room id"
                 return;
             }
             if (!this.getConfig()) {
-                const details = /** @type {HTMLDetailsElement|null} */ ($('fb-setup-details'));
-                if (details) details.open = true;
-                const input = $('fb-config-input');
-                if (input) input.focus();
-                showToast('กรุณาวาง Firebase Config ด้านล่างก่อนเข้าสู่ระบบ Google');
+                showToast('ยังไม่ได้ตั้งค่า Firebase Config สำหรับ Google Sign-In');
                 return;
             }
             const btn = /** @type {HTMLButtonElement|null} */ ($('btn-google-signin'));
@@ -5211,12 +5109,6 @@ create policy "Allow anon read/write by room id"
             const warn = $('fb-file-protocol-warn');
             if (warn) warn.hidden = !this.isFileProtocol();
 
-            const cfgInput = /** @type {HTMLTextAreaElement|null} */ ($('fb-config-input'));
-            const customCfg = this.getCustomConfig();
-            if (cfgInput && document.activeElement !== cfgInput) {
-                cfgInput.value = customCfg ? JSON.stringify(customCfg, null, 2) : '';
-            }
-
             const autoToggle = /** @type {HTMLInputElement|null} */ ($('google-auto-sync-toggle'));
             if (autoToggle) autoToggle.checked = this.getAutoSync();
 
@@ -5227,9 +5119,12 @@ create policy "Allow anon read/write by room id"
             const profileName = $('google-profile-name');
             const profileEmail = $('google-profile-email');
             const syncBadge = $('google-sync-badge');
+            const statusText = $('sync-status-text');
             const headerAvatar = /** @type {HTMLImageElement|null} */ ($('sync-user-avatar'));
             const syncBtn = $('btn-welcome-sync');
-            const cloudSvg = syncBtn ? /** @type {HTMLElement|null} */ (syncBtn.querySelector('.sync-cloud-svg')) : null;
+            const syncLabel = $('sync-btn-label');
+            const dashSyncBtn = $('btn-dash-sync');
+            const googleIcon = syncBtn ? /** @type {HTMLElement|null} */ (syncBtn.querySelector('.sync-google-icon')) : null;
             const user = this._state.user;
 
             if (user) {
@@ -5237,6 +5132,18 @@ create policy "Allow anon read/write by room id"
                 if (signedInBox) signedInBox.hidden = false;
                 if (profileName) profileName.textContent = user.displayName || user.email || 'บัญชี Google';
                 if (profileEmail) profileEmail.textContent = user.email || '';
+
+                const shortName = (user.displayName || '').trim().split(/\s+/)[0] || '';
+                if (syncBtn) {
+                    syncBtn.classList.add('is-signed-in');
+                    syncBtn.title = `บัญชี Google: ${user.email || user.displayName || 'เชื่อมต่อแล้ว'}`;
+                }
+                if (dashSyncBtn) {
+                    dashSyncBtn.title = `ซิงก์ Google (${user.email || 'เชื่อมต่อแล้ว'})`;
+                }
+                if (syncLabel) {
+                    syncLabel.textContent = shortName ? shortName.slice(0, 10) : 'ซิงค์แล้ว';
+                }
 
                 const initial = ((user.displayName || user.email || 'G').trim().charAt(0) || 'G').toUpperCase();
                 if (profilePhoto && profileFallback) {
@@ -5256,8 +5163,8 @@ create policy "Allow anon read/write by room id"
                     }
                 }
 
+                const store = this.readStore();
                 if (syncBadge) {
-                    const store = this.readStore();
                     if (this._state.syncing) {
                         syncBadge.textContent = 'กำลังซิงค์...';
                         syncBadge.className = 'sync-badge pending';
@@ -5278,36 +5185,54 @@ create policy "Allow anon read/write by room id"
                     }
                 }
 
+                if (statusText) {
+                    if (this._state.syncing) {
+                        statusText.textContent = 'กำลังซิงก์ข้อมูลกับ Google...';
+                    } else if (this._state.lastError) {
+                        statusText.textContent = this._state.lastError;
+                    } else if (store.lastSyncedAt) {
+                        const dt = new Date(store.lastSyncedAt);
+                        const hh = String(dt.getHours()).padStart(2, '0');
+                        const mm = String(dt.getMinutes()).padStart(2, '0');
+                        statusText.textContent = `เชื่อมต่อแล้ว · ซิงก์ล่าสุด ${hh}:${mm} น.`;
+                    } else {
+                        statusText.textContent = 'เชื่อมต่อบัญชี Google แล้ว';
+                    }
+                }
+
                 if (headerAvatar) {
                     if (user.photoURL) {
                         headerAvatar.onerror = () => {
                             headerAvatar.hidden = true;
-                            if (cloudSvg) cloudSvg.style.display = '';
+                            if (googleIcon) googleIcon.style.display = '';
                         };
                         headerAvatar.src = user.photoURL;
                         headerAvatar.hidden = false;
-                        if (cloudSvg) cloudSvg.style.display = 'none';
+                        if (googleIcon) googleIcon.style.display = 'none';
                     } else {
                         headerAvatar.hidden = true;
-                        if (cloudSvg) cloudSvg.style.display = '';
+                        if (googleIcon) googleIcon.style.display = '';
                     }
                 }
             } else {
                 if (signedOutBox) signedOutBox.hidden = false;
                 if (signedInBox) signedInBox.hidden = true;
+                if (syncBtn) {
+                    syncBtn.classList.remove('is-signed-in');
+                    syncBtn.title = 'เข้าสู่ระบบด้วย Google เพื่อซิงก์ข้ามอุปกรณ์';
+                }
+                if (dashSyncBtn) dashSyncBtn.title = 'เข้าสู่ระบบด้วย Google';
+                if (syncLabel) syncLabel.textContent = 'ล็อกอิน';
+                if (statusText) statusText.textContent = 'เข้าสู่ระบบเพื่อซิงก์ความจำข้ามมือถือและคอม';
                 if (headerAvatar) {
                     headerAvatar.hidden = true;
                     headerAvatar.removeAttribute('src');
                 }
-                if (cloudSvg) cloudSvg.style.display = '';
+                if (googleIcon) googleIcon.style.display = '';
             }
 
             const dot = $('sync-status-dot');
-            if (dot) {
-                const sbCfg = OxSync.getConfig();
-                const sbActive = !!(sbCfg.url && sbCfg.anonKey && sbCfg.syncId);
-                dot.classList.toggle('online', !!(user || sbActive));
-            }
+            if (dot) dot.classList.toggle('online', !!user);
         }
     };
 
@@ -5323,14 +5248,6 @@ create policy "Allow anon read/write by room id"
                 <div class="sync-stat-mini"><b class="tabular-nums">${bookmarkedWords.size}</b><span>คำปักหมุด</span></div>
                 <div class="sync-stat-mini"><b class="tabular-nums">${sessions.length}</b><span>รอบที่ฝึก</span></div>`;
         }
-        const cfg = OxSync.getConfig();
-        const u = /** @type {HTMLInputElement|null} */ ($('sb-url'));
-        const k = /** @type {HTMLInputElement|null} */ ($('sb-anon-key'));
-        const sid = /** @type {HTMLInputElement|null} */ ($('sb-sync-id'));
-        if (u && !u.value) u.value = cfg.url || '';
-        if (k && !k.value) k.value = cfg.anonKey || '';
-        if (sid && !sid.value) sid.value = cfg.syncId || '';
-        OxSync.refreshStatusUI();
         OxGoogleSync.refreshUI();
     }
 
@@ -5350,129 +5267,6 @@ create policy "Allow anon read/write by room id"
     const btnSyncClose = $('btn-sync-close');
     if (btnSyncClose) btnSyncClose.addEventListener('click', closeSyncModal);
     if (syncModal) syncModal.addEventListener('click', (e) => { if (e.target === syncModal) closeSyncModal(); });
-
-    document.querySelectorAll('.sync-tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const paneId = /** @type {HTMLElement} */ (btn).dataset.syncPane;
-            document.querySelectorAll('.sync-tab-btn').forEach(b => b.classList.toggle('active', b === btn));
-            document.querySelectorAll('.sync-pane').forEach(p => { /** @type {HTMLElement} */ (p).hidden = (p.id !== paneId); });
-        });
-    });
-
-    const btnGenSyncCode = $('btn-gen-sync-code');
-    if (btnGenSyncCode) {
-        btnGenSyncCode.addEventListener('click', () => {
-            const code = OxSync.encodeCode(OxSync.buildPayload());
-            const out = /** @type {HTMLInputElement|null} */ ($('sync-code-output'));
-            if (out) { out.value = code; out.select(); }
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(code).catch(() => {});
-            }
-            showToast('สร้างและคัดลอกรหัสซิงก์แล้ว');
-        });
-    }
-
-    const btnApplySyncCode = $('btn-apply-sync-code');
-    if (btnApplySyncCode) {
-        btnApplySyncCode.addEventListener('click', () => {
-            const inp = /** @type {HTMLTextAreaElement|null} */ ($('sync-code-input'));
-            const code = inp ? inp.value : '';
-            if (!code.trim()) {
-                showToast('กรุณาวางรหัส OX3K1:... ก่อนรวมข้อมูล');
-                return;
-            }
-            try {
-                const payload = OxSync.decodeCode(code);
-                const res = OxSync.mergePayload(payload);
-                if (inp) inp.value = '';
-                renderSyncSummary();
-                showToast(`Smart Merge สำเร็จ: เพิ่มคำใหม่ ${res.wordsAdded} คำ`);
-            } catch (err) {
-                showToast(err instanceof Error ? err.message : 'รหัสซิงก์ไม่ถูกต้อง');
-            }
-        });
-    }
-
-    const btnSbSave = $('btn-sb-save');
-    if (btnSbSave) {
-        btnSbSave.addEventListener('click', () => {
-            const url = (/** @type {HTMLInputElement|null} */ ($('sb-url'))?.value || '').trim();
-            const anonKey = (/** @type {HTMLInputElement|null} */ ($('sb-anon-key'))?.value || '').trim();
-            const syncId = (/** @type {HTMLInputElement|null} */ ($('sb-sync-id'))?.value || '').trim();
-            OxSync.saveConfig({ url, anonKey, syncId, lastSyncedAt: 0 });
-            showToast('บันทึกการตั้งค่า Supabase แล้ว');
-        });
-    }
-
-    const btnCopySbSql = $('btn-copy-sb-sql');
-    if (btnCopySbSql) {
-        btnCopySbSql.addEventListener('click', () => {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(SUPABASE_SCHEMA_SQL).catch(() => {});
-            }
-            showToast('คัดลอกคำสั่ง SQL สร้างตาราง Supabase แล้ว');
-        });
-    }
-
-    const btnSbPush = /** @type {HTMLButtonElement|null} */ ($('btn-sb-push'));
-    if (btnSbPush) {
-        btnSbPush.addEventListener('click', async () => {
-            btnSbPush.disabled = true;
-            try {
-                await OxSync.pushToCloud();
-                renderSyncSummary();
-                showToast('อัปโหลดข้อมูลขึ้น Cloud สำเร็จ');
-            } catch (err) {
-                showToast(`Push ไม่สำเร็จ: ${err instanceof Error ? err.message : 'Network error'}`);
-            } finally {
-                btnSbPush.disabled = false;
-            }
-        });
-    }
-
-    const btnSbPull = /** @type {HTMLButtonElement|null} */ ($('btn-sb-pull'));
-    if (btnSbPull) {
-        btnSbPull.addEventListener('click', async () => {
-            btnSbPull.disabled = true;
-            try {
-                const res = await OxSync.pullFromCloud();
-                renderSyncSummary();
-                showToast(`ดึงและ Smart Merge สำเร็จ (+${res.wordsAdded} คำใหม่)`);
-            } catch (err) {
-                showToast(`Pull ไม่สำเร็จ: ${err instanceof Error ? err.message : 'Network error'}`);
-            } finally {
-                btnSbPull.disabled = false;
-            }
-        });
-    }
-
-    OxSync.refreshStatusUI();
-
-    /** @param {'google'|'code'|'cloud'} tabName */
-    function setActiveSyncTab(tabName) {
-        const tabs = [
-            { name: 'google', tab: $('sync-tab-google'), pane: $('sync-pane-google') },
-            { name: 'code', tab: $('sync-tab-code'), pane: $('sync-pane-code') },
-            { name: 'cloud', tab: $('sync-tab-cloud'), pane: $('sync-pane-cloud') }
-        ];
-        tabs.forEach((item) => {
-            const active = item.name === tabName;
-            if (item.tab) {
-                item.tab.classList.toggle('active', active);
-                item.tab.setAttribute('aria-selected', active ? 'true' : 'false');
-            }
-            if (item.pane) {
-                item.pane.hidden = !active;
-            }
-        });
-    }
-
-    $('sync-tab-google')?.addEventListener('click', () => setActiveSyncTab('google'));
-    $('sync-tab-code')?.addEventListener('click', () => setActiveSyncTab('code'));
-    $('sync-tab-cloud')?.addEventListener('click', () => setActiveSyncTab('cloud'));
-    $('btn-sb-save')?.addEventListener('click', () => setTimeout(() => OxGoogleSync.refreshUI(), 50));
-    $('btn-sb-push')?.addEventListener('click', () => setTimeout(() => OxGoogleSync.refreshUI(), 150));
-    $('btn-sb-pull')?.addEventListener('click', () => setTimeout(() => OxGoogleSync.refreshUI(), 150));
 
     $('btn-google-signin')?.addEventListener('click', () => {
         OxGoogleSync.signInWithGoogle();
@@ -5494,49 +5288,6 @@ create policy "Allow anon read/write by room id"
             OxGoogleSync.syncWithFirestore({ silent: true });
         }
         showToast(el.checked ? 'เปิดซิงค์อัตโนมัติแล้ว' : 'ปิดซิงค์อัตโนมัติชั่วคราว');
-    });
-
-    $('btn-fb-save-config')?.addEventListener('click', () => {
-        const input = /** @type {HTMLTextAreaElement|null} */ ($('fb-config-input'));
-        const parsed = OxGoogleSync.parseConfig(input ? input.value : '');
-        if (!parsed) {
-            showToast('รูปแบบ Firebase Config ไม่ถูกต้อง กรุณาวางทั้งบล็อก firebaseConfig');
-            return;
-        }
-        OxGoogleSync.saveConfig(parsed);
-        if (input) input.value = JSON.stringify(parsed, null, 2);
-        OxGoogleSync.refreshUI();
-        OxGoogleSync.initAuthListener();
-        showToast('บันทึก Firebase Config แล้ว กดเข้าสู่ระบบ Google ได้เลย');
-    });
-
-    $('btn-copy-fb-rules')?.addEventListener('click', async () => {
-        let copied = false;
-        try {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                await navigator.clipboard.writeText(FIRESTORE_RULES_SNIPPET);
-                copied = true;
-            }
-        } catch (_) {}
-        if (!copied) {
-            const ta = document.createElement('textarea');
-            ta.value = FIRESTORE_RULES_SNIPPET;
-            ta.style.position = 'fixed';
-            ta.style.opacity = '0';
-            document.body.appendChild(ta);
-            ta.select();
-            try { copied = document.execCommand('copy'); } catch (_) {}
-            ta.remove();
-        }
-        showToast(copied ? 'คัดลอก Firestore Rules แล้ว' : 'ไม่สามารถคัดลอกอัตโนมัติได้');
-    });
-
-    $('btn-fb-clear-config')?.addEventListener('click', () => {
-        OxGoogleSync.clearConfig();
-        const input = /** @type {HTMLTextAreaElement|null} */ ($('fb-config-input'));
-        if (input) input.value = '';
-        OxGoogleSync.refreshUI();
-        showToast('ล้าง Firebase Config แล้ว');
     });
 
     OxGoogleSync.refreshUI();

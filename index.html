@@ -49,9 +49,15 @@
                 <kbd>/</kbd>
             </button>
             <button id="btn-welcome-accent" class="glass-accent-pill accent-toggle-btn" type="button" title="สลับสำเนียงเสียงอ่าน US / UK" aria-label="สลับสำเนียง US/UK">US</button>
-            <button id="btn-welcome-sync" class="glass-btn-icon small sync-open-btn" type="button" title="ซิงก์ข้อมูลข้ามอุปกรณ์ / Google Sync" aria-label="ซิงก์ข้อมูลข้ามอุปกรณ์">
-                <svg class="sync-cloud-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="M12 12v6"/><path d="m15 15-3-3-3 3"/></svg>
+            <button id="btn-welcome-sync" class="glass-sync-pill sync-open-btn" type="button" title="เข้าสู่ระบบด้วย Google เพื่อซิงก์ข้ามอุปกรณ์" aria-label="เข้าสู่ระบบด้วย Google เพื่อซิงก์ข้อมูล">
+                <svg class="sync-google-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24Z"/>
+                    <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14Z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96Z"/>
+                </svg>
                 <img id="sync-user-avatar" class="sync-user-avatar" alt="บัญชี Google" hidden>
+                <span id="sync-btn-label" class="sync-pill-label">ล็อกอิน</span>
                 <span class="sync-status-dot" id="sync-status-dot"></span>
             </button>
             <button id="btn-welcome-theme" class="glass-btn-icon small theme-toggle-btn" title="สลับโหมดมืด/สว่าง" aria-label="สลับโหมดมืด/สว่าง">
@@ -478,8 +484,13 @@
                     <span class="dash-subtitle">วิเคราะห์ความก้าวหน้าของคุณ</span>
                 </div>
                 <div style="display: flex; gap: 6px; align-items: center;">
-                    <button id="btn-dash-sync" class="glass-btn-icon small sync-open-btn" type="button" title="ซิงก์ข้ามอุปกรณ์ / Cloud Sync" aria-label="ซิงก์ข้ามอุปกรณ์">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="M12 12v6"/><path d="m15 15-3-3-3 3"/></svg>
+                    <button id="btn-dash-sync" class="glass-btn-icon small sync-open-btn" type="button" title="ซิงก์ข้อมูลด้วย Google" aria-label="ซิงก์ข้อมูลด้วย Google">
+                        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24Z"/>
+                            <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14Z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96Z"/>
+                        </svg>
                     </button>
                     <button id="btn-export-data" class="glass-btn-icon small" title="สำรองข้อมูล (Export JSON)" aria-label="สำรองข้อมูล">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1220,119 +1231,76 @@
         </div>
     </div>
 
-    <!-- Cloud Sync & Cross-Device Smart Merge Modal -->
+    <!-- Google Sync Modal -->
     <div id="sync-modal" class="modal-overlay" aria-hidden="true">
-        <div class="glass-panel modal-panel sync-modal-panel" role="dialog" aria-modal="true" aria-label="ซิงก์ข้อมูลข้ามอุปกรณ์">
+        <div class="glass-panel modal-panel sync-modal-panel" role="dialog" aria-modal="true" aria-label="ซิงก์ข้อมูลด้วย Google">
             <div class="sync-modal-head">
-                <div>
-                    <h3>ซิงก์ข้อมูลข้ามอุปกรณ์ (Sync)</h3>
-                    <p class="muted small" id="sb-status-text">บันทึกในเครื่อง (Local-First) · พร้อม Smart Merge</p>
-                </div>
-                <button type="button" id="btn-sync-close" class="qs-close-btn" title="ปิด">ปิด</button>
-            </div>
-            <div class="sync-tabs">
-                <button type="button" class="sync-tab-btn active" id="sync-tab-google" data-sync-pane="sync-pane-google">บัญชี Google</button>
-                <button type="button" class="sync-tab-btn" id="sync-tab-code" data-sync-pane="sync-pane-code">รหัสพกพา</button>
-                <button type="button" class="sync-tab-btn" id="sync-tab-cloud" data-sync-pane="sync-pane-cloud">Supabase</button>
-            </div>
-            <div class="sync-summary-box" id="sync-local-summary"></div>
-
-            <div id="sync-pane-google" class="sync-pane">
-                <div id="fb-file-protocol-warn" class="sync-warn-banner" hidden>
-                    กำลังเปิดแบบไฟล์ในเครื่อง (<code>file://</code>) — Google Login ต้องเปิดผ่าน <code>http://localhost</code> หรือเว็บ <code>https://</code> (ระหว่างเปิดแบบไฟล์สามารถใช้แท็บ <b>รหัสพกพา</b> แทนได้)
-                </div>
-
-                <div id="google-signed-out-box" class="google-auth-box">
-                    <p class="muted small" style="margin: 0 0 12px; line-height: 1.55;">
-                        เข้าสู่ระบบด้วยบัญชี <b>Google</b> เพื่อเก็บความจำ SRS, คำที่จำได้, คำปักหมุด และประวัติ Quiz ข้ามคอมพิวเตอร์และมือถือแบบอัตโนมัติ
-                    </p>
-                    <button type="button" id="btn-google-signin" class="google-signin-btn">
-                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                <div class="sync-head-title-row">
+                    <span class="sync-head-g-badge" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
                             <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z"/>
                             <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24Z"/>
                             <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14Z"/>
                             <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96Z"/>
                         </svg>
-                        <span>เข้าสู่ระบบด้วย Google</span>
-                    </button>
-                </div>
-
-                <div id="google-signed-in-box" class="google-profile-card" hidden>
-                    <div class="gp-header">
-                        <img id="google-profile-photo" class="gp-avatar" alt="Google Profile" hidden>
-                        <div id="google-profile-fallback" class="gp-avatar-fallback" aria-hidden="true">G</div>
-                        <div class="gp-meta">
-                            <b id="google-profile-name">ผู้ใช้ Google</b>
-                            <span id="google-profile-email" class="muted small"></span>
-                        </div>
-                        <span id="google-sync-badge" class="cefr-badge cefr-a1">เชื่อมต่อแล้ว</span>
-                    </div>
-                    <label class="gp-autosync-row">
-                        <input type="checkbox" id="google-auto-sync-toggle" checked>
-                        <span>ซิงก์อัตโนมัติเมื่อทบทวนคำหรือจบ Quiz</span>
-                    </label>
-                    <div class="sync-cloud-actions" style="margin-top: 10px;">
-                        <button type="button" id="btn-google-sync-now" class="btn btn-primary glass-btn">ซิงก์ตอนนี้ (Merge)</button>
-                        <button type="button" id="btn-google-signout" class="btn glass-btn">ออกจากระบบ</button>
+                    </span>
+                    <div>
+                        <h3>ซิงก์ข้อมูลด้วย Google</h3>
+                        <p class="muted small" id="sync-status-text">เข้าสู่ระบบเพื่อซิงก์ความจำข้ามมือถือและคอม</p>
                     </div>
                 </div>
-
-                <details id="fb-setup-details" class="fb-setup-box">
-                    <summary>ตั้งค่า Firebase Project เอง (เปิดใช้ค่าเริ่มต้นของเว็บแล้ว)</summary>
-                    <div class="fb-setup-body">
-                        <ol class="fb-steps">
-                            <li>สร้างโปรเจกต์ฟรีที่ <b>Firebase Console</b> &rarr; เปิด <b>Authentication &rarr; Google</b></li>
-                            <li>เปิด <b>Firestore Database</b> แล้วกด <b>คัดลอก Rules</b> ด้านล่างไปวาง</li>
-                            <li>คัดลอก <code>firebaseConfig</code> จาก <i>Project Settings</i> มาวางด้านล่าง</li>
-                        </ol>
-                        <textarea id="fb-config-input" class="sync-textarea" rows="4" placeholder='วาง const firebaseConfig = { apiKey: "...", authDomain: "...", projectId: "..." }; หรือ JSON ที่นี่'></textarea>
-                        <div class="fb-setup-actions">
-                            <button type="button" id="btn-fb-save-config" class="btn btn-primary glass-btn btn-sm">บันทึก Config</button>
-                            <button type="button" id="btn-copy-fb-rules" class="btn glass-btn btn-sm">คัดลอก Rules</button>
-                            <button type="button" id="btn-fb-clear-config" class="btn glass-btn btn-sm">ล้างค่า</button>
-                        </div>
-                    </div>
-                </details>
+                <button type="button" id="btn-sync-close" class="qs-close-btn" title="ปิด">ปิด</button>
             </div>
 
-            <div id="sync-pane-code" class="sync-pane" hidden>
-                <div class="sync-block">
-                    <label class="setup-label">1. สร้างรหัสซิงก์จากเครื่องนี้</label>
-                    <div class="sync-row">
-                        <input type="text" id="sync-code-output" class="sync-input" readonly placeholder="กดปุ่มเพื่อสร้างรหัส...">
-                        <button type="button" id="btn-gen-sync-code" class="btn btn-primary glass-btn btn-sm">สร้าง &amp; คัดลอก</button>
-                    </div>
-                </div>
-                <div class="sync-block">
-                    <label class="setup-label">2. นำรหัสจากเครื่องอื่นมา Smart Merge (ไม่ทับข้อมูลใหม่)</label>
-                    <textarea id="sync-code-input" class="sync-textarea" rows="3" placeholder="วางรหัส OX3K1:... ที่นี่"></textarea>
-                    <button type="button" id="btn-apply-sync-code" class="btn glass-btn full" style="margin-top: 8px;">รวมข้อมูลเข้าด้วยกัน (Smart Merge)</button>
-                </div>
+            <div class="sync-summary-box" id="sync-local-summary"></div>
+
+            <div id="fb-file-protocol-warn" class="sync-warn-banner" hidden>
+                กำลังเปิดแบบไฟล์ในเครื่อง (<code>file://</code>) — ต้องเปิดผ่านเว็บไซต์ (<code>https://</code>) หรือ <code>http://localhost</code> จึงจะล็อกอิน Google ได้
             </div>
 
-            <div id="sync-pane-cloud" class="sync-pane" hidden>
-                <p class="muted small" style="text-align: left; margin-bottom: 10px; line-height: 1.5;">
-                    เชื่อมต่อฐานข้อมูล <b>Supabase</b> ส่วนตัวของคุณเพื่อซิงก์ความจำ SRS ข้ามมือถือ-คอมอัตโนมัติ (ไม่มีค่าใช้จ่าย)
-                </p>
-                <div class="sync-block">
-                    <label class="setup-label">Supabase Project URL</label>
-                    <input type="url" id="sb-url" class="sync-input" placeholder="https://your-project.supabase.co" autocomplete="off">
+            <div id="google-signed-out-box" class="google-auth-box">
+                <ul class="sync-benefit-list">
+                    <li>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>เก็บคำที่จำได้, ปักหมุด และประวัติ Quiz ข้ามมือถือ–คอม</span>
+                    </li>
+                    <li>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>รวมข้อมูลจากหลายเครื่องอัตโนมัติ (ไม่ทับข้อมูลใหม่)</span>
+                    </li>
+                    <li>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>ข้อมูลเป็นส่วนตัว แยกตามบัญชี Google ของคุณโดยเฉพาะ</span>
+                    </li>
+                </ul>
+                <button type="button" id="btn-google-signin" class="google-signin-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z"/>
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24Z"/>
+                        <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14Z"/>
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96Z"/>
+                    </svg>
+                    <span>เข้าสู่ระบบด้วย Google</span>
+                </button>
+            </div>
+
+            <div id="google-signed-in-box" class="google-profile-card" hidden>
+                <div class="gp-header">
+                    <img id="google-profile-photo" class="gp-avatar" alt="Google Profile" hidden>
+                    <div id="google-profile-fallback" class="gp-avatar-fallback" aria-hidden="true">G</div>
+                    <div class="gp-meta">
+                        <b id="google-profile-name">ผู้ใช้ Google</b>
+                        <span id="google-profile-email" class="muted small"></span>
+                    </div>
+                    <span id="google-sync-badge" class="sync-badge ok">เชื่อมต่อแล้ว</span>
                 </div>
-                <div class="sync-block">
-                    <label class="setup-label">Supabase Anon Public Key</label>
-                    <input type="password" id="sb-anon-key" class="sync-input" placeholder="eyJhbGciOi..." autocomplete="off">
-                </div>
-                <div class="sync-block">
-                    <label class="setup-label">Sync Room ID / อีเมลส่วนตัว</label>
-                    <input type="text" id="sb-sync-id" class="sync-input" placeholder="เช่น my-oxford-deck-01" autocomplete="off">
-                </div>
-                <div class="sync-cloud-actions">
-                    <button type="button" id="btn-sb-save" class="btn glass-btn btn-sm">บันทึกค่า</button>
-                    <button type="button" id="btn-copy-sb-sql" class="btn glass-btn btn-sm">คัดลอก SQL สร้างตาราง</button>
-                </div>
-                <div class="sync-cloud-actions" style="margin-top: 8px;">
-                    <button type="button" id="btn-sb-push" class="btn btn-primary glass-btn">อัปโหลดขึ้น Cloud (Push)</button>
-                    <button type="button" id="btn-sb-pull" class="btn glass-btn">ดึงมารวม (Pull &amp; Merge)</button>
+                <label class="gp-autosync-row">
+                    <input type="checkbox" id="google-auto-sync-toggle" checked>
+                    <span>ซิงก์อัตโนมัติทุกครั้งที่ทบทวนคำหรือจบ Quiz</span>
+                </label>
+                <div class="sync-cloud-actions" style="margin-top: 12px;">
+                    <button type="button" id="btn-google-sync-now" class="btn btn-primary glass-btn">ซิงก์ตอนนี้</button>
+                    <button type="button" id="btn-google-signout" class="btn glass-btn">ออกจากระบบ</button>
                 </div>
             </div>
         </div>
