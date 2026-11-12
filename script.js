@@ -10,7 +10,7 @@
  * @property {string} [example]
  * @property {string} [exampleTranslation]
  * @property {string} [phonetic]
- * @property {CefrLevel} [cefr]
+ * @property {string} [cefr]
  * @property {string[]} [collocations]
  * @property {string[]} [synonyms]
  * @property {string[]} [wordFamily]
@@ -57,11 +57,26 @@ document.addEventListener('DOMContentLoaded', () => {
     mastery: 'ox3k_word_mastery_v1',  // { [key]: { streak, reviewCount, lastStudied, nextReviewAt, intervalDays } }
     bookmarks: 'ox3k_bookmarks_v1',   // [ "word|pos", ... ]
     ActivityLog: 'ox3k_activity_v1',  // { "YYYY-MM-DD": count }
+    usageTime: 'ox3k_usage_time_v1',  // { "YYYY-MM-DD": seconds }
     theme: 'ox3k_theme_mode',         // 'light' | 'dark'
     accent: 'ox3k_accent_v1',         // 'US' | 'UK'
     sbConfig: 'ox3k_sb_config_v1',    // { url, anonKey, syncId, lastSyncedAt }
     fbConfig: 'ox3k_fb_config_v1'     // { config, autoSync, lastSyncedAt, lastEmail, lastUid }
   };
+
+  /**
+   * Forward custom learning milestones to Google Analytics 4 when loaded.
+   * @param {string} eventName
+   * @param {Record<string, any>} [params]
+   */
+  function trackGAEvent(eventName, params = {}) {
+    try {
+      const gtagFn = /** @type {any} */ (window).gtag;
+      if (typeof gtagFn === 'function') {
+        gtagFn('event', eventName, params);
+      }
+    } catch (_) { }
+  }
 
   /** @type {(() => void)|null} */
   let scheduleGoogleAutoSync = null;
@@ -1039,12 +1054,73 @@ document.addEventListener('DOMContentLoaded', () => {
     storage.set(STORAGE.ActivityLog, log);
   }
 
+  /** @returns {Record<string, number>} */
+  function loadUsageTimeLog() {
+    const raw = storage.get(STORAGE.usageTime, {});
+    return (raw && typeof raw === 'object' && !Array.isArray(raw)) ? raw : {};
+  }
+
+  /** @param {Record<string, number>} log */
+  function saveUsageTimeLog(log) {
+    storage.set(STORAGE.usageTime, log);
+  }
+
   let wordStatus = loadWordStatus();
   let sessions = loadSessions();
   let dailyGoal = loadDailyGoal();
   let wordMastery = loadWordMastery();
   let bookmarkedWords = loadBookmarks();
   let activityLog = loadActivityLog();
+  let usageTimeLog = loadUsageTimeLog();
+
+  // Foreground active study/usage time tracker (counts only while tab is visible and recently active)
+  (() => {
+    let lastInteractionAt = Date.now();
+    let lastTickAt = Date.now();
+    let unsyncedSeconds = 0;
+
+    const markActive = () => {
+      lastInteractionAt = Date.now();
+    };
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach((evt) => {
+      window.addEventListener(evt, markActive, { passive: true });
+    });
+
+    const flushActiveSeconds = (triggerSync) => {
+      const now = Date.now();
+      if (document.visibilityState === 'visible') {
+        const elapsedSec = Math.floor((now - lastTickAt) / 1000);
+        const recentlyInteracted = (now - lastInteractionAt) <= 120000;
+        if (elapsedSec > 0 && elapsedSec <= 60 && recentlyInteracted) {
+          const today = getTodayDateString();
+          usageTimeLog[today] = Math.max(0, Number(usageTimeLog[today] || 0)) + elapsedSec;
+          // Prune entries older than 120 days to keep payload compact
+          const keys = Object.keys(usageTimeLog).sort();
+          if (keys.length > 120) {
+            keys.slice(0, keys.length - 120).forEach((k) => { delete usageTimeLog[k]; });
+          }
+          saveUsageTimeLog(usageTimeLog);
+          unsyncedSeconds += elapsedSec;
+        }
+      }
+      lastTickAt = now;
+      if (triggerSync && unsyncedSeconds >= 60 && scheduleGoogleAutoSync) {
+        unsyncedSeconds = 0;
+        scheduleGoogleAutoSync();
+      }
+    };
+
+    setInterval(() => flushActiveSeconds(true), 15000);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') {
+        flushActiveSeconds(true);
+      } else {
+        lastTickAt = Date.now();
+        lastInteractionAt = Date.now();
+      }
+    });
+    window.addEventListener('pagehide', () => flushActiveSeconds(false));
+  })();
   const prefs = storage.get(STORAGE.prefs, {});
   let selectedSize = typeof prefs.size === 'number' && prefs.size >= 1 && prefs.size <= 50 ? Math.round(prefs.size) : 20;
   let prefsMeta = {
@@ -1387,7 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const historyWordsPanel = $('history-words');
   const historySessionsCount = $('history-sessions-count');
   const sessionListEl = $('session-list');
-  const filterChips = Array.from(document.querySelectorAll('#status-filter .chip'));
+  const filterChips = /** @type {HTMLElement[]} */ (Array.from(document.querySelectorAll('#status-filter .chip')));
   const filterReviewCount = $('filter-review-count');
   const filterKnownCount = $('filter-known-count');
   const wordSearch = /** @type {HTMLInputElement|null} */ ($('word-search'));
@@ -1667,6 +1743,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return out;
   }
 
+  /** @param {string|null} [cefrOverride] */
   function startRandomSession(cefrOverride = null) {
     // Smart SRS-prioritized selection constrained by CEFR deck if chosen
     const lvl = (typeof cefrOverride === 'string' && cefrOverride) ? cefrOverride : (selectedCefr || 'all');
@@ -1912,6 +1989,15 @@ document.addEventListener('DOMContentLoaded', () => {
       SoundFX.victory();
     }
     const donePct = record.size ? Math.round((record.known.length / record.size) * 100) : 0;
+    const durationSec = record.startedAt ? Math.max(0, Math.round((Date.now() - record.startedAt) / 1000)) : 0;
+    trackGAEvent('session_complete', {
+      mode: record.mode,
+      size: record.size,
+      known_count: record.known.length,
+      review_count: record.review.length,
+      accuracy: donePct,
+      duration_sec: durationSec
+    });
     showScreen('summary');
     if (donePct >= 70) {
       OxConfetti.launch(donePct === 100 ? 'perfect' : 'good');
@@ -3276,10 +3362,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Delegated actions inside the dashboard
     screens.history.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
         const catBtn = e.target.closest('[data-practice-cat]');
-        if (catBtn) { practiceCategory(catBtn.dataset.practiceCat); return; }
+        if (catBtn instanceof HTMLElement) { practiceCategory(catBtn.dataset.practiceCat); return; }
         const actBtn = e.target.closest('[data-dash-action]');
-        if (actBtn) {
+        if (actBtn instanceof HTMLElement) {
             const act = actBtn.dataset.dashAction;
             if (act === 'start') startRandomSession();
             else if (act === 'review-all') practiceReviewWords('all');
@@ -3290,7 +3377,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function formatDate(iso) {
         const d = new Date(iso);
-        if (isNaN(d)) return '';
+        if (Number.isNaN(d.getTime())) return '';
         return d.toLocaleString('th-TH', {
             day: 'numeric', month: 'short', year: 'numeric',
             hour: '2-digit', minute: '2-digit'
@@ -3372,8 +3459,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     catFilterEl.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
         const chip = e.target.closest('.cat-chip');
-        if (!chip) return;
+        if (!(chip instanceof HTMLElement)) return;
         historyCatFilter = chip.dataset.cat;
         renderHistoryWords();
     });
@@ -3420,8 +3508,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderHistoryWords() {
         const c = countStatuses();
-        filterReviewCount.textContent = c.review;
-        filterKnownCount.textContent = c.known;
+        filterReviewCount.textContent = String(c.review);
+        filterKnownCount.textContent = String(c.known);
         const fStarCount = $('filter-starred-count');
         if (fStarCount) fStarCount.textContent = String(bookmarkedWords.size);
 
@@ -3490,7 +3578,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     historyTabs.forEach((t) => t.addEventListener('click', () => setDashTab(t.dataset.panel)));
 
-    const modeBtns = document.querySelectorAll('.dash-mode-switcher .mode-btn');
+    const modeBtns = /** @type {HTMLElement[]} */ (Array.from(document.querySelectorAll('.dash-mode-switcher .mode-btn')));
     modeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             // Update active state of buttons
@@ -3562,10 +3650,12 @@ document.addEventListener('DOMContentLoaded', () => {
         storage.remove(STORAGE.active);
         bookmarkedWords = new Set();
         activityLog = {};
+        usageTimeLog = {};
         storage.remove(STORAGE.mastery);
         storage.remove(STORAGE.dailyGoal);
         storage.remove(STORAGE.bookmarks);
         storage.remove(STORAGE.ActivityLog);
+        storage.remove(STORAGE.usageTime);
         try { localStorage.removeItem('oxford3000_quiz_history'); } catch (e) { }
         if (typeof onLearnDataChangedHook === 'function') onLearnDataChangedHook('reset');
         if (clearGoogleOwnership) clearGoogleOwnership();
@@ -3631,9 +3721,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Custom Select Logic for Quiz Category
     const quizCatWrapper = document.getElementById('quiz-category-wrapper');
     const quizCatTrigger = document.getElementById('quiz-category-trigger');
-    const quizCatOptions = document.querySelectorAll('.custom-option');
+    const quizCatOptions = /** @type {HTMLElement[]} */ (Array.from(document.querySelectorAll('.custom-option')));
     const quizCatDisplay = document.getElementById('quiz-category-display');
-    const quizCatInput = document.getElementById('quiz-category-select');
+    const quizCatInput = /** @type {HTMLInputElement|null} */ (document.getElementById('quiz-category-select'));
 
     if (quizCatWrapper) {
         quizCatTrigger.addEventListener('click', (e) => {
@@ -3830,9 +3920,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const c = 2 * Math.PI * 52;
             const offset = c - (avgScore / 100) * c;
             if (heroRingFg) {
-                heroRingFg.style.strokeDasharray = c;
-                heroRingFg.style.strokeDashoffset = c;
-                setTimeout(() => { heroRingFg.style.strokeDashoffset = offset; }, 100);
+                heroRingFg.style.strokeDasharray = String(c);
+                heroRingFg.style.strokeDashoffset = String(c);
+                setTimeout(() => { heroRingFg.style.strokeDashoffset = String(offset); }, 100);
             }
 
             let rank = 'ผู้เริ่มต้น';
@@ -3854,8 +3944,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 barCorrect.style.width = correctPct + '%';
                 barWrong.style.width = wrongPct + '%';
-                lgCorrect.textContent = totalCorrect;
-                lgWrong.textContent = totalWrong;
+                lgCorrect.textContent = String(totalCorrect);
+                lgWrong.textContent = String(totalWrong);
             }
         }
 
@@ -3958,10 +4048,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 analysisList.innerHTML = html;
 
                 // Render Radar Chart
-                const canvasEl = document.getElementById('quiz-radar-chart');
-                if (canvasEl && window.Chart) {
+                const canvasEl = /** @type {HTMLCanvasElement|null} */ (document.getElementById('quiz-radar-chart'));
+                const anyWin = /** @type {any} */ (window);
+                if (canvasEl && anyWin.Chart) {
                     const ctx = canvasEl.getContext('2d');
-                    if (window.quizRadar) window.quizRadar.destroy();
+                    if (anyWin.quizRadar) anyWin.quizRadar.destroy();
 
                     // Create Liquid Glass Gradient for fill
                     const gradient = ctx.createLinearGradient(0, 0, 0, 300);
@@ -3982,7 +4073,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         return found ? Math.round(found.accuracy * 100) : 0;
                     });
 
-                    window.quizRadar = new Chart(canvasEl, {
+                    anyWin.quizRadar = new anyWin.Chart(canvasEl, {
                         type: 'radar',
                         data: {
                             labels: labels,
@@ -4075,7 +4166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 if (actionBox) {
                     actionBox.style.display = 'block';
-                    if (totalCountEl) totalCountEl.textContent = sortedMistakes.length;
+                    if (totalCountEl) totalCountEl.textContent = String(sortedMistakes.length);
                     if (btnPractice) {
                         btnPractice.onclick = () => {
                             const mistakeIndices = [];
@@ -4161,7 +4252,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 chartEl.innerHTML = '';
                 recent.forEach((item, i) => {
                     const d = new Date(item.date);
-                    const label = isNaN(d) ? '' : d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
+                    const label = Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
 
                     const bar = document.createElement('div');
                     bar.className = 'trend-col';
@@ -4199,27 +4290,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Quiz Modal Elements
     const quizSetupModal = document.getElementById('quiz-setup-modal');
-    const quizCountSlider = document.getElementById('quiz-count-slider');
+    const quizCountSlider = /** @type {HTMLInputElement|null} */ (document.getElementById('quiz-count-slider'));
     const quizCountDisplay = document.getElementById('quiz-count-display');
     const btnQuizCancel = document.getElementById('btn-quiz-cancel');
     const btnQuizConfirm = document.getElementById('btn-quiz-confirm');
 
     if (quizCountSlider && quizCountDisplay) {
         let lastQuizSize = parseInt(quizCountSlider.value, 10);
-        quizCountSlider.addEventListener('input', (e) => {
-            const val = parseInt(e.target.value, 10);
+        quizCountSlider.addEventListener('input', () => {
+            const val = parseInt(quizCountSlider.value, 10);
             if (val !== lastQuizSize) {
                 SoundFX.tick();
                 lastQuizSize = val;
             }
-            quizCountDisplay.textContent = val;
+            quizCountDisplay.textContent = String(val);
             // Add a little liquid effect on slide
-            const ratio = (val - e.target.min) / (e.target.max - e.target.min);
-            e.target.style.background = `linear-gradient(90deg, #a855f7 ${ratio * 100}%, rgba(0,0,0,0.1) ${ratio * 100}%)`;
+            const minV = Number(quizCountSlider.min || 0);
+            const maxV = Number(quizCountSlider.max || 100);
+            const ratio = (val - minV) / (maxV - minV);
+            quizCountSlider.style.background = `linear-gradient(90deg, #a855f7 ${ratio * 100}%, rgba(0,0,0,0.1) ${ratio * 100}%)`;
         });
 
         // Init background
-        const initRatio = (quizCountSlider.value - quizCountSlider.min) / (quizCountSlider.max - quizCountSlider.min);
+        const initMin = Number(quizCountSlider.min || 0);
+        const initMax = Number(quizCountSlider.max || 100);
+        const initRatio = (Number(quizCountSlider.value) - initMin) / (initMax - initMin);
         quizCountSlider.style.background = `linear-gradient(90deg, #a855f7 ${initRatio * 100}%, rgba(0,0,0,0.1) ${initRatio * 100}%)`;
     }
 
@@ -4235,11 +4330,12 @@ document.addEventListener('DOMContentLoaded', () => {
             quizSetupModal.classList.remove('open');
             quizSetupModal.setAttribute('aria-hidden', 'true');
 
-            const selectedSize = parseInt(quizCountSlider.value, 10);
-            const selectedCat = document.getElementById('quiz-category-select').value;
-            const cefrInput = document.getElementById('quiz-cefr-input');
+            const selectedSize = parseInt(quizCountSlider ? quizCountSlider.value : '10', 10);
+            const catInput = /** @type {HTMLInputElement|null} */ (document.getElementById('quiz-category-select'));
+            const selectedCat = catInput ? catInput.value : 'all';
+            const cefrInput = /** @type {HTMLInputElement|null} */ (document.getElementById('quiz-cefr-input'));
             const selectedQuizCefr = cefrInput ? cefrInput.value : 'all';
-            const modeInput = document.getElementById('quiz-mode-input');
+            const modeInput = /** @type {HTMLInputElement|null} */ (document.getElementById('quiz-mode-input'));
             const selectedQuizMode = modeInput ? modeInput.value : 'choice';
 
             let pool = [];
@@ -4376,7 +4472,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (_) {
                 audioUrl = null;
             }
-            audioUrlCache.set(cacheKey, audioUrl);
+            audioUrlCache.set(cacheKey, audioUrl || null);
         }
         if (!audioUrl) return false;
         try {
@@ -4398,6 +4494,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    /**
+     * @param {string} text
+     * @param {boolean} [isManual]
+     * @param {EventTarget|null} [targetBtn]
+     * @param {{ rate?: number }|null} [opts]
+     */
     function speakWordOverride(text, isManual = false, targetBtn = null, opts = null) {
         if (!text) return;
         if (isSoundMuted && !isManual) return;
@@ -4421,7 +4523,7 @@ document.addEventListener('DOMContentLoaded', () => {
             speakViaWebSpeech(clean, btn, rateOverride);
         }
     }
-    window.speakWordOverride = speakWordOverride;
+    /** @type {any} */ (window).speakWordOverride = speakWordOverride;
 
     function renderQuizQuestion() {
         if (!quizSession) return;
@@ -4473,6 +4575,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeof refreshShellTelemetry === 'function') refreshShellTelemetry();
             }
             if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
+            trackGAEvent('quiz_complete', {
+                category: finishedQuiz.category,
+                score: finishedQuiz.score,
+                total: finishedQuiz.indices.length,
+                accuracy: qPct,
+                duration_sec: timeSpentSec
+            });
 
             // Refresh dashboard
             if (typeof renderHistory === 'function') renderHistory();
@@ -4496,7 +4605,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const contextTrans = $('quiz-context-trans');
         const spellingBox = $('quiz-spelling-box');
         const spellHintEl = $('quiz-spell-hint');
-        const spellInput = $('quiz-spelling-input');
+        const spellInput = /** @type {HTMLInputElement|null} */ ($('quiz-spelling-input'));
         const spellFeedback = $('quiz-spell-feedback');
 
         const MODE_LABELS = {
@@ -4640,6 +4749,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const isCorrect = quizOptionsData[selectedIndex].isCorrect;
         const buttons = quizOptions.querySelectorAll('.quiz-btn');
+        /** @type {Element|null} */
         let correctBtn = null;
 
         quizOptionsData.forEach((opt, idx) => {
@@ -4720,8 +4830,8 @@ document.addEventListener('DOMContentLoaded', () => {
             subtitleEl.textContent = `หมวด${catLabel} · ทั้งหมด ${total} ข้อ`;
         }
         if (percentEl) percentEl.textContent = percent + '%';
-        if (correctEl) correctEl.textContent = record.score;
-        if (wrongEl) wrongEl.textContent = wrong;
+        if (correctEl) correctEl.textContent = String(record.score);
+        if (wrongEl) wrongEl.textContent = String(wrong);
 
         if (timeEl) {
             const m = Math.floor((record.timeSpent || 0) / 60);
@@ -4732,9 +4842,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ringFg) {
             const c = 2 * Math.PI * 52;
             const offset = c - (percent / 100) * c;
-            ringFg.style.strokeDasharray = c;
-            ringFg.style.strokeDashoffset = c;
-            setTimeout(() => { ringFg.style.strokeDashoffset = offset; }, 100);
+            ringFg.style.strokeDasharray = String(c);
+            ringFg.style.strokeDashoffset = String(c);
+            setTimeout(() => { ringFg.style.strokeDashoffset = String(offset); }, 100);
         }
 
         // Mistakes list
@@ -4791,8 +4901,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     listEl.appendChild(li);
                 });
                 listEl.onclick = (e) => {
+                    if (!(e.target instanceof Element)) return;
                     const sBtn = e.target.closest('[data-speak-word]');
-                    if (sBtn) {
+                    if (sBtn instanceof HTMLElement) {
                         speakWordOverride(sBtn.dataset.speakWord, true, sBtn);
                     }
                 };
@@ -4846,8 +4957,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.toggle('is-on', !isSoundMuted);
                 btn.setAttribute('aria-checked', String(!isSoundMuted));
             }
-            btn.title = isSoundMuted ? 'เปิดเสียง (Muted)' : 'ปิดเสียง (Sound On)';
-            btn.setAttribute('aria-label', btn.title);
+            const label = isSoundMuted ? 'เปิดเสียง (Muted)' : 'ปิดเสียง (Sound On)';
+            if (btn instanceof HTMLElement) btn.title = label;
+            btn.setAttribute('aria-label', label);
         });
     }
 
@@ -5153,11 +5265,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Quiz Mode Selector (4 Modes) & Spelling Mode Handlers
     const quizModeSelector = $('quiz-mode-selector');
-    const quizModeInput = $('quiz-mode-input');
+    const quizModeInput = /** @type {HTMLInputElement|null} */ ($('quiz-mode-input'));
     if (quizModeSelector && quizModeInput) {
         quizModeSelector.addEventListener('click', (e) => {
+            if (!(e.target instanceof Element)) return;
             const card = e.target.closest('[data-quiz-mode]');
-            if (!card) return;
+            if (!(card instanceof HTMLElement)) return;
             SoundFX.tick();
             quizModeSelector.querySelectorAll('.quiz-mode-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
@@ -5167,7 +5280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btnQuizHint = $('btn-quiz-hint');
     const btnQuizSubmitSpell = $('btn-quiz-submit-spell');
-    const quizSpellingInput = $('quiz-spelling-input');
+    const quizSpellingInput = /** @type {HTMLInputElement|null} */ ($('quiz-spelling-input'));
     if (quizSpellingInput) {
         quizSpellingInput.addEventListener('input', () => SoundFX.typing());
     }
@@ -5253,7 +5366,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Quick Dictionary Search Command Palette (#quick-search-modal)
     const quickSearchModal = $('quick-search-modal');
-    const quickSearchInput = $('quick-search-input');
+    const quickSearchInput = /** @type {HTMLInputElement|null} */ ($('quick-search-input'));
     const quickSearchClose = $('quick-search-close');
     const quickSearchFilters = $('quick-search-filters');
     const quickSearchResults = $('quick-search-results');
@@ -5462,6 +5575,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (bookmarkedWords.size > 0) return true;
             if (sessions.length > 0) return true;
             if (Object.keys(activityLog).length > 0) return true;
+            if (Object.keys(usageTimeLog).length > 0) return true;
             if (dailyGoal && Number(dailyGoal.count || 0) > 0) return true;
             try {
                 const rawQh = localStorage.getItem('oxford3000_quiz_history');
@@ -5490,6 +5604,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessions: sessions.slice(0, 60),
                 quizHistory,
                 activityLog: { ...activityLog },
+                usageTimeLog: { ...usageTimeLog },
                 dailyGoal: { ...dailyGoal, targetUpdatedAt: dailyGoal.targetUpdatedAt || 0 },
                 learningPath: typeof getLearnSyncPayloadHook === 'function' ? getLearnSyncPayloadHook() : undefined,
                 prefs: {
@@ -5594,6 +5709,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     activityLog[day] = Math.max(Number(activityLog[day] || 0), Number(cnt || 0));
                 }
                 saveActivityLog(activityLog);
+            }
+
+            if (remote.usageTimeLog && typeof remote.usageTimeLog === 'object') {
+                for (const [day, sec] of Object.entries(remote.usageTimeLog)) {
+                    usageTimeLog[day] = Math.max(Number(usageTimeLog[day] || 0), Number(sec || 0));
+                }
+                saveUsageTimeLog(usageTimeLog);
             }
 
             const today = getTodayDateString();
@@ -6017,6 +6139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 provider.setCustomParameters({ prompt: 'select_account' });
                 try {
                     await mods.authMod.signInWithPopup(mods.auth, provider);
+                    trackGAEvent('google_signin', { method: 'google_popup' });
                     showToast('เข้าสู่ระบบ Google สำเร็จ กำลังซิงค์ข้อมูล...');
                 } catch (err) {
                     const code = err && err.code ? String(err.code) : '';
@@ -6515,7 +6638,7 @@ document.addEventListener('DOMContentLoaded', () => {
             openQuickSearch();
             return;
         }
-        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+        if (e.target instanceof HTMLElement && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
         if (e.key === '/') {
             e.preventDefault();
             openQuickSearch();
@@ -6566,14 +6689,18 @@ document.addEventListener('DOMContentLoaded', () => {
             xp: 0,
             updatedAt: 0,
             activeSection: 'A1',
+            /** @type {Record<string, { lessonsDone: number, stars: number, bestAcc: number, completedAt: number, legendary: boolean }>} */
             completedStages: {},
+            /** @type {string[]} */
             claimedChests: [],
+            /** @type {string[]} */
             unlockedUnits: [],
             dailyQuests: {
                 date: getTodayDateString(),
                 xpToday: 0,
                 stagesToday: 0,
                 perfectToday: 0,
+                /** @type {string[]} */
                 claimed: []
             }
         };
@@ -6993,7 +7120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const sec = learnState.activeSection || 'A1';
         if (learnSectionTabs) {
             learnSectionTabs.querySelectorAll('.section-pill').forEach(btn => {
-                btn.classList.toggle('is-active', btn.dataset.section === sec);
+                btn.classList.toggle('is-active', btn instanceof HTMLElement && btn.dataset.section === sec);
             });
         }
 
@@ -7178,8 +7305,9 @@ document.addEventListener('DOMContentLoaded', () => {
     chestModal?.addEventListener('click', (e) => { if (e.target === chestModal) claimChestReward(); });
 
     learnSectionTabs?.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
         const btn = e.target.closest('[data-section]');
-        if (!btn) return;
+        if (!(btn instanceof HTMLElement)) return;
         closeNodePopover();
         SoundFX.nav();
         learnState.activeSection = btn.dataset.section;
@@ -7207,19 +7335,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     learnUnitsContainer?.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
         const gbBtn = e.target.closest('[data-guidebook-unit]');
-        if (gbBtn) {
+        if (gbBtn instanceof HTMLElement) {
             openUnitGuidebook(gbBtn.dataset.guidebookUnit);
             return;
         }
         const jumpBtn = e.target.closest('[data-jump-unit]');
-        if (jumpBtn) {
+        if (jumpBtn instanceof HTMLElement) {
             const unit = OxCurriculum.unitById.get(jumpBtn.dataset.jumpUnit);
             if (unit) startLessonByStageId(unit.bossStageId, { isJumpTestForUnitId: unit.id });
             return;
         }
         const chestBtn = e.target.closest('[data-chest-id]');
-        if (chestBtn) {
+        if (chestBtn instanceof HTMLElement) {
             const cid = chestBtn.dataset.chestId;
             if (learnState.claimedChests.includes(cid)) {
                 showToast('รับรางวัลจากหีบนี้ไปแล้ว');
@@ -7233,7 +7362,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const mascotBtn = e.target.closest('.unit-mascot');
-        if (mascotBtn) {
+        if (mascotBtn instanceof HTMLElement) {
             SoundFX.mascot();
             const quotes = [
                 'สู้ๆ นะ! ฝึกวันละนิดก็เก่งขึ้นได้ทุกวัน',
@@ -7252,15 +7381,16 @@ document.addEventListener('DOMContentLoaded', () => {
             mascotBtn.dataset.quoteIdx = String(idx + 1);
             pop.textContent = quotes[idx];
             mascotBtn.appendChild(pop);
-            clearTimeout(mascotBtn._speechTimer);
-            mascotBtn._speechTimer = setTimeout(() => {
+            const anyMascot = /** @type {any} */ (mascotBtn);
+            clearTimeout(anyMascot._speechTimer);
+            anyMascot._speechTimer = setTimeout(() => {
                 mascotBtn.classList.remove('is-cheering');
                 if (pop && pop.parentNode) pop.remove();
             }, 2600);
             return;
         }
         const stageBtn = e.target.closest('[data-stage-id]');
-        if (stageBtn) {
+        if (stageBtn instanceof HTMLElement) {
             openNodePopover(stageBtn.dataset.stageId, stageBtn);
         }
     });
@@ -7431,7 +7561,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnNodePopClose?.addEventListener('click', () => closeNodePopover(true));
     document.addEventListener('click', (e) => {
-        if (!learnNodePopover || learnNodePopover.hidden) return;
+        if (!learnNodePopover || learnNodePopover.hidden || !(e.target instanceof Element)) return;
         if (e.target.closest('#learn-node-popover') || e.target.closest('[data-stage-id]')) return;
         closeNodePopover();
     });
@@ -7891,6 +8021,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 5. Smart Response Grader (Normalization + Contractions + Typo Tolerance)
+    /** @type {[RegExp, string][]} */
     const CONTRACTIONS_EXPAND = [
         [/\bi'm\b/g, 'i am'], [/\byou're\b/g, 'you are'], [/\bwe're\b/g, 'we are'],
         [/\bthey're\b/g, 'they are'], [/\bhe's\b/g, 'he is'], [/\bshe's\b/g, 'she is'],
@@ -8683,10 +8814,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const replyBubble = body.querySelector('[data-reply-preview]');
       body.querySelectorAll('.lesson-opt-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          if (activeLesson.awaitingNext) return;
+          if (activeLesson.awaitingNext || !(btn instanceof HTMLElement)) return;
           const chosen = Number(btn.dataset.choiceIdx);
           step.selectedChoice = chosen;
-          body.querySelectorAll('.lesson-opt-btn').forEach(b => b.classList.toggle('is-selected', Number(b.dataset.choiceIdx) === chosen));
+          body.querySelectorAll('.lesson-opt-btn').forEach(b => b.classList.toggle('is-selected', b instanceof HTMLElement && Number(b.dataset.choiceIdx) === chosen));
           if (replyBubble) {
             replyBubble.textContent = step.choiceTexts[chosen];
             replyBubble.classList.add('is-filled');
@@ -8755,10 +8886,10 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         body.querySelectorAll('.lesson-opt-btn').forEach(btn => {
           btn.addEventListener('click', () => {
-            if (activeLesson.awaitingNext) return;
+            if (activeLesson.awaitingNext || !(btn instanceof HTMLElement)) return;
             const optIdx = Number(btn.dataset.optIdx);
             step.selectedChoice = optIdx;
-            body.querySelectorAll('.lesson-opt-btn').forEach(b => b.classList.toggle('is-selected', Number(b.dataset.optIdx) === optIdx));
+            body.querySelectorAll('.lesson-opt-btn').forEach(b => b.classList.toggle('is-selected', b instanceof HTMLElement && Number(b.dataset.optIdx) === optIdx));
             if (slotEl && wordsData[optIdx]) {
               slotEl.textContent = wordsData[optIdx].word;
               slotEl.classList.add('is-filled');
@@ -8864,10 +8995,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     body.querySelectorAll('.lesson-opt-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        if (activeLesson.awaitingNext) return;
+        if (activeLesson.awaitingNext || !(btn instanceof HTMLElement)) return;
         const chosenIdx = Number(btn.dataset.optIdx);
         step.selectedChoice = chosenIdx;
-        body.querySelectorAll('.lesson-opt-btn').forEach(b => b.classList.toggle('is-selected', Number(b.dataset.optIdx) === chosenIdx));
+        body.querySelectorAll('.lesson-opt-btn').forEach(b => b.classList.toggle('is-selected', b instanceof HTMLElement && Number(b.dataset.optIdx) === chosenIdx));
         SoundFX.tick();
         syncLessonCheckButton();
       });
@@ -8972,6 +9103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         : (isSkip ? 'ข้ามข้อนี้' : 'ลองใหม่ได้!'));
 
     body.querySelectorAll('.lesson-cast-avatar').forEach((av, idx) => {
+      if (!(av instanceof HTMLElement)) return;
       const cIdx = Number(av.dataset.castIdx ?? step.castIdx ?? idx);
       av.innerHTML = renderCastAvatar(cIdx, evalRes.isCorrect ? 'happy' : 'retry', idx === 0 ? reactLabel : '');
       av.classList.remove('mood-happy', 'mood-retry');
@@ -8988,7 +9120,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     body.querySelectorAll('.lesson-opt-btn').forEach(btn => {
-      btn.disabled = true;
+      if (btn instanceof HTMLButtonElement) btn.disabled = true;
+      if (!(btn instanceof HTMLElement)) return;
       if (step.type === 'dialogue_complete') {
         const ci = Number(btn.dataset.choiceIdx);
         if (ci === step.correctChoiceIdx) btn.classList.add('is-correct');
@@ -9005,10 +9138,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLessonAccuracyPill($('lesson-acc-pill'), nextAcc);
 
     body.querySelectorAll('.wb-tile, .lesson-spelling-input, .lesson-wb-textarea, .lesson-wb-clear-btn').forEach(el => {
-      el.disabled = true;
+      if ('disabled' in el) /** @type {HTMLInputElement} */ (el).disabled = true;
     });
     if (!evalRes.isCorrect && !isSkip && !step._useKeyboard && Array.isArray(step.chosenIds) && Array.isArray(step.answerTokens)) {
       body.querySelectorAll('.lesson-wb-tray .wb-tile[data-tray-pos]').forEach(tileEl => {
+        if (!(tileEl instanceof HTMLElement)) return;
         const pos = Number(tileEl.dataset.trayPos);
         const tokText = String(tileEl.textContent || '').trim().toLowerCase();
         const expectedTok = String(step.answerTokens[pos] || '').trim().toLowerCase();
@@ -9016,7 +9150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     const dialogueThEl = body.querySelector('.lesson-dialogue-th');
-    if (dialogueThEl) dialogueThEl.hidden = false;
+    if (dialogueThEl instanceof HTMLElement) dialogueThEl.hidden = false;
     const slot = body.querySelector('[data-cloze-slot]');
     if (slot && step.type === 'sentence_cloze_inline') {
       slot.textContent = step.targetSurface;
@@ -9268,6 +9402,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     saveLearnState(true);
+    trackGAEvent('learn_lesson_complete', {
+      unit_id: stage.unitId || '',
+      stage_id: stage.id || '',
+      mode: lessonMode,
+      passed: stagePassed,
+      accuracy: acc,
+      xp_earned: earnedXp
+    });
     refreshShellTelemetry();
     if (stagePassed) {
       pendingScrollToCurrentLearn = true;
@@ -9557,15 +9699,17 @@ document.addEventListener('DOMContentLoaded', () => {
     renderDictionary(true);
   });
   $('dict-cefr-filters')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
     const pill = e.target.closest('[data-dict-cefr]');
-    if (!pill) return;
+    if (!(pill instanceof HTMLElement)) return;
     dictFilterState.cefr = pill.dataset.dictCefr;
     $('dict-cefr-filters').querySelectorAll('.cefr-pill').forEach(p => p.classList.toggle('active', p === pill));
     renderDictionary(true);
   });
   $('dict-status-filters')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
     const chip = e.target.closest('[data-dict-status]');
-    if (!chip) return;
+    if (!(chip instanceof HTMLElement)) return;
     dictFilterState.status = chip.dataset.dictStatus;
     $('dict-status-filters').querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c === chip));
     renderDictionary(true);
@@ -9580,14 +9724,16 @@ document.addEventListener('DOMContentLoaded', () => {
      * ========================================================= */
   let qhState = { mode: 'choice', cefr: 'all' };
   $('qh-mode-selector')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
     const card = e.target.closest('[data-qh-mode]');
-    if (!card) return;
+    if (!(card instanceof HTMLElement)) return;
     qhState.mode = card.dataset.qhMode;
     $('qh-mode-selector').querySelectorAll('.quiz-mode-card').forEach(c => c.classList.toggle('active', c === card));
   });
   $('qh-cefr-selector')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
     const pill = e.target.closest('[data-qh-cefr]');
-    if (!pill) return;
+    if (!(pill instanceof HTMLElement)) return;
     qhState.cefr = pill.dataset.qhCefr;
     $('qh-cefr-selector').querySelectorAll('.cefr-pill').forEach(p => p.classList.toggle('active', p === pill));
   });
@@ -9679,7 +9825,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const profGoalChips = $('prof-goal-chips');
     if (profGoalChips) {
       profGoalChips.querySelectorAll('[data-goal]').forEach(ch => {
-        ch.classList.toggle('active', Number(ch.dataset.goal) === Number(dailyGoal.target || 20));
+        ch.classList.toggle('active', ch instanceof HTMLElement && Number(ch.dataset.goal) === Number(dailyGoal.target || 20));
       });
     }
     const setSwitch = (id, on) => {
@@ -9706,6 +9852,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const catBox = $('prof-sound-cats');
     if (catBox) {
       catBox.querySelectorAll('[data-sound-cat]').forEach(btn => {
+        if (!(btn instanceof HTMLElement)) return;
         const k = btn.dataset.soundCat;
         const on = soundCats[k] !== false;
         btn.classList.toggle('active', on);
@@ -9786,7 +9933,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (colHost) {
       const curCol = userProfile.banner || 'slate';
       colHost.querySelectorAll('.prof-swatch').forEach(sw => {
-        sw.classList.toggle('active', sw.dataset.color === curCol);
+        sw.classList.toggle('active', sw instanceof HTMLElement && sw.dataset.color === curCol);
       });
     }
   }
@@ -9803,6 +9950,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (box) box.hidden = true;
   });
   $('prof-edit-avatars')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
     const btn = e.target.closest('[data-avatar-idx]');
     if (!btn) return;
     $('prof-edit-avatars')?.querySelectorAll('.prof-avatar-opt').forEach(b => b.classList.remove('active'));
@@ -9810,8 +9958,9 @@ document.addEventListener('DOMContentLoaded', () => {
     SoundFX.tick();
   });
   $('prof-edit-colors')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
     const sw = e.target.closest('.prof-swatch');
-    if (!sw) return;
+    if (!(sw instanceof HTMLElement)) return;
     $('prof-edit-colors')?.querySelectorAll('.prof-swatch').forEach(b => b.classList.remove('active'));
     sw.classList.add('active');
     const banner = $('prof-banner');
@@ -9825,8 +9974,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const selCol = $('prof-edit-colors')?.querySelector('.prof-swatch.active');
     userProfile.name = (nameInput ? nameInput.value : '').trim().slice(0, 32);
     userProfile.handle = (handleInput ? handleInput.value : '').trim().replace(/^@+/, '').slice(0, 24);
-    if (selAva) userProfile.avatarIdx = Number(selAva.dataset.avatarIdx);
-    if (selCol && selCol.dataset.color) userProfile.banner = selCol.dataset.color;
+    if (selAva instanceof HTMLElement) userProfile.avatarIdx = Number(selAva.dataset.avatarIdx);
+    if (selCol instanceof HTMLElement && selCol.dataset.color) userProfile.banner = selCol.dataset.color;
     storage.set('ox3k_profile_v1', userProfile);
     const box = $('prof-edit-box');
     if (box) box.hidden = true;
@@ -9836,8 +9985,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   $('prof-goal-chips')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
     const btn = e.target.closest('[data-goal]');
-    if (!btn) return;
+    if (!(btn instanceof HTMLElement)) return;
     const val = Number(btn.dataset.goal);
     if (Number.isFinite(val) && val > 0) {
       SoundFX.toggle(true);
@@ -9865,8 +10015,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isSoundMuted && soundVolume > 0) SoundFX.tick();
   });
   $('prof-sound-cats')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
     const btn = e.target.closest('[data-sound-cat]');
-    if (!btn) return;
+    if (!(btn instanceof HTMLElement)) return;
     const k = btn.dataset.soundCat;
     if (!k || !(k in soundCats)) return;
     soundCats[k] = !(soundCats[k] !== false);
@@ -9910,8 +10061,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentScreen === 'history' && dashTab === 'dash-overview') renderOverview(computeCategoryStats());
   });
   $('more-subnav-list')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
     const btn = e.target.closest('[data-more-target]');
-    if (!btn) return;
+    if (!(btn instanceof HTMLElement)) return;
     $('more-subnav-list')?.querySelectorAll('.more-subnav-btn').forEach(b => b.classList.remove('is-active'));
     btn.classList.add('is-active');
     const sec = $(btn.dataset.moreTarget);
@@ -10165,6 +10317,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('[data-nav]').forEach(btn => {
     btn.addEventListener('click', () => {
+      if (!(btn instanceof HTMLElement)) return;
       SoundFX.nav();
       navigateByCategory(btn.dataset.nav);
     });
@@ -10175,14 +10328,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!learnUnitsContainer || typeof IntersectionObserver !== 'function') return;
     const units = learnUnitsContainer.querySelectorAll('.unit-block');
     if (!units.length) return;
-    if (learnUnitsContainer._unitObserver) {
-      learnUnitsContainer._unitObserver.disconnect();
+    const learnHost = /** @type {any} */ (learnUnitsContainer);
+    if (learnHost._unitObserver) {
+      learnHost._unitObserver.disconnect();
     }
-    if (learnUnitsContainer._stickyUnitObserver) {
-      learnUnitsContainer._stickyUnitObserver.disconnect();
+    if (learnHost._stickyUnitObserver) {
+      learnHost._stickyUnitObserver.disconnect();
     }
-    if (learnUnitsContainer._offscreenObserver) {
-      learnUnitsContainer._offscreenObserver.disconnect();
+    if (learnHost._offscreenObserver) {
+      learnHost._offscreenObserver.disconnect();
     }
 
     const offObs = new IntersectionObserver((entries) => {
@@ -10191,7 +10345,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { rootMargin: '260px 0px', threshold: 0 });
     units.forEach(u => offObs.observe(u));
-    learnUnitsContainer._offscreenObserver = offObs;
+    learnHost._offscreenObserver = offObs;
 
     const stickyObs = new IntersectionObserver((entries) => {
       if (!learnActiveUnitPill || !learnActiveUnitText) return;
@@ -10210,7 +10364,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { rootMargin: '-95px 0px -65% 0px', threshold: 0 });
     units.forEach(u => stickyObs.observe(u));
-    learnUnitsContainer._stickyUnitObserver = stickyObs;
+    learnHost._stickyUnitObserver = stickyObs;
 
     if (!prefersReducedMotion()) {
       const obs = new IntersectionObserver((entries) => {
@@ -10222,7 +10376,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       }, { rootMargin: '180px 0px', threshold: 0.01 });
-      learnUnitsContainer._unitObserver = obs;
+      learnHost._unitObserver = obs;
 
       const foldY = window.innerHeight + 120;
       units.forEach(u => {
@@ -10248,7 +10402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (name !== 'lesson') closeLessonExitConfirm();
     const activeNav = navCategoryForScreen(name);
     document.querySelectorAll('.nav-item[data-nav], .mob-nav-item[data-nav]').forEach(btn => {
-      const on = btn.dataset.nav === activeNav;
+      const on = btn instanceof HTMLElement && btn.dataset.nav === activeNav;
       btn.classList.toggle('is-active', on);
       if (on) btn.setAttribute('aria-current', 'page');
       else btn.removeAttribute('aria-current');
@@ -10356,7 +10510,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof onGoogleUiRefreshHook === 'function') onGoogleUiRefreshHook(OxGoogleSync._state);
 
   // Expose a tiny API for automated testing / debugging
-  window.__flashcardApp = {
+  /** @type {any} */ (window).__flashcardApp = {
     getSession: () => session && JSON.parse(JSON.stringify(session)),
     getQuizSession: () => quizSession && JSON.parse(JSON.stringify(quizSession)),
     getCounts: () => session && getSessionCounts(),
@@ -10437,7 +10591,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Expose Targeted Practice
-  window.startTargetedPractice = function (category) {
+  /** @type {any} */ (window).startTargetedPractice = function (category) {
     if (category === 'mixed') category = 'all';
     let pool = Array.from({ length: totalWords }, (_, i) => i);
     if (category !== 'all') {

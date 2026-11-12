@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oxflashcards-v14';
+const CACHE_NAME = 'oxflashcards-v15';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -73,8 +73,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Never intercept Firebase reserved auth handler paths
-  if (reqUrl.pathname.includes('/__/')) return;
+  // Never intercept Firebase reserved auth handler paths or Admin Dashboard files
+  if (reqUrl.pathname.includes('/__/') || reqUrl.pathname.endsWith('/admin.html') || reqUrl.pathname.endsWith('/admin.js')) return;
 
   // Heavy data bundle (data.js 2.3MB): Stale-While-Revalidate for instant cold start + silent refresh
   if (reqUrl.pathname.endsWith('/data.js') || reqUrl.pathname === '/data.js') {
