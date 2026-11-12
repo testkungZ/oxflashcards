@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oxflashcards-v8';
+const CACHE_NAME = 'oxflashcards-v14';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -7,7 +7,7 @@ const STATIC_ASSETS = [
   './data.js',
   './manifest.json'
 ];
-const CHART_JS_URL = 'https://cdn.jsdelivr.net/npm/chart.js';
+const CHART_JS_URL = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -49,18 +49,24 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Bypass cross-origin Google/Firebase APIs & SDKs except Chart.js offline cache
+  // Bypass cross-origin Google/Firebase APIs & SDKs except pinned Chart.js & Google Fonts (Stale-While-Revalidate)
+  const isFontAsset = reqUrl.origin === 'https://fonts.googleapis.com' || reqUrl.origin === 'https://fonts.gstatic.com';
   if (reqUrl.origin !== self.location.origin) {
-    if (reqUrl.href.startsWith(CHART_JS_URL)) {
+    if (reqUrl.href.startsWith(CHART_JS_URL) || isFontAsset) {
       event.respondWith(
         caches.match(event.request).then((cached) => {
-          return cached || fetch(event.request).then((res) => {
+          const networkFetch = fetch(event.request).then((res) => {
             if (res && res.status === 200) {
               const copy = res.clone();
               caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
             }
             return res;
-          });
+          }).catch(() => cached || new Response('', { status: 503, statusText: 'Offline' }));
+          if (cached) {
+            event.waitUntil(networkFetch);
+            return cached;
+          }
+          return networkFetch;
         })
       );
     }
@@ -70,7 +76,28 @@ self.addEventListener('fetch', (event) => {
   // Never intercept Firebase reserved auth handler paths
   if (reqUrl.pathname.includes('/__/')) return;
 
-  // Same-origin app shell & assets: Network-First so GitHub Pages updates appear immediately,
+  // Heavy data bundle (data.js 2.3MB): Stale-While-Revalidate for instant cold start + silent refresh
+  if (reqUrl.pathname.endsWith('/data.js') || reqUrl.pathname === '/data.js') {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        const networkFetch = fetch(event.request).then((res) => {
+          if (res && res.status === 200 && res.type === 'basic') {
+            const copy = res.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return res;
+        }).catch(() => cached || new Response('', { status: 503, statusText: 'Offline' }));
+        if (cached) {
+          event.waitUntil(networkFetch);
+          return cached;
+        }
+        return networkFetch;
+      })
+    );
+    return;
+  }
+
+  // App shell & logic (index.html, styles.css, script.js): Network-First so updates appear immediately,
   // with transparent Cache fallback when offline.
   event.respondWith(
     fetch(event.request)

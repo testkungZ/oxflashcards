@@ -40,64 +40,237 @@
     <div class="blob blob-3"></div>
     <canvas id="celebration-canvas" class="celebration-canvas" aria-hidden="true"></canvas>
 
-    <!-- ===================== Welcome Screen ===================== -->
-    <section id="welcome-screen" class="screen active" aria-label="หน้าแรก">
+    <!-- ===================== App Shell (Left Sidebar + Center Stage + Right Rail) ===================== -->
+    <div class="app-shell" id="app-shell">
+        <!-- Persistent Left Sidebar (Desktop & Tablet) -->
+        <aside class="app-sidebar" id="app-sidebar" aria-label="หมวดหมู่หลัก">
+            <button type="button" class="sidebar-brand" id="sidebar-brand-btn" data-nav="learn">
+                <span class="sidebar-brand-mark" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                        <path d="m9 9.5 2 2 4-4"/>
+                    </svg>
+                </span>
+                <span class="sidebar-brand-text">
+                    <strong>Oxflashcards</strong>
+                    <small>Oxford 3000</small>
+                </span>
+            </button>
+
+            <nav class="sidebar-nav" role="navigation" aria-label="แถบเมนูหมวดหมู่">
+                <span class="sidebar-nav-indicator" id="sidebar-nav-indicator" aria-hidden="true"></span>
+                <button type="button" class="nav-item is-active" data-nav="learn" aria-current="page" title="เรียนรู้ (เส้นทางบทเรียน)">
+                    <span class="nav-icon nav-icon-learn" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </span>
+                    <span class="nav-label">เรียนรู้</span>
+                </button>
+                <button type="button" class="nav-item" data-nav="practice" title="ฝึกศัพท์ (Flashcard &amp; SRS)">
+                    <span class="nav-icon nav-icon-practice" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 10h8"/><path d="M8 14h5"/></svg>
+                    </span>
+                    <span class="nav-label">ฝึกศัพท์</span>
+                </button>
+                <button type="button" class="nav-item" data-nav="quiz" title="แบบทดสอบความรู้">
+                    <span class="nav-icon nav-icon-quiz" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                    </span>
+                    <span class="nav-label">แบบทดสอบ</span>
+                </button>
+                <button type="button" class="nav-item" data-nav="dictionary" title="คลังคำศัพท์ Oxford 3000">
+                    <span class="nav-icon nav-icon-dict" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </span>
+                    <span class="nav-label">คลังคำศัพท์</span>
+                </button>
+                <button type="button" class="nav-item" data-nav="dashboard" title="สถิติและภารกิจประจำวัน">
+                    <span class="nav-icon nav-icon-dash" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                    </span>
+                    <span class="nav-label">สถิติ &amp; ภารกิจ</span>
+                </button>
+                <button type="button" class="nav-item" data-nav="profile" title="โปรไฟล์ผู้เรียน">
+                    <span class="nav-icon nav-icon-profile" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </span>
+                    <span class="nav-label">โปรไฟล์</span>
+                </button>
+                <button type="button" class="nav-item" data-nav="more" title="เพิ่มเติม &amp; ตั้งค่าบัญชี">
+                    <span class="nav-icon nav-icon-more" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="6.5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="17.5" cy="12" r="2"/></svg>
+                    </span>
+                    <span class="nav-label">เพิ่มเติม</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-quick-tools">
+                    <button type="button" id="sidebar-accent-btn" class="glass-accent-pill accent-toggle-btn" title="สลับสำเนียง US / UK">US</button>
+                    <button type="button" id="sidebar-sound-btn" class="glass-btn-icon small sound-toggle-btn" title="เปิด/ปิดเสียงเอฟเฟกต์" aria-label="เปิด/ปิดเสียงเอฟเฟกต์">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    </button>
+                    <button type="button" id="sidebar-theme-btn" class="glass-btn-icon small theme-toggle-btn" title="สลับโหมดมืด/สว่าง" aria-label="สลับโหมดมืด/สว่าง">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Main Stage -->
+        <div class="app-center-col" id="app-center-col">
+            <!-- Mobile & Tablet Compact Top Bar -->
+            <header class="mobile-top-bar" id="mobile-top-bar">
+                <div class="mob-top-left">
+                    <button type="button" class="mob-cefr-pill" id="mob-cefr-badge" data-nav="learn" title="ระดับ CEFR ปัจจุบัน">A1</button>
+                    <span class="mob-stat-chip streak" title="วันต่อเนื่อง">
+                        <span aria-hidden="true">🔥</span><span id="mob-streak-val">0</span>
+                    </span>
+                    <span class="mob-stat-chip xp" title="คะแนนประสบการณ์ XP">
+                        <span aria-hidden="true">⚡</span><span id="mob-xp-val">0</span>
+                    </span>
+                </div>
+                <div class="mob-top-right">
+                    <button type="button" id="mob-search-btn" class="glass-btn-icon small" title="ค้นหาด่วน (/)" aria-label="ค้นหาด่วน">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </button>
+                    <button type="button" id="mob-accent-btn" class="glass-accent-pill accent-toggle-btn" title="สลับสำเนียง US/UK">US</button>
+                    <button type="button" id="mob-theme-btn" class="glass-btn-icon small theme-toggle-btn" title="สลับธีมมืด/สว่าง" aria-label="สลับธีม">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    </button>
+                    <button type="button" id="mob-sync-btn" class="glass-btn-icon small sync-open-btn" title="เข้าสู่ระบบด้วย Google" aria-label="เข้าสู่ระบบด้วย Google">
+                        <span class="sync-status-dot" id="mob-sync-dot"></span>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- ===================== Learn Path Screen (Duolingo-style) ===================== -->
+            <section id="learn-screen" class="screen active" aria-label="เส้นทางการเรียนรู้ตามหัวข้อ">
+                <div class="learn-sticky-header glass-panel">
+                    <div class="learn-section-tabs" id="learn-section-tabs" role="tablist" aria-label="เลือกระดับ CEFR">
+                        <button type="button" class="section-pill is-active" data-section="A1">ส่วนที่ 1 · A1</button>
+                        <button type="button" class="section-pill" data-section="A2">ส่วนที่ 2 · A2</button>
+                        <button type="button" class="section-pill" data-section="B1">ส่วนที่ 3 · B1</button>
+                        <button type="button" class="section-pill" data-section="B2">ส่วนที่ 4 · B2</button>
+                    </div>
+                    <div class="learn-header-meta">
+                        <span class="learn-overall-label" id="learn-overall-label">ผ่านแล้ว 0 ด่าน · A1 (0/862 คำ)</span>
+                        <button type="button" class="btn-jump-current" id="btn-learn-jump-current" title="เลื่อนไปยังด่านล่าสุด">ไปยังด่านล่าสุด</button>
+                    </div>
+                    <button type="button" class="learn-active-unit-pill" id="learn-active-unit-pill" hidden title="เลื่อนขึ้นไปยังหัวหน่วยนี้">
+                        <span class="active-unit-dot" aria-hidden="true"></span>
+                        <span id="learn-active-unit-text">ส่วนที่ 1 · หน่วยที่ 1</span>
+                    </button>
+                </div>
+                <div class="learn-units-container" id="learn-units-container"></div>
+                <div id="learn-node-popover" class="learn-node-popover palette-green" hidden role="dialog" aria-modal="false" aria-labelledby="node-pop-title">
+                    <div class="node-pop-caret" aria-hidden="true"></div>
+                    <button type="button" class="node-pop-close" id="btn-node-pop-close" aria-label="ปิดหน้าต่างด่าน">✕</button>
+                    <div class="node-pop-badge" id="node-pop-badge" hidden>ระดับตำนาน</div>
+                    <h3 class="node-pop-title" id="node-pop-title">ชื่อด่าน</h3>
+                    <p class="node-pop-sub" id="node-pop-sub">คำอธิบาย</p>
+                    <div class="node-pop-meta" id="node-pop-meta" hidden></div>
+                    <div class="node-pop-actions">
+                        <button type="button" class="btn-node-pop-primary" id="btn-node-pop-start">เริ่ม +20 XP</button>
+                        <button type="button" class="btn-node-pop-legendary" id="btn-node-pop-legendary" hidden>ตำนาน +40 XP</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================== Duolingo Lesson Runner Screen ===================== -->
+            <section id="lesson-screen" class="screen focus-screen" aria-label="กำลังเรียนด่าน">
+                <div class="lesson-shell">
+                    <header class="lesson-top-bar">
+                        <button type="button" id="btn-lesson-exit" class="glass-btn-icon small" title="ออกจากด่าน" aria-label="ออกจากด่าน">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                        </button>
+                        <div class="lesson-progress-track" aria-label="ความคืบหน้าด่าน">
+                            <div class="lesson-progress-fill" id="lesson-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <span class="lesson-combo-pill" id="lesson-combo-pill" hidden>🔥 x2</span>
+                        <span class="lesson-acc-pill" id="lesson-acc-pill" title="ความแม่นยำปัจจุบัน">100%</span>
+                    </header>
+
+                    <div class="lesson-stage-meta">
+                        <span class="lesson-stage-pill" id="lesson-stage-pill">หน่วยที่ 1 · ด่าน 1</span>
+                    </div>
+
+                    <div class="lesson-stage-body glass-panel" id="lesson-stage-body"></div>
+
+                    <div class="lesson-dock-wrap" id="lesson-dock-wrap">
+                        <div class="lesson-action-bar" id="lesson-action-bar" hidden>
+                            <button type="button" id="btn-lesson-skip" class="btn glass-btn lesson-skip-btn">ข้าม</button>
+                            <button type="button" id="btn-lesson-mode-toggle" class="btn glass-btn lesson-mode-btn" hidden>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/></svg>
+                                <span id="lesson-mode-toggle-label">ใช้แป้นพิมพ์</span>
+                            </button>
+                            <button type="button" id="btn-lesson-check" class="btn btn-primary glass-btn lesson-check-btn" disabled>ตรวจ</button>
+                        </div>
+
+                        <div class="lesson-feedback-bar" id="lesson-feedback-bar" hidden>
+                            <div class="lesson-feedback-content">
+                                <div class="lesson-feedback-icon" id="lesson-feedback-icon" aria-hidden="true">✓</div>
+                                <div class="lesson-feedback-text">
+                                    <strong id="lesson-feedback-title">ยอดเยี่ยม!</strong>
+                                    <p id="lesson-feedback-detail"></p>
+                                </div>
+                            </div>
+                            <div class="lesson-feedback-actions">
+                                <button type="button" id="btn-lesson-feedback-speak" class="glass-btn-icon small speak-btn" title="ฟังประโยคเต็ม" aria-label="ฟังประโยคเต็ม" hidden>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                                </button>
+                                <button type="button" id="btn-lesson-continue" class="btn btn-primary glass-btn">ไปต่อ →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================== Welcome / Practice Hub Screen ===================== -->
+            <section id="welcome-screen" class="screen" aria-label="ฝึกคำศัพท์">
         <div class="welcome-top-bar">
-            <button id="btn-welcome-search" class="glass-search-pill" type="button" title="ค้นหาคำศัพท์ด่วน (กด / หรือ Ctrl+K)" aria-label="ค้นหาคำศัพท์ด่วน">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <span>ค้นหาคำศัพท์...</span>
+            <button id="btn-welcome-search" class="glass-search-pill practice-search-bar" type="button" title="ค้นหาคำศัพท์ด่วน (กด / หรือ Ctrl+K)" aria-label="ค้นหาคำศัพท์ด่วน">
+                <span class="practice-search-left">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <span>ค้นหาคำศัพท์ด่วน...</span>
+                </span>
                 <kbd>/</kbd>
             </button>
-            <button id="btn-welcome-accent" class="glass-accent-pill accent-toggle-btn" type="button" title="สลับสำเนียงเสียงอ่าน US / UK" aria-label="สลับสำเนียง US/UK">US</button>
-            <button id="btn-welcome-sync" class="glass-sync-pill sync-open-btn" type="button" title="เข้าสู่ระบบด้วย Google เพื่อซิงก์ข้ามอุปกรณ์" aria-label="เข้าสู่ระบบด้วย Google เพื่อซิงก์ข้อมูล">
-                <svg class="sync-google-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z"/>
-                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24Z"/>
-                    <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14Z"/>
-                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96Z"/>
-                </svg>
-                <img id="sync-user-avatar" class="sync-user-avatar" alt="บัญชี Google" hidden>
-                <span id="sync-btn-label" class="sync-pill-label">ล็อกอิน</span>
-                <span class="sync-status-dot" id="sync-status-dot"></span>
-            </button>
-            <button id="btn-welcome-theme" class="glass-btn-icon small theme-toggle-btn" title="สลับโหมดมืด/สว่าง" aria-label="สลับโหมดมืด/สว่าง">
-                <span class="theme-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
-            </button>
-            <button id="btn-welcome-sound" class="glass-btn-icon small sound-toggle-btn" title="เปิด/ปิดเสียง" aria-label="เปิด/ปิดเสียง">
-                <span class="sound-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></span>
-            </button>
         </div>
-        <div class="glass-panel welcome-panel">
-            <div class="welcome-icon">
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                </svg>
+        <div class="glass-panel welcome-panel practice-panel">
+            <div class="practice-hero-head">
+                <div class="practice-hero-badge" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                </div>
+                <div class="practice-hero-copy">
+                    <h1>ฝึกคำศัพท์ Flashcards</h1>
+                    <p>เลือกจำนวนคำและระดับความยากที่ต้องการทบทวน</p>
+                </div>
             </div>
-            <h1>Oxflashcards</h1>
-            <p>เรียนรู้คำศัพท์ภาษาอังกฤษที่สำคัญที่สุด 3,000 คำ<br>ด้วยระบบ Flashcard ที่ใช้งานง่ายและสบายตา</p>
 
             <!-- Overall progress -->
-            <div class="overall-stats" aria-label="ความคืบหน้าทั้งหมด">
+            <div class="overall-stats practice-stats-row" aria-label="ความคืบหน้าทั้งหมด">
                 <div class="overall-stat known">
-                    <span class="overall-value" id="overall-known">0</span>
+                    <span class="overall-value tabular-nums" id="overall-known">0</span>
                     <span class="overall-label">จำได้แล้ว</span>
                 </div>
                 <div class="overall-stat review">
-                    <span class="overall-value" id="overall-review">0</span>
+                    <span class="overall-value tabular-nums" id="overall-review">0</span>
                     <span class="overall-label">ต้องทบทวน</span>
                 </div>
                 <div class="overall-stat unseen">
-                    <span class="overall-value" id="overall-unseen">0</span>
+                    <span class="overall-value tabular-nums" id="overall-unseen">0</span>
                     <span class="overall-label">ยังไม่เคยเรียน</span>
                 </div>
             </div>
 
             <!-- Daily Goal Compact Widget -->
-            <div class="welcome-daily-goal glass-panel" id="welcome-daily-goal">
+            <div class="welcome-daily-goal glass-panel practice-goal-bar" id="welcome-daily-goal">
                 <div class="wdg-main">
-                    <span class="wdg-icon svg-accent-box" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                    <span class="wdg-icon svg-accent-box" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
                     <div class="wdg-text">
                         <div class="wdg-header-row">
                             <strong>เป้าหมายประจำวัน</strong>
@@ -119,15 +292,18 @@
                     <span class="srs-action-tag" id="welcome-srs-badge">ทบทวน →</span>
                 </button>
                 <button type="button" class="starred-pill-btn" id="btn-welcome-starred" hidden title="ฝึกคำศัพท์ที่ปักหมุดไว้">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     <span id="welcome-starred-count">0</span>
                 </button>
             </div>
 
-            <!-- Word count selector -->
-            <div class="count-selector">
-                <span class="selector-label">เลือกจำนวนคำต่อรอบ: <span id="count-display" style="color: var(--primary); font-size: 1.2rem; font-weight: 800; margin-left: 5px;">20</span></span>
-                
+            <!-- Word count & CEFR selector -->
+            <div class="count-selector practice-config-box">
+                <div class="practice-count-head">
+                    <span class="selector-label">จำนวนคำต่อรอบ</span>
+                    <span class="practice-count-badge"><b id="count-display" class="tabular-nums">20</b> คำ</span>
+                </div>
+
                 <div class="segmented" id="count-segmented" role="radiogroup" aria-label="จำนวนคำต่อรอบด่วน">
                     <span class="seg-indicator" id="seg-indicator"></span>
                     <button type="button" class="seg-option" id="count-20" role="radio" data-count="20">20</button>
@@ -138,9 +314,9 @@
 
                 <!-- Liquid Glass Slider -->
                 <div class="slider-container glass-slider">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-weight: 600; color: var(--text-muted); font-size: 0.85rem;">
-                        <span>1</span>
-                        <span>50</span>
+                    <div class="practice-slider-bounds">
+                        <span>1 คำ</span>
+                        <span>50 คำ</span>
                     </div>
                     <input type="range" id="count-slider" min="1" max="50" step="0.01" value="20" class="liquid-slider" aria-label="เลื่อนปรับจำนวนคำ">
                 </div>
@@ -156,9 +332,9 @@
             </div>
 
             <div class="welcome-actions">
-                <button id="btn-start" class="btn btn-primary glass-btn btn-lg">
-                    เริ่มต้น (Get Started)
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                <button id="btn-start" class="btn btn-primary glass-btn btn-lg practice-start-btn">
+                    เริ่มฝึกคำศัพท์
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                         stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
                         <path d="M5 12h14" />
                         <path d="M12 5l7 7-7 7" />
@@ -170,46 +346,6 @@
                         <polygon points="6 4 20 12 6 20 6 4" />
                     </svg>
                     <span>เล่นต่อรอบเดิม <small id="resume-info"></small></span>
-                </button>
-                <button id="btn-quiz-start" class="btn-quiz" type="button">
-                    <span class="btn-dashboard-shine" aria-hidden="true"></span>
-                    <span class="btn-quiz-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                            <polyline points="14 2 14 8 20 8" />
-                            <path d="M10.4 12.6a2 2 0 1 1 3 3L8 21l-4 1 1-4Z" />
-                        </svg>
-                    </span>
-                    <span class="btn-quiz-text">
-                        <strong>โหมดตอบคำถาม (Quiz Mode)</strong>
-                        <small>ฝึกทำข้อสอบ · วัดความจำ · ทบทวนอย่างสนุก</small>
-                    </span>
-                    <svg class="btn-quiz-chev" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <path d="M9 18l6-6-6-6" />
-                    </svg>
-                </button>
-                <button id="btn-history" class="btn-dashboard" type="button">
-                    <span class="btn-dashboard-shine" aria-hidden="true"></span>
-                    <span class="btn-dashboard-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 3v18h18" />
-                            <rect x="7" y="12" width="3" height="6" rx="1" />
-                            <rect x="12" y="8" width="3" height="10" rx="1" />
-                            <rect x="17" y="5" width="3" height="13" rx="1" />
-                        </svg>
-                    </span>
-                    <span class="btn-dashboard-text">
-                        <strong>แดชบอร์ดการเรียน</strong>
-                        <small>สถิติ · หมวดคำ · วิเคราะห์จุดอ่อน</small>
-                    </span>
-                    <svg class="btn-dashboard-chev" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <path d="M9 18l6-6-6-6" />
-                    </svg>
                 </button>
             </div>
         </div>
@@ -484,16 +620,6 @@
                     <span class="dash-subtitle">วิเคราะห์ความก้าวหน้าของคุณ</span>
                 </div>
                 <div class="dash-header-actions">
-                    <button id="btn-dash-sync" class="glass-btn-icon small sync-open-btn" type="button" title="เข้าสู่ระบบด้วย Google" aria-label="ซิงก์ข้อมูลด้วย Google">
-                        <svg class="dash-sync-google-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z"/>
-                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24Z"/>
-                            <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14Z"/>
-                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96Z"/>
-                        </svg>
-                        <img id="dash-sync-user-avatar" class="dash-sync-user-avatar" alt="บัญชี Google" hidden>
-                        <span class="sync-status-dot" id="dash-sync-status-dot"></span>
-                    </button>
                     <button id="btn-export-data" class="glass-btn-icon small" title="สำรองข้อมูล (Export JSON)" aria-label="สำรองข้อมูล">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -524,10 +650,13 @@
             <div class="dash-mode-switcher" id="dash-mode-switcher">
                 <button class="mode-btn active" data-mode="flashcard">Flashcard</button>
                 <button class="mode-btn" data-mode="quiz">Quiz Mode</button>
+                <button class="mode-btn" data-mode="learn">Learn Path</button>
             </div>
             
             <nav class="tabs dash-tabs" role="tablist" id="history-tabs" aria-label="เมนูแดชบอร์ด">
                 <span class="dash-tab-indicator" id="dash-tab-indicator" aria-hidden="true"></span>
+                <button type="button" class="tab" role="tab" id="dash-tab-learn-overview" data-panel="dash-learn-overview" data-group="learn" style="display: none;">
+                    <span class="tab-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>ภาพรวม Learn &amp; ภารกิจ</button>
                 <button type="button" class="tab active" role="tab" id="dash-tab-overview" data-panel="dash-overview" data-group="flashcard">
                     <span class="tab-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></span>ภาพรวม</button>
                 <button type="button" class="tab" role="tab" id="dash-tab-categories" data-panel="dash-categories" data-group="flashcard">
@@ -957,6 +1086,50 @@
                 </div>
             </div>
 
+            <!-- ========== Learn Path Overview & Quests ========== -->
+            <div id="dash-learn-overview" class="tab-panel dash-panel" hidden>
+                <div class="glass-panel dash-learn-hero liquid-card">
+                    <div class="learn-dash-kpis">
+                        <div class="learn-kpi-card xp">
+                            <span class="kpi-ico" aria-hidden="true">⚡</span>
+                            <strong id="learn-dash-xp">0</strong>
+                            <small>XP สะสมทั้งหมด</small>
+                        </div>
+                        <div class="learn-kpi-card stages">
+                            <span class="kpi-ico" aria-hidden="true">🎯</span>
+                            <strong id="learn-dash-stages">0/0</strong>
+                            <small>ด่านที่ผ่าน</small>
+                        </div>
+                        <div class="learn-kpi-card legendary">
+                            <span class="kpi-ico" aria-hidden="true">👑</span>
+                            <strong id="learn-dash-legendary">0</strong>
+                            <small>ด่านระดับตำนาน</small>
+                        </div>
+                        <div class="learn-kpi-card chests">
+                            <span class="kpi-ico" aria-hidden="true">💎</span>
+                            <strong id="learn-dash-chests">0</strong>
+                            <small>หีบสมบัติที่เปิด</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel dash-learn-panel liquid-card">
+                    <div class="dash-card-head">
+                        <h3 class="sec-heading">ความก้าวหน้ารายระดับ CEFR (A1 – B2)</h3>
+                        <p class="muted" style="font-size:0.88rem;">จำนวนด่านที่ผ่านและคำศัพท์ที่จำได้ในแต่ละส่วน</p>
+                    </div>
+                    <div class="learn-dash-sections" id="learn-dash-sections"></div>
+                </div>
+
+                <div class="glass-panel dash-learn-panel liquid-card">
+                    <div class="dash-card-head">
+                        <h3 class="sec-heading">ภารกิจประจำวัน (Daily Quests)</h3>
+                        <p class="muted" style="font-size:0.88rem;">ทำภารกิจจากโหมดเรียนรู้และกดรับโบนัส XP ได้ที่นี่</p>
+                    </div>
+                    <div class="quests-list" id="learn-dash-quests"></div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -1118,6 +1291,499 @@
         </div>
     </section>
 
+            <!-- ===================== Quiz Hub Screen (แบบทดสอบ) ===================== -->
+            <section id="quiz-hub-screen" class="screen" aria-label="ศูนย์แบบทดสอบ">
+                <div class="glass-panel quiz-hub-panel">
+                    <div class="hub-page-header">
+                        <span class="hub-page-eyebrow">Active Recall Quiz</span>
+                        <h2>แบบทดสอบวัดความจำ</h2>
+                        <p>เลือกรูปแบบการฝึกที่ต้องการ เพื่อทดสอบคำศัพท์ Oxford 3000 อย่างเข้มข้น</p>
+                    </div>
+
+                    <div class="quiz-mode-grid" id="qh-mode-selector">
+                        <button type="button" class="quiz-mode-card active" data-qh-mode="choice">
+                            <span class="qmc-icon">📝</span>
+                            <strong>4 ตัวเลือก</strong>
+                            <small>เลือกความหมายที่ถูกต้อง</small>
+                        </button>
+                        <button type="button" class="quiz-mode-card" data-qh-mode="cloze">
+                            <span class="qmc-icon">✍️</span>
+                            <strong>เติมคำในบริบท</strong>
+                            <small>เติมคำในประโยคจริง</small>
+                        </button>
+                        <button type="button" class="quiz-mode-card" data-qh-mode="listening">
+                            <span class="qmc-icon">🎧</span>
+                            <strong>ฝึกฟังเสียง</strong>
+                            <small>ฟังเสียงแล้วเลือกคำ</small>
+                        </button>
+                        <button type="button" class="quiz-mode-card" data-qh-mode="spelling">
+                            <span class="qmc-icon">⌨️</span>
+                            <strong>สะกดคำตอบ</strong>
+                            <small>พิมพ์คำอังกฤษจากคำแปล</small>
+                        </button>
+                    </div>
+
+                    <div class="hub-form-row">
+                        <label class="hub-label">ระดับ CEFR</label>
+                        <div class="cefr-pills" id="qh-cefr-selector">
+                            <button type="button" class="cefr-pill active" data-qh-cefr="all">ทุกระดับ</button>
+                            <button type="button" class="cefr-pill" data-qh-cefr="A1">A1</button>
+                            <button type="button" class="cefr-pill" data-qh-cefr="A2">A2</button>
+                            <button type="button" class="cefr-pill" data-qh-cefr="B1">B1</button>
+                            <button type="button" class="cefr-pill" data-qh-cefr="B2">B2</button>
+                        </div>
+                    </div>
+
+                    <div class="hub-form-row">
+                        <label class="hub-label" for="qh-topic-select">หัวข้อคำศัพท์ (Topic)</label>
+                        <select id="qh-topic-select" class="glass-select"></select>
+                    </div>
+
+                    <div class="hub-form-row">
+                        <div class="slider-header">
+                            <label class="hub-label" for="qh-count-slider">จำนวนข้อสอบ</label>
+                            <span class="count-badge"><span id="qh-count-display">10</span> ข้อ</span>
+                        </div>
+                        <input id="qh-count-slider" class="range" type="range" min="5" max="30" step="5" value="10">
+                    </div>
+
+                    <button type="button" id="btn-qh-start" class="btn btn-primary glass-btn btn-full">
+                        เริ่มทำแบบทดสอบเลย
+                    </button>
+                </div>
+            </section>
+
+            <!-- ===================== Dictionary Screen (คลังคำศัพท์) ===================== -->
+            <section id="dictionary-screen" class="screen" aria-label="คลังคำศัพท์ Oxford 3000">
+                <div class="glass-panel dict-panel">
+                    <div class="hub-page-header dict-header-compact">
+                        <div>
+                            <span class="hub-page-eyebrow">Oxford 3000 Vocabulary</span>
+                            <h2>คลังคำศัพท์ทั้งหมด</h2>
+                        </div>
+                        <span class="dict-count-badge" id="dict-count-label">3,191 คำ</span>
+                    </div>
+
+                    <div class="dict-search-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input type="text" id="dict-search-input" class="dict-search-input" placeholder="ค้นหาคำศัพท์, คำแปลไทย, หรือความหมาย (เช่น food, แพทย์)...">
+                        <button type="button" id="dict-clear-btn" class="dict-clear-btn" hidden aria-label="ล้างคำค้นหา">✕</button>
+                    </div>
+
+                    <div class="dict-filter-bar">
+                        <div class="cefr-pills" id="dict-cefr-filters">
+                            <button type="button" class="cefr-pill active" data-dict-cefr="all">ทุกระดับ</button>
+                            <button type="button" class="cefr-pill" data-dict-cefr="A1">A1</button>
+                            <button type="button" class="cefr-pill" data-dict-cefr="A2">A2</button>
+                            <button type="button" class="cefr-pill" data-dict-cefr="B1">B1</button>
+                            <button type="button" class="cefr-pill" data-dict-cefr="B2">B2</button>
+                        </div>
+                        <select id="dict-topic-select" class="glass-select compact" aria-label="กรองตามหัวข้อ"></select>
+                    </div>
+
+                    <div class="dict-status-chips" id="dict-status-filters">
+                        <button type="button" class="chip active" data-dict-status="all">ทั้งหมด</button>
+                        <button type="button" class="chip" data-dict-status="known">จำได้แล้ว</button>
+                        <button type="button" class="chip" data-dict-status="review">ต้องทบทวน</button>
+                        <button type="button" class="chip" data-dict-status="unseen">ยังไม่เคยเรียน</button>
+                        <button type="button" class="chip" data-dict-status="starred">ติดดาว</button>
+                    </div>
+
+                    <ul class="word-list dict-word-list" id="dict-word-list"></ul>
+                    <button type="button" id="btn-dict-load-more" class="btn glass-btn btn-full" hidden>โหลดคำศัพท์เพิ่มเติม</button>
+                </div>
+            </section>
+
+            <!-- ===================== Profile Screen (โปรไฟล์สไตล์ Duolingo) ===================== -->
+            <section id="profile-screen" class="screen" aria-label="โปรไฟล์ผู้เรียน">
+                <div class="glass-panel profile-panel">
+                    <!-- Banner + Avatar + Pencil Edit -->
+                    <div class="prof-banner" id="prof-banner" data-banner="slate">
+                        <div class="prof-banner-avatar" id="prof-avatar" aria-hidden="true">OX</div>
+                        <button type="button" id="btn-prof-edit" class="prof-banner-edit-btn" title="แก้ไขโปรไฟล์" aria-label="แก้ไขโปรไฟล์">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- Inline Edit Profile Box -->
+                    <div class="prof-edit-box" id="prof-edit-box" hidden>
+                        <div class="prof-edit-grid">
+                            <label class="prof-edit-field">
+                                <span>ชื่อที่แสดง</span>
+                                <input type="text" id="prof-edit-name" maxlength="32" placeholder="ผู้เรียน Oxford 3000">
+                            </label>
+                            <label class="prof-edit-field">
+                                <span>ชื่อผู้ใช้ (@handle)</span>
+                                <input type="text" id="prof-edit-handle" maxlength="24" placeholder="oxford_learner">
+                            </label>
+                        </div>
+                        <div class="prof-edit-pickers">
+                            <div class="prof-picker-block">
+                                <span class="prof-picker-label">ตัวละครโปรไฟล์</span>
+                                <div class="prof-avatar-choices" id="prof-edit-avatars"></div>
+                            </div>
+                            <div class="prof-picker-block">
+                                <span class="prof-picker-label">สีแบนเนอร์</span>
+                                <div class="prof-color-choices" id="prof-edit-colors">
+                                    <button type="button" class="prof-swatch" data-color="slate" aria-label="สีเทาคลาสสิก"></button>
+                                    <button type="button" class="prof-swatch" data-color="sky" aria-label="สีฟ้าคราม"></button>
+                                    <button type="button" class="prof-swatch" data-color="emerald" aria-label="สีเขียวมิ้นต์"></button>
+                                    <button type="button" class="prof-swatch" data-color="violet" aria-label="สีม่วงลาเวนเดอร์"></button>
+                                    <button type="button" class="prof-swatch" data-color="amber" aria-label="สีส้มอำพัน"></button>
+                                    <button type="button" class="prof-swatch" data-color="rose" aria-label="สีชมพูโรส"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prof-edit-actions">
+                            <button type="button" id="btn-prof-save" class="btn btn-primary glass-btn small-btn">บันทึกโปรไฟล์</button>
+                            <button type="button" id="btn-prof-cancel" class="btn glass-btn small-btn">ยกเลิก</button>
+                        </div>
+                    </div>
+
+                    <!-- Identity Row -->
+                    <div class="prof-identity-wrap">
+                        <div class="prof-identity-main">
+                            <h2 id="prof-name">ผู้เรียน Oxford 3000</h2>
+                            <div class="prof-handle-line" id="prof-handle">@oxford_learner</div>
+                            <p id="prof-sub" class="prof-sub-txt">ยังไม่ได้เชื่อมต่อ Google Account · เก็บข้อมูลในเครื่องนี้</p>
+                            <div class="prof-joined-line" id="prof-joined">เข้าร่วมเมื่อ พฤศจิกายน 2026</div>
+                        </div>
+                        <div class="prof-identity-side">
+                            <div class="prof-course-badges" id="prof-course-badges">
+                                <span class="prof-course-pill" id="prof-accent-pill">US</span>
+                                <span class="prof-course-pill is-cefr" id="prof-cefr-pill">CEFR A1</span>
+                            </div>
+                            <div class="prof-quick-actions">
+                                <button type="button" id="btn-prof-settings" class="btn glass-btn small-btn">ตั้งค่าบัญชี</button>
+                                <button type="button" id="btn-prof-sync" class="btn btn-primary glass-btn small-btn">ล็อกอิน Google</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="prof-divider">
+
+                    <!-- Stats 2x2 Section -->
+                    <div class="prof-section-head">
+                        <h3>สถิติ</h3>
+                    </div>
+                    <div class="profile-stats-grid prof-stats-2x2">
+                        <div class="pstat-card prof-duo-stat">
+                            <span class="pstat-icon" aria-hidden="true">🔥</span>
+                            <div class="pstat-body">
+                                <strong id="prof-streak-val" class="tabular-nums">0</strong>
+                                <small>วันต่อเนื่อง</small>
+                            </div>
+                        </div>
+                        <div class="pstat-card prof-duo-stat">
+                            <span class="pstat-icon" aria-hidden="true">⚡</span>
+                            <div class="pstat-body">
+                                <strong id="prof-xp-val" class="tabular-nums">0</strong>
+                                <small>XP ทั้งหมด</small>
+                            </div>
+                        </div>
+                        <div class="pstat-card prof-duo-stat">
+                            <span class="prof-stat-tag" id="prof-cefr-tag">ระดับ A1</span>
+                            <span class="pstat-icon" aria-hidden="true">🏆</span>
+                            <div class="pstat-body">
+                                <strong id="prof-stages-val" class="tabular-nums">0</strong>
+                                <small>ด่านที่ผ่าน</small>
+                            </div>
+                        </div>
+                        <div class="pstat-card prof-duo-stat">
+                            <span class="pstat-icon" aria-hidden="true">✅</span>
+                            <div class="pstat-body">
+                                <strong id="prof-known-val" class="tabular-nums">0</strong>
+                                <small>คำที่จำได้</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements Section -->
+                    <div class="prof-section-head">
+                        <h3>ความสำเร็จ</h3>
+                        <span class="prof-ach-summary" id="prof-ach-summary">0 / 5 เหรียญ</span>
+                    </div>
+                    <div class="prof-achievements-list" id="prof-achievements-list"></div>
+                </div>
+            </section>
+
+            <!-- ===================== More & Account Settings Screen (เพิ่มเติม) ===================== -->
+            <section id="more-screen" class="screen" aria-label="เพิ่มเติมและตั้งค่าบัญชี">
+                <div class="more-layout">
+                    <!-- Main Left Settings Column -->
+                    <div class="more-main-col">
+                        <div class="more-page-header">
+                            <h2>ปรับแต่งการใช้งาน</h2>
+                            <button type="button" id="btn-more-view-profile" class="btn glass-btn small-btn">ดูหน้าโปรไฟล์</button>
+                        </div>
+
+                        <!-- Section 1: Learning Experience & Appearance -->
+                        <div class="glass-panel more-card" id="more-sec-prefs">
+                            <h3 class="more-group-title">ประสบการณ์ในบทเรียน</h3>
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>เอฟเฟกต์เสียง</strong>
+                                    <small>เปิดหรือปิดเสียงแจ้งเตือนตอบถูก/ผิดและเสียงเมนู</small>
+                                </div>
+                                <button type="button" id="prof-sound-btn" class="ox-switch sound-toggle-btn is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดเอฟเฟกต์เสียง"><span class="ox-switch-thumb"></span></button>
+                            </div>
+
+                            <div class="more-row vertical">
+                                <div class="prof-row-inline-head">
+                                    <strong>ระดับเสียงเอฟเฟกต์</strong>
+                                    <span id="prof-sound-vol-label" class="prof-val-pill">100%</span>
+                                </div>
+                                <input type="range" id="prof-sound-volume" class="glass-slider prof-vol-slider" min="0" max="100" step="5" value="100" aria-label="ปรับระดับเสียงเอฟเฟกต์">
+                                <div class="prof-sound-cats" id="prof-sound-cats">
+                                    <button type="button" class="chip chip-sm active" data-sound-cat="ui" aria-pressed="true">เสียงปุ่ม/เมนู</button>
+                                    <button type="button" class="chip chip-sm active" data-sound-cat="feedback" aria-pressed="true">ตอบถูก/ผิด</button>
+                                    <button type="button" class="chip chip-sm active" data-sound-cat="reward" aria-pressed="true">รางวัล/ฉลอง</button>
+                                </div>
+                            </div>
+
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>ภาพเคลื่อนไหว (Animation)</strong>
+                                    <small>เปิดอนิเมชันและลูกเล่นลื่นไหลในบทเรียน</small>
+                                </div>
+                                <button type="button" id="prof-motion-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดภาพเคลื่อนไหว"><span class="ox-switch-thumb"></span></button>
+                            </div>
+
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>ข้อความให้กำลังใจ</strong>
+                                    <small>แสดงคำชมและแอนิเมชันโต้ตอบจากมาสคอต</small>
+                                </div>
+                                <button type="button" id="more-mascot-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดข้อความให้กำลังใจ"><span class="ox-switch-thumb"></span></button>
+                            </div>
+
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>แบบฝึกหัดการฟัง</strong>
+                                    <small>รวมโจทย์ฟังเสียงในบทเรียน (ปิดเมื่ออยู่ในที่เงียบ)</small>
+                                </div>
+                                <button type="button" id="more-listening-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดแบบฝึกหัดการฟัง"><span class="ox-switch-thumb"></span></button>
+                            </div>
+
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>แรงสั่นตอบสนอง (มือถือ)</strong>
+                                    <small>สั่นเบาๆ เมื่อตอบคำถามหรือรับรางวัล</small>
+                                </div>
+                                <button type="button" id="prof-haptics-btn" class="ox-switch" role="switch" aria-checked="false" aria-label="เปิดหรือปิดแรงสั่นบนมือถือ"><span class="ox-switch-thumb"></span></button>
+                            </div>
+
+                            <hr class="more-sep">
+
+                            <h3 class="more-group-title" id="more-sec-appearance">ลักษณะภายนอก</h3>
+                            <div class="more-row vertical">
+                                <div class="prof-row-inline-head">
+                                    <div>
+                                        <strong>โหมดมืด</strong>
+                                        <small>เลือกโหมดสว่าง โหมดมืด หรือตามระบบอุปกรณ์</small>
+                                    </div>
+                                    <button type="button" id="prof-theme-btn" class="btn glass-btn small-btn theme-toggle-btn">สลับธีม</button>
+                                </div>
+                                <select id="prof-theme-select" class="more-select" aria-label="เลือกโหมดธีมหน้าจอ">
+                                    <option value="auto">ค่าเริ่มต้นของระบบ</option>
+                                    <option value="light">โหมดสว่าง</option>
+                                    <option value="dark">โหมดมืด</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Course & Daily Goal -->
+                        <div class="glass-panel more-card" id="more-sec-course">
+                            <h3 class="more-group-title">หลักสูตร &amp; เป้าหมายรายวัน</h3>
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>สำเนียงเสียงอ่าน (US / UK)</strong>
+                                    <small>สำเนียงหลักที่ใช้เมื่อกดฟังคำศัพท์และประโยค</small>
+                                </div>
+                                <button type="button" id="prof-accent-btn" class="glass-accent-pill accent-toggle-btn">US</button>
+                            </div>
+                            <div class="more-row vertical">
+                                <div class="more-row-info">
+                                    <strong>เป้าหมายประจำวัน (คำ / XP ต่อวัน)</strong>
+                                </div>
+                                <div class="dgw-target-chips" id="prof-goal-chips">
+                                    <button type="button" class="dgw-chip" data-goal="10">10</button>
+                                    <button type="button" class="dgw-chip active" data-goal="20">20</button>
+                                    <button type="button" class="dgw-chip" data-goal="30">30</button>
+                                    <button type="button" class="dgw-chip" data-goal="50">50</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Profile -->
+                        <div class="glass-panel more-card" id="more-sec-account">
+                            <h3 class="more-group-title">โปรไฟล์ &amp; การตกแต่ง</h3>
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>แก้ไขชื่อ รูปอวาตาร์ และสีแบนเนอร์</strong>
+                                    <small>ปรับแต่งโปรไฟล์ส่วนตัวของคุณ</small>
+                                </div>
+                                <button type="button" id="btn-more-edit-prof" class="btn btn-primary glass-btn small-btn">แก้ไขโปรไฟล์</button>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Data & Support -->
+                        <div class="glass-panel more-card" id="more-sec-data">
+                            <h3 class="more-group-title">สำรองข้อมูล &amp; ความปลอดภัย</h3>
+                            <div class="prof-data-actions">
+                                <button type="button" id="btn-prof-export" class="btn glass-btn">ส่งออกไฟล์สำรอง (.json)</button>
+                                <button type="button" id="btn-prof-import" class="btn glass-btn">นำเข้าไฟล์สำรอง (.json)</button>
+                                <button type="button" id="btn-more-clear-cache" class="btn glass-btn">อัปเดตแคชแอป</button>
+                                <button type="button" id="btn-prof-reset" class="btn glass-btn btn-danger-outline">รีเซ็ตความก้าวหน้า</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Sticky Sub-Nav Card (Duolingo Account Sidebar Style) -->
+                    <aside class="more-subnav-col" aria-label="หมวดหมู่การตั้งค่า">
+                        <div class="glass-panel more-subnav-card">
+                            <div class="more-subnav-title">บัญชี</div>
+                            <div class="more-subnav-list" id="more-subnav-list">
+                                <button type="button" class="more-subnav-btn is-active" data-more-target="more-sec-prefs">ปรับแต่งการใช้งาน</button>
+                                <button type="button" class="more-subnav-btn" data-more-target="more-sec-appearance">ลักษณะภายนอก</button>
+                                <button type="button" class="more-subnav-btn" data-more-target="more-sec-course">หลักสูตร &amp; เป้าหมาย</button>
+                                <button type="button" class="more-subnav-btn" data-more-target="more-sec-account">โปรไฟล์ &amp; บัญชี Google</button>
+                                <button type="button" class="more-subnav-btn" data-more-target="more-sec-data">ข้อมูล &amp; สำรองไฟล์</button>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </div><!-- /.app-center-col -->
+
+        <!-- Persistent Right Utility Rail (Desktop >= 1080px) -->
+        <aside class="right-rail" id="right-rail" aria-label="ภารกิจและสถานะ">
+            <div class="rail-top-pills">
+                <button type="button" id="rail-cefr-btn" class="rail-pill cefr" data-nav="learn" title="ระดับที่กำลังเรียน">
+                    <span id="rail-cefr-label">A1</span>
+                </button>
+                <div class="rail-pill streak" title="วันต่อเนื่อง">
+                    <span aria-hidden="true">🔥</span>
+                    <span id="rail-streak-val">0</span>
+                </div>
+                <div class="rail-pill xp" title="XP สะสม">
+                    <span aria-hidden="true">⚡</span>
+                    <span id="rail-xp-val">0</span>
+                </div>
+                <button type="button" id="btn-rail-sync" class="rail-pill sync sync-open-btn" title="เข้าสู่ระบบด้วย Google" aria-label="เข้าสู่ระบบด้วย Google">
+                    <img id="rail-sync-avatar" class="sync-user-avatar" alt="บัญชี Google" hidden>
+                    <span class="sync-status-dot" id="rail-sync-dot"></span>
+                    <span id="rail-sync-label">ล็อกอิน</span>
+                </button>
+            </div>
+
+            <!-- Daily Quests Card -->
+            <div class="glass-panel rail-card" id="rail-quests-card">
+                <div class="rail-card-header">
+                    <h3>ภารกิจประจำวัน</h3>
+                    <button type="button" class="link-btn small" id="btn-rail-quests-all">ดูทั้งหมด</button>
+                </div>
+                <div class="quests-list" id="rail-quests-list"></div>
+            </div>
+
+            <!-- SRS & Daily Goal Quick Card -->
+            <div class="glass-panel rail-card">
+                <div class="rail-card-header">
+                    <h3>ทบทวนความจำด่วน</h3>
+                </div>
+                <p class="rail-card-desc" id="rail-srs-desc">คำศัพท์ที่ครบกำหนดทบทวนวันนี้พร้อมให้ฝึก</p>
+                <button type="button" id="btn-rail-srs" class="btn btn-primary glass-btn btn-full">เริ่มทบทวนเลย</button>
+                <div class="rail-dg-mini">
+                    <div class="rail-dg-top">
+                        <span>เป้าหมายวันนี้</span>
+                        <span id="rail-dg-text">0 / 20</span>
+                    </div>
+                    <div class="dgw-bar-track">
+                        <div class="dgw-bar-fill" id="rail-dg-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div><!-- /.app-shell -->
+
+    <!-- Sticky Mobile Bottom Nav (<= 960px) -->
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="เมนูหลักมือถือ">
+        <button type="button" class="mob-nav-item is-active" data-nav="learn" aria-current="page" title="เรียนรู้ (เส้นทางบทเรียน)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>เรียนรู้</span>
+        </button>
+        <button type="button" class="mob-nav-item" data-nav="practice" title="ฝึกศัพท์ (Flashcard &amp; SRS)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 10h8"/><path d="M8 14h5"/></svg>
+            <span>ฝึกศัพท์</span>
+        </button>
+        <button type="button" class="mob-nav-item" data-nav="quiz" title="แบบทดสอบความรู้">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+            <span>ทดสอบ</span>
+        </button>
+        <button type="button" class="mob-nav-item" data-nav="dictionary" title="คลังคำศัพท์ Oxford 3000">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>คลังคำ</span>
+        </button>
+        <button type="button" class="mob-nav-item" data-nav="dashboard" title="สถิติและภารกิจ">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+            <span>สถิติ</span>
+        </button>
+        <button type="button" class="mob-nav-item" data-nav="profile" title="โปรไฟล์ผู้เรียน">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>โปรไฟล์</span>
+        </button>
+        <button type="button" class="mob-nav-item" data-nav="more" title="เพิ่มเติม &amp; ตั้งค่า">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6.5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="17.5" cy="12" r="2"/></svg>
+            <span>เพิ่มเติม</span>
+        </button>
+    </nav>
+
+    <!-- Unit Guidebook Modal -->
+    <div id="guidebook-modal" class="modal-overlay" aria-hidden="true">
+        <div class="glass-panel modal-panel guidebook-panel" role="dialog" aria-modal="true" aria-labelledby="gb-title">
+            <div class="gb-header">
+                <div>
+                    <span class="hub-page-eyebrow" id="gb-subtitle">คู่มือคำศัพท์</span>
+                    <h3 id="gb-title">หน่วยที่ 1</h3>
+                </div>
+                <button type="button" id="btn-gb-close" class="glass-btn-icon small" aria-label="ปิดคู่มือ">✕</button>
+            </div>
+            <p class="gb-tip" id="gb-tip"></p>
+            <ul class="word-list gb-word-list" id="gb-word-list"></ul>
+        </div>
+    </div>
+
+    <!-- Treasure Chest Reward Modal -->
+    <div id="chest-modal" class="modal-overlay" aria-hidden="true">
+        <div class="glass-panel modal-panel chest-panel" role="dialog" aria-modal="true" aria-labelledby="chest-title">
+            <div class="chest-emblem" aria-hidden="true">
+                <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+                    <rect x="8" y="24" width="48" height="28" rx="7" fill="#f59e0b" stroke="#b45309" stroke-width="2.5"/>
+                    <path d="M8 26c0-8 8-14 24-14s24 6 24 14H8Z" fill="#fbbf24" stroke="#b45309" stroke-width="2.5"/>
+                    <rect x="27" y="22" width="10" height="12" rx="3" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+                    <circle cx="32" cy="28" r="2" fill="#92400e"/>
+                </svg>
+            </div>
+            <h3 id="chest-title">ยินดีด้วย! เปิดหีบสมบัติสำเร็จ</h3>
+            <p id="chest-desc">รางวัลความขยันสำหรับการเรียนผ่านมาถึงจุดนี้</p>
+            <div class="chest-xp-badge" id="chest-xp-badge">+30 XP</div>
+            <button type="button" id="btn-chest-claim" class="btn btn-primary glass-btn btn-full">รับรางวัลเลย!</button>
+        </div>
+    </div>
+
+    <!-- Lesson Exit Confirmation Modal -->
+    <div id="lesson-exit-modal" class="modal-overlay" aria-hidden="true">
+        <div class="glass-panel modal-panel lesson-exit-panel" role="dialog" aria-modal="true" aria-labelledby="lesson-exit-title">
+            <div class="lesson-exit-badge" aria-hidden="true">⏸️</div>
+            <h3 id="lesson-exit-title">ต้องการออกจากบทเรียนกลางคัน?</h3>
+            <p id="lesson-exit-desc">ความคืบหน้าและคะแนน XP ของด่านนี้จะไม่ถูกบันทึก หากออกตอนนี้</p>
+            <div class="lesson-exit-actions">
+                <button type="button" id="btn-lesson-exit-stay" class="btn btn-primary glass-btn btn-full">เรียนต่อ</button>
+                <button type="button" id="btn-lesson-exit-confirm" class="btn glass-btn btn-danger-outline btn-full">ออกจากด่าน</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Quiz Setup Modal -->
     <div id="quiz-setup-modal" class="modal-overlay" aria-hidden="true">
         <div class="glass-panel modal-panel quiz-setup-panel">
@@ -1235,7 +1901,7 @@
 
     <!-- Google Sync Modal -->
     <div id="sync-modal" class="modal-overlay" aria-hidden="true">
-        <div class="glass-panel modal-panel sync-modal-panel" role="dialog" aria-modal="true" aria-label="ซิงก์ข้อมูลด้วย Google">
+        <div class="glass-panel modal-panel sync-modal-panel" role="dialog" aria-modal="true" aria-label="เข้าสู่ระบบด้วย Google">
             <div class="sync-modal-head">
                 <div class="sync-head-title-row">
                     <span class="sync-head-g-badge" aria-hidden="true">
@@ -1247,34 +1913,18 @@
                         </svg>
                     </span>
                     <div>
-                        <h3>ซิงก์ข้อมูลด้วย Google</h3>
-                        <p class="muted small" id="sync-status-text">เข้าสู่ระบบเพื่อซิงก์ความจำข้ามมือถือและคอม</p>
+                        <h3>เข้าสู่ระบบด้วย Google</h3>
+                        <p class="muted small" id="sync-status-text">บันทึกความคืบหน้าข้ามอุปกรณ์</p>
                     </div>
                 </div>
                 <button type="button" id="btn-sync-close" class="qs-close-btn" title="ปิด">ปิด</button>
             </div>
-
-            <div class="sync-summary-box" id="sync-local-summary"></div>
 
             <div id="fb-file-protocol-warn" class="sync-warn-banner" hidden>
                 กำลังเปิดแบบไฟล์ในเครื่อง (<code>file://</code>) — ต้องเปิดผ่านเว็บไซต์ (<code>https://</code>) หรือ <code>http://localhost</code> จึงจะล็อกอิน Google ได้
             </div>
 
             <div id="google-signed-out-box" class="google-auth-box">
-                <ul class="sync-benefit-list">
-                    <li>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>เก็บคำที่จำได้, ปักหมุด และประวัติ Quiz ข้ามมือถือ–คอม</span>
-                    </li>
-                    <li>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>รวมข้อมูลจากหลายเครื่องอัตโนมัติ (ไม่ทับข้อมูลใหม่)</span>
-                    </li>
-                    <li>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>ข้อมูลเป็นส่วนตัว แยกตามบัญชี Google ของคุณโดยเฉพาะ</span>
-                    </li>
-                </ul>
                 <button type="button" id="btn-google-signin" class="google-signin-btn">
                     <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
                         <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z"/>
@@ -1334,12 +1984,13 @@
         </div>
     </div>
 
-    <!-- Toast -->
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <!-- Toast (legacy sr-only text mirror + visual typed Toast Stack 2.0) -->
+    <div id="toast" class="toast toast-compat-mirror" role="status" aria-live="polite"></div>
+    <div id="toast-stack" class="toast-stack" aria-live="polite" aria-label="การแจ้งเตือน"></div>
 
-    <script src="data.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+    <script defer src="data.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script defer src="script.js"></script>
 </body>
 
 </html>
