@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oxflashcards-v15';
+const CACHE_NAME = 'oxflashcards-v16';
 const STATIC_ASSETS = [
   './',
   './index.html',

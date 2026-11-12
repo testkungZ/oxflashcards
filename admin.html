@@ -17,7 +17,7 @@
             --bg-accent: radial-gradient(circle at 12% 10%, rgba(34, 197, 94, 0.14), transparent 36%),
                          radial-gradient(circle at 88% 12%, rgba(14, 165, 233, 0.15), transparent 38%),
                          radial-gradient(circle at 50% 90%, rgba(99, 102, 241, 0.10), transparent 42%);
-            --surface: rgba(255, 255, 255, 0.88);
+            --surface: rgba(255, 255, 255, 0.90);
             --surface-solid: #ffffff;
             --surface-soft: #f8fafc;
             --border: rgba(148, 163, 184, 0.28);
@@ -38,7 +38,7 @@
             --bg-accent: radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.16), transparent 38%),
                          radial-gradient(circle at 88% 12%, rgba(56, 189, 248, 0.14), transparent 40%),
                          radial-gradient(circle at 50% 90%, rgba(99, 102, 241, 0.12), transparent 45%);
-            --surface: rgba(15, 23, 42, 0.84);
+            --surface: rgba(15, 23, 42, 0.86);
             --surface-solid: #111827;
             --surface-soft: #1e293b;
             --border: rgba(148, 163, 184, 0.18);
@@ -78,89 +78,33 @@
             flex-wrap: wrap;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .brand { display: flex; align-items: center; gap: 12px; }
         .brand-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+            width: 40px; height: 40px; border-radius: 12px;
             background: linear-gradient(135deg, #22c55e, #0ea5e9);
-            color: #fff;
-            display: grid;
-            place-items: center;
-            font-weight: 800;
+            color: #fff; display: grid; place-items: center; font-weight: 800;
             box-shadow: 0 6px 16px rgba(16, 185, 129, 0.28);
         }
-
-        .brand-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .brand-sub {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        .topbar-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .brand-title { font-size: 1.05rem; font-weight: 700; margin: 0; }
+        .brand-sub { font-size: 0.78rem; color: var(--text-muted); }
+        .topbar-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 9px 15px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--surface-solid);
-            color: var(--text);
-            font-family: inherit;
-            font-size: 0.875rem;
-            font-weight: 600;
-            cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 9px 15px; border-radius: 12px;
+            border: 1px solid var(--border); background: var(--surface-solid); color: var(--text);
+            font-family: inherit; font-size: 0.875rem; font-weight: 600; cursor: pointer;
             transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
         }
-
         .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
         .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-        .btn-primary {
-            background: linear-gradient(135deg, #10b981, #0ea5e9);
-            color: #fff;
-            border-color: transparent;
-        }
-        .btn-indigo {
-            background: linear-gradient(135deg, #6366f1, #3b82f6);
-            color: #fff;
-            border-color: transparent;
-        }
-        .btn-danger {
-            background: rgba(244, 63, 94, 0.12);
-            color: var(--rose);
-            border-color: rgba(244, 63, 94, 0.35);
-        }
+        .btn-primary { background: linear-gradient(135deg, #10b981, #0ea5e9); color: #fff; border-color: transparent; }
+        .btn-danger { background: rgba(244, 63, 94, 0.12); color: var(--rose); border-color: rgba(244, 63, 94, 0.35); }
         .btn-sm { padding: 6px 11px; font-size: 0.8rem; border-radius: 10px; }
 
-        .container {
-            max-width: 1420px;
-            margin: 0 auto;
-            padding: 24px 20px 64px;
-        }
+        .container { max-width: 1420px; margin: 0 auto; padding: 22px 20px 64px; }
 
-        /* Auth Gate & Error States */
-        .gate-wrapper {
-            max-width: 680px;
-            margin: 48px auto;
-        }
+        .gate-wrapper { max-width: 680px; margin: 48px auto; }
         .card {
             background: var(--surface);
             backdrop-filter: blur(16px);
@@ -168,235 +112,161 @@
             border: 1px solid var(--border);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 22px;
+            padding: 20px 22px;
         }
-        .gate-card {
-            text-align: center;
-            padding: 36px 28px;
-        }
+        .card.mb { margin-bottom: 18px; }
+        .gate-card { text-align: center; padding: 36px 28px; }
         .gate-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 16px;
-            border-radius: 18px;
+            width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 18px;
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(14, 165, 233, 0.18));
-            color: var(--primary);
-            display: grid;
-            place-items: center;
+            color: var(--primary); display: grid; place-items: center;
         }
-        .gate-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 22px;
-        }
+        .gate-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
 
         .alert {
-            padding: 14px 16px;
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            font-size: 0.88rem;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 14px;
-            flex-wrap: wrap;
+            padding: 13px 16px; border-radius: 14px; border: 1px solid var(--border);
+            font-size: 0.87rem; margin-bottom: 18px;
+            display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
         }
-        .alert-warn {
-            background: rgba(245, 158, 11, 0.12);
-            border-color: rgba(245, 158, 11, 0.35);
-        }
-        .alert-info {
-            background: rgba(14, 165, 233, 0.10);
-            border-color: rgba(14, 165, 233, 0.3);
-        }
-        .alert-danger {
-            background: rgba(244, 63, 94, 0.10);
-            border-color: rgba(244, 63, 94, 0.32);
-        }
+        .alert-warn { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); }
+        .alert-info { background: rgba(14, 165, 233, 0.10); border-color: rgba(14, 165, 233, 0.3); }
+        .alert-danger { background: rgba(244, 63, 94, 0.10); border-color: rgba(244, 63, 94, 0.32); }
+        .alert-success { background: rgba(16, 185, 129, 0.10); border-color: rgba(16, 185, 129, 0.32); }
 
         pre.code-box {
-            text-align: left;
-            background: #0f172a;
-            color: #e2e8f0;
-            padding: 14px 16px;
-            border-radius: 12px;
-            overflow-x: auto;
-            font-size: 0.8rem;
-            line-height: 1.55;
-            margin: 12px 0;
+            text-align: left; background: #0f172a; color: #e2e8f0;
+            padding: 14px 16px; border-radius: 12px; overflow-x: auto;
+            font-size: 0.8rem; line-height: 1.55; margin: 12px 0;
         }
 
         /* Tabs */
         .tabs {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            padding: 6px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; padding: 6px;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
         }
         .tab-btn {
-            border: none;
-            background: transparent;
-            color: var(--text-muted);
-            font-family: inherit;
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 10px 16px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            border: none; background: transparent; color: var(--text-muted);
+            font-family: inherit; font-size: 0.9rem; font-weight: 600;
+            padding: 10px 16px; border-radius: 12px; cursor: pointer;
+            transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 8px;
         }
         .tab-btn:hover { color: var(--text); background: var(--surface-soft); }
         .tab-btn.active {
             background: linear-gradient(135deg, #10b981, #0ea5e9);
-            color: #fff;
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
+            color: #fff; box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
         }
-
         .tab-panel { display: none; }
         .tab-panel.active { display: block; }
 
-        /* Grid & KPI Cards */
+        /* Balanced 3x2 KPI Grid */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 18px;
         }
+        .kpi-grid.kpi-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .kpi-grid.kpi-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        @media (max-width: 1024px) {
+            .kpi-grid, .kpi-grid.kpi-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 600px) {
+            .kpi-grid, .kpi-grid.kpi-4, .kpi-grid.kpi-2 { grid-template-columns: 1fr; }
+        }
+
         .kpi-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 18px 20px;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow);
         }
-        .kpi-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        .kpi-value {
-            font-size: 1.75rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 4px;
-        }
-        .kpi-sub {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
+        .kpi-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
+        .kpi-value { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3px; }
+        .kpi-sub { font-size: 0.77rem; color: var(--text-muted); }
 
         .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
-            margin-bottom: 20px;
+            display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 18px;
         }
-        @media (max-width: 980px) {
-            .grid-2 { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 980px) { .grid-2 { grid-template-columns: 1fr; } }
 
         .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 14px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 12px; flex-wrap: wrap; margin-bottom: 14px;
         }
-        .card-title {
-            font-size: 1.02rem;
-            font-weight: 700;
-            margin: 0;
-        }
-        .card-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
+        .card-title { font-size: 1.02rem; font-weight: 700; margin: 0; }
+        .card-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
 
-        .chart-wrap {
-            position: relative;
-            height: 290px;
-            width: 100%;
-        }
-        .chart-wrap.tall { height: 360px; }
+        .chart-wrap { position: relative; height: 280px; width: 100%; }
+        .chart-wrap.tall { height: 350px; }
+        .chart-wrap.hourly { height: 300px; }
 
-        /* Filters & Controls */
-        .toolbar {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-            margin-bottom: 14px;
-        }
+        /* Controls & Filters */
+        .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+        .controls-inline { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
         .input, .select {
-            padding: 9px 13px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--surface-solid);
-            color: var(--text);
-            font-family: inherit;
-            font-size: 0.86rem;
-            outline: none;
+            padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border);
+            background: var(--surface-solid); color: var(--text);
+            font-family: inherit; font-size: 0.85rem; outline: none;
         }
         .input:focus, .select:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.16);
+            border-color: var(--blue); box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.16);
         }
         .input-search { flex: 1 1 220px; min-width: 180px; }
 
+        .pill-group {
+            display: inline-flex; gap: 4px; padding: 4px; flex-wrap: wrap;
+            background: var(--surface-soft); border-radius: 11px; border: 1px solid var(--border);
+        }
+        .pill-btn {
+            border: none; background: transparent; color: var(--text-muted);
+            padding: 5px 11px; border-radius: 8px; font-family: inherit;
+            font-size: 0.78rem; font-weight: 600; cursor: pointer;
+        }
+        .pill-btn.active {
+            background: var(--surface-solid); color: var(--text);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Peak Callout Banner */
+        .hourly-highlight {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+            padding: 10px 14px; border-radius: 12px; margin-bottom: 12px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.10), rgba(14, 165, 233, 0.10));
+            border: 1px solid rgba(16, 185, 129, 0.24);
+            font-size: 0.84rem;
+        }
+
+        /* Live Activity Feed */
+        .feed-list {
+            display: flex; flex-direction: column; gap: 10px;
+            max-height: 330px; overflow-y: auto; padding-right: 4px;
+        }
+        .feed-item {
+            display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+            padding: 10px 12px; border-radius: 12px;
+            background: var(--surface-soft); border: 1px solid var(--border); font-size: 0.84rem;
+        }
+        .feed-meta { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+
         /* Tables */
         .table-wrap {
-            overflow-x: auto;
-            border-radius: 14px;
-            border: 1px solid var(--border);
+            overflow-x: auto; border-radius: 14px; border: 1px solid var(--border);
             background: var(--surface-solid);
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.86rem;
-        }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         th, td {
-            padding: 11px 14px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-            vertical-align: middle;
+            padding: 10px 13px; text-align: left;
+            border-bottom: 1px solid var(--border); vertical-align: middle;
         }
         th {
-            background: var(--surface-soft);
-            font-weight: 700;
-            color: var(--text-muted);
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            white-space: nowrap;
+            background: var(--surface-soft); font-weight: 700; color: var(--text-muted);
+            font-size: 0.77rem; text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap;
         }
         tbody tr:hover { background: rgba(14, 165, 233, 0.06); }
         tbody tr.clickable { cursor: pointer; }
         .num { text-align: right; font-variant-numeric: tabular-nums; }
 
         .badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 3px 9px;
-            border-radius: 999px;
-            font-size: 0.74rem;
-            font-weight: 700;
-            white-space: nowrap;
+            display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 999px;
+            font-size: 0.73rem; font-weight: 700; white-space: nowrap;
         }
         .badge-a1 { background: rgba(34, 197, 94, 0.14); color: #16a34a; }
         .badge-a2 { background: rgba(14, 165, 233, 0.14); color: #0284c7; }
@@ -405,110 +275,54 @@
         .badge-pos { background: var(--surface-soft); color: var(--text-muted); border: 1px solid var(--border); }
         .badge-hot { background: rgba(244, 63, 94, 0.14); color: var(--rose); }
         .badge-ok { background: rgba(16, 185, 129, 0.14); color: var(--primary); }
+        .badge-warn { background: rgba(245, 158, 11, 0.16); color: #d97706; }
 
         html[data-theme="dark"] .badge-a1 { color: #4ade80; }
         html[data-theme="dark"] .badge-a2 { color: #38bdf8; }
-        html[data-theme="dark"] .badge-b1 { color: #fbbf24; }
+        html[data-theme="dark"] .badge-b1, html[data-theme="dark"] .badge-warn { color: #fbbf24; }
         html[data-theme="dark"] .badge-b2 { color: #fb7185; }
 
         /* GA Cards & Embed */
         .ga-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 14px;
-            margin: 16px 0 22px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 14px 0 18px;
         }
         .ga-link-card {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            padding: 16px;
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            background: var(--surface-solid);
+            display: flex; flex-direction: column; gap: 5px; padding: 15px; border-radius: 14px;
+            border: 1px solid var(--border); background: var(--surface-solid);
             transition: transform 0.14s ease, border-color 0.14s ease;
         }
-        .ga-link-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--blue);
-            text-decoration: none;
-        }
+        .ga-link-card:hover { transform: translateY(-2px); border-color: var(--blue); text-decoration: none; }
         .looker-frame {
-            width: 100%;
-            min-height: 520px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            background: var(--surface-solid);
+            width: 100%; min-height: 520px; border: 1px solid var(--border);
+            border-radius: 14px; background: var(--surface-solid);
         }
+        details.clean-details {
+            border: 1px solid var(--border); border-radius: 14px; padding: 12px 16px;
+            background: var(--surface-soft); margin-top: 12px;
+        }
+        details.clean-details summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; }
 
-        /* Modal */
+        /* Modals */
         .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(6px);
-            z-index: 80;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(6px); z-index: 80;
+            display: none; align-items: center; justify-content: center; padding: 20px;
         }
         .modal-backdrop.open { display: flex; }
         .modal-box {
-            width: 100%;
-            max-width: 780px;
-            max-height: 88vh;
-            overflow-y: auto;
-            background: var(--surface-solid);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-            padding: 24px;
-        }
-
-        .pill-group {
-            display: inline-flex;
-            gap: 4px;
-            padding: 4px;
-            background: var(--surface-soft);
-            border-radius: 11px;
-            border: 1px solid var(--border);
-        }
-        .pill-btn {
-            border: none;
-            background: transparent;
-            color: var(--text-muted);
-            padding: 5px 11px;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.78rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .pill-btn.active {
-            background: var(--surface-solid);
-            color: var(--text);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            width: 100%; max-width: 820px; max-height: 88vh; overflow-y: auto;
+            background: var(--surface-solid); border: 1px solid var(--border);
+            border-radius: 20px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); padding: 24px;
         }
 
         .hidden { display: none !important; }
         .muted { color: var(--text-muted); }
         .small { font-size: 0.8rem; }
         .toast {
-            position: fixed;
-            bottom: 22px;
-            right: 22px;
-            z-index: 100;
-            background: #0f172a;
-            color: #fff;
-            padding: 11px 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(10px);
-            transition: all 0.2s ease;
+            position: fixed; bottom: 22px; right: 22px; z-index: 100;
+            background: #0f172a; color: #fff; padding: 11px 16px; border-radius: 12px;
+            font-size: 0.85rem; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+            opacity: 0; pointer-events: none; transform: translateY(10px); transition: all 0.2s ease;
         }
         .toast.show { opacity: 1; transform: translateY(0); }
     </style>
@@ -545,7 +359,7 @@
                 </div>
                 <h2 style="margin:0 0 8px;">เข้าสู่ระบบหลังบ้าน (Admin)</h2>
                 <p class="muted" id="gate-desc" style="margin:0 0 12px;">
-                    เข้าสู่ระบบด้วยบัญชี Google ที่ได้รับสิทธิ์แอดมินใน Firestore เพื่อดูสถิติผู้เรียน คำศัพท์ที่ติดขัดบ่อย และเวลาการใช้งาน
+                    เข้าสู่ระบบด้วยบัญชี Google ที่ได้รับสิทธิ์แอดมินใน Firestore เพื่อดูสถิติผู้เรียน ช่วงเวลาใช้งานวันนี้ และคำศัพท์ที่ติดขัดบ่อย
                 </p>
                 <div id="gate-alert" class="alert alert-danger hidden" style="text-align:left; margin-top:16px;"></div>
                 <div id="gate-rules-box" class="hidden" style="text-align:left; margin-top:14px;">
@@ -566,29 +380,50 @@
                 <div>
                     <strong>โหมดแสดงข้อมูลจำลอง (Demo Mode)</strong> — ข้อมูลทั้งหมดในหน้านี้เป็นข้อมูลจำลองเพื่อตรวจสอบกราฟและตารางก่อนใช้งานจริง
                 </div>
-                <div style="display:flex; gap:8px;">
-                    <button type="button" class="btn btn-sm btn-primary" id="btn-switch-real">สลับไปโหลดข้อมูลจริง (Firestore)</button>
-                </div>
+                <button type="button" class="btn btn-sm btn-primary" id="btn-switch-real">สลับไปโหลดข้อมูลจริง (Firestore)</button>
             </div>
 
             <nav class="tabs" role="tablist" aria-label="หมวดหมู่ข้อมูลหลังบ้าน">
-                <button type="button" class="tab-btn active" data-tab="overview">ภาพรวม & เวลาใช้งาน</button>
+                <button type="button" class="tab-btn active" data-tab="overview">ภาพรวม & เวลาวันนี้</button>
                 <button type="button" class="tab-btn" data-tab="words">คำศัพท์ที่ติดขัดบ่อย</button>
-                <button type="button" class="tab-btn" data-tab="analytics">ผู้ชมเว็บ (Google Analytics)</button>
+                <button type="button" class="tab-btn" data-tab="analytics">ผู้ชมเว็บ (GA4)</button>
                 <button type="button" class="tab-btn" data-tab="insights">ด่าน Learn Path & CEFR</button>
                 <button type="button" class="tab-btn" data-tab="learners">รายชื่อผู้เรียน</button>
             </nav>
 
-            <!-- TAB 1: Overview & Active + Usage Time -->
+            <!-- TAB 1: Overview & Today Hourly Usage -->
             <div id="tab-overview" class="tab-panel active">
                 <div class="kpi-grid" id="overview-kpis"></div>
+
+                <!-- Featured Hourly Chart: Today & Any Date -->
+                <div class="card mb">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">กราฟช่วงเวลาที่ผู้เรียนใช้งาน (รายชั่วโมง 00:00–23:00 น.)</h3>
+                            <div class="card-desc">ดูได้ว่าวันนี้ (หรือวันที่เลือก) มีคนใช้งานตอนกี่โมงบ้าง จากเวลาเรียนจริง, Learn, Flashcard และ Quiz</div>
+                        </div>
+                        <div class="controls-inline">
+                            <div class="pill-group" id="hourly-mode-pills">
+                                <button type="button" class="pill-btn active" data-hmode="today">วันนี้</button>
+                                <button type="button" class="pill-btn" data-hmode="yesterday">เมื่อวาน</button>
+                                <button type="button" class="pill-btn" data-hmode="7d">7 วันล่าสุด</button>
+                                <button type="button" class="pill-btn" data-hmode="all">รวมทั้งหมด</button>
+                            </div>
+                            <input type="date" id="hourly-date-picker" class="input" title="เลือกวันที่ต้องการดูรายชั่วโมง">
+                        </div>
+                    </div>
+                    <div id="hourly-highlight" class="hourly-highlight"></div>
+                    <div class="chart-wrap hourly">
+                        <canvas id="chart-peak-hours"></canvas>
+                    </div>
+                </div>
 
                 <div class="grid-2">
                     <div class="card">
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">ผู้เรียน Active รายวัน & จำนวนคำที่ฝึก</h3>
-                                <div class="card-desc">คำนวณจาก activityLog (วันที่ใช้งานจริง) และ updatedAt</div>
+                                <div class="card-desc">คำนวณจาก activityLog และวันที่ใช้งานล่าสุด</div>
                             </div>
                             <div class="pill-group" id="range-pills">
                                 <button type="button" class="pill-btn active" data-days="14">14 วัน</button>
@@ -603,8 +438,8 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">เวลาการใช้งานเฉลี่ยรายวัน (นาที)</h3>
-                                <div class="card-desc">รวมเวลาใช้งานจริงในแอป (usageTimeLog) และรอบฝึก/แบบทดสอบ</div>
+                                <h3 class="card-title">เวลาการใช้งานรวมรายวัน (นาที)</h3>
+                                <div class="card-desc">วัดจากเวลาใช้งานจริงในแอป (usageTimeLog) และเวลารอบฝึก/แบบทดสอบ</div>
                             </div>
                         </div>
                         <div class="chart-wrap">
@@ -617,20 +452,18 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">ช่วงเวลาที่ผู้เรียนเข้ามาฝึกบ่อยที่สุด (00:00–23:00)</h3>
-                                <div class="card-desc">วิเคราะห์จากเวลาจบ Flashcard Session และ Quiz</div>
+                                <h3 class="card-title">กิจกรรมล่าสุดในระบบ (Activity Feed)</h3>
+                                <div class="card-desc">เรียงตามเวลาล่าสุดจาก Learn Path, Quiz และ Flashcard ของผู้เรียนทุกคน</div>
                             </div>
                         </div>
-                        <div class="chart-wrap">
-                            <canvas id="chart-peak-hours"></canvas>
-                        </div>
+                        <div id="recent-feed" class="feed-list"></div>
                     </div>
 
                     <div class="card">
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">สรุประยะเวลาเฉลี่ยตามโหมดการฝึก</h3>
-                                <div class="card-desc">เปรียบเทียบระยะเวลาเฉลี่ยและสถิติความสำเร็จต่อรอบ</div>
+                                <div class="card-desc">เปรียบเทียบระยะเวลาเฉลี่ยต่อรอบและความต่อเนื่องของผู้เรียน</div>
                             </div>
                         </div>
                         <div id="duration-breakdown"></div>
@@ -640,15 +473,20 @@
 
             <!-- TAB 2: Struggling Words -->
             <div id="tab-words" class="tab-panel">
-                <div class="card" style="margin-bottom:18px;">
+                <div class="kpi-grid kpi-4" id="words-kpis"></div>
+
+                <div class="card mb">
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">15 อันดับคำศัพท์ที่ผู้เรียนติดขัด / ทบทวนซ้ำบ่อยที่สุด</h3>
-                            <div class="card-desc">จัดอันดับจากจำนวนกด "ทบทวน" ซ้ำ + ตอบผิดใน Quiz + จำนวนผู้เรียนที่ติดคำนี้</div>
+                            <div class="card-desc">คลิกที่แถวคำศัพท์ในตารางด้านล่างเพื่อดูตัวอย่างประโยคและคำแปลจาก data.js สำหรับนำไปปรับปรุง</div>
                         </div>
                         <button type="button" class="btn btn-sm btn-primary" id="btn-export-words">ส่งออก CSV คำศัพท์</button>
                     </div>
-                    <div class="chart-wrap tall">
+                    <div id="words-chart-empty" class="alert alert-info hidden">
+                        <div>ยังไม่มีข้อมูลคำศัพท์ที่ถูกกด "ทบทวน" หรือตอบผิดใน Quiz จากผู้เรียนในระบบ (เมื่อผู้เรียนเริ่มผิดหรือกดทบทวน กราฟจะแสดงอัตโนมัติ)</div>
+                    </div>
+                    <div class="chart-wrap tall" id="words-chart-wrap">
                         <canvas id="chart-struggling-words"></canvas>
                     </div>
                 </div>
@@ -656,6 +494,11 @@
                 <div class="card">
                     <div class="toolbar">
                         <input type="search" id="word-search" class="input input-search" placeholder="ค้นหาคำศัพท์ หรือคำแปลไทย...">
+                        <div class="pill-group" id="word-quick-pills">
+                            <button type="button" class="pill-btn active" data-wfilter="all">ทั้งหมด</button>
+                            <button type="button" class="pill-btn" data-wfilter="quiz">เคยผิดใน Quiz</button>
+                            <button type="button" class="pill-btn" data-wfilter="review">กดทบทวนซ้ำ</button>
+                        </div>
                         <select id="word-cefr" class="select">
                             <option value="all">CEFR: ทุกระดับ</option>
                             <option value="A1">A1</option>
@@ -664,13 +507,13 @@
                             <option value="B2">B2</option>
                         </select>
                         <select id="word-pos" class="select">
-                            <option value="all">ประเภทคำ (POS): ทั้งหมด</option>
+                            <option value="all">POS: ทั้งหมด</option>
                         </select>
                         <select id="word-sort" class="select">
-                            <option value="score">เรียงตาม: คะแนนติดขัดรวม</option>
-                            <option value="reviews">เรียงตาม: ครั้งที่กดทบทวนซ้ำ</option>
-                            <option value="quiz">เรียงตาม: ตอบผิดใน Quiz</option>
-                            <option value="learners">เรียงตาม: จำนวนผู้เรียนที่ติด</option>
+                            <option value="score">เรียง: คะแนนติดขัดรวม</option>
+                            <option value="reviews">เรียง: กดทบทวนซ้ำ</option>
+                            <option value="quiz">เรียง: ผิดใน Quiz</option>
+                            <option value="learners">เรียง: ผู้เรียนที่ติด</option>
                         </select>
                     </div>
                     <div class="table-wrap">
@@ -695,60 +538,69 @@
                 </div>
             </div>
 
-            <!-- TAB 3: Google Analytics -->
+            <!-- TAB 3: Google Analytics & Feature Usage -->
             <div id="tab-analytics" class="tab-panel">
-                <div class="card" style="margin-bottom:18px;">
-                    <div class="card-header">
-                        <div>
-                            <h3 class="card-title">ติดตามยอดผู้เข้าชมเว็บแม้ไม่ได้ล็อกอิน (Google Analytics 4)</h3>
-                            <div class="card-desc">เชื่อมต่อ Measurement ID: <code>G-36GSY6NCFC</code> ในหน้า <code>index.html</code> แล้ว</div>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">การใช้งานแยกตามโหมดในแอป (ข้อมูลจริงใน Firestore)</h3>
+                                <div class="card-desc">เปรียบเทียบความนิยมระหว่าง Learn Path, Quiz และ Flashcard จากผู้เรียนที่ซิงค์</div>
+                            </div>
                         </div>
-                        <span class="badge badge-ok">GA4 + Event Tracking พร้อมใช้งาน</span>
-                    </div>
-
-                    <div class="alert alert-info">
-                        <div>
-                            <strong>หมายเหตุเชิงระบบ:</strong> Google Analytics เก็บยอดผู้เข้าชมทั้งหมด (รวมคนที่ไม่ล็อกอิน Google) บนเซิร์ฟเวอร์ Google เพื่อความปลอดภัยด้านสิทธิ์ข้อมูล หน้า Static HTML บน GitHub Pages ไม่สามารถดึงรายงาน GA4 เข้ามาตรงๆ โดยไม่ผ่าน OAuth ได้ แต่คุณสามารถเปิดดูกราฟแบบเรียลไทม์จากลิงก์ด้านล่าง หรือฝังรายงาน <strong>Looker Studio</strong> ที่เชื่อมต่อกับ GA4 มาแสดงในช่องด้านล่างได้ทันที
+                        <div class="chart-wrap">
+                            <canvas id="chart-mode-popularity"></canvas>
                         </div>
                     </div>
 
-                    <div class="small muted" style="margin-bottom:8px;">
-                        อีเวนต์ที่แอปส่งเข้า Google Analytics อัตโนมัติ: <code>page_view</code>, <code>session_complete</code> (Flashcard), <code>quiz_complete</code>, <code>learn_lesson_complete</code>, <code>google_signin</code>
-                    </div>
-
-                    <div class="ga-links">
-                        <a class="ga-link-card" href="https://analytics.google.com/analytics/web/" target="_blank" rel="noopener">
-                            <strong>เปิด Google Analytics 4</strong>
-                            <span class="small muted">ดูยอดผู้เข้าชม Realtime, ผู้เข้าชมที่ไม่ล็อกอิน, ประเทศ, อุปกรณ์ และเวลาใช้งานเฉลี่ย</span>
-                        </a>
-                        <a class="ga-link-card" href="https://console.firebase.google.com/project/oxflashcard/analytics" target="_blank" rel="noopener">
-                            <strong>Firebase Analytics (oxflashcard)</strong>
-                            <span class="small muted">ดูกราฟ Active Users, Retention และ Funnel ของแต่ละกิจกรรม</span>
-                        </a>
-                        <a class="ga-link-card" href="https://console.firebase.google.com/project/oxflashcard/authentication/users" target="_blank" rel="noopener">
-                            <strong>Firebase Authentication Users</strong>
-                            <span class="small muted">ดูบัญชี Google ทั้งหมดที่เคยล็อกอินและวันที่ใช้งานล่าสุด</span>
-                        </a>
-                        <a class="ga-link-card" href="https://lookerstudio.google.com/" target="_blank" rel="noopener">
-                            <strong>สร้างรายงาน Looker Studio</strong>
-                            <span class="small muted">เชื่อมข้อมูลจาก GA4 <code>G-36GSY6NCFC</code> เพื่อ Embed กราฟมาแสดงด้านล่าง</span>
-                        </a>
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">ผู้เข้าชมที่ไม่ได้ล็อกอิน (Google Analytics 4)</h3>
+                                <div class="card-desc">Measurement ID: <code>G-36GSY6NCFC</code> กำลังส่งข้อมูลจาก <code>index.html</code></div>
+                            </div>
+                            <span class="badge badge-ok">กำลังทำงาน</span>
+                        </div>
+                        <p class="small muted" style="margin-top:0;">
+                            ผู้เข้าชมที่ไม่ได้ล็อกอินจะถูกนับยอดคนเข้าเว็บ, เวลาเฉลี่ยต่อหน้า, ประเทศ และอุปกรณ์บน Google Analytics 4 อัตโนมัติ พร้อมอีเวนต์ <code>session_complete</code>, <code>quiz_complete</code> และ <code>learn_lesson_complete</code>
+                        </p>
+                        <div class="ga-links" style="margin-bottom:0;">
+                            <a class="ga-link-card" href="https://analytics.google.com/analytics/web/" target="_blank" rel="noopener">
+                                <strong>ดูผู้ชม Realtime ตอนนี้ (GA4)</strong>
+                                <span class="small muted">เห็นจำนวนคนเปิดเว็บอยู่ตอนนี้แม้ไม่ได้ล็อกอิน</span>
+                            </a>
+                            <a class="ga-link-card" href="https://console.firebase.google.com/project/oxflashcard/analytics" target="_blank" rel="noopener">
+                                <strong>Firebase Analytics</strong>
+                                <span class="small muted">กราฟ Retention และอีเวนต์การเรียนทั้งหมด</span>
+                            </a>
+                            <a class="ga-link-card" href="https://console.firebase.google.com/project/oxflashcard/authentication/users" target="_blank" rel="noopener">
+                                <strong>รายชื่อบัญชีที่เคยล็อกอิน Google</strong>
+                                <span class="small muted">ดูบัญชีทั้งหมดใน Firebase Auth</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
                         <div>
-                            <h3 class="card-title">ฝังรายงาน Google Analytics ผ่าน Looker Studio (ไม่บังคับ)</h3>
-                            <div class="card-desc">วางลิงก์ Embed URL จาก Looker Studio (File → Embed report → Embed URL) ระบบจะบันทึกไว้ในเครื่องแอดมิน</div>
+                            <h3 class="card-title">ฝังรายงาน GA4 เข้ามาในหน้านี้โดยตรง (ผ่าน Looker Studio)</h3>
+                            <div class="card-desc">เหมาะสำหรับแสดงยอดผู้เข้าชมที่ไม่ล็อกอินแบบฝังถาวรไว้ใน Dashboard</div>
                         </div>
                     </div>
-                    <div class="toolbar">
-                        <input type="url" id="looker-url-input" class="input input-search" placeholder="https://lookerstudio.google.com/embed/reporting/...">
-                        <button type="button" class="btn btn-primary" id="btn-save-looker">บันทึกและแสดงรายงาน</button>
-                        <button type="button" class="btn" id="btn-clear-looker">ล้างลิงก์</button>
-                    </div>
-                    <div id="looker-container" class="hidden">
+                    <details class="clean-details">
+                        <summary>วิธีตั้งค่าและวางลิงก์ Looker Studio Embed (ทำครั้งเดียว)</summary>
+                        <div class="small muted" style="margin:10px 0;">
+                            1. เปิด <a href="https://lookerstudio.google.com/" target="_blank" rel="noopener">lookerstudio.google.com</a> → Create Report → เลือก <strong>Google Analytics</strong> ของรหัส <code>G-36GSY6NCFC</code><br>
+                            2. กดเมนู File → Embed report → เปิด Enable embedding → คัดลอก <strong>Embed URL</strong> มาวางด้านล่าง
+                        </div>
+                        <div class="toolbar" style="margin-top:10px;">
+                            <input type="url" id="looker-url-input" class="input input-search" placeholder="https://lookerstudio.google.com/embed/reporting/...">
+                            <button type="button" class="btn btn-primary" id="btn-save-looker">บันทึกและแสดงรายงาน</button>
+                            <button type="button" class="btn" id="btn-clear-looker">ล้างลิงก์</button>
+                        </div>
+                    </details>
+                    <div id="looker-container" class="hidden" style="margin-top:14px;">
                         <iframe id="looker-iframe" class="looker-frame" title="Google Analytics Looker Studio Report" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
                     </div>
                 </div>
@@ -760,9 +612,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">ความก้าวหน้ารายหน่วย (Learn Path Funnel 12 หน่วย)</h3>
-                                <div class="card-desc">จำนวนผู้เรียนที่ผ่านอย่างน้อย 1 ด่าน และความแม่นยำเฉลี่ยของแต่ละหน่วย</div>
+                                <h3 class="card-title">ความคืบหน้า Learn Path รายหมวด (12 หมวด)</h3>
+                                <div class="card-desc">แสดงเฉพาะจำนวนผู้เรียน & จำนวนด่านที่ผ่านจริงเทียบกับความแม่นยำ</div>
                             </div>
+                            <label class="small" style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;">
+                                <input type="checkbox" id="toggle-active-units-only"> ซ่อนหมวดที่ยังไม่มีคนเล่น
+                            </label>
                         </div>
                         <div class="chart-wrap tall">
                             <canvas id="chart-unit-funnel"></canvas>
@@ -772,8 +627,8 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">การเรียนรู้แยกตามระดับ CEFR (A1–B2)</h3>
-                                <div class="card-desc">สัดส่วนคำศัพท์ที่จำได้แล้วเทียบกับคำที่ยังต้องทบทวนรวมทั้งระบบ</div>
+                                <h3 class="card-title">ความครอบคลุมคลังคำศัพท์ Oxford 3000 (A1–B2)</h3>
+                                <div class="card-desc">เทียบสัดส่วนคำที่ผู้เรียนจำได้แล้ว vs ทบทวน vs ยังไม่เคยเรียน (จาก 3,191 คำ)</div>
                             </div>
                         </div>
                         <div class="chart-wrap tall">
@@ -786,21 +641,34 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">สำเนียงที่ผู้เรียนนิยม (US vs UK) & ขนาดรอบ</h3>
-                                <div class="card-desc">ดูพฤติกรรมการตั้งค่าเพื่อปรับค่าเริ่มต้นของแอป</div>
+                                <h3 class="card-title">ด่านที่ผู้เรียนได้คะแนนเฉลี่ยน้อยสุด / ท้าทายที่สุด</h3>
+                                <div class="card-desc">ใช้ตรวจสอบว่าด่านไหนยากเกินไปหรือควรปรับคำใบ้เพิ่ม</div>
                             </div>
                         </div>
-                        <div class="chart-wrap">
-                            <canvas id="chart-prefs"></canvas>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>รหัสด่าน</th>
+                                        <th>หมวดหมู่</th>
+                                        <th class="num">คนผ่าน</th>
+                                        <th class="num">ความแม่นยำเฉลี่ย</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="hard-stages-tbody"></tbody>
+                            </table>
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">สรุปสถิติ Learn Path & เป้าหมายรายวัน</h3>
-                                <div class="card-desc">ตัวชี้วัดระดับความผูกพันและการผ่านด่าน</div>
+                                <h3 class="card-title">การตั้งค่าและเป้าหมายของผู้เรียน</h3>
+                                <div class="card-desc">สำเนียงยอดนิยม, ขนาดรอบเฉลี่ย และความสำเร็จเป้าหมายรายวัน</div>
                             </div>
+                        </div>
+                        <div class="chart-wrap" style="height:210px; margin-bottom:14px;">
+                            <canvas id="chart-prefs"></canvas>
                         </div>
                         <div id="other-insights-box"></div>
                     </div>
@@ -813,19 +681,25 @@
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">รายชื่อผู้เรียนทั้งหมดที่ซิงค์คลาวด์</h3>
-                            <div class="card-desc">คลิกที่แถวเพื่อดูรายละเอียดเชิงลึกรายบุคคล</div>
+                            <div class="card-desc">คลิกที่แถวเพื่อดูเวลาเรียนวันนี้ รายละเอียดด่านที่ผ่าน และคำศัพท์ที่ติดขัดรายบุคคล</div>
                         </div>
                         <button type="button" class="btn btn-sm btn-primary" id="btn-export-learners">ส่งออก CSV ผู้เรียน</button>
                     </div>
                     <div class="toolbar">
                         <input type="search" id="learner-search" class="input input-search" placeholder="ค้นหา Email หรือ UID...">
+                        <div class="pill-group" id="learner-status-pills">
+                            <button type="button" class="pill-btn active" data-lstatus="all">ทั้งหมด</button>
+                            <button type="button" class="pill-btn" data-lstatus="today">ใช้งานวันนี้</button>
+                            <button type="button" class="pill-btn" data-lstatus="7d">Active 7 วัน</button>
+                            <button type="button" class="pill-btn" data-lstatus="inactive">เงียบ &gt;7 วัน</button>
+                        </div>
                         <select id="learner-sort" class="select">
-                            <option value="updatedAt">เรียงตาม: ใช้งานล่าสุด</option>
-                            <option value="xp">เรียงตาม: XP สูงสุด</option>
-                            <option value="studyTime">เรียงตาม: เวลาใช้งานรวม</option>
-                            <option value="known">เรียงตาม: คำที่จำได้</option>
-                            <option value="review">เรียงตาม: คำที่ค้างทบทวน</option>
-                            <option value="streak">เรียงตาม: Streak ต่อเนื่อง</option>
+                            <option value="updatedAt">เรียง: ใช้งานล่าสุด</option>
+                            <option value="xp">เรียง: XP สูงสุด</option>
+                            <option value="studyTime">เรียง: เวลาใช้งานรวม</option>
+                            <option value="known">เรียง: คำที่จำได้</option>
+                            <option value="review">เรียง: คำที่ค้างทบทวน</option>
+                            <option value="streak">เรียง: Streak ต่อเนื่อง</option>
                         </select>
                     </div>
                     <div class="table-wrap">
@@ -833,11 +707,11 @@
                             <thead>
                                 <tr>
                                     <th>ผู้เรียน (Email / UID)</th>
+                                    <th>สถานะ</th>
                                     <th>ใช้งานล่าสุด</th>
                                     <th class="num">XP</th>
                                     <th class="num">Streak</th>
-                                    <th class="num">จำได้</th>
-                                    <th class="num">ทบทวน</th>
+                                    <th class="num">จำได้ / ทบทวน</th>
                                     <th class="num">ด่าน Learn</th>
                                     <th class="num">Quiz</th>
                                     <th class="num">เวลาใช้งาน</th>
@@ -866,6 +740,20 @@
         </div>
     </div>
 
+    <!-- Word Detail Modal -->
+    <div id="word-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="word-modal-title">
+        <div class="modal-box" style="max-width:620px;">
+            <div class="card-header">
+                <div>
+                    <h3 class="card-title" id="word-modal-title">รายละเอียดคำศัพท์</h3>
+                    <div class="card-desc" id="word-modal-sub"></div>
+                </div>
+                <button type="button" class="btn btn-sm" id="btn-close-word-modal">ปิด</button>
+            </div>
+            <div id="word-modal-body"></div>
+        </div>
+    </div>
+
     <!-- Firestore Rules Helper Modal -->
     <div id="rules-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="rules-modal-title">
         <div class="modal-box">
@@ -890,4 +778,3 @@
 </body>
 
 </html>
-

@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bookmarks: 'ox3k_bookmarks_v1',   // [ "word|pos", ... ]
     ActivityLog: 'ox3k_activity_v1',  // { "YYYY-MM-DD": count }
     usageTime: 'ox3k_usage_time_v1',  // { "YYYY-MM-DD": seconds }
+    hourlyUsage: 'ox3k_hourly_usage_v1', // { "YYYY-MM-DD|HH": seconds }
     theme: 'ox3k_theme_mode',         // 'light' | 'dark'
     accent: 'ox3k_accent_v1',         // 'US' | 'UK'
     sbConfig: 'ox3k_sb_config_v1',    // { url, anonKey, syncId, lastSyncedAt }
@@ -1001,11 +1002,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return s;
   }
 
-  function getTodayDateString() {
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, '0');
-    const d = String(now.getDate()).padStart(2, '0');
+  /** @param {Date} [dateObj] */
+  function getTodayDateString(dateObj = new Date()) {
+    const y = dateObj.getFullYear();
+    const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const d = String(dateObj.getDate()).padStart(2, '0');
     return `${y}-${m}-${d}`;
   }
 
@@ -1065,6 +1066,17 @@ document.addEventListener('DOMContentLoaded', () => {
     storage.set(STORAGE.usageTime, log);
   }
 
+  /** @returns {Record<string, number>} */
+  function loadHourlyUsageLog() {
+    const raw = storage.get(STORAGE.hourlyUsage, {});
+    return (raw && typeof raw === 'object' && !Array.isArray(raw)) ? raw : {};
+  }
+
+  /** @param {Record<string, number>} log */
+  function saveHourlyUsageLog(log) {
+    storage.set(STORAGE.hourlyUsage, log);
+  }
+
   let wordStatus = loadWordStatus();
   let sessions = loadSessions();
   let dailyGoal = loadDailyGoal();
@@ -1072,6 +1084,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let bookmarkedWords = loadBookmarks();
   let activityLog = loadActivityLog();
   let usageTimeLog = loadUsageTimeLog();
+  let hourlyUsageLog = loadHourlyUsageLog();
 
   // Foreground active study/usage time tracker (counts only while tab is visible and recently active)
   (() => {
@@ -1093,13 +1106,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const recentlyInteracted = (now - lastInteractionAt) <= 120000;
         if (elapsedSec > 0 && elapsedSec <= 60 && recentlyInteracted) {
           const today = getTodayDateString();
+          const hh = String(new Date(now).getHours()).padStart(2, '0');
+          const hourKey = `${today}|${hh}`;
+
           usageTimeLog[today] = Math.max(0, Number(usageTimeLog[today] || 0)) + elapsedSec;
-          // Prune entries older than 120 days to keep payload compact
+          hourlyUsageLog[hourKey] = Math.min(3600, Math.max(0, Number(hourlyUsageLog[hourKey] || 0)) + elapsedSec);
+
+          // Prune daily entries older than 120 days and hourly entries older than 14 days
           const keys = Object.keys(usageTimeLog).sort();
           if (keys.length > 120) {
             keys.slice(0, keys.length - 120).forEach((k) => { delete usageTimeLog[k]; });
           }
+          const cutoffStr = getTodayDateString(new Date(now - 14 * 86400000));
+          Object.keys(hourlyUsageLog).forEach((hk) => {
+            if (hk.slice(0, 10) < cutoffStr) delete hourlyUsageLog[hk];
+          });
+
           saveUsageTimeLog(usageTimeLog);
+          saveHourlyUsageLog(hourlyUsageLog);
           unsyncedSeconds += elapsedSec;
         }
       }
@@ -3651,11 +3675,13 @@ document.addEventListener('DOMContentLoaded', () => {
         bookmarkedWords = new Set();
         activityLog = {};
         usageTimeLog = {};
+        hourlyUsageLog = {};
         storage.remove(STORAGE.mastery);
         storage.remove(STORAGE.dailyGoal);
         storage.remove(STORAGE.bookmarks);
         storage.remove(STORAGE.ActivityLog);
         storage.remove(STORAGE.usageTime);
+        storage.remove(STORAGE.hourlyUsage);
         try { localStorage.removeItem('oxford3000_quiz_history'); } catch (e) { }
         if (typeof onLearnDataChangedHook === 'function') onLearnDataChangedHook('reset');
         if (clearGoogleOwnership) clearGoogleOwnership();
@@ -5605,6 +5631,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 quizHistory,
                 activityLog: { ...activityLog },
                 usageTimeLog: { ...usageTimeLog },
+                hourlyUsageLog: { ...hourlyUsageLog },
                 dailyGoal: { ...dailyGoal, targetUpdatedAt: dailyGoal.targetUpdatedAt || 0 },
                 learningPath: typeof getLearnSyncPayloadHook === 'function' ? getLearnSyncPayloadHook() : undefined,
                 prefs: {
@@ -5716,6 +5743,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     usageTimeLog[day] = Math.max(Number(usageTimeLog[day] || 0), Number(sec || 0));
                 }
                 saveUsageTimeLog(usageTimeLog);
+            }
+
+            if (remote.hourlyUsageLog && typeof remote.hourlyUsageLog === 'object') {
+                for (const [hk, sec] of Object.entries(remote.hourlyUsageLog)) {
+                    hourlyUsageLog[hk] = Math.min(3600, Math.max(Number(hourlyUsageLog[hk] || 0), Number(sec || 0)));
+                }
+                saveHourlyUsageLog(hourlyUsageLog);
             }
 
             const today = getTodayDateString();
