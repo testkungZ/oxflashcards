@@ -6171,14 +6171,6 @@ body.dark-theme .glass-sync-pill.is-signed-in {
 .sync-open-btn {
     position: relative;
 }
-#btn-dash-sync.is-signed-in {
-    border-color: rgba(16, 185, 129, 0.42);
-    background: rgba(236, 253, 245, 0.86);
-}
-body.dark-theme #btn-dash-sync.is-signed-in {
-    background: rgba(16, 185, 129, 0.16);
-    border-color: rgba(52, 211, 153, 0.4);
-}
 .dash-sync-user-avatar {
     width: 24px;
     height: 24px;

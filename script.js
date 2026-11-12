@@ -353,20 +353,25 @@ document.addEventListener('DOMContentLoaded', () => {
   let soundCats = { ui: true, feedback: true, reward: true };
   const SOUND_MAX_VOICES = 28;
   const SoundFX = {
+    /** @type {AudioContext|null} */
     audioCtx: null,
     _lastTick: 0,
     _lastType: 0,
+    /** @type {AudioBuffer|null} */
     _noiseBuf: null,
+    /** @type {GainNode|null} */
     _master: null,
+    /** @type {DynamicsCompressorNode|null} */
     _comp: null,
+    /** @type {number[]} */
     _voiceEnds: [],
     _cat: 'ui',
     init() {
       if (isSoundMuted) return;
       if (!this.audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (AudioContext) {
-          try { this.audioCtx = new AudioContext(); } catch (_) { this.audioCtx = null; }
+        const AudioCtx = window.AudioContext || /** @type {{ webkitAudioContext?: typeof AudioContext }} */ (window).webkitAudioContext;
+        if (AudioCtx) {
+          try { this.audioCtx = new AudioCtx(); } catch (_) { this.audioCtx = null; }
         }
         if (this.audioCtx) this._buildBus();
       }
@@ -436,6 +441,15 @@ document.addEventListener('DOMContentLoaded', () => {
     getActiveVoices() {
       return this._pruneVoices();
     },
+    /**
+     * @param {number} frequency
+     * @param {OscillatorType} type
+     * @param {number} attack
+     * @param {number} decay
+     * @param {number} [vol]
+     * @param {number|null} [slideToFreq]
+     * @param {number} [startTimeOffset]
+     */
     playTone(frequency, type, attack, decay, vol = 0.25, slideToFreq = null, startTimeOffset = 0) {
       if (!this._canVoice()) return;
       try {
@@ -746,6 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const storage = {
     _cache: new Map(),
     _pending: new Map(),
+    /** @type {ReturnType<typeof setTimeout>|null} */
     _timer: null,
     get(key, fallback) {
       if (this._pending.has(key)) return this._pending.get(key).val;
@@ -1208,6 +1223,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Target chips in dashboard
     const chips = document.querySelectorAll('#dgw-target-chips .chip-sm');
     chips.forEach((c) => {
+      if (!(c instanceof HTMLElement)) return;
       c.classList.toggle('active', Number(c.dataset.goal) === dailyGoal.target);
     });
   }
@@ -1277,6 +1293,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * ========================================================= */
   let session = null;      // { id, mode, indices, answers, currentIndex, startedAt }
   let lastSummary = null;  // last finished session record
+  /** @type {(() => void)|null} */
+  let pendingAdvanceCallback = null;
   let isFlipped = false;
   let isAnimating = false;
   let summaryTab = 'review';
@@ -1307,9 +1325,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const overallKnownEl = $('overall-known');
   const overallReviewEl = $('overall-review');
   const overallUnseenEl = $('overall-unseen');
-  const segOptions = Array.from(document.querySelectorAll('.seg-option'));
+  const segOptions = /** @type {HTMLElement[]} */ (Array.from(document.querySelectorAll('.seg-option')));
   const segIndicator = $('seg-indicator');
-  const countSlider = $('count-slider');
+  const countSlider = /** @type {HTMLInputElement|null} */ ($('count-slider'));
   const countDisplay = $('count-display');
   const btnStart = $('btn-start');
   const btnResume = $('btn-resume');
@@ -1333,8 +1351,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const statKnownEl = $('stat-known');
   const statReviewEl = $('stat-review');
   const statRemainingEl = $('stat-remaining');
-  const btnPrev = $('btn-prev');
-  const btnNext = $('btn-next');
+  const btnPrev = /** @type {HTMLButtonElement|null} */ ($('btn-prev'));
+  const btnNext = /** @type {HTMLButtonElement|null} */ ($('btn-next'));
   const btnKnown = $('btn-known');
   const btnUnknown = $('btn-unknown');
   const btnAdvance = $('btn-advance');
@@ -1351,7 +1369,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const summaryReviewEl = $('summary-review');
   const summarySkippedEl = $('summary-skipped');
   const summarySkippedBox = $('summary-skipped-box');
-  const summaryTabs = Array.from(document.querySelectorAll('#summary-tabs .tab'));
+  const summaryTabs = /** @type {HTMLElement[]} */ (Array.from(document.querySelectorAll('#summary-tabs .tab')));
   const summaryTabReviewCount = $('summary-tab-review-count');
   const summaryTabKnownCount = $('summary-tab-known-count');
   const summaryWordList = $('summary-word-list');
@@ -1364,7 +1382,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // History
   const btnHistoryBack = $('btn-history-back');
   const btnClearHistory = $('btn-clear-history');
-  const historyTabs = Array.from(document.querySelectorAll('#history-tabs .tab'));
+  const historyTabs = /** @type {HTMLElement[]} */ (Array.from(document.querySelectorAll('#history-tabs .tab')));
   const historySessionsPanel = $('history-sessions');
   const historyWordsPanel = $('history-words');
   const historySessionsCount = $('history-sessions-count');
@@ -1372,7 +1390,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterChips = Array.from(document.querySelectorAll('#status-filter .chip'));
   const filterReviewCount = $('filter-review-count');
   const filterKnownCount = $('filter-known-count');
-  const wordSearch = $('word-search');
+  const wordSearch = /** @type {HTMLInputElement|null} */ ($('word-search'));
   const historyWordList = $('history-word-list');
   const btnPracticeReview = $('btn-practice-review');
   const practiceReviewLabel = $('practice-review-label');
@@ -1532,11 +1550,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (!skipSliderUpdate) {
-      if (countSlider) countSlider.value = selectedSize;
+      if (countSlider) countSlider.value = String(selectedSize);
     }
 
-    if (countDisplay && countDisplay.textContent != selectedSize) {
-      countDisplay.textContent = selectedSize;
+    if (countDisplay && countDisplay.textContent !== String(selectedSize)) {
+      countDisplay.textContent = String(selectedSize);
       countDisplay.classList.remove('pop-anim');
       void countDisplay.offsetWidth; // force reflow
       countDisplay.classList.add('pop-anim');
@@ -1563,11 +1581,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const easeOut = 1 - Math.pow(1 - progress, 3); // cubic ease out
       const currentVal = startValue + (endValue - startValue) * easeOut;
-      countSlider.value = currentVal;
+      countSlider.value = String(currentVal);
 
       const displayVal = Math.round(currentVal);
-      if (countDisplay && countDisplay.textContent != displayVal) {
-        countDisplay.textContent = displayVal;
+      if (countDisplay && countDisplay.textContent !== String(displayVal)) {
+        countDisplay.textContent = String(displayVal);
       }
 
       if (progress < 1) {
@@ -1596,9 +1614,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (countSlider) {
-    countSlider.addEventListener('input', (e) => {
+    countSlider.addEventListener('input', () => {
       if (sliderAnimFrame) cancelAnimationFrame(sliderAnimFrame);
-      const size = Math.round(Number(e.target.value));
+      const size = Math.round(Number(countSlider.value));
 
       if (selectedSize !== size) {
         SoundFX.tick(); // เล่นเสียง "ตึด" เบาๆ ตอนที่เลขเปลี่ยน
@@ -1609,8 +1627,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    countSlider.addEventListener('change', (e) => {
-      const size = Math.round(Number(e.target.value));
+    countSlider.addEventListener('change', () => {
+      const size = Math.round(Number(countSlider.value));
       selectedSize = size;
       savePrefsState({ touchSize: true });
       updateSegmented(false); // snap thumb to integer on release
@@ -1777,7 +1795,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btnKnown.style.display = 'none';
       btnUnknown.style.display = 'none';
       btnAdvance.style.display = 'flex';
-      window.pendingAdvanceCallback = moveToNext;
+      pendingAdvanceCallback = moveToNext;
     } else {
       moveToNext();
     }
@@ -1795,9 +1813,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateSessionStats(changed = null) {
     const c = getSessionCounts();
-    statKnownEl.textContent = c.known;
-    statReviewEl.textContent = c.review;
-    statRemainingEl.textContent = c.remaining;
+    statKnownEl.textContent = String(c.known);
+    statReviewEl.textContent = String(c.review);
+    statRemainingEl.textContent = String(c.remaining);
     if (changed === 'known') bump(statKnownEl);
     if (changed === 'review') bump(statReviewEl);
   }
@@ -2040,7 +2058,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnKnown.style.display = '';
     btnUnknown.style.display = '';
     if (btnAdvance) btnAdvance.style.display = 'none';
-    window.pendingAdvanceCallback = null;
+    pendingAdvanceCallback = null;
 
     if (isFlipped) {
       if (!skipFlipWait) {
@@ -2128,7 +2146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.toggle('is-starred', starred);
         });
         const fStarCount = $('filter-starred-count');
-        if (fStarCount) fStarCount.textContent = bookmarkedWords.size;
+        if (fStarCount) fStarCount.textContent = String(bookmarkedWords.size);
         updateCardStarAndSRS();
         updateWelcomeSmartStrip();
     }
@@ -2201,7 +2219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     flashcard.addEventListener('pointerdown', (e) => {
         // Only accept primary pointer (left click or touch)
         if (e.pointerType === 'mouse' && e.button !== 0) return;
-        if (e.target.closest('.speak-btn') || e.target.closest('.card-star-btn')) return;
+        if (e.target instanceof Element && (e.target.closest('.speak-btn') || e.target.closest('.card-star-btn'))) return;
         if (isAnimating || !session) return;
 
         isSwiping = true;
@@ -2231,15 +2249,17 @@ document.addEventListener('DOMContentLoaded', () => {
         flashcard.style.transform = `translateX(${deltaX}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
 
         const targetCard = isFlipped ? flashcard.querySelector('.card-back') : flashcard.querySelector('.card-front');
-        if (deltaX < -50) { // Swipe Left (จำได้แล้ว - เขียว)
-            targetCard.style.borderColor = 'var(--success)';
-            targetCard.style.boxShadow = '0 0 30px rgba(16, 185, 129, 0.4)';
-        } else if (deltaX > 50) { // Swipe Right (ต้องทบทวน - แดง)
-            targetCard.style.borderColor = 'var(--danger)';
-            targetCard.style.boxShadow = '0 0 30px rgba(239, 68, 68, 0.4)';
-        } else {
-            targetCard.style.borderColor = '';
-            targetCard.style.boxShadow = '';
+        if (targetCard instanceof HTMLElement) {
+            if (deltaX < -50) { // Swipe Left (จำได้แล้ว - เขียว)
+                targetCard.style.borderColor = 'var(--success)';
+                targetCard.style.boxShadow = '0 0 30px rgba(16, 185, 129, 0.4)';
+            } else if (deltaX > 50) { // Swipe Right (ต้องทบทวน - แดง)
+                targetCard.style.borderColor = 'var(--danger)';
+                targetCard.style.boxShadow = '0 0 30px rgba(239, 68, 68, 0.4)';
+            } else {
+                targetCard.style.borderColor = '';
+                targetCard.style.boxShadow = '';
+            }
         }
     });
 
@@ -2248,6 +2268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         OxMotion.springSnap(flashcard);
         const cards = flashcard.querySelectorAll('.glass-card');
         cards.forEach(c => {
+            if (!(c instanceof HTMLElement)) return;
             c.style.borderColor = '';
             c.style.boxShadow = '';
         });
@@ -2294,7 +2315,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnUnknown.addEventListener('click', () => answer('review'));
     btnAdvance.addEventListener('click', () => {
         SoundFX.next();
-        if (window.pendingAdvanceCallback) window.pendingAdvanceCallback();
+        if (pendingAdvanceCallback) pendingAdvanceCallback();
     });
     btnHome.addEventListener('click', () => {
         saveActiveSession();
@@ -2308,7 +2329,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape') closeModal(false);
             return;
         }
-        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+        if (e.target instanceof HTMLElement && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
 
         // Quiz Screen Shortcuts
         if (currentScreen === 'quiz' && quizSession) {
@@ -2325,9 +2346,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            if (optionIndex >= 0 && buttons[optionIndex] && !quizAnswered) {
+            const optBtn = optionIndex >= 0 ? buttons[optionIndex] : null;
+            if (optBtn instanceof HTMLElement && !quizAnswered) {
                 e.preventDefault();
-                buttons[optionIndex].click();
+                optBtn.click();
             }
             return;
         }
@@ -2601,7 +2623,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const indices = lastSummary.review.map((k) => keyToIndex.get(k)).filter((i) => i !== undefined);
         startSession(shuffle(indices), 'review');
     });
-    btnNewSession.addEventListener('click', startRandomSession);
+    btnNewSession.addEventListener('click', () => startRandomSession());
     btnSummaryHome.addEventListener('click', () => showScreen('welcome'));
     btnSummaryHistory.addEventListener('click', () => openHistory('summary'));
 
@@ -2622,7 +2644,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetMode = tab.startsWith('dash-learn')
             ? 'learn'
             : (tab.startsWith('dash-quiz') ? 'quiz' : 'flashcard');
-        const modeBtns = document.querySelectorAll('.dash-mode-switcher .mode-btn');
+        const modeBtns = /** @type {HTMLElement[]} */ (Array.from(document.querySelectorAll('.dash-mode-switcher .mode-btn')));
         modeBtns.forEach(btn => {
             btn.classList.toggle('active', btn.dataset.mode === targetMode);
         });
@@ -2660,7 +2682,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return false;
         }
         lastDashRenderSig = sig;
-        historySessionsCount.textContent = sessions.length;
+        historySessionsCount.textContent = String(sessions.length);
         const stats = computeCategoryStats();
         renderOverview(stats);
         renderCategories(stats);
@@ -2835,7 +2857,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ? recent.map((s, i) => {
                 const p = s.size ? Math.round((s.known.length / s.size) * 100) : 0;
                 const d = new Date(s.date);
-                const label = isNaN(d) ? '' : d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
+                const label = Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
                 return `<div class="trend-col" style="--h:${Math.max(p, 4)}%;--d:${i * 70}ms" title="${escapeHtml(formatDate(s.date))} · ${p}%">
           <span class="trend-val">${p}%</span>
           <div class="trend-track"><div class="trend-bar ${s.mode}"></div></div>
@@ -2871,7 +2893,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const countsByDate = { ...activityLog };
         const toDateKey = (iso) => {
             const d = new Date(iso);
-            if (isNaN(d)) return '';
+            if (Number.isNaN(d.getTime())) return '';
             const y = d.getFullYear();
             const m = String(d.getMonth() + 1).padStart(2, '0');
             const day = String(d.getDate()).padStart(2, '0');
@@ -2919,8 +2941,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeDaysEl) activeDaysEl.textContent = `เรียนแล้ว ${activeDays} / 28 วัน`;
 
         container.onclick = (e) => {
+            if (!(e.target instanceof Element)) return;
             const cell = e.target.closest('.hm-cell');
-            if (!cell || !detailNote) return;
+            if (!(cell instanceof HTMLElement) || !detailNote) return;
             container.querySelectorAll('.hm-cell.selected').forEach(c => c.classList.remove('selected'));
             cell.classList.add('selected');
             const dt = cell.dataset.hmDate;
@@ -3049,6 +3072,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ---------- Analysis ---------- */
+    /**
+     * @param {{ tone: string, emoji: string, kicker: string, title: string, sub?: string, text: string, cat?: string, action?: string, actionLabel?: string }} opts
+     */
     function insightCard({ tone, emoji, kicker, title, sub, text, cat, action, actionLabel }) {
         const btn = cat
             ? `<button type="button" class="insight-btn" data-practice-cat="${cat}">${actionLabel || 'ฝึกหมวดนี้'} →</button>`
@@ -3165,18 +3191,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     $('az-heatmap').addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
         const cell = e.target.closest('.az-cell');
-        if (!cell) return;
+        if (!(cell instanceof HTMLElement)) return;
         document.querySelectorAll('.az-cell.selected').forEach((c) => c.classList.remove('selected'));
         cell.classList.add('selected');
         const { letter, total, known, review } = cell.dataset;
-        const studied = Number(known) + Number(review);
-        $('az-note').innerHTML = `<b>ตัว ${letter}</b> · ทั้งหมด ${Number(total).toLocaleString()} คำ · จำได้ <b class="txt-known">${known}</b> · ทบทวน <b class="txt-review">${review}</b>` +
-            (studied ? ` · แม่นยำ <b>${fmtPct(known / studied)}</b>` : ' · ยังไม่ได้เรียน');
+        const knownN = Number(known || 0);
+        const reviewN = Number(review || 0);
+        const totalN = Number(total || 0);
+        const studied = knownN + reviewN;
+        $('az-note').innerHTML = `<b>ตัว ${letter}</b> · ทั้งหมด ${totalN.toLocaleString()} คำ · จำได้ <b class="txt-known">${knownN}</b> · ทบทวน <b class="txt-review">${reviewN}</b>` +
+            (studied ? ` · แม่นยำ <b>${fmtPct(knownN / studied)}</b>` : ' · ยังไม่ได้เรียน');
 
         const actContainer = $('az-action-container');
         if (actContainer) {
-            const n = Math.min(selectedSize, Number(total));
+            const n = Math.min(selectedSize, totalN);
             actContainer.innerHTML = `<button type="button" class="btn btn-primary glass-btn btn-sm" id="btn-practice-letter" data-letter="${letter}">
         เริ่มฝึกคำขึ้นต้นด้วยตัว ${letter} (${n} คำ)
       </button>`;
@@ -3187,8 +3217,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const azActContainer = $('az-action-container');
     if (azActContainer) {
         azActContainer.addEventListener('click', (e) => {
+            if (!(e.target instanceof Element)) return;
             const btn = e.target.closest('#btn-practice-letter');
-            if (btn && btn.dataset.letter) {
+            if (btn instanceof HTMLElement && btn.dataset.letter) {
                 practiceLetter(btn.dataset.letter);
             }
         });
@@ -3392,7 +3423,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filterReviewCount.textContent = c.review;
         filterKnownCount.textContent = c.known;
         const fStarCount = $('filter-starred-count');
-        if (fStarCount) fStarCount.textContent = bookmarkedWords.size;
+        if (fStarCount) fStarCount.textContent = String(bookmarkedWords.size);
 
         filterChips.forEach((chip) => chip.classList.toggle('active', chip.dataset.filter === historyFilter));
 
@@ -7284,8 +7315,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const relLeft = clampedVpLeft - scrRect.left;
         const caretPx = Math.max(24, Math.min(popW - 24, vpCenter - clampedVpLeft));
 
-        const hasStars = Boolean(activePopoverAnchor.parentElement && activePopoverAnchor.parentElement.querySelector('.path-node-stars'));
-        const belowOffset = hasStars ? 22 : 14;
+        const hasRing = Boolean(activePopoverAnchor.closest('.path-node-slot')?.querySelector('.path-node-ring'));
+        const belowOffset = hasRing ? 18 : 14;
         const bottomSafe = window.innerWidth <= 960 ? 84 : 18;
         const topSafe = window.innerWidth <= 960 ? 74 : 20;
         const spaceBelow = (window.innerHeight - bottomSafe) - (btnRect.bottom + belowOffset);
