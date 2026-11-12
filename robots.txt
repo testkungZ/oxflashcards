@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /oxflashcards/admin.html
+Disallow: /oxflashcards/admin.js
+
+Sitemap: https://testkungz.github.io/oxflashcards/sitemap.xml
+
