@@ -440,8 +440,10 @@
                                 </div>
                                 <div class="card-content">
                                     <h3 id="word" class="word">Loading...</h3>
+                                    <div id="card-syllables" class="card-syllables" hidden></div>
                                     <div class="card-word-meta">
                                         <span id="phonetic" class="phonetic"></span>
+                                        <span id="phonetic-uk" class="phonetic-uk" hidden></span>
                                         <p id="part-of-speech" class="part-of-speech"></p>
                                         <button type="button" id="btn-card-accent" class="mini-accent-btn accent-toggle-btn" title="สลับสำเนียง US / UK">US</button>
                                         <button id="btn-speak" class="speak-btn" title="ฟังเสียงอ่าน"
@@ -465,6 +467,7 @@
                                     <div class="card-badges-left">
                                         <span class="card-srs-badge" id="card-srs-badge-back">คำใหม่</span>
                                         <span class="cefr-badge cefr-a1" id="card-cefr-badge-back">A1</span>
+                                        <span class="card-register-badge" id="card-register-badge" hidden></span>
                                     </div>
                                     <button type="button" id="btn-star-card-back" class="card-star-btn" title="ปักหมุดคำศัพท์สำคัญ (กด S)" aria-label="ปักหมุดคำศัพท์สำคัญ">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -487,15 +490,53 @@
                                         <div class="example-translation" id="example-translation"
                                             style="margin-top: 8px; font-size: 0.9em; color: var(--text-muted);">
                                         </div>
+                                        <div class="card-extra-example" id="card-extra-example-box" hidden>
+                                            <div class="card-extra-ex-head">
+                                                <span class="card-extra-ex-tag">ตัวอย่างเพิ่มเติม</span>
+                                                <button type="button" id="btn-speak-extra-example" class="glass-btn-icon small speak-btn card-extra-speak-btn" title="ฟังเสียงตัวอย่างเพิ่มเติม" aria-label="ฟังเสียงตัวอย่างเพิ่มเติม">
+                                                    <svg class="speak-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                                    </svg>
+                                                    <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+                                                </button>
+                                            </div>
+                                            <div class="card-extra-ex-en"><i>"<span id="extra-example"></span>"</i></div>
+                                            <div class="card-extra-ex-th" id="extra-example-translation"></div>
+                                        </div>
                                     </div>
                                     <div class="card-lexical-box" id="card-lexical-box" hidden>
+                                        <div class="lex-row" id="card-pattern-row" hidden>
+                                            <span class="lex-label">ไวยากรณ์ / รูปแบบ:</span>
+                                            <span class="lex-chip is-pattern" id="card-grammar-pattern"></span>
+                                        </div>
+                                        <div class="lex-row" id="card-forms-row" hidden>
+                                            <span class="lex-label">รูปผันคำ:</span>
+                                            <div class="lex-pills" id="card-forms"></div>
+                                        </div>
                                         <div class="lex-row" id="card-collocations-row" hidden>
                                             <span class="lex-label">คำใช้คู่กัน:</span>
                                             <div class="lex-pills" id="card-collocations"></div>
                                         </div>
+                                        <div class="lex-row" id="card-antonyms-row" hidden>
+                                            <span class="lex-label">คำตรงข้าม:</span>
+                                            <div class="lex-pills" id="card-antonyms"></div>
+                                        </div>
                                         <div class="lex-row" id="card-family-row" hidden>
                                             <span class="lex-label">คำตระกูลเดียวกัน:</span>
                                             <div class="lex-pills" id="card-word-family"></div>
+                                        </div>
+                                        <div class="lex-row" id="card-phrases-row" hidden>
+                                            <span class="lex-label">สำนวน / วลีฮิต:</span>
+                                            <div class="lex-pills" id="card-phrases"></div>
+                                        </div>
+                                        <div class="lex-row" id="card-root-row" hidden>
+                                            <span class="lex-label">รากศัพท์:</span>
+                                            <span class="lex-root-badge" id="card-root-breakdown"></span>
+                                        </div>
+                                        <div class="lex-row lex-tip-row" id="card-usage-tip-row" hidden>
+                                            <span class="lex-label">💡 เคล็ดลับ:</span>
+                                            <div class="lex-tip-text" id="card-usage-tip"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1387,12 +1428,61 @@
                             <span class="hub-page-eyebrow">Oxford 3000 Vocabulary</span>
                             <h2>คลังคำศัพท์ทั้งหมด</h2>
                         </div>
-                        <span class="dict-count-badge" id="dict-count-label">3,191 คำ</span>
+                        <div class="dict-header-actions">
+                            <span class="dict-count-badge" id="dict-count-label">3,600 คำ</span>
+                            <button type="button" id="btn-dict-practice-filtered" class="btn btn-primary btn-xs dict-practice-btn" title="นำคำศัพท์ที่กรองอยู่ตอนนี้ไปฝึก Flashcard ทันที">▶ ฝึกชุดนี้</button>
+                        </div>
+                    </div>
+
+                    <!-- Overall Vocabulary Mastery Progress Strip -->
+                    <div class="dict-mastery-card" id="dict-mastery-card">
+                        <div class="dict-mastery-top">
+                            <span class="dict-mastery-title" id="dict-mastery-summary">ความคืบหน้าคลังคำศัพท์ 3,600 คำ</span>
+                            <span class="dict-mastery-pct" id="dict-mastery-pct">0%</span>
+                        </div>
+                        <div class="dict-mastery-bar" aria-hidden="true">
+                            <span class="dm-seg dm-mastered" id="dm-bar-mastered" style="width: 0%"></span>
+                            <span class="dm-seg dm-learning" id="dm-bar-learning" style="width: 0%"></span>
+                            <span class="dm-seg dm-review" id="dm-bar-review" style="width: 0%"></span>
+                        </div>
+                        <div class="dict-mastery-legend" id="dict-mastery-legend">
+                            <span><i class="dm-dot dm-mastered"></i>ชำนาญ <b id="dm-cnt-mastered">0</b></span>
+                            <span><i class="dm-dot dm-learning"></i>กำลังจำ <b id="dm-cnt-learning">0</b></span>
+                            <span><i class="dm-dot dm-review"></i>ต้องทบทวน <b id="dm-cnt-review">0</b></span>
+                            <span><i class="dm-dot dm-unseen"></i>ใหม่ <b id="dm-cnt-unseen">3,600</b></span>
+                        </div>
+                    </div>
+
+                    <!-- Word of the Day Spotlight -->
+                    <div class="dict-wotd-card" id="dict-wotd-card" hidden>
+                        <div class="wotd-top">
+                            <span class="wotd-pill">คำศัพท์แนะนำประจำวัน</span>
+                            <div class="wotd-meta">
+                                <span id="wotd-cefr" class="cefr-badge">B1</span>
+                                <span id="wotd-pos" class="word-item-pos">verb</span>
+                            </div>
+                        </div>
+                        <div class="wotd-main">
+                            <div class="wotd-word-wrap">
+                                <strong class="wotd-word" id="wotd-word">abandon</strong>
+                                <span class="wotd-phonetic" id="wotd-phonetic">/əˈbændən/</span>
+                                <span class="wotd-trans" id="wotd-trans">ละทิ้ง</span>
+                            </div>
+                            <div class="wotd-actions">
+                                <button type="button" id="wotd-speak-btn" class="word-item-speak-btn speak-btn" title="ฟังเสียงคำศัพท์" aria-label="ฟังเสียงคำแนะนำประจำวัน">
+                                    <svg class="speak-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                                    <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+                                </button>
+                                <button type="button" id="wotd-slow-btn" class="dict-mini-pill-btn speak-btn" title="ฟังช้า 0.7x">0.7x</button>
+                                <button type="button" id="wotd-inspect-btn" class="dict-mini-pill-btn primary">ดูรายละเอียด</button>
+                            </div>
+                        </div>
+                        <p class="wotd-tip" id="wotd-tip"></p>
                     </div>
 
                     <div class="dict-search-wrap">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                        <input type="text" id="dict-search-input" class="dict-search-input" placeholder="ค้นหาคำศัพท์, คำแปลไทย, หรือความหมาย (เช่น food, แพทย์)...">
+                        <input type="text" id="dict-search-input" class="dict-search-input" placeholder="ค้นหาคำศัพท์, คำแปลไทย, คำคล้าย/ตรงข้าม, หรือรูปผัน...">
                         <button type="button" id="dict-clear-btn" class="dict-clear-btn" hidden aria-label="ล้างคำค้นหา">✕</button>
                     </div>
 
@@ -1404,7 +1494,27 @@
                             <button type="button" class="cefr-pill" data-dict-cefr="B1">B1</button>
                             <button type="button" class="cefr-pill" data-dict-cefr="B2">B2</button>
                         </div>
-                        <select id="dict-topic-select" class="glass-select compact" aria-label="กรองตามหัวข้อ"></select>
+                        <div class="dict-select-row">
+                            <select id="dict-topic-select" class="glass-select compact" aria-label="กรองตามหัวข้อ"></select>
+                            <select id="dict-pos-select" class="glass-select compact" aria-label="กรองตามชนิดของคำ">
+                                <option value="all">ทุกชนิดคำ (POS)</option>
+                                <option value="noun">คำนาม (Noun)</option>
+                                <option value="verb">คำกริยา (Verb)</option>
+                                <option value="adjective">คำคุณศัพท์ (Adj)</option>
+                                <option value="adverb">คำกริยาวิเศษณ์ (Adv)</option>
+                                <option value="preposition">คำบุพบท (Prep)</option>
+                                <option value="pronoun">คำสรรพนาม (Pron)</option>
+                                <option value="conjunction">คำสันธาน (Conj)</option>
+                            </select>
+                            <select id="dict-sort-select" class="glass-select compact" aria-label="เรียงลำดับคำศัพท์">
+                                <option value="smart">เรียง: แนะนำ / คะแนนตรง</option>
+                                <option value="az">เรียง: A → Z</option>
+                                <option value="za">เรียง: Z → A</option>
+                                <option value="cefr-asc">เรียง: ง่ายไปยาก (A1→B2)</option>
+                                <option value="review-first">เรียง: ต้องทบทวนก่อน</option>
+                                <option value="rich-first">เรียง: คำที่มีเคล็ดลับครบ</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="dict-status-chips" id="dict-status-filters">
@@ -1414,6 +1524,8 @@
                         <button type="button" class="chip" data-dict-status="unseen">ยังไม่เคยเรียน</button>
                         <button type="button" class="chip" data-dict-status="starred">ติดดาว</button>
                     </div>
+
+                    <div class="dict-az-bar" id="dict-az-bar" aria-label="กรองตามตัวอักษร A ถึง Z"></div>
 
                     <ul class="word-list dict-word-list" id="dict-word-list"></ul>
                     <button type="button" id="btn-dict-load-more" class="btn glass-btn btn-full" hidden>โหลดคำศัพท์เพิ่มเติม</button>
@@ -1905,7 +2017,7 @@
                     <button type="button" class="qs-chip" data-qs-filter="due">ครบกำหนดทบทวน</button>
                     <button type="button" class="qs-chip" data-qs-filter="review">ต้องทบทวน</button>
                 </div>
-                <span class="qs-count tabular-nums" id="quick-search-count">3,191 คำ</span>
+                <span class="qs-count tabular-nums" id="quick-search-count">3,600 คำ</span>
             </div>
             <div class="qs-cefr-bar" id="quick-search-cefr-filters">
                 <button type="button" class="qs-cefr-chip active" data-qs-cefr="all">ทุกระดับ</button>
@@ -1994,6 +2106,74 @@
                     <button type="button" id="btn-google-sync-now" class="btn btn-primary glass-btn">ซิงก์ตอนนี้</button>
                     <button type="button" id="btn-google-signout" class="btn glass-btn">ออกจากระบบ</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Word Inspector Modal -->
+    <div id="word-inspector-modal" class="modal-overlay" aria-hidden="true">
+        <div class="glass-panel modal-panel wi-modal-panel" role="dialog" aria-modal="true" aria-labelledby="wi-word">
+            <div class="wi-header">
+                <div class="wi-title-wrap">
+                    <div class="wi-badges">
+                        <span id="wi-cefr" class="cefr-badge">A1</span>
+                        <span id="wi-pos" class="word-item-pos">noun</span>
+                        <span id="wi-topic" class="wi-topic-pill">หมวด</span>
+                        <span id="wi-register" class="card-register-badge" hidden>ระดับภาษา</span>
+                        <span id="wi-srs-badge" class="card-srs-badge">ใหม่</span>
+                    </div>
+                    <div class="wi-word-row">
+                        <h3 id="wi-word" class="wi-word">word</h3>
+                        <span id="wi-syllables" class="wi-syllables" hidden></span>
+                    </div>
+                    <div class="wi-phonetic-row">
+                        <div class="wi-phonetic" id="wi-phonetic">/wɜːrd/</div>
+                        <div class="wi-phonetic wi-phonetic-uk" id="wi-phonetic-uk" hidden></div>
+                    </div>
+                </div>
+                <div class="wi-header-btns">
+                    <button type="button" id="wi-speak-btn" class="word-item-speak-btn speak-btn" title="ฟังเสียง" aria-label="ฟังเสียงคำศัพท์">
+                        <svg class="speak-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+                    </button>
+                    <button type="button" id="wi-speak-slow-btn" class="dict-mini-pill-btn speak-btn" title="ฟังช้า 0.7x">0.7x</button>
+                    <button type="button" id="wi-star-btn" class="word-star-btn" aria-label="ปักหมุดคำศัพท์">★</button>
+                    <button type="button" id="wi-close-btn" class="dict-clear-btn wi-close-btn" aria-label="ปิดหน้าต่าง">✕</button>
+                </div>
+            </div>
+
+            <div class="wi-body">
+                <div class="wi-translation" id="wi-translation">คำแปล</div>
+                <div class="wi-definition" id="wi-definition">Definition</div>
+
+                <div class="wi-example-box" id="wi-example-box">
+                    <div class="wi-example-row">
+                        <span id="wi-example" class="wi-example">"Example sentence."</span>
+                        <button type="button" id="wi-example-speak-btn" class="word-item-speak-btn speak-btn" title="ฟังตัวอย่างประโยค" aria-label="ฟังตัวอย่างประโยค">
+                            <svg class="speak-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                            <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+                        </button>
+                    </div>
+                    <div id="wi-example-th" class="wi-example-th">คำแปลตัวอย่าง</div>
+                    <div class="wi-extra-ex" id="wi-extra-example-box" hidden>
+                        <div class="wi-example-row">
+                            <span id="wi-extra-example" class="wi-example"></span>
+                            <button type="button" id="wi-extra-example-speak-btn" class="word-item-speak-btn speak-btn" title="ฟังตัวอย่างเพิ่มเติม" aria-label="ฟังตัวอย่างเพิ่มเติม">
+                                <svg class="speak-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                                <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+                            </button>
+                        </div>
+                        <div id="wi-extra-example-th" class="wi-example-th"></div>
+                    </div>
+                </div>
+
+                <div id="wi-sections" class="wi-sections"></div>
+            </div>
+
+            <div class="wi-footer">
+                <button type="button" id="wi-btn-known" class="btn btn-success glass-btn btn-sm">✓ จำได้แล้ว</button>
+                <button type="button" id="wi-btn-review" class="btn btn-danger glass-btn btn-sm">↻ ต้องทบทวน</button>
+                <button type="button" id="wi-btn-practice" class="btn btn-primary glass-btn btn-sm">▶ ฝึกชุดคำนี้</button>
             </div>
         </div>
     </div>

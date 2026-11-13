@@ -10,10 +10,22 @@
  * @property {string} [example]
  * @property {string} [exampleTranslation]
  * @property {string} [phonetic]
+ * @property {string} [phoneticUK]
+ * @property {string} [syllables]
  * @property {string} [cefr]
+ * @property {string} [topic]
+ * @property {string} [register]
+ * @property {string} [grammarPattern]
+ * @property {string} [rootBreakdown]
  * @property {string[]} [collocations]
  * @property {string[]} [synonyms]
+ * @property {string[]} [antonyms]
  * @property {string[]} [wordFamily]
+ * @property {string[]} [forms]
+ * @property {string[]} [phrases]
+ * @property {string} [extraExample]
+ * @property {string} [extraExampleTranslation]
+ * @property {string} [usageTip]
  *
  * @typedef {Object} WordMastery
  * @property {number} streak
@@ -303,8 +315,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if ((w.partOfSpeech || '').toLowerCase().includes(q)) return 540;
       if (Array.isArray(w.synonyms) && w.synonyms.some(s => s.toLowerCase().includes(q))) return 510;
       if (Array.isArray(w.collocations) && w.collocations.some(c => c.toLowerCase().includes(q))) return 490;
+      if (Array.isArray(w.antonyms) && w.antonyms.some(a => a.toLowerCase().includes(q))) return 480;
       if (Array.isArray(w.wordFamily) && w.wordFamily.some(f => f.toLowerCase().includes(q))) return 470;
-      if ((w.definition || '').toLowerCase().includes(q) || (w.example || '').toLowerCase().includes(q)) return 410;
+      if (Array.isArray(w.forms) && w.forms.some(fm => fm.toLowerCase().includes(q))) return 460;
+      if ((w.definition || '').toLowerCase().includes(q) || (w.example || '').toLowerCase().includes(q) || (w.extraExample || '').toLowerCase().includes(q)) return 410;
+      if ((w.usageTip || '').toLowerCase().includes(q)) return 390;
+      if ((w.grammarPattern || '').toLowerCase().includes(q) || (w.rootBreakdown || '').toLowerCase().includes(q) || (Array.isArray(w.phrases) && w.phrases.some(p => p.toLowerCase().includes(q)))) return 380;
 
       if (/^[a-z\-']+$/.test(q) && q.length >= 3) {
         let qi = 0;
@@ -898,10 +914,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalWords = wordsData.length;
   const keyOf = (w) => `${w.word}|${w.partOfSpeech || ''}`;
   const keyToIndex = new Map();
+  const wordTextToIndex = new Map();
   wordsData.forEach((w, i) => {
     const k = keyOf(w);
     if (!keyToIndex.has(k)) keyToIndex.set(k, i);
+    const low = (w.word || '').trim().toLowerCase();
+    if (low && !wordTextToIndex.has(low)) wordTextToIndex.set(low, i);
   });
+
+  function findWordKeyByText(rawWord) {
+    const clean = String(rawWord || '').replace(/\s*\([^()]*\)\s*$/, '').trim().toLowerCase();
+    if (!clean) return null;
+    const idx = wordTextToIndex.get(clean);
+    return idx !== undefined ? keyOf(wordsData[idx]) : null;
+  }
 
   function shuffle(arr) {
     const a = arr.slice();
@@ -2040,27 +2066,73 @@ document.addEventListener('DOMContentLoaded', () => {
     translationEl.textContent = word.translation;
 
     OxMotion.cancel(flashcard);
+    const sylEl = $('card-syllables');
+    if (sylEl) {
+      sylEl.textContent = word.syllables || '';
+      sylEl.hidden = !word.syllables;
+    }
     const phoneticEl = $('phonetic');
     if (phoneticEl) {
       phoneticEl.textContent = word.phonetic || '';
+    }
+    const phoneticUkEl = $('phonetic-uk');
+    if (phoneticUkEl) {
+      phoneticUkEl.textContent = word.phoneticUK ? `UK ${word.phoneticUK}` : '';
+      phoneticUkEl.hidden = !word.phoneticUK;
+    }
+    const regBadgeEl = $('card-register-badge');
+    if (regBadgeEl) {
+      regBadgeEl.textContent = word.register || '';
+      regBadgeEl.hidden = !word.register;
     }
     OxCefr.applyBadge($('card-cefr-badge'), word.cefr);
     OxCefr.applyBadge($('card-cefr-badge-back'), word.cefr);
 
     const lexBox = $('card-lexical-box');
+    const patternRow = $('card-pattern-row');
+    const patternEl = $('card-grammar-pattern');
+    const formsRow = $('card-forms-row');
+    const formsContainer = $('card-forms');
     const colRow = $('card-collocations-row');
     const colContainer = $('card-collocations');
+    const antRow = $('card-antonyms-row');
+    const antContainer = $('card-antonyms');
     const famRow = $('card-family-row');
     const famContainer = $('card-word-family');
+    const phrasesRow = $('card-phrases-row');
+    const phrasesContainer = $('card-phrases');
+    const rootRow = $('card-root-row');
+    const rootEl = $('card-root-breakdown');
+    const tipRow = $('card-usage-tip-row');
+    const tipContainer = $('card-usage-tip');
     if (lexBox && colRow && colContainer && famRow && famContainer) {
+      const patternText = word.grammarPattern ? String(word.grammarPattern).trim() : '';
+      const forms = Array.isArray(word.forms) ? word.forms.slice(0, 3) : [];
       const cols = Array.isArray(word.collocations) ? word.collocations.slice(0, 4) : [];
+      const ants = Array.isArray(word.antonyms) ? word.antonyms.slice(0, 4) : [];
       const fams = Array.isArray(word.wordFamily) ? word.wordFamily.slice(0, 4) : [];
+      const phrases = Array.isArray(word.phrases) ? word.phrases.slice(0, 3) : [];
+      const rootText = word.rootBreakdown ? String(word.rootBreakdown).trim() : '';
+      const tipText = word.usageTip ? String(word.usageTip).trim() : '';
+
+      if (patternRow && patternEl) {
+        patternEl.textContent = patternText;
+        patternRow.hidden = !patternText;
+      }
+      if (formsRow && formsContainer) {
+        formsContainer.innerHTML = forms.map(fm => `<span class="lex-chip is-form">${escapeHtml(fm)}</span>`).join('');
+        formsRow.hidden = forms.length === 0;
+      }
       if (cols.length > 0) {
         colContainer.innerHTML = cols.map(c => `<span class="lex-chip">${escapeHtml(c)}</span>`).join('');
         colRow.hidden = false;
       } else {
         colContainer.innerHTML = '';
         colRow.hidden = true;
+      }
+      if (antRow && antContainer) {
+        antContainer.innerHTML = ants.map(a => `<button type="button" class="lex-chip family-chip is-antonym" data-family-word="${escapeHtml(a)}" title="ดูคำตรงข้ามนี้">${escapeHtml(a)}</button>`).join('');
+        antRow.hidden = ants.length === 0;
       }
       if (fams.length > 0) {
         famContainer.innerHTML = fams.map(f => {
@@ -2072,7 +2144,19 @@ document.addEventListener('DOMContentLoaded', () => {
         famContainer.innerHTML = '';
         famRow.hidden = true;
       }
-      lexBox.hidden = (cols.length === 0 && fams.length === 0);
+      if (phrasesRow && phrasesContainer) {
+        phrasesContainer.innerHTML = phrases.map(ph => `<span class="lex-chip is-phrase">${escapeHtml(ph)}</span>`).join('');
+        phrasesRow.hidden = phrases.length === 0;
+      }
+      if (rootRow && rootEl) {
+        rootEl.textContent = rootText;
+        rootRow.hidden = !rootText;
+      }
+      if (tipRow && tipContainer) {
+        tipContainer.textContent = tipText;
+        tipRow.hidden = !tipText;
+      }
+      lexBox.hidden = (!patternText && forms.length === 0 && cols.length === 0 && ants.length === 0 && fams.length === 0 && phrases.length === 0 && !rootText && !tipText);
     }
 
     if (word.definition) {
@@ -2082,6 +2166,9 @@ document.addEventListener('DOMContentLoaded', () => {
       definitionEl.style.display = 'none';
     }
 
+    const extraExBox = $('card-extra-example-box');
+    const extraExEl = $('extra-example');
+    const extraExThEl = $('extra-example-translation');
     if (word.example) {
       exampleBoxEl.style.display = 'block';
       exampleEl.textContent = word.example;
@@ -2091,8 +2178,19 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         exampleTranslationEl.style.display = 'none';
       }
+      if (extraExBox && extraExEl && extraExThEl) {
+        if (word.extraExample) {
+          extraExEl.textContent = word.extraExample;
+          extraExThEl.textContent = word.extraExampleTranslation || '';
+          extraExThEl.hidden = !word.extraExampleTranslation;
+          extraExBox.hidden = false;
+        } else {
+          extraExBox.hidden = true;
+        }
+      }
     } else {
       exampleBoxEl.style.display = 'none';
+      if (extraExBox) extraExBox.hidden = true;
     }
 
     currentIndexEl.textContent = session.currentIndex + 1;
@@ -2263,8 +2361,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function flipCard(e) {
         if (isAnimating || !session) return;
-        // ป้องกันไม่ให้พลิกการ์ดเวลากดปุ่มฟังเสียงหรือปุ่มปักหมุดดาว
-        if (e && e.target && e.target.closest && (e.target.closest('.speak-btn') || e.target.closest('.card-star-btn'))) return;
+        // ป้องกันไม่ให้พลิกการ์ดเวลากดปุ่มฟังเสียง ปักหมุดดาว หรือชิปตระกูลคำศัพท์
+        if (e && e.target && e.target.closest && (e.target.closest('.speak-btn') || e.target.closest('.card-star-btn') || e.target.closest('.family-chip'))) return;
 
         isFlipped = !isFlipped;
         flashcard.classList.toggle('is-flipped', isFlipped);
@@ -2533,10 +2631,25 @@ document.addEventListener('DOMContentLoaded', () => {
             : `<li class="empty-state">${summaryTab === 'known' ? 'ยังไม่มีคำที่จำได้ในรอบนี้' : 'ไม่มีคำที่ต้องทบทวน เยี่ยมมาก!'}</li>`;
     }
 
+    function renderLexChipsHtml(list, prefix, chipClass, clickable = false) {
+        if (!Array.isArray(list) || !list.length) return '';
+        return list.map(item => {
+            const raw = String(item || '').trim();
+            if (!raw) return '';
+            const lookup = raw.replace(/\s*\([^()]*\)\s*$/, '').trim();
+            const safeLabel = escapeHtml(`${prefix}${raw}`);
+            if (clickable) {
+                return `<button type="button" class="lex-chip family-chip ${chipClass}" data-jump-word="${escapeHtml(lookup)}" title="เปิดดูคำว่า ${escapeHtml(lookup)}">${safeLabel}</button>`;
+            }
+            return `<span class="lex-chip ${chipClass}">${safeLabel}</span>`;
+        }).join('');
+    }
+
     function wordListItem(key, status, highlightQ = '') {
         const idx = keyToIndex.get(key);
         if (idx === undefined) return '';
         const w = wordsData[idx];
+        const curStatus = wordStatus[key] || status || 'unseen';
         const lvl = getWordMasteryLevel(key);
         const m = wordMastery[key];
         const days = m && m.intervalDays ? m.intervalDays : 0;
@@ -2548,22 +2661,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const cat = catOf(w);
         const starred = isBookmarked(key);
 
+        const safeKey = escapeHtml(key);
         const safeWord = escapeHtml(w.word);
         const dispWord = highlightQ ? OxFuzzy.highlightMatch(w.word, highlightQ) : safeWord;
         const dispTrans = highlightQ ? OxFuzzy.highlightMatch(w.translation, highlightQ) : escapeHtml(w.translation);
         const cefrHtml = w.cefr ? `<span class="cefr-badge ${OxCefr.getClass(w.cefr)}">${escapeHtml(w.cefr)}</span>` : '';
+        const regHtml = w.register ? `<span class="card-register-badge is-compact">${escapeHtml(w.register)}</span>` : '';
+        const tipBadge = w.usageTip ? `<span class="wid-has-tip-badge" title="มีเคล็ดลับการใช้ที่คนไทยมักสับสน">💡 เคล็ดลับ</span>` : '';
         const safePhonetic = escapeHtml(w.phonetic || '');
+        const safePhoneticUK = escapeHtml(w.phoneticUK || '');
+        const safeSyllables = escapeHtml(w.syllables || '');
+        const safePattern = escapeHtml(w.grammarPattern || '');
+        const safeRoot = escapeHtml(w.rootBreakdown || '');
         const safePos = escapeHtml(w.partOfSpeech || 'word');
         const safeDef = escapeHtml(w.definition || '');
         const safeEx = escapeHtml(w.example || '');
         const safeExTh = escapeHtml(w.exampleTranslation || '');
-        const extraCols = Array.isArray(w.collocations) ? w.collocations.slice(0, 3) : [];
-        const extraSyns = Array.isArray(w.synonyms) ? w.synonyms.slice(0, 3) : [];
-        const extraHtml = (extraCols.length || extraSyns.length)
-            ? `<div class="wid-extra-chips">${extraCols.map(c => `<span class="lex-chip">${escapeHtml(c)}</span>`).join('')}${extraSyns.map(s => `<span class="lex-chip">≈ ${escapeHtml(s)}</span>`).join('')}</div>`
-            : '';
+        const safeEx2 = escapeHtml(w.extraExample || '');
+        const safeEx2Th = escapeHtml(w.extraExampleTranslation || '');
+        const safeTip = escapeHtml(w.usageTip || '');
 
-        return `<li class="word-item ${status || 'unseen'}" data-word-key="${escapeHtml(key)}">
+        const extraForms = Array.isArray(w.forms) ? w.forms.slice(0, 3) : [];
+        const extraCols = Array.isArray(w.collocations) ? w.collocations.slice(0, 3) : [];
+        const extraSyns = Array.isArray(w.synonyms) ? w.synonyms.slice(0, 4) : [];
+        const extraAnts = Array.isArray(w.antonyms) ? w.antonyms.slice(0, 4) : [];
+        const extraFams = Array.isArray(w.wordFamily) ? w.wordFamily.slice(0, 4) : [];
+        const extraPhrases = Array.isArray(w.phrases) ? w.phrases.slice(0, 3) : [];
+
+        const metaRowsHtml = [
+            safePattern ? `<div class="wid-meta-row"><span class="wid-meta-label">ไวยากรณ์:</span><span class="lex-chip is-pattern">${safePattern}</span></div>` : '',
+            extraForms.length ? `<div class="wid-meta-row"><span class="wid-meta-label">รูปผันคำ:</span>${renderLexChipsHtml(extraForms, '', 'is-form', false)}</div>` : '',
+            extraCols.length ? `<div class="wid-meta-row"><span class="wid-meta-label">ใช้คู่กัน:</span>${renderLexChipsHtml(extraCols, '', '', false)}</div>` : '',
+            extraSyns.length ? `<div class="wid-meta-row"><span class="wid-meta-label">คล้ายกัน:</span>${renderLexChipsHtml(extraSyns, '≈ ', '', true)}</div>` : '',
+            extraAnts.length ? `<div class="wid-meta-row"><span class="wid-meta-label">ตรงข้าม:</span>${renderLexChipsHtml(extraAnts, '≠ ', 'is-antonym', true)}</div>` : '',
+            extraFams.length ? `<div class="wid-meta-row"><span class="wid-meta-label">ตระกูลคำ:</span>${renderLexChipsHtml(extraFams, '', '', true)}</div>` : '',
+            extraPhrases.length ? `<div class="wid-meta-row"><span class="wid-meta-label">สำนวน/วลี:</span>${renderLexChipsHtml(extraPhrases, '', 'is-phrase', false)}</div>` : '',
+            safeRoot ? `<div class="wid-meta-row"><span class="wid-meta-label">รากศัพท์:</span><span class="lex-root-badge">${safeRoot}</span></div>` : ''
+        ].filter(Boolean).join('');
+
+        return `<li class="word-item ${curStatus}" data-word-key="${safeKey}">
       <div class="word-item-row">
         <div class="word-item-left">
           <span class="status-dot dot-${lvl}"></span>
@@ -2579,37 +2715,60 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="word-item-word">${dispWord}</span>
               ${cefrHtml}
               ${safePhonetic ? `<span class="word-item-phonetic">${safePhonetic}</span>` : ''}
+              ${safePhoneticUK ? `<span class="word-item-phonetic is-uk">UK ${safePhoneticUK}</span>` : ''}
               <span class="pos-badge ${cat}">${safePos}</span>
+              ${regHtml}
               <span class="pill-sm ${lvl}">${lvlBadge}</span>
+              ${tipBadge}
             </div>
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
           <span class="word-item-trans">${dispTrans}</span>
-          <button type="button" class="word-star-btn ${starred ? 'is-starred' : ''}" data-star-key="${escapeHtml(key)}" title="ปักหมุดคำศัพท์สำคัญ" aria-label="ปักหมุดคำศัพท์สำคัญ">
+          <button type="button" class="word-star-btn ${starred ? 'is-starred' : ''}" data-star-key="${safeKey}" title="ปักหมุดคำศัพท์สำคัญ" aria-label="ปักหมุดคำศัพท์สำคัญ">
             ${ICON_SVG.star}
           </button>
           <span class="word-item-expand-arrow" style="opacity: 0.5; font-size: 0.8rem;">▾</span>
         </div>
       </div>
-      ${(safeDef || safeEx || extraHtml) ? `
-            <div class="word-item-drawer">
-                ${safeDef ? `<div class="wid-def"><b>ความหมาย:</b> ${safeDef}</div>` : ''}
-                ${safeEx ? `
-                <div class="wid-example">
-                    <span>"${safeEx}"</span>
-                    <button type="button" class="glass-btn-icon small word-item-speak-btn speak-btn" data-speak-example="${safeEx}" title="ฟังตัวอย่าง" aria-label="ฟังตัวอย่างประโยค" style="width: 26px; height: 26px;">
-                        <svg class="speak-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                        </svg>
-                        <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-                    </button>
-                </div>
-                ${safeExTh ? `<div class="wid-example-th">"${safeExTh}"</div>` : ''}
-                ` : ''}
-                ${extraHtml}
-            </div>` : ''}
+      <div class="word-item-drawer">
+        ${safeSyllables ? `<div class="wid-syllable-line"><span>แบ่งพยางค์:</span> <code>${safeSyllables}</code></div>` : ''}
+        ${safeDef ? `<div class="wid-def"><b>ความหมาย:</b> ${safeDef}</div>` : ''}
+        ${safeEx ? `
+        <div class="wid-example">
+            <span>"${safeEx}"</span>
+            <button type="button" class="glass-btn-icon small word-item-speak-btn speak-btn" data-speak-example="${safeEx}" title="ฟังตัวอย่าง" aria-label="ฟังตัวอย่างประโยค" style="width: 26px; height: 26px;">
+                <svg class="speak-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+            </button>
+        </div>
+        ${safeExTh ? `<div class="wid-example-th">"${safeExTh}"</div>` : ''}
+        ` : ''}
+        ${safeEx2 ? `
+        <div class="wid-example wid-example-extra">
+            <span>"${safeEx2}"</span>
+            <button type="button" class="glass-btn-icon small word-item-speak-btn speak-btn" data-speak-example="${safeEx2}" title="ฟังตัวอย่างเพิ่มเติม" aria-label="ฟังตัวอย่างเพิ่มเติม" style="width: 24px; height: 24px;">
+                <svg class="speak-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+            </button>
+        </div>
+        ${safeEx2Th ? `<div class="wid-example-th">"${safeEx2Th}"</div>` : ''}
+        ` : ''}
+        ${metaRowsHtml ? `<div class="wid-meta-group">${metaRowsHtml}</div>` : ''}
+        ${safeTip ? `<div class="wid-tip-box"><b>💡 เคล็ดลับจำง่าย:</b> ${safeTip}</div>` : ''}
+        <div class="wid-actions">
+            <button type="button" class="wid-action-btn ${curStatus === 'known' ? 'is-active-known' : ''}" data-set-status-key="${safeKey}" data-set-status="known">✓ จำได้แล้ว</button>
+            <button type="button" class="wid-action-btn ${curStatus === 'review' ? 'is-active-review' : ''}" data-set-status-key="${safeKey}" data-set-status="review">↻ ต้องทบทวน</button>
+            <button type="button" class="wid-action-btn speak-btn" data-speak-slow="${safeWord}">0.7x ฟังช้า</button>
+            <button type="button" class="wid-action-btn" data-inspect-key="${safeKey}">🔍 การ์ดเต็ม</button>
+        </div>
+      </div>
     </li>`;
     }
 
@@ -5030,32 +5189,120 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    const btnSpeakExtraExample = $('btn-speak-extra-example');
+    if (btnSpeakExtraExample) {
+        btnSpeakExtraExample.addEventListener('click', (e) => {
+            if (e) e.stopPropagation();
+            if (!session) return;
+            const word = wordsData[session.indices[session.currentIndex]];
+            if (word && word.extraExample) {
+                speakWordOverride(word.extraExample, true, btnSpeakExtraExample);
+            }
+        });
+    }
 
     /* =========================================================
      * Word List Interactive Actions (Audio + Expand Drawer)
      * ========================================================= */
+    function setWordQuickStatus(key, status) {
+        if (!keyToIndex.has(key)) return;
+        if (status !== 'known' && status !== 'review') return;
+        wordStatus[key] = status;
+        storage.set(STORAGE.status, wordStatus);
+        recordWordMastery(key, status);
+        if (status === 'known') SoundFX.known();
+        else SoundFX.review();
+
+        const lvl = getWordMasteryLevel(key);
+        const m = wordMastery[key];
+        const days = m && m.intervalDays ? m.intervalDays : 0;
+        const lvlBadge = lvl === 'mastered'
+            ? `ชำนาญ${days ? ` · ${days}d` : ''}`
+            : lvl === 'learning'
+                ? `กำลังจำ${days ? ` · ${days}d` : ''}`
+                : 'ต้องซ้ำ';
+        const escKey = CSS.escape ? CSS.escape(key) : key.replace(/"/g, '\\"');
+        document.querySelectorAll(`.word-item[data-word-key="${escKey}"]`).forEach(li => {
+            li.classList.remove('known', 'review', 'unseen');
+            li.classList.add(status);
+            const dot = li.querySelector('.status-dot');
+            if (dot) dot.className = `status-dot dot-${lvl}`;
+            const pill = li.querySelector('.pill-sm');
+            if (pill) {
+                pill.className = `pill-sm ${lvl}`;
+                pill.textContent = lvlBadge;
+            }
+            li.querySelectorAll('[data-set-status-key]').forEach(btn => {
+                const targetSt = btn.getAttribute('data-set-status');
+                btn.classList.toggle('is-active-known', targetSt === 'known' && status === 'known');
+                btn.classList.toggle('is-active-review', targetSt === 'review' && status === 'review');
+            });
+        });
+
+        updateDictionaryMasteryUI();
+        updateWelcomeSmartStrip();
+        if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
+        showToast(status === 'known' ? 'บันทึกเป็น "จำได้แล้ว" ✓' : 'เพิ่มเข้า "ต้องทบทวน" แล้ว ↻');
+    }
+
     function wireWordListEvents(listEl) {
         if (!listEl) return;
         listEl.addEventListener('click', (e) => {
+            if (!(e.target instanceof Element)) return;
             const starBtn = e.target.closest('[data-star-key]');
-            if (starBtn) {
+            if (starBtn instanceof HTMLElement) {
                 e.stopPropagation();
-                toggleBookmark(starBtn.dataset.starKey);
+                toggleBookmark(starBtn.dataset.starKey || '');
                 if (currentScreen === 'history' && historyFilter === 'starred') {
                     renderHistoryWords();
+                } else if (currentScreen === 'dictionary' && dictFilterState.status === 'starred') {
+                    renderDictionary(false);
                 }
                 return;
             }
             const speakBtn = e.target.closest('[data-speak-word]');
-            if (speakBtn) {
+            if (speakBtn instanceof HTMLElement) {
                 e.stopPropagation();
-                speakWordOverride(speakBtn.dataset.speakWord, true, speakBtn);
+                speakWordOverride(speakBtn.dataset.speakWord || '', true, speakBtn);
+                return;
+            }
+            const speakSlowBtn = e.target.closest('[data-speak-slow]');
+            if (speakSlowBtn instanceof HTMLElement) {
+                e.stopPropagation();
+                speakWordOverride(speakSlowBtn.dataset.speakSlow || '', true, speakSlowBtn, { rate: 0.7 });
                 return;
             }
             const speakExBtn = e.target.closest('[data-speak-example]');
-            if (speakExBtn) {
+            if (speakExBtn instanceof HTMLElement) {
                 e.stopPropagation();
-                speakWordOverride(speakExBtn.dataset.speakExample, true, speakExBtn);
+                speakWordOverride(speakExBtn.dataset.speakExample || '', true, speakExBtn);
+                return;
+            }
+            const jumpBtn = e.target.closest('[data-jump-word]');
+            if (jumpBtn instanceof HTMLElement) {
+                e.stopPropagation();
+                const targetWord = jumpBtn.dataset.jumpWord || '';
+                const foundKey = findWordKeyByText(targetWord);
+                if (foundKey) {
+                    openWordInspector(foundKey);
+                } else if (targetWord) {
+                    speakWordOverride(targetWord, true, jumpBtn);
+                    showToast(`คำว่า "${targetWord}" อยู่นอกคลัง ${wordsData.length.toLocaleString()} คำ — ออกเสียงให้ฟังแล้ว`);
+                }
+                return;
+            }
+            const inspectBtn = e.target.closest('[data-inspect-key]');
+            if (inspectBtn instanceof HTMLElement) {
+                e.stopPropagation();
+                if (inspectBtn.dataset.inspectKey) openWordInspector(inspectBtn.dataset.inspectKey);
+                return;
+            }
+            const statusBtn = e.target.closest('[data-set-status-key]');
+            if (statusBtn instanceof HTMLElement) {
+                e.stopPropagation();
+                const sk = statusBtn.dataset.setStatusKey || '';
+                const st = statusBtn.dataset.setStatus || '';
+                if (sk && st) setWordQuickStatus(sk, st);
                 return;
             }
             const row = e.target.closest('.word-item');
@@ -5553,15 +5800,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Clickable Word Family chips on Flashcard Back -> Open Quick Search directly on related word
-    const cardWordFamilyEl = $('card-word-family');
-    if (cardWordFamilyEl) {
-        cardWordFamilyEl.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const btn = e.target instanceof Element ? e.target.closest('.family-chip') : null;
+    // Clickable Word Family & Antonym chips on Flashcard Back -> Open Word Inspector or Quick Search
+    const cardLexBoxEl = $('card-lexical-box');
+    if (cardLexBoxEl) {
+        cardLexBoxEl.addEventListener('click', (e) => {
+            if (!(e.target instanceof Element)) return;
+            const btn = e.target.closest('.family-chip');
             if (!btn) return;
+            e.stopPropagation();
             const targetWord = btn.getAttribute('data-family-word') || '';
             if (!targetWord) return;
+            const foundKey = findWordKeyByText(targetWord);
+            if (foundKey) {
+                openWordInspector(foundKey);
+                speakWordOverride(targetWord, true);
+                return;
+            }
             openQuickSearch();
             if (quickSearchInput) {
                 quickSearchInput.value = targetWord;
@@ -9654,15 +9908,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* =========================================================
-     * Dictionary Screen (คลังคำศัพท์ 3,191 คำ)
+     * Dictionary Screen (คลังคำศัพท์ 3,191 คำ) + Word Inspector
      * ========================================================= */
   const dictSearchInput = /** @type {HTMLInputElement|null} */ ($('dict-search-input'));
   const dictClearBtn = $('dict-clear-btn');
   const dictTopicSelect = /** @type {HTMLSelectElement|null} */ ($('dict-topic-select'));
+  const dictPosSelect = /** @type {HTMLSelectElement|null} */ ($('dict-pos-select'));
+  const dictSortSelect = /** @type {HTMLSelectElement|null} */ ($('dict-sort-select'));
+  const dictAzBar = $('dict-az-bar');
   const dictWordList = $('dict-word-list');
   const dictCountLabel = $('dict-count-label');
   const btnDictLoadMore = $('btn-dict-load-more');
-  let dictFilterState = { q: '', cefr: 'all', topic: 'all', status: 'all', limit: 50 };
+  const btnDictPracticeFiltered = /** @type {HTMLButtonElement|null} */ ($('btn-dict-practice-filtered'));
+  let dictFilterState = { q: '', cefr: 'all', topic: 'all', pos: 'all', status: 'all', sort: 'smart', letter: 'all', limit: 50 };
 
   function populateTopicSelect(selectEl) {
     if (!selectEl) return;
@@ -9672,19 +9930,130 @@ document.addEventListener('DOMContentLoaded', () => {
   populateTopicSelect(dictTopicSelect);
   populateTopicSelect($('qh-topic-select'));
 
-  function renderDictionary(resetLimit = true) {
-    if (!dictWordList) return;
-    if (resetLimit) dictFilterState.limit = 50;
+  function populateAZBar() {
+    if (!dictAzBar) return;
+    const letters = ['all', ...'abcdefghijklmnopqrstuvwxyz'.split('')];
+    dictAzBar.innerHTML = letters.map(ch => {
+      const label = ch === 'all' ? 'ทั้งหมด' : ch.toUpperCase();
+      return `<button type="button" class="dict-az-pill ${dictFilterState.letter === ch ? 'active' : ''}" data-dict-az="${ch}">${label}</button>`;
+    }).join('');
+  }
+  populateAZBar();
+
+  function updateDictionaryMasteryUI() {
+    const cntMastered = $('dm-cnt-mastered');
+    const cntLearning = $('dm-cnt-learning');
+    const cntReview = $('dm-cnt-review');
+    const cntUnseen = $('dm-cnt-unseen');
+    const barM = $('dm-bar-mastered');
+    const barL = $('dm-bar-learning');
+    const barR = $('dm-bar-review');
+    const pctEl = $('dict-mastery-pct');
+    const sumEl = $('dict-mastery-summary');
+    if (!cntMastered && !pctEl) return;
+
+    let mastered = 0;
+    let learning = 0;
+    let review = 0;
+    let unseen = 0;
+    keyToIndex.forEach((_, k) => {
+      const lvl = getWordMasteryLevel(k);
+      if (lvl === 'mastered') mastered++;
+      else if (lvl === 'learning') learning++;
+      else if (lvl === 'review') review++;
+      else unseen++;
+    });
+    const total = Math.max(1, mastered + learning + review + unseen);
+    const knownCount = mastered + learning;
+    const pct = Math.round((knownCount / total) * 100);
+    if (cntMastered) cntMastered.textContent = mastered.toLocaleString();
+    if (cntLearning) cntLearning.textContent = learning.toLocaleString();
+    if (cntReview) cntReview.textContent = review.toLocaleString();
+    if (cntUnseen) cntUnseen.textContent = unseen.toLocaleString();
+    if (barM) barM.style.width = `${((mastered / total) * 100).toFixed(2)}%`;
+    if (barL) barL.style.width = `${((learning / total) * 100).toFixed(2)}%`;
+    if (barR) barR.style.width = `${((review / total) * 100).toFixed(2)}%`;
+    if (pctEl) pctEl.textContent = `${pct}% (${knownCount.toLocaleString()}/${total.toLocaleString()})`;
+    if (sumEl) sumEl.textContent = review > 0 ? `ความคืบหน้าคลังศัพท์ · มี ${review} คำรอทบทวน` : 'ความคืบหน้าคลังคำศัพท์ Oxford 3000';
+  }
+
+  let wotdKeyCache = null;
+  function getDailySpotlightKey() {
+    if (wotdKeyCache && keyToIndex.has(wotdKeyCache)) return wotdKeyCache;
+    const richPool = [];
+    const fallbackPool = [];
+    keyToIndex.forEach((idx, k) => {
+      const w = wordsData[idx];
+      if (!w) return;
+      if (w.usageTip && Array.isArray(w.collocations) && w.collocations.length) richPool.push(k);
+      else if (Array.isArray(w.collocations) && w.collocations.length && w.definition && w.example) fallbackPool.push(k);
+    });
+    const pool = richPool.length ? richPool : fallbackPool;
+    if (!pool.length) return null;
+    const today = getTodayDateString();
+    let hash = 0;
+    for (let i = 0; i < today.length; i++) {
+      hash = ((hash * 31) + today.charCodeAt(i)) >>> 0;
+    }
+    wotdKeyCache = pool[hash % pool.length];
+    return wotdKeyCache;
+  }
+
+  function renderWordOfTheDay() {
+    const card = $('dict-wotd-card');
+    if (!card) return;
+    const k = getDailySpotlightKey();
+    const idx = k ? keyToIndex.get(k) : undefined;
+    if (idx === undefined) {
+      card.hidden = true;
+      return;
+    }
+    const w = wordsData[idx];
+    const wEl = $('wotd-word');
+    const phEl = $('wotd-phonetic');
+    const trEl = $('wotd-trans');
+    const posEl = $('wotd-pos');
+    const cefrEl = $('wotd-cefr');
+    const tipEl = $('wotd-tip');
+    if (wEl) wEl.textContent = w.word;
+    if (phEl) phEl.textContent = w.phonetic || '';
+    if (trEl) trEl.textContent = w.translation || '';
+    if (posEl) {
+      posEl.textContent = w.partOfSpeech || 'word';
+      posEl.className = `pos-badge ${catOf(w)}`;
+    }
+    if (cefrEl) OxCefr.applyBadge(cefrEl, w.cefr);
+    if (tipEl) {
+      tipEl.textContent = w.usageTip
+        ? `💡 ${w.usageTip}`
+        : w.example
+          ? `ตัวอย่าง: "${w.example}"${w.exampleTranslation ? ` (${w.exampleTranslation})` : ''}`
+          : (w.definition || '');
+    }
+    const spk = $('wotd-speak-btn');
+    const slow = $('wotd-slow-btn');
+    const insp = $('wotd-inspect-btn');
+    if (spk) spk.onclick = () => speakWordOverride(w.word, true, spk);
+    if (slow) slow.onclick = () => speakWordOverride(w.word, true, slow, { rate: 0.7 });
+    if (insp && k) insp.onclick = () => openWordInspector(k);
+    card.hidden = false;
+  }
+
+  function getFilteredDictMatches() {
     const q = dictFilterState.q.trim().toLowerCase();
     const matches = [];
+    const cefrRank = { A1: 1, A2: 2, B1: 3, B2: 4 };
+    const statusWeight = { review: 0, unseen: 1, known: 2 };
 
     for (let i = 0; i < totalWords; i++) {
       const w = wordsData[i];
-      if (keyToIndex.get(keyOf(w)) !== i) continue;
+      const k = keyOf(w);
+      if (keyToIndex.get(k) !== i) continue;
       if (dictFilterState.cefr !== 'all' && w.cefr !== dictFilterState.cefr) continue;
       if (dictFilterState.topic !== 'all' && (w.topic || 'actions') !== dictFilterState.topic) continue;
+      if (dictFilterState.pos !== 'all' && (w.partOfSpeech || '').toLowerCase() !== dictFilterState.pos) continue;
+      if (dictFilterState.letter !== 'all' && !(w.word || '').toLowerCase().startsWith(dictFilterState.letter)) continue;
 
-      const k = keyOf(w);
       const st = wordStatus[k] || 'unseen';
       if (dictFilterState.status === 'starred') {
         if (!bookmarkedWords.has(k)) continue;
@@ -9701,8 +10070,48 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    if (q) matches.sort((a, b) => b.score - a.score);
+    const sortMode = dictFilterState.sort;
+    if (sortMode === 'az') {
+      matches.sort((a, b) => wordsData[a.idx].word.localeCompare(wordsData[b.idx].word));
+    } else if (sortMode === 'za') {
+      matches.sort((a, b) => wordsData[b.idx].word.localeCompare(wordsData[a.idx].word));
+    } else if (sortMode === 'cefr-asc') {
+      matches.sort((a, b) => {
+        const d = (cefrRank[wordsData[a.idx].cefr] || 9) - (cefrRank[wordsData[b.idx].cefr] || 9);
+        return d !== 0 ? d : wordsData[a.idx].word.localeCompare(wordsData[b.idx].word);
+      });
+    } else if (sortMode === 'review-first') {
+      matches.sort((a, b) => {
+        const sa = wordStatus[keyOf(wordsData[a.idx])] || 'unseen';
+        const sb = wordStatus[keyOf(wordsData[b.idx])] || 'unseen';
+        const d = (statusWeight[sa] ?? 1) - (statusWeight[sb] ?? 1);
+        return d !== 0 ? d : wordsData[a.idx].word.localeCompare(wordsData[b.idx].word);
+      });
+    } else if (sortMode === 'rich-first') {
+      const richness = (w) => (w.usageTip ? 8 : 0) + (w.forms?.length ? 4 : 0) + (w.antonyms?.length ? 2 : 0) + (w.wordFamily?.length ? 1 : 0);
+      matches.sort((a, b) => {
+        const d = richness(wordsData[b.idx]) - richness(wordsData[a.idx]);
+        return d !== 0 ? d : b.score - a.score;
+      });
+    } else if (q) {
+      matches.sort((a, b) => b.score - a.score);
+    }
+    return matches;
+  }
+
+  function renderDictionary(resetLimit = true) {
+    if (!dictWordList) return;
+    if (resetLimit) dictFilterState.limit = 50;
+    updateDictionaryMasteryUI();
+    renderWordOfTheDay();
+
+    const matches = getFilteredDictMatches();
     if (dictCountLabel) dictCountLabel.textContent = `${matches.length.toLocaleString()} คำ`;
+    if (btnDictPracticeFiltered) {
+      btnDictPracticeFiltered.disabled = matches.length === 0;
+      const cap = Math.min(matches.length, Math.max(selectedSize || 20, 20));
+      btnDictPracticeFiltered.textContent = matches.length ? `▶ ฝึกชุดนี้ (${cap})` : '▶ ไม่มีคำให้ฝึก';
+    }
 
     const visible = matches.slice(0, dictFilterState.limit);
     dictWordList.innerHTML = visible.length
@@ -9732,6 +10141,22 @@ document.addEventListener('DOMContentLoaded', () => {
     dictFilterState.topic = dictTopicSelect.value || 'all';
     renderDictionary(true);
   });
+  dictPosSelect?.addEventListener('change', () => {
+    dictFilterState.pos = dictPosSelect.value || 'all';
+    renderDictionary(true);
+  });
+  dictSortSelect?.addEventListener('change', () => {
+    dictFilterState.sort = dictSortSelect.value || 'smart';
+    renderDictionary(true);
+  });
+  dictAzBar?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
+    const btn = e.target.closest('[data-dict-az]');
+    if (!(btn instanceof HTMLElement)) return;
+    dictFilterState.letter = btn.dataset.dictAz || 'all';
+    dictAzBar.querySelectorAll('.dict-az-pill').forEach(p => p.classList.toggle('active', p === btn));
+    renderDictionary(true);
+  });
   $('dict-cefr-filters')?.addEventListener('click', (e) => {
     if (!(e.target instanceof Element)) return;
     const pill = e.target.closest('[data-dict-cefr]');
@@ -9751,6 +10176,239 @@ document.addEventListener('DOMContentLoaded', () => {
   btnDictLoadMore?.addEventListener('click', () => {
     dictFilterState.limit += 50;
     renderDictionary(false);
+  });
+  btnDictPracticeFiltered?.addEventListener('click', async () => {
+    const matches = getFilteredDictMatches();
+    if (!matches.length) {
+      showToast('ไม่มีคำศัพท์ในตัวกรองปัจจุบัน');
+      return;
+    }
+    if (session && !(await confirmReplaceActive('เริ่มฝึก Flashcard จากคำศัพท์ชุดที่กรองไว้?', 'เริ่มฝึก'))) {
+      return;
+    }
+    const targetCount = Math.min(matches.length, Math.max(selectedSize || 20, 20));
+    const pool = matches.map(m => m.idx);
+    const chosen = matches.length <= targetCount ? pool : pickRandom(pool, targetCount);
+    const labelParts = [];
+    if (dictFilterState.cefr !== 'all') labelParts.push(dictFilterState.cefr);
+    if (dictFilterState.topic !== 'all' && TOPIC_META[dictFilterState.topic]) labelParts.push(TOPIC_META[dictFilterState.topic].th);
+    if (dictFilterState.letter !== 'all') labelParts.push(`หมวด ${dictFilterState.letter.toUpperCase()}`);
+    if (dictFilterState.q.trim()) labelParts.push(`"${dictFilterState.q.trim()}"`);
+    startSession(chosen, 'random', labelParts.length ? labelParts.join(' · ') : 'คลังคำศัพท์');
+  });
+
+  /* Word Inspector Modal */
+  const wiModal = $('word-inspector-modal');
+  let activeInspectorKey = null;
+
+  function closeWordInspector() {
+    if (!wiModal) return;
+    wiModal.classList.remove('open');
+    wiModal.setAttribute('aria-hidden', 'true');
+    activeInspectorKey = null;
+  }
+
+  function refreshInspectorStatusUI(key) {
+    const srsEl = $('wi-srs-badge');
+    const curStatus = wordStatus[key] || 'unseen';
+    if (srsEl) {
+      const srs = getSRSStatusText(key);
+      srsEl.textContent = srs.text;
+      srsEl.className = `card-srs-badge ${srs.cls}`.trim();
+    }
+    const knownBtn = $('wi-btn-known');
+    const reviewBtn = $('wi-btn-review');
+    if (knownBtn) knownBtn.classList.toggle('is-active-known', curStatus === 'known');
+    if (reviewBtn) reviewBtn.classList.toggle('is-active-review', curStatus === 'review');
+  }
+
+  function openWordInspector(key) {
+    if (!wiModal) return;
+    const idx = keyToIndex.get(key);
+    if (idx === undefined) return;
+    const w = wordsData[idx];
+    activeInspectorKey = key;
+
+    const wordEl = $('wi-word');
+    const sylEl = $('wi-syllables');
+    const phEl = $('wi-phonetic');
+    const phUkEl = $('wi-phonetic-uk');
+    const cefrEl = $('wi-cefr');
+    const posEl = $('wi-pos');
+    const topicEl = $('wi-topic');
+    const regEl = $('wi-register');
+    const transEl = $('wi-translation');
+    const defEl = $('wi-definition');
+    const exBox = $('wi-example-box');
+    const exEl = $('wi-example');
+    const exThEl = $('wi-example-th');
+    const extraExBox = $('wi-extra-example-box');
+    const extraExEl = $('wi-extra-example');
+    const extraExThEl = $('wi-extra-example-th');
+    const secEl = $('wi-sections');
+    const starBtn = $('wi-star-btn');
+
+    if (wordEl) wordEl.textContent = w.word;
+    if (sylEl) {
+      sylEl.textContent = w.syllables ? `· ${w.syllables}` : '';
+      sylEl.hidden = !w.syllables;
+    }
+    if (phEl) {
+      phEl.textContent = w.phonetic ? `US ${w.phonetic}` : '';
+      phEl.hidden = !w.phonetic;
+    }
+    if (phUkEl) {
+      phUkEl.textContent = w.phoneticUK ? `UK ${w.phoneticUK}` : '';
+      phUkEl.hidden = !w.phoneticUK;
+    }
+    if (cefrEl) OxCefr.applyBadge(cefrEl, w.cefr);
+    if (posEl) {
+      posEl.textContent = w.partOfSpeech || 'word';
+      posEl.className = `pos-badge ${catOf(w)}`;
+    }
+    if (topicEl) {
+      const tMeta = TOPIC_META[w.topic || 'actions'];
+      topicEl.textContent = tMeta ? tMeta.th : (w.topic || 'ทั่วไป');
+    }
+    if (regEl) {
+      regEl.textContent = w.register || '';
+      regEl.hidden = !w.register;
+    }
+    if (transEl) transEl.textContent = w.translation || '';
+    if (defEl) {
+      defEl.textContent = w.definition || '';
+      defEl.hidden = !w.definition;
+    }
+    if (exBox && exEl && exThEl) {
+      exEl.textContent = w.example ? `"${w.example}"` : '';
+      exThEl.textContent = w.exampleTranslation || '';
+      exThEl.hidden = !w.exampleTranslation;
+      exBox.hidden = !w.example;
+    }
+    if (extraExBox && extraExEl && extraExThEl) {
+      if (w.extraExample) {
+        extraExEl.textContent = `"${w.extraExample}"`;
+        extraExThEl.textContent = w.extraExampleTranslation || '';
+        extraExThEl.hidden = !w.extraExampleTranslation;
+        extraExBox.hidden = false;
+      } else {
+        extraExBox.hidden = true;
+      }
+    }
+
+    if (starBtn) {
+      starBtn.innerHTML = ICON_SVG.star;
+      starBtn.dataset.starKey = key;
+      starBtn.classList.toggle('is-starred', isBookmarked(key));
+    }
+
+    if (secEl) {
+      const blocks = [];
+      if (w.grammarPattern) {
+        blocks.push(`<div class="wi-sec-block"><span class="wi-sec-title">โครงสร้างไวยากรณ์ (Grammar Pattern)</span><div class="lex-pills"><span class="lex-chip is-pattern">${escapeHtml(w.grammarPattern)}</span></div></div>`);
+      }
+      if (Array.isArray(w.forms) && w.forms.length) {
+        blocks.push(`<div class="wi-sec-block"><span class="wi-sec-title">รูปผันคำ (Word Forms)</span><div class="lex-pills">${renderLexChipsHtml(w.forms, '', 'is-form', false)}</div></div>`);
+      }
+      if (Array.isArray(w.collocations) && w.collocations.length) {
+        blocks.push(`<div class="wi-sec-block"><span class="wi-sec-title">คำที่ใช้คู่กัน (Collocations)</span><div class="lex-pills">${renderLexChipsHtml(w.collocations, '', '', false)}</div></div>`);
+      }
+      if (Array.isArray(w.synonyms) && w.synonyms.length) {
+        blocks.push(`<div class="wi-sec-block"><span class="wi-sec-title">คำคล้ายความหมาย (Synonyms)</span><div class="lex-pills">${renderLexChipsHtml(w.synonyms, '≈ ', '', true)}</div></div>`);
+      }
+      if (Array.isArray(w.antonyms) && w.antonyms.length) {
+        blocks.push(`<div class="wi-sec-block"><span class="wi-sec-title">คำตรงข้าม (Antonyms)</span><div class="lex-pills">${renderLexChipsHtml(w.antonyms, '≠ ', 'is-antonym', true)}</div></div>`);
+      }
+      if (Array.isArray(w.wordFamily) && w.wordFamily.length) {
+        blocks.push(`<div class="wi-sec-block"><span class="wi-sec-title">คำตระกูลเดียวกัน (Word Family)</span><div class="lex-pills">${renderLexChipsHtml(w.wordFamily, '', '', true)}</div></div>`);
+      }
+      if (Array.isArray(w.phrases) && w.phrases.length) {
+        blocks.push(`<div class="wi-sec-block"><span class="wi-sec-title">สำนวนและวลีที่พบบ่อย (Idioms & Phrases)</span><div class="lex-pills">${renderLexChipsHtml(w.phrases, '', 'is-phrase', false)}</div></div>`);
+      }
+      if (w.rootBreakdown) {
+        blocks.push(`<div class="wi-sec-block"><span class="wi-sec-title">โครงสร้างและรากศัพท์ (Etymology)</span><div class="lex-pills"><span class="lex-root-badge">${escapeHtml(w.rootBreakdown)}</span></div></div>`);
+      }
+      if (w.usageTip) {
+        blocks.push(`<div class="wid-tip-box"><b>💡 เคล็ดลับการใช้ที่คนไทยมักใช้ผิด:</b><br>${escapeHtml(w.usageTip)}</div>`);
+      }
+      secEl.innerHTML = blocks.join('');
+    }
+
+    refreshInspectorStatusUI(key);
+    wiModal.classList.add('open');
+    wiModal.setAttribute('aria-hidden', 'false');
+  }
+
+  $('wi-close-btn')?.addEventListener('click', closeWordInspector);
+  wiModal?.addEventListener('click', (e) => {
+    if (e.target === wiModal) closeWordInspector();
+    if (!(e.target instanceof Element)) return;
+    const jumpBtn = e.target.closest('[data-jump-word]');
+    if (jumpBtn instanceof HTMLElement) {
+      const targetWord = jumpBtn.dataset.jumpWord || '';
+      const foundKey = findWordKeyByText(targetWord);
+      if (foundKey) {
+        openWordInspector(foundKey);
+        speakWordOverride(targetWord, true);
+      } else if (targetWord) {
+        speakWordOverride(targetWord, true, jumpBtn);
+        showToast(`คำว่า "${targetWord}" อยู่นอกคลัง ${wordsData.length.toLocaleString()} คำ — ออกเสียงให้ฟังแล้ว`);
+      }
+    }
+  });
+  $('wi-speak-btn')?.addEventListener('click', () => {
+    const idx = activeInspectorKey ? keyToIndex.get(activeInspectorKey) : undefined;
+    if (idx !== undefined) speakWordOverride(wordsData[idx].word, true, $('wi-speak-btn'));
+  });
+  $('wi-speak-slow-btn')?.addEventListener('click', () => {
+    const idx = activeInspectorKey ? keyToIndex.get(activeInspectorKey) : undefined;
+    if (idx !== undefined) speakWordOverride(wordsData[idx].word, true, $('wi-speak-slow-btn'), { rate: 0.7 });
+  });
+  $('wi-example-speak-btn')?.addEventListener('click', () => {
+    const idx = activeInspectorKey ? keyToIndex.get(activeInspectorKey) : undefined;
+    if (idx !== undefined && wordsData[idx].example) speakWordOverride(wordsData[idx].example, true, $('wi-example-speak-btn'));
+  });
+  $('wi-extra-example-speak-btn')?.addEventListener('click', () => {
+    const idx = activeInspectorKey ? keyToIndex.get(activeInspectorKey) : undefined;
+    if (idx !== undefined && wordsData[idx].extraExample) speakWordOverride(wordsData[idx].extraExample, true, $('wi-extra-example-speak-btn'));
+  });
+  $('wi-star-btn')?.addEventListener('click', () => {
+    if (activeInspectorKey) toggleBookmark(activeInspectorKey);
+  });
+  $('wi-btn-known')?.addEventListener('click', () => {
+    if (!activeInspectorKey) return;
+    setWordQuickStatus(activeInspectorKey, 'known');
+    refreshInspectorStatusUI(activeInspectorKey);
+  });
+  $('wi-btn-review')?.addEventListener('click', () => {
+    if (!activeInspectorKey) return;
+    setWordQuickStatus(activeInspectorKey, 'review');
+    refreshInspectorStatusUI(activeInspectorKey);
+  });
+  $('wi-btn-practice')?.addEventListener('click', async () => {
+    if (!activeInspectorKey) return;
+    const baseIdx = keyToIndex.get(activeInspectorKey);
+    if (baseIdx === undefined) return;
+    const w = wordsData[baseIdx];
+    if (session && !(await confirmReplaceActive(`เริ่มฝึกคำว่า "${w.word}" และคำที่เกี่ยวข้อง?`, 'เริ่มฝึก'))) {
+      return;
+    }
+    const deckIndices = [baseIdx];
+    const used = new Set([baseIdx]);
+    const relatedTerms = [...(w.wordFamily || []), ...(w.synonyms || []), ...(w.antonyms || [])];
+    relatedTerms.forEach(term => {
+      const k = findWordKeyByText(term);
+      const rIdx = k ? keyToIndex.get(k) : undefined;
+      if (rIdx !== undefined && !used.has(rIdx) && deckIndices.length < 10) {
+        used.add(rIdx);
+        deckIndices.push(rIdx);
+      }
+    });
+    closeWordInspector();
+    startSession(deckIndices, 'random', `เจาะลึก: ${w.word}`);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && wiModal?.classList.contains('open')) closeWordInspector();
   });
 
   /* =========================================================
