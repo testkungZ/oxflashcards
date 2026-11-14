@@ -1649,7 +1649,10 @@ const wordsData = [
       "อะไร",
       "เลย"
     ],
-    "syllables": "a·ny·thing"
+    "syllables": "a·ny·thing",
+    "extraExample": "Does anything in this box belong to you?",
+    "extraExampleTranslation": "มีอะไรในกล่องนี้ที่เป็นของคุณบ้างไหม?",
+    "usageTip": "ใช้ในประโยคคำถามหรือปฏิเสธแปลว่า อะไรก็ตาม/สิ่งใดก็ตาม"
   },
   {
     "word": "anyway",
@@ -1711,7 +1714,10 @@ const wordsData = [
       "เลย"
     ],
     "phoneticUK": "/ˈeniːwˌe/",
-    "syllables": "a·ny·where"
+    "syllables": "a·ny·where",
+    "extraExample": "You can sit anywhere you like in the waiting room.",
+    "extraExampleTranslation": "คุณสามารถนั่งตรงไหนก็ได้ตามสบายในห้องรอ",
+    "usageTip": "ใช้บอกสถานที่ที่ไม่เจาะจง แปลว่า ที่ไหนก็ตาม"
   },
   {
     "word": "apart",
@@ -1910,7 +1916,10 @@ const wordsData = [
     "wordFamily": [
       "apparent"
     ],
-    "syllables": "ap·pa·ren·tly"
+    "syllables": "ap·pa·ren·tly",
+    "extraExample": "Apparently, the meeting has been moved to tomorrow morning.",
+    "extraExampleTranslation": "ดูเหมือนว่า การประชุมถูกเลื่อนไปเป็นพรุ่งนี้เช้าแล้วนะ",
+    "usageTip": "วางไว้ต้นประโยคเพื่อบอกสิ่งที่ได้ยินมาหรือดูเหมือนจะเป็นจริง"
   },
   {
     "word": "appeal",
@@ -2229,7 +2238,10 @@ const wordsData = [
     "forms": [
       "V2/V3: appreciated",
       "V-ing: appreciating"
-    ]
+    ],
+    "extraExample": "I truly appreciate your patience while we sorted out the problem.",
+    "extraExampleTranslation": "ฉันซาบซึ้งในความอดทนของคุณจริงๆ ระหว่างที่เราช่วยกันแก้ปัญหา",
+    "usageTip": "ใช้บ่อยเมื่ออยากขอบคุณอย่างจริงใจ มักตามด้วยคำนามหรือ V-ing"
   },
   {
     "word": "approach",
@@ -2414,7 +2426,10 @@ const wordsData = [
       "เท่าไหร่"
     ],
     "phoneticUK": "/əprˈɒksəmət/",
-    "syllables": "ap·pro·xi·mate"
+    "syllables": "ap·pro·xi·mate",
+    "extraExample": "The approximate cost of the repair is two hundred dollars.",
+    "extraExampleTranslation": "ค่าซ่อมโดยประมาณอยู่ที่สองร้อยดอลลาร์",
+    "usageTip": "ใช้บอกจำนวนหรือเวลาที่ไม่เป๊ะ แต่ใกล้เคียงความจริง"
   },
   {
     "word": "approximately",
@@ -2444,7 +2459,10 @@ const wordsData = [
     "wordFamily": [
       "approximate"
     ],
-    "phoneticUK": "/əprˈɒksəmətliː/"
+    "phoneticUK": "/əprˈɒksəmətliː/",
+    "extraExample": "The train ride takes approximately forty minutes.",
+    "extraExampleTranslation": "การเดินทางด้วยรถไฟใช้เวลาประมาณสี่สิบนาที",
+    "usageTip": "ใช้บอกจำนวนหรือเวลาโดยประมาณ แทนคำว่า about แบบเป็นทางการขึ้น"
   },
   {
     "word": "April",
@@ -2472,7 +2490,10 @@ const wordsData = [
     "synonyms": [
       "apr"
     ],
-    "syllables": "A·pril"
+    "syllables": "A·pril",
+    "extraExample": "We are planning a short family trip in April.",
+    "extraExampleTranslation": "พวกเรากำลังวางแผนไปเที่ยวครอบครัวสั้นๆ ในเดือนเมษายน",
+    "usageTip": "ชื่อเดือนในภาษาอังกฤษต้องขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ"
   },
   {
     "word": "area",
@@ -2607,7 +2628,10 @@ const wordsData = [
       "V2: arose",
       "V3: arisen"
     ],
-    "syllables": "a·rise"
+    "syllables": "a·rise",
+    "extraExample": "Unexpected problems can arise if we skip the inspection.",
+    "extraExampleTranslation": "ปัญหาที่ไม่คาดคิดอาจเกิดขึ้นได้หากเราข้ามการตรวจสอบ",
+    "usageTip": "ใช้กับปัญหา โอกาส หรือสถานการณ์ที่เกิดขึ้นมา"
   },
   {
     "word": "arm",
@@ -2768,7 +2792,10 @@ const wordsData = [
       "ตัว",
       "คุณ"
     ],
-    "syllables": "a·round"
+    "syllables": "a·round",
+    "extraExample": "We walked around the old town for two hours.",
+    "extraExampleTranslation": "เราเดินเล่นรอบๆ เมืองเก่าเป็นเวลาสองชั่วโมง",
+    "usageTip": "ใช้กับตำแหน่งรอบๆ หรือเวลา/จำนวนโดยประมาณ"
   },
   {
     "word": "arrange",
@@ -2804,7 +2831,10 @@ const wordsData = [
     "forms": [
       "V2/V3: arranged",
       "V-ing: arranging"
-    ]
+    ],
+    "extraExample": "I will arrange the documents in alphabetical order.",
+    "extraExampleTranslation": "ฉันจะจัดเตรียมเอกสารเรียงตามลำดับตัวอักษร",
+    "usageTip": "หมายถึงจัดเรียงให้เป็นระเบียบ หรือนัดหมายจัดการสิ่งต่างๆ"
   },
   {
     "word": "arrangement",
@@ -2834,7 +2864,10 @@ const wordsData = [
       "ข้อตกลง",
       "พิเศษ"
     ],
-    "rootBreakdown": "arrange + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "arrange + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "We made a simple arrangement to meet earlier if traffic gets busy.",
+    "extraExampleTranslation": "เราทำข้อตกลงกันง่ายๆ ว่าจะเจอกันเร็วขึ้นถ้ารถติด",
+    "usageTip": "มักใช้คู่กับ make (make an arrangement) หมายถึงการจัดเตรียมหรือตกลงนัดหมาย"
   },
   {
     "word": "arrest",
@@ -3033,7 +3066,10 @@ const wordsData = [
       "ที่",
       "น่าสนใจ"
     ],
-    "syllables": "ar·ti·cle"
+    "syllables": "ar·ti·cle",
+    "extraExample": "She wrote an interesting article about local festival traditions.",
+    "extraExampleTranslation": "เธอเขียนบทความที่น่าสนใจเกี่ยวกับประเพณีเทศกาลท้องถิ่น",
+    "usageTip": "ใช้ได้ทั้งความหมายว่า บทความ และ สิ่งของ/คำนำหน้านาม"
   },
   {
     "word": "artificial",
@@ -3063,7 +3099,10 @@ const wordsData = [
     "antonyms": [
       "natural"
     ],
-    "syllables": "ar·ti·fi·cial"
+    "syllables": "ar·ti·fi·cial",
+    "extraExample": "The stage was decorated with artificial flowers for the parade.",
+    "extraExampleTranslation": "เวทีถูกตกแต่งด้วยดอกไม้ประดิษฐ์สำหรับขบวนแห่",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าไม่ได้เกิดขึ้นเองตามธรรมชาติ"
   },
   {
     "word": "artist",
@@ -3094,7 +3133,10 @@ const wordsData = [
       "ที่",
       "มีชื่อเสียง"
     ],
-    "syllables": "ar·tist"
+    "syllables": "ar·tist",
+    "extraExample": "The local artist painted a colorful mural on the community center wall.",
+    "extraExampleTranslation": "ศิลปินท้องถิ่นวาดภาพจิตรกรรมฝาผนังสีสันสดใสบนกำแพงศูนย์ชุมชน",
+    "usageTip": "ใช้ 'artist' กับผู้สร้างสรรค์งานศิลปะทุกแขนง เช่น จิตรกรหรือนักดนตรี"
   },
   {
     "word": "artistic",
@@ -3125,7 +3167,10 @@ const wordsData = [
       "ศิลปะ",
       "มากมาย"
     ],
-    "syllables": "ar·ti·stic"
+    "syllables": "ar·ti·stic",
+    "extraExample": "She has a very artistic eye when it comes to decorating rooms.",
+    "extraExampleTranslation": "เธอมีสายตาทางศิลปะมากเมื่อพูดถึงการตกแต่งห้อง",
+    "usageTip": "ใช้ 'artistic' ขยายคำนามเพื่อบอกความเกี่ยวข้องกับศิลปะหรือความคิดสร้างสรรค์"
   },
   {
     "word": "as",
@@ -3152,7 +3197,10 @@ const wordsData = [
       "ใน",
       "ฐานะ",
       "ครู"
-    ]
+    ],
+    "extraExample": "She works as a customer service manager.",
+    "extraExampleTranslation": "เธอทำงานในฐานะผู้จัดการฝ่ายบริการลูกค้า",
+    "usageTip": "ใช้บอกบทบาท หน้าที่ หรือเหตุผลในประโยค"
   },
   {
     "word": "ashamed",
@@ -3180,7 +3228,10 @@ const wordsData = [
       "ความผิดพลาด",
       "ของ",
       "ฉัน"
-    ]
+    ],
+    "extraExample": "He felt ashamed of losing his temper, so he apologized right away.",
+    "extraExampleTranslation": "เขารู้สึกละอายใจที่คุมอารมณ์ไม่อยู่ จึงรีบขอโทษทันที",
+    "usageTip": "มักตามด้วย of + คำนาม/V-ing หรือ to + V.1 เมื่อรู้สึกละอายใจกับสิ่งที่ทำ"
   },
   {
     "word": "aside",
@@ -3206,7 +3257,10 @@ const wordsData = [
       "ด้าน",
       "ข้าง"
     ],
-    "syllables": "a·side"
+    "syllables": "a·side",
+    "extraExample": "Please step aside so the inspector can see clearly.",
+    "extraExampleTranslation": "กรุณาหลีกไปด้านข้างเพื่อให้ผู้ตรวจสอบมองเห็นได้ชัดเจน",
+    "usageTip": "มักใช้คู่กับคำกริยา เช่น step aside, put aside"
   },
   {
     "word": "aside from",
@@ -3232,7 +3286,10 @@ const wordsData = [
       "ไม่",
       "รู้",
       "เลย"
-    ]
+    ],
+    "extraExample": "Aside from a small scratch, the screen looks completely new.",
+    "extraExampleTranslation": "นอกจากรอยขีดข่วนเล็กๆ แล้ว หน้าจอดูเหมือนใหม่ทั้งหมด",
+    "usageTip": "ใช้เกริ่นถึงสิ่งที่เป็นข้อยกเว้น หรือสิ่งเพิ่มเติม"
   },
   {
     "word": "ask",
@@ -3267,7 +3324,10 @@ const wordsData = [
       "reply"
     ],
     "phoneticUK": "/ˈɑːsk/",
-    "grammarPattern": "ask + (someone) + to V / ask for + N (ขอ...)"
+    "grammarPattern": "ask + (someone) + to V / ask for + N (ขอ...)",
+    "extraExample": "Don't hesitate to ask the instructor if anything is unclear.",
+    "extraExampleTranslation": "อย่าลังเลที่จะถามผู้สอนหากมีสิ่งใดไม่ชัดเจน",
+    "usageTip": "ใช้ 'ask for' เมื่อต้องการขอสิ่งของหรือความช่วยเหลือ"
   },
   {
     "word": "asleep",
@@ -3325,7 +3385,10 @@ const wordsData = [
       "ทุก",
       "แง่มุม"
     ],
-    "syllables": "a·spect"
+    "syllables": "a·spect",
+    "extraExample": "The best aspect of the trip was how peaceful the mornings were.",
+    "extraExampleTranslation": "แง่มุมที่ดีที่สุดของทริปนี้คือความสงบในช่วงเช้า",
+    "usageTip": "ใช้พูดถึงด้านใดด้านหนึ่งของเรื่องราว สถานการณ์ หรืองาน"
   },
   {
     "word": "assist",
@@ -3359,7 +3422,10 @@ const wordsData = [
       "งาน",
       "นี้"
     ],
-    "syllables": "as·sist"
+    "syllables": "as·sist",
+    "extraExample": "She offered to assist me with checking the inventory list.",
+    "extraExampleTranslation": "เธอเสนอตัวช่วยฉันตรวจสอบรายการสินค้าคงคลัง",
+    "usageTip": "ใช้ assist + คน + with + สิ่งที่ช่วย หรือ assist in + V-ing"
   },
   {
     "word": "assistance",
@@ -3389,7 +3455,10 @@ const wordsData = [
       "ความช่วยเหลือ",
       "ไหม"
     ],
-    "syllables": "as·si·stance"
+    "syllables": "as·si·stance",
+    "extraExample": "If you need any assistance verifying your account, call support.",
+    "extraExampleTranslation": "หากคุณต้องการความช่วยเหลือในการยืนยันบัญชี โทรหาฝ่ายสนับสนุนได้เลย",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้คู่กับ need, offer หรือ provide"
   },
   {
     "word": "assistant",
@@ -3464,7 +3533,10 @@ const wordsData = [
     "forms": [
       "V2/V3: associated",
       "V-ing: associating"
-    ]
+    ],
+    "extraExample": "People often associate this brand with high quality.",
+    "extraExampleTranslation": "ผู้คนมักเชื่อมโยงแบรนด์นี้เข้ากับคุณภาพสูง",
+    "usageTip": "มักใช้ในโครงสร้าง associate A with B"
   },
   {
     "word": "associated",
@@ -3498,7 +3570,10 @@ const wordsData = [
     "wordFamily": [
       "associate"
     ],
-    "phoneticUK": "/əsˈəʊsiːˌeɪtəd/"
+    "phoneticUK": "/əsˈəʊsiːˌeɪtəd/",
+    "extraExample": "Please read the risks associated with this procedure.",
+    "extraExampleTranslation": "โปรดอ่านความเสี่ยงที่เกี่ยวข้องกับขั้นตอนนี้",
+    "usageTip": "ใช้เป็นคำคุณศัพท์ตามหลังคำนามหรือ verb to be + with"
   },
   {
     "word": "association",
@@ -3530,7 +3605,10 @@ const wordsData = [
     "antonyms": [
       "disassociation"
     ],
-    "phoneticUK": "/əsˌəʊsiːˈeɪʃən/"
+    "phoneticUK": "/əsˌəʊsiːˈeɪʃən/",
+    "extraExample": "The cultural association organizes the annual heritage fair.",
+    "extraExampleTranslation": "สมาคมวัฒนธรรมเป็นผู้จัดงานมหกรรมมรดกประจำปี",
+    "usageTip": "มักใช้กับองค์กรหรือความเชื่อมโยงทางความคิด"
   },
   {
     "word": "assume",
@@ -3561,7 +3639,10 @@ const wordsData = [
     "forms": [
       "V2/V3: assumed",
       "V-ing: assuming"
-    ]
+    ],
+    "extraExample": "Don't assume the worst before you hear the full story.",
+    "extraExampleTranslation": "อย่าเพิ่งสันนิษฐานไปในทางที่แย่ที่สุดก่อนจะได้ฟังเรื่องทั้งหมด",
+    "usageTip": "ใช้เมื่อคาดเดาหรือสมมติโดยที่ยังไม่มีหลักฐานชัดเจน"
   },
   {
     "word": "assure",
@@ -3596,7 +3677,10 @@ const wordsData = [
     "forms": [
       "V2/V3: assured",
       "V-ing: assuring"
-    ]
+    ],
+    "extraExample": "I can assure you that every detail has been checked.",
+    "extraExampleTranslation": "ฉันรับรองกับคุณได้ว่ารายละเอียดทุกอย่างถูกตรวจสอบแล้ว",
+    "usageTip": "ใช้ assure + คน + that + ประโยค เพื่อสร้างความมั่นใจ"
   },
   {
     "word": "at",
@@ -3622,7 +3706,10 @@ const wordsData = [
       "เจอ",
       "กันที่",
       "สถานี"
-    ]
+    ],
+    "extraExample": "Let's meet at the main entrance at 3 p.m.",
+    "extraExampleTranslation": "มาเจอกันที่ทางเข้าหลักตอนบ่ายสามโมงนะ",
+    "usageTip": "ใช้กับจุดสถานที่เฉพาะและเวลาที่แน่นอน"
   },
   {
     "word": "atmosphere",
@@ -3680,7 +3767,10 @@ const wordsData = [
       "ขนาดเล็ก",
       "มาก"
     ],
-    "syllables": "a·tom"
+    "syllables": "a·tom",
+    "extraExample": "Everything around us is made up of tiny particles called atoms.",
+    "extraExampleTranslation": "ทุกสิ่งรอบตัวเราประกอบขึ้นจากอนุภาคขนาดเล็กที่เรียกว่าอะตอม",
+    "usageTip": "ใช้ 'atom' ในบริบทวิทยาศาสตร์เพื่อหมายถึงหน่วยที่เล็กที่สุดของธาตุ"
   },
   {
     "word": "attach",
@@ -3715,7 +3805,10 @@ const wordsData = [
     "antonyms": [
       "detach"
     ],
-    "syllables": "at·tach"
+    "syllables": "at·tach",
+    "extraExample": "Please attach your resume to the email before sending it.",
+    "extraExampleTranslation": "กรุณาแนบเรซูเม่ของคุณไปกับอีเมลก่อนส่ง",
+    "usageTip": "ใช้กับ to เช่น attach a file to an email (แนบไฟล์ไปกับอีเมล)"
   },
   {
     "word": "attached",
@@ -3751,7 +3844,10 @@ const wordsData = [
     "antonyms": [
       "detached",
       "unattached"
-    ]
+    ],
+    "extraExample": "She is very attached to her childhood home.",
+    "extraExampleTranslation": "เธอผูกพันกับบ้านในวัยเด็กของเธอมาก",
+    "usageTip": "ใช้ attached to เพื่อบอกความผูกพันกับคน สัตว์ หรือสิ่งของ"
   },
   {
     "word": "attack",
@@ -3781,7 +3877,10 @@ const wordsData = [
     "antonyms": [
       "defend"
     ],
-    "syllables": "at·tack"
+    "syllables": "at·tack",
+    "extraExample": "Critics did not attack the new festival schedule this year.",
+    "extraExampleTranslation": "นักวิจารณ์ไม่ได้โจมตีตารางงานเทศกาลใหม่ในปีนี้",
+    "usageTip": "เป็นกริยาแปลว่า โจมตี ทั้งทางกายภาพและทางคำพูด"
   },
   {
     "word": "attempt",
@@ -3808,7 +3907,10 @@ const wordsData = [
       "อย่าง",
       "กล้าหาญ"
     ],
-    "syllables": "at·tempt"
+    "syllables": "at·tempt",
+    "extraExample": "He made a final attempt to finish the race.",
+    "extraExampleTranslation": "เขาพยายามครั้งสุดท้ายเพื่อเข้าเส้นชัยให้ได้",
+    "usageTip": "มักใช้คู่กับ make an attempt to (พยายามที่จะ)"
   },
   {
     "word": "attend",
@@ -3841,7 +3943,10 @@ const wordsData = [
     "antonyms": [
       "miss"
     ],
-    "syllables": "at·tend"
+    "syllables": "at·tend",
+    "extraExample": "All registered students are expected to attend the orientation session.",
+    "extraExampleTranslation": "นักเรียนที่ลงทะเบียนทุกคนควรเข้าร่วมการปฐมนิเทศ",
+    "usageTip": "'attend' ตามด้วยสถานที่หรือกิจกรรมได้เลย โดยไม่ต้องมีคำบุพบท 'to'"
   },
   {
     "word": "attention",
@@ -3874,7 +3979,10 @@ const wordsData = [
     "antonyms": [
       "inattention"
     ],
-    "syllables": "at·ten·tion"
+    "syllables": "at·ten·tion",
+    "extraExample": "Please pay close attention to the safety instructions before we start.",
+    "extraExampleTranslation": "โปรดให้ความสนใจอย่างใกล้ชิดกับคำแนะนำด้านความปลอดภัยก่อนที่เราจะเริ่ม",
+    "usageTip": "ใช้คู่กับ pay attention to เพื่อบอกให้ตั้งใจฟังหรือสังเกต"
   },
   {
     "word": "attitude",
@@ -3903,7 +4011,10 @@ const wordsData = [
       "ดี"
     ],
     "phoneticUK": "/ˈætɪtjuːd/",
-    "syllables": "at·ti·tude"
+    "syllables": "at·ti·tude",
+    "extraExample": "Keeping a positive attitude helps you handle small setbacks more easily.",
+    "extraExampleTranslation": "การรักษาทัศนคติเชิงบวกช่วยให้คุณรับมือกับอุปสรรคเล็กๆ น้อยๆ ได้ง่ายขึ้น",
+    "usageTip": "มักใช้กับ positive หรือ negative เพื่อบอกมุมมองความคิด"
   },
   {
     "word": "attorney",
@@ -3930,7 +4041,10 @@ const wordsData = [
       "ความเก่งๆ"
     ],
     "phoneticUK": "/ətˈɜːniː/",
-    "syllables": "at·tor·ney"
+    "syllables": "at·tor·ney",
+    "extraExample": "The museum hired an attorney to handle the artifact agreement.",
+    "extraExampleTranslation": "พิพิธภัณฑ์จ้างทนายความเพื่อจัดการข้อตกลงเรื่องโบราณวัตถุ",
+    "usageTip": "เป็นคำทางการในภาษาอังกฤษแบบอเมริกัน หมายถึงทนายความ"
   },
   {
     "word": "attract",
@@ -3963,7 +4077,10 @@ const wordsData = [
     "antonyms": [
       "repel"
     ],
-    "syllables": "at·tract"
+    "syllables": "at·tract",
+    "extraExample": "Bright colors can attract the attention of customers.",
+    "extraExampleTranslation": "สีสันสดใสสามารถดึงดูดความสนใจของลูกค้าได้",
+    "usageTip": "มักตามด้วย attention, tourists หรือ customers"
   },
   {
     "word": "attraction",
@@ -4093,7 +4210,10 @@ const wordsData = [
     "synonyms": [
       "aug"
     ],
-    "syllables": "Au·gust"
+    "syllables": "Au·gust",
+    "extraExample": "Our company usually holds its annual retreat in August.",
+    "extraExampleTranslation": "บริษัทของเรามักจะจัดทริปประจำปีในเดือนสิงหาคม",
+    "usageTip": "ชื่อเดือนในภาษาอังกฤษต้องขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ"
   },
   {
     "word": "aunt",
@@ -4161,7 +4281,10 @@ const wordsData = [
       "นี้"
     ],
     "phoneticUK": "/ˈɔːθə(r)/",
-    "syllables": "au·thor"
+    "syllables": "au·thor",
+    "extraExample": "She is the author of three popular textbooks on study skills.",
+    "extraExampleTranslation": "เธอเป็นผู้ประพันธ์หนังสือเรียนยอดนิยมสามเล่มเกี่ยวกับทักษะการเรียน",
+    "usageTip": "ใช้กับผู้เขียนหนังสือ บทความ หรือเอกสารวิชาการ"
   },
   {
     "word": "authority",
@@ -4194,7 +4317,10 @@ const wordsData = [
     "syllables": "au·tho·ri·ty",
     "forms": [
       "พหูพจน์: authorities"
-    ]
+    ],
+    "extraExample": "The local authority approved the street closure for the cultural parade.",
+    "extraExampleTranslation": "เจ้าหน้าที่ท้องถิ่นอนุมัติการปิดถนนสำหรับขบวนแห่ทางวัฒนธรรม",
+    "usageTip": "ใช้เรียกหน่วยงานหรือเจ้าหน้าที่ที่มีอำนาจตามกฎหมาย"
   },
   {
     "word": "automatic",
@@ -4229,7 +4355,10 @@ const wordsData = [
     "syllables": "au·to·ma·tic",
     "wordFamily": [
       "automate"
-    ]
+    ],
+    "extraExample": "The doors are automatic and open when you approach.",
+    "extraExampleTranslation": "ประตูเป็นแบบอัตโนมัติและจะเปิดเมื่อคุณเดินเข้าไปใกล้",
+    "usageTip": "ใช้นำหน้าคำนาม เช่น automatic door หรือใช้บอกระบบที่ทำงานเอง"
   },
   {
     "word": "autumn",
@@ -4255,7 +4384,9 @@ const wordsData = [
       "ฤดูใบไม้ร่วง"
     ],
     "syllables": "au·tumn",
-    "usageTip": "UK ใช้ autumn (ฤดูใบไม้ร่วง) | US มักใช้ fall"
+    "usageTip": "UK ใช้ autumn (ฤดูใบไม้ร่วง) | US มักใช้ fall",
+    "extraExample": "The leaves turn orange and red in autumn.",
+    "extraExampleTranslation": "ใบไม้เปลี่ยนเป็นสีส้มและสีแดงในฤดูใบไม้ร่วง"
   },
   {
     "word": "available",
@@ -4286,7 +4417,10 @@ const wordsData = [
     "antonyms": [
       "unavailable"
     ],
-    "syllables": "a·vai·la·ble"
+    "syllables": "a·vai·la·ble",
+    "extraExample": "Are you available for a quick meeting this afternoon?",
+    "extraExampleTranslation": "บ่ายนี้คุณว่างสำหรับประชุมสั้นๆ ไหม",
+    "usageTip": "ใช้กับคนแปลว่าว่าง ใช้กับของแปลว่ามีพร้อมให้ใช้หรือซื้อได้"
   },
   {
     "word": "average",
@@ -4314,7 +4448,10 @@ const wordsData = [
       "กว่า",
       "ค่าเฉลี่ย"
     ],
-    "syllables": "a·ve·rage"
+    "syllables": "a·ve·rage",
+    "extraExample": "Online students spend, on average, four hours a week on coursework.",
+    "extraExampleTranslation": "โดยเฉลี่ยแล้ว นักเรียนออนไลน์ใช้เวลาสี่ชั่วโมงต่อสัปดาห์กับงานในคอร์ส",
+    "usageTip": "ใช้ on average เมื่อต้องการบอกค่าเฉลี่ยโดยรวม"
   },
   {
     "word": "avoid",
@@ -4349,7 +4486,9 @@ const wordsData = [
     ],
     "syllables": "a·void",
     "grammarPattern": "V + V-ing / N (เช่น avoid making mistakes)",
-    "usageTip": "avoid ต้องตามด้วย V-ing หรือคำนามเท่านั้น ห้ามตามด้วย to + V"
+    "usageTip": "avoid ต้องตามด้วย V-ing หรือคำนามเท่านั้น ห้ามตามด้วย to + V",
+    "extraExample": "You should avoid eating too much sugar before bed.",
+    "extraExampleTranslation": "คุณควรหลีกเลี่ยงการกินน้ำตาลมากเกินไปก่อนนอน"
   },
   {
     "word": "awake",
@@ -4415,7 +4554,10 @@ const wordsData = [
       "สำหรับ",
       "การแสดง"
     ],
-    "syllables": "a·ward"
+    "syllables": "a·ward",
+    "extraExample": "The festival committee presented an award to the best traditional dancer.",
+    "extraExampleTranslation": "คณะกรรมการเทศกาลมอบรางวัลให้แก่นักเต้นรำพื้นเมืองยอดเยี่ยม",
+    "usageTip": "ใช้ได้ทั้งคำนาม (รางวัล) และคำกริยา (มอบให้)"
   },
   {
     "word": "aware",
@@ -4446,7 +4588,10 @@ const wordsData = [
     ],
     "phoneticUK": "/əwˈe/",
     "syllables": "a·ware",
-    "grammarPattern": "be aware of + N / that S + V (ตระหนักถึง...)"
+    "grammarPattern": "be aware of + N / that S + V (ตระหนักถึง...)",
+    "extraExample": "I was not aware that the library stays open until midnight.",
+    "extraExampleTranslation": "ฉันไม่รู้ตัวมาก่อนเลยว่าห้องสมุดเปิดถึงเที่ยงคืน",
+    "usageTip": "ใช้ aware of ตามด้วยคำนาม หรือ aware that ตามด้วยประโยค"
   },
   {
     "word": "away",
@@ -4470,7 +4615,10 @@ const wordsData = [
     "thTokens": [
       "ไปให้พ้น"
     ],
-    "syllables": "a·way"
+    "syllables": "a·way",
+    "extraExample": "Please put your phone away during the presentation.",
+    "extraExampleTranslation": "กรุณาเก็บโทรศัพท์ของคุณไว้ให้ห่างในระหว่างการนำเสนอ",
+    "usageTip": "ใช้คู่กับกริยาเช่น put away (เก็บ) หรือ stay away (อยู่ห่างๆ)"
   },
   {
     "word": "awful",
@@ -4499,7 +4647,10 @@ const wordsData = [
     "wordFamily": [
       "awfully"
     ],
-    "syllables": "aw·ful"
+    "syllables": "aw·ful",
+    "extraExample": "I feel awful about forgetting to call you back.",
+    "extraExampleTranslation": "ฉันรู้สึกแย่มากที่ลืมโทรกลับหาคุณ",
+    "usageTip": "ใช้ขยายความรู้สึกผิดหรือสภาพการณ์ที่แย่มากๆ"
   },
   {
     "word": "awfully",
@@ -4528,7 +4679,10 @@ const wordsData = [
       "ขอโทษ",
       "อย่าง",
       "มาก"
-    ]
+    ],
+    "extraExample": "I am awfully sorry for being late to the meeting.",
+    "extraExampleTranslation": "ฉันขอโทษอย่างยิ่งที่มาประชุมสาย",
+    "usageTip": "ในภาษาพูดมักใช้แปลว่า 'มาก' เพื่อเน้นความรู้สึก เช่น awfully sorry"
   },
   {
     "word": "awkward",
@@ -4559,7 +4713,10 @@ const wordsData = [
     "antonyms": [
       "graceful"
     ],
-    "syllables": "aw·kward"
+    "syllables": "aw·kward",
+    "extraExample": "There was an awkward silence before someone finally told a joke.",
+    "extraExampleTranslation": "มีความเงียบที่น่าอึดอัดเกิดขึ้นก่อนที่ใครบางคนจะเล่าเรื่องตลก",
+    "usageTip": "ใช้บรรยายความรู้สึกเคอะเขินหรือไม่เป็นธรรมชาติในสถานการณ์ต่างๆ"
   },
   {
     "word": "baby",
@@ -4618,7 +4775,10 @@ const wordsData = [
     ],
     "antonyms": [
       "front"
-    ]
+    ],
+    "extraExample": "She hurt her back while lifting a heavy box.",
+    "extraExampleTranslation": "เธอเจ็บหลังตอนที่ยกกล่องหนักๆ",
+    "usageTip": "ในความหมายนี้เป็นคำนามแปลว่าแผ่นหลังของร่างกาย"
   },
   {
     "word": "background",
@@ -4646,7 +4806,10 @@ const wordsData = [
       "ด้าน",
       "ดนตรี"
     ],
-    "syllables": "back·ground"
+    "syllables": "back·ground",
+    "extraExample": "She has a strong background in project management and team leadership.",
+    "extraExampleTranslation": "เธอมีพื้นฐานที่แข็งแกร่งด้านการบริหารโครงการและความเป็นผู้นำทีม",
+    "usageTip": "ใช้พูดถึงภูมิหลัง ประสบการณ์ หรือฉากหลังก็ได้"
   },
   {
     "word": "backward",
@@ -4680,7 +4843,10 @@ const wordsData = [
     "antonyms": [
       "forward"
     ],
-    "syllables": "back·ward"
+    "syllables": "back·ward",
+    "extraExample": "He took a step backward to let the elderly woman pass.",
+    "extraExampleTranslation": "เขาถอยหลังหนึ่งก้าวเพื่อให้หญิงชราเดินผ่านไป",
+    "usageTip": "ใช้บอกทิศทางการเคลื่อนที่ถอยไปข้างหลัง"
   },
   {
     "word": "backwards",
@@ -4713,7 +4879,10 @@ const wordsData = [
       "ได้",
       "ไหม"
     ],
-    "syllables": "back·wards"
+    "syllables": "back·wards",
+    "extraExample": "He took a step backwards when he saw the snake.",
+    "extraExampleTranslation": "เขาก้าวถอยหลังไปหนึ่งก้าวเมื่อเห็นงู",
+    "usageTip": "ใช้บอกทิศทางย้อนกลับหรือถอยหลัง เช่น walk backwards"
   },
   {
     "word": "bacteria",
@@ -4780,7 +4949,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "badly"
-    ]
+    ],
+    "extraExample": "I feel bad for making you wait in the rain.",
+    "extraExampleTranslation": "ฉันรู้สึกไม่ดีเลยที่ทำให้คุณต้องรอท่ามกลางสายฝน",
+    "usageTip": "ใช้กับ feel bad เพื่อแสดงความเสียใจหรือรู้สึกผิด"
   },
   {
     "word": "badly",
@@ -4809,7 +4981,10 @@ const wordsData = [
     "wordFamily": [
       "bad"
     ],
-    "syllables": "bad·ly"
+    "syllables": "bad·ly",
+    "extraExample": "The team played badly in the second half of the match.",
+    "extraExampleTranslation": "ทีมเล่นได้แย่มากในครึ่งหลังของการแข่งขัน",
+    "usageTip": "ใช้วางหลังกริยาเพื่อขยายว่าทำได้ไม่ดี หรือใช้กับ injured แปลว่าบาดเจ็บสาหัส"
   },
   {
     "word": "bad-tempered",
@@ -4836,7 +5011,10 @@ const wordsData = [
       "เมื่อ",
       "เขา",
       "เหนื่อย"
-    ]
+    ],
+    "extraExample": "My neighbor gets bad-tempered when he doesn't get enough sleep.",
+    "extraExampleTranslation": "เพื่อนบ้านของฉันจะอารมณ์เสียง่ายเมื่อเขานอนไม่พอ",
+    "usageTip": "ใช้บรรยายนิสัยหรืออารมณ์คนที่หงุดหงิดง่าย"
   },
   {
     "word": "bag",
@@ -4963,7 +5141,10 @@ const wordsData = [
     "antonyms": [
       "imbalance"
     ],
-    "syllables": "ba·lance"
+    "syllables": "ba·lance",
+    "extraExample": "It is important to find a balance between work and rest.",
+    "extraExampleTranslation": "การหาจุดสมดุลระหว่างการทำงานและการพักผ่อนเป็นสิ่งสำคัญ",
+    "usageTip": "มักใช้ในวลี work-life balance หรือ keep a balance"
   },
   {
     "word": "ball",
@@ -5017,7 +5198,10 @@ const wordsData = [
       "สั่งห้าม",
       "สูบบุหรี่",
       "ที่นี่"
-    ]
+    ],
+    "extraExample": "The town announced a ban on plastic lanterns to protect the river.",
+    "extraExampleTranslation": "เมืองประกาศห้ามใช้โคมพลาสติกเพื่อปกป้องแม่น้ำ",
+    "usageTip": "ในรูปคำนามมักใช้กับ on เช่น a ban on..."
   },
   {
     "word": "band",
@@ -5044,7 +5228,10 @@ const wordsData = [
       "กีตาร์",
       "ใน",
       "วงดนตรี"
-    ]
+    ],
+    "extraExample": "He plays guitar in a university band after finishing his evening classes.",
+    "extraExampleTranslation": "เขาเล่นกีตาร์ในวงดนตรีของมหาวิทยาลัยหลังจากเรียนภาคค่ำเสร็จ",
+    "usageTip": "band ในความหมายนี้หมายถึงวงดนตรี"
   },
   {
     "word": "bandage",
@@ -5232,7 +5419,10 @@ const wordsData = [
     "wordFamily": [
       "based",
       "basic"
-    ]
+    ],
+    "extraExample": "The ancient statue stands on a wide marble base.",
+    "extraExampleTranslation": "รูปปั้นโบราณตั้งอยู่บนฐานหินอ่อนขนาดกว้าง",
+    "usageTip": "หมายถึงส่วนล่างสุดที่รองรับโครงสร้างหรือสิ่งของ"
   },
   {
     "word": "based",
@@ -5263,7 +5453,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "base"
-    ]
+    ],
+    "extraExample": "The movie is based on a true story from the 1990s.",
+    "extraExampleTranslation": "ภาพยนตร์เรื่องนี้สร้างจากเรื่องจริงในยุค 1990",
+    "usageTip": "มักใช้ในรูป based on (อิงจาก / สร้างจาก) หรือ based in (ตั้งอยู่ที่)"
   },
   {
     "word": "basic",
@@ -5297,7 +5490,10 @@ const wordsData = [
     "wordFamily": [
       "base"
     ],
-    "syllables": "ba·sic"
+    "syllables": "ba·sic",
+    "extraExample": "Everyone needs to learn the basic rules of the road.",
+    "extraExampleTranslation": "ทุกคนจำเป็นต้องเรียนรู้กฎจราจรพื้นฐาน",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อบอกว่าเบื้องต้นหรือจำเป็นที่สุด"
   },
   {
     "word": "basically",
@@ -5327,7 +5523,9 @@ const wordsData = [
       "เลย"
     ],
     "register": "ภาษาพูดทั่วไป",
-    "usageTip": "นิยมวางต้นประโยคในภาษาพูดเพื่อสรุปใจความสำคัญให้ง่ายขึ้น"
+    "usageTip": "นิยมวางต้นประโยคในภาษาพูดเพื่อสรุปใจความสำคัญให้ง่ายขึ้น",
+    "extraExample": "Basically, we just need more time to finish the project.",
+    "extraExampleTranslation": "โดยพื้นฐานแล้ว พวกเราแค่ต้องการเวลาเพิ่มเพื่อทำงานนี้ให้เสร็จ"
   },
   {
     "word": "basis",
@@ -5360,7 +5558,10 @@ const wordsData = [
     "forms": [
       "พหูพจน์: bases"
     ],
-    "syllables": "ba·sis"
+    "syllables": "ba·sis",
+    "extraExample": "We meet on a weekly basis to review our progress.",
+    "extraExampleTranslation": "พวกเราประชุมกันเป็นประจำทุกสัปดาห์เพื่อติดตามความคืบหน้า",
+    "usageTip": "มักใช้ในวลี on a daily/weekly/regular basis"
   },
   {
     "word": "bath",
@@ -5449,7 +5650,10 @@ const wordsData = [
     "syllables": "bat·te·ry",
     "forms": [
       "พหูพจน์: batteries"
-    ]
+    ],
+    "extraExample": "The smoke detector needs a new battery.",
+    "extraExampleTranslation": "เครื่องตรวจจับควันต้องการแบตเตอรี่ก้อนใหม่",
+    "usageTip": "ใช้กับอุปกรณ์ไฟฟ้าขนาดเล็กในบ้าน"
   },
   {
     "word": "battle",
@@ -5475,7 +5679,10 @@ const wordsData = [
       "ชนะ",
       "การต่อสู้"
     ],
-    "syllables": "bat·tle"
+    "syllables": "bat·tle",
+    "extraExample": "The folk play tells the story of a famous battle from the fifteenth century.",
+    "extraExampleTranslation": "ละครพื้นบ้านเล่าเรื่องราวของการต่อสู้ที่มีชื่อเสียงจากศตวรรษที่สิบห้า",
+    "usageTip": "ใช้พูดถึงการสู้รบทางประวัติศาสตร์หรือการต่อสู้ที่สำคัญ"
   },
   {
     "word": "bay",
@@ -5534,7 +5741,10 @@ const wordsData = [
     "forms": [
       "V2: was / were",
       "V3: been"
-    ]
+    ],
+    "extraExample": "She wants to be a doctor when she grows up.",
+    "extraExampleTranslation": "เธออยากเป็นหมอเมื่อโตขึ้น",
+    "usageTip": "เป็นกริยาพื้นฐาน ใช้บอกสภาพ ตำแหน่ง หรืออาชีพ"
   },
   {
     "word": "beach",
@@ -5629,7 +5839,8 @@ const wordsData = [
     ],
     "phoneticUK": "/bˈe/",
     "extraExample": "I cannot bear the noise any longer.",
-    "extraExampleTranslation": "ฉันทนฟังเสียงดังแบบนี้ไม่ไหวอีกต่อไปแล้ว (ความหมายรอง: อดทนรับ)"
+    "extraExampleTranslation": "ฉันทนฟังเสียงดังแบบนี้ไม่ไหวอีกต่อไปแล้ว (ความหมายรอง: อดทนรับ)",
+    "usageTip": "นอกจากแปลว่าหมี ในทางกริยายังแปลว่ารับน้ำหนักหรืออดทน เช่น bear the weight"
   },
   {
     "word": "beard",
@@ -5655,7 +5866,10 @@ const wordsData = [
       "ยา",
       "วสี",
       "ขาว"
-    ]
+    ],
+    "extraExample": "He grew a neat beard before starting his new job.",
+    "extraExampleTranslation": "เขาไว้เคราอย่างเรียบร้อยก่อนเริ่มงานใหม่",
+    "usageTip": "คำนามนับได้ ใช้กับกริยา grow หรือ shave"
   },
   {
     "word": "beat",
@@ -5688,7 +5902,10 @@ const wordsData = [
     "forms": [
       "V2: beat",
       "V3: beaten"
-    ]
+    ],
+    "extraExample": "In the old days, strict teachers would sometimes beat students with a stick.",
+    "extraExampleTranslation": "ในสมัยก่อน ครูที่เข้มงวดบางครั้งจะตีนักเรียนด้วยไม้เรียว",
+    "usageTip": "beat เป็นกริยาช่อง 1, 2, 3 ที่รูปเปลี่ยนเป็น beat - beat - beaten"
   },
   {
     "word": "beautiful",
@@ -5721,7 +5938,10 @@ const wordsData = [
       "ugly"
     ],
     "syllables": "beau·ti·ful",
-    "rootBreakdown": "beauty + -ful (เต็มไปด้วย (Adj.))"
+    "rootBreakdown": "beauty + -ful (เต็มไปด้วย (Adj.))",
+    "extraExample": "They built a beautiful relationship based on mutual respect.",
+    "extraExampleTranslation": "พวกเขาสร้างความสัมพันธ์ที่งดงามบนพื้นฐานของความเคารพซึ่งกันและกัน",
+    "usageTip": "ใช้ขยายได้ทั้งคน สิ่งของ และความสัมพันธ์"
   },
   {
     "word": "beautifully",
@@ -5751,7 +5971,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "beautiful"
-    ]
+    ],
+    "extraExample": "The violinist played beautifully at the concert last night.",
+    "extraExampleTranslation": "นักไวโอลินเล่นได้อย่างไพเราะสวยงามในคอนเสิร์ตเมื่อคืนนี้",
+    "usageTip": "ใช้ขยายกริยาเพื่อบอกว่าทำสิ่งใดได้อย่างงดงามหรือยอดเยี่ยม"
   },
   {
     "word": "beauty",
@@ -5788,7 +6011,10 @@ const wordsData = [
     "syllables": "beau·ty",
     "forms": [
       "พหูพจน์: beauties"
-    ]
+    ],
+    "extraExample": "Many tourists visit the island for its natural beauty.",
+    "extraExampleTranslation": "นักท่องเที่ยวจำนวนมากมาเยือนเกาะนี้เพราะความสวยงามตามธรรมชาติ",
+    "usageTip": "เป็นคำนาม มักใช้คู่กับ natural beauty หรือ inner beauty"
   },
   {
     "word": "because",
@@ -5875,7 +6101,10 @@ const wordsData = [
       "ไป",
       "นอน",
       "แล้ว"
-    ]
+    ],
+    "extraExample": "We bedded down early because we had to move tomorrow.",
+    "extraExampleTranslation": "เราเข้านอนเร็วเพราะพรุ่งนี้ต้องย้ายบ้าน",
+    "usageTip": "ในรูปกริยามักใช้กับ down หมายถึงเข้านอน"
   },
   {
     "word": "bedroom",
@@ -5902,7 +6131,10 @@ const wordsData = [
       "สะอาด",
       "มาก"
     ],
-    "syllables": "be·droom"
+    "syllables": "be·droom",
+    "extraExample": "My bedroom faces the quiet courtyard.",
+    "extraExampleTranslation": "ห้องนอนของฉันหันหน้าไปทางลานกลางอาคารที่เงียบสงบ",
+    "usageTip": "ห้องส่วนตัวสำหรับพักผ่อน"
   },
   {
     "word": "beef",
@@ -6035,7 +6267,10 @@ const wordsData = [
       "V2: began",
       "V3: begun"
     ],
-    "syllables": "be·gin"
+    "syllables": "be·gin",
+    "extraExample": "We will begin the meeting as soon as everyone arrives.",
+    "extraExampleTranslation": "เราจะเริ่มการประชุมทันทีที่ทุกคนมาถึง",
+    "usageTip": "ใช้คู่กับ to + V.inf หรือ V-ing ได้ (เช่น begin to work / begin working)"
   },
   {
     "word": "beginning",
@@ -6071,7 +6306,10 @@ const wordsData = [
       "ending",
       "end"
     ],
-    "syllables": "be·gin·ning"
+    "syllables": "be·gin·ning",
+    "extraExample": "At the beginning of the year, I set new goals for myself.",
+    "extraExampleTranslation": "ในช่วงต้นปี ฉันตั้งเป้าหมายใหม่ให้กับตัวเอง",
+    "usageTip": "มักใช้ในสำนวน at the beginning of (ในช่วงต้นของ...)"
   },
   {
     "word": "behalf",
@@ -6097,7 +6335,10 @@ const wordsData = [
       "ในนามของ",
       "ทีม"
     ],
-    "syllables": "be·half"
+    "syllables": "be·half",
+    "extraExample": "I am writing this email on behalf of my manager.",
+    "extraExampleTranslation": "ฉันกำลังเขียนอีเมลนี้ในนามของผู้จัดการของฉัน",
+    "usageTip": "มักใช้ในรูป on behalf of + บุคคล/องค์กร หรือ on someone's behalf"
   },
   {
     "word": "behave",
@@ -6133,7 +6374,10 @@ const wordsData = [
     "forms": [
       "V2/V3: behaved",
       "V-ing: behaving"
-    ]
+    ],
+    "extraExample": "The children behaved very well during the long train ride.",
+    "extraExampleTranslation": "เด็กๆ ประพฤติตัวดีมากระหว่างการนั่งรถไฟทางไกล",
+    "usageTip": "มักใช้คู่กับคำวิเศษณ์เช่น well หรือ badly เพื่อบอกลักษณะการปฏิบัติตัว"
   },
   {
     "word": "behaviour",
@@ -6164,7 +6408,10 @@ const wordsData = [
       "behavior",
       "demeanor",
       "demeanour"
-    ]
+    ],
+    "extraExample": "The teacher praised the students for their good behaviour.",
+    "extraExampleTranslation": "คุณครูชมเชยนักเรียนสำหรับความประพฤติที่ดีของพวกเขา",
+    "usageTip": "เป็นคำนามนับไม่ได้ (uncountable noun) จึงไม่เติม -s ในความหมายทั่วไป"
   },
   {
     "word": "behind",
@@ -6197,7 +6444,10 @@ const wordsData = [
       "in front of",
       "ahead"
     ],
-    "syllables": "be·hind"
+    "syllables": "be·hind",
+    "extraExample": "The parking lot is right behind the main building.",
+    "extraExampleTranslation": "ลานจอดรถอยู่ด้านหลังอาคารหลักพอดี",
+    "usageTip": "ใช้บอกตำแหน่งที่อยู่ด้านหลัง หรือใช้ในเชิงเปรียบเทียบว่าล้าหลัง"
   },
   {
     "word": "belief",
@@ -6235,7 +6485,10 @@ const wordsData = [
     "antonyms": [
       "unbelief"
     ],
-    "syllables": "be·lief"
+    "syllables": "be·lief",
+    "extraExample": "She has a strong belief that hard work leads to success.",
+    "extraExampleTranslation": "เธอมีความเชื่ออย่างแรงกล้าว่าการทำงานหนักนำไปสู่ความสำเร็จ",
+    "usageTip": "มักใช้คู่กับคำกริยา have/hold และตามด้วย that-clause หรือ in"
   },
   {
     "word": "believe",
@@ -6273,7 +6526,10 @@ const wordsData = [
     "forms": [
       "V2/V3: believed",
       "V-ing: believing"
-    ]
+    ],
+    "extraExample": "I believe that we can finish this project on time.",
+    "extraExampleTranslation": "ฉันเชื่อว่าเราสามารถทำโปรเจกต์นี้ให้เสร็จทันเวลาได้",
+    "usageTip": "ไม่นิยมใช้ในรูป Continuous (เช่น ไม่ใช้ I am believing)"
   },
   {
     "word": "bell",
@@ -6299,7 +6555,10 @@ const wordsData = [
       "โรงเรียน",
       "กำลัง",
       "ดัง"
-    ]
+    ],
+    "extraExample": "Please ring the bell when you arrive at the lobby.",
+    "extraExampleTranslation": "กรุณากดกริ่งเมื่อคุณมาถึงล็อบบี้",
+    "usageTip": "ใช้ได้ทั้งกริ่งประตูและกระดิ่ง"
   },
   {
     "word": "belong",
@@ -6325,7 +6584,10 @@ const wordsData = [
       "ฉัน"
     ],
     "syllables": "be·long",
-    "grammarPattern": "belong to + someone (เป็นของ... ไม่นิยมใช้รูป Continuous)"
+    "grammarPattern": "belong to + someone (เป็นของ... ไม่นิยมใช้รูป Continuous)",
+    "extraExample": "These confidential briefing notes belong to the PR director.",
+    "extraExampleTranslation": "บันทึกการบรรยายสรุปที่เป็นความลับเหล่านี้เป็นของผู้อำนวยการฝ่ายประชาสัมพันธ์",
+    "usageTip": "ใช้กับ to เพื่อบอกว่าสิ่งของหรือข้อมูลเป็นของใคร"
   },
   {
     "word": "below",
@@ -6355,7 +6617,10 @@ const wordsData = [
       "above"
     ],
     "phoneticUK": "/bɪlˈəʊ/",
-    "syllables": "be·low"
+    "syllables": "be·low",
+    "extraExample": "Please write your signature on the line below.",
+    "extraExampleTranslation": "กรุณาเซ็นชื่อของคุณบนเส้นด้านล่าง",
+    "usageTip": "ใช้บอกระดับหรือตำแหน่งที่ต่ำกว่า และใช้กับอุณหภูมิหรือตัวเลขที่ต่ำกว่าเกณฑ์"
   },
   {
     "word": "belt",
@@ -6380,7 +6645,10 @@ const wordsData = [
       "เข็มขัดนิรภัย",
       "ของ",
       "คุณ"
-    ]
+    ],
+    "extraExample": "He tightened his tool belt before fixing the shelf.",
+    "extraExampleTranslation": "เขาคาดเข็มขัดเครื่องมือให้แน่นก่อนซ่อมชั้นวางของ",
+    "usageTip": "ใช้ได้ทั้งเข็มขัดแต่งกายและเข็มขัดช่าง"
   },
   {
     "word": "bend",
@@ -6412,7 +6680,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: bent"
-    ]
+    ],
+    "extraExample": "You should bend your knees when lifting heavy boxes.",
+    "extraExampleTranslation": "คุณควรงอเข่าเมื่อยกกล่องที่หนัก",
+    "usageTip": "กริยาช่อง 2 และ 3 คือ bent (bend - bent - bent)"
   },
   {
     "word": "beneath",
@@ -6441,7 +6712,10 @@ const wordsData = [
       "ต้นไม้",
       "ใหญ่"
     ],
-    "syllables": "be·neath"
+    "syllables": "be·neath",
+    "extraExample": "They found a hidden box beneath the old floorboards.",
+    "extraExampleTranslation": "พวกเขาพบกล่องที่ซ่อนอยู่ใต้แผ่นไม้ปูพื้นเก่า",
+    "usageTip": "มีความหมายคล้าย under แต่มักใช้ในภาษาเขียนหรือให้ความรู้สึกที่เป็นทางการกว่า"
   },
   {
     "word": "benefit",
@@ -6473,7 +6747,10 @@ const wordsData = [
       "มากมาย"
     ],
     "syllables": "be·ne·fit",
-    "rootBreakdown": "bene (ดี) + fit (ทำ) → ผลประโยชน์"
+    "rootBreakdown": "bene (ดี) + fit (ทำ) → ผลประโยชน์",
+    "extraExample": "Clear communication has a huge benefit during a crisis.",
+    "extraExampleTranslation": "การสื่อสารที่ชัดเจนมีประโยชน์อย่างมากในช่วงวิกฤต",
+    "usageTip": "มักใช้กับ have a benefit หรือ for the benefit of"
   },
   {
     "word": "bent",
@@ -6500,7 +6777,10 @@ const wordsData = [
       "มี",
       "หลัง",
       "ค่อม"
-    ]
+    ],
+    "extraExample": "He has a natural bent for solving complex math problems.",
+    "extraExampleTranslation": "เขามีความถนัดตามธรรมชาติในการแก้โจทย์คณิตศาสตร์ที่ซับซ้อน",
+    "usageTip": "ในรูปคำนามมักหมายถึงความโน้มเอียงหรือความถนัด (a bent for) และเป็นรูปอดีตของ bend ด้วย"
   },
   {
     "word": "beside",
@@ -6527,7 +6807,9 @@ const wordsData = [
       "สิ"
     ],
     "usageTip": "beside (ไม่มี s) = ข้างๆ; ส่วน besides (มี s) = นอกจากนี้ / นอกจาก",
-    "syllables": "be·side"
+    "syllables": "be·side",
+    "extraExample": "Come and sit beside me so we can talk.",
+    "extraExampleTranslation": "มานั่งข้างๆ ฉันสิ เราจะได้คุยกัน"
   },
   {
     "word": "best",
@@ -6560,7 +6842,10 @@ const wordsData = [
     ],
     "antonyms": [
       "worst"
-    ]
+    ],
+    "extraExample": "This is the best coffee I have ever tasted.",
+    "extraExampleTranslation": "นี่คือกาแฟที่ดีที่สุดเท่าที่ฉันเคยชิมมาเลย",
+    "usageTip": "เป็นขั้นสูงสุด (superlative) ของ good และมักใช้คู่กับ the"
   },
   {
     "word": "bet",
@@ -6596,7 +6881,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: bet"
-    ]
+    ],
+    "extraExample": "I bet it will rain later this afternoon.",
+    "extraExampleTranslation": "ฉันพนันเลยว่าบ่ายนี้ฝนจะต้องตกแน่ๆ",
+    "usageTip": "ใช้พูดแบบไม่เป็นทางการว่า 'ฉันมั่นใจเลยว่า...' ได้ด้วย เช่น I bet..."
   },
   {
     "word": "better",
@@ -6630,7 +6918,10 @@ const wordsData = [
       "worse"
     ],
     "phoneticUK": "/bˈetə(r)/",
-    "syllables": "bet·ter"
+    "syllables": "bet·ter",
+    "extraExample": "Your English is getting much better every day.",
+    "extraExampleTranslation": "ภาษาอังกฤษของคุณกำลังดีขึ้นมากทุกวัน",
+    "usageTip": "เป็นขั้นกว่า (comparative) ของ good และใช้คู่กับ than ในการเปรียบเทียบ"
   },
   {
     "word": "betting",
@@ -6660,7 +6951,10 @@ const wordsData = [
       "การพนัน",
       "ม้า"
     ],
-    "syllables": "bet·ting"
+    "syllables": "bet·ting",
+    "extraExample": "Online sports betting has become very popular recently.",
+    "extraExampleTranslation": "การพนันกีฬาออนไลน์ได้รับความนิยมอย่างมากเมื่อเร็วๆ นี้",
+    "usageTip": "ใช้เป็นคำนามหมายถึงการพนัน หรือใช้เป็นรูป V-ing ของ bet"
   },
   {
     "word": "between",
@@ -6689,7 +6983,9 @@ const wordsData = [
       "ต้น"
     ],
     "usageTip": "ใช้ between กับ 2 สิ่งหรือตำแหน่งที่แยกชัดแต่ละฝ่าย; ถ้า 3 ขึ้นไปใช้ among",
-    "syllables": "be·tween"
+    "syllables": "be·tween",
+    "extraExample": "There is a small cafe between the bank and the bookstore.",
+    "extraExampleTranslation": "มีร้านกาแฟเล็กๆ อยู่ระหว่างธนาคารกับร้านหนังสือ"
   },
   {
     "word": "beyond",
@@ -6714,7 +7010,10 @@ const wordsData = [
       "แม่น้ำ",
       "ไป"
     ],
-    "phoneticUK": "/bɪˈɒnd/"
+    "phoneticUK": "/bɪˈɒnd/",
+    "extraExample": "The view from the mountain top was beyond my expectations.",
+    "extraExampleTranslation": "วิวจากยอดเขาอยู่เหนือความคาดหมายของฉันมาก",
+    "usageTip": "ใช้บอกว่าไกลเกินกว่าขอบเขต ขีดจำกัด หรือความเข้าใจ"
   },
   {
     "word": "bicycle",
@@ -6773,7 +7072,10 @@ const wordsData = [
       "command",
       "bidding",
       "dictation"
-    ]
+    ],
+    "extraExample": "The company made a high bid to win the government training contract.",
+    "extraExampleTranslation": "บริษัทได้ยื่นประมูลราคาสูงเพื่อให้ได้สัญญาการฝึกอบรมของรัฐบาล",
+    "usageTip": "ใช้ make a bid สำหรับการยื่นประมูลหรือความพยายามเพื่อให้ได้มา"
   },
   {
     "word": "big",
@@ -6809,7 +7111,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: bigger",
       "ขั้นสุด: biggest"
-    ]
+    ],
+    "extraExample": "They moved into a big house near the park.",
+    "extraExampleTranslation": "พวกเขาย้ายเข้าไปอยู่ในบ้านหลังใหญ่ใกล้สวนสาธารณะ",
+    "usageTip": "ใช้อธิบายขนาดใหญ่ หรือความสำคัญระดับใหญ่ (เช่น big decision)"
   },
   {
     "word": "bike",
@@ -6838,7 +7143,10 @@ const wordsData = [
       "คุณ",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "We rented a bike to explore the old town.",
+    "extraExampleTranslation": "เราเช่าจักรยานสองล้อเพื่อสำรวจเมืองเก่า",
+    "usageTip": "ใช้ rent a bike เมื่อเช่าขี่เที่ยว"
   },
   {
     "word": "bill",
@@ -6866,7 +7174,9 @@ const wordsData = [
       "ด้วย",
       "ครับ/ค่ะ"
     ],
-    "usageTip": "ในร้านอาหาร UK ขอ check/bill มักใช้ Can I have the bill, please? (US ใช้ check)"
+    "usageTip": "ในร้านอาหาร UK ขอ check/bill มักใช้ Can I have the bill, please? (US ใช้ check)",
+    "extraExample": "The company paid the legal bill after the PR crisis ended.",
+    "extraExampleTranslation": "บริษัทจ่ายบิลค่าทนายความหลังจากวิกฤตประชาสัมพันธ์จบลง"
   },
   {
     "word": "billion",
@@ -6898,7 +7208,10 @@ const wordsData = [
       "trillion",
       "zillion"
     ],
-    "syllables": "bil·lion"
+    "syllables": "bil·lion",
+    "extraExample": "The company reached a value of one billion dollars this year.",
+    "extraExampleTranslation": "บริษัทมีมูลค่าแตะหนึ่งพันล้านดอลลาร์ในปีนี้",
+    "usageTip": "เมื่อมีตัวเลขนำหน้า ไม่ต้องเติม -s (เช่น two billion) แต่ใช้ billions of เมื่อไม่ระบุจำนวน"
   },
   {
     "word": "bin",
@@ -6925,7 +7238,10 @@ const wordsData = [
       "ลง",
       "ใน",
       "ถัง"
-    ]
+    ],
+    "extraExample": "Please empty the kitchen bin before it starts to smell.",
+    "extraExampleTranslation": "กรุณาเอาขยะในถังในครัวไปทิ้งก่อนที่มันจะเริ่มมีกลิ่น",
+    "usageTip": "ใช้กับถังขยะในบ้านหรือถังใหญ่หน้าตึกก็ได้"
   },
   {
     "word": "biology",
@@ -7016,7 +7332,10 @@ const wordsData = [
     "antonyms": [
       "death"
     ],
-    "phoneticUK": "/bˈɜːθ/"
+    "phoneticUK": "/bˈɜːθ/",
+    "extraExample": "Every human body begins its growth from the moment of birth.",
+    "extraExampleTranslation": "ร่างกายมนุษย์ทุกคนเริ่มต้นการเติบโตตั้งแต่วินาทีแรกของกำเนิด",
+    "usageTip": "ใช้คำว่า birth เพื่อสื่อถึงจุดเริ่มต้นหรือการกำเนิดของชีวิต"
   },
   {
     "word": "birthday",
@@ -7039,7 +7358,10 @@ const wordsData = [
       "สุขสันต์วันเกิด"
     ],
     "phoneticUK": "/bˈɜːθdˌeɪ/",
-    "syllables": "bir·thday"
+    "syllables": "bir·thday",
+    "extraExample": "Our team surprised him with a cake on his birthday.",
+    "extraExampleTranslation": "ทีมของเราเซอร์ไพรส์เขาด้วยเค้กในวันเกิดของเขา",
+    "usageTip": "ใช้กับคำบุพบท on เช่น on my birthday"
   },
   {
     "word": "biscuit",
@@ -7133,7 +7455,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "bit"
-    ]
+    ],
+    "extraExample": "Take a small bite first to test if it is too spicy.",
+    "extraExampleTranslation": "ลองกัดคำเล็กๆ ก่อนเพื่อดูว่าเผ็ดเกินไปไหม",
+    "usageTip": "ใช้กับอาหารหรือการชิมรส"
   },
   {
     "word": "bitter",
@@ -7164,7 +7489,10 @@ const wordsData = [
       "bitterly"
     ],
     "phoneticUK": "/bˈɪtə(r)/",
-    "syllables": "bit·ter"
+    "syllables": "bit·ter",
+    "extraExample": "This dark chocolate tastes quite bitter without sugar.",
+    "extraExampleTranslation": "ดาร์กช็อกโกแลตนี้รสค่อนข้างขมเมื่อไม่ใส่น้ำตาล",
+    "usageTip": "ใช้บอกรสชาติที่ไม่หวาน"
   },
   {
     "word": "bitterly",
@@ -7222,7 +7550,10 @@ const wordsData = [
     ],
     "antonyms": [
       "white"
-    ]
+    ],
+    "extraExample": "She wore a black dress to the evening party.",
+    "extraExampleTranslation": "เธอสวมชุดสีดำไปงานเลี้ยงตอนเย็น",
+    "usageTip": "ใช้วางหน้าคำนามเพื่อบอกสี หรือใช้หลัง verb to be"
   },
   {
     "word": "blade",
@@ -7250,7 +7581,10 @@ const wordsData = [
       "นี้",
       "คม",
       "มาก"
-    ]
+    ],
+    "extraExample": "Be careful when you wash the blender blade.",
+    "extraExampleTranslation": "ระวังตอนล้างใบมีดเครื่องปั่นด้วยนะ",
+    "usageTip": "ระวังสับสนกับ knife เพราะ blade หมายถึงส่วนที่เป็นใบมีด"
   },
   {
     "word": "blame",
@@ -7283,7 +7617,10 @@ const wordsData = [
     "forms": [
       "V2/V3: blamed",
       "V-ing: blaming"
-    ]
+    ],
+    "extraExample": "Don't blame yourself for the mistake; we all make errors.",
+    "extraExampleTranslation": "อย่าโทษตัวเองสำหรับความผิดพลาดเลย เราทุกคนต่างก็ทำพลาดได้",
+    "usageTip": "มักใช้โครงสร้าง blame + someone + for + something"
   },
   {
     "word": "blank",
@@ -7311,7 +7648,10 @@ const wordsData = [
       "คุณ",
       "ใน",
       "ช่องว่าง"
-    ]
+    ],
+    "extraExample": "Please fill in the blank spaces on the application form.",
+    "extraExampleTranslation": "กรุณากรอกข้อมูลในช่องว่างบนแบบฟอร์มใบสมัคร",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าว่างเปล่า ไม่มีข้อความหรือลวดลาย"
   },
   {
     "word": "blind",
@@ -7339,7 +7679,10 @@ const wordsData = [
       "โดย",
       "ใช้",
       "ไม้เท้า"
-    ]
+    ],
+    "extraExample": "The blind athlete trained hard to improve his balance and coordination.",
+    "extraExampleTranslation": "นักกีฬาผู้ตาบอดฝึกซ้อมอย่างหนักเพื่อพัฒนาการทรงตัวและการประสานงานของร่างกาย",
+    "usageTip": "ใช้ blind เมื่อกล่าวถึงผู้พิการทางสายตาหรือการมองไม่เห็น"
   },
   {
     "word": "block",
@@ -7368,7 +7711,10 @@ const wordsData = [
       "ตึก",
       "ถัดไป"
     ],
-    "phoneticUK": "/blˈɒk/"
+    "phoneticUK": "/blˈɒk/",
+    "extraExample": "Our apartment is two blocks away from the subway station.",
+    "extraExampleTranslation": "อพาร์ตเมนต์ของเราอยู่ห่างจากสถานีรถไฟใต้ดินสองช่วงตึก",
+    "usageTip": "ในบริบทที่อยู่อาศัยมักใช้บอกระยะทางเป็นช่วงตึก"
   },
   {
     "word": "blonde",
@@ -7397,7 +7743,10 @@ const wordsData = [
       "ที่",
       "สวยงาม"
     ],
-    "phoneticUK": "/blˈɒnd/"
+    "phoneticUK": "/blˈɒnd/",
+    "extraExample": "The blonde coordinator greeted everyone warmly at the door.",
+    "extraExampleTranslation": "ผู้ประสานงานผมสีทองทักทายทุกคนอย่างอบอุ่นที่ประตู",
+    "usageTip": "มักใช้เป็นคำคุณศัพท์นำหน้าคำนามหรือระบุลักษณะบุคคล"
   },
   {
     "word": "blood",
@@ -7429,7 +7778,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Stretching improves blood flow to your tired muscles.",
+    "extraExampleTranslation": "การยืดเหยียดช่วยเพิ่มการไหลเวียนของสายเลือดไปยังกล้ามเนื้อที่เหนื่อยล้า",
+    "usageTip": "ในบริบทการออกกำลังกาย blood flow หมายถึงการไหลเวียนของเลือด"
   },
   {
     "word": "blow",
@@ -7459,7 +7811,10 @@ const wordsData = [
       "V2: blew",
       "V3: blown"
     ],
-    "phoneticUK": "/blˈəʊ/"
+    "phoneticUK": "/blˈəʊ/",
+    "extraExample": "Take a deep breath in and blow the air out slowly as you stretch.",
+    "extraExampleTranslation": "หายใจเข้าลึกๆ แล้วเป่าลมหายใจออกช้าๆ ขณะที่คุณยืดเหยียด",
+    "usageTip": "blow out ใช้กับการเป่าลมหายใจออกเพื่อผ่อนคลายกล้ามเนื้อ"
   },
   {
     "word": "blue",
@@ -7489,7 +7844,10 @@ const wordsData = [
     "phrases": [
       "once in a blue moon (นานๆ ทีเกิดขึ้นครั้ง)",
       "out of the blue (เกิดขึ้นแบบไม่ทันตั้งตัว)"
-    ]
+    ],
+    "extraExample": "The sky is bright blue today without a single cloud.",
+    "extraExampleTranslation": "วันนี้ท้องฟ้าเป็นสีฟ้าสดใสไม่มีเมฆสักก้อน",
+    "usageTip": "ใช้บอกสีฟ้าหรือสีน้ำเงิน และในสำนวนอาจหมายถึงความเศร้าได้ด้วย"
   },
   {
     "word": "board",
@@ -7516,7 +7874,8 @@ const wordsData = [
       "กระดาน"
     ],
     "extraExample": "Passengers are ready to board the flight now.",
-    "extraExampleTranslation": "ผู้โดยสารพร้อมขึ้นเครื่องบินแล้วในขณะนี้ (ความหมาย [v.]: ขึ้นเครื่อง/รถ)"
+    "extraExampleTranslation": "ผู้โดยสารพร้อมขึ้นเครื่องบินแล้วในขณะนี้ (ความหมาย [v.]: ขึ้นเครื่อง/รถ)",
+    "usageTip": "หมายถึงแผ่นกระดาน กระดานดำ หรือคณะกรรมการก็ได้ตามบริบท"
   },
   {
     "word": "boat",
@@ -7544,7 +7903,10 @@ const wordsData = [
       "ลำ",
       "เล็ก"
     ],
-    "phoneticUK": "/bˈəʊt/"
+    "phoneticUK": "/bˈəʊt/",
+    "extraExample": "The wooden boat crossed the river in ten minutes.",
+    "extraExampleTranslation": "เรือไม้ข้ามแม่น้ำภายในสิบนาที",
+    "usageTip": "ใช้ by boat เมื่อเดินทางทางน้ำ"
   },
   {
     "word": "body",
@@ -7576,7 +7938,10 @@ const wordsData = [
     "syllables": "bo·dy",
     "forms": [
       "พหูพจน์: bodies"
-    ]
+    ],
+    "extraExample": "Listening to your body helps you avoid pushing too hard.",
+    "extraExampleTranslation": "การรับฟังสัญญาณจากร่างกายช่วยให้คุณหลีกเลี่ยงการฝืนออกกำลังกายหนักเกินไป",
+    "usageTip": "listen to your body เป็นสำนวนยอดนิยมในวงการฟิตเนส"
   },
   {
     "word": "boil",
@@ -7605,7 +7970,10 @@ const wordsData = [
       "อุณหภูมิ",
       "100",
       "องศา"
-    ]
+    ],
+    "extraExample": "Bring the water to a boil before adding the noodles.",
+    "extraExampleTranslation": "ต้มน้ำให้เดือดก่อนใส่เส้นบะหมี่",
+    "usageTip": "ใช้กับน้ำหรือซุปที่เดือด"
   },
   {
     "word": "bomb",
@@ -7630,7 +7998,10 @@ const wordsData = [
       "ดัง",
       "กึกก้อง"
     ],
-    "phoneticUK": "/bˈɒm/"
+    "phoneticUK": "/bˈɒm/",
+    "extraExample": "The police safely removed the unexploded bomb from the area.",
+    "extraExampleTranslation": "ตำรวจได้เคลื่อนย้ายระเบิดที่ยังไม่ทำงานออกจากพื้นที่อย่างปลอดภัย",
+    "usageTip": "ใช้เป็นคำนามหมายถึงลูกระเบิด หรือเป็นคำกริยาแปลว่าทิ้งระเบิด"
   },
   {
     "word": "bone",
@@ -7654,7 +8025,10 @@ const wordsData = [
       "ฝัง",
       "กระดูก"
     ],
-    "phoneticUK": "/bˈəʊn/"
+    "phoneticUK": "/bˈəʊn/",
+    "extraExample": "Drinking milk and doing weight-bearing exercises keep every bone strong.",
+    "extraExampleTranslation": "การดื่มนมและการออกกำลังกายแบบลงน้ำหนักช่วยให้กระดูกทุกชิ้นแข็งแรง",
+    "usageTip": "จำง่ายๆ ว่า bone คือกระดูกที่เป็นโครงสร้างแข็งของร่างกาย"
   },
   {
     "word": "book",
@@ -7682,7 +8056,8 @@ const wordsData = [
       "น่าสนใจ"
     ],
     "extraExample": "I would like to book a table for two at 7 p.m.",
-    "extraExampleTranslation": "ฉันอยากจะจองโต๊ะสำหรับ 2 ที่เวลา 1 ทุ่ม (ความหมายรอง: จอง)"
+    "extraExampleTranslation": "ฉันอยากจะจองโต๊ะสำหรับ 2 ที่เวลา 1 ทุ่ม (ความหมายรอง: จอง)",
+    "usageTip": "เป็นคำนามที่นับได้ ต้องมี a/an หรือเติม s เมื่อเป็นพหูพจน์"
   },
   {
     "word": "boot",
@@ -7709,7 +8084,10 @@ const wordsData = [
       "รองเท้าบูท",
       "กัน",
       "หนาว"
-    ]
+    ],
+    "extraExample": "Leave your muddy boots on the mat by the door.",
+    "extraExampleTranslation": "วางรองเท้าบูทที่เปื้อนโคลนไว้บนพรมเช็ดเท้าตรงประตูนะ",
+    "usageTip": "มักใช้เป็นรูปพหูพจน์ boots เมื่อพูดถึงรองเท้าหนึ่งคู่"
   },
   {
     "word": "border",
@@ -7739,7 +8117,10 @@ const wordsData = [
       "เม็กซิโก"
     ],
     "phoneticUK": "/bˈɔːdə(r)/",
-    "syllables": "bor·der"
+    "syllables": "bor·der",
+    "extraExample": "Show your passport at the border checkpoint.",
+    "extraExampleTranslation": "แสดงหนังสือเดินทางของคุณที่ด่านชายแดน",
+    "usageTip": "ใช้ cross the border หมายถึงข้ามพรมแดน"
   },
   {
     "word": "bore",
@@ -7782,7 +8163,10 @@ const wordsData = [
     "forms": [
       "V2/V3: bored",
       "V-ing: boring"
-    ]
+    ],
+    "extraExample": "I hope my long stories didn't bore you.",
+    "extraExampleTranslation": "ฉันหวังว่าเรื่องยาวๆ ของฉันจะไม่ทำให้คุณเบื่อนะ",
+    "usageTip": "ใช้เมื่อบางสิ่งหรือบางคนทำให้ผู้อื่นรู้สึกเบื่อ (V. ทำให้เบื่อ)"
   },
   {
     "word": "bored",
@@ -7812,7 +8196,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "bore"
-    ]
+    ],
+    "extraExample": "He felt bored after waiting at the airport for three hours.",
+    "extraExampleTranslation": "เขารู้สึกเบื่อหน่ายหลังจากรอที่สนามบินนานถึงสามชั่วโมง",
+    "usageTip": "ใช้กับคนหรือสิ่งมีชีวิตเพื่อบอกความรู้สึกเบื่อ มักใช้คู่กับ with"
   },
   {
     "word": "boring",
@@ -7843,7 +8230,9 @@ const wordsData = [
     "wordFamily": [
       "bore"
     ],
-    "syllables": "bo·ring"
+    "syllables": "bo·ring",
+    "extraExample": "The movie was so boring that we left halfway through.",
+    "extraExampleTranslation": "หนังเรื่องนี้น่าเบื่อมากจนเราเดินออกมากลางเรื่อง"
   },
   {
     "word": "born",
@@ -7870,7 +8259,10 @@ const wordsData = [
       "bear",
       "deliver",
       "birth"
-    ]
+    ],
+    "extraExample": "She was born with natural flexibility that helped her in gymnastics.",
+    "extraExampleTranslation": "เธอเกิดมาพร้อมความยืดหยุ่นตามธรรมชาติที่ช่วยเธอในการเล่นยิมนาสติก",
+    "usageTip": "ใช้คู่กับ verb to be เสมอ เช่น was born (เกิด)"
   },
   {
     "word": "borrow",
@@ -7905,7 +8297,9 @@ const wordsData = [
     ],
     "usageTip": "borrow = ขอยืมจาก (borrow A from B); ถ้า 'ให้ยืมแก่' ใช้ lend (lend A to B)",
     "phoneticUK": "/bˈɑːrˌəʊ/",
-    "syllables": "bor·row"
+    "syllables": "bor·row",
+    "extraExample": "Can I borrow your laptop to draft the stakeholder email?",
+    "extraExampleTranslation": "ฉันขอยืมแล็ปท็อปของคุณมาร่างอีเมลถึงผู้มีส่วนได้ส่วนเสียหน่อยได้ไหม"
   },
   {
     "word": "boss",
@@ -7936,7 +8330,10 @@ const wordsData = [
     "phoneticUK": "/bˈɒs/",
     "forms": [
       "พหูพจน์: bosses"
-    ]
+    ],
+    "extraExample": "My boss asked me to prepare the crisis statement before noon.",
+    "extraExampleTranslation": "เจ้านายของฉันขอให้ฉันเตรียมแถลงการณ์วิกฤตก่อนเที่ยง",
+    "usageTip": "ใช้เรียกหัวหน้างานหรือนายจ้างโดยตรงในภาษาพูดและงานทั่วไป"
   },
   {
     "word": "both",
@@ -7964,7 +8361,10 @@ const wordsData = [
     "wordFamily": [
       "bother"
     ],
-    "phoneticUK": "/bˈəʊθ/"
+    "phoneticUK": "/bˈəʊθ/",
+    "extraExample": "Both of my parents work at the same hospital.",
+    "extraExampleTranslation": "พ่อและแม่ของฉันทั้งสองคนทำงานที่โรงพยาบาลเดียวกัน",
+    "usageTip": "ใช้กล่าวถึงคนหรือสิ่งของสองอย่างร่วมกัน กริยาที่ตามมาต้องเป็นพหูพจน์"
   },
   {
     "word": "bother",
@@ -7995,7 +8395,10 @@ const wordsData = [
       "ฉัน"
     ],
     "phoneticUK": "/bˈɒðə(r)/",
-    "syllables": "bo·ther"
+    "syllables": "bo·ther",
+    "extraExample": "Sorry to bother you, but could you help me carry this box?",
+    "extraExampleTranslation": "ขอโทษที่รบกวนนะ แต่คุณช่วยฉันยกกล่องนี้หน่อยได้ไหม",
+    "usageTip": "ใช้ขอโทษเมื่อต้องรบกวนผู้อื่น หรือใช้ในประโยคปฏิเสธว่าไม่ต้องลำบาก"
   },
   {
     "word": "bottle",
@@ -8023,7 +8426,10 @@ const wordsData = [
       "ขวด"
     ],
     "phoneticUK": "/bˈɒtəl/",
-    "syllables": "bot·tle"
+    "syllables": "bot·tle",
+    "extraExample": "Check the label on the bottle for any allergens.",
+    "extraExampleTranslation": "ตรวจดูฉลากบนขวดเพื่อหาสารก่อภูมิแพ้",
+    "usageTip": "ใช้กับภาชนะบรรจุเครื่องดื่มหรือซอส"
   },
   {
     "word": "bottom",
@@ -8055,7 +8461,10 @@ const wordsData = [
       "top"
     ],
     "phoneticUK": "/bˈɒtəm/",
-    "syllables": "bot·tom"
+    "syllables": "bot·tom",
+    "extraExample": "Sign your name at the bottom of the page.",
+    "extraExampleTranslation": "เซ็นชื่อของคุณที่ด้านล่างสุดของหน้ากระดาษ",
+    "usageTip": "มักใช้คู่กับ at the bottom of เพื่อระบุตำแหน่งล่างสุด"
   },
   {
     "word": "bound",
@@ -8082,7 +8491,10 @@ const wordsData = [
       "ต้อง",
       "ชนะ",
       "แน่ๆ"
-    ]
+    ],
+    "extraExample": "This train is bound for Chiang Mai and departs at noon.",
+    "extraExampleTranslation": "รถไฟขบวนนี้มุ่งหน้าไปเชียงใหม่และจะออกเดินทางตอนเที่ยง",
+    "usageTip": "ใช้กับยานพาหนะเมื่อมุ่งหน้าไปที่ใด (bound for) หรือแปลว่าผูกมัด"
   },
   {
     "word": "bowl",
@@ -8109,7 +8521,10 @@ const wordsData = [
       "สัก",
       "ชาม"
     ],
-    "phoneticUK": "/bˈəʊl/"
+    "phoneticUK": "/bˈəʊl/",
+    "extraExample": "She ordered a warm bowl of vegetable soup.",
+    "extraExampleTranslation": "เธอสั่งซุปผักอุ่นๆ มาหนึ่งชาม",
+    "usageTip": "ใช้กับภาชนะใส่อาหารเหลวหรือสลัด"
   },
   {
     "word": "box",
@@ -8140,7 +8555,10 @@ const wordsData = [
     "phoneticUK": "/bˈɒks/",
     "forms": [
       "พหูพจน์: boxes"
-    ]
+    ],
+    "extraExample": "We still have three boxes to unpack in the living room.",
+    "extraExampleTranslation": "เรายังมีกล่องอีกสามใบที่ต้องแกะของในห้องนั่งเล่น",
+    "usageTip": "ใช้ได้ทั้งกล่องกระดาษย้ายบ้านและกล่องพัสดุ"
   },
   {
     "word": "boy",
@@ -8169,7 +8587,10 @@ const wordsData = [
     ],
     "antonyms": [
       "girl"
-    ]
+    ],
+    "extraExample": "The boy helped his teammates carry the heavy equipment.",
+    "extraExampleTranslation": "เด็กผู้ชายช่วยเพื่อนร่วมทีมยกอุปกรณ์หนักๆ",
+    "usageTip": "ใช้กับเด็กผู้ชายทั่วไป หรือลูกชาย"
   },
   {
     "word": "boyfriend",
@@ -8200,7 +8621,10 @@ const wordsData = [
       "ของ",
       "เธอ"
     ],
-    "syllables": "boy·friend"
+    "syllables": "boy·friend",
+    "extraExample": "Her boyfriend always encourages her before big team presentations.",
+    "extraExampleTranslation": "แฟนหนุ่มของเธอมักจะให้กำลังใจเธอก่อนการนำเสนอใหญ่ๆ ของทีมเสมอ",
+    "usageTip": "ใช้เรียกคนรักที่เป็นผู้ชาย"
   },
   {
     "word": "brain",
@@ -8227,7 +8651,10 @@ const wordsData = [
       "ของ",
       "คุณ",
       "สิ"
-    ]
+    ],
+    "extraExample": "Regular aerobic exercise sends more oxygen to your brain.",
+    "extraExampleTranslation": "การออกกำลังกายแบบแอโรบิกเป็นประจำช่วยส่งออกซิเจนไปเลี้ยงสมองมากขึ้น",
+    "usageTip": "brain คือสมอง ใช้พูดถึงทั้งอวัยวะและความคิด"
   },
   {
     "word": "branch",
@@ -8259,7 +8686,10 @@ const wordsData = [
     "phoneticUK": "/brˈɑːntʃ/",
     "forms": [
       "พหูพจน์: branches"
-    ]
+    ],
+    "extraExample": "A heavy snowstorm snapped a thick branch off the old oak tree.",
+    "extraExampleTranslation": "พายุหิมะรุนแรงทำให้กิ่งไม้ใหญ่หักออกจากต้นโอ๊กเก่าแก่",
+    "usageTip": "ใช้ branch ได้ทั้งกิ่งไม้และสาขาของวิชาหรือธุรกิจ"
   },
   {
     "word": "brand",
@@ -8288,7 +8718,10 @@ const wordsData = [
       "คุณ",
       "คือ",
       "อะไร"
-    ]
+    ],
+    "extraExample": "Our brand suffered some criticism, but honest updates helped us recover.",
+    "extraExampleTranslation": "แบรนด์ของเราเจอคำวิจารณ์บ้าง แต่การอัปเดตอย่างจริงใจช่วยให้เราฟื้นตัวได้",
+    "usageTip": "ใช้คู่กับ reputation หรือ image เมื่อพูดถึงภาพลักษณ์องค์กร"
   },
   {
     "word": "brave",
@@ -8318,7 +8751,10 @@ const wordsData = [
     "antonyms": [
       "cowardly",
       "afraid"
-    ]
+    ],
+    "extraExample": "The brave firefighter rescued the child from the burning house.",
+    "extraExampleTranslation": "นักดับเพลิงผู้กล้าหาญช่วยเด็กออกมาจากบ้านที่ไฟไหม้",
+    "usageTip": "ใช้ขยายคำนามเพื่อชมเชยความกล้าหาญ หรือใช้หลัง verb to be"
   },
   {
     "word": "bread",
@@ -8344,7 +8780,10 @@ const wordsData = [
       "ขนมปัง",
       "เป็น",
       "อาหารเช้า"
-    ]
+    ],
+    "extraExample": "I usually buy whole-grain bread because it keeps me full longer.",
+    "extraExampleTranslation": "ฉันมักจะซื้อขนมปังโฮลเกรนเพราะมันทำให้อิ่มนานขึ้น",
+    "usageTip": "ใช้คำว่า slice of bread เพื่อบอกจำนวนแผ่นของขนมปัง"
   },
   {
     "word": "break",
@@ -8379,7 +8818,10 @@ const wordsData = [
       "break the ice (ละลายพฤติกรรม/เริ่มคุย)",
       "break a leg (อวยพรให้โชคดี)",
       "take a break (พักเบรก)"
-    ]
+    ],
+    "extraExample": "Be careful not to break that glass vase on the table.",
+    "extraExampleTranslation": "ระวังอย่าทำแจกันแก้วบนโต๊ะใบนั้นแตกนะ",
+    "usageTip": "ใช้ได้ทั้งทำสิ่งของแตกหัก หรือหยุดพักจากการทำงาน (take a break)"
   },
   {
     "word": "breakfast",
@@ -8405,7 +8847,10 @@ const wordsData = [
       "เป็น",
       "อาหารเช้า"
     ],
-    "syllables": "break·fast"
+    "syllables": "break·fast",
+    "extraExample": "Skipping breakfast often makes me feel tired before lunch.",
+    "extraExampleTranslation": "การงดอาหารเช้ามักทำให้ฉันรู้สึกเหนื่อยก่อนมื้อเที่ยง",
+    "usageTip": "ใช้ eat breakfast หรือ have breakfast เพื่อบอกว่ากินมื้อเช้า"
   },
   {
     "word": "breast",
@@ -8431,7 +8876,10 @@ const wordsData = [
       "ดื่ม",
       "นม",
       "แม่"
-    ]
+    ],
+    "extraExample": "The swimmer pushed through the water with a strong breast stroke.",
+    "extraExampleTranslation": "นักว่ายน้ำแหวกว่ายผ่านน้ำด้วยท่ากบที่แข็งแรง",
+    "usageTip": "คำนี้ใช้ได้ทั้งอวัยวะและท่าว่ายน้ำ (breaststroke)"
   },
   {
     "word": "breath",
@@ -8461,7 +8909,9 @@ const wordsData = [
       "หายใจเข้า",
       "ลึกๆ"
     ],
-    "usageTip": "breath (ลงท้ายเสียง /θ/ เบา) เป็นคำนาม = ลมหายใจ; กริยาคือ breathe (มี e ท้าย)"
+    "usageTip": "breath (ลงท้ายเสียง /θ/ เบา) เป็นคำนาม = ลมหายใจ; กริยาคือ breathe (มี e ท้าย)",
+    "extraExample": "Take a deep breath before you start the final set of squats.",
+    "extraExampleTranslation": "หายใจเข้าลึกๆ ก่อนเริ่มสควอทเซตสุดท้าย"
   },
   {
     "word": "breathe",
@@ -8495,7 +8945,9 @@ const wordsData = [
     "forms": [
       "V2/V3: breathed",
       "V-ing: breathing"
-    ]
+    ],
+    "extraExample": "Breathe deeply through your nose while holding the stretch.",
+    "extraExampleTranslation": "หายใจเข้าลึกๆ ทางจมูกขณะค้างท่า ยืดเหยียด"
   },
   {
     "word": "breathing",
@@ -8528,7 +8980,10 @@ const wordsData = [
       "และ",
       "สม่ำเสมอ"
     ],
-    "syllables": "brea·thing"
+    "syllables": "brea·thing",
+    "extraExample": "Take slow, deep breaths to keep your breathing steady.",
+    "extraExampleTranslation": "หายใจเข้าลึกๆ ช้าๆ เพื่อให้การหายใจของคุณสม่ำเสมอ",
+    "usageTip": "เป็นคำนามหมายถึงการหายใจ มักใช้คู่กับคำคุณศัพท์บอกลักษณะ"
   },
   {
     "word": "breed",
@@ -8556,7 +9011,10 @@ const wordsData = [
       "เป็น",
       "สายพันธุ์",
       "อะไร"
-    ]
+    ],
+    "extraExample": "This hardy breed of mountain dog thrives in cold winter weather.",
+    "extraExampleTranslation": "สุนัขภูเขาพันธุ์อึดสายพันธุ์นี้เติบโตได้ดีในอากาศหนาวเย็นของฤดูหนาว",
+    "usageTip": "breed ในรูปคำนามหมายถึงสายพันธุ์สัตว์ ส่วนคำกริยาแปลว่าเพาะพันธุ์"
   },
   {
     "word": "brick",
@@ -8584,7 +9042,10 @@ const wordsData = [
       "ด้วย",
       "อิฐ",
       "สีแดง"
-    ]
+    ],
+    "extraExample": "The old apartment building has a charming red brick exterior.",
+    "extraExampleTranslation": "อาคารอพาร์ตเมนต์เก่ามีผนังด้านนอกเป็นอิฐสีแดงที่ดูมีเสน่ห์",
+    "usageTip": "brick มักใช้พูดถึงวัสดุสร้างผนังตึกที่แข็งแรงและดูคลาสสิก"
   },
   {
     "word": "bridge",
@@ -8608,7 +9069,10 @@ const wordsData = [
       "พวกเรา",
       "ข้าม",
       "สะพาน"
-    ]
+    ],
+    "extraExample": "Walk across the stone bridge to reach the market.",
+    "extraExampleTranslation": "เดินข้ามสะพานหินเพื่อไปถึงตลาด",
+    "usageTip": "ใช้ cross the bridge สำหรับการเดินหรือขับรถข้าม"
   },
   {
     "word": "brief",
@@ -8636,7 +9100,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "briefly"
-    ]
+    ],
+    "extraExample": "We had a brief meeting before the clients arrived.",
+    "extraExampleTranslation": "เรามีการประชุมสั้นๆ ก่อนที่ลูกค้าจะมาถึง",
+    "usageTip": "ใช้วางหน้าคำนามเพื่อบอกว่าสั้น กระชับ หรือใช้เวลาไม่นาน"
   },
   {
     "word": "briefly",
@@ -8667,7 +9134,10 @@ const wordsData = [
     "wordFamily": [
       "brief"
     ],
-    "syllables": "brie·fly"
+    "syllables": "brie·fly",
+    "extraExample": "She stopped by my desk briefly to say hello.",
+    "extraExampleTranslation": "เธอแวะมาที่โต๊ะทำงานของฉันชั่วครู่เพื่อทักทาย",
+    "usageTip": "ใช้ขยายกริยาเพื่อบอกว่าทำสิ่งนั้นในระยะเวลาสั้นๆ"
   },
   {
     "word": "bright",
@@ -8697,7 +9167,10 @@ const wordsData = [
     "antonyms": [
       "dark",
       "dim"
-    ]
+    ],
+    "extraExample": "The morning sun was so bright that I needed sunglasses.",
+    "extraExampleTranslation": "แสงแดดยามเช้าสว่างจ้ามากจนฉันต้องใส่แว่นกันแดด",
+    "usageTip": "ใช้บอกความสว่างของแสง สีสันที่สดใส หรือความฉลาดก็ได้"
   },
   {
     "word": "brilliant",
@@ -8827,7 +9300,10 @@ const wordsData = [
     "forms": [
       "V2/V3: broadcast"
     ],
-    "syllables": "broad·cast"
+    "syllables": "broad·cast",
+    "extraExample": "The radio station will broadcast the live concert tonight.",
+    "extraExampleTranslation": "สถานีวิทยุจะออกอากาศคอนเสิร์ตสดคืนนี้",
+    "usageTip": "ใช้กับรายการทีวี วิทยุ หรือไลฟ์สด (กริยาช่อง 2/3 คือ broadcast เช่นเดิม)"
   },
   {
     "word": "broadly",
@@ -8863,7 +9339,10 @@ const wordsData = [
     "antonyms": [
       "narrowly"
     ],
-    "syllables": "broad·ly"
+    "syllables": "broad·ly",
+    "extraExample": "The new policy was broadly welcomed by the public.",
+    "extraExampleTranslation": "นโยบายใหม่ได้รับการต้อนรับอย่างกว้างขวางจากสาธารณชน",
+    "usageTip": "มักวางไว้หน้ากริยาหรือคำคุณศัพท์เพื่อขยายความว่า 'โดยรวม/อย่างกว้างขวาง'"
   },
   {
     "word": "broken",
@@ -8891,7 +9370,10 @@ const wordsData = [
       "เสีย"
     ],
     "phoneticUK": "/brˈəʊkən/",
-    "syllables": "bro·ken"
+    "syllables": "bro·ken",
+    "extraExample": "My phone screen is broken after I dropped it on the floor.",
+    "extraExampleTranslation": "หน้าจอโทรศัพท์ของฉันแตกหลังจากทำหล่นลงพื้น",
+    "usageTip": "ใช้เป็นคำคุณศัพท์หรือรูปกริยาช่อง 3 ของ break เพื่อบอกว่าพังหรือแตกหัก"
   },
   {
     "word": "brother",
@@ -8922,7 +9404,10 @@ const wordsData = [
       "sister"
     ],
     "phoneticUK": "/brˈʌðə(r)/",
-    "syllables": "bro·ther"
+    "syllables": "bro·ther",
+    "extraExample": "My older brother taught me how to be a fair team player.",
+    "extraExampleTranslation": "พี่ชายของฉันสอนฉันถึงวิธีเป็นผู้เล่นในทีมที่ยุติธรรม",
+    "usageTip": "ใช้ได้ทั้งพี่ชายและน้องชาย"
   },
   {
     "word": "brown",
@@ -8948,7 +9433,10 @@ const wordsData = [
       "มี",
       "ดวงตา",
       "สีน้ำตาล"
-    ]
+    ],
+    "extraExample": "She wore a warm brown coat to the office.",
+    "extraExampleTranslation": "เธอสวมเสื้อโค้ทสีน้ำตาลอบอุ่นไปทำงาน",
+    "usageTip": "ใช้บอกสีน้ำตาลของสิ่งของ เสื้อผ้า หรืออาหารที่สุกเกรียม"
   },
   {
     "word": "brush",
@@ -8977,7 +9465,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: brushes"
-    ]
+    ],
+    "extraExample": "Use a stiff brush to scrub the grout between the bathroom tiles.",
+    "extraExampleTranslation": "ใช้แปรงขนแข็งขัดร่องยาแนวระหว่างกระเบื้องห้องน้ำ",
+    "usageTip": "นอกจากแปลว่าแปรงแล้ว brush ยังใช้เป็นกริยาแปลว่าปัดหรือแปรงได้ด้วย"
   },
   {
     "word": "bubble",
@@ -9004,7 +9495,10 @@ const wordsData = [
       "เป่า",
       "ฟองสบู่"
     ],
-    "syllables": "bub·ble"
+    "syllables": "bub·ble",
+    "extraExample": "The children loved chasing every soap bubble in the garden.",
+    "extraExampleTranslation": "เด็กๆ ชอบวิ่งไล่จับฟองสบู่ทุกฟองในสวน",
+    "usageTip": "ใช้เรียกฟองอากาศ ฟองสบู่ หรือใช้เปรียบเปรยถึงภาวะฟองสบู่ทางเศรษฐกิจ"
   },
   {
     "word": "budget",
@@ -9029,7 +9523,10 @@ const wordsData = [
       "งบประมาณ",
       "จำกัด"
     ],
-    "syllables": "bu·dget"
+    "syllables": "bu·dget",
+    "extraExample": "We set aside an emergency budget for crisis communications.",
+    "extraExampleTranslation": "เราจัดสรรงบประมาณฉุกเฉินไว้สำหรับการสื่อสารในภาวะวิกฤต",
+    "usageTip": "ใช้ emergency budget หรือ PR budget ในบริบทการจัดการวิกฤต"
   },
   {
     "word": "build",
@@ -9065,7 +9562,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: built"
-    ]
+    ],
+    "extraExample": "They plan to build a new community center next year.",
+    "extraExampleTranslation": "พวกเขาวางแผนจะสร้างศูนย์ชุมชนแห่งใหม่ในปีหน้า",
+    "usageTip": "ใช้กับการก่อสร้างอาคาร หรือการสร้างความสัมพันธ์และความมั่นใจ"
   },
   {
     "word": "building",
@@ -9095,7 +9595,10 @@ const wordsData = [
       "สูง",
       "มาก"
     ],
-    "syllables": "buil·ding"
+    "syllables": "buil·ding",
+    "extraExample": "The currency exchange is inside that tall building.",
+    "extraExampleTranslation": "ร้านแลกเงินอยู่ภายในอาคารสูงหลังนั้น",
+    "usageTip": "ใช้ tall building หรือ historic building เพื่อบรรยายลักษณะ"
   },
   {
     "word": "bullet",
@@ -9121,7 +9624,10 @@ const wordsData = [
       "พบ",
       "กระสุนปืน"
     ],
-    "syllables": "bul·let"
+    "syllables": "bul·let",
+    "extraExample": "The police found a single bullet near the broken window.",
+    "extraExampleTranslation": "ตำรวจพบกระสุนหนึ่งนัดใกล้หน้าต่างที่แตก",
+    "usageTip": "นอกจากกระสุนปืน ยังใช้เรียกจุดหัวข้อย่อย (bullet point) ในเอกสารได้ด้วย"
   },
   {
     "word": "bunch",
@@ -9151,7 +9657,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: bunches"
-    ]
+    ],
+    "extraExample": "He bought a fresh bunch of bananas from the market.",
+    "extraExampleTranslation": "เขาซื้อกล้วยหนึ่งหวีสดๆ จากตลาด",
+    "usageTip": "ใช้เป็นลักษณนามของผลไม้ ดอกไม้ หรือใช้แบบไม่เป็นทางการว่า a bunch of (กลุ่ม/เยอะ)"
   },
   {
     "word": "burn",
@@ -9182,7 +9691,10 @@ const wordsData = [
     "forms": [
       "V2/V3: burned / burnt"
     ],
-    "phoneticUK": "/bˈɜːn/"
+    "phoneticUK": "/bˈɜːn/",
+    "extraExample": "Be careful not to burn the toast while making breakfast.",
+    "extraExampleTranslation": "ระวังอย่าให้ขนมปังปิ้งไหม้ระหว่างทำอาหารเช้า",
+    "usageTip": "ใช้ได้ทั้งการเผาไหม้ ทำอาหารไหม้ หรืออาการแสบร้อนผิวหนัง"
   },
   {
     "word": "burnt",
@@ -9209,7 +9721,10 @@ const wordsData = [
       "ไหม้",
       "แล้ว"
     ],
-    "phoneticUK": "/bˈɜːnt/"
+    "phoneticUK": "/bˈɜːnt/",
+    "extraExample": "The chef threw away the burnt pieces of bread.",
+    "extraExampleTranslation": "เชฟทิ้งขนมปังส่วนที่ไหม้เกรียมไปแล้ว",
+    "usageTip": "เป็นคำคุณศัพท์ที่มาจากกริยา burn ใช้ขยายสิ่งที่ไหม้เกรียมหรือถูกไฟลวก"
   },
   {
     "word": "burst",
@@ -9234,7 +9749,10 @@ const wordsData = [
       "ลูกโป่ง",
       "แตก"
     ],
-    "phoneticUK": "/bˈɜːst/"
+    "phoneticUK": "/bˈɜːst/",
+    "extraExample": "A sudden burst of laughter filled the quiet room.",
+    "extraExampleTranslation": "เสียงหัวเราะที่ระเบิดออกมาอย่างกะทันหันดังก้องไปทั่วห้องที่เงียบสงบ",
+    "usageTip": "ใช้ในรูป 'a burst of + นาม' เพื่อบอกอาการที่ปะทุหรือเกิดขึ้นอย่างฉับพลัน"
   },
   {
     "word": "bury",
@@ -9265,7 +9783,10 @@ const wordsData = [
       "V2/V3: buried",
       "V-ing: burying"
     ],
-    "syllables": "bu·ry"
+    "syllables": "bu·ry",
+    "extraExample": "Let's bury our past disagreements and focus on the team goal.",
+    "extraExampleTranslation": "มาลืมความขัดแย้งในอดีตแล้วมุ่งเน้นที่เป้าหมายของทีมกันเถอะ",
+    "usageTip": "นอกจากแปลว่าฝังดิน ยังใช้เปรียบเปรยว่าลืมเรื่องเก่าๆ"
   },
   {
     "word": "bus",
@@ -9298,7 +9819,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: buses"
-    ]
+    ],
+    "extraExample": "I take the bus to school every morning at seven.",
+    "extraExampleTranslation": "ฉันขึ้นรถบัสไปโรงเรียนทุกเช้าตอนเจ็ดโมง",
+    "usageTip": "ใช้กับรถโดยสารประจำทาง โดยมักใช้คู่กับกริยา take หรือ catch"
   },
   {
     "word": "bush",
@@ -9327,7 +9851,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: bushes"
-    ]
+    ],
+    "extraExample": "The rabbits hid under a thick bush to escape the sudden hail.",
+    "extraExampleTranslation": "กระต่ายซ่อนตัวอยู่ใต้พุ่มไม้หนาเพื่อหนีลูกเห็บที่ตกลงมากะทันหัน",
+    "usageTip": "bush หมายถึงพุ่มไม้เตี้ยๆ ที่ขึ้นรวมกันเป็นกลุ่ม"
   },
   {
     "word": "business",
@@ -9360,7 +9887,10 @@ const wordsData = [
     "forms": [
       "พหูพจน์: businesses"
     ],
-    "rootBreakdown": "busy + -ness (ความเป็น / สภาวะ (Noun))"
+    "rootBreakdown": "busy + -ness (ความเป็น / สภาวะ (Noun))",
+    "extraExample": "Keeping stakeholders informed helps protect the business during hard times.",
+    "extraExampleTranslation": "การแจ้งข้อมูลผู้มีส่วนได้ส่วนเสียช่วยปกป้องธุรกิจในช่วงเวลายากลำบาก",
+    "usageTip": "ใช้กับ protect the business หรือ business continuity"
   },
   {
     "word": "businessman",
@@ -9388,7 +9918,10 @@ const wordsData = [
       "นักธุรกิจ",
       "ที่",
       "ประสบความสำเร็จ"
-    ]
+    ],
+    "extraExample": "The businessman held a press conference to clarify the rumor.",
+    "extraExampleTranslation": "นักธุรกิจท่านนั้นจัดแถลงข่าวเพื่อชี้แจงข่าวลือ",
+    "usageTip": "ใช้คำที่เฉพาะเจาะจงขึ้นเช่น executive ได้ในบริบทองค์กร"
   },
   {
     "word": "busy",
@@ -9427,7 +9960,10 @@ const wordsData = [
       "bus",
       "business"
     ],
-    "syllables": "bu·sy"
+    "syllables": "bu·sy",
+    "extraExample": "Sorry, I am too busy to talk on the phone right now.",
+    "extraExampleTranslation": "ขอโทษนะ ตอนนี้ฉันยุ่งเกินกว่าจะคุยโทรศัพท์ได้",
+    "usageTip": "ตามด้วย with + นาม หรือ V-ing เพื่อบอกว่ากำลังยุ่งอยู่กับเรื่องอะไร"
   },
   {
     "word": "but",
@@ -9457,7 +9993,10 @@ const wordsData = [
       "ไม่",
       "ชอบ",
       "กล้วย"
-    ]
+    ],
+    "extraExample": "She wanted to go out, but it started raining heavily.",
+    "extraExampleTranslation": "เธออยากออกไปข้างนอก แต่ฝนก็เริ่มตกหนัก",
+    "usageTip": "ใช้เชื่อมประโยคหรือข้อความที่มีความหมายขัดแย้งกัน"
   },
   {
     "word": "butter",
@@ -9484,7 +10023,10 @@ const wordsData = [
       "ขนมปัง"
     ],
     "phoneticUK": "/bˈʌtə(r)/",
-    "syllables": "but·ter"
+    "syllables": "but·ter",
+    "extraExample": "She spread a thin layer of butter on the warm toast.",
+    "extraExampleTranslation": "เธอทาเนยบางๆ ลงบนขนมปังปิ้งอุ่นๆ",
+    "usageTip": "เนยมักใช้คู่กับคำกริยา spread (ทา) หรือ melt (ละลาย)"
   },
   {
     "word": "button",
@@ -9509,7 +10051,10 @@ const wordsData = [
       "กดปุ่ม",
       "สีแดง"
     ],
-    "syllables": "but·ton"
+    "syllables": "but·ton",
+    "extraExample": "Press the ground floor button to go down to the main entrance.",
+    "extraExampleTranslation": "กดปุ่มชั้นล่างเพื่อลงไปยังทางเข้าหลักของตึก",
+    "usageTip": "button ใช้ได้ทั้งปุ่มกดลิฟต์ ปุ่มออดหน้าห้อง และกระดุมเสื้อ"
   },
   {
     "word": "buy",
@@ -9546,7 +10091,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: bought"
-    ]
+    ],
+    "extraExample": "We decided to buy a small apartment instead of renting one.",
+    "extraExampleTranslation": "เราตัดสินใจซื้ออพาร์ตเมนต์ขนาดเล็กแทนการเช่า",
+    "usageTip": "buy มักใช้คู่กับคำนามสิ่งของขนาดใหญ่ เช่น buy a flat หรือ buy furniture"
   },
   {
     "word": "buyer",
@@ -9579,7 +10127,10 @@ const wordsData = [
       "หลัง",
       "นี้"
     ],
-    "phoneticUK": "/bˈaɪə(r)/"
+    "phoneticUK": "/bˈaɪə(r)/",
+    "extraExample": "Every affected buyer will receive a full refund and an apology.",
+    "extraExampleTranslation": "ผู้ซื้อที่ได้รับผลกระทบทุกคนจะได้รับเงินคืนเต็มจำนวนและคำขอโทษ",
+    "usageTip": "ใช้ affected buyer เมื่อพูดถึงลูกค้าที่เจอปัญหาสินค้า"
   },
   {
     "word": "by",
@@ -9607,7 +10158,10 @@ const wordsData = [
       "แต่ง",
       "โดย",
       "เขา"
-    ]
+    ],
+    "extraExample": "This novel was written by a famous Thai author.",
+    "extraExampleTranslation": "นวนิยายเรื่องนี้ถูกเขียนโดยนักเขียนชาวไทยที่มีชื่อเสียง",
+    "usageTip": "ใช้บอกผู้กระทำในประโยค passive voice หรือบอกวิธีการเดินทาง/เวลา"
   },
   {
     "word": "bye",
@@ -9633,7 +10187,10 @@ const wordsData = [
       "แล้ว",
       "พบกัน",
       "ใหม่"
-    ]
+    ],
+    "extraExample": "She waved her hand and said bye before leaving.",
+    "extraExampleTranslation": "เธอโบกมือและพูดว่าลาก่อนก่อนจะเดินจากไป",
+    "usageTip": "เป็นคำลาแบบไม่เป็นทางการ ใช้กับเพื่อน ครอบครัว หรือคนคุ้นเคย"
   },
   {
     "word": "cabinet",
@@ -9660,7 +10217,10 @@ const wordsData = [
       "ใน",
       "ตู้"
     ],
-    "syllables": "ca·bi·net"
+    "syllables": "ca·bi·net",
+    "extraExample": "All the extra dish soap is stored in the cabinet under the sink.",
+    "extraExampleTranslation": "น้ำยาล้างจานสำรองทั้งหมดถูกเก็บไว้ในตู้ใต้อ่างล้างจาน",
+    "usageTip": "ในบริบทเรื่องบ้าน cabinet หมายถึงตู้เก็บของติดผนังหรือตู้ในครัว ไม่ใช่คณะรัฐมนตรี"
   },
   {
     "word": "cable",
@@ -9687,7 +10247,10 @@ const wordsData = [
       "อินเทอร์เน็ต",
       "หลุด"
     ],
-    "syllables": "ca·ble"
+    "syllables": "ca·ble",
+    "extraExample": "Please plug the power cable into the wall socket.",
+    "extraExampleTranslation": "กรุณาเสียบสายไฟเข้ากับเต้ารับที่ผนัง",
+    "usageTip": "ใช้เรียกสายไฟ สายเคเบิล หรือระบบเคเบิลทีวีและอินเทอร์เน็ต"
   },
   {
     "word": "cake",
@@ -9715,7 +10278,10 @@ const wordsData = [
       "เค้ก",
       "ของ",
       "คุณ"
-    ]
+    ],
+    "extraExample": "We ordered a chocolate cake without nuts for his birthday.",
+    "extraExampleTranslation": "เราสั่งเค้กช็อกโกแลตแบบไม่ใส่ถั่วสำหรับวันเกิดของเขา",
+    "usageTip": "ใช้ a piece of cake ได้ทั้งความหมายว่าเค้กหนึ่งชิ้น หรือเรื่องง่ายๆ"
   },
   {
     "word": "calculate",
@@ -9752,7 +10318,10 @@ const wordsData = [
     "forms": [
       "V2/V3: calculated",
       "V-ing: calculating"
-    ]
+    ],
+    "extraExample": "We need to calculate the total cost before ordering.",
+    "extraExampleTranslation": "เราต้องคำนวณค่าใช้จ่ายทั้งหมดก่อนสั่งซื้อ",
+    "usageTip": "ใช้กับการคำนวณตัวเลข งบประมาณ หรือการประเมินผลลัพธ์"
   },
   {
     "word": "calculation",
@@ -9782,7 +10351,10 @@ const wordsData = [
       "ฉัน",
       "ผิดพลาด"
     ],
-    "syllables": "cal·cu·la·tion"
+    "syllables": "cal·cu·la·tion",
+    "extraExample": "According to my calculation, the trip will take three hours.",
+    "extraExampleTranslation": "ตามการคำนวณของฉัน การเดินทางจะใช้เวลาสามชั่วโมง",
+    "usageTip": "เป็นคำนามของ calculate ใช้พูดถึงผลลัพธ์หรือกระบวนการคิดคำนวณ"
   },
   {
     "word": "call",
@@ -9818,7 +10390,10 @@ const wordsData = [
       "call off (ยกเลิก)",
       "call back (โทรกลับ)",
       "on call (พร้อมสแตนด์บายรับสาย)"
-    ]
+    ],
+    "extraExample": "Please call me when you arrive at the airport.",
+    "extraExampleTranslation": "โปรดโทรหาฉันเมื่อคุณมาถึงสนามบินแล้ว",
+    "usageTip": "ใช้ได้ทั้งการโทรหา การเรียกชื่อ หรือการแวะไปหาสั้นๆ"
   },
   {
     "word": "called",
@@ -9930,7 +10505,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "camping"
-    ]
+    ],
+    "extraExample": "The hikers set up camp near the river before sunset.",
+    "extraExampleTranslation": "นักเดินป่าตั้งค่ายใกล้แม่น้ำก่อนพระอาทิตย์ตก",
+    "usageTip": "ใช้กับคำว่า set up camp (ตั้งค่าย) หรือ summer camp (ค่ายฤดูร้อน)"
   },
   {
     "word": "campaign",
@@ -9959,7 +10537,10 @@ const wordsData = [
       "ขึ้น",
       "แล้ว"
     ],
-    "syllables": "cam·paign"
+    "syllables": "cam·paign",
+    "extraExample": "The city launched a new campaign to promote recycling.",
+    "extraExampleTranslation": "เมืองได้เปิดตัวการรณรงค์ใหม่เพื่อส่งเสริมการรีไซเคิล",
+    "usageTip": "มักใช้คู่กับ launch a campaign หรือ advertising campaign"
   },
   {
     "word": "camping",
@@ -9992,7 +10573,10 @@ const wordsData = [
       "สุดสัปดาห์",
       "นี้"
     ],
-    "syllables": "cam·ping"
+    "syllables": "cam·ping",
+    "extraExample": "We are going camping in the mountains this weekend.",
+    "extraExampleTranslation": "พวกเราจะไปตั้งแคมป์บนภูเขาสุดสัปดาห์นี้",
+    "usageTip": "มักใช้ในรูป go camping เพื่อบอกว่าไปตั้งแคมป์"
   },
   {
     "word": "can",
@@ -10020,7 +10604,9 @@ const wordsData = [
       "fire"
     ],
     "usageTip": "Modal verb ตามด้วย V.inf เสมอ (ห้ามเติม to หรือ -s เช่น She can swim.)",
-    "grammarPattern": "Modal Verb + V.inf เสมอ (ห้ามใส่ to หรือเติม -s)"
+    "grammarPattern": "Modal Verb + V.inf เสมอ (ห้ามใส่ to หรือเติม -s)",
+    "extraExample": "She can speak three languages fluently.",
+    "extraExampleTranslation": "เธอสามารถพูดได้สามภาษาอย่างคล่องแคล่ว"
   },
   {
     "word": "cancel",
@@ -10052,7 +10638,10 @@ const wordsData = [
     "forms": [
       "V2/V3: cancelled",
       "V-ing: cancelling"
-    ]
+    ],
+    "extraExample": "They had to cancel the outdoor concert due to heavy rain.",
+    "extraExampleTranslation": "พวกเขาต้องยกเลิกคอนเสิร์ตกลางแจ้งเนื่องจากฝนตกหนัก",
+    "usageTip": "ใช้กับการยกเลิกนัดหมาย คำสั่งซื้อ หรือการเดินทาง"
   },
   {
     "word": "cancer",
@@ -10082,7 +10671,10 @@ const wordsData = [
       "ได้"
     ],
     "phoneticUK": "/kˈænsə(r)/",
-    "syllables": "can·cer"
+    "syllables": "can·cer",
+    "extraExample": "Regular exercise can help lower the risk of certain types of cancer.",
+    "extraExampleTranslation": "การออกกำลังกายสม่ำเสมอช่วยลดความเสี่ยงของโรคมะเร็งบางชนิดได้",
+    "usageTip": "คำนามนับไม่ได้เมื่อพูดถึงโรคโดยรวม ใช้กับ risk of หรือ prevent"
   },
   {
     "word": "candidate",
@@ -10113,7 +10705,10 @@ const wordsData = [
       "งาน",
       "นี้"
     ],
-    "syllables": "can·di·date"
+    "syllables": "can·di·date",
+    "extraExample": "Each candidate must submit a resume before Friday.",
+    "extraExampleTranslation": "ผู้สมัครแต่ละคนต้องส่งเรซูเม่ก่อนวันศุกร์",
+    "usageTip": "ใช้ได้ทั้งผู้สมัครงานและผู้สมัครรับเลือกตั้ง"
   },
   {
     "word": "candy",
@@ -10143,7 +10738,10 @@ const wordsData = [
     "syllables": "can·dy",
     "forms": [
       "พหูพจน์: candies"
-    ]
+    ],
+    "extraExample": "Eating too much candy can lead to tooth decay.",
+    "extraExampleTranslation": "การกินลูกอมมากเกินไปอาจทำให้ฟันผุได้",
+    "usageTip": "ในภาษาอังกฤษแบบอเมริกันใช้ candy ส่วนแบบอังกฤษมักใช้ sweets"
   },
   {
     "word": "cap",
@@ -10172,7 +10770,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "capable"
-    ]
+    ],
+    "extraExample": "He put on his favorite baseball cap to block the sun.",
+    "extraExampleTranslation": "เขาสวมหมวกแก๊ปเบสบอลใบโปรดเพื่อบังแดด",
+    "usageTip": "หมายถึงหมวกแก๊ปที่มีปีกด้านหน้า หรือฝาขวดก็ได้"
   },
   {
     "word": "capable",
@@ -10209,7 +10810,9 @@ const wordsData = [
     ],
     "syllables": "ca·pa·ble",
     "grammarPattern": "be capable of + N / V-ing (สามารถทำ...ได้)",
-    "usageTip": "ใช้ be capable of + V-ing (ต่างจาก able ที่ใช้ be able to + V.inf)"
+    "usageTip": "ใช้ be capable of + V-ing (ต่างจาก able ที่ใช้ be able to + V.inf)",
+    "extraExample": "She is capable of handling difficult clients calmly.",
+    "extraExampleTranslation": "เธอมีความสามารถในการรับมือกับลูกค้าที่เรื่องมากได้อย่างใจเย็น"
   },
   {
     "word": "capacity",
@@ -10244,7 +10847,10 @@ const wordsData = [
     "syllables": "ca·pa·ci·ty",
     "forms": [
       "พหูพจน์: capacities"
-    ]
+    ],
+    "extraExample": "The stadium has a seating capacity of fifty thousand people.",
+    "extraExampleTranslation": "สนามกีฬามีความจุที่นั่งได้ห้าหมื่นคน",
+    "usageTip": "ใช้บอกความจุของสถานที่ ภาชนะ หรือความสามารถในการผลิต"
   },
   {
     "word": "capital",
@@ -10272,7 +10878,10 @@ const wordsData = [
       "ประเทศ",
       "ไทย"
     ],
-    "syllables": "ca·pi·tal"
+    "syllables": "ca·pi·tal",
+    "extraExample": "Bangkok is the vibrant capital of Thailand.",
+    "extraExampleTranslation": "กรุงเทพมหานครเป็นเมืองหลวงที่มีชีวิตชีวาของประเทศไทย",
+    "usageTip": "แปลว่าเมืองหลวง เงินทุน หรือตัวอักษรพิมพ์ใหญ่"
   },
   {
     "word": "captain",
@@ -10300,7 +10909,10 @@ const wordsData = [
       "ทีม",
       "ฟุตบอล"
     ],
-    "syllables": "cap·tain"
+    "syllables": "cap·tain",
+    "extraExample": "A good captain trusts every player on the field.",
+    "extraExampleTranslation": "กัปตันที่ดีเชื่อใจผู้เล่นทุกคนในสนาม",
+    "usageTip": "ใช้เรียกหัวหน้าทีมกีฬา หรือผู้บังคับเรือ/เครื่องบิน"
   },
   {
     "word": "capture",
@@ -10332,7 +10944,10 @@ const wordsData = [
     "forms": [
       "V2/V3: captured",
       "V-ing: capturing"
-    ]
+    ],
+    "extraExample": "The photographer managed to capture the bird in mid-flight.",
+    "extraExampleTranslation": "ช่างภาพสามารถจับภาพนกขณะกำลังบินกลางอากาศได้",
+    "usageTip": "ใช้ได้ทั้งการจับกุม การยึด หรือการจับภาพ/ความสนใจ"
   },
   {
     "word": "car",
@@ -10361,7 +10976,10 @@ const wordsData = [
     "wordFamily": [
       "care"
     ],
-    "phoneticUK": "/kˈɑː/"
+    "phoneticUK": "/kˈɑː/",
+    "extraExample": "He drives his car to the office every morning.",
+    "extraExampleTranslation": "เขาขับรถยนต์ไปทำงานที่ออฟฟิศทุกเช้า",
+    "usageTip": "ใช้คู่กับ drive a car หรือ rent a car"
   },
   {
     "word": "card",
@@ -10387,7 +11005,10 @@ const wordsData = [
       "นามบัตร",
       "ของ",
       "ฉัน"
-    ]
+    ],
+    "extraExample": "Please show your ID card at the reception desk.",
+    "extraExampleTranslation": "กรุณาแสดงบัตรประจำตัวประชาชนที่โต๊ะประชาสัมพันธ์",
+    "usageTip": "ใช้กับบัตรต่างๆ เช่น credit card, ID card, business card"
   },
   {
     "word": "cardboard",
@@ -10414,7 +11035,10 @@ const wordsData = [
       "จาก",
       "กระดาษแข็ง"
     ],
-    "syllables": "car·dboard"
+    "syllables": "car·dboard",
+    "extraExample": "We packed all the old books into a sturdy cardboard box.",
+    "extraExampleTranslation": "พวกเราแพ็กหนังสือเก่าทั้งหมดลงในกล่องกระดาษแข็งที่แข็งแรง",
+    "usageTip": "มักใช้เป็นคำนามขยายคำอื่น เช่น cardboard box"
   },
   {
     "word": "care",
@@ -10446,7 +11070,10 @@ const wordsData = [
       "ด้วย",
       "นะ"
     ],
-    "phoneticUK": "/kˈe/"
+    "phoneticUK": "/kˈe/",
+    "extraExample": "Good dental care prevents many health problems.",
+    "extraExampleTranslation": "การดูแลสุขภาพฟันที่ดีช่วยป้องกันปัญหาสุขภาพได้มากมาย",
+    "usageTip": "ใช้ในวลี take care of (ดูแล) หรือ health care (การดูแลสุขภาพ)"
   },
   {
     "word": "career",
@@ -10478,7 +11105,10 @@ const wordsData = [
       "การแพทย์"
     ],
     "phoneticUK": "/kərˈɪ/",
-    "syllables": "ca·reer"
+    "syllables": "ca·reer",
+    "extraExample": "She built a successful career in digital marketing.",
+    "extraExampleTranslation": "เธอสร้างอาชีพที่ประสบความสำเร็จในสายการตลาดดิจิทัล",
+    "usageTip": "ใช้พูดถึงเส้นทางอาชีพการงานในระยะยาว"
   },
   {
     "word": "careful",
@@ -10510,7 +11140,10 @@ const wordsData = [
     "wordFamily": [
       "care"
     ],
-    "rootBreakdown": "care + -ful (เต็มไปด้วย (Adj.))"
+    "rootBreakdown": "care + -ful (เต็มไปด้วย (Adj.))",
+    "extraExample": "Be careful when you cross the busy street.",
+    "extraExampleTranslation": "โปรดระมัดระวังเมื่อคุณข้ามถนนที่พลุกพล่าน",
+    "usageTip": "มักใช้ในรูป be careful with/about เพื่อเตือนให้ระวัง"
   },
   {
     "word": "careless",
@@ -10544,7 +11177,10 @@ const wordsData = [
     "wordFamily": [
       "care"
     ],
-    "rootBreakdown": "care + -less (ปราศจาก / ไม่มี (Adj.))"
+    "rootBreakdown": "care + -less (ปราศจาก / ไม่มี (Adj.))",
+    "extraExample": "A careless mistake cost the team the championship.",
+    "extraExampleTranslation": "ความผิดพลาดจากความประมาททำให้ทีมพลาดแชมป์",
+    "usageTip": "ตรงข้ามกับ careful มักใช้ขยายคำนาม เช่น careless mistake"
   },
   {
     "word": "carpet",
@@ -10574,7 +11210,10 @@ const wordsData = [
       "สำหรับ",
       "ห้องนั่งเล่น"
     ],
-    "syllables": "car·pet"
+    "syllables": "car·pet",
+    "extraExample": "They bought a soft wool carpet for the living room.",
+    "extraExampleTranslation": "พวกเขาซื้อพรมขนสัตว์นุ่มๆ สำหรับห้องนั่งเล่น",
+    "usageTip": "หมายถึงพรมปูพื้นขนาดใหญ่ ต่างจาก rug ที่เป็นพรมผืนเล็ก"
   },
   {
     "word": "carrot",
@@ -10597,7 +11236,10 @@ const wordsData = [
       "กิน",
       "แครอท"
     ],
-    "syllables": "car·rot"
+    "syllables": "car·rot",
+    "extraExample": "She added sliced carrot to the vegetable soup for natural sweetness.",
+    "extraExampleTranslation": "เธอใส่แครอทหั่นแว่นลงในซุปผักเพื่อเพิ่มความหวานตามธรรมชาติ",
+    "usageTip": "จำง่าย: carrot เป็นคำนาม แปลว่า แครอท มักใช้คู่กับคำกริยาอย่าง slice หรือ grate"
   },
   {
     "word": "carry",
@@ -10638,7 +11280,10 @@ const wordsData = [
       "carry out (ลงมือดำเนินการ/วิจัย)",
       "carry on (ทำต่อไป)",
       "get carried away (ตื่นเต้นจนเลยเถิด)"
-    ]
+    ],
+    "extraExample": "Always carry a water bottle when you go to the gym.",
+    "extraExampleTranslation": "พกขวดน้ำติดตัวเสมอเมื่อไปยิม",
+    "usageTip": "ใช้ในความหมายว่าพกพาสิ่งของติดตัวไปด้วยขณะเดินทางหรือออกกำลังกาย"
   },
   {
     "word": "case",
@@ -10664,7 +11309,10 @@ const wordsData = [
       "แว่นตา",
       "ใน",
       "กล่อง"
-    ]
+    ],
+    "extraExample": "In that case, we should leave an hour earlier.",
+    "extraExampleTranslation": "ในกรณีนั้น พวกเราควรออกเดินทางเร็วขึ้นหนึ่งชั่วโมง",
+    "usageTip": "มักใช้ในสำนวน in case (เผื่อว่า) หรือ in that case (ในกรณีนั้น)"
   },
   {
     "word": "cash",
@@ -10784,7 +11432,10 @@ const wordsData = [
       "ฉัน",
       "กำลัง",
       "นอนหลับ"
-    ]
+    ],
+    "extraExample": "Our cat always curls up by the heater during the winter frost.",
+    "extraExampleTranslation": "แมวของเรามักจะขดตัวอยู่ข้างเครื่องทำความร้อนเสมอในช่วงน้ำค้างแข็งฤดูหนาว",
+    "usageTip": "ใช้ cat กับคำคุณศัพท์บอกลักษณะนิสัยหรือสายพันธุ์ได้ง่าย"
   },
   {
     "word": "catch",
@@ -10817,7 +11468,10 @@ const wordsData = [
       "catch up (ตามให้ทัน/อัปเดตชีวิต)",
       "catch a cold (เป็นหวัด)",
       "catch someone's eye (สะดุดตา)"
-    ]
+    ],
+    "extraExample": "Try to catch your breath before starting the next set.",
+    "extraExampleTranslation": "พยายามพักหายใจให้ทันก่อนเริ่มเซตถัดไป",
+    "usageTip": "สำนวน catch your breath แปลว่าพักหายใจให้หายเหนื่อย"
   },
   {
     "word": "category",
@@ -10851,7 +11505,10 @@ const wordsData = [
     "syllables": "ca·te·go·ry",
     "forms": [
       "พหูพจน์: categories"
-    ]
+    ],
+    "extraExample": "Please select the correct category before uploading your product.",
+    "extraExampleTranslation": "กรุณาเลือกหมวดหมู่ที่ถูกต้องก่อนอัปโหลดสินค้าของคุณ",
+    "usageTip": "ใช้แบ่งกลุ่มสิ่งของหรือข้อมูล มักตามด้วย of เช่น a category of..."
   },
   {
     "word": "cause",
@@ -10878,7 +11535,10 @@ const wordsData = [
       "สาเหตุ",
       "ของ",
       "ไฟไหม้"
-    ]
+    ],
+    "extraExample": "Heavy rain was the main cause of the traffic jam this morning.",
+    "extraExampleTranslation": "ฝนที่ตกหนักเป็นสาเหตุหลักของรถติดเมื่อเช้านี้",
+    "usageTip": "เป็นได้ทั้งคำนาม (สาเหตุ) และกริยา (ทำให้เกิด) มักใช้กับ of เมื่อเป็นคำนาม"
   },
   {
     "word": "CD",
@@ -10906,7 +11566,10 @@ const wordsData = [
       "ซีดี",
       "แผ่น",
       "นี้"
-    ]
+    ],
+    "extraExample": "I found an old music CD while cleaning out my desk.",
+    "extraExampleTranslation": "ฉันเจอแผ่นซีดีเพลงเก่าแผ่นหนึ่งตอนทำความสะอาดโต๊ะทำงาน",
+    "usageTip": "ย่อมาจาก Compact Disc ใช้ตัวพิมพ์ใหญ่ทั้งสองตัวเสมอ"
   },
   {
     "word": "cease",
@@ -10937,7 +11600,10 @@ const wordsData = [
     "forms": [
       "V2/V3: ceased",
       "V-ing: ceasing"
-    ]
+    ],
+    "extraExample": "The factory will cease operations at the end of this month.",
+    "extraExampleTranslation": "โรงงานจะหยุดดำเนินการในสิ้นเดือนนี้",
+    "usageTip": "เป็นคำทางการกว่า stop มักใช้ในเอกสารหรือข่าว เช่น cease to exist"
   },
   {
     "word": "ceiling",
@@ -10964,7 +11630,10 @@ const wordsData = [
       "มาจาก",
       "เพดาน"
     ],
-    "syllables": "cei·ling"
+    "syllables": "cei·ling",
+    "extraExample": "The painter fixed the crack in the living room ceiling.",
+    "extraExampleTranslation": "ช่างทาสีซ่อมรอยร้าวบนเพดานห้องนั่งเล่น",
+    "usageTip": "หมายถึงเพดานด้านในห้อง ส่วนหลังคาด้านนอกใช้ roof"
   },
   {
     "word": "celebrate",
@@ -11000,7 +11669,10 @@ const wordsData = [
     "forms": [
       "V2/V3: celebrated",
       "V-ing: celebrating"
-    ]
+    ],
+    "extraExample": "We are going out for dinner to celebrate her promotion.",
+    "extraExampleTranslation": "พวกเราจะออกไปทานมื้อเย็นเพื่อฉลองการเลื่อนตำแหน่งของเธอ",
+    "usageTip": "ตามด้วยสิ่งที่ฉลองได้เลยโดยไม่ต้องมี for เช่น celebrate a birthday"
   },
   {
     "word": "celebration",
@@ -11030,7 +11702,10 @@ const wordsData = [
       "ตลอด",
       "ทั้งคืน"
     ],
-    "syllables": "ce·le·bra·tion"
+    "syllables": "ce·le·bra·tion",
+    "extraExample": "The New Year celebration in the city center was unforgettable.",
+    "extraExampleTranslation": "การเฉลิมฉลองปีใหม่ใจกลางเมืองนั้นน่าประทับใจไม่รู้ลืม",
+    "usageTip": "เป็นคำนามของ celebrate ใช้ได้ทั้งแบบนับได้และนับไม่ได้"
   },
   {
     "word": "cell",
@@ -11057,7 +11732,10 @@ const wordsData = [
       "มี",
       "เซลล์",
       "มากมาย"
-    ]
+    ],
+    "extraExample": "Exercise improves oxygen flow to every cell in your body.",
+    "extraExampleTranslation": "การออกกำลังกายช่วยเพิ่มการไหลเวียนออกซิเจนไปยังทุกเซลล์ในร่างกาย",
+    "usageTip": "เมื่อพูดถึงร่างกาย หมายถึงหน่วยเล็กที่สุดของสิ่งมีชีวิต ใช้คู่กับ body cell"
   },
   {
     "word": "cell phone",
@@ -11083,7 +11761,10 @@ const wordsData = [
       "ไว้",
       "ที่",
       "บ้าน"
-    ]
+    ],
+    "extraExample": "Please turn off your cell phone before the movie starts.",
+    "extraExampleTranslation": "กรุณาปิดโทรศัพท์มือถือของคุณก่อนภาพยนตร์จะเริ่ม",
+    "usageTip": "นิยมใช้ในภาษาอังกฤษแบบอเมริกัน ส่วนแบบอังกฤษมักใช้ mobile phone"
   },
   {
     "word": "cent",
@@ -11113,7 +11794,10 @@ const wordsData = [
     "wordFamily": [
       "recent",
       "recently"
-    ]
+    ],
+    "extraExample": "This snack costs ninety-nine cents at the convenience store.",
+    "extraExampleTranslation": "ขนมชิ้นนี้ราคาเก้าสิบเก้าเซนต์ที่ร้านสะดวกซื้อ",
+    "usageTip": "เป็นหน่วยเงินย่อย (1/100 ของดอลลาร์หรือยูโร) เติม s เมื่อมากกว่า 1"
   },
   {
     "word": "centimetre",
@@ -11140,7 +11824,10 @@ const wordsData = [
       "ยาว",
       "หนึ่ง",
       "เซนติเมตร"
-    ]
+    ],
+    "extraExample": "The ruler shows measurements in both inches and centimetres.",
+    "extraExampleTranslation": "ไม้บรรทัดแสดงหน่วยวัดทั้งเป็นนิ้วและเซนติเมตร",
+    "usageTip": "การสะกดแบบอังกฤษใช้ -tre ส่วนแบบอเมริกันใช้ -ter (centimeter)"
   },
   {
     "word": "central",
@@ -11173,7 +11860,10 @@ const wordsData = [
     "wordFamily": [
       "centre"
     ],
-    "syllables": "cen·tral"
+    "syllables": "cen·tral",
+    "extraExample": "The hotel is in a central location close to the train station.",
+    "extraExampleTranslation": "โรงแรมตั้งอยู่ในทำเลใจกลางเมืองใกล้กับสถานีรถไฟ",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าอยู่ตรงกลางหรือมีความสำคัญที่สุด"
   },
   {
     "word": "centre",
@@ -11205,7 +11895,10 @@ const wordsData = [
       "ห้อง"
     ],
     "phoneticUK": "/sˈentə(r)/",
-    "syllables": "cen·tre"
+    "syllables": "cen·tre",
+    "extraExample": "There is a large fountain in the centre of the park.",
+    "extraExampleTranslation": "มีน้ำพุขนาดใหญ่อยู่ตรงใจกลางสวนสาธารณะ",
+    "usageTip": "การสะกดแบบอังกฤษใช้ -tre ส่วนแบบอเมริกันใช้ center"
   },
   {
     "word": "century",
@@ -11239,7 +11932,10 @@ const wordsData = [
     "syllables": "cen·tu·ry",
     "forms": [
       "พหูพจน์: centuries"
-    ]
+    ],
+    "extraExample": "Technology has changed rapidly over the past century.",
+    "extraExampleTranslation": "เทคโนโลยีเปลี่ยนแปลงไปอย่างรวดเร็วตลอดศตวรรษที่ผ่านมา",
+    "usageTip": "หมายถึงช่วงเวลา 100 ปี มักใช้กับ in the + ลำดับที่ + century"
   },
   {
     "word": "ceremony",
@@ -11269,7 +11965,10 @@ const wordsData = [
     "syllables": "ce·re·mo·ny",
     "forms": [
       "พหูพจน์: ceremonies"
-    ]
+    ],
+    "extraExample": "The graduation ceremony will be held in the main hall.",
+    "extraExampleTranslation": "พิธีรับปริญญาจะจัดขึ้นที่หอประชุมใหญ่",
+    "usageTip": "ใช้กับพิธีการที่เป็นทางการ เช่น งานแต่งงาน งานรับปริญญา หรือพิธีเปิด"
   },
   {
     "word": "certain",
@@ -11305,7 +12004,10 @@ const wordsData = [
       "uncertain"
     ],
     "phoneticUK": "/sˈɜːtən/",
-    "syllables": "cer·tain"
+    "syllables": "cer·tain",
+    "extraExample": "I am certain that we will finish the project on time.",
+    "extraExampleTranslation": "ฉันมั่นใจว่าเราจะทำโปรเจกต์เสร็จทันเวลา",
+    "usageTip": "ใช้กับคนเพื่อบอกว่ามั่นใจ (be certain that/of) หรือใช้หน้าคำนามเพื่อระบุบางสิ่ง"
   },
   {
     "word": "certainly",
@@ -11339,7 +12041,10 @@ const wordsData = [
       "uncertain"
     ],
     "phoneticUK": "/sˈɜːtənliː/",
-    "syllables": "cer·tain·ly"
+    "syllables": "cer·tain·ly",
+    "extraExample": "I will certainly let you know as soon as I hear the news.",
+    "extraExampleTranslation": "ฉันจะแจ้งให้คุณทราบอย่างแน่นอนทันทีที่ได้ข่าว",
+    "usageTip": "ใช้เน้นความมั่นใจหรือตอบรับอย่างสุภาพแทนคำว่า yes ได้"
   },
   {
     "word": "certificate",
@@ -11370,7 +12075,10 @@ const wordsData = [
     ],
     "grammarPattern": "[C] นามนับได้",
     "register": "การศึกษา / ทางการ",
-    "syllables": "cer·ti·fi·cate"
+    "syllables": "cer·ti·fi·cate",
+    "extraExample": "You will receive a certificate after completing the online course.",
+    "extraExampleTranslation": "คุณจะได้รับใบรับรองหลังจากเรียนคอร์สออนไลน์จบ",
+    "usageTip": "ใช้กับเอกสารรับรองอย่างเป็นทางการ เช่น สูติบัตร หรือใบประกาศนียบัตร"
   },
   {
     "word": "chain",
@@ -11396,7 +12104,10 @@ const wordsData = [
       "สวม",
       "สร้อยคอ",
       "ทองคำ"
-    ]
+    ],
+    "extraExample": "He locked his bicycle with a heavy metal chain.",
+    "extraExampleTranslation": "เขาล็อกจักรยานของเขาด้วยโซ่โลหะเส้นหนา",
+    "usageTip": "นอกจากแปลว่าโซ่ ยังใช้กับธุรกิจที่มีหลายสาขา เช่น a hotel chain"
   },
   {
     "word": "chair",
@@ -11424,7 +12135,10 @@ const wordsData = [
       "เก้าอี้",
       "นี้"
     ],
-    "phoneticUK": "/tʃˈe/"
+    "phoneticUK": "/tʃˈe/",
+    "extraExample": "Please pull up a chair and join our discussion.",
+    "extraExampleTranslation": "เชิญดึงเก้าอี้มานั่งร่วมวงสนทนากับพวกเราได้เลย",
+    "usageTip": "ใช้เป็นคำนามแปลว่าเก้าอี้ที่มีพนักพิง หรือใช้เป็นกริยาแปลว่าทำหน้าที่ประธานการประชุม"
   },
   {
     "word": "chairman",
@@ -11452,7 +12166,10 @@ const wordsData = [
       "ของ",
       "คณะกรรมการ"
     ],
-    "syllables": "chair·man"
+    "syllables": "chair·man",
+    "extraExample": "The chairman opened the annual meeting with a short speech.",
+    "extraExampleTranslation": "ประธานเปิดการประชุมประจำปีด้วยคำกล่าวสั้นๆ",
+    "usageTip": "หมายถึงประธานบริษัทหรือประธานในที่ประชุม ปัจจุบันนิยมใช้ chairperson เพื่อความเป็นกลางทางเพศ"
   },
   {
     "word": "chairwoman",
@@ -11575,7 +12292,10 @@ const wordsData = [
       "สภา"
     ],
     "phoneticUK": "/tʃˈeɪmbə(r)/",
-    "syllables": "cham·ber"
+    "syllables": "cham·ber",
+    "extraExample": "The members of the upper chamber voted on the new law yesterday.",
+    "extraExampleTranslation": "สมาชิกของสภาสูงลงมติเกี่ยวกับกฎหมายใหม่เมื่อวานนี้",
+    "usageTip": "ใช้หมายถึงห้องโถงใหญ่ ห้องเฉพาะทาง หรือสภาในระบบรัฐสภา"
   },
   {
     "word": "chance",
@@ -11602,7 +12322,10 @@ const wordsData = [
       "ฉัน",
       "อีกครั้ง"
     ],
-    "phoneticUK": "/tʃˈɑːns/"
+    "phoneticUK": "/tʃˈɑːns/",
+    "extraExample": "You should take this chance to study abroad.",
+    "extraExampleTranslation": "คุณควรคว้าโอกาสนี้ไว้เพื่อไปเรียนต่อต่างประเทศ",
+    "usageTip": "ใช้กับ take a chance (เสี่ยง/คว้าโอกาส) หรือ by chance (โดยบังเอิญ)"
   },
   {
     "word": "change",
@@ -11636,7 +12359,8 @@ const wordsData = [
       "V-ing: changing"
     ],
     "extraExample": "Keep the change, thank you!",
-    "extraExampleTranslation": "ไม่ต้องทอนครับ ขอบคุณมาก! (ความหมายรอง: เงินทอน)"
+    "extraExampleTranslation": "ไม่ต้องทอนครับ ขอบคุณมาก! (ความหมายรอง: เงินทอน)",
+    "usageTip": "ใช้ได้ทั้งแบบมีกรรมและไม่มีกรรม เช่น change something หรือ things change"
   },
   {
     "word": "channel",
@@ -11666,7 +12390,10 @@ const wordsData = [
       "ช่อง",
       "อะไร"
     ],
-    "syllables": "chan·nel"
+    "syllables": "chan·nel",
+    "extraExample": "Please switch to the news channel to see the weather forecast.",
+    "extraExampleTranslation": "กรุณาเปลี่ยนไปช่องข่าวเพื่อดูพยากรณ์อากาศ",
+    "usageTip": "ใช้ได้ทั้งช่องทีวี ช่องทางสื่อสาร หรือร่องน้ำ"
   },
   {
     "word": "chapter",
@@ -11694,7 +12421,10 @@ const wordsData = [
       "หนังสือ"
     ],
     "phoneticUK": "/tʃˈæptə(r)/",
-    "syllables": "chap·ter"
+    "syllables": "chap·ter",
+    "extraExample": "I just finished reading the first chapter of this novel.",
+    "extraExampleTranslation": "ฉันเพิ่งอ่านบทแรกของนวนิยายเรื่องนี้จบ",
+    "usageTip": "ใช้กับบทในหนังสือ หรือช่วงสำคัญของชีวิต"
   },
   {
     "word": "character",
@@ -11726,7 +12456,10 @@ const wordsData = [
       "ตลก"
     ],
     "phoneticUK": "/kˈerɪktə(r)/",
-    "syllables": "cha·rac·ter"
+    "syllables": "cha·rac·ter",
+    "extraExample": "The main character in the movie is very brave.",
+    "extraExampleTranslation": "ตัวละครหลักในภาพยนตร์เรื่องนี้กล้าหาญมาก",
+    "usageTip": "ใช้หมายถึงตัวละคร หรือนิสัยใจคอ/บุคลิกภาพของคน"
   },
   {
     "word": "characteristic",
@@ -11760,7 +12493,10 @@ const wordsData = [
       "ชนิด",
       "นี้"
     ],
-    "syllables": "cha·rac·te·ri·stic"
+    "syllables": "cha·rac·te·ri·stic",
+    "extraExample": "Patience is an important characteristic of a good teacher.",
+    "extraExampleTranslation": "ความอดทนเป็นลักษณะเฉพาะที่สำคัญของครูที่ดี",
+    "usageTip": "มักใช้ในรูปนามเพื่อบอกคุณสมบัติเด่น หรือใช้เป็นคำคุณศัพท์ก็ได้"
   },
   {
     "word": "charge",
@@ -11797,7 +12533,8 @@ const wordsData = [
       "charger"
     ],
     "extraExample": "Admission is free of charge for students.",
-    "extraExampleTranslation": "นักเรียนเข้าชมได้ฟรีโดยไม่มีค่าใช้จ่าย (วลี: free of charge = ฟรี)"
+    "extraExampleTranslation": "นักเรียนเข้าชมได้ฟรีโดยไม่มีค่าใช้จ่าย (วลี: free of charge = ฟรี)",
+    "usageTip": "เมื่อเป็นกริยา มักใช้ charge someone for something (คิดเงิน) หรือตั้งข้อหา"
   },
   {
     "word": "charity",
@@ -11827,7 +12564,10 @@ const wordsData = [
     "syllables": "cha·ri·ty",
     "forms": [
       "พหูพจน์: charities"
-    ]
+    ],
+    "extraExample": "She donates part of her salary to a local charity every month.",
+    "extraExampleTranslation": "เธอจะบริจาคเงินเดือนส่วนหนึ่งให้องค์กรการกุศลในท้องถิ่นทุกเดือน",
+    "usageTip": "ใช้กับงานการกุศลหรือองค์กรไม่แสวงหาผลกำไร"
   },
   {
     "word": "chart",
@@ -11852,7 +12592,10 @@ const wordsData = [
       "ที่",
       "แผนภูมิ",
       "นี้"
-    ]
+    ],
+    "extraExample": "The sales chart shows a steady increase over the past year.",
+    "extraExampleTranslation": "แผนภูมิยอดขายแสดงให้เห็นการเพิ่มขึ้นอย่างต่อเนื่องตลอดปีที่ผ่านมา",
+    "usageTip": "ใช้กับแผนภูมิหรือตารางข้อมูล เช่น bar chart, pie chart"
   },
   {
     "word": "chase",
@@ -11882,7 +12625,10 @@ const wordsData = [
     "forms": [
       "V2/V3: chased",
       "V-ing: chasing"
-    ]
+    ],
+    "extraExample": "The dog loves to chase squirrels in the park.",
+    "extraExampleTranslation": "สุนัขตัวนั้นชอบวิ่งไล่ตามกระรอกในสวนสาธารณะ",
+    "usageTip": "ใช้หมายถึงวิ่งไล่ตาม หรือไล่ล่าเป้าหมาย"
   },
   {
     "word": "chat",
@@ -11910,7 +12656,10 @@ const wordsData = [
       "พูดคุย",
       "อย่าง",
       "เป็นกันเอง"
-    ]
+    ],
+    "extraExample": "Let's grab a coffee and have a quick chat.",
+    "extraExampleTranslation": "ไปซื้อกาแฟแล้วคุยเล่นกันสักหน่อยเถอะ",
+    "usageTip": "ใช้กับการพูดคุยแบบเป็นกันเอง ทั้งในชีวิตจริงและออนไลน์"
   },
   {
     "word": "cheap",
@@ -11941,7 +12690,10 @@ const wordsData = [
     ],
     "antonyms": [
       "expensive"
-    ]
+    ],
+    "extraExample": "We found a cheap hotel near the train station.",
+    "extraExampleTranslation": "เราเจอโรงแรมราคาถูกใกล้สถานีรถไฟ",
+    "usageTip": "ระวังความหมายเชิงลบว่า 'คุณภาพต่ำ' ถ้าพูดถึงคนหรือของบางอย่าง"
   },
   {
     "word": "cheat",
@@ -11967,7 +12719,10 @@ const wordsData = [
       "พยายาม",
       "โกง",
       "ข้อสอบ"
-    ]
+    ],
+    "extraExample": "It is wrong to cheat on an exam.",
+    "extraExampleTranslation": "การโกงข้อสอบเป็นสิ่งที่ผิด",
+    "usageTip": "ใช้กับ cheat on (โกงข้อสอบ/นอกใจ) หรือ cheat someone"
   },
   {
     "word": "check",
@@ -11998,7 +12753,10 @@ const wordsData = [
       "check in (เช็กอินโรงแรม/สนามบิน)",
       "check out (ชำระเงินออก/ลองไปดู)",
       "double check (ตรวจซ้ำให้แน่ใจ)"
-    ]
+    ],
+    "extraExample": "Please check your email for the confirmation message.",
+    "extraExampleTranslation": "กรุณาตรวจสอบอีเมลของคุณเพื่อดูข้อความยืนยัน",
+    "usageTip": "ใช้ได้ทั่วไปทั้งตรวจทาน ตรวจสอบ หรือเช็กอิน"
   },
   {
     "word": "cheek",
@@ -12025,7 +12783,10 @@ const wordsData = [
       "เขา",
       "ที่",
       "แก้ม"
-    ]
+    ],
+    "extraExample": "She kissed her baby gently on the cheek.",
+    "extraExampleTranslation": "เธอจูบแก้มลูกน้อยของเธออย่างอ่อนโยน",
+    "usageTip": "ใช้กับแก้มบนใบหน้า หรือสำนวน turn the other cheek"
   },
   {
     "word": "cheerful",
@@ -12056,7 +12817,10 @@ const wordsData = [
     "antonyms": [
       "depressing"
     ],
-    "syllables": "cheer·ful"
+    "syllables": "cheer·ful",
+    "extraExample": "He always greets everyone with a cheerful smile.",
+    "extraExampleTranslation": "เขาทักทายทุกคนด้วยรอยยิ้มที่ร่าเริงเสมอ",
+    "usageTip": "ใช้บรรยายนิสัยหรือบรรยากาศที่สดใส ร่าเริง"
   },
   {
     "word": "cheese",
@@ -12080,7 +12844,10 @@ const wordsData = [
       "ชอบ",
       "กิน",
       "ชีส"
-    ]
+    ],
+    "extraExample": "He ordered a cheese pizza because he avoids eating meat.",
+    "extraExampleTranslation": "เขาสั่งพิซซ่าหน้าชีสเพราะเขาหลีกเลี่ยงการกินเนื้อสัตว์",
+    "usageTip": "จำง่าย: ใช้ cheese นำหน้าคำนามเพื่อบอกรสชาติหรือส่วนผสม เช่น cheese pizza"
   },
   {
     "word": "chemical",
@@ -12111,7 +12878,10 @@ const wordsData = [
       "สารเคมี",
       "อันตราย"
     ],
-    "syllables": "che·mi·cal"
+    "syllables": "che·mi·cal",
+    "extraExample": "Farmers avoided spraying any chemical on their crops before the monsoon rains.",
+    "extraExampleTranslation": "เกษตรกรหลีกเลี่ยงการฉีดพ่นสารเคมีใดๆ บนพืชผลก่อนฝนฤดูมรสุมจะมา",
+    "usageTip": "chemical เป็นได้ทั้งคำนาม (สารเคมี) และคำคุณศัพท์ (เกี่ยวกับเคมี)"
   },
   {
     "word": "chemist",
@@ -12142,7 +12912,9 @@ const wordsData = [
       "นักเคมี"
     ],
     "syllables": "che·mist",
-    "usageTip": "UK ใช้ chemist's สำหรับร้านขายยา | US ใช้ pharmacy หรือ drugstore"
+    "usageTip": "UK ใช้ chemist's สำหรับร้านขายยา | US ใช้ pharmacy หรือ drugstore",
+    "extraExample": "The chemist carefully mixed the two solutions in the lab.",
+    "extraExampleTranslation": "นักเคมีผสมสารละลายสองชนิดอย่างระมัดระวังในห้องแล็บ"
   },
   {
     "word": "chemistry",
@@ -12177,7 +12949,10 @@ const wordsData = [
     "syllables": "che·mis·try",
     "forms": [
       "พหูพจน์: chemistries"
-    ]
+    ],
+    "extraExample": "She decided to study chemistry at university.",
+    "extraExampleTranslation": "เธอตัดสินใจเรียนวิชาเคมีที่มหาวิทยาลัย",
+    "usageTip": "นอกจากวิชาเคมี ยังใช้หมายถึง 'เคมีที่เข้ากัน' ระหว่างคนสองคนได้"
   },
   {
     "word": "cheque",
@@ -12205,7 +12980,10 @@ const wordsData = [
       "เช็ค",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "He wrote a cheque to pay for the new furniture.",
+    "extraExampleTranslation": "เขาเขียนเช็คเพื่อจ่ายค่าเฟอร์นิเจอร์ชิ้นใหม่",
+    "usageTip": "เป็นคำสะกดแบบอังกฤษ (แบบอเมริกันใช้ check)"
   },
   {
     "word": "chest",
@@ -12260,7 +13038,10 @@ const wordsData = [
       "อาหาร",
       "ให้",
       "ละเอียด"
-    ]
+    ],
+    "extraExample": "Make sure to chew your food slowly so it is easier on your stomach.",
+    "extraExampleTranslation": "อย่าลืมเคี้ยวอาหารช้า ๆ เพื่อให้กระเพาะย่อยได้ง่ายขึ้น",
+    "usageTip": "จำง่าย: chew เป็นกริยา แปลว่า เคี้ยว ใช้คู่กับคำวิเศษณ์อย่าง slowly หรือ well"
   },
   {
     "word": "chicken",
@@ -12289,7 +13070,10 @@ const wordsData = [
       "เป็น",
       "อาหารเย็น"
     ],
-    "syllables": "chi·cken"
+    "syllables": "chi·cken",
+    "extraExample": "Grilled chicken is a lean protein option for dinner.",
+    "extraExampleTranslation": "ไก่ย่างเป็นตัวเลือกโปรตีนไขมันต่ำสำหรับมื้อเย็น",
+    "usageTip": "จำง่าย: chicken เป็นคำนาม แปลว่า ไก่ หรือเนื้อไก่ มักใช้กับวิธีปรุงเช่น grilled"
   },
   {
     "word": "chief",
@@ -12373,7 +13157,10 @@ const wordsData = [
       "ใช้",
       "มือ",
       "เท้าคาง"
-    ]
+    ],
+    "extraExample": "He rested his chin on his hand while thinking.",
+    "extraExampleTranslation": "เขาเอาคางวางบนมือขณะกำลังคิด",
+    "usageTip": "ใช้เป็นคำนามหมายถึงคาง และพบในสำนวน keep your chin up (อย่าท้อถอย)"
   },
   {
     "word": "chip",
@@ -12402,7 +13189,10 @@ const wordsData = [
       "แผ่น",
       "ทอด",
       "ไหม"
-    ]
+    ],
+    "extraExample": "This computer chip processes data very fast.",
+    "extraExampleTranslation": "ชิปคอมพิวเตอร์นี้ประมวลผลข้อมูลได้เร็วมาก",
+    "usageTip": "หมายถึงชิปอิเล็กทรอนิกส์หรือแผ่นมันฝรั่งทอดบางๆ (มักใช้รูปพหูพจน์ chips)"
   },
   {
     "word": "chocolate",
@@ -12427,7 +13217,10 @@ const wordsData = [
       "ชอบ",
       "กิน",
       "ช็อกโกแลต"
-    ]
+    ],
+    "extraExample": "Dark chocolate without milk is a great treat for dairy-free diets.",
+    "extraExampleTranslation": "ดาร์กช็อกโกแลตที่ไม่มีนมเป็นของว่างที่ดีสำหรับคนงดผลิตภัณฑ์จากนม",
+    "usageTip": "จำง่าย: chocolate เป็นคำนาม แปลว่า ช็อกโกแลต มักใช้คู่กับคำว่า dark หรือ milk"
   },
   {
     "word": "choice",
@@ -12454,7 +13247,10 @@ const wordsData = [
       "ทางเลือก",
       "ของ",
       "คุณ"
-    ]
+    ],
+    "extraExample": "You have no other choice but to wait.",
+    "extraExampleTranslation": "คุณไม่มีทางเลือกอื่นนอกจากต้องรอ",
+    "usageTip": "ใช้กับกริยา make หรือ have เช่น make a choice (ตัดสินใจเลือก)"
   },
   {
     "word": "choose",
@@ -12486,7 +13282,10 @@ const wordsData = [
       "V2: chose",
       "V3: chosen"
     ],
-    "grammarPattern": "choose + to V / choose between A and B"
+    "grammarPattern": "choose + to V / choose between A and B",
+    "extraExample": "She decided to choose the blue dress for the party.",
+    "extraExampleTranslation": "เธอตัดสินใจเลือกชุดสีฟ้าสำหรับงานปาร์ตี้",
+    "usageTip": "กริยา 3 ช่องคือ choose - chose - chosen และมักตามด้วย to + V1"
   },
   {
     "word": "chop",
@@ -12514,7 +13313,10 @@ const wordsData = [
       "ชิ้น",
       "เล็กๆ"
     ],
-    "phoneticUK": "/tʃˈɒp/"
+    "phoneticUK": "/tʃˈɒp/",
+    "extraExample": "Please chop the onions into small pieces.",
+    "extraExampleTranslation": "กรุณาสับหัวหอมเป็นชิ้นเล็กๆ",
+    "usageTip": "ใช้กับการหั่นหรือสับอาหาร และใช้เป็นกริยาวลี chop down (ตัดโค่นต้นไม้)"
   },
   {
     "word": "church",
@@ -12541,7 +13343,10 @@ const wordsData = [
       "ใน",
       "วันอาทิตย์"
     ],
-    "phoneticUK": "/tʃˈɜːtʃ/"
+    "phoneticUK": "/tʃˈɜːtʃ/",
+    "extraExample": "They go to church every Sunday morning.",
+    "extraExampleTranslation": "พวกเขาไปโบสถ์ทุกเช้าวันอาทิตย์",
+    "usageTip": "โดยทั่วไปใช้เป็นคำนาม หากใช้ go to church โดยไม่มี the หมายถึงไปประกอบพิธีทางศาสนา"
   },
   {
     "word": "cigarette",
@@ -12567,7 +13372,10 @@ const wordsData = [
       "สูบบุหรี่"
     ],
     "phoneticUK": "/ˌsɪɡəˈret/",
-    "syllables": "ci·ga·rette"
+    "syllables": "ci·ga·rette",
+    "extraExample": "Smoking a cigarette is harmful to your health.",
+    "extraExampleTranslation": "การสูบบุหรี่เป็นอันตรายต่อสุขภาพของคุณ",
+    "usageTip": "เป็นคำนามนับได้ มักใช้คู่กับกริยา smoke หรือ light"
   },
   {
     "word": "cinema",
@@ -12593,7 +13401,10 @@ const wordsData = [
       "โรงภาพยนตร์",
       "เมื่อคืนนี้"
     ],
-    "syllables": "ci·ne·ma"
+    "syllables": "ci·ne·ma",
+    "extraExample": "Let's go to the cinema tonight to watch the new film.",
+    "extraExampleTranslation": "คืนนี้ไปโรงภาพยนตร์เพื่อดูหนังเรื่องใหม่กันเถอะ",
+    "usageTip": "เป็นคำภาษาอังกฤษแบบบริติช ใช้คู่กับ the cinema (แบบอเมริกันมักใช้ movie theater)"
   },
   {
     "word": "circle",
@@ -12621,7 +13432,10 @@ const wordsData = [
       "กระดาษ"
     ],
     "phoneticUK": "/sˈɜːkəl/",
-    "syllables": "cir·cle"
+    "syllables": "cir·cle",
+    "extraExample": "The children sat in a circle on the floor.",
+    "extraExampleTranslation": "เด็กๆ นั่งเป็นวงกลมบนพื้น",
+    "usageTip": "ใช้ได้ทั้งคำนาม (วงกลม) และกริยา (ล้อมรอบหรือวาดวงกลม)"
   },
   {
     "word": "circumstance",
@@ -12654,7 +13468,10 @@ const wordsData = [
       "ใด"
     ],
     "phoneticUK": "/sˈɜːkəmstˌæns/",
-    "syllables": "cir·cum·stance"
+    "syllables": "cir·cum·stance",
+    "extraExample": "Under no circumstance should you open this door.",
+    "extraExampleTranslation": "ไม่ว่าในสถานการณ์ใด คุณไม่ควรเปิดประตูนี้",
+    "usageTip": "มักใช้ในรูปพหูพจน์ circumstances และใช้คู่กับบุพบท under หรือ in"
   },
   {
     "word": "citizen",
@@ -12683,7 +13500,10 @@ const wordsData = [
     "antonyms": [
       "noncitizen"
     ],
-    "syllables": "ci·ti·zen"
+    "syllables": "ci·ti·zen",
+    "extraExample": "Every citizen has the right to vote.",
+    "extraExampleTranslation": "พลเมืองทุกคนมีสิทธิในการลงคะแนนเสียง",
+    "usageTip": "ใช้หมายถึงพลเมืองของประเทศหรือเมือง มักใช้คู่กับ senior citizen (ผู้สูงอายุ)"
   },
   {
     "word": "city",
@@ -12712,7 +13532,10 @@ const wordsData = [
     "syllables": "ci·ty",
     "forms": [
       "พหูพจน์: cities"
-    ]
+    ],
+    "extraExample": "Bangkok is a busy city with great street food.",
+    "extraExampleTranslation": "กรุงเทพฯ เป็นเมืองที่คึกคักและมีอาหารริมทางที่ยอดเยี่ยม",
+    "usageTip": "ใช้เรียกเมืองใหญ่ มักใช้คู่กับคำว่า center หรือ hall"
   },
   {
     "word": "civil",
@@ -12742,7 +13565,10 @@ const wordsData = [
     "antonyms": [
       "uncivil"
     ],
-    "syllables": "ci·vil"
+    "syllables": "ci·vil",
+    "extraExample": "The country is trying to avoid a civil war.",
+    "extraExampleTranslation": "ประเทศกำลังพยายามหลีกเลี่ยงสงครามกลางเมือง",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกถึงสิ่งที่เกี่ยวข้องกับพลเรือนหรือกฎหมายแพ่ง"
   },
   {
     "word": "claim",
@@ -12773,7 +13599,10 @@ const wordsData = [
     "antonyms": [
       "disclaim",
       "forfeit"
-    ]
+    ],
+    "extraExample": "Did anyone claim the lost wallet at the counter?",
+    "extraExampleTranslation": "มีใครมาอ้างสิทธิ์รับกระเป๋าสตางค์ที่หายไปที่เคาน์เตอร์หรือยัง",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าเรียกร้องสิทธิ์ (เช่น ประกัน) และกล่าวอ้างข้อเท็จจริง"
   },
   {
     "word": "clap",
@@ -12797,7 +13626,10 @@ const wordsData = [
       "ผู้ชม",
       "เริ่ม",
       "ปรบมือ"
-    ]
+    ],
+    "extraExample": "The audience began to clap loudly after the show.",
+    "extraExampleTranslation": "ผู้ชมเริ่มปรบมือเสียงดังหลังจากการแสดงจบลง",
+    "usageTip": "เป็นกริยาที่เปลี่ยนรูปเป็น clapped ในอดีตกาล และใช้คำนามว่า a round of applause แทนได้"
   },
   {
     "word": "class",
@@ -12832,7 +13664,10 @@ const wordsData = [
     "phoneticUK": "/klˈɑːs/",
     "forms": [
       "พหูพจน์: classes"
-    ]
+    ],
+    "extraExample": "Our English class starts at nine o'clock.",
+    "extraExampleTranslation": "ชั้นเรียนภาษาอังกฤษของเราเริ่มตอนเก้าโมงเช้า",
+    "usageTip": "หมายถึงชั้นเรียน ชนชั้นทางสังคม หรือระดับคุณภาพ (เช่น first class)"
   },
   {
     "word": "classic",
@@ -12864,7 +13699,10 @@ const wordsData = [
     "wordFamily": [
       "class"
     ],
-    "syllables": "clas·sic"
+    "syllables": "clas·sic",
+    "extraExample": "This novel is a classic example of mystery fiction.",
+    "extraExampleTranslation": "นวนิยายเรื่องนี้เป็นตัวอย่างสุดคลาสสิกของนิยายแนวสืบสวน",
+    "usageTip": "ใช้ขยายสิ่งที่ยอดเยี่ยมและได้รับความนิยมมายาวนาน หรือใช้เป็นคำนามหมายถึงผลงานระดับตำนาน"
   },
   {
     "word": "classroom",
@@ -12890,7 +13728,10 @@ const wordsData = [
       "ห้องเรียน"
     ],
     "phoneticUK": "/klˈɑːsrˌuːm/",
-    "syllables": "clas·sroom"
+    "syllables": "clas·sroom",
+    "extraExample": "The students decorated their classroom for the festival.",
+    "extraExampleTranslation": "นักเรียนตกแต่งห้องเรียนของพวกเขาสำหรับงานเทศกาล",
+    "usageTip": "ใช้เป็นคำนามนับได้ หมายถึงห้องเรียนในโรงเรียนหรือมหาวิทยาลัย"
   },
   {
     "word": "clean",
@@ -12920,7 +13761,10 @@ const wordsData = [
     ],
     "antonyms": [
       "dirty"
-    ]
+    ],
+    "extraExample": "Make sure your hands are clean before eating.",
+    "extraExampleTranslation": "ตรวจสอบให้แน่ใจว่ามือของคุณสะอาดก่อนรับประทานอาหาร",
+    "usageTip": "เป็นได้ทั้งคำคุณศัพท์ (สะอาด) และกริยา (ทำความสะอาด) เช่น clean the room"
   },
   {
     "word": "clear",
@@ -12952,7 +13796,10 @@ const wordsData = [
       "unclear",
       "cloudy"
     ],
-    "phoneticUK": "/klˈɪ/"
+    "phoneticUK": "/klˈɪ/",
+    "extraExample": "The instructions were very clear and easy to follow.",
+    "extraExampleTranslation": "คำแนะนำชัดเจนมากและทำตามได้ง่าย",
+    "usageTip": "หมายถึงชัดเจน เข้าใจง่าย หรือใส (เช่น น้ำใส ท้องฟ้าโปร่ง)"
   },
   {
     "word": "clearly",
@@ -13068,7 +13915,10 @@ const wordsData = [
       "ปุ่ม",
       "เพื่อ",
       "เริ่ม"
-    ]
+    ],
+    "extraExample": "Just one click will open the new document.",
+    "extraExampleTranslation": "แค่คลิกเดียวก็จะเปิดเอกสารใหม่แล้ว",
+    "usageTip": "ใช้เป็นคำนามหมายถึงการคลิกเมาส์หรือเสียงคลิก"
   },
   {
     "word": "client",
@@ -13095,7 +13945,10 @@ const wordsData = [
       "ลูกความ",
       "ของ",
       "เขา"
-    ]
+    ],
+    "extraExample": "We have a meeting with an important client this afternoon.",
+    "extraExampleTranslation": "เรามีประชุมกับลูกค้าคนสำคัญบ่ายนี้",
+    "usageTip": "ใช้กับลูกค้าที่รับบริการหรือลูกความของทนาย"
   },
   {
     "word": "climate",
@@ -13124,7 +13977,10 @@ const wordsData = [
       "ที่",
       "อบอุ่น"
     ],
-    "syllables": "cli·mate"
+    "syllables": "cli·mate",
+    "extraExample": "Scientists are studying how the global climate is changing each decade.",
+    "extraExampleTranslation": "นักวิทยาศาสตร์กำลังศึกษาว่าภูมิอากาศโลกเปลี่ยนแปลงไปอย่างไรในแต่ละทศวรรษ",
+    "usageTip": "ใช้ climate สำหรับสภาพอากาศระยะยาวของพื้นที่ ไม่ใช่แค่รายวัน"
   },
   {
     "word": "climb",
@@ -13156,7 +14012,10 @@ const wordsData = [
       "นั้น",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "They plan to climb the mountain early tomorrow morning.",
+    "extraExampleTranslation": "พวกเขาวางแผนจะปีนเขาแต่เช้าตรู่วันพรุ่งนี้",
+    "usageTip": "ใช้กับกิริยาการปีนป่ายขึ้นที่สูงหรือไต่ระดับ"
   },
   {
     "word": "climbing",
@@ -13186,7 +14045,10 @@ const wordsData = [
       "ปีน",
       "หน้าผา"
     ],
-    "syllables": "clim·bing"
+    "syllables": "clim·bing",
+    "extraExample": "Rock climbing requires both strength and focus.",
+    "extraExampleTranslation": "การปีนหน้าผาต้องใช้ทั้งพละกำลังและสมาธิ",
+    "usageTip": "ใช้เป็นคำนาม (gerund) หมายถึงกิจกรรมหรือกีฬาการปีน"
   },
   {
     "word": "clock",
@@ -13212,7 +14074,10 @@ const wordsData = [
       "นาฬิกา",
       "สิ"
     ],
-    "phoneticUK": "/klˈɒk/"
+    "phoneticUK": "/klˈɒk/",
+    "extraExample": "The wall clock stopped working because the battery died.",
+    "extraExampleTranslation": "นาฬิกาแขวนผนังหยุดเดินเพราะถ่านหมด",
+    "usageTip": "หมายถึงนาฬิกาตั้งโต๊ะหรือแขวนผนัง (ไม่ใช่นาฬิกาข้อมือ)"
   },
   {
     "word": "close",
@@ -13247,7 +14112,10 @@ const wordsData = [
     "forms": [
       "V2/V3: closed",
       "V-ing: closing"
-    ]
+    ],
+    "extraExample": "Please close the window before you leave the room.",
+    "extraExampleTranslation": "กรุณาปิดหน้าต่างก่อนออกจากห้อง",
+    "usageTip": "ใช้กับกิริยาการปิดประตู หน้าต่าง หรือยุติการประชุม"
   },
   {
     "word": "closed",
@@ -13277,7 +14145,10 @@ const wordsData = [
     "wordFamily": [
       "close"
     ],
-    "phoneticUK": "/klˈəʊzd/"
+    "phoneticUK": "/klˈəʊzd/",
+    "extraExample": "The museum is closed on Mondays for maintenance.",
+    "extraExampleTranslation": "พิพิธภัณฑ์ปิดทำการในวันจันทร์เพื่อซ่อมบำรุง",
+    "usageTip": "ใช้บอกสถานะว่าปิดแล้วหรือหยุดให้บริการ"
   },
   {
     "word": "closet",
@@ -13310,7 +14181,9 @@ const wordsData = [
     "register": "ทั่วไป (US)",
     "usageTip": "US นิยมใช้ closet สำหรับตู้เสื้อผ้าติดผนัง; UK มักเรียกว่า wardrobe",
     "phoneticUK": "/klˈɒzət/",
-    "syllables": "clo·set"
+    "syllables": "clo·set",
+    "extraExample": "She hung her winter dresses inside the closet.",
+    "extraExampleTranslation": "เธอแขวนชุดฤดูหนาวไว้ในตู้เสื้อผ้า"
   },
   {
     "word": "cloth",
@@ -13341,7 +14214,10 @@ const wordsData = [
     "wordFamily": [
       "clothes",
       "clothing"
-    ]
+    ],
+    "extraExample": "Wipe the kitchen table with a damp cloth.",
+    "extraExampleTranslation": "เช็ดโต๊ะครัวด้วยผ้าชุบน้ำหมาดๆ",
+    "usageTip": "หมายถึงผ้าเป็นผืนหรือผ้าสำหรับเช็ดถู (นับไม่ได้)"
   },
   {
     "word": "clothes",
@@ -13378,7 +14254,9 @@ const wordsData = [
     "forms": [
       "[Plural] ใช้รูปพหูพจน์เสมอ"
     ],
-    "grammarPattern": "[พหูพจน์เสมอ] ใช้กับ are / these / many (ไม่มีรูปเอกพจน์)"
+    "grammarPattern": "[พหูพจน์เสมอ] ใช้กับ are / these / many (ไม่มีรูปเอกพจน์)",
+    "extraExample": "He packed warm clothes for his trip to Japan.",
+    "extraExampleTranslation": "เขาจัดเสื้อผ้าอุ่นๆ สำหรับทริปไปญี่ปุ่น"
   },
   {
     "word": "clothing",
@@ -13412,7 +14290,10 @@ const wordsData = [
       "cloth"
     ],
     "phoneticUK": "/klˈəʊðɪŋ/",
-    "syllables": "clo·thing"
+    "syllables": "clo·thing",
+    "extraExample": "The store sells outdoor clothing for hikers.",
+    "extraExampleTranslation": "ร้านนี้ขายเสื้อผ้าสำหรับเดินป่า",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้เรียกเสื้อผ้าในเชิงหมวดหมู่หรือสินค้า"
   },
   {
     "word": "cloud",
@@ -13440,7 +14321,10 @@ const wordsData = [
       "ก้อน",
       "นั้น",
       "สิ"
-    ]
+    ],
+    "extraExample": "Dark storm clouds gathered quickly above the valley.",
+    "extraExampleTranslation": "เมฆพายุสีดำก่อตัวอย่างรวดเร็วเหนือหุบเขา",
+    "usageTip": "ใช้พหูพจน์ clouds เมื่อพูดถึงก้อนเมฆหลายก้อนบนท้องฟ้า"
   },
   {
     "word": "club",
@@ -13467,7 +14351,10 @@ const wordsData = [
       "ของ",
       "ชมรม",
       "กอล์ฟ"
-    ]
+    ],
+    "extraExample": "He joined the local tennis club last month.",
+    "extraExampleTranslation": "เขาสมัครเข้าสโมสรเทนนิสท้องถิ่นเมื่อเดือนที่แล้ว",
+    "usageTip": "ใช้เรียกชมรม สโมสรกีฬา หรือสถานบันเทิง"
   },
   {
     "word": "coach",
@@ -13500,7 +14387,10 @@ const wordsData = [
     "phoneticUK": "/kˈəʊtʃ/",
     "forms": [
       "พหูพจน์: coaches"
-    ]
+    ],
+    "extraExample": "The football coach gave the team a pep talk.",
+    "extraExampleTranslation": "โค้ชฟุตบอลพูดให้กำลังใจทีม",
+    "usageTip": "ใช้เรียกผู้ฝึกสอนกีฬา หรือรถทัวร์ในภาษาอังกฤษแบบอังกฤษ"
   },
   {
     "word": "coal",
@@ -13528,7 +14418,10 @@ const wordsData = [
       "ใน",
       "กองไฟ"
     ],
-    "phoneticUK": "/kˈəʊl/"
+    "phoneticUK": "/kˈəʊl/",
+    "extraExample": "Many countries are reducing their use of coal to lower air pollution.",
+    "extraExampleTranslation": "หลายประเทศกำลังลดการใช้ถ่านหินเพื่อลดมลพิษทางอากาศ",
+    "usageTip": "coal เป็นคำนามนับไม่ได้เมื่อหมายถึงเชื้อเพลิงหรือแร่ถ่านหิน"
   },
   {
     "word": "coast",
@@ -13555,7 +14448,10 @@ const wordsData = [
       "เลียบ",
       "ชายฝั่ง"
     ],
-    "phoneticUK": "/kˈəʊst/"
+    "phoneticUK": "/kˈəʊst/",
+    "extraExample": "Strong winds often hit the eastern coast during the typhoon season.",
+    "extraExampleTranslation": "ลมแรงมักพัดถล่มชายฝั่งตะวันออกในช่วงฤดูพายุไต้ฝุ่น",
+    "usageTip": "ใช้ on the coast เมื่อบอกตำแหน่งที่ตั้งอยู่ติดทะเล"
   },
   {
     "word": "coat",
@@ -13586,7 +14482,10 @@ const wordsData = [
       "มัน",
       "หนาว"
     ],
-    "phoneticUK": "/kˈəʊt/"
+    "phoneticUK": "/kˈəʊt/",
+    "extraExample": "Put on your coat before going out in the snow.",
+    "extraExampleTranslation": "สวมเสื้อคลุมก่อนออกไปข้างนอกที่มีหิมะนะ",
+    "usageTip": "หมายถึงเสื้อคลุมตัวนอกหรือเสื้อกันหนาวตัวยาว"
   },
   {
     "word": "code",
@@ -13612,7 +14511,10 @@ const wordsData = [
       "คือ",
       "อะไร"
     ],
-    "phoneticUK": "/kˈəʊd/"
+    "phoneticUK": "/kˈəʊd/",
+    "extraExample": "You need to enter the security code to unlock the door.",
+    "extraExampleTranslation": "คุณต้องใส่รหัสความปลอดภัยเพื่อปลดล็อกประตู",
+    "usageTip": "ใช้ได้ทั้งรหัสผ่าน รหัสไปรษณีย์ หรือโค้ดโปรแกรม"
   },
   {
     "word": "coffee",
@@ -13640,7 +14542,10 @@ const wordsData = [
       "เช้า"
     ],
     "phoneticUK": "/kˈɒfiː/",
-    "syllables": "cof·fee"
+    "syllables": "cof·fee",
+    "extraExample": "Let's meet at the coffee shop across the street.",
+    "extraExampleTranslation": "ไปเจอกันที่ร้านกาแฟฝั่งตรงข้ามถนนกันเถอะ",
+    "usageTip": "ใช้ขยายคำนามอื่นเพื่อบอกว่าเป็นสิ่งที่เกี่ยวกับกาแฟ"
   },
   {
     "word": "coin",
@@ -13665,7 +14570,10 @@ const wordsData = [
       "พบ",
       "เหรียญ",
       "เก่า"
-    ]
+    ],
+    "extraExample": "I found an old silver coin on the sidewalk.",
+    "extraExampleTranslation": "ฉันเจอเหรียญเงินเก่าๆ บนทางเท้า",
+    "usageTip": "ใช้เรียกเงินเหรียญเท่านั้น (ถ้าธนบัตรใช้ bill หรือ note)"
   },
   {
     "word": "cold",
@@ -13698,7 +14606,10 @@ const wordsData = [
       "hot",
       "warm"
     ],
-    "phoneticUK": "/kˈəʊld/"
+    "phoneticUK": "/kˈəʊld/",
+    "extraExample": "A cold front is moving south, bringing lower temperatures tomorrow.",
+    "extraExampleTranslation": "มวลอากาศเย็นกำลังเคลื่อนตัวลงใต้ ทำให้อุณหภูมิลดลงในวันพรุ่งนี้",
+    "usageTip": "cold front หมายถึงแนวปะทะอากาศเย็นในข่าวพยากรณ์อากาศ"
   },
   {
     "word": "coldly",
@@ -13729,7 +14640,10 @@ const wordsData = [
       "cold"
     ],
     "phoneticUK": "/kˈəʊldliː/",
-    "syllables": "col·dly"
+    "syllables": "col·dly",
+    "extraExample": "She looked at him coldly and walked away.",
+    "extraExampleTranslation": "เธอมองเขาอย่างเย็นชาแล้วเดินหนีไป",
+    "usageTip": "ใช้ขยายกิริยาเพื่อบอกท่าทีที่ห่างเหิน ไร้ความรู้สึก"
   },
   {
     "word": "collapse",
@@ -13761,7 +14675,10 @@ const wordsData = [
     "forms": [
       "V2/V3: collapsed",
       "V-ing: collapsing"
-    ]
+    ],
+    "extraExample": "The old wooden bridge might collapse during the storm.",
+    "extraExampleTranslation": "สะพานไม้เก่าอาจพังทลายลงระหว่างเกิดพายุ",
+    "usageTip": "ใช้กับการพังถล่มของสิ่งก่อสร้าง หรือการทรุดตัวลงของคน"
   },
   {
     "word": "colleague",
@@ -13790,7 +14707,10 @@ const wordsData = [
       "ฉัน"
     ],
     "phoneticUK": "/kˈɒliːɡ/",
-    "syllables": "col·league"
+    "syllables": "col·league",
+    "extraExample": "I am having lunch with a colleague from the marketing team.",
+    "extraExampleTranslation": "ฉันกำลังทานข้าวกลางวันกับเพื่อนร่วมงานจากทีมการตลาด",
+    "usageTip": "เป็นคำสุภาพและเป็นทางการกว่า coworker"
   },
   {
     "word": "collect",
@@ -13912,7 +14832,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "coloured"
-    ]
+    ],
+    "extraExample": "Her favourite colour for the living room walls is soft sage green.",
+    "extraExampleTranslation": "สีโปรดของเธอสำหรับผนังห้องนั่งเล่นคือสีเขียวเซจอ่อน",
+    "usageTip": "ใช้แบบอังกฤษ (British English) ส่วนแบบอเมริกันสะกดว่า color"
   },
   {
     "word": "coloured",
@@ -13943,7 +14866,10 @@ const wordsData = [
       "ที่",
       "มีสีสัน",
       "สดใส"
-    ]
+    ],
+    "extraExample": "The children coloured the paper lanterns with bright markers.",
+    "extraExampleTranslation": "เด็กๆ ระบายสีโคมกระดาษด้วยปากกามาร์กเกอร์สีสดใส",
+    "usageTip": "ใช้เป็นกริยาหมายถึงระบายสี หรือเติม -ed เพื่อบอกลักษณะที่มีสี"
   },
   {
     "word": "column",
@@ -13971,7 +14897,10 @@ const wordsData = [
       "สูง"
     ],
     "phoneticUK": "/kˈɒləm/",
-    "syllables": "co·lumn"
+    "syllables": "co·lumn",
+    "extraExample": "Please check the total in the third column of the spreadsheet.",
+    "extraExampleTranslation": "กรุณาตรวจสอบยอดรวมในคอลัมน์ที่สามของตารางคำนวณ",
+    "usageTip": "ใช้ได้ทั้งคอลัมน์ในตาราง บทความประจำในหนังสือพิมพ์ หรือเสาหิน"
   },
   {
     "word": "combination",
@@ -14004,7 +14933,10 @@ const wordsData = [
       "สี"
     ],
     "phoneticUK": "/kˌɒmbənˈeɪʃən/",
-    "syllables": "com·bi·na·tion"
+    "syllables": "com·bi·na·tion",
+    "extraExample": "This dish is a delicious combination of sweet and spicy flavours.",
+    "extraExampleTranslation": "อาหารจานนี้เป็นการผสมผสานที่ลงตัวระหว่างรสหวานและรสเผ็ด",
+    "usageTip": "มักใช้คู่กับคำว่า of เพื่อบอกว่าเป็นการรวมกันของสิ่งใด"
   },
   {
     "word": "combine",
@@ -14041,7 +14973,10 @@ const wordsData = [
     "forms": [
       "V2/V3: combined",
       "V-ing: combining"
-    ]
+    ],
+    "extraExample": "You should combine the dry ingredients before adding the milk.",
+    "extraExampleTranslation": "คุณควรผสมส่วนผสมแห้งเข้าด้วยกันก่อนเติมนม",
+    "usageTip": "มักใช้โครงสร้าง combine A with B หรือ combine A and B"
   },
   {
     "word": "come",
@@ -14083,7 +15018,10 @@ const wordsData = [
       "come across (บังเอิญเจอ)",
       "come up with (คิดไอเดีย/แผนออก)",
       "come true (เป็นจริง)"
-    ]
+    ],
+    "extraExample": "Please come to the meeting room ten minutes before we start.",
+    "extraExampleTranslation": "กรุณามาที่ห้องประชุมก่อนเวลาเริ่มสิบนาที",
+    "usageTip": "ใช้กับทิศทางที่เข้ามาหาผู้พูด หรือเหตุการณ์ที่กำลังจะมาถึง"
   },
   {
     "word": "comedy",
@@ -14117,7 +15055,10 @@ const wordsData = [
     "syllables": "co·me·dy",
     "forms": [
       "พหูพจน์: comedies"
-    ]
+    ],
+    "extraExample": "We watched a classic romantic comedy together on Friday night.",
+    "extraExampleTranslation": "พวกเราดูหนังตลกโรแมนติกคลาสสิกด้วยกันในคืนวันศุกร์",
+    "usageTip": "ใช้เรียกได้ทั้งประเภทหนัง ละคร หรือการแสดงตลก"
   },
   {
     "word": "comfort",
@@ -14153,7 +15094,10 @@ const wordsData = [
     "antonyms": [
       "discomfort"
     ],
-    "syllables": "com·fort"
+    "syllables": "com·fort",
+    "extraExample": "She found great comfort in talking to her close friends.",
+    "extraExampleTranslation": "เธอรู้สึกสบายใจขึ้นมากเมื่อได้พูดคุยกับเพื่อนสนิท",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อหมายถึงความสบายใจหรือความอบอุ่นใจ"
   },
   {
     "word": "comfortable",
@@ -14191,7 +15135,10 @@ const wordsData = [
       "uncomfortable"
     ],
     "syllables": "com·for·ta·ble",
-    "rootBreakdown": "comfort + -able (สามารถ...ได้ (Adj.))"
+    "rootBreakdown": "comfort + -able (สามารถ...ได้ (Adj.))",
+    "extraExample": "These new running shoes are very comfortable for long walks.",
+    "extraExampleTranslation": "รองเท้าวิ่งคู่ใหม่นี้ใส่สบายมากสำหรับการเดินระยะไกล",
+    "usageTip": "ใช้ได้ทั้งความสบายทางกาย เช่น เสื้อผ้า ที่นั่ง และความสบายใจ"
   },
   {
     "word": "comfortably",
@@ -14227,7 +15174,10 @@ const wordsData = [
     "antonyms": [
       "uncomfortably"
     ],
-    "syllables": "com·for·ta·bly"
+    "syllables": "com·for·ta·bly",
+    "extraExample": "The guests settled comfortably into the large leather sofas.",
+    "extraExampleTranslation": "แขกทุกคนนั่งลงบนโซฟาหนังขนาดใหญ่อย่างสะดวกสบาย",
+    "usageTip": "มักวางไว้หน้ากริยาหรือท้ายประโยคเพื่อขยายอาการ"
   },
   {
     "word": "command",
@@ -14255,7 +15205,10 @@ const wordsData = [
       "คำสั่ง"
     ],
     "phoneticUK": "/kəmˈɑːnd/",
-    "syllables": "com·mand"
+    "syllables": "com·mand",
+    "extraExample": "The dog obeyed every command from its trainer immediately.",
+    "extraExampleTranslation": "สุนัขทำตามคำสั่งทุกอย่างของผู้ฝึกทันที",
+    "usageTip": "ใช้ได้ทั้งคำสั่งทางทหาร คำสั่งคอมพิวเตอร์ หรือการควบคุม"
   },
   {
     "word": "comment",
@@ -14290,7 +15243,10 @@ const wordsData = [
       "overcome"
     ],
     "phoneticUK": "/kˈɒment/",
-    "syllables": "com·ment"
+    "syllables": "com·ment",
+    "extraExample": "He left a helpful comment on my latest blog post.",
+    "extraExampleTranslation": "เขาแสดงความคิดเห็นที่เป็นประโยชน์ไว้ในบทความล่าสุดของฉัน",
+    "usageTip": "มักใช้คู่กับกริยา make หรือ leave เมื่อต้องการแสดงความเห็น"
   },
   {
     "word": "commercial",
@@ -14321,7 +15277,10 @@ const wordsData = [
       "noncommercial"
     ],
     "phoneticUK": "/kəmˈɜːʃəl/",
-    "syllables": "com·mer·cial"
+    "syllables": "com·mer·cial",
+    "extraExample": "The company launched a new commercial campaign for the holidays.",
+    "extraExampleTranslation": "บริษัทเปิดตัวแคมเปญโฆษณาเชิงพาณิชย์ใหม่สำหรับช่วงวันหยุด",
+    "usageTip": "ใช้เป็นคำคุณศัพท์เกี่ยวกับการค้า หรือคำนามหมายถึงโฆษณาทีวี/วิทยุ"
   },
   {
     "word": "commission",
@@ -14356,7 +15315,10 @@ const wordsData = [
       "การขาย",
       "ทุกครั้ง"
     ],
-    "syllables": "com·mis·sion"
+    "syllables": "com·mis·sion",
+    "extraExample": "She earns a ten percent commission on every car she sells.",
+    "extraExampleTranslation": "เธอได้รับค่าคอมมิชชั่นสิบเปอร์เซ็นต์จากรถทุกคันที่ขายได้",
+    "usageTip": "หมายถึงค่านายหน้า หรือคณะกรรมการที่ตั้งขึ้นเพื่องานเฉพาะกิจ"
   },
   {
     "word": "commit",
@@ -14393,7 +15355,10 @@ const wordsData = [
     "forms": [
       "V2/V3: committed",
       "V-ing: committing"
-    ]
+    ],
+    "extraExample": "You should not commit to the project unless you have enough time.",
+    "extraExampleTranslation": "คุณไม่ควรรับปากทำโปรเจกต์นี้หากไม่มีเวลาเพียงพอ",
+    "usageTip": "มักใช้กับ to เมื่อหมายถึงการให้คำมั่น หรือใช้กับ crime เมื่อหมายถึงการกระทำผิด"
   },
   {
     "word": "commitment",
@@ -14426,7 +15391,10 @@ const wordsData = [
       "ยิ่งใหญ่"
     ],
     "syllables": "com·mit·ment",
-    "rootBreakdown": "commit + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "commit + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "Running a marathon requires months of serious training and commitment.",
+    "extraExampleTranslation": "การวิ่งมาราธอนต้องอาศัยการฝึกซ้อมอย่างจริงจังและความมุ่งมั่นหลายเดือน",
+    "usageTip": "มักตามด้วย to เพื่อระบุสิ่งที่เรามุ่งมั่นหรือผูกพัน"
   },
   {
     "word": "committee",
@@ -14457,7 +15425,10 @@ const wordsData = [
       "คณะกรรมการ",
       "โรงเรียน"
     ],
-    "syllables": "com·mit·tee"
+    "syllables": "com·mit·tee",
+    "extraExample": "The committee will announce the final decision next Monday.",
+    "extraExampleTranslation": "คณะกรรมการจะประกาศผลการตัดสินขั้นสุดท้ายในวันจันทร์หน้า",
+    "usageTip": "ใช้กริยาเอกพจน์เมื่อมองเป็นกลุ่มเดียว และพหูพจน์เมื่อเน้นสมาชิกแต่ละคน"
   },
   {
     "word": "common",
@@ -14494,7 +15465,10 @@ const wordsData = [
       "uncommon"
     ],
     "phoneticUK": "/kˈɒmən/",
-    "syllables": "com·mon"
+    "syllables": "com·mon",
+    "extraExample": "It is quite common to see people cycling to work here.",
+    "extraExampleTranslation": "เป็นเรื่องปกติมากที่จะเห็นผู้คนปั่นจักรยานไปทำงานที่นี่",
+    "usageTip": "ใช้บอกว่าพบได้บ่อย เป็นเรื่องธรรมดา หรือเป็นสิ่งที่ใช้ร่วมกัน"
   },
   {
     "word": "commonly",
@@ -14527,7 +15501,10 @@ const wordsData = [
       "common"
     ],
     "phoneticUK": "/kˈɒmənliː/",
-    "syllables": "com·mon·ly"
+    "syllables": "com·mon·ly",
+    "extraExample": "This herb is commonly used in traditional Thai cooking.",
+    "extraExampleTranslation": "สมุนไพรชนิดนี้มักถูกใช้โดยทั่วไปในการทำอาหารไทยแบบดั้งเดิม",
+    "usageTip": "มักวางไว้หน้าคำกริยาช่อง 3 ในรูปประโยคถูกกระทำ (passive)"
   },
   {
     "word": "communicate",
@@ -14563,7 +15540,10 @@ const wordsData = [
       "V2/V3: communicated",
       "V-ing: communicating"
     ],
-    "rootBreakdown": "com- (ร่วมกัน) + munis (แบ่งปัน) + -ate → สื่อสาร"
+    "rootBreakdown": "com- (ร่วมกัน) + munis (แบ่งปัน) + -ate → สื่อสาร",
+    "extraExample": "Good leaders know how to communicate clearly with their team.",
+    "extraExampleTranslation": "ผู้นำที่ดีรู้วิธีสื่อสารอย่างชัดเจนกับทีมของตนเอง",
+    "usageTip": "มักใช้กับ with เมื่อระบุคู่สนทนา และ about เมื่อระบุเรื่องที่พูด"
   },
   {
     "word": "communication",
@@ -14695,7 +15675,10 @@ const wordsData = [
     "forms": [
       "V2/V3: compared",
       "V-ing: comparing"
-    ]
+    ],
+    "extraExample": "Let's compare the prices of these two laptops before buying.",
+    "extraExampleTranslation": "มาเปรียบเทียบราคาของแล็ปท็อปสองเครื่องนี้ก่อนซื้อกันเถอะ",
+    "usageTip": "ใช้ compare A with/to B เพื่อเปรียบเทียบสิ่งของสองสิ่ง"
   },
   {
     "word": "comparison",
@@ -14729,7 +15712,10 @@ const wordsData = [
       "นี้",
       "กัน"
     ],
-    "syllables": "com·pa·ri·son"
+    "syllables": "com·pa·ri·son",
+    "extraExample": "There is no comparison between fresh fruit and canned fruit.",
+    "extraExampleTranslation": "ผลไม้สดกับผลไม้กระป๋องเทียบกันไม่ได้เลย",
+    "usageTip": "มักใช้ในวลี in comparison with หรือ make a comparison"
   },
   {
     "word": "compete",
@@ -14765,7 +15751,10 @@ const wordsData = [
     "forms": [
       "V2/V3: competed",
       "V-ing: competing"
-    ]
+    ],
+    "extraExample": "Small local shops find it hard to compete with big supermarkets.",
+    "extraExampleTranslation": "ร้านค้าท้องถิ่นขนาดเล็กพบว่าเป็นการยากที่จะแข่งขันกับซูเปอร์มาร์เก็ตขนาดใหญ่",
+    "usageTip": "ใช้ compete with (ใคร) หรือ compete for (รางวัล/ตำแหน่ง)"
   },
   {
     "word": "competition",
@@ -14798,7 +15787,10 @@ const wordsData = [
       "cooperation"
     ],
     "phoneticUK": "/kˌɒmpətˈɪʃən/",
-    "syllables": "com·pe·ti·tion"
+    "syllables": "com·pe·ti·tion",
+    "extraExample": "She won first prize in the national singing competition.",
+    "extraExampleTranslation": "เธอได้รับรางวัลชนะเลิศในการประกวดร้องเพลงระดับชาติ",
+    "usageTip": "ใช้ enter a competition (เข้าร่วม) หรือ face stiff competition (เจอคู่แข่งที่แข็งแกร่ง)"
   },
   {
     "word": "competitive",
@@ -14833,7 +15825,10 @@ const wordsData = [
     "antonyms": [
       "noncompetitive"
     ],
-    "syllables": "com·pe·ti·tive"
+    "syllables": "com·pe·ti·tive",
+    "extraExample": "The job market is very competitive right now, so update your resume.",
+    "extraExampleTranslation": "ตลาดงานตอนนี้มีการแข่งขันสูงมาก ดังนั้นควรอัปเดตเรซูเม่ของคุณ",
+    "usageTip": "ใช้ขยายคำนาม เช่น competitive price (ราคาที่แข่งขันได้) หรือ competitive edge"
   },
   {
     "word": "complain",
@@ -14869,7 +15864,10 @@ const wordsData = [
     "antonyms": [
       "cheer"
     ],
-    "syllables": "com·plain"
+    "syllables": "com·plain",
+    "extraExample": "Customers rarely complain about the food here because it is always fresh.",
+    "extraExampleTranslation": "ลูกค้าไม่ค่อยบ่นเรื่องอาหารที่นี่เพราะมันสดใหม่เสมอ",
+    "usageTip": "ใช้ complain about (เรื่องที่บ่น) หรือ complain to (คนที่รับเรื่อง)"
   },
   {
     "word": "complaint",
@@ -14900,7 +15898,10 @@ const wordsData = [
       "เรื่อง",
       "ร้องเรียน"
     ],
-    "syllables": "com·plaint"
+    "syllables": "com·plaint",
+    "extraExample": "The manager promised to look into the customer's complaint immediately.",
+    "extraExampleTranslation": "ผู้จัดการสัญญาว่าจะตรวจสอบข้อร้องเรียนของลูกค้าทันที",
+    "usageTip": "ใช้คู่กับกริยา file, lodge หรือ make เช่น file a complaint"
   },
   {
     "word": "complete",
@@ -14933,7 +15934,10 @@ const wordsData = [
     "antonyms": [
       "incomplete"
     ],
-    "syllables": "com·plete"
+    "syllables": "com·plete",
+    "extraExample": "Please make sure the form is complete before you submit it.",
+    "extraExampleTranslation": "โปรดตรวจสอบให้แน่ใจว่าแบบฟอร์มกรอกสมบูรณ์แล้วก่อนส่ง",
+    "usageTip": "ในฐานะคำคุณศัพท์แปลว่า ครบถ้วน สมบูรณ์ ไม่ขาดตกบกพร่อง"
   },
   {
     "word": "completely",
@@ -14965,7 +15969,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "complete"
-    ]
+    ],
+    "extraExample": "I completely forgot that we had a meeting this morning.",
+    "extraExampleTranslation": "ฉันลืมไปสนิทเลยว่าเรามีประชุมเช้านี้",
+    "usageTip": "วางหน้าคำกริยาแท้หรือคำคุณศัพท์เพื่อเน้นว่า อย่างสิ้นเชิง"
   },
   {
     "word": "complex",
@@ -14996,7 +16003,10 @@ const wordsData = [
       "simple"
     ],
     "phoneticUK": "/kˈɒmpleks/",
-    "syllables": "com·plex"
+    "syllables": "com·plex",
+    "extraExample": "The human brain is an amazingly complex organ.",
+    "extraExampleTranslation": "สมองของมนุษย์เป็นอวัยวะที่ซับซ้อนอย่างน่าทึ่ง",
+    "usageTip": "ใช้กับระบบ ปัญหา หรือโครงสร้างที่มีหลายส่วนเชื่อมโยงกัน"
   },
   {
     "word": "complicate",
@@ -15035,7 +16045,10 @@ const wordsData = [
     "forms": [
       "V2/V3: complicated",
       "V-ing: complicating"
-    ]
+    ],
+    "extraExample": "Adding more rules will only complicate the situation further.",
+    "extraExampleTranslation": "การเพิ่มกฎเกณฑ์เข้าไปอีกจะยิ่งทำให้สถานการณ์ซับซ้อนขึ้นไปอีก",
+    "usageTip": "เป็นคำกริยา แปลว่า ทำให้ยุ่งยากหรือซับซ้อนขึ้น"
   },
   {
     "word": "complicated",
@@ -15066,7 +16079,10 @@ const wordsData = [
       "complicate"
     ],
     "phoneticUK": "/kˈɒmpləkˌeɪtəd/",
-    "syllables": "com·pli·ca·ted"
+    "syllables": "com·pli·ca·ted",
+    "extraExample": "The instructions for assembling the furniture were too complicated to follow.",
+    "extraExampleTranslation": "คู่มือการประกอบเฟอร์นิเจอร์ซับซ้อนเกินกว่าจะทำตามได้",
+    "usageTip": "มักใช้บอกว่าสิ่งใดเข้าใจยากหรือมีขั้นตอนมากเกินไป"
   },
   {
     "word": "computer",
@@ -15095,7 +16111,10 @@ const wordsData = [
       "การทำงาน"
     ],
     "phoneticUK": "/kəmpjˈuːtə(r)/",
-    "syllables": "com·pu·ter"
+    "syllables": "com·pu·ter",
+    "extraExample": "My computer crashed right before I could save the document.",
+    "extraExampleTranslation": "คอมพิวเตอร์ของฉันค้างก่อนที่ฉันจะทันได้บันทึกเอกสาร",
+    "usageTip": "คำนามนับได้ มักใช้ในคำประสม เช่น computer science หรือ computer screen"
   },
   {
     "word": "concentrate",
@@ -15138,7 +16157,10 @@ const wordsData = [
     "forms": [
       "V2/V3: concentrated",
       "V-ing: concentrating"
-    ]
+    ],
+    "extraExample": "I need a quiet room so I can concentrate on my studies.",
+    "extraExampleTranslation": "ฉันต้องการห้องเงียบๆ เพื่อจะได้มีสมาธิกับการเรียน",
+    "usageTip": "ใช้ concentrate on + นาม หรือ V-ing เสมอ"
   },
   {
     "word": "concentration",
@@ -15174,7 +16196,10 @@ const wordsData = [
       "dilution"
     ],
     "phoneticUK": "/kˌɒnsəntrˈeɪʃən/",
-    "syllables": "con·cen·tra·tion"
+    "syllables": "con·cen·tra·tion",
+    "extraExample": "Driving long distances at night requires a lot of concentration.",
+    "extraExampleTranslation": "การขับรถทางไกลในตอนกลางคืนต้องใช้สมาธิอย่างมาก",
+    "usageTip": "ใช้คู่กับกริยา require หรือ lose เช่น lose concentration"
   },
   {
     "word": "concept",
@@ -15203,7 +16228,10 @@ const wordsData = [
       "นี้"
     ],
     "phoneticUK": "/kˈɒnsept/",
-    "syllables": "con·cept"
+    "syllables": "con·cept",
+    "extraExample": "The concept of working from home has become very popular.",
+    "extraExampleTranslation": "แนวคิดเรื่องการทำงานจากที่บ้านได้รับความนิยมอย่างมาก",
+    "usageTip": "ใช้กับไอเดียหลักหรือทฤษฎี เช่น basic concept หรือ new concept"
   },
   {
     "word": "concern",
@@ -15242,7 +16270,10 @@ const wordsData = [
       "unconcern"
     ],
     "phoneticUK": "/kənsˈɜːn/",
-    "syllables": "con·cern"
+    "syllables": "con·cern",
+    "extraExample": "There is growing concern about the effects of air pollution.",
+    "extraExampleTranslation": "มีความกังวลเพิ่มขึ้นเกี่ยวกับผลกระทบของมลพิษทางอากาศ",
+    "usageTip": "ใช้ express concern (แสดงความกังวล) หรือ raise concern (ทำให้เกิดความกังวล)"
   },
   {
     "word": "concerned",
@@ -15273,7 +16304,10 @@ const wordsData = [
       "ของ",
       "เขา"
     ],
-    "phoneticUK": "/kənsˈɜːnd/"
+    "phoneticUK": "/kənsˈɜːnd/",
+    "extraExample": "Parents are often concerned about their children's safety online.",
+    "extraExampleTranslation": "พ่อแม่มักเป็นห่วงเรื่องความปลอดภัยของลูกๆ บนโลกออนไลน์",
+    "usageTip": "ใช้ be concerned about (ห่วงเรื่อง) หรือ be concerned with (เกี่ยวข้องกับ)"
   },
   {
     "word": "concerning",
@@ -15304,7 +16338,10 @@ const wordsData = [
       "concern"
     ],
     "phoneticUK": "/kənsˈɜːnɪŋ/",
-    "syllables": "con·cer·ning"
+    "syllables": "con·cer·ning",
+    "extraExample": "We received a concerning report regarding the company's finances.",
+    "extraExampleTranslation": "เราได้รับรายงานที่น่ากังวลเกี่ยวกับสถานะการเงินของบริษัท",
+    "usageTip": "เมื่อใช้เป็นคำคุณศัพท์ มักแปลว่า น่ากังวล หรือถ้าเป็นบุพบทแปลว่า เกี่ยวกับ"
   },
   {
     "word": "concert",
@@ -15332,7 +16369,10 @@ const wordsData = [
       "ร็อก"
     ],
     "phoneticUK": "/kˈɒnsət/",
-    "syllables": "con·cert"
+    "syllables": "con·cert",
+    "extraExample": "We bought tickets to see our favorite band in concert next month.",
+    "extraExampleTranslation": "เราซื้อตั๋วไปดูคอนเสิร์ตของวงโปรดในเดือนหน้าแล้ว",
+    "usageTip": "ใช้ attend a concert หรือ go to a concert และมักใช้วลี in concert"
   },
   {
     "word": "conclude",
@@ -15454,7 +16494,10 @@ const wordsData = [
       "สภาพ",
       "ดี"
     ],
-    "syllables": "con·di·tion"
+    "syllables": "con·di·tion",
+    "extraExample": "The used car is in surprisingly good condition for its age.",
+    "extraExampleTranslation": "รถมือสองคันนี้อยู่ในสภาพดีอย่างน่าประหลาดใจเมื่อเทียบกับอายุการใช้งาน",
+    "usageTip": "ใช้ in good/bad condition เพื่อบอกสภาพ หรือ on condition that เพื่อบอกเงื่อนไข"
   },
   {
     "word": "conduct",
@@ -15481,7 +16524,10 @@ const wordsData = [
       "จัด",
       "การประชุม"
     ],
-    "syllables": "con·duct"
+    "syllables": "con·duct",
+    "extraExample": "The university will conduct a survey on student mental health.",
+    "extraExampleTranslation": "มหาวิทยาลัยจะดำเนินการสำรวจเกี่ยวกับสุขภาพจิตของนักศึกษา",
+    "usageTip": "มักใช้คู่กับคำนามเช่น survey, research, interview หรือ business"
   },
   {
     "word": "conference",
@@ -15510,7 +16556,10 @@ const wordsData = [
       "กรุงเทพฯ"
     ],
     "phoneticUK": "/kˈɒnfərəns/",
-    "syllables": "con·fe·rence"
+    "syllables": "con·fe·rence",
+    "extraExample": "She is attending an international medical conference in Tokyo.",
+    "extraExampleTranslation": "เธอกำลังเข้าร่วมการประชุมทางการแพทย์ระดับนานาชาติที่โตเกียว",
+    "usageTip": "ใช้ attend a conference หรือ hold a conference สำหรับงานประชุมใหญ่"
   },
   {
     "word": "confidence",
@@ -15544,7 +16593,10 @@ const wordsData = [
       "diffidence"
     ],
     "phoneticUK": "/kˈɒnfədəns/",
-    "syllables": "con·fi·dence"
+    "syllables": "con·fi·dence",
+    "extraExample": "Speaking in public regularly helped build his confidence.",
+    "extraExampleTranslation": "การพูดในที่สาธารณะเป็นประจำช่วยสร้างความมั่นใจให้เขา",
+    "usageTip": "ใช้กับคำกริยา build, gain หรือ lose เช่น gain confidence"
   },
   {
     "word": "confident",
@@ -15582,7 +16634,10 @@ const wordsData = [
     ],
     "phoneticUK": "/kˈɒnfədənt/",
     "syllables": "con·fi·dent",
-    "grammarPattern": "be confident about / of + N / that S + V"
+    "grammarPattern": "be confident about / of + N / that S + V",
+    "extraExample": "I feel confident that our team will win the match.",
+    "extraExampleTranslation": "ฉันรู้สึกมั่นใจว่าทีมของเราจะชนะการแข่งขัน",
+    "usageTip": "ตามด้วย about/of + นาม หรือ that + ประโยค เพื่อบอกว่ามั่นใจเรื่องใด"
   },
   {
     "word": "confine",
@@ -15619,7 +16674,10 @@ const wordsData = [
     "forms": [
       "V2/V3: confined",
       "V-ing: confining"
-    ]
+    ],
+    "extraExample": "Please confine your remarks to the topic on the agenda.",
+    "extraExampleTranslation": "กรุณาจำกัดความคิดเห็นของคุณให้อยู่ในหัวข้อตามวาระการประชุม",
+    "usageTip": "มักใช้ในรูป passive หรือใช้กับ to เช่น confine ... to ..."
   },
   {
     "word": "confined",
@@ -15651,7 +16709,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "confine"
-    ]
+    ],
+    "extraExample": "The patient was confined to bed for a week after surgery.",
+    "extraExampleTranslation": "ผู้ป่วยถูกจำกัดให้อยู่บนเตียงเป็นเวลาหนึ่งสัปดาห์หลังการผ่าตัด",
+    "usageTip": "ใช้เป็น adjective หรือ passive voice (be confined to) แปลว่าถูกจำกัดให้อยู่ในพื้นที่หรือสภาพใด"
   },
   {
     "word": "confirm",
@@ -15681,7 +16742,10 @@ const wordsData = [
       "คุณ"
     ],
     "phoneticUK": "/kənfˈɜːm/",
-    "syllables": "con·firm"
+    "syllables": "con·firm",
+    "extraExample": "Could you please confirm your flight reservation by email?",
+    "extraExampleTranslation": "คุณช่วยยืนยันการจองเที่ยวบินของคุณทางอีเมลได้ไหม",
+    "usageTip": "ใช้ confirm + คำนาม หรือ confirm that + ประโยค เพื่อยืนยันข้อมูลให้แน่นอน"
   },
   {
     "word": "conflict",
@@ -15710,7 +16774,10 @@ const wordsData = [
       "ความขัดแย้ง"
     ],
     "phoneticUK": "/kˈɒnflɪkt/",
-    "syllables": "con·flict"
+    "syllables": "con·flict",
+    "extraExample": "The two countries are trying to resolve their border conflict peacefully.",
+    "extraExampleTranslation": "ทั้งสองประเทศกำลังพยายามแก้ไขความขัดแย้งบริเวณชายแดนอย่างสันติ",
+    "usageTip": "ใช้ resolve a conflict (แก้ไขความขัดแย้ง) หรือ conflict of interest (ผลประโยชน์ทับซ้อน)"
   },
   {
     "word": "confront",
@@ -15741,7 +16808,10 @@ const wordsData = [
     "antonyms": [
       "avoid"
     ],
-    "syllables": "con·front"
+    "syllables": "con·front",
+    "extraExample": "You need to confront your fears instead of running away.",
+    "extraExampleTranslation": "คุณต้องเผชิญหน้ากับความกลัวของตัวเองแทนที่จะหนีไป",
+    "usageTip": "ใช้ confront + ปัญหา/ความกลัว/บุคคล เพื่อสื่อถึงการเผชิญหน้าโดยตรง"
   },
   {
     "word": "confuse",
@@ -15777,7 +16847,10 @@ const wordsData = [
     "forms": [
       "V2/V3: confused",
       "V-ing: confusing"
-    ]
+    ],
+    "extraExample": "The similar street names often confuse tourists.",
+    "extraExampleTranslation": "ชื่อถนนที่คล้ายกันมักทำให้นักท่องเที่ยวสับสน",
+    "usageTip": "ใช้ confuse A with B เพื่อบอกว่าสับสนระหว่าง A กับ B"
   },
   {
     "word": "confused",
@@ -15807,7 +16880,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "confuse"
-    ]
+    ],
+    "extraExample": "He looked confused when I asked him for directions.",
+    "extraExampleTranslation": "เขาดูรู้สึกสับสนตอนที่ฉันถามทางเขา",
+    "usageTip": "ใช้กับคนเพื่อบอกความรู้สึก (I am confused) ต่างจาก confusing ที่ใช้กับสิ่งที่ทำให้สับสน"
   },
   {
     "word": "confusing",
@@ -15838,7 +16914,10 @@ const wordsData = [
     "wordFamily": [
       "confuse"
     ],
-    "syllables": "con·fu·sing"
+    "syllables": "con·fu·sing",
+    "extraExample": "The instructions for assembling the furniture are very confusing.",
+    "extraExampleTranslation": "คู่มือการประกอบเฟอร์นิเจอร์นี้น่าสับสนมาก",
+    "usageTip": "ใช้ขยายสิ่งของ สถานการณ์ หรือคำอธิบายที่ทำให้คนอ่านหรือคนฟังงง"
   },
   {
     "word": "confusion",
@@ -15870,7 +16949,10 @@ const wordsData = [
       "วันที่",
       "เล็กน้อย"
     ],
-    "syllables": "con·fu·sion"
+    "syllables": "con·fu·sion",
+    "extraExample": "There was some confusion about the starting time of the meeting.",
+    "extraExampleTranslation": "มีความสับสนเล็กน้อยเกี่ยวกับเวลาเริ่มการประชุม",
+    "usageTip": "ใช้ cause confusion หรือ in confusion เพื่อบอกภาวะความสับสน"
   },
   {
     "word": "congratulate",
@@ -15907,7 +16989,10 @@ const wordsData = [
     "forms": [
       "V2/V3: congratulated",
       "V-ing: congratulating"
-    ]
+    ],
+    "extraExample": "Let me congratulate you on your well-deserved promotion.",
+    "extraExampleTranslation": "ขอแสดงความยินดีกับการเลื่อนตำแหน่งที่คุณสมควรได้รับด้วยนะ",
+    "usageTip": "ใช้โครงสร้าง congratulate + คน + on + สิ่งที่น่ายินดี"
   },
   {
     "word": "congratulation",
@@ -15940,7 +17025,10 @@ const wordsData = [
       "ของ",
       "คุณ"
     ],
-    "syllables": "con·gra·tu·la·tion"
+    "syllables": "con·gra·tu·la·tion",
+    "extraExample": "Please accept my warmest congratulation on your graduation.",
+    "extraExampleTranslation": "โปรดรับคำแสดงความยินดีอย่างจริงใจที่สุดเนื่องในโอกาสสำเร็จการศึกษาของคุณ",
+    "usageTip": "ในชีวิตประจำวันมักใช้รูปพหูพจน์ Congratulations! เมื่อพูดแสดงความยินดี"
   },
   {
     "word": "congress",
@@ -15971,7 +17059,10 @@ const wordsData = [
     "syllables": "con·gress",
     "forms": [
       "พหูพจน์: congresses"
-    ]
+    ],
+    "extraExample": "The new tax bill was passed by congress yesterday.",
+    "extraExampleTranslation": "ร่างกฎหมายภาษีฉบับใหม่ผ่านการอนุมัติจากรัฐสภาเมื่อวานนี้",
+    "usageTip": "มักใช้หมายถึงรัฐสภา (โดยเฉพาะในสหรัฐอเมริกา) หรือการประชุมใหญ่ระดับชาติ/นานาชาติ"
   },
   {
     "word": "connect",
@@ -16007,7 +17098,10 @@ const wordsData = [
       "disconnect",
       "separate"
     ],
-    "syllables": "con·nect"
+    "syllables": "con·nect",
+    "extraExample": "Click this button to connect your device to the Wi-Fi network.",
+    "extraExampleTranslation": "คลิกปุ่มนี้เพื่อเชื่อมต่ออุปกรณ์ของคุณเข้ากับเครือข่าย Wi-Fi",
+    "usageTip": "ใช้โครงสร้าง connect A to/with B เพื่อเชื่อมสิ่งหนึ่งเข้ากับอีกสิ่งหนึ่ง"
   },
   {
     "word": "connected",
@@ -16039,7 +17133,10 @@ const wordsData = [
       "อินเทอร์เน็ต",
       "แล้ว"
     ],
-    "syllables": "con·nec·ted"
+    "syllables": "con·nec·ted",
+    "extraExample": "Make sure the printer is connected before you start printing.",
+    "extraExampleTranslation": "ตรวจสอบให้แน่ใจว่าเครื่องพิมพ์เชื่อมต่อแล้วก่อนที่คุณจะเริ่มพิมพ์",
+    "usageTip": "ใช้เป็น adjective หลัง verb to be หรืออยู่หน้านาม เช่น stay connected"
   },
   {
     "word": "connection",
@@ -16070,7 +17167,10 @@ const wordsData = [
       "ไม่",
       "ดี"
     ],
-    "syllables": "con·nec·tion"
+    "syllables": "con·nec·tion",
+    "extraExample": "The internet connection in this café is very fast and stable.",
+    "extraExampleTranslation": "การเชื่อมต่ออินเทอร์เน็ตในคาเฟ่แห่งนี้เร็วและเสถียรมาก",
+    "usageTip": "ใช้ได้ทั้งการเชื่อมต่อทางเทคนิค (internet connection) และความสัมพันธ์ระหว่างคน"
   },
   {
     "word": "conscious",
@@ -16209,7 +17309,9 @@ const wordsData = [
     "usageTip": "เมื่อตามด้วยกริยาอีกตัวต้องใช้ V-ing เสมอ เช่น consider moving (ห้ามใช้ to move)",
     "phoneticUK": "/kənsˈɪdə(r)/",
     "syllables": "con·si·der",
-    "grammarPattern": "consider + V-ing / N (เช่น consider moving abroad)"
+    "grammarPattern": "consider + V-ing / N (เช่น consider moving abroad)",
+    "extraExample": "We should consider all the options before making a decision.",
+    "extraExampleTranslation": "เราควรพิจารณาทางเลือกทั้งหมดก่อนตัดสินใจ"
   },
   {
     "word": "considerable",
@@ -16243,7 +17345,10 @@ const wordsData = [
       "considerably"
     ],
     "syllables": "con·si·de·ra·ble",
-    "rootBreakdown": "consider + -able (สามารถ...ได้ (Adj.))"
+    "rootBreakdown": "consider + -able (สามารถ...ได้ (Adj.))",
+    "extraExample": "The project required a considerable amount of time and effort.",
+    "extraExampleTranslation": "โครงการนี้ต้องใช้เวลาและความพยายามมากพอสมควร",
+    "usageTip": "ใช้นำหน้าคำนามที่นับไม่ได้หรือคำนามพหูพจน์เพื่อเน้นปริมาณที่มาก"
   },
   {
     "word": "considerably",
@@ -16275,7 +17380,10 @@ const wordsData = [
     "wordFamily": [
       "considerable"
     ],
-    "syllables": "con·si·de·ra·bly"
+    "syllables": "con·si·de·ra·bly",
+    "extraExample": "Prices have increased considerably over the past few years.",
+    "extraExampleTranslation": "ราคาสินค้าเพิ่มขึ้นอย่างมากในช่วงไม่กี่ปีที่ผ่านมา",
+    "usageTip": "มักวางหลังคำกริยาหรือหน้าคำคุณศัพท์ขั้นกว่าเพื่อขยายความระดับที่มาก"
   },
   {
     "word": "consideration",
@@ -16308,7 +17416,10 @@ const wordsData = [
       "ระหว่าง",
       "การพิจารณา"
     ],
-    "syllables": "con·si·de·ra·tion"
+    "syllables": "con·si·de·ra·tion",
+    "extraExample": "Thank you for your careful consideration of my application.",
+    "extraExampleTranslation": "ขอบคุณสำหรับการพิจารณาใบสมัครของฉันอย่างรอบคอบ",
+    "usageTip": "มักใช้ในสำนวนทางการ เช่น take into consideration (นำมาพิจารณา)"
   },
   {
     "word": "consist",
@@ -16338,7 +17449,10 @@ const wordsData = [
       "คน"
     ],
     "syllables": "con·sist",
-    "grammarPattern": "consist of + N (ประกอบด้วย... ไม่ใช้รูป Passive was consisted)"
+    "grammarPattern": "consist of + N (ประกอบด้วย... ไม่ใช้รูป Passive was consisted)",
+    "extraExample": "The team will consist of five experienced engineers.",
+    "extraExampleTranslation": "ทีมจะประกอบด้วยวิศวกรที่มีประสบการณ์ห้าคน",
+    "usageTip": "ใช้คู่กับ of เสมอ (consist of) และไม่ใช้ในรูป passive voice"
   },
   {
     "word": "constant",
@@ -16373,7 +17487,10 @@ const wordsData = [
       "inconstant"
     ],
     "phoneticUK": "/kˈɒnstənt/",
-    "syllables": "con·stant"
+    "syllables": "con·stant",
+    "extraExample": "The machine needs a constant supply of electricity to run.",
+    "extraExampleTranslation": "เครื่องจักรต้องการกระแสไฟฟ้าที่สม่ำเสมอในการทำงาน",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อบอกถึงความต่อเนื่องไม่เปลี่ยนแปลง"
   },
   {
     "word": "constantly",
@@ -16405,7 +17522,10 @@ const wordsData = [
       "constant"
     ],
     "phoneticUK": "/kˈɒnstəntliː/",
-    "syllables": "con·stan·tly"
+    "syllables": "con·stan·tly",
+    "extraExample": "Technology is constantly changing how we communicate.",
+    "extraExampleTranslation": "เทคโนโลยีกำลังเปลี่ยนแปลงวิธีที่เราสื่อสารอย่างต่อเนื่อง",
+    "usageTip": "มักวางหน้ากริยาหลักหรือระหว่างกริยาช่วยกับกริยาหลัก"
   },
   {
     "word": "construct",
@@ -16438,7 +17558,10 @@ const wordsData = [
       "ที่นี่"
     ],
     "syllables": "cons·truct",
-    "rootBreakdown": "con- (ร่วมกัน) + struct (สร้าง) → ก่อสร้าง"
+    "rootBreakdown": "con- (ร่วมกัน) + struct (สร้าง) → ก่อสร้าง",
+    "extraExample": "They plan to construct a new bridge across the river.",
+    "extraExampleTranslation": "พวกเขาวางแผนที่จะสร้างสะพานใหม่ข้ามแม่น้ำ",
+    "usageTip": "เป็นคำทางการกว่า build มักใช้กับสิ่งก่อสร้างขนาดใหญ่หรือแนวคิด"
   },
   {
     "word": "construction",
@@ -16474,7 +17597,10 @@ const wordsData = [
     "antonyms": [
       "misconstruction"
     ],
-    "syllables": "cons·truc·tion"
+    "syllables": "cons·truc·tion",
+    "extraExample": "The construction of the new hospital will take two years.",
+    "extraExampleTranslation": "การก่อสร้างโรงพยาบาลแห่งใหม่จะใช้เวลาสองปี",
+    "usageTip": "มักใช้กับคำว่า under construction (กำลังอยู่ระหว่างการก่อสร้าง)"
   },
   {
     "word": "consult",
@@ -16500,7 +17626,10 @@ const wordsData = [
       "ปรึกษา",
       "แพทย์"
     ],
-    "syllables": "con·sult"
+    "syllables": "con·sult",
+    "extraExample": "You should consult a doctor if the symptoms continue.",
+    "extraExampleTranslation": "คุณควรปรึกษาแพทย์หากอาการยังคงดำเนินต่อไป",
+    "usageTip": "ใช้ consult someone directly ไม่ต้องมี with แต่ถ้าปรึกษากันเองใช้ consult with"
   },
   {
     "word": "consumer",
@@ -16528,7 +17657,10 @@ const wordsData = [
       "เพิ่มขึ้น"
     ],
     "phoneticUK": "/kənsˈuːmə(r)/",
-    "syllables": "con·su·mer"
+    "syllables": "con·su·mer",
+    "extraExample": "Consumer demand for electric cars is growing rapidly.",
+    "extraExampleTranslation": "ความต้องการของผู้บริโภคสำหรับรถยนต์ไฟฟ้ากำลังเติบโตอย่างรวดเร็ว",
+    "usageTip": "มักใช้เป็นคำนามหลักหรือวางหน้าคำนามอื่นเพื่อขยายความ"
   },
   {
     "word": "contact",
@@ -16559,7 +17691,10 @@ const wordsData = [
       "ความช่วยเหลือ"
     ],
     "phoneticUK": "/kˈɒntˌækt/",
-    "syllables": "con·tact"
+    "syllables": "con·tact",
+    "extraExample": "Please contact our customer service team for more details.",
+    "extraExampleTranslation": "กรุณาติดต่อทีมบริการลูกค้าของเราเพื่อขอรายละเอียดเพิ่มเติม",
+    "usageTip": "ใช้ contact someone ได้เลยโดยไม่ต้องมีคำบุพบท เช่น with หรือ to"
   },
   {
     "word": "contain",
@@ -16595,7 +17730,10 @@ const wordsData = [
       "เก่า"
     ],
     "syllables": "con·tain",
-    "rootBreakdown": "con- (ด้วยกัน) + tain (ถือ) → บรรจุไว้ภายใน"
+    "rootBreakdown": "con- (ด้วยกัน) + tain (ถือ) → บรรจุไว้ภายใน",
+    "extraExample": "This bottle can contain up to two liters of water.",
+    "extraExampleTranslation": "ขวดนี้สามารถบรรจุน้ำได้ถึงสองลิตร",
+    "usageTip": "ใช้บอกสิ่งที่อยู่ภายในภาชนะหรือส่วนประกอบภายในสิ่งของ"
   },
   {
     "word": "container",
@@ -16627,7 +17765,10 @@ const wordsData = [
       "พลาสติก"
     ],
     "phoneticUK": "/kəntˈeɪnə(r)/",
-    "syllables": "con·tai·ner"
+    "syllables": "con·tai·ner",
+    "extraExample": "Store the leftover food in an airtight container.",
+    "extraExampleTranslation": "เก็บอาหารที่เหลือไว้ในภาชนะที่มีฝาปิดสนิท",
+    "usageTip": "ใช้เรียกภาชนะบรรจุทั่วไปหรือตู้คอนเทนเนอร์ขนส่งสินค้า"
   },
   {
     "word": "contemporary",
@@ -16652,7 +17793,10 @@ const wordsData = [
       "ชอบ",
       "ศิลปะร่วมสมัย"
     ],
-    "syllables": "con·tem·po·ra·ry"
+    "syllables": "con·tem·po·ra·ry",
+    "extraExample": "The museum features works by contemporary artists.",
+    "extraExampleTranslation": "พิพิธภัณฑ์จัดแสดงผลงานของศิลปินร่วมสมัย",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อบอกว่าอยู่ในยุคปัจจุบันหรือยุคเดียวกัน"
   },
   {
     "word": "content",
@@ -16689,7 +17833,10 @@ const wordsData = [
       "สิ"
     ],
     "phoneticUK": "/kˈɒntent/",
-    "syllables": "con·tent"
+    "syllables": "con·tent",
+    "extraExample": "The website offers useful content for language learners.",
+    "extraExampleTranslation": "เว็บไซต์นี้นำเสนอเนื้อหาที่เป็นประโยชน์สำหรับผู้เรียนภาษา",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อหมายถึงเนื้อหาสาระโดยรวม"
   },
   {
     "word": "contest",
@@ -16715,7 +17862,10 @@ const wordsData = [
       "การประกวดความงาม"
     ],
     "phoneticUK": "/kˈɒntest/",
-    "syllables": "con·test"
+    "syllables": "con·test",
+    "extraExample": "She won first prize in the national speech contest.",
+    "extraExampleTranslation": "เธอได้รับรางวัลชนะเลิศในการแข่งขันพูดระดับประเทศ",
+    "usageTip": "มักใช้กับการแข่งขันที่มีการตัดสินหรือประกวด เช่น การประกวดความงามหรือการพูด"
   },
   {
     "word": "context",
@@ -16745,7 +17895,10 @@ const wordsData = [
       "บริบท"
     ],
     "phoneticUK": "/kˈɒntekst/",
-    "syllables": "con·text"
+    "syllables": "con·text",
+    "extraExample": "You need to understand the word within its full context.",
+    "extraExampleTranslation": "คุณต้องเข้าใจคำศัพท์นี้ภายในบริบททั้งหมดของมัน",
+    "usageTip": "มักใช้คู่กับคำบุพบท in (in context / in the context of)"
   },
   {
     "word": "continent",
@@ -16777,7 +17930,10 @@ const wordsData = [
       "ที่สุด"
     ],
     "phoneticUK": "/kˈɒntənənt/",
-    "syllables": "con·ti·nent"
+    "syllables": "con·ti·nent",
+    "extraExample": "Asia is the largest continent in the world by population.",
+    "extraExampleTranslation": "เอเชียเป็นทวีปที่ใหญ่ที่สุดในโลกเมื่อวัดจากจำนวนประชากร",
+    "usageTip": "ใช้กับชื่อทวีปทั้ง 7 และมักใช้กับคำบุพบท on (on the continent)"
   },
   {
     "word": "continue",
@@ -16814,7 +17970,10 @@ const wordsData = [
     "forms": [
       "V2/V3: continued",
       "V-ing: continuing"
-    ]
+    ],
+    "extraExample": "The rain is expected to continue throughout the afternoon.",
+    "extraExampleTranslation": "คาดว่าฝนจะตกต่อเนื่องไปตลอดช่วงบ่าย",
+    "usageTip": "ตามด้วยได้ทั้ง to V หรือ V-ing โดยมีความหมายเหมือนกัน"
   },
   {
     "word": "continuous",
@@ -16935,7 +18094,10 @@ const wordsData = [
     "forms": [
       "V2/V3: contributed",
       "V-ing: contributing"
-    ]
+    ],
+    "extraExample": "Everyone should contribute to keeping the neighborhood clean.",
+    "extraExampleTranslation": "ทุกคนควรมีส่วนร่วมในการรักษาความสะอาดของละแวกบ้าน",
+    "usageTip": "มักใช้กับ to ตามด้วยคำนามหรือ V-ing เช่น contribute to society"
   },
   {
     "word": "contribution",
@@ -16968,7 +18130,10 @@ const wordsData = [
       "การกุศล"
     ],
     "phoneticUK": "/kˌɒntrəbjˈuːʃən/",
-    "syllables": "con·tri·bu·tion"
+    "syllables": "con·tri·bu·tion",
+    "extraExample": "She made a valuable contribution to the team's success.",
+    "extraExampleTranslation": "เธอได้สร้างผลงานอันมีค่าต่อความสำเร็จของทีม",
+    "usageTip": "มักใช้คู่กับกริยา make เช่น make a contribution to"
   },
   {
     "word": "control",
@@ -16995,7 +18160,10 @@ const wordsData = [
       "รถ"
     ],
     "phoneticUK": "/kəntrˈəʊl/",
-    "syllables": "con·trol"
+    "syllables": "con·trol",
+    "extraExample": "The driver lost control of the car on the wet road.",
+    "extraExampleTranslation": "คนขับเสียการควบคุมรถบนถนนที่เปียกลื่น",
+    "usageTip": "ใช้ได้ทั้งเป็นคำนาม (take/lose control) และกริยา"
   },
   {
     "word": "controlled",
@@ -17027,7 +18195,10 @@ const wordsData = [
       "ได้",
       "แล้ว"
     ],
-    "phoneticUK": "/kəntrˈəʊld/"
+    "phoneticUK": "/kəntrˈəʊld/",
+    "extraExample": "The experiment was conducted in a controlled environment.",
+    "extraExampleTranslation": "การทดลองถูกจัดทำขึ้นในสภาพแวดล้อมที่ถูกควบคุม",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่ามีการควบคุมหรือจัดการอย่างเป็นระบบ"
   },
   {
     "word": "convenient",
@@ -17059,7 +18230,10 @@ const wordsData = [
     "antonyms": [
       "inconvenient"
     ],
-    "syllables": "con·ve·nient"
+    "syllables": "con·ve·nient",
+    "extraExample": "Online shopping is very convenient for busy people.",
+    "extraExampleTranslation": "การช้อปปิ้งออนไลน์สะดวกมากสำหรับคนที่มีงานยุ่ง",
+    "usageTip": "ระวังอย่าใช้กับคน (เช่น I am convenient) ให้ใช้กับสิ่งของ เวลา หรือสถานที่"
   },
   {
     "word": "convention",
@@ -17091,7 +18265,10 @@ const wordsData = [
       "ใน",
       "เมือง"
     ],
-    "syllables": "con·ven·tion"
+    "syllables": "con·ven·tion",
+    "extraExample": "The annual comic convention attracts thousands of fans.",
+    "extraExampleTranslation": "งานประชุมการ์ตูนประจำปีดึงดูดแฟนๆ หลายพันคน",
+    "usageTip": "แปลได้ทั้งงานประชุมใหญ่และธรรมเนียมปฏิบัติ"
   },
   {
     "word": "conventional",
@@ -17126,7 +18303,10 @@ const wordsData = [
       "unconventional",
       "nuclear"
     ],
-    "syllables": "con·ven·tio·nal"
+    "syllables": "con·ven·tio·nal",
+    "extraExample": "They prefer conventional teaching methods over online classes.",
+    "extraExampleTranslation": "พวกเขาชอบวิธีการสอนแบบดั้งเดิมมากกว่าการเรียนออนไลน์",
+    "usageTip": "ใช้หมายถึงสิ่งที่ทำตามแบบแผนหรือธรรมเนียมเดิมๆ"
   },
   {
     "word": "conversation",
@@ -17155,7 +18335,10 @@ const wordsData = [
       "น่าสนใจ"
     ],
     "phoneticUK": "/kˌɒnvəsˈeɪʃən/",
-    "syllables": "con·ver·sa·tion"
+    "syllables": "con·ver·sa·tion",
+    "extraExample": "We had a long conversation about our future plans.",
+    "extraExampleTranslation": "เราได้สนทนากันอย่างยาวนานเกี่ยวกับแผนอนาคตของเรา",
+    "usageTip": "มักใช้กับกริยา have เช่น have a conversation with someone"
   },
   {
     "word": "convert",
@@ -17184,7 +18367,10 @@ const wordsData = [
       "ยูโร"
     ],
     "phoneticUK": "/kˈɒnvət/",
-    "syllables": "con·vert"
+    "syllables": "con·vert",
+    "extraExample": "You can convert this document into a PDF file easily.",
+    "extraExampleTranslation": "คุณสามารถแปลงเอกสารนี้เป็นไฟล์ PDF ได้อย่างง่ายดาย",
+    "usageTip": "มักใช้คู่กับ into เมื่อพูดถึงการเปลี่ยนจากสิ่งหนึ่งไปเป็นอีกสิ่งหนึ่ง"
   },
   {
     "word": "convince",
@@ -17217,7 +18403,10 @@ const wordsData = [
     "forms": [
       "V2/V3: convinced",
       "V-ing: convincing"
-    ]
+    ],
+    "extraExample": "He tried to convince his parents to let him travel alone.",
+    "extraExampleTranslation": "เขาพยายามโน้มน้าวพ่อแม่ให้ยอมให้เขาเดินทางคนเดียว",
+    "usageTip": "โครงสร้างที่พบบ่อยคือ convince someone to do something หรือ convince someone that..."
   },
   {
     "word": "cook",
@@ -17249,7 +18438,10 @@ const wordsData = [
       "แม่ครัว",
       "ที่",
       "ดี"
-    ]
+    ],
+    "extraExample": "The head cook prepared a special meal for the guests.",
+    "extraExampleTranslation": "หัวหน้าพ่อครัวเตรียมอาหารมื้อพิเศษสำหรับแขก",
+    "usageTip": "ในรูปคำนามหมายถึงพ่อครัว/แม่ครัว แต่ถ้าเป็นเครื่องใช้ไฟฟ้าจะใช้ cooker"
   },
   {
     "word": "cooker",
@@ -17279,7 +18471,10 @@ const wordsData = [
       "ใหม่"
     ],
     "phoneticUK": "/kˈʊkə(r)/",
-    "syllables": "coo·ker"
+    "syllables": "coo·ker",
+    "extraExample": "Please put the rice in the electric cooker.",
+    "extraExampleTranslation": "กรุณาใส่ข้าวลงในหม้อหุงข้าวไฟฟ้า",
+    "usageTip": "ในภาษาอังกฤษแบบอังกฤษ cooker หมายถึงเตาทำอาหารหรือหม้อหุงข้าว"
   },
   {
     "word": "cookie",
@@ -17308,7 +18503,9 @@ const wordsData = [
       "ช็อกโกแลต"
     ],
     "syllables": "coo·kie",
-    "usageTip": "US ใช้ cookie (คุกกี้) | UK มักเรียกว่า biscuit"
+    "usageTip": "US ใช้ cookie (คุกกี้) | UK มักเรียกว่า biscuit",
+    "extraExample": "Would you like a chocolate chip cookie with your milk?",
+    "extraExampleTranslation": "คุณต้องการคุกกี้ช็อกโกแลตชิปทานคู่กับนมไหม"
   },
   {
     "word": "cooking",
@@ -17341,7 +18538,10 @@ const wordsData = [
       "ให้",
       "ครอบครัว"
     ],
-    "syllables": "coo·king"
+    "syllables": "coo·king",
+    "extraExample": "My grandmother taught me how to do Thai cooking.",
+    "extraExampleTranslation": "คุณยายสอนฉันทำอาหารไทย",
+    "usageTip": "ใช้เป็นคำนาม (การทำอาหาร) หรือ V-ing ก็ได้ เช่น enjoy cooking"
   },
   {
     "word": "cool",
@@ -17369,7 +18569,10 @@ const wordsData = [
     ],
     "antonyms": [
       "warm"
-    ]
+    ],
+    "extraExample": "He stayed cool even when everyone else panicked.",
+    "extraExampleTranslation": "เขายังคงใจเย็นแม้ว่าคนอื่นจะตื่นตระหนกกันหมด",
+    "usageTip": "นอกจากแปลว่าเย็นหรือเจ๋งแล้ว ยังใช้กับคนเพื่อแปลว่าใจเย็น ไม่ตื่นตระหนก"
   },
   {
     "word": "cope",
@@ -17405,7 +18608,10 @@ const wordsData = [
       "V2/V3: coped",
       "V-ing: coping"
     ],
-    "grammarPattern": "cope with + ปัญหา/ความเครียด (รับมือกับ)"
+    "grammarPattern": "cope with + ปัญหา/ความเครียด (รับมือกับ)",
+    "extraExample": "It can be difficult to cope with stress at work.",
+    "extraExampleTranslation": "การรับมือกับความเครียดในที่ทำงานอาจเป็นเรื่องยาก",
+    "usageTip": "มักใช้คู่กับ with เสมอ เช่น cope with a problem"
   },
   {
     "word": "copy",
@@ -17442,7 +18648,10 @@ const wordsData = [
     "syllables": "co·py",
     "forms": [
       "พหูพจน์: copies"
-    ]
+    ],
+    "extraExample": "Please send me a copy of your passport.",
+    "extraExampleTranslation": "กรุณาส่งสำเนาหนังสือเดินทางของคุณมาให้ฉัน",
+    "usageTip": "ใช้ได้ทั้งคำนาม (สำเนา) และกริยา (คัดลอก)"
   },
   {
     "word": "core",
@@ -17470,7 +18679,10 @@ const wordsData = [
       "ที่",
       "ร้อน"
     ],
-    "phoneticUK": "/kˈɔː/"
+    "phoneticUK": "/kˈɔː/",
+    "extraExample": "Trust is the core value of any strong relationship.",
+    "extraExampleTranslation": "ความไว้วางใจคือคุณค่าหลักของความสัมพันธ์ที่มั่นคง",
+    "usageTip": "มักใช้ขยายคำนามเพื่อเน้นว่าเป็นส่วนที่สำคัญที่สุดหรือแก่นแท้"
   },
   {
     "word": "corner",
@@ -17497,7 +18709,10 @@ const wordsData = [
       "หัวมุมถนน"
     ],
     "phoneticUK": "/kˈɔːnə(r)/",
-    "syllables": "cor·ner"
+    "syllables": "cor·ner",
+    "extraExample": "There is a coffee shop on the corner of the street.",
+    "extraExampleTranslation": "มีร้านกาแฟอยู่ที่หัวมุมถนน",
+    "usageTip": "ใช้บุพบท on/at the corner สำหรับถนน และ in the corner สำหรับมุมห้อง"
   },
   {
     "word": "correct",
@@ -17527,7 +18742,10 @@ const wordsData = [
       "incorrect",
       "wrong"
     ],
-    "syllables": "cor·rect"
+    "syllables": "cor·rect",
+    "extraExample": "Make sure you enter the correct password to log in.",
+    "extraExampleTranslation": "ตรวจสอบให้แน่ใจว่าคุณกรอกรหัสผ่านที่ถูกต้องเพื่อเข้าสู่ระบบ",
+    "usageTip": "ใช้เป็นคำคุณศัพท์แปลว่าถูกต้อง และเป็นคำกริยาแปลว่าแก้ไขให้ถูกต้อง"
   },
   {
     "word": "cost",
@@ -17649,7 +18867,10 @@ const wordsData = [
       "อย่าง",
       "หนัก"
     ],
-    "phoneticUK": "/kˈɒf/"
+    "phoneticUK": "/kˈɒf/",
+    "extraExample": "She had a bad cough all night, so she stayed home from work.",
+    "extraExampleTranslation": "เธอไอหนักมากตลอดทั้งคืน จึงต้องหยุดงานอยู่ที่บ้าน",
+    "usageTip": "ใช้เป็นคำนามหมายถึงอาการไอ มักใช้คู่กับ have a cough (มีอาการไอ)"
   },
   {
     "word": "could",
@@ -17676,7 +18897,10 @@ const wordsData = [
       "หน่อย",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "He could speak three languages fluently when he was younger.",
+    "extraExampleTranslation": "เขาสามารถพูดได้สามภาษาอย่างคล่องแคล่วเมื่อตอนที่เขายังเด็ก",
+    "usageTip": "เป็นกริยาช่วย (modal verb) รูปอดีตของ can ใช้บอกความสามารถในอดีตหรือการขอร้องอย่างสุภาพ"
   },
   {
     "word": "council",
@@ -17702,7 +18926,10 @@ const wordsData = [
       "สมาชิกสภา",
       "เมือง"
     ],
-    "syllables": "coun·cil"
+    "syllables": "coun·cil",
+    "extraExample": "The city council approved the new plan to build a public park.",
+    "extraExampleTranslation": "สภาเมืองอนุมัติแผนการใหม่ในการสร้างสวนสาธารณะ",
+    "usageTip": "หมายถึงคณะกรรมการหรือสภาที่ทำหน้าที่ตัดสินใจหรือให้คำปรึกษา เช่น city council"
   },
   {
     "word": "count",
@@ -17736,7 +18963,10 @@ const wordsData = [
       "สิบ",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "Please count the money carefully before you put it in the safe.",
+    "extraExampleTranslation": "กรุณานับเงินอย่างระมัดระวังก่อนนำไปเก็บไว้ในตู้เซฟ",
+    "usageTip": "ใช้เป็นกริยาแปลว่านับจำนวน หรือใช้ในสำนวน count on (พึ่งพา/วางใจ)"
   },
   {
     "word": "counter",
@@ -17767,7 +18997,10 @@ const wordsData = [
       "เคาน์เตอร์"
     ],
     "phoneticUK": "/kˈaʊntə(r)/",
-    "syllables": "coun·ter"
+    "syllables": "coun·ter",
+    "extraExample": "I left the car keys on the kitchen counter this morning.",
+    "extraExampleTranslation": "ฉันวางกุญแจรถไว้บนเคาน์เตอร์ในครัวเมื่อเช้านี้",
+    "usageTip": "หมายถึงโต๊ะยาวหรือเคาน์เตอร์สำหรับวางของหรือให้บริการลูกค้า"
   },
   {
     "word": "country",
@@ -17799,7 +19032,8 @@ const wordsData = [
       "พหูพจน์: countries"
     ],
     "extraExample": "They prefer living in the country away from traffic.",
-    "extraExampleTranslation": "พวกเขาชอบใช้ชีวิตอยู่แถบชนบทห่างไกลรถติด (ความหมายรอง: ชนบท)"
+    "extraExampleTranslation": "พวกเขาชอบใช้ชีวิตอยู่แถบชนบทห่างไกลรถติด (ความหมายรอง: ชนบท)",
+    "usageTip": "ใช้หมายถึงประเทศ หรือใช้ในรูป the country เพื่อหมายถึงชนบท"
   },
   {
     "word": "countryside",
@@ -17825,7 +19059,10 @@ const wordsData = [
       "ที่",
       "เงียบสงบ"
     ],
-    "syllables": "coun·try·side"
+    "syllables": "coun·try·side",
+    "extraExample": "We love spending our weekends cycling through the quiet countryside.",
+    "extraExampleTranslation": "พวกเราชอบใช้เวลาวันหยุดสุดสัปดาห์ปั่นจักรยานไปตามชนบทที่เงียบสงบ",
+    "usageTip": "มักใช้คู่กับ the เสมอ (the countryside) เพื่อหมายถึงพื้นที่ชนบทนอกเมือง"
   },
   {
     "word": "county",
@@ -17861,7 +19098,10 @@ const wordsData = [
     "syllables": "coun·ty",
     "forms": [
       "พหูพจน์: counties"
-    ]
+    ],
+    "extraExample": "Our town is located in the largest county in the state.",
+    "extraExampleTranslation": "เมืองของเราตั้งอยู่ในเขตการปกครองที่ใหญ่ที่สุดของรัฐ",
+    "usageTip": "ใช้เรียกเขตการปกครองระดับมณฑลหรือเคาน์ตีในประเทศเช่นสหรัฐฯ หรืออังกฤษ"
   },
   {
     "word": "couple",
@@ -17891,7 +19131,10 @@ const wordsData = [
       "ใน",
       "สวนสาธารณะ"
     ],
-    "syllables": "cou·ple"
+    "syllables": "cou·ple",
+    "extraExample": "A young couple moved into the house next door yesterday.",
+    "extraExampleTranslation": "คู่รักหนุ่มสาวคู่หนึ่งย้ายเข้ามาอยู่บ้านข้างๆ เมื่อวานนี้",
+    "usageTip": "ใช้หมายถึงคู่รัก หรือใช้ในรูป a couple of เพื่อหมายถึงสองสาม (สิ่ง/คน)"
   },
   {
     "word": "courage",
@@ -17928,7 +19171,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "It took a lot of courage for her to start a business on her own.",
+    "extraExampleTranslation": "เธอต้องใช้ความกล้าหาญอย่างมากในการเริ่มต้นทำธุรกิจด้วยตัวเอง",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้คู่กับกริยา take หรือ have เพื่อบอกว่าต้องใช้หรือมีความกล้า"
   },
   {
     "word": "course",
@@ -17955,7 +19201,10 @@ const wordsData = [
       "เรียน",
       "หลักสูตร",
       "ภาษาอังกฤษ"
-    ]
+    ],
+    "extraExample": "I signed up for an online course to improve my English skills.",
+    "extraExampleTranslation": "ฉันลงทะเบียนเรียนหลักสูตรออนไลน์เพื่อพัฒนาทักษะภาษาอังกฤษของฉัน",
+    "usageTip": "หมายถึงหลักสูตรการเรียน หรือใช้ในวลี of course (แน่นอน)"
   },
   {
     "word": "court",
@@ -17982,7 +19231,10 @@ const wordsData = [
       "นำ",
       "ตัว",
       "ขึ้นศาล"
-    ]
+    ],
+    "extraExample": "The judge asked everyone in the court to remain silent.",
+    "extraExampleTranslation": "ผู้พิพากษาขอให้ทุกคนในศาลอยู่ในความสงบ",
+    "usageTip": "หมายถึงศาลยุติธรรม หรือใช้เรียกสนามกีฬาบางชนิด เช่น tennis court"
   },
   {
     "word": "cousin",
@@ -18011,7 +19263,10 @@ const wordsData = [
       "ฉัน",
       "วันนี้"
     ],
-    "syllables": "cou·sin"
+    "syllables": "cou·sin",
+    "extraExample": "My cousin is coming to visit us from Chiang Mai next week.",
+    "extraExampleTranslation": "ลูกพี่ลูกน้องของฉันจะเดินทางจากเชียงใหม่มาเยี่ยมพวกเราในสัปดาห์หน้า",
+    "usageTip": "ใช้เรียกลูกพี่ลูกน้องได้ทั้งผู้ชายและผู้หญิงโดยไม่ต้องแยกเพศ"
   },
   {
     "word": "cover",
@@ -18048,7 +19303,10 @@ const wordsData = [
       "uncover"
     ],
     "phoneticUK": "/kˈʌvə(r)/",
-    "syllables": "co·ver"
+    "syllables": "co·ver",
+    "extraExample": "Please cover the food with plastic wrap before putting it in the fridge.",
+    "extraExampleTranslation": "กรุณาคลุมอาหารด้วยพลาสติกแรปก่อนนำไปแช่ในตู้เย็น",
+    "usageTip": "ใช้เป็นกริยาแปลว่าปกคลุมหรือปิดบัง มักตามด้วย with (คลุมด้วย)"
   },
   {
     "word": "covered",
@@ -18081,7 +19339,10 @@ const wordsData = [
       "ไป",
       "ด้วย",
       "หิมะ"
-    ]
+    ],
+    "extraExample": "The mountain peaks were covered in thick snow all winter.",
+    "extraExampleTranslation": "ยอดเขาถูกปกคลุมไปด้วยหิมะหนาตลอดฤดูหนาว",
+    "usageTip": "มักใช้ในรูป be covered in/with เพื่อบอกว่ามีสิ่งใดสิ่งหนึ่งปกคลุมอยู่"
   },
   {
     "word": "covering",
@@ -18115,7 +19376,10 @@ const wordsData = [
       "สิ่ง",
       "ปกคลุม"
     ],
-    "syllables": "co·ve·ring"
+    "syllables": "co·ve·ring",
+    "extraExample": "A thin covering of dust settled on the old furniture.",
+    "extraExampleTranslation": "ฝุ่นบางๆ เกาะปกคลุมอยู่บนเฟอร์นิเจอร์เก่า",
+    "usageTip": "หมายถึงชั้นหรือสิ่งที่ใช้ปกคลุมพื้นผิว มักตามด้วย of เพื่อระบุชนิดของสิ่งที่คลุม"
   },
   {
     "word": "cow",
@@ -18139,7 +19403,10 @@ const wordsData = [
       "วัว",
       "กำลังกิน",
       "หญ้า"
-    ]
+    ],
+    "extraExample": "The farmer wakes up early every morning to milk each cow.",
+    "extraExampleTranslation": "ชาวนาตื่นแต่เช้าทุกวันเพื่อรีดนมแม่วัวแต่ละตัว",
+    "usageTip": "ใช้เรียกวัวตัวเมียที่โตเต็มวัย โดยเฉพาะวัวนม (dairy cow)"
   },
   {
     "word": "crack",
@@ -18168,7 +19435,10 @@ const wordsData = [
       "รอยร้าว",
       "บน",
       "กำแพง"
-    ]
+    ],
+    "extraExample": "There is a small crack in the living room window.",
+    "extraExampleTranslation": "มีรอยร้าวเล็กๆ อยู่ที่หน้าต่างห้องนั่งเล่น",
+    "usageTip": "เป็นคำนามหมายถึงรอยร้าวหรือรอยแยกเล็กๆ บนพื้นผิวแข็ง"
   },
   {
     "word": "cracked",
@@ -18196,7 +19466,10 @@ const wordsData = [
       "แก้ว",
       "มี",
       "รอยร้าว"
-    ]
+    ],
+    "extraExample": "The old ceramic plate cracked when it fell onto the tile floor.",
+    "extraExampleTranslation": "จานเซรามิกใบเก่าแตกเป็นรอยร้าวเมื่อมันตกลงบนพื้นกระเบื้อง",
+    "usageTip": "เป็นกริยาช่อง 2 หรือคำคุณศัพท์ หมายถึงแตกหรือมีรอยร้าวโดยที่ยังไม่แยกออกจากกัน"
   },
   {
     "word": "craft",
@@ -18225,7 +19498,10 @@ const wordsData = [
       "จาก",
       "กระดาษ"
     ],
-    "phoneticUK": "/krˈɑːft/"
+    "phoneticUK": "/krˈɑːft/",
+    "extraExample": "Making traditional pottery is a craft that takes years to master.",
+    "extraExampleTranslation": "การทำเครื่องปั้นดินเผาแบบดั้งเดิมเป็นงานฝีมือที่ต้องใช้เวลาหลายปีกว่าจะชำนาญ",
+    "usageTip": "หมายถึงงานฝีมือ ทักษะทางช่าง หรือใช้เรียกยานพาหนะทางน้ำและทางอากาศ"
   },
   {
     "word": "crash",
@@ -18350,7 +19626,10 @@ const wordsData = [
     "forms": [
       "V2/V3: created",
       "V-ing: creating"
-    ]
+    ],
+    "extraExample": "We need to create a new plan before the meeting starts.",
+    "extraExampleTranslation": "เราต้องสร้างแผนใหม่ก่อนการประชุมจะเริ่มขึ้น",
+    "usageTip": "ใช้ create เมื่อพูดถึงการสร้างหรือคิดค้นสิ่งใหม่ๆ ขึ้นมา"
   },
   {
     "word": "creature",
@@ -18381,7 +19660,10 @@ const wordsData = [
       "ทะเล"
     ],
     "phoneticUK": "/krˈiːtʃə(r)/",
-    "syllables": "crea·ture"
+    "syllables": "crea·ture",
+    "extraExample": "The deep ocean is home to many mysterious creatures.",
+    "extraExampleTranslation": "มหาสมุทรลึกเป็นที่อยู่อาศัยของสิ่งมีชีวิตลึกลับมากมาย",
+    "usageTip": "ใช้ creature เพื่อเรียกสิ่งมีชีวิตทุกชนิด โดยเฉพาะสัตว์หรือสัตว์ประหลาด"
   },
   {
     "word": "credit",
@@ -18413,7 +19695,10 @@ const wordsData = [
     "antonyms": [
       "debit"
     ],
-    "syllables": "cre·dit"
+    "syllables": "cre·dit",
+    "extraExample": "She deserves full credit for organizing the entire event.",
+    "extraExampleTranslation": "เธอสมควรได้รับเครดิตเต็มที่สำหรับการจัดงานทั้งหมด",
+    "usageTip": "ใช้ credit ได้ทั้งความหมายว่าเครดิต/ความดีความชอบ และสินเชื่อ"
   },
   {
     "word": "credit card",
@@ -18436,7 +19721,10 @@ const wordsData = [
       "ไว้",
       "ที่",
       "บ้าน"
-    ]
+    ],
+    "extraExample": "You can pay for your hotel room with a credit card.",
+    "extraExampleTranslation": "คุณสามารถจ่ายค่าห้องพักโรงแรมด้วยบัตรเครดิตได้",
+    "usageTip": "ใช้กับกริยา pay by หรือ use เช่น pay by credit card"
   },
   {
     "word": "crime",
@@ -18465,7 +19753,10 @@ const wordsData = [
       "ก่อ",
       "อาชญากรรม",
       "ร้ายแรง"
-    ]
+    ],
+    "extraExample": "The police are working hard to reduce violent crime in the city.",
+    "extraExampleTranslation": "ตำรวจกำลังทำงานอย่างหนักเพื่อลดอาชญากรรมรุนแรงในเมือง",
+    "usageTip": "crime เป็นคำนามนับไม่ได้เมื่อหมายถึงอาชญากรรมโดยรวม และนับได้เมื่อหมายถึงคดีหนึ่งๆ"
   },
   {
     "word": "criminal",
@@ -18495,7 +19786,10 @@ const wordsData = [
       "คนร้าย",
       "ได้"
     ],
-    "syllables": "cri·mi·nal"
+    "syllables": "cri·mi·nal",
+    "extraExample": "The criminal was arrested just hours after the robbery.",
+    "extraExampleTranslation": "อาชญากรคนนั้นถูกจับกุมเพียงไม่กี่ชั่วโมงหลังการปล้น",
+    "usageTip": "ใช้เป็นคำนามหมายถึงผู้กระทำผิด หรือใช้เป็นคำคุณศัพท์ก็ได้ เช่น criminal record"
   },
   {
     "word": "crisis",
@@ -18529,7 +19823,10 @@ const wordsData = [
     "forms": [
       "พหูพจน์: crises"
     ],
-    "syllables": "cri·sis"
+    "syllables": "cri·sis",
+    "extraExample": "The company faced a major financial crisis last year.",
+    "extraExampleTranslation": "บริษัทเผชิญกับวิกฤติทางการเงินครั้งใหญ่เมื่อปีที่แล้ว",
+    "usageTip": "รูปพหูพจน์ของ crisis คือ crises (อ่านว่า ไคร-ซีส)"
   },
   {
     "word": "crisp",
@@ -18557,7 +19854,10 @@ const wordsData = [
       "กิน",
       "มันฝรั่งทอด",
       "กรอบ"
-    ]
+    ],
+    "extraExample": "I love eating crisp apples right out of the fridge.",
+    "extraExampleTranslation": "ฉันชอบกินแอปเปิลกรอบๆ ที่เพิ่งหยิบออกจากตู้เย็น",
+    "usageTip": "ใช้ crisp อธิบายอาหารที่กรอบสดใหม่ หรืออากาศที่เย็นสดชื่น"
   },
   {
     "word": "criterion",
@@ -18589,7 +19889,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: criteria"
-    ]
+    ],
+    "extraExample": "Experience is the main criterion for this job.",
+    "extraExampleTranslation": "ประสบการณ์เป็นเกณฑ์หลักสำหรับงานนี้",
+    "usageTip": "criterion เป็นรูปเอกพจน์ ส่วนรูปพหูพจน์ที่ใช้บ่อยคือ criteria"
   },
   {
     "word": "critical",
@@ -18624,7 +19927,10 @@ const wordsData = [
       "uncritical",
       "noncritical"
     ],
-    "syllables": "cri·ti·cal"
+    "syllables": "cri·ti·cal",
+    "extraExample": "It is critical that we finish the project on time.",
+    "extraExampleTranslation": "เป็นเรื่องสำคัญอย่างยิ่งที่เราต้องทำโปรเจกต์ให้เสร็จตรงเวลา",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าวิกฤติ/สำคัญมาก และเกี่ยวกับการวิจารณ์"
   },
   {
     "word": "criticism",
@@ -18654,7 +19960,10 @@ const wordsData = [
       "ยอมรับ",
       "คำวิจารณ์",
       "ได้"
-    ]
+    ],
+    "extraExample": "The new policy received a lot of criticism from the public.",
+    "extraExampleTranslation": "นโยบายใหม่ได้รับเสียงวิจารณ์อย่างมากจากสาธารณชน",
+    "usageTip": "criticism มักใช้เป็นคำนามนับไม่ได้ และใช้คู่กับบุพบท of หรือ about"
   },
   {
     "word": "criticize",
@@ -18688,7 +19997,10 @@ const wordsData = [
     "forms": [
       "V2/V3: criticized",
       "V-ing: criticizing"
-    ]
+    ],
+    "extraExample": "It is easy to criticize others, but harder to offer solutions.",
+    "extraExampleTranslation": "การวิจารณ์คนอื่นเป็นเรื่องง่าย แต่การเสนอทางออกนั้นยากกว่า",
+    "usageTip": "ใช้ criticize + บุคคล/สิ่งของ ตามด้วย for + เหตุผลที่วิจารณ์"
   },
   {
     "word": "crop",
@@ -18715,7 +20027,10 @@ const wordsData = [
       "สูญเสีย",
       "ผลผลิต"
     ],
-    "phoneticUK": "/krˈɒp/"
+    "phoneticUK": "/krˈɒp/",
+    "extraExample": "Heavy rain damaged the rice crop across the region.",
+    "extraExampleTranslation": "ฝนตกหนักสร้างความเสียหายต่อผลผลิตข้าวทั่วทั้งภูมิภาค",
+    "usageTip": "crop หมายถึงพืชผลที่ปลูกเพื่อเก็บเกี่ยว มักใช้ในรูปพหูพจน์ crops"
   },
   {
     "word": "cross",
@@ -18741,7 +20056,10 @@ const wordsData = [
       "เมื่อ",
       "คุณ",
       "ข้ามถนน"
-    ]
+    ],
+    "extraExample": "Please cross the street only at the pedestrian crossing.",
+    "extraExampleTranslation": "กรุณาข้ามถนนเฉพาะตรงทางม้าลายเท่านั้น",
+    "usageTip": "ใช้ cross เป็นกริยาแปลว่าข้าม หรือขีดฆ่า/ทำเครื่องหมายกากบาท"
   },
   {
     "word": "crowd",
@@ -18771,7 +20089,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "crowded"
-    ]
+    ],
+    "extraExample": "A large crowd gathered outside the stadium before the concert.",
+    "extraExampleTranslation": "ฝูงชนจำนวนมากมารวมตัวกันหน้าสนามกีฬาก่อนคอนเสิร์ตจะเริ่ม",
+    "usageTip": "crowd ใช้กับกลุ่มคนจำนวนมากที่มารวมตัวกันในที่เดียวกัน"
   },
   {
     "word": "crowded",
@@ -18802,7 +20123,10 @@ const wordsData = [
     "antonyms": [
       "uncrowded"
     ],
-    "syllables": "crow·ded"
+    "syllables": "crow·ded",
+    "extraExample": "The subway is always crowded during the morning rush hour.",
+    "extraExampleTranslation": "รถไฟใต้ดินแออัดอยู่เสมอในช่วงชั่วโมงเร่งด่วนตอนเช้า",
+    "usageTip": "ใช้ crowded + with เพื่อบอกว่าเต็มไปด้วยอะไร เช่น crowded with tourists"
   },
   {
     "word": "crown",
@@ -18826,7 +20150,10 @@ const wordsData = [
       "พระราชา",
       "สวมมงกุฎ",
       "ทองคำ"
-    ]
+    ],
+    "extraExample": "The king placed the golden crown on his head.",
+    "extraExampleTranslation": "พระราชาทรงสวมมงกุฎทองคำลงบนพระเศียร",
+    "usageTip": "ใช้ได้ทั้งคำนาม (มงกุฎ) และคำกริยา (สวมมงกุฎ/แต่งตั้ง)"
   },
   {
     "word": "crucial",
@@ -18858,7 +20185,10 @@ const wordsData = [
     "antonyms": [
       "noncrucial"
     ],
-    "syllables": "cru·cial"
+    "syllables": "cru·cial",
+    "extraExample": "Good communication is crucial for a successful team.",
+    "extraExampleTranslation": "การสื่อสารที่ดีมีความสำคัญอย่างยิ่งต่อทีมที่ประสบความสำเร็จ",
+    "usageTip": "crucial มักใช้คู่กับบุพบท to หรือ for เพื่อเน้นสิ่งที่ขาดไม่ได้"
   },
   {
     "word": "cruel",
@@ -18890,7 +20220,10 @@ const wordsData = [
     ],
     "antonyms": [
       "kind"
-    ]
+    ],
+    "extraExample": "It is cruel to leave a pet alone without food or water.",
+    "extraExampleTranslation": "การทิ้งสัตว์เลี้ยงไว้ตามลำพังโดยไม่มีอาหารหรือน้ำเป็นเรื่องโหดร้าย",
+    "usageTip": "ใช้ cruel + to + บุคคล/สัตว์ เพื่อบอกว่าโหดร้ายต่อใคร"
   },
   {
     "word": "crush",
@@ -18917,7 +20250,10 @@ const wordsData = [
       "กล่อง",
       "จน",
       "แบน"
-    ]
+    ],
+    "extraExample": "Be careful not to crush the tomatoes at the bottom of the bag.",
+    "extraExampleTranslation": "ระวังอย่าขยี้มะเขือเทศที่อยู่ก้นถุงนะ",
+    "usageTip": "ใช้ crush เมื่อออกแรงบีบหรือทับจนแบนหรือแหลก"
   },
   {
     "word": "cry",
@@ -19043,7 +20379,10 @@ const wordsData = [
       "ถ้วย",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "She poured hot tea into a ceramic cup.",
+    "extraExampleTranslation": "เธอรินชาร้อนลงในถ้วยเซรามิก",
+    "usageTip": "ใช้ได้ทั้งถ้วยกาแฟและหน่วยตวงอาหาร (1 cup)"
   },
   {
     "word": "cupboard",
@@ -19069,7 +20408,10 @@ const wordsData = [
       "ใน",
       "ตู้"
     ],
-    "syllables": "cup·board"
+    "syllables": "cup·board",
+    "extraExample": "Please put the plates back in the kitchen cupboard.",
+    "extraExampleTranslation": "กรุณาเอาจานไปเก็บไว้ในตู้กับข้าวในครัว",
+    "usageTip": "หมายถึงตู้เก็บของหรือตู้กับข้าวที่มีบานเปิดปิด"
   },
   {
     "word": "curb",
@@ -19098,7 +20440,10 @@ const wordsData = [
       "hold",
       "contain"
     ],
-    "phoneticUK": "/kˈɜːb/"
+    "phoneticUK": "/kˈɜːb/",
+    "extraExample": "The government took steps to curb inflation.",
+    "extraExampleTranslation": "รัฐบาลดำเนินมาตรการเพื่อควบคุมเงินเฟ้อ",
+    "usageTip": "ใช้ในความหมายว่ายับยั้งหรือควบคุมสิ่งที่ไม่ต้องการ"
   },
   {
     "word": "cure",
@@ -19129,7 +20474,10 @@ const wordsData = [
     "wordFamily": [
       "curly"
     ],
-    "phoneticUK": "/kjˈʊ/"
+    "phoneticUK": "/kjˈʊ/",
+    "extraExample": "Scientists are working hard to find a cure for the disease.",
+    "extraExampleTranslation": "นักวิทยาศาสตร์กำลังทำงานอย่างหนักเพื่อหาวิธีรักษาโรคนี้",
+    "usageTip": "ใช้เป็นคำนามหมายถึงวิธีรักษาหรือยารักษาโรค (มักตามด้วย for)"
   },
   {
     "word": "curious",
@@ -19162,7 +20510,9 @@ const wordsData = [
     ],
     "grammarPattern": "be curious about + N / to V",
     "register": "ทั่วไป",
-    "usageTip": "ใช้คู่กับ about: curious about + เรื่องที่สงสัย"
+    "usageTip": "ใช้คู่กับ about: curious about + เรื่องที่สงสัย",
+    "extraExample": "The little boy was curious about how the clock worked.",
+    "extraExampleTranslation": "เด็กชายตัวน้อยอยากรู้อยากเห็นว่านาฬิกาทำงานอย่างไร"
   },
   {
     "word": "curl",
@@ -19193,7 +20543,10 @@ const wordsData = [
       "เป็น",
       "ลอน"
     ],
-    "phoneticUK": "/kˈɜːl/"
+    "phoneticUK": "/kˈɜːl/",
+    "extraExample": "Smoke began to curl up from the chimney.",
+    "extraExampleTranslation": "ควันเริ่มลอยม้วนตัวขึ้นมาจากปล่องไฟ",
+    "usageTip": "ใช้ได้ทั้งการม้วนผมและการขดหรือม้วนตัวของสิ่งต่างๆ"
   },
   {
     "word": "curly",
@@ -19225,7 +20578,10 @@ const wordsData = [
       "สวยงาม"
     ],
     "phoneticUK": "/kˈɜːliː/",
-    "syllables": "cur·ly"
+    "syllables": "cur·ly",
+    "extraExample": "She has long, curly brown hair.",
+    "extraExampleTranslation": "เธอมีผมสีน้ำตาลยาวและหยิกเป็นลอน",
+    "usageTip": "ใช้บรรยายลักษณะผมหยิกหรือสิ่งที่มีรูปทรงเป็นลอน"
   },
   {
     "word": "current",
@@ -19260,7 +20616,10 @@ const wordsData = [
       "noncurrent"
     ],
     "phoneticUK": "/kˈɜːənt/",
-    "syllables": "cur·rent"
+    "syllables": "cur·rent",
+    "extraExample": "The swimmers struggled against the strong ocean current.",
+    "extraExampleTranslation": "นักว่ายน้ำต้องสู้กับกระแสน้ำทะเลที่เชี่ยวกราก",
+    "usageTip": "เป็นคำนามหมายถึงกระแสน้ำ/ลม/ไฟ หรือเป็นคำคุณศัพท์แปลว่าปัจจุบัน"
   },
   {
     "word": "currently",
@@ -19292,7 +20651,10 @@ const wordsData = [
       "current"
     ],
     "phoneticUK": "/kˈɜːəntliː/",
-    "syllables": "cur·ren·tly"
+    "syllables": "cur·ren·tly",
+    "extraExample": "He is currently working on a new software project.",
+    "extraExampleTranslation": "ตอนนี้เขากำลังทำงานในโปรเจกต์ซอฟต์แวร์ใหม่อยู่",
+    "usageTip": "วางหน้ากริยาหลักหรือหลัง verb to be เพื่อบอกเวลาในปัจจุบัน"
   },
   {
     "word": "curtain",
@@ -19319,7 +20681,10 @@ const wordsData = [
       "ผ้าม่าน"
     ],
     "phoneticUK": "/kˈɜːtən/",
-    "syllables": "cur·tain"
+    "syllables": "cur·tain",
+    "extraExample": "She drew the curtain to let the morning sunlight in.",
+    "extraExampleTranslation": "เธอเปิดม่านออกเพื่อให้แสงแดดยามเช้าส่องเข้ามา",
+    "usageTip": "ใช้ draw/pull the curtain เพื่อหมายถึงการเปิดหรือปิดม่าน"
   },
   {
     "word": "curve",
@@ -19349,7 +20714,10 @@ const wordsData = [
     "wordFamily": [
       "curved"
     ],
-    "phoneticUK": "/kˈɜːv/"
+    "phoneticUK": "/kˈɜːv/",
+    "extraExample": "The car slowed down as it approached a sharp curve.",
+    "extraExampleTranslation": "รถชะลอความเร็วลงเมื่อเข้าใกล้ทางโค้งหักศอก",
+    "usageTip": "ใช้เรียกเส้นโค้งหรือทางโค้งบนถนน"
   },
   {
     "word": "curved",
@@ -19379,7 +20747,10 @@ const wordsData = [
     "wordFamily": [
       "curve"
     ],
-    "phoneticUK": "/kˈɜːvd/"
+    "phoneticUK": "/kˈɜːvd/",
+    "extraExample": "The bridge has a graceful curved design.",
+    "extraExampleTranslation": "สะพานนี้มีการออกแบบที่โค้งมนอย่างสวยงาม",
+    "usageTip": "ใช้เป็นคำคุณศัพท์ขยายคำนามที่มีลักษณะโค้งงอ"
   },
   {
     "word": "custom",
@@ -19410,7 +20781,10 @@ const wordsData = [
       "ประเพณี",
       "ท้องถิ่น"
     ],
-    "syllables": "cu·stom"
+    "syllables": "cu·stom",
+    "extraExample": "It is a local custom to take off your shoes before entering.",
+    "extraExampleTranslation": "เป็นธรรมเนียมท้องถิ่นที่จะต้องถอดรองเท้าก่อนเข้าบ้าน",
+    "usageTip": "หมายถึงประเพณีหรือธรรมเนียมปฏิบัติ (ถ้าเติม s จะหมายถึงศุลกากร)"
   },
   {
     "word": "customer",
@@ -19441,7 +20815,10 @@ const wordsData = [
       "custom"
     ],
     "phoneticUK": "/kˈʌstəmə(r)/",
-    "syllables": "cu·sto·mer"
+    "syllables": "cu·sto·mer",
+    "extraExample": "The shop always tries to keep every customer happy.",
+    "extraExampleTranslation": "ทางร้านพยายามทำให้ลูกค้าทุกคนพึงพอใจอยู่เสมอ",
+    "usageTip": "ใช้เรียกลูกค้าที่ซื้อสินค้าหรือบริการ"
   },
   {
     "word": "customs",
@@ -19482,7 +20859,9 @@ const wordsData = [
     "syllables": "cu·stoms",
     "forms": [
       "[Plural] ใช้รูปพหูพจน์เสมอ"
-    ]
+    ],
+    "extraExample": "We had to go through customs at the airport.",
+    "extraExampleTranslation": "พวกเราต้องผ่านด่านศุลกากรที่สนามบิน"
   },
   {
     "word": "cut",
@@ -19517,7 +20896,10 @@ const wordsData = [
       "cut down on (ลดปริมาณลง เช่น กาแฟ/น้ำตาล)",
       "cut off (ตัดขาด/ตัดบท)",
       "short cut (ทางลัด)"
-    ]
+    ],
+    "extraExample": "Be careful not to cut your finger with that sharp knife.",
+    "extraExampleTranslation": "ระวังอย่าให้มีดคมๆ เล่มนั้นบาดนิ้วของคุณนะ",
+    "usageTip": "ใช้ได้ทั้งการตัด การบาด หรือการลดค่าใช้จ่าย"
   },
   {
     "word": "cycle",
@@ -19550,7 +20932,10 @@ const wordsData = [
       "cycling",
       "recycle"
     ],
-    "syllables": "cy·cle"
+    "syllables": "cy·cle",
+    "extraExample": "Water moves through the natural water cycle.",
+    "extraExampleTranslation": "น้ำหมุนเวียนผ่านวัฏจักรของน้ำตามธรรมชาติ",
+    "usageTip": "หมายถึงวงจรหรือวัฏจักรที่เกิดขึ้นซ้ำๆ เป็นรอบ"
   },
   {
     "word": "cycling",
@@ -19581,7 +20966,10 @@ const wordsData = [
     ],
     "synonyms": [
       "cycle"
-    ]
+    ],
+    "extraExample": "They enjoy cycling along the river every weekend.",
+    "extraExampleTranslation": "พวกเขาชอบปั่นจักรยานเลียบแม่น้ำทุกสุดสัปดาห์",
+    "usageTip": "ใช้เรียกกีฬาหรือกิจกรรมปั่นจักรยาน"
   },
   {
     "word": "dad",
@@ -19609,7 +20997,10 @@ const wordsData = [
       "dada",
       "daddy",
       "papa"
-    ]
+    ],
+    "extraExample": "My dad taught me how to ride a bike.",
+    "extraExampleTranslation": "คุณพ่อของฉันสอนวิธีขี่จักรยานให้ฉัน",
+    "usageTip": "เป็นคำเรียกพ่อแบบไม่เป็นทางการและอบอุ่นกว่า father"
   },
   {
     "word": "daily",
@@ -19640,7 +21031,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: dailier",
       "ขั้นสุด: dailiest"
-    ]
+    ],
+    "extraExample": "Exercise should be part of your daily routine.",
+    "extraExampleTranslation": "การออกกำลังกายควรเป็นส่วนหนึ่งของกิจวัตรประจำวันของคุณ",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าเกิดขึ้นทุกวันหรือเป็นประจำวัน"
   },
   {
     "word": "damage",
@@ -19759,7 +21153,10 @@ const wordsData = [
       "มืออาชีพ"
     ],
     "phoneticUK": "/dˈænsə(r)/",
-    "syllables": "dan·cer"
+    "syllables": "dan·cer",
+    "extraExample": "The lead dancer performed gracefully on stage.",
+    "extraExampleTranslation": "นักเต้นรำนำแสดงอย่างสง่างามบนเวที",
+    "usageTip": "ใช้เป็นคำนามนับได้ เติม -s เมื่อมีหลายคน เช่น professional dancers"
   },
   {
     "word": "dancing",
@@ -19788,7 +21185,10 @@ const wordsData = [
       "ชอบ",
       "เต้นรำ"
     ],
-    "syllables": "dan·cing"
+    "syllables": "dan·cing",
+    "extraExample": "She loves dancing to upbeat music on weekends.",
+    "extraExampleTranslation": "เธอชอบเต้นรำตามเพลงจังหวะสนุกสนานในวันหยุดสุดสัปดาห์",
+    "usageTip": "ใช้เป็นกริยาเติม -ing หรือคำนาม (gerund) หลังคำว่า love, like, enjoy"
   },
   {
     "word": "danger",
@@ -19822,7 +21222,10 @@ const wordsData = [
       "safety"
     ],
     "phoneticUK": "/dˈeɪndʒə(r)/",
-    "syllables": "da·nger"
+    "syllables": "da·nger",
+    "extraExample": "The hikers were in serious danger during the storm.",
+    "extraExampleTranslation": "นักเดินป่าตกอยู่ในอันตรายร้ายแรงระหว่างพายุ",
+    "usageTip": "มักใช้ในวลี in danger (ตกอยู่ในอันตราย) หรือ out of danger (พ้นขีดอันตราย)"
   },
   {
     "word": "dangerous",
@@ -19856,7 +21259,10 @@ const wordsData = [
     "antonyms": [
       "safe"
     ],
-    "syllables": "da·nge·rous"
+    "syllables": "da·nge·rous",
+    "extraExample": "Driving on icy roads can be very dangerous.",
+    "extraExampleTranslation": "การขับรถบนถนนที่เป็นน้ำแข็งอาจเป็นอันตรายมาก",
+    "usageTip": "ใช้ขยายคำนามหรือตามหลัง verb to be เพื่อบอกลักษณะที่เสี่ยงอันตราย"
   },
   {
     "word": "dare",
@@ -19888,7 +21294,10 @@ const wordsData = [
     "forms": [
       "V2/V3: dared",
       "V-ing: daring"
-    ]
+    ],
+    "extraExample": "I didn't dare to ask him about the mistake.",
+    "extraExampleTranslation": "ฉันไม่กล้าถามเขาเกี่ยวกับความผิดพลาดนั้น",
+    "usageTip": "ตามด้วย to + V1 หรือ V1 เปล่าในประโยคปฏิเสธ/คำถาม เช่น How dare you!"
   },
   {
     "word": "dark",
@@ -19917,7 +21326,10 @@ const wordsData = [
     "antonyms": [
       "light",
       "bright"
-    ]
+    ],
+    "extraExample": "It gets dark very early during the winter months.",
+    "extraExampleTranslation": "ฟ้ามืดเร็วมากในช่วงเดือนฤดูหนาว",
+    "usageTip": "ใช้กับ get/grow dark เพื่อบอกว่ามืดลง หรือขยายคำนาม เช่น dark room"
   },
   {
     "word": "data",
@@ -19946,7 +21358,9 @@ const wordsData = [
     ],
     "phoneticUK": "/ˈdeɪtə/",
     "syllables": "da·ta",
-    "usageTip": "ในภาษาพูดทั่วไปมักใช้กับกริยาเอกพจน์ (The data shows...), แต่ในงานวิจัยวิชาการมักใช้พหูพจน์ (These data show...)"
+    "usageTip": "ในภาษาพูดทั่วไปมักใช้กับกริยาเอกพจน์ (The data shows...), แต่ในงานวิจัยวิชาการมักใช้พหูพจน์ (These data show...)",
+    "extraExample": "We need to analyze the sales data before the meeting.",
+    "extraExampleTranslation": "เราต้องวิเคราะห์ข้อมูลการขายก่อนการประชุม"
   },
   {
     "word": "date",
@@ -19973,7 +21387,8 @@ const wordsData = [
       "เท่าไหร่"
     ],
     "extraExample": "What is today's date?",
-    "extraExampleTranslation": "วันนี้วันที่เท่าไร? (ถามวันที่ใช้ date; ถามวันจันทร์-อาทิตย์ใช้ day)"
+    "extraExampleTranslation": "วันนี้วันที่เท่าไร? (ถามวันที่ใช้ date; ถามวันจันทร์-อาทิตย์ใช้ day)",
+    "usageTip": "ใช้ถามวันที่ด้วย What's the date today? และใช้กับ on สำหรับวันที่เฉพาะ"
   },
   {
     "word": "daughter",
@@ -20004,7 +21419,10 @@ const wordsData = [
       "son"
     ],
     "phoneticUK": "/dˈɔːtə(r)/",
-    "syllables": "daugh·ter"
+    "syllables": "daugh·ter",
+    "extraExample": "Their youngest daughter just started primary school.",
+    "extraExampleTranslation": "ลูกสาวคนเล็กของพวกเขาเพิ่งเริ่มเรียนชั้นประถม",
+    "usageTip": "ใช้แสดงความสัมพันธ์ในครอบครัว หากมีลูกสาวหลายคนใช้ daughters"
   },
   {
     "word": "day",
@@ -20032,7 +21450,10 @@ const wordsData = [
     ],
     "antonyms": [
       "night"
-    ]
+    ],
+    "extraExample": "We spent the whole day exploring the old town.",
+    "extraExampleTranslation": "เราใช้เวลาทั้งวันในการสำรวจเมืองเก่า",
+    "usageTip": "ใช้คู่กับ on เมื่อระบุวันเฉพาะ และใช้ every day (สองคำ) เมื่อแปลว่าทุกวัน"
   },
   {
     "word": "dead",
@@ -20060,7 +21481,9 @@ const wordsData = [
     "antonyms": [
       "alive"
     ],
-    "usageTip": "dead (Adj) = ตายแล้ว (He is dead.); กริยาใช้ die; คำนามใช้ death"
+    "usageTip": "dead (Adj) = ตายแล้ว (He is dead.); กริยาใช้ die; คำนามใช้ death",
+    "extraExample": "The battery in my phone is completely dead.",
+    "extraExampleTranslation": "แบตเตอรี่ในโทรศัพท์ของฉันหมดเกลี้ยงแล้ว"
   },
   {
     "word": "deaf",
@@ -20085,7 +21508,10 @@ const wordsData = [
       "หูหนวก",
       "ตั้งแต่",
       "เกิด"
-    ]
+    ],
+    "extraExample": "He has been deaf in his left ear since childhood.",
+    "extraExampleTranslation": "เขาหูหนวกที่หูซ้ายมาตั้งแต่เด็ก",
+    "usageTip": "ใช้กับ to ในสำนวน turn a deaf ear to (แกล้งทำเป็นไม่ได้ยิน/ไม่สนใจ)"
   },
   {
     "word": "deal",
@@ -20117,7 +21543,10 @@ const wordsData = [
       "a great deal of (จำนวนมาก)",
       "big deal (เรื่องใหญ่)",
       "deal with (จัดการ/รับมือกับ)"
-    ]
+    ],
+    "extraExample": "She knows how to deal with difficult customers calmly.",
+    "extraExampleTranslation": "เธอรู้วิธีจัดการกับลูกค้าที่รับมือยากอย่างใจเย็น",
+    "usageTip": "มักใช้ในรูป deal with (จัดการกับ) หรือเป็นคำนามแปลว่าข้อตกลง เช่น a good deal"
   },
   {
     "word": "dear",
@@ -20144,7 +21573,10 @@ const wordsData = [
       "ของ",
       "ฉัน"
     ],
-    "phoneticUK": "/dˈɪ/"
+    "phoneticUK": "/dˈɪ/",
+    "extraExample": "Thank you so much for your help, my dear friend.",
+    "extraExampleTranslation": "ขอบคุณมากสำหรับความช่วยเหลือ เพื่อนรักของฉัน",
+    "usageTip": "ใช้ขึ้นต้นจดหมาย (Dear ...) หรือแสดงความรักใคร่เอ็นดู"
   },
   {
     "word": "death",
@@ -20178,7 +21610,10 @@ const wordsData = [
     ],
     "antonyms": [
       "birth"
-    ]
+    ],
+    "extraExample": "The sudden death of the actor shocked everyone.",
+    "extraExampleTranslation": "การเสียชีวิตอย่างกะทันหันของนักแสดงทำให้ทุกคนตกใจ",
+    "usageTip": "เป็นคำนามของ die มักใช้กับบุพบท of เช่น cause of death"
   },
   {
     "word": "debate",
@@ -20209,7 +21644,10 @@ const wordsData = [
       "เรื่อง",
       "การเมือง"
     ],
-    "syllables": "de·bate"
+    "syllables": "de·bate",
+    "extraExample": "There was a lively debate about the new school policy.",
+    "extraExampleTranslation": "มีการถกเถียงอย่างออกรสเกี่ยวกับนโยบายใหม่ของโรงเรียน",
+    "usageTip": "ใช้ได้ทั้งคำนามและกริยา มักตามด้วย about หรือ over เพื่อระบุหัวข้อ"
   },
   {
     "word": "debt",
@@ -20235,7 +21673,10 @@ const wordsData = [
       "หนี้สิน",
       "ท่วม",
       "ตัว"
-    ]
+    ],
+    "extraExample": "He worked two jobs to pay off his student debt.",
+    "extraExampleTranslation": "เขาทำงานสองอย่างเพื่อปลดหนี้การศึกษาของเขา",
+    "usageTip": "มักใช้กับคำกริยา pay off (จ่ายหนี้), be in debt (เป็นหนี้) โดยไม่ออกเสียงตัว b"
   },
   {
     "word": "decade",
@@ -20264,7 +21705,10 @@ const wordsData = [
       "ปี"
     ],
     "phoneticUK": "/ˈdekeɪd/",
-    "syllables": "de·cade"
+    "syllables": "de·cade",
+    "extraExample": "Technology has changed dramatically over the past decade.",
+    "extraExampleTranslation": "เทคโนโลยีเปลี่ยนแปลงไปอย่างมากในช่วงทศวรรษที่ผ่านมา",
+    "usageTip": "หมายถึงช่วงเวลา 10 ปี มักใช้กับ over the past decade หรือ for decades"
   },
   {
     "word": "decay",
@@ -20292,7 +21736,10 @@ const wordsData = [
       "ฟันผุ",
       "ได้"
     ],
-    "syllables": "de·cay"
+    "syllables": "de·cay",
+    "extraExample": "Too much sugar can cause tooth decay in children.",
+    "extraExampleTranslation": "น้ำตาลมากเกินไปอาจทำให้เกิดฟันผุในเด็กได้",
+    "usageTip": "ใช้ได้ทั้งกริยาและคำนาม เพื่อบอกการผุพัง เสื่อมสลาย หรือฟันผุ"
   },
   {
     "word": "December",
@@ -20321,7 +21768,10 @@ const wordsData = [
       "ปี"
     ],
     "phoneticUK": "/dɪsˈembə(r)/",
-    "syllables": "De·cem·ber"
+    "syllables": "De·cem·ber",
+    "extraExample": "Our family always takes a trip together in December.",
+    "extraExampleTranslation": "ครอบครัวของเรามักจะไปเที่ยวด้วยกันในเดือนธันวาคม",
+    "usageTip": "ขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ และใช้กับบุพบท in (in December) เมื่อไม่ระบุวันที่"
   },
   {
     "word": "decide",
@@ -20450,7 +21900,10 @@ const wordsData = [
     "antonyms": [
       "improvement"
     ],
-    "syllables": "de·cline"
+    "syllables": "de·cline",
+    "extraExample": "There was a sharp decline in tourism during the winter.",
+    "extraExampleTranslation": "มีการลดลงอย่างรวดเร็วของการท่องเที่ยวในช่วงฤดูหนาว",
+    "usageTip": "ใช้เป็นคำนามหมายถึงการลดลงหรือเสื่อมถอย มักใช้คู่กับ in + สิ่งที่ลดลง"
   },
   {
     "word": "decorate",
@@ -20488,7 +21941,10 @@ const wordsData = [
     "forms": [
       "V2/V3: decorated",
       "V-ing: decorating"
-    ]
+    ],
+    "extraExample": "We decided to decorate the living room with fairy lights.",
+    "extraExampleTranslation": "เราตัดสินใจตกแต่งห้องนั่งเล่นด้วยไฟประดับ",
+    "usageTip": "ใช้กับสถานที่หรือสิ่งของ โดยมักตามด้วย with + สิ่งที่ใช้ตกแต่ง"
   },
   {
     "word": "decoration",
@@ -20521,7 +21977,10 @@ const wordsData = [
       "สวยงาม",
       "มาก"
     ],
-    "syllables": "de·co·ra·tion"
+    "syllables": "de·co·ra·tion",
+    "extraExample": "The wedding decoration looked simple yet elegant.",
+    "extraExampleTranslation": "การตกแต่งงานแต่งงานดูเรียบง่ายแต่สง่างาม",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อหมายถึงการตกแต่งโดยรวม และนับได้เมื่อหมายถึงของประดับ"
   },
   {
     "word": "decorative",
@@ -20553,7 +22012,10 @@ const wordsData = [
       "เพื่อ",
       "การ",
       "ตกแต่ง"
-    ]
+    ],
+    "extraExample": "She bought a decorative vase for the dining table.",
+    "extraExampleTranslation": "เธอซื้อแจกันสำหรับตกแต่งมาวางบนโต๊ะอาหาร",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อบอกว่าสิ่งนั้นมีไว้เพื่อความสวยงาม ไม่ใช่เพื่อใช้งานหลัก"
   },
   {
     "word": "decrease",
@@ -20587,7 +22049,10 @@ const wordsData = [
     "forms": [
       "V2/V3: decreased",
       "V-ing: decreasing"
-    ]
+    ],
+    "extraExample": "The company plans to decrease its energy consumption by ten percent.",
+    "extraExampleTranslation": "บริษัทวางแผนที่จะลดการใช้พลังงานลงสิบเปอร์เซ็นต์",
+    "usageTip": "ใช้ได้ทั้งแบบมีกรรมและไม่มีกรรม หากระบุจำนวนที่ลดลงมักใช้กับ by"
   },
   {
     "word": "deep",
@@ -20617,7 +22082,10 @@ const wordsData = [
     ],
     "antonyms": [
       "shallow"
-    ]
+    ],
+    "extraExample": "The divers explored the deep ocean near the coral reef.",
+    "extraExampleTranslation": "นักดำน้ำสำรวจมหาสมุทรที่ลึกใกล้กับแนวปะการัง",
+    "usageTip": "ใช้บอกความลึกทางกายภาพหรือความลึกซึ้งของความรู้สึกและความคิด"
   },
   {
     "word": "deeply",
@@ -20651,7 +22119,10 @@ const wordsData = [
       "ของ",
       "คุณ"
     ],
-    "syllables": "dee·ply"
+    "syllables": "dee·ply",
+    "extraExample": "I am deeply grateful for all your support.",
+    "extraExampleTranslation": "ฉันรู้สึกซาบซึ้งใจอย่างยิ่งสำหรับทุกความช่วยเหลือของคุณ",
+    "usageTip": "ใช้ขยายคำคุณศัพท์หรือคำกริยาเพื่อเน้นระดับความรู้สึกที่รุนแรงหรือลึกซึ้ง"
   },
   {
     "word": "defeat",
@@ -20684,7 +22155,10 @@ const wordsData = [
     "antonyms": [
       "victory"
     ],
-    "syllables": "de·feat"
+    "syllables": "de·feat",
+    "extraExample": "The team suffered a narrow defeat in the final match.",
+    "extraExampleTranslation": "ทีมประสบความพ่ายแพ้อย่างหวุดหวิดในนัดชิงชนะเลิศ",
+    "usageTip": "ใช้เป็นคำนามหมายถึงความพ่ายแพ้ มักใช้คู่กับ suffer หรือ admit"
   },
   {
     "word": "defence",
@@ -20717,7 +22191,10 @@ const wordsData = [
     "antonyms": [
       "offence"
     ],
-    "syllables": "de·fence"
+    "syllables": "de·fence",
+    "extraExample": "Good nutrition is the best defence against illness.",
+    "extraExampleTranslation": "โภชนาการที่ดีคือการป้องกันโรคภัยไข้เจ็บที่ดีที่สุด",
+    "usageTip": "เป็นคำสะกดแบบอังกฤษ (แบบอเมริกันคือ defense) มักใช้คู่กับ against"
   },
   {
     "word": "defend",
@@ -20753,7 +22230,10 @@ const wordsData = [
     "antonyms": [
       "attack"
     ],
-    "syllables": "de·fend"
+    "syllables": "de·fend",
+    "extraExample": "Soldiers are trained to defend their country.",
+    "extraExampleTranslation": "ทหารได้รับการฝึกฝนเพื่อปกป้องประเทศของตน",
+    "usageTip": "ใช้หมายถึงการปกป้องจากการโจมตี หรือการแก้ต่างข้อกล่าวหา"
   },
   {
     "word": "define",
@@ -20791,7 +22271,10 @@ const wordsData = [
     "forms": [
       "V2/V3: defined",
       "V-ing: defining"
-    ]
+    ],
+    "extraExample": "It is hard to define what true happiness means.",
+    "extraExampleTranslation": "เป็นการยากที่จะให้คำจำกัดความว่าความสุขที่แท้จริงหมายถึงอะไร",
+    "usageTip": "ใช้เมื่อต้องการอธิบายความหมายหรือขอบเขตของคำหรือแนวคิด"
   },
   {
     "word": "definite",
@@ -20824,7 +22307,10 @@ const wordsData = [
     "antonyms": [
       "indefinite"
     ],
-    "syllables": "de·fi·nite"
+    "syllables": "de·fi·nite",
+    "extraExample": "We need a definite answer before Friday.",
+    "extraExampleTranslation": "เราต้องการคำตอบที่แน่นอนก่อนวันศุกร์",
+    "usageTip": "ใช้ขยายคำนามเพื่อเน้นความชัดเจน ไม่คลุมเครือ หรือกำหนดไว้แล้ว"
   },
   {
     "word": "definitely",
@@ -20861,7 +22347,9 @@ const wordsData = [
     "antonyms": [
       "possibly",
       "doubtfully"
-    ]
+    ],
+    "extraExample": "I will definitely attend the meeting tomorrow.",
+    "extraExampleTranslation": "ฉันจะเข้าร่วมการประชุมวันพรุ่งนี้อย่างแน่นอน"
   },
   {
     "word": "definition",
@@ -20890,7 +22378,10 @@ const wordsData = [
       "ใน",
       "พจนานุกรม"
     ],
-    "syllables": "de·fi·ni·tion"
+    "syllables": "de·fi·ni·tion",
+    "extraExample": "Please look up the definition of this word in the dictionary.",
+    "extraExampleTranslation": "กรุณาเปิดหาคำจำกัดความของคำนี้ในพจนานุกรม",
+    "usageTip": "ใช้หมายถึงความหมายของคำในพจนานุกรม หรือความคมชัดของภาพ"
   },
   {
     "word": "degree",
@@ -20919,7 +22410,10 @@ const wordsData = [
     "forms": [
       "V2/V3: degreed",
       "V-ing: degreing"
-    ]
+    ],
+    "extraExample": "She earned a degree in computer science last year.",
+    "extraExampleTranslation": "เธอสำเร็จการศึกษาระดับปริญญาด้านวิทยาการคอมพิวเตอร์เมื่อปีที่แล้ว",
+    "usageTip": "ใช้ได้ทั้งระดับปริญญา องศาอุณหภูมิ หรือระดับความมากน้อยของสิ่งต่างๆ"
   },
   {
     "word": "delay",
@@ -20949,7 +22443,10 @@ const wordsData = [
       "rush"
     ],
     "syllables": "de·lay",
-    "grammarPattern": "delay + V-ing / N (เลื่อนเวลาออกไป เช่น delay leaving)"
+    "grammarPattern": "delay + V-ing / N (เลื่อนเวลาออกไป เช่น delay leaving)",
+    "extraExample": "Heavy rain might delay the flight for an hour.",
+    "extraExampleTranslation": "ฝนตกหนักอาจทำให้เที่ยวบินล่าช้าไปหนึ่งชั่วโมง",
+    "usageTip": "ใช้เป็นกริยาหมายถึงทำให้ช้าหรือเลื่อนออกไป มักตามด้วยคำนามหรือ V-ing"
   },
   {
     "word": "deliberate",
@@ -20983,7 +22480,10 @@ const wordsData = [
       "ทำร้าย",
       "เธอ"
     ],
-    "syllables": "de·li·be·rate"
+    "syllables": "de·li·be·rate",
+    "extraExample": "His speech was slow and deliberate.",
+    "extraExampleTranslation": "คำพูดของเขาช้าและผ่านการไตร่ตรองมาอย่างดี",
+    "usageTip": "ใช้บรรยายการกระทำที่ตั้งใจทำหรือคิดทบทวนมาอย่างรอบคอบ"
   },
   {
     "word": "deliberately",
@@ -21016,7 +22516,10 @@ const wordsData = [
     ],
     "antonyms": [
       "accidentally"
-    ]
+    ],
+    "extraExample": "He deliberately ignored my phone calls all day.",
+    "extraExampleTranslation": "เขาจงใจไม่รับโทรศัพท์ของฉันตลอดทั้งวัน",
+    "usageTip": "ใช้ขยายกริยาเพื่อบอกว่าผู้กระทำมีเจตนาทำสิ่งนั้น ไม่ใช่เรื่องบังเอิญ"
   },
   {
     "word": "delicate",
@@ -21046,7 +22549,10 @@ const wordsData = [
     "antonyms": [
       "rugged"
     ],
-    "syllables": "de·li·cate"
+    "syllables": "de·li·cate",
+    "extraExample": "Be careful with that glass because it is very delicate.",
+    "extraExampleTranslation": "ระวังแก้วใบนั้นหน่อยนะเพราะมันบอบบางมาก",
+    "usageTip": "ใช้กับสิ่งของที่แตกหักง่าย หรือสถานการณ์ที่ละเอียดอ่อนต้องระมัดระวัง"
   },
   {
     "word": "delight",
@@ -21080,7 +22586,10 @@ const wordsData = [
       "อย่าง",
       "มาก"
     ],
-    "syllables": "de·light"
+    "syllables": "de·light",
+    "extraExample": "The children screamed with delight when they saw the puppy.",
+    "extraExampleTranslation": "เด็กๆ กรีดร้องด้วยความยินดีเมื่อเห็นลูกสุนัข",
+    "usageTip": "เป็นคำนามหมายถึงความสุขใจอย่างมาก มักใช้ในวลี with delight หรือ to one's delight"
   },
   {
     "word": "delighted",
@@ -21209,7 +22718,10 @@ const wordsData = [
       "supply"
     ],
     "phoneticUK": "/dɪmˈɑːnd/",
-    "syllables": "de·mand"
+    "syllables": "de·mand",
+    "extraExample": "There is a high demand for skilled software engineers this year.",
+    "extraExampleTranslation": "ปีนี้มีความต้องการวิศวกรซอฟต์แวร์ที่มีทักษะสูงมาก",
+    "usageTip": "มักใช้คู่กับ for (demand for + สิ่งที่ต้องการ) หรือ high/low demand"
   },
   {
     "word": "demonstrate",
@@ -21243,7 +22755,10 @@ const wordsData = [
     "forms": [
       "V2/V3: demonstrated",
       "V-ing: demonstrating"
-    ]
+    ],
+    "extraExample": "The chef will demonstrate how to make fresh pasta from scratch.",
+    "extraExampleTranslation": "เชฟจะสาธิตวิธีการทำพาสต้าสดตั้งแต่เริ่มต้น",
+    "usageTip": "ใช้เมื่อต้องการแสดงให้เห็นหรือสาธิตวิธีการทำบางสิ่งอย่างชัดเจน"
   },
   {
     "word": "dentist",
@@ -21265,7 +22780,10 @@ const wordsData = [
       "กับ",
       "หมอฟัน"
     ],
-    "syllables": "den·tist"
+    "syllables": "den·tist",
+    "extraExample": "I have an appointment with the dentist tomorrow morning for a checkup.",
+    "extraExampleTranslation": "ฉันมีนัดกับหมอฟันพรุ่งนี้เช้าเพื่อตรวจสุขภาพฟัน",
+    "usageTip": "มักใช้ร่วมกับคำว่า appointment (นัดหมาย) หรือ go to the dentist"
   },
   {
     "word": "deny",
@@ -21302,7 +22820,10 @@ const wordsData = [
       "V-ing: denying"
     ],
     "syllables": "de·ny",
-    "grammarPattern": "deny + V-ing / that S + V (ปฏิเสธว่าไม่ได้ทำ...)"
+    "grammarPattern": "deny + V-ing / that S + V (ปฏิเสธว่าไม่ได้ทำ...)",
+    "extraExample": "He tried to deny any involvement in the accident.",
+    "extraExampleTranslation": "เขาพยายามปฏิเสธว่าไม่มีส่วนเกี่ยวข้องกับอุบัติเหตุครั้งนี้",
+    "usageTip": "ตามด้วยคำนามหรือ V-ing เช่น deny stealing เพื่อบอกว่าไม่ได้ทำ"
   },
   {
     "word": "department",
@@ -21329,7 +22850,10 @@ const wordsData = [
       "แผนก",
       "ขาย"
     ],
-    "syllables": "de·par·tment"
+    "syllables": "de·par·tment",
+    "extraExample": "She works in the marketing department on the third floor.",
+    "extraExampleTranslation": "เธอทำงานอยู่ในแผนกการตลาดที่ชั้นสาม",
+    "usageTip": "ใช้เรียกแผนกในบริษัท มหาวิทยาลัย หรือหน่วยงานราชการ"
   },
   {
     "word": "departure",
@@ -21366,7 +22890,9 @@ const wordsData = [
       "arrival"
     ],
     "phoneticUK": "/dɪpˈɑːtʃə(r)/",
-    "syllables": "de·par·ture"
+    "syllables": "de·par·ture",
+    "extraExample": "Please arrive at the airport two hours before your departure time.",
+    "extraExampleTranslation": "กรุณามาถึงสนามบินสองชั่วโมงก่อนเวลาออกเดินทางของคุณ"
   },
   {
     "word": "depend",
@@ -21395,7 +22921,9 @@ const wordsData = [
     ],
     "usageTip": "ต้องคู่กับ on เสมอ: depend on (ขึ้นอยู่กับ) เช่น It depends on the weather",
     "syllables": "de·pend",
-    "grammarPattern": "depend on + N / V-ing / Wh-clause (ขึ้นอยู่กับ)"
+    "grammarPattern": "depend on + N / V-ing / Wh-clause (ขึ้นอยู่กับ)",
+    "extraExample": "Our weekend plans depend on the weather forecast.",
+    "extraExampleTranslation": "แผนวันหยุดสุดสัปดาห์ของเราขึ้นอยู่กับพยากรณ์อากาศ"
   },
   {
     "word": "deposit",
@@ -21425,7 +22953,10 @@ const wordsData = [
       "ธนาคาร"
     ],
     "phoneticUK": "/dəpˈɒzɪt/",
-    "syllables": "de·po·sit"
+    "syllables": "de·po·sit",
+    "extraExample": "You need to pay a security deposit before moving into the apartment.",
+    "extraExampleTranslation": "คุณต้องจ่ายเงินมัดจำประกันความเสียหายก่อนย้ายเข้าอพาร์ตเมนต์",
+    "usageTip": "ใช้ได้ทั้งเงินมัดจำ การฝากเงินธนาคาร หรือการทับถมของแร่ธาตุ"
   },
   {
     "word": "depress",
@@ -21460,7 +22991,10 @@ const wordsData = [
     "antonyms": [
       "elate"
     ],
-    "syllables": "de·press"
+    "syllables": "de·press",
+    "extraExample": "The gloomy rainy weather began to depress everyone in the office.",
+    "extraExampleTranslation": "สภาพอากาศที่มืดครึ้มและฝนตกเริ่มทำให้ทุกคนในออฟฟิศรู้สึกหดหู่ใจ",
+    "usageTip": "เป็นกริยาแปลว่าทำให้เศร้า หรือทำให้ราคา/ระดับลดต่ำลง"
   },
   {
     "word": "depressed",
@@ -21489,7 +23023,10 @@ const wordsData = [
       "เธอ",
       "รู้สึก",
       "ซึมเศร้า"
-    ]
+    ],
+    "extraExample": "He felt depressed after failing his driving test twice.",
+    "extraExampleTranslation": "เขารู้สึกหดหู่ใจหลังจากสอบใบขับขี่ไม่ผ่านถึงสองครั้ง",
+    "usageTip": "ใช้บรรยายความรู้สึกของคน (V-ed) มักตามด้วย about หรือ at"
   },
   {
     "word": "depressing",
@@ -21523,7 +23060,10 @@ const wordsData = [
     "wordFamily": [
       "depress"
     ],
-    "syllables": "de·pres·sing"
+    "syllables": "de·pres·sing",
+    "extraExample": "Watching the evening news can be quite depressing sometimes.",
+    "extraExampleTranslation": "การดูข่าวภาคค่ำบางครั้งก็อาจทำให้รู้สึกหดหู่ใจได้มาก",
+    "usageTip": "ใช้บรรยายสิ่งของหรือสถานการณ์ (V-ing) ที่ทำให้คนรู้สึกเศร้า"
   },
   {
     "word": "depth",
@@ -21549,7 +23089,10 @@ const wordsData = [
       "สระน้ำ",
       "คือ",
       "เท่าไหร่"
-    ]
+    ],
+    "extraExample": "The divers measured the depth of the underwater cave carefully.",
+    "extraExampleTranslation": "นักประดาน้ำวัดความลึกของถ้ำใต้น้ำอย่างระมัดระวัง",
+    "usageTip": "เป็นคำนามของ deep มักใช้ในวลี in depth (อย่างละเอียดลึกซึ้ง)"
   },
   {
     "word": "derive",
@@ -21587,7 +23130,10 @@ const wordsData = [
     "forms": [
       "V2/V3: derived",
       "V-ing: deriving"
-    ]
+    ],
+    "extraExample": "Many English words derive from Latin and Greek roots.",
+    "extraExampleTranslation": "คำศัพท์ภาษาอังกฤษจำนวนมากมีรากศัพท์มาจากภาษาละตินและภาษากรีก",
+    "usageTip": "มักใช้คู่กับ from (derive from) เพื่อบอกแหล่งที่มา"
   },
   {
     "word": "describe",
@@ -21627,7 +23173,10 @@ const wordsData = [
       "V-ing: describing"
     ],
     "rootBreakdown": "de- (ลง) + scribe (เขียน) → บรรยาย/อธิบาย",
-    "syllables": "des·cribe"
+    "syllables": "des·cribe",
+    "extraExample": "Could you describe the man you saw near the entrance?",
+    "extraExampleTranslation": "คุณช่วยบรรยายลักษณะของผู้ชายที่คุณเห็นใกล้ทางเข้าได้ไหม",
+    "usageTip": "ใช้เพื่ออธิบายลักษณะ หน้าตา หรือเหตุการณ์ให้ผู้อื่นเห็นภาพ"
   },
   {
     "word": "description",
@@ -21658,7 +23207,10 @@ const wordsData = [
       "เกี่ยวกับ",
       "รถยนต์"
     ],
-    "syllables": "des·crip·tion"
+    "syllables": "des·crip·tion",
+    "extraExample": "The police released a detailed description of the stolen vehicle.",
+    "extraExampleTranslation": "ตำรวจได้เผยแพร่คำอธิบายรายละเอียดของรถที่ถูกขโมย",
+    "usageTip": "เป็นคำนามของ describe มักใช้คู่กับ fit the description (ตรงตามลักษณะ)"
   },
   {
     "word": "desert",
@@ -21691,7 +23243,9 @@ const wordsData = [
       "deserted"
     ],
     "usageTip": "desert (s 1 ตัว) = ทะเลทราย; ส่วน dessert (s 2 ตัว) = ของหวานหลังอาหาร",
-    "syllables": "de·sert"
+    "syllables": "de·sert",
+    "extraExample": "Camels are well adapted to surviving in the hot desert.",
+    "extraExampleTranslation": "อูฐปรับตัวได้ดีมากในการเอาชีวิตรอดในทะเลทรายที่ร้อนระอุ"
   },
   {
     "word": "deserted",
@@ -21723,7 +23277,10 @@ const wordsData = [
       "ตอนกลางคืน"
     ],
     "phoneticUK": "/dɪzˈɜːtɪd/",
-    "syllables": "de·ser·ted"
+    "syllables": "de·ser·ted",
+    "extraExample": "The beach was completely deserted early in the morning.",
+    "extraExampleTranslation": "ชายหาดถูกทิ้งร้างและไม่มีผู้คนเลยในช่วงเช้าตรู่",
+    "usageTip": "ใช้เป็นคุณศัพท์แปลว่า ร้าง ไม่มีคน หรือถูกทอดทิ้ง"
   },
   {
     "word": "deserve",
@@ -21754,7 +23311,10 @@ const wordsData = [
     "forms": [
       "V2/V3: deserved",
       "V-ing: deserving"
-    ]
+    ],
+    "extraExample": "After working so hard all year, you really deserve a vacation.",
+    "extraExampleTranslation": "หลังจากทำงานหนักมาตลอดทั้งปี คุณสมควรได้รับวันหยุดพักผ่อนจริงๆ",
+    "usageTip": "ใช้เพื่อบอกว่าใครสักคนควรค่าแก่การได้รับสิ่งดีๆ หรือผลลัพธ์บางอย่าง"
   },
   {
     "word": "design",
@@ -21782,7 +23342,10 @@ const wordsData = [
       "ออกแบบ",
       "แฟชั่น"
     ],
-    "syllables": "de·sign"
+    "syllables": "de·sign",
+    "extraExample": "The architect showed us the new design for the community library.",
+    "extraExampleTranslation": "สถาปนิกแสดงแบบดีไซน์ใหม่ของห้องสมุดชุมชนให้เราดู",
+    "usageTip": "ใช้ได้ทั้งคำนาม (แบบ/การออกแบบ) และคำกริยา (ออกแบบ)"
   },
   {
     "word": "desire",
@@ -21812,7 +23375,10 @@ const wordsData = [
       "ชนะ"
     ],
     "phoneticUK": "/dɪzˈaɪə(r)/",
-    "syllables": "de·si·re"
+    "syllables": "de·si·re",
+    "extraExample": "She had a strong desire to travel around the world.",
+    "extraExampleTranslation": "เธอมีความปรารถนาอย่างแรงกล้าที่จะเดินทางรอบโลก",
+    "usageTip": "เป็นคำที่เป็นทางการกว่า want มักใช้คู่กับ strong หรือ deep"
   },
   {
     "word": "desk",
@@ -21926,7 +23492,10 @@ const wordsData = [
       "ทำลาย",
       "อาคาร"
     ],
-    "syllables": "des·troy"
+    "syllables": "des·troy",
+    "extraExample": "The fire threatened to destroy the entire historic building.",
+    "extraExampleTranslation": "ไฟไหม้คุกคามที่จะทำลายอาคารประวัติศาสตร์ทั้งหลัง",
+    "usageTip": "ใช้กับสิ่งที่ถูกทำให้พังพินาศหรือเสียหายจนใช้การไม่ได้"
   },
   {
     "word": "destruction",
@@ -21958,7 +23527,10 @@ const wordsData = [
       "วงกว้าง"
     ],
     "syllables": "des·truc·tion",
-    "rootBreakdown": "de- (ทำลายลง) + struct (สร้าง) + -ion → การทำลายล้าง"
+    "rootBreakdown": "de- (ทำลายลง) + struct (สร้าง) + -ion → การทำลายล้าง",
+    "extraExample": "The hurricane left a path of destruction along the coast.",
+    "extraExampleTranslation": "พายุเฮอริเคนทิ้งร่องรอยแห่งการทำลายล้างไว้ตามแนวชายฝั่ง",
+    "usageTip": "เป็นคำนาม มักใช้คู่กับคำกริยาอย่าง cause หรือ leave"
   },
   {
     "word": "detail",
@@ -21988,7 +23560,10 @@ const wordsData = [
       "detailed"
     ],
     "phoneticUK": "/ˈdiːteɪl/",
-    "syllables": "de·tail"
+    "syllables": "de·tail",
+    "extraExample": "Please pay close attention to every detail in the contract.",
+    "extraExampleTranslation": "โปรดใส่ใจในทุกรายละเอียดในสัญญาอย่างใกล้ชิด",
+    "usageTip": "ใช้ได้ทั้งเอกพจน์และพหูพจน์ (details) เมื่อพูดถึงข้อมูลย่อยๆ"
   },
   {
     "word": "detailed",
@@ -22018,7 +23593,10 @@ const wordsData = [
       "รายงาน",
       "ที่",
       "ละเอียด"
-    ]
+    ],
+    "extraExample": "She gave a detailed explanation of how the new system works.",
+    "extraExampleTranslation": "เธอให้คำอธิบายอย่างละเอียดว่าระบบใหม่ทำงานอย่างไร",
+    "usageTip": "วางหน้าคำนามเพื่อบอกว่ามีข้อมูลครบถ้วนและเจาะลึก"
   },
   {
     "word": "determination",
@@ -22051,7 +23629,10 @@ const wordsData = [
       "มาก"
     ],
     "phoneticUK": "/dɪtˌɜːmənˈeɪʃən/",
-    "syllables": "de·ter·mi·na·tion"
+    "syllables": "de·ter·mi·na·tion",
+    "extraExample": "His determination helped him overcome many difficult obstacles.",
+    "extraExampleTranslation": "ความมุ่งมั่นของเขาช่วยให้เขาผ่านพ้นอุปสรรคที่ยากลำบากมากมาย",
+    "usageTip": "หมายถึงความตั้งใจแน่วแน่ มักใช้ในบริบทของการสู้เพื่อเป้าหมาย"
   },
   {
     "word": "determine",
@@ -22088,7 +23669,10 @@ const wordsData = [
     "forms": [
       "V2/V3: determined",
       "V-ing: determining"
-    ]
+    ],
+    "extraExample": "We need to determine the exact cause of the problem.",
+    "extraExampleTranslation": "เราจำเป็นต้องระบุสาเหตุที่แท้จริงของปัญหาให้ได้",
+    "usageTip": "ใช้เมื่อต้องการหาคำตอบ ข้อเท็จจริง หรือตัดสินใจเรื่องสำคัญ"
   },
   {
     "word": "determined",
@@ -22118,7 +23702,10 @@ const wordsData = [
     "wordFamily": [
       "determine"
     ],
-    "phoneticUK": "/dɪtˈɜːmənd/"
+    "phoneticUK": "/dɪtˈɜːmənd/",
+    "extraExample": "She was determined to finish the marathon despite the rain.",
+    "extraExampleTranslation": "เธอมุ่งมั่นที่จะวิ่งมาราธอนให้จบแม้จะมีฝนตก",
+    "usageTip": "มักใช้คู่กับ to + กริยาช่อง 1 (be determined to do something)"
   },
   {
     "word": "develop",
@@ -22149,7 +23736,10 @@ const wordsData = [
       "อย่าง",
       "รวดเร็ว"
     ],
-    "syllables": "de·ve·lop"
+    "syllables": "de·ve·lop",
+    "extraExample": "The company plans to develop a new app for language learners.",
+    "extraExampleTranslation": "บริษัทวางแผนที่จะพัฒนาแอปใหม่สำหรับผู้เรียนภาษา",
+    "usageTip": "ใช้ได้ทั้งการพัฒนาทักษะ ผลิตภัณฑ์ หรือการเกิดสิ่งใหม่ๆ ขึ้น"
   },
   {
     "word": "development",
@@ -22185,7 +23775,10 @@ const wordsData = [
       "nondevelopment"
     ],
     "syllables": "de·ve·lop·ment",
-    "rootBreakdown": "develop + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "develop + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "Economic development has improved living standards in the region.",
+    "extraExampleTranslation": "การพัฒนาเศรษฐกิจได้ช่วยยกระดับมาตรฐานการครองชีพในภูมิภาคนี้",
+    "usageTip": "เป็นคำนามของ develop ใช้พูดถึงความก้าวหน้าหรือการเติบโต"
   },
   {
     "word": "device",
@@ -22212,7 +23805,10 @@ const wordsData = [
       "ที่",
       "มีประโยชน์"
     ],
-    "syllables": "de·vice"
+    "syllables": "de·vice",
+    "extraExample": "This small device can measure air quality in real time.",
+    "extraExampleTranslation": "อุปกรณ์ขนาดเล็กนี้สามารถวัดคุณภาพอากาศได้แบบเรียลไทม์",
+    "usageTip": "หมายถึงเครื่องมือหรืออุปกรณ์อิเล็กทรอนิกส์ที่สร้างขึ้นเพื่อทำงานเฉพาะอย่าง"
   },
   {
     "word": "devote",
@@ -22250,7 +23846,10 @@ const wordsData = [
     "forms": [
       "V2/V3: devoted",
       "V-ing: devoting"
-    ]
+    ],
+    "extraExample": "He decided to devote more time to his family this year.",
+    "extraExampleTranslation": "เขาตัดสินใจอุทิศเวลาให้กับครอบครัวมากขึ้นในปีนี้",
+    "usageTip": "มักใช้ในโครงสร้าง devote + เวลา/ความพยายาม + to + สิ่งที่ทำ"
   },
   {
     "word": "devoted",
@@ -22282,7 +23881,10 @@ const wordsData = [
       "devote"
     ],
     "phoneticUK": "/dɪvˈəʊtəd/",
-    "syllables": "de·vo·ted"
+    "syllables": "de·vo·ted",
+    "extraExample": "She is a devoted teacher who truly cares about her students.",
+    "extraExampleTranslation": "เธอเป็นครูที่ทุ่มเทและใส่ใจนักเรียนอย่างแท้จริง",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกถึงความรัก ความภักดี หรือความทุ่มเทอย่างสูง"
   },
   {
     "word": "diagram",
@@ -22308,7 +23910,10 @@ const wordsData = [
       "ใน",
       "หน้า",
       "10"
-    ]
+    ],
+    "extraExample": "The diagram clearly shows how the parts fit together.",
+    "extraExampleTranslation": "แผนภูมิแสดงให้เห็นอย่างชัดเจนว่าชิ้นส่วนต่างๆ ประกอบเข้าด้วยกันอย่างไร",
+    "usageTip": "หมายถึงภาพวาดหรือแผนผังที่ใช้อธิบายโครงสร้างหรือการทำงาน"
   },
   {
     "word": "diamond",
@@ -22335,7 +23940,10 @@ const wordsData = [
       "แหวน",
       "เพชร"
     ],
-    "syllables": "dia·mond"
+    "syllables": "dia·mond",
+    "extraExample": "He bought a diamond ring for their engagement.",
+    "extraExampleTranslation": "เขาซื้อแหวนเพชรสำหรับการหมั้นของพวกเขา",
+    "usageTip": "ใช้เป็นคำนามหรือวางหน้าคำนามอื่นเพื่อบอกว่าเป็นสิ่งที่ทำจากเพชร"
   },
   {
     "word": "diary",
@@ -22364,7 +23972,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: diarier",
       "ขั้นสุด: diariest"
-    ]
+    ],
+    "extraExample": "She writes about her daily thoughts in her diary every night.",
+    "extraExampleTranslation": "เธอเขียนเกี่ยวกับความคิดประจำวันลงในสมุดบันทึกทุกคืน",
+    "usageTip": "หมายถึงสมุดบันทึกส่วนตัว มักใช้คู่กับกริยา keep หรือ write in"
   },
   {
     "word": "dictionary",
@@ -22393,7 +24004,10 @@ const wordsData = [
     "syllables": "dic·tio·na·ry",
     "forms": [
       "พหูพจน์: dictionaries"
-    ]
+    ],
+    "extraExample": "You can look up unfamiliar words in an online dictionary.",
+    "extraExampleTranslation": "คุณสามารถค้นหาคำที่ไม่คุ้นเคยได้ในพจนานุกรมออนไลน์",
+    "usageTip": "มักใช้คู่กับ look up เพื่อบอกว่าเปิดหาความหมายของคำ"
   },
   {
     "word": "die",
@@ -22430,7 +24044,9 @@ const wordsData = [
       "V2/V3: died",
       "V-ing: dying"
     ],
-    "usageTip": "die (V.) = ตาย (รูป -ing คือ dying ไม่ใช่ dieing); คำคุณศัพท์ใช้ dead"
+    "usageTip": "die (V.) = ตาย (รูป -ing คือ dying ไม่ใช่ dieing); คำคุณศัพท์ใช้ dead",
+    "extraExample": "Many plants will die if they do not get enough water.",
+    "extraExampleTranslation": "พืชจำนวนมากจะตายหากไม่ได้รับน้ำเพียงพอ"
   },
   {
     "word": "diet",
@@ -22457,7 +24073,10 @@ const wordsData = [
       "อาหาร",
       "อย่าง",
       "เข้มงวด"
-    ]
+    ],
+    "extraExample": "A balanced diet is essential for maintaining good health.",
+    "extraExampleTranslation": "การรับประทานอาหารที่สมดุลเป็นสิ่งจำเป็นสำหรับการรักษาสุขภาพที่ดี",
+    "usageTip": "หมายถึงอาหารที่กินเป็นประจำ หรือการควบคุมอาหารเพื่อสุขภาพ"
   },
   {
     "word": "difference",
@@ -22493,7 +24112,10 @@ const wordsData = [
     "antonyms": [
       "sameness"
     ],
-    "syllables": "dif·fe·rence"
+    "syllables": "dif·fe·rence",
+    "extraExample": "There is a big difference between knowing and doing.",
+    "extraExampleTranslation": "มีความแตกต่างอย่างมากระหว่างการรู้กับการลงมือทำ",
+    "usageTip": "มักใช้กับ between เพื่อเปรียบเทียบความต่างของสองสิ่ง"
   },
   {
     "word": "different",
@@ -22531,7 +24153,9 @@ const wordsData = [
     ],
     "syllables": "dif·fe·rent",
     "grammarPattern": "be different from + N (แตกต่างจาก; US บางครั้งใช้ than)",
-    "usageTip": "ตามมาตรฐานมักใช้ different from + N (ภาษาพูด US อาจใช้ than)"
+    "usageTip": "ตามมาตรฐานมักใช้ different from + N (ภาษาพูด US อาจใช้ than)",
+    "extraExample": "We tried a different approach to solve the puzzle.",
+    "extraExampleTranslation": "เราลองใช้วิธีการที่แตกต่างออกไปเพื่อไขปริศนา"
   },
   {
     "word": "difficult",
@@ -22657,7 +24281,10 @@ const wordsData = [
       "อาหารเย็น"
     ],
     "phoneticUK": "/dˈɪnə(r)/",
-    "syllables": "din·ner"
+    "syllables": "din·ner",
+    "extraExample": "We are having a family dinner at seven tonight.",
+    "extraExampleTranslation": "คืนนี้พวกเราจะทานอาหารค่ำกับครอบครัวตอนหนึ่งทุ่ม",
+    "usageTip": "ใช้คู่กับ have/eat dinner โดยไม่ต้องมี a/the นำหน้าเว้นแต่ระบุมื้อเฉพาะ"
   },
   {
     "word": "direct",
@@ -22691,7 +24318,10 @@ const wordsData = [
       "ลอนดอน",
       "ไหม"
     ],
-    "syllables": "di·rect"
+    "syllables": "di·rect",
+    "extraExample": "You can take a direct flight from Bangkok to Tokyo.",
+    "extraExampleTranslation": "คุณสามารถนั่งเครื่องบินตรงจากกรุงเทพฯ ไปโตเกียวได้เลย",
+    "usageTip": "ใช้ได้ทั้งคำคุณศัพท์ (โดยตรง) และกริยา (ชี้ทาง/กำกับ)"
   },
   {
     "word": "direction",
@@ -22718,7 +24348,10 @@ const wordsData = [
       "ทาง",
       "ไหน"
     ],
-    "syllables": "di·rec·tion"
+    "syllables": "di·rec·tion",
+    "extraExample": "Could you point me in the direction of the train station?",
+    "extraExampleTranslation": "ช่วยบอกทางไปสถานีรถไฟให้ฉันหน่อยได้ไหม",
+    "usageTip": "ใช้รูปพหูพจน์ directions เมื่อหมายถึงคำบอกทางหรือคำแนะนำ"
   },
   {
     "word": "directly",
@@ -22751,7 +24384,10 @@ const wordsData = [
       "ที่",
       "ฉัน"
     ],
-    "syllables": "di·rec·tly"
+    "syllables": "di·rec·tly",
+    "extraExample": "The office is located directly across from the park.",
+    "extraExampleTranslation": "สำนักงานตั้งอยู่ตรงข้ามกับสวนสาธารณะพอดี",
+    "usageTip": "ใช้ขยายกริยาหรือคำบุพบท เพื่อเน้นว่าตรงเป๊ะหรือทันที"
   },
   {
     "word": "director",
@@ -22782,7 +24418,10 @@ const wordsData = [
       "บริษัท"
     ],
     "phoneticUK": "/dərˈektə(r)/",
-    "syllables": "di·rec·tor"
+    "syllables": "di·rec·tor",
+    "extraExample": "The film director won an award for her latest movie.",
+    "extraExampleTranslation": "ผู้กำกับภาพยนตร์คนนั้นได้รับรางวัลจากหนังเรื่องล่าสุดของเธอ",
+    "usageTip": "ใช้ได้ทั้งผู้กำกับหนังและผู้อำนวยการองค์กร"
   },
   {
     "word": "dirt",
@@ -22813,7 +24452,10 @@ const wordsData = [
       "เต็มไปด้วย",
       "สิ่งสกปรก"
     ],
-    "phoneticUK": "/dˈɜːt/"
+    "phoneticUK": "/dˈɜːt/",
+    "extraExample": "He wiped the dirt off his shoes before entering the house.",
+    "extraExampleTranslation": "เขาเช็ดดินออกจากรองเท้าก่อนเดินเข้าบ้าน",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้กับดินโคลนหรือคราบสกปรก"
   },
   {
     "word": "dirty",
@@ -22851,7 +24493,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: dirtier",
       "ขั้นสุด: dirtiest"
-    ]
+    ],
+    "extraExample": "Please put your dirty clothes in the laundry basket.",
+    "extraExampleTranslation": "กรุณานำเสื้อผ้าที่สกปรกใส่ลงในตะกร้าซักผ้าด้วย",
+    "usageTip": "ใช้ได้ทั้งความหมายตรง (เลอะเทอะ) และความหมายแฝง (สกปรก/ไม่ซื่อสัตย์)"
   },
   {
     "word": "disabled",
@@ -22881,7 +24526,10 @@ const wordsData = [
     "wordFamily": [
       "unable"
     ],
-    "syllables": "di·sa·bled"
+    "syllables": "di·sa·bled",
+    "extraExample": "The building has a ramp for disabled visitors.",
+    "extraExampleTranslation": "อาคารนี้มีทางลาดสำหรับผู้มาเยือนที่พิการ",
+    "usageTip": "นิยมใช้คู่กับคำนาม เช่น disabled people หรือใช้ the disabled"
   },
   {
     "word": "disadvantage",
@@ -22911,7 +24559,10 @@ const wordsData = [
     "antonyms": [
       "advantage"
     ],
-    "syllables": "di·sad·van·tage"
+    "syllables": "di·sad·van·tage",
+    "extraExample": "Living far from the city center has its disadvantages.",
+    "extraExampleTranslation": "การอยู่ไกลจากใจกลางเมืองก็มีข้อเสียอยู่เหมือนกัน",
+    "usageTip": "มักใช้ในโครงสร้าง at a disadvantage (อยู่ในฐานะเสียเปรียบ)"
   },
   {
     "word": "disagree",
@@ -22950,7 +24601,10 @@ const wordsData = [
     "forms": [
       "V2/V3: disagreed",
       "V-ing: disagreing"
-    ]
+    ],
+    "extraExample": "I respectfully disagree with your opinion on this matter.",
+    "extraExampleTranslation": "ฉันขอไม่เห็นด้วยอย่างสุภาพกับความเห็นของคุณในเรื่องนี้",
+    "usageTip": "ใช้คู่กับ with เมื่อตามด้วยคนหรือความคิดเห็น"
   },
   {
     "word": "disagreement",
@@ -22985,7 +24639,10 @@ const wordsData = [
       "agreement"
     ],
     "syllables": "di·sa·gree·ment",
-    "rootBreakdown": "disagree + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "disagree + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "They had a minor disagreement about where to eat.",
+    "extraExampleTranslation": "พวกเขามีความเห็นไม่ตรงกันเล็กน้อยเรื่องที่จะไปกินข้าวที่ไหน",
+    "usageTip": "ใช้คู่กับ have a disagreement about (เรื่อง) หรือ with (ใคร)"
   },
   {
     "word": "disappear",
@@ -23021,7 +24678,10 @@ const wordsData = [
     ],
     "phoneticUK": "/dˌɪsəpˈɪ/",
     "syllables": "di·sap·pear",
-    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + appear"
+    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + appear",
+    "extraExample": "The magician made the rabbit disappear in front of the crowd.",
+    "extraExampleTranslation": "นักมายากลเสกให้กระต่ายหายไปต่อหน้าฝูงชน",
+    "usageTip": "เป็นอกรรมกริยา (ไม่ต้องมีกรรมมารองรับ) ห้ามใช้ในรูป passive"
   },
   {
     "word": "disappoint",
@@ -23055,7 +24715,10 @@ const wordsData = [
       "ผิดหวัง"
     ],
     "syllables": "di·sap·point",
-    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + appoint"
+    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + appoint",
+    "extraExample": "I don't want to disappoint my parents with bad grades.",
+    "extraExampleTranslation": "ฉันไม่อยากทำให้พ่อแม่ผิดหวังด้วยเกรดที่ไม่ดี",
+    "usageTip": "เป็นกริยาที่แปลว่าทำให้ผู้อื่นผิดหวัง มักตามด้วยกรรมที่เป็นคน"
   },
   {
     "word": "disappointed",
@@ -23087,7 +24750,10 @@ const wordsData = [
       "กับ",
       "ผลลัพธ์"
     ],
-    "syllables": "di·sap·poin·ted"
+    "syllables": "di·sap·poin·ted",
+    "extraExample": "She was deeply disappointed by the test results.",
+    "extraExampleTranslation": "เธอรู้สึกผิดหวังอย่างมากกับผลการสอบ",
+    "usageTip": "ใช้กับความรู้สึกของคน โดยมักตามด้วย in, with หรือ by"
   },
   {
     "word": "disappointing",
@@ -23119,7 +24785,10 @@ const wordsData = [
       "appoint",
       "disappoint"
     ],
-    "syllables": "di·sap·poin·ting"
+    "syllables": "di·sap·poin·ting",
+    "extraExample": "The weather was rather disappointing during our vacation.",
+    "extraExampleTranslation": "สภาพอากาศค่อนข้างน่าผิดหวังระหว่างวันหยุดของพวกเรา",
+    "usageTip": "ใช้บรรยายสิ่งของหรือสถานการณ์ที่ทำให้รู้สึกผิดหวัง"
   },
   {
     "word": "disappointment",
@@ -23156,7 +24825,10 @@ const wordsData = [
       "ได้มา"
     ],
     "syllables": "di·sap·poin·tment",
-    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + appointment"
+    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + appointment",
+    "extraExample": "To his disappointment, the concert was canceled.",
+    "extraExampleTranslation": "น่าผิดหวังสำหรับเขาที่คอนเสิร์ตถูกยกเลิก",
+    "usageTip": "มักใช้ในสำนวน to someone's disappointment (น่าผิดหวังสำหรับ...)"
   },
   {
     "word": "disapproval",
@@ -23194,7 +24866,10 @@ const wordsData = [
       "approval"
     ],
     "syllables": "di·sap·pro·val",
-    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + approval"
+    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + approval",
+    "extraExample": "He shook his head in disapproval at the messy room.",
+    "extraExampleTranslation": "เขาส่ายหัวอย่างไม่เห็นด้วยเมื่อเห็นห้องที่รก",
+    "usageTip": "มักใช้คู่กับคำบุพบท in หรือ of เพื่อแสดงความไม่เห็นด้วย"
   },
   {
     "word": "disapprove",
@@ -23235,7 +24910,10 @@ const wordsData = [
       "approve"
     ],
     "syllables": "di·sap·prove",
-    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + approve"
+    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + approve",
+    "extraExample": "Her parents disapprove of her staying out late.",
+    "extraExampleTranslation": "พ่อแม่ของเธอไม่เห็นด้วยกับการที่เธอออกไปข้างนอกดึกๆ",
+    "usageTip": "ต้องตามด้วยคำบุพบท of เสมอเมื่อมีกรรมมารองรับ"
   },
   {
     "word": "disapproving",
@@ -23270,7 +24948,10 @@ const wordsData = [
       "approve",
       "disapprove"
     ],
-    "syllables": "di·sap·pro·ving"
+    "syllables": "di·sap·pro·ving",
+    "extraExample": "The teacher gave the noisy students a disapproving look.",
+    "extraExampleTranslation": "คุณครูมองนักเรียนที่เสียงดังด้วยสายตาไม่พอใจ",
+    "usageTip": "ใช้เป็นคำคุณศัพท์ขยายคำนาม เช่น สายตา หรือน้ำเสียง"
   },
   {
     "word": "disaster",
@@ -23299,7 +24980,10 @@ const wordsData = [
       "น่ากลัว"
     ],
     "phoneticUK": "/dɪzˈɑːstə(r)/",
-    "syllables": "di·sa·ster"
+    "syllables": "di·sa·ster",
+    "extraExample": "The flood was the worst natural disaster in decades.",
+    "extraExampleTranslation": "น้ำท่วมครั้งนี้เป็นภัยพิบัติทางธรรมชาติที่เลวร้ายที่สุดในรอบหลายสิบปี",
+    "usageTip": "ใช้ได้ทั้งภัยพิบัติทางธรรมชาติและเรื่องที่ล้มเหลวอย่างสิ้นเชิง"
   },
   {
     "word": "disc",
@@ -23427,7 +25111,10 @@ const wordsData = [
       "ทวีปอเมริกา"
     ],
     "phoneticUK": "/dɪskˈʌvə(r)/",
-    "syllables": "di·sco·ver"
+    "syllables": "di·sco·ver",
+    "extraExample": "Scientists hope to discover a new treatment for the illness soon.",
+    "extraExampleTranslation": "นักวิทยาศาสตร์หวังว่าจะค้นพบวิธีรักษาใหม่สำหรับโรคนี้ในเร็วๆ นี้",
+    "usageTip": "ใช้กับสิ่งที่เพิ่งรู้หรือเพิ่งพบเป็นครั้งแรก มักตามด้วยกรรมตรงหรือ that-clause"
   },
   {
     "word": "discovery",
@@ -23466,7 +25153,10 @@ const wordsData = [
     "syllables": "di·sco·ve·ry",
     "forms": [
       "พหูพจน์: discoveries"
-    ]
+    ],
+    "extraExample": "The discovery of the ancient ruins amazed archaeologists worldwide.",
+    "extraExampleTranslation": "การค้นพบซากปรักหักพังโบราณทำให้นักโบราณคดีทั่วโลกประหลาดใจ",
+    "usageTip": "มักใช้กับบุพบท of ตามด้วยสิ่งที่ถูกค้นพบ หรือใช้กับกริยา make"
   },
   {
     "word": "discuss",
@@ -23498,7 +25188,9 @@ const wordsData = [
       "แผนการ"
     ],
     "usageTip": "discuss แปลว่า 'อภิปรายเกี่ยวกับ' อยู่แล้ว ไม่ต้องเติม about ตามหลัง (ใช้ discuss the problem)",
-    "syllables": "di·scuss"
+    "syllables": "di·scuss",
+    "extraExample": "We need to discuss the budget before making a final decision.",
+    "extraExampleTranslation": "เราต้องอภิปรายเรื่องงบประมาณก่อนที่จะตัดสินใจขั้นสุดท้าย"
   },
   {
     "word": "discussion",
@@ -23531,7 +25223,10 @@ const wordsData = [
       "อย่าง",
       "ยาวนาน"
     ],
-    "syllables": "di·scus·sion"
+    "syllables": "di·scus·sion",
+    "extraExample": "After a long discussion, the team agreed on the new schedule.",
+    "extraExampleTranslation": "หลังจากการอภิปรายอันยาวนาน ทีมงานก็ตกลงกันได้เรื่องตารางเวลาใหม่",
+    "usageTip": "ใช้กับกริยา have หรือ hold และมักตามด้วย about หรือ on"
   },
   {
     "word": "disease",
@@ -23563,7 +25258,10 @@ const wordsData = [
       "ease",
       "easy"
     ],
-    "syllables": "di·sease"
+    "syllables": "di·sease",
+    "extraExample": "Regular exercise helps reduce the risk of heart disease.",
+    "extraExampleTranslation": "การออกกำลังกายสม่ำเสมอช่วยลดความเสี่ยงของโรคหัวใจ",
+    "usageTip": "ใช้ได้ทั้งแบบนับได้และนับไม่ได้ มักใช้กับโรคที่ร้ายแรงหรือเรื้อรัง"
   },
   {
     "word": "disgust",
@@ -23595,7 +25293,10 @@ const wordsData = [
       "disgusted",
       "disgusting"
     ],
-    "syllables": "dis·gust"
+    "syllables": "dis·gust",
+    "extraExample": "She turned away in disgust when she saw the spoiled food.",
+    "extraExampleTranslation": "เธอหันหน้าหนีด้วยความรังเกียจเมื่อเห็นอาหารบูด",
+    "usageTip": "ใช้เป็นคำนามหรือกริยาได้ มักใช้วลี in disgust เพื่อบอกอาการ"
   },
   {
     "word": "disgusted",
@@ -23628,7 +25329,10 @@ const wordsData = [
       "ของ",
       "เขา"
     ],
-    "syllables": "dis·gu·sted"
+    "syllables": "dis·gu·sted",
+    "extraExample": "He was disgusted by the rude behavior of the customers.",
+    "extraExampleTranslation": "เขารู้สึกสะอิดสะเอียนกับพฤติกรรมหยาบคายของลูกค้า",
+    "usageTip": "ใช้บรรยายความรู้สึกของคน มักตามด้วย by หรือ with"
   },
   {
     "word": "disgusting",
@@ -23661,7 +25365,10 @@ const wordsData = [
     "wordFamily": [
       "disgust"
     ],
-    "syllables": "dis·gu·sting"
+    "syllables": "dis·gu·sting",
+    "extraExample": "The smell coming from the garbage bin was absolutely disgusting.",
+    "extraExampleTranslation": "กลิ่นที่โชยออกมาจากถังขยะน่ารังเกียจอย่างที่สุด",
+    "usageTip": "ใช้บรรยายสิ่งที่ทำให้รู้สึกรังเกียจ ต่างจาก disgusted ที่ใช้กับความรู้สึกคน"
   },
   {
     "word": "dish",
@@ -23690,7 +25397,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: dishes"
-    ]
+    ],
+    "extraExample": "Please put the dirty dish in the sink after you finish eating.",
+    "extraExampleTranslation": "กรุณานำจานที่สกปรกไปวางในอ่างล้างจานหลังจากทานเสร็จ",
+    "usageTip": "หมายถึงจานชามหรืออาหารจานเด็ดก็ได้ เช่น a local dish"
   },
   {
     "word": "dishonest",
@@ -23729,7 +25439,10 @@ const wordsData = [
     ],
     "phoneticUK": "/dɪsˈɒnəst/",
     "syllables": "di·sho·nest",
-    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + honest"
+    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + honest",
+    "extraExample": "It is dishonest to take credit for someone else's hard work.",
+    "extraExampleTranslation": "การแอบอ้างผลงานของคนอื่นเป็นเรื่องที่ไม่ซื่อสัตย์",
+    "usageTip": "ใช้บรรยายคนหรือการกระทำที่ไม่สุจริต มักใช้คู่กับคำนามหรือหลัง verb to be"
   },
   {
     "word": "disk",
@@ -23756,7 +25469,10 @@ const wordsData = [
       "ลง",
       "ใน",
       "ดิสก์"
-    ]
+    ],
+    "extraExample": "Make sure to back up your important files onto an external disk.",
+    "extraExampleTranslation": "อย่าลืมสำรองไฟล์สำคัญของคุณลงในแผ่นดิสก์ภายนอก",
+    "usageTip": "ใช้เรียกแผ่นกลมหรืออุปกรณ์เก็บข้อมูล เช่น hard disk (บางครั้งสะกด disc)"
   },
   {
     "word": "dislike",
@@ -23797,7 +25513,10 @@ const wordsData = [
       "V2/V3: disliked",
       "V-ing: disliking"
     ],
-    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + like"
+    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + like",
+    "extraExample": "I really dislike waking up early on cold winter mornings.",
+    "extraExampleTranslation": "ฉันไม่ชอบการตื่นเช้าในเช้าฤดูหนาวที่อากาศหนาวเย็นเลย",
+    "usageTip": "ตามด้วยคำนามหรือกริยาเติม -ing (gerund) ได้อย่างเป็นธรรมชาติ"
   },
   {
     "word": "dismiss",
@@ -23828,7 +25547,10 @@ const wordsData = [
       "ความคิด",
       "นั้น"
     ],
-    "syllables": "di·smiss"
+    "syllables": "di·smiss",
+    "extraExample": "The manager decided to dismiss the employee for repeated lateness.",
+    "extraExampleTranslation": "ผู้จัดการตัดสินใจไล่พนักงานคนนั้นออกเนื่องจากมาสายซ้ำๆ",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าไล่ออกและปัดตก/ไม่ใส่ใจความคิดเห็น"
   },
   {
     "word": "display",
@@ -23859,7 +25581,10 @@ const wordsData = [
       "นำมา",
       "จัดแสดง"
     ],
-    "syllables": "dis·play"
+    "syllables": "dis·play",
+    "extraExample": "The museum has a new display of traditional Thai ceramics.",
+    "extraExampleTranslation": "พิพิธภัณฑ์มีการจัดแสดงเครื่องปั้นดินเผาไทยแบบดั้งเดิมชุดใหม่",
+    "usageTip": "ใช้เป็นคำนามหรือกริยาก็ได้ มักใช้วลี on display แปลว่าจัดแสดงอยู่"
   },
   {
     "word": "dissolve",
@@ -23892,7 +25617,10 @@ const wordsData = [
     ],
     "phoneticUK": "/dɪzˈɒlv/",
     "syllables": "dis·solve",
-    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + solve"
+    "rootBreakdown": "dis- (ไม่ / แยกออก / ตรงข้าม) + solve",
+    "extraExample": "Stir the spoon until the sugar dissolves completely in the hot water.",
+    "extraExampleTranslation": "คนช้อนจนกว่าน้ำตาลจะละลายหมดในน้ำร้อน",
+    "usageTip": "ใช้กับของแข็งที่ละลายในของเหลว หรือการยุบเลิกองค์กร/ข้อตกลง"
   },
   {
     "word": "distance",
@@ -23921,7 +25649,10 @@ const wordsData = [
       "คือ",
       "เท่าไหร่"
     ],
-    "syllables": "di·stance"
+    "syllables": "di·stance",
+    "extraExample": "You can see the mountains in the distance on a clear day.",
+    "extraExampleTranslation": "คุณสามารถมองเห็นภูเขาอยู่ไกลๆ ในวันที่ท้องฟ้าแจ่มใส",
+    "usageTip": "มักใช้วลี in the distance (ในระยะไกล) หรือ keep your distance (รักษาระยะห่าง)"
   },
   {
     "word": "distinguish",
@@ -23951,7 +25682,10 @@ const wordsData = [
       "ได้",
       "แล้ว"
     ],
-    "syllables": "di·sti·nguish"
+    "syllables": "di·sti·nguish",
+    "extraExample": "It is hard to distinguish between the two identical twins.",
+    "extraExampleTranslation": "เป็นการยากที่จะแยกแยะความแตกต่างระหว่างฝาแฝดที่เหมือนกันทั้งสองคน",
+    "usageTip": "มักใช้คู่กับ between ... and ... หรือ from เพื่อเปรียบเทียบความแตกต่าง"
   },
   {
     "word": "distribute",
@@ -23988,7 +25722,10 @@ const wordsData = [
     "forms": [
       "V2/V3: distributed",
       "V-ing: distributing"
-    ]
+    ],
+    "extraExample": "Volunteers will distribute food and water to the flood victims.",
+    "extraExampleTranslation": "อาสาสมัครจะแจกจ่ายอาหารและน้ำให้แก่ผู้ประสบภัยน้ำท่วม",
+    "usageTip": "ใช้กับการแจกจ่ายสิ่งของ ข้อมูล หรือสินค้าไปยังหลายๆ จุด"
   },
   {
     "word": "distribution",
@@ -24023,7 +25760,10 @@ const wordsData = [
     "antonyms": [
       "concentration"
     ],
-    "syllables": "dis·tri·bu·tion"
+    "syllables": "dis·tri·bu·tion",
+    "extraExample": "The company improved its distribution network to deliver goods faster.",
+    "extraExampleTranslation": "บริษัทได้ปรับปรุงเครือข่ายการจัดจำหน่ายเพื่อส่งสินค้าได้เร็วขึ้น",
+    "usageTip": "ใช้มากในบริบทธุรกิจ โลจิสติกส์ หรือสถิติ"
   },
   {
     "word": "district",
@@ -24053,7 +25793,10 @@ const wordsData = [
       "ที่",
       "เงียบสงบ"
     ],
-    "syllables": "dis·trict"
+    "syllables": "dis·trict",
+    "extraExample": "This district is famous for its street food and night markets.",
+    "extraExampleTranslation": "เขตนี้มีชื่อเสียงเรื่องอาหารริมทางและตลาดกลางคืน",
+    "usageTip": "ใช้เรียกเขตการปกครอง อำเภอ หรือย่านที่มีลักษณะเฉพาะในเมือง"
   },
   {
     "word": "disturb",
@@ -24180,7 +25923,10 @@ const wordsData = [
       "ปี",
       "ที่แล้ว"
     ],
-    "syllables": "di·vorce"
+    "syllables": "di·vorce",
+    "extraExample": "They decided to get a divorce after five years of marriage.",
+    "extraExampleTranslation": "พวกเขาตัดสินใจหย่าร้างกันหลังจากแต่งงานได้ห้าปี",
+    "usageTip": "ใช้กับ get a divorce (หย่าร้าง) หรือ file for divorce (ยื่นฟ้องหย่า)"
   },
   {
     "word": "do",
@@ -24216,7 +25962,9 @@ const wordsData = [
       "do one's best (ทำดีที่สุด)",
       "do a favour (ช่วยทำธุระให้)",
       "have nothing to do with (ไม่เกี่ยวข้องกับ)"
-    ]
+    ],
+    "extraExample": "I need to do my homework before dinner.",
+    "extraExampleTranslation": "ฉันต้องทำการบ้านให้เสร็จก่อนมื้อเย็น"
   },
   {
     "word": "doctor",
@@ -24245,7 +25993,10 @@ const wordsData = [
       "แพทย์"
     ],
     "phoneticUK": "/dˈɒktə(r)/",
-    "syllables": "doc·tor"
+    "syllables": "doc·tor",
+    "extraExample": "You should see a doctor if the fever does not go down.",
+    "extraExampleTranslation": "คุณควรไปหาหมอถ้าไข้ยังไม่ลดลง",
+    "usageTip": "ใช้คู่กับ see a doctor (ไปหาหมอ) หรือ consult a doctor (ปรึกษาหมอ)"
   },
   {
     "word": "document",
@@ -24273,7 +26024,10 @@ const wordsData = [
       "นี้"
     ],
     "phoneticUK": "/dˈɒkjəment/",
-    "syllables": "do·cu·ment"
+    "syllables": "do·cu·ment",
+    "extraExample": "Please sign this document and return it to the office.",
+    "extraExampleTranslation": "กรุณาเซ็นเอกสารฉบับนี้แล้วส่งคืนที่สำนักงาน",
+    "usageTip": "ใช้ได้ทั้งเอกสารกระดาษและไฟล์ดิจิทัล เช่น official document"
   },
   {
     "word": "dog",
@@ -24301,7 +26055,10 @@ const wordsData = [
       "สัตว์เลี้ยง",
       "หนึ่ง",
       "ตัว"
-    ]
+    ],
+    "extraExample": "Our neighbor walks his dog in the park every morning.",
+    "extraExampleTranslation": "เพื่อนบ้านของเราพาสุนัขของเขาไปเดินเล่นในสวนทุกเช้า",
+    "usageTip": "ใช้ walk the dog (พาสุนัขไปเดินเล่น) หรือ feed the dog (ให้อาหารสุนัข)"
   },
   {
     "word": "dollar",
@@ -24329,7 +26086,10 @@ const wordsData = [
       "ดอลลาร์"
     ],
     "phoneticUK": "/dˈɒlə(r)/",
-    "syllables": "dol·lar"
+    "syllables": "dol·lar",
+    "extraExample": "This cup of coffee costs four dollars.",
+    "extraExampleTranslation": "กาแฟแก้วนี้ราคาสี่ดอลลาร์",
+    "usageTip": "เติม s เมื่อมีจำนวนมากกว่าหนึ่ง เช่น ten dollars"
   },
   {
     "word": "domestic",
@@ -24359,7 +26119,10 @@ const wordsData = [
       "foreign",
       "undomestic"
     ],
-    "syllables": "do·me·stic"
+    "syllables": "do·me·stic",
+    "extraExample": "The airline operates both domestic and international flights.",
+    "extraExampleTranslation": "สายการบินนี้ให้บริการทั้งเที่ยวบินภายในประเทศและระหว่างประเทศ",
+    "usageTip": "มักใช้ตรงข้ามกับ international เช่น domestic flight หรือ domestic market"
   },
   {
     "word": "dominate",
@@ -24393,7 +26156,10 @@ const wordsData = [
     "forms": [
       "V2/V3: dominated",
       "V-ing: dominating"
-    ]
+    ],
+    "extraExample": "One large company continues to dominate the local market.",
+    "extraExampleTranslation": "บริษัทใหญ่แห่งหนึ่งยังคงครองตลาดในท้องถิ่นอยู่",
+    "usageTip": "ใช้เมื่อสิ่งหนึ่งมีอำนาจหรืออิทธิพลเหนือกว่าสิ่งอื่นอย่างชัดเจน"
   },
   {
     "word": "door",
@@ -24424,7 +26190,10 @@ const wordsData = [
       "indoor",
       "indoors"
     ],
-    "phoneticUK": "/dˈɔː/"
+    "phoneticUK": "/dˈɔː/",
+    "extraExample": "Please close the door quietly when you leave the room.",
+    "extraExampleTranslation": "กรุณาปิดประตูเบาๆ เมื่อคุณออกจากห้อง",
+    "usageTip": "ใช้กับกริยา open, close, lock เช่น lock the door"
   },
   {
     "word": "dot",
@@ -24452,7 +26221,10 @@ const wordsData = [
       "บน",
       "แผนที่"
     ],
-    "phoneticUK": "/dˈɒt/"
+    "phoneticUK": "/dˈɒt/",
+    "extraExample": "Put a dot at the end of every sentence.",
+    "extraExampleTranslation": "ใส่จุดไว้ที่ท้ายประโยคทุกประโยค",
+    "usageTip": "ใช้หมายถึงจุดเล็กๆ หรือจุดทศนิยม และใช้อ่านอีเมล/เว็บไซต์ว่า dot"
   },
   {
     "word": "double",
@@ -24482,7 +26254,10 @@ const wordsData = [
       "ของ",
       "ฉัน"
     ],
-    "syllables": "dou·ble"
+    "syllables": "dou·ble",
+    "extraExample": "We ordered a double portion of fries to share.",
+    "extraExampleTranslation": "เราสั่งเฟรนช์ฟรายส์ขนาดสองเท่ามาแบ่งกันกิน",
+    "usageTip": "วางหน้าคำนามเพื่อบอกปริมาณหรือขนาดที่เป็นสองเท่า เช่น double room"
   },
   {
     "word": "doubt",
@@ -24509,7 +26284,10 @@ const wordsData = [
       "เขา",
       "จะ",
       "มา"
-    ]
+    ],
+    "extraExample": "I doubt that he will arrive on time in this heavy traffic.",
+    "extraExampleTranslation": "ฉันสงสัยว่าเขาจะมาถึงทันเวลาท่ามกลางการจราจรที่ติดขัดแบบนี้",
+    "usageTip": "มักตามด้วย that + ประโยค เพื่อแสดงความไม่แน่ใจ"
   },
   {
     "word": "down",
@@ -24535,7 +26313,10 @@ const wordsData = [
     ],
     "antonyms": [
       "up"
-    ]
+    ],
+    "extraExample": "She walked down the stairs to answer the phone.",
+    "extraExampleTranslation": "เธอเดินลงบันไดไปรับโทรศัพท์",
+    "usageTip": "ใช้บอกทิศทางเคลื่อนที่จากที่สูงลงสู่ที่ต่ำ เช่น walk down the street"
   },
   {
     "word": "downstairs",
@@ -24565,7 +26346,10 @@ const wordsData = [
     "antonyms": [
       "upstairs"
     ],
-    "syllables": "down·stairs"
+    "syllables": "down·stairs",
+    "extraExample": "We heard a loud noise coming from the downstairs kitchen.",
+    "extraExampleTranslation": "เราได้ยินเสียงดังมาจากห้องครัวชั้นล่าง",
+    "usageTip": "วางหน้าคำนามเพื่อขยายว่าอยู่ชั้นล่าง เช่น downstairs bathroom"
   },
   {
     "word": "downward",
@@ -24596,7 +26380,10 @@ const wordsData = [
       "ทิศทาง",
       "ดิ่ง"
     ],
-    "syllables": "dow·nward"
+    "syllables": "dow·nward",
+    "extraExample": "The chart shows a downward trend in sales this quarter.",
+    "extraExampleTranslation": "แผนภูมิแสดงให้เห็นแนวโน้มยอดขายที่ลดต่ำลงในไตรมาสนี้",
+    "usageTip": "วางหน้าคำนามเพื่อบอกทิศทางหรือแนวโน้มที่ลดลง เช่น downward trend"
   },
   {
     "word": "downwards",
@@ -24630,7 +26417,10 @@ const wordsData = [
     "antonyms": [
       "upwards"
     ],
-    "syllables": "dow·nwards"
+    "syllables": "dow·nwards",
+    "extraExample": "The path slopes downwards toward the river.",
+    "extraExampleTranslation": "ทางเดินลาดเอียงลงข้างล่างมุ่งหน้าไปทางแม่น้ำ",
+    "usageTip": "ใช้ขยายกริยาเพื่อบอกทิศทางลงด้านล่าง ใช้แทน downward เมื่อเป็นกริยาวิเศษณ์"
   },
   {
     "word": "dozen",
@@ -24659,7 +26449,9 @@ const wordsData = [
       "โหล"
     ],
     "syllables": "do·zen",
-    "usageTip": "เมื่อมีตัวเลขนำหน้าไม่ต้องเติม -s (two dozen eggs), แต่ใช้ dozens of + N เมื่อไม่ระบุจำนวนแน่ชัด"
+    "usageTip": "เมื่อมีตัวเลขนำหน้าไม่ต้องเติม -s (two dozen eggs), แต่ใช้ dozens of + N เมื่อไม่ระบุจำนวนแน่ชัด",
+    "extraExample": "I bought a dozen eggs at the supermarket.",
+    "extraExampleTranslation": "ฉันซื้อไข่หนึ่งโหลมาจากซูเปอร์มาร์เก็ต"
   },
   {
     "word": "draft",
@@ -24690,7 +26482,10 @@ const wordsData = [
       "ของ",
       "ฉัน"
     ],
-    "phoneticUK": "/drˈɑːft/"
+    "phoneticUK": "/drˈɑːft/",
+    "extraExample": "She wrote the first draft of her essay last night.",
+    "extraExampleTranslation": "เธอเขียนร่างแรกของเรียงความเสร็จเมื่อคืนนี้",
+    "usageTip": "ใช้ first draft (ร่างแรก) หรือ rough draft (ร่างคร่าวๆ) ก่อนแก้ไขจริง"
   },
   {
     "word": "drag",
@@ -24718,7 +26513,10 @@ const wordsData = [
       "กล่อง",
       "ที่",
       "หนัก"
-    ]
+    ],
+    "extraExample": "Don't drag the heavy chair across the wooden floor.",
+    "extraExampleTranslation": "อย่าลากเก้าอี้หนักๆ ข้ามพื้นไม้",
+    "usageTip": "ใช้กับการดึงของหนักๆ บนพื้น หรือลากไฟล์บนหน้าจอคอมพิวเตอร์"
   },
   {
     "word": "drama",
@@ -24750,7 +26548,10 @@ const wordsData = [
       "เกาหลี"
     ],
     "phoneticUK": "/ˈdrɑːmə/",
-    "syllables": "dra·ma"
+    "syllables": "dra·ma",
+    "extraExample": "She loves watching historical drama on television.",
+    "extraExampleTranslation": "เธอชอบดูละครอิงประวัติศาสตร์ทางโทรทัศน์",
+    "usageTip": "ใช้หมายถึงละครเวที ละครทีวี หรือเหตุการณ์ที่ตึงเครียดเกินจริง"
   },
   {
     "word": "dramatic",
@@ -24877,7 +26678,10 @@ const wordsData = [
       "drawing board",
       "technical drawing"
     ],
-    "syllables": "dra·wing"
+    "syllables": "dra·wing",
+    "extraExample": "She showed me a pencil drawing of her cat.",
+    "extraExampleTranslation": "เธอให้ฉันดูภาพวาดดินสอรูปแมวของเธอ",
+    "usageTip": "ใช้เป็นคำนามหมายถึงภาพวาดหรือการวาดเส้น มักใช้คู่กับ pencil หรือ charcoal"
   },
   {
     "word": "dream",
@@ -24904,7 +26708,10 @@ const wordsData = [
       "ฝัน",
       "แปลก",
       "มาก"
-    ]
+    ],
+    "extraExample": "I had a strange dream about flying last night.",
+    "extraExampleTranslation": "เมื่อคืนฉันฝันแปลก ๆ ว่าตัวเองกำลังบินได้",
+    "usageTip": "ใช้กับกริยา have (have a dream) หรือหมายถึงความฝันและเป้าหมายในชีวิต"
   },
   {
     "word": "dress",
@@ -24934,7 +26741,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: dresses"
-    ]
+    ],
+    "extraExample": "She wore a formal dress to the wedding.",
+    "extraExampleTranslation": "เธอสวมชุดราตรีที่เป็นทางการไปงานแต่งงาน",
+    "usageTip": "หมายถึงชุดกระโปรงผู้หญิงหรือเครื่องแต่งกายโดยรวม เช่น dress code"
   },
   {
     "word": "drink",
@@ -24964,7 +26774,10 @@ const wordsData = [
     "forms": [
       "V2: drank",
       "V3: drunk"
-    ]
+    ],
+    "extraExample": "Remember to drink plenty of water in hot weather.",
+    "extraExampleTranslation": "อย่าลืมดื่มน้ำให้มาก ๆ ในช่วงอากาศร้อน",
+    "usageTip": "เป็นกริยาแปลว่าดื่ม และใช้เป็นคำนามแปลว่าเครื่องดื่มได้ด้วย"
   },
   {
     "word": "drive",
@@ -24996,7 +26809,10 @@ const wordsData = [
     "forms": [
       "V2: drove",
       "V3: driven"
-    ]
+    ],
+    "extraExample": "He learned to drive a car when he was eighteen.",
+    "extraExampleTranslation": "เขาหัดขับรถยนต์ตอนอายุสิบแปดปี",
+    "usageTip": "ใช้กับการขับขี่ยานพาหนะสี่ล้อขึ้นไป หรือหมายถึงการขับเคลื่อนสิ่งต่าง ๆ"
   },
   {
     "word": "driver",
@@ -25029,7 +26845,10 @@ const wordsData = [
       "nondriver"
     ],
     "phoneticUK": "/drˈaɪvə(r)/",
-    "syllables": "dri·ver"
+    "syllables": "dri·ver",
+    "extraExample": "The bus driver stopped to let passengers get off.",
+    "extraExampleTranslation": "คนขับรถบัสจอดรถเพื่อให้ผู้โดยสารลง",
+    "usageTip": "เติม -er เพื่อหมายถึงผู้ขับขี่ ใช้ได้กับรถหลายประเภท เช่น taxi driver"
   },
   {
     "word": "drop",
@@ -25063,7 +26882,10 @@ const wordsData = [
       "drop by (แวะมาหา)",
       "drop out (ลาออกกลางคัน)",
       "drop off (แวะส่ง/ผล็อยหลับ)"
-    ]
+    ],
+    "extraExample": "Be careful not to drop that glass on the floor.",
+    "extraExampleTranslation": "ระวังอย่าทำแก้วใบนั้นตกพื้นนะ",
+    "usageTip": "ใช้ได้ทั้งทำสิ่งของตก ปล่อยลง หรือหมายถึงจำนวน/ระดับที่ลดลง"
   },
   {
     "word": "drug",
@@ -25089,7 +26911,10 @@ const wordsData = [
       "ยา",
       "ตัวใหม่",
       "ให้"
-    ]
+    ],
+    "extraExample": "The doctor prescribed a new drug to treat the infection.",
+    "extraExampleTranslation": "หมอสั่งจ่ายยาตัวใหม่เพื่อรักษาอาการติดเชื้อ",
+    "usageTip": "ในบริบททางการแพทย์แปลว่ายา ส่วนในข่าวอาชญากรรมมักหมายถึงยาเสพติด"
   },
   {
     "word": "drugstore",
@@ -25117,7 +26942,10 @@ const wordsData = [
       "ร้านขายยา"
     ],
     "phoneticUK": "/drˈʌɡstˌɔː/",
-    "syllables": "drug·store"
+    "syllables": "drug·store",
+    "extraExample": "I need to stop by the drugstore to buy some painkillers.",
+    "extraExampleTranslation": "ฉันต้องแวะร้านขายยาเพื่อซื้อยาแก้ปวดสักหน่อย",
+    "usageTip": "เป็นคำที่ใช้บ่อยในภาษาอังกฤษแบบอเมริกัน (แบบอังกฤษนิยมใช้ chemist หรือ pharmacy)"
   },
   {
     "word": "drum",
@@ -25144,7 +26972,10 @@ const wordsData = [
       "กลอง",
       "ใน",
       "วงดนตรี"
-    ]
+    ],
+    "extraExample": "He practices playing the drum every evening.",
+    "extraExampleTranslation": "เขาฝึกตีกลองทุกเย็น",
+    "usageTip": "ใช้กับกริยา play หรือ beat มักใช้รูปพหูพจน์ drums เมื่อหมายถึงกลองชุด"
   },
   {
     "word": "drunk",
@@ -25171,7 +27002,10 @@ const wordsData = [
       "กว่า",
       "จะ",
       "ขับรถ"
-    ]
+    ],
+    "extraExample": "He was too drunk to drive home safely.",
+    "extraExampleTranslation": "เขาเมาเกินกว่าจะขับรถกลับบ้านอย่างปลอดภัย",
+    "usageTip": "เป็นคำคุณศัพท์แปลว่าเมา และเป็นกริยาช่อง 3 ของ drink ด้วย"
   },
   {
     "word": "dry",
@@ -25205,7 +27039,10 @@ const wordsData = [
     "forms": [
       "V2/V3: dried",
       "V-ing: drying"
-    ]
+    ],
+    "extraExample": "Please hang the wet towels outside to dry.",
+    "extraExampleTranslation": "กรุณานำผ้าเช็ดตัวที่เปียกไปตากข้างนอกให้แห้ง",
+    "usageTip": "ใช้ได้ทั้งเป็นกริยา (ทำให้แห้ง/ตากให้แห้ง) และคำคุณศัพท์ (แห้ง)"
   },
   {
     "word": "due",
@@ -25237,7 +27074,10 @@ const wordsData = [
     "antonyms": [
       "undue"
     ],
-    "phoneticUK": "/djuː/"
+    "phoneticUK": "/djuː/",
+    "extraExample": "The library books are due next Friday.",
+    "extraExampleTranslation": "หนังสือห้องสมุดครบกำหนดส่งคืนวันศุกร์หน้า",
+    "usageTip": "นิยมใช้ในโครงสร้าง be due + เวลา หรือ due to ที่แปลว่าเนื่องจาก"
   },
   {
     "word": "dull",
@@ -25267,7 +27107,10 @@ const wordsData = [
     "antonyms": [
       "lively",
       "bright"
-    ]
+    ],
+    "extraExample": "The lecture was so dull that many students fell asleep.",
+    "extraExampleTranslation": "การบรรยายน่าเบื่อมากจนนักศึกษาหลายคนหลับไป",
+    "usageTip": "ใช้บรรยายสิ่งที่น่าเบื่อ สีหม่น หรือใบมีดที่ไม่คม"
   },
   {
     "word": "dump",
@@ -25294,7 +27137,10 @@ const wordsData = [
       "ของ",
       "พวกเขา",
       "ที่นี่"
-    ]
+    ],
+    "extraExample": "Don't dump your old furniture by the side of the road.",
+    "extraExampleTranslation": "อย่าทิ้งเฟอร์นิเจอร์เก่าของคุณไว้ข้างถนน",
+    "usageTip": "หมายถึงการทิ้งขยะหรือเทสิ่งของจำนวนมากอย่างไม่เป็นระเบียบ"
   },
   {
     "word": "during",
@@ -25324,7 +27170,9 @@ const wordsData = [
     ],
     "usageTip": "during + คำนาม/ช่วงเวลา (during the meeting); ส่วน while + ประโยค S + V (while I was sleeping)",
     "syllables": "du·ring",
-    "grammarPattern": "during + คำนาม/ช่วงเวลา (ห้ามตามด้วยประโยค S+V)"
+    "grammarPattern": "during + คำนาม/ช่วงเวลา (ห้ามตามด้วยประโยค S+V)",
+    "extraExample": "Please turn off your phone during the movie.",
+    "extraExampleTranslation": "กรุณาปิดโทรศัพท์ของคุณในช่วงเวลาที่ฉายภาพยนตร์"
   },
   {
     "word": "dust",
@@ -25350,7 +27198,10 @@ const wordsData = [
       "เก่า",
       "เต็มไปด้วย",
       "ฝุ่น"
-    ]
+    ],
+    "extraExample": "There is a thick layer of dust on the bookshelf.",
+    "extraExampleTranslation": "มีฝุ่นละอองเกาะหนาอยู่บนชั้นหนังสือ",
+    "usageTip": "เป็นคำนามนับไม่ได้ แปลว่าฝุ่น และเป็นกริยาแปลว่าปัดฝุ่นได้ด้วย"
   },
   {
     "word": "duty",
@@ -25384,7 +27235,10 @@ const wordsData = [
     "syllables": "du·ty",
     "forms": [
       "พหูพจน์: duties"
-    ]
+    ],
+    "extraExample": "It is our duty to protect the environment.",
+    "extraExampleTranslation": "เป็นหน้าที่ของเราที่จะต้องปกป้องสิ่งแวดล้อม",
+    "usageTip": "หมายถึงหน้าที่ความรับผิดชอบ หรือภาษีศุลกากร (duty-free)"
   },
   {
     "word": "DVD",
@@ -25410,7 +27264,10 @@ const wordsData = [
       "ดีวีดี",
       "กัน",
       "เถอะ"
-    ]
+    ],
+    "extraExample": "We rented a DVD to watch together at home.",
+    "extraExampleTranslation": "เราเช่าแผ่นดีวีดีมาดูด้วยกันที่บ้าน",
+    "usageTip": "เขียนด้วยตัวพิมพ์ใหญ่ทั้งหมดเมื่อเป็นคำย่อ ใช้กับคำว่า watch หรือ play"
   },
   {
     "word": "dying",
@@ -25436,7 +27293,10 @@ const wordsData = [
       "แก่",
       "กำลังจะ",
       "ตาย"
-    ]
+    ],
+    "extraExample": "The old tree in the garden is slowly dying.",
+    "extraExampleTranslation": "ต้นไม้แก่ในสวนกำลังค่อย ๆ ตายลง",
+    "usageTip": "เป็นรูป -ing ของ die (เปลี่ยน ie เป็น y ก่อนเติม ing) ใช้กับสิ่งมีชีวิตหรือสิ่งที่กำลังจะหมดไป"
   },
   {
     "word": "each",
@@ -25544,7 +27404,10 @@ const wordsData = [
       "ear"
     ],
     "phoneticUK": "/ˈɜːliː/",
-    "syllables": "ear·ly"
+    "syllables": "ear·ly",
+    "extraExample": "We arrived at the airport early to avoid the long security lines.",
+    "extraExampleTranslation": "พวกเรามาถึงสนามบินแต่เช้าเพื่อหลีกเลี่ยงแถวตรวจความปลอดภัยที่ยาวเหยียด",
+    "usageTip": "ใช้ได้ทั้งเป็นคำคุณศัพท์และคำกริยาวิเศษณ์ เช่น early morning (เช้าตรู่) หรือ arrive early (มาถึงก่อนเวลา)"
   },
   {
     "word": "earn",
@@ -25571,7 +27434,10 @@ const wordsData = [
       "เงินได้",
       "เท่าไหร่"
     ],
-    "phoneticUK": "/ˈɜːn/"
+    "phoneticUK": "/ˈɜːn/",
+    "extraExample": "She works two jobs to earn enough money for her university tuition.",
+    "extraExampleTranslation": "เธอทำงานสองอย่างเพื่อหารายได้ให้เพียงพอสำหรับค่าเล่าเรียนมหาวิทยาลัย",
+    "usageTip": "มักใช้กับเงิน รายได้ หรือความเคารพ เช่น earn money (หาเงิน) หรือ earn respect (ได้รับความเคารพ)"
   },
   {
     "word": "earth",
@@ -25598,7 +27464,10 @@ const wordsData = [
       "รอบ",
       "โลก"
     ],
-    "phoneticUK": "/ˈɜːθ/"
+    "phoneticUK": "/ˈɜːθ/",
+    "extraExample": "Protecting the earth from pollution is a responsibility we all share.",
+    "extraExampleTranslation": "การปกป้องโลกจากมลพิษเป็นความรับผิดชอบที่พวกเราทุกคนมีร่วมกัน",
+    "usageTip": "เมื่อหมายถึงดาวเคราะห์โลกมักใช้ว่า the earth หรือ Earth และใช้ในสำนวน on earth (ในโลกนี้)"
   },
   {
     "word": "ease",
@@ -25631,7 +27500,10 @@ const wordsData = [
     ],
     "antonyms": [
       "difficulty"
-    ]
+    ],
+    "extraExample": "The new software allows users to manage their schedules with ease.",
+    "extraExampleTranslation": "ซอฟต์แวร์ใหม่ช่วยให้ผู้ใช้จัดการตารางเวลาของตนเองได้อย่างง่ายดาย",
+    "usageTip": "มักใช้ในวลี with ease (อย่างง่ายดาย) หรือ at ease (อย่างสบายใจ/ผ่อนคลาย)"
   },
   {
     "word": "easily",
@@ -25662,7 +27534,10 @@ const wordsData = [
     "wordFamily": [
       "easy"
     ],
-    "syllables": "ea·si·ly"
+    "syllables": "ea·si·ly",
+    "extraExample": "With a good map, you can easily find the museum from the train station.",
+    "extraExampleTranslation": "หากมีแผนที่ที่ดี คุณสามารถหาพิพิธภัณฑ์จากสถานีรถไฟได้อย่างง่ายดาย",
+    "usageTip": "วางไว้หน้าคำกริยาหลักหรือท้ายประโยคเพื่อบอกว่าทำสิ่งนั้นได้โดยไม่ยาก"
   },
   {
     "word": "east",
@@ -25691,7 +27566,10 @@ const wordsData = [
     ],
     "antonyms": [
       "west"
-    ]
+    ],
+    "extraExample": "The sun rises in the east and sets in the west every day.",
+    "extraExampleTranslation": "ดวงอาทิตย์ขึ้นทางทิศตะวันออกและตกทางทิศตะวันตกทุกวัน",
+    "usageTip": "ใช้คำนำหน้าว่า the เมื่อพูดถึงทิศทาง เช่น in the east (ทางทิศตะวันออก)"
   },
   {
     "word": "eastern",
@@ -25721,7 +27599,10 @@ const wordsData = [
     "antonyms": [
       "western"
     ],
-    "syllables": "ea·stern"
+    "syllables": "ea·stern",
+    "extraExample": "They traveled to the eastern part of the country to visit ancient temples.",
+    "extraExampleTranslation": "พวกเขาเดินทางไปยังภาคตะวันออกของประเทศเพื่อเยี่ยมชมวัดโบราณ",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกตำแหน่งหรือลักษณะทางภูมิศาสตร์ เช่น eastern region (ภูมิภาคตะวันออก)"
   },
   {
     "word": "easy",
@@ -25763,7 +27644,10 @@ const wordsData = [
       "ease",
       "easily"
     ],
-    "syllables": "ea·sy"
+    "syllables": "ea·sy",
+    "extraExample": "Learning a new language is not always easy, but daily practice helps.",
+    "extraExampleTranslation": "การเรียนภาษาใหม่ไม่ได้ง่ายเสมอไป แต่การฝึกฝนทุกวันช่วยได้",
+    "usageTip": "ใช้บอกว่าง่ายต่อการทำหรือเข้าใจ มักตามด้วย to + กริยา เช่น easy to use (ใช้ง่าย)"
   },
   {
     "word": "eat",
@@ -25792,7 +27676,10 @@ const wordsData = [
     "forms": [
       "V2: ate",
       "V3: eaten"
-    ]
+    ],
+    "extraExample": "Let's eat dinner together at that new Thai restaurant tonight.",
+    "extraExampleTranslation": "คืนนี้เรามากินมื้อเย็นด้วยกันที่ร้านอาหารไทยเปิดใหม่ร้านนั้นกันเถอะ",
+    "usageTip": "ใช้กับมื้ออาหารหรืออาหารทั่วไป เช่น eat breakfast (กินมื้อเช้า) หรือ eat out (กินข้าวนอกบ้าน)"
   },
   {
     "word": "economic",
@@ -25826,7 +27713,9 @@ const wordsData = [
     ],
     "usageTip": "economic = เกี่ยวกับเศรษฐกิจ (economic growth); ส่วน economical = ประหยัด คุ้มค่า",
     "phoneticUK": "/ˌekənˈɒmɪk/",
-    "syllables": "e·co·no·mic"
+    "syllables": "e·co·no·mic",
+    "extraExample": "The government announced new policies to support economic growth this year.",
+    "extraExampleTranslation": "รัฐบาลประกาศนโยบายใหม่เพื่อสนับสนุนการเติบโตทางเศรษฐกิจในปีนี้"
   },
   {
     "word": "economy",
@@ -25859,7 +27748,10 @@ const wordsData = [
     "syllables": "e·co·no·my",
     "forms": [
       "พหูพจน์: economies"
-    ]
+    ],
+    "extraExample": "Tourism plays a major role in boosting the local economy.",
+    "extraExampleTranslation": "การท่องเที่ยวมีบทบาทสำคัญในการกระตุ้นเศรษฐกิจท้องถิ่น",
+    "usageTip": "ใช้กล่าวถึงระบบเศรษฐกิจของประเทศหรือการประหยัด เช่น global economy (เศรษฐกิจโลก)"
   },
   {
     "word": "edge",
@@ -25885,7 +27777,10 @@ const wordsData = [
       "ยืน",
       "ใกล้",
       "ขอบ"
-    ]
+    ],
+    "extraExample": "Be careful not to put your coffee cup too close to the edge of the table.",
+    "extraExampleTranslation": "ระวังอย่าวางแก้วกาแฟของคุณใกล้ขอบโต๊ะมากเกินไป",
+    "usageTip": "ใช้บอกขอบหรือริมของสิ่งของ และใช้ในสำนวน on edge (กระวนกระวายใจ)"
   },
   {
     "word": "edition",
@@ -25914,7 +27809,10 @@ const wordsData = [
       "ของ",
       "หนังสือ"
     ],
-    "syllables": "e·di·tion"
+    "syllables": "e·di·tion",
+    "extraExample": "I bought the latest edition of the dictionary for my English class.",
+    "extraExampleTranslation": "ฉันซื้อพจนานุกรมฉบับพิมพ์ล่าสุดสำหรับวิชาภาษาอังกฤษของฉัน",
+    "usageTip": "ใช้กับหนังสือ นิตยสาร หรือรายการข่าวเพื่อบอกครั้งที่พิมพ์หรือรุ่น เช่น limited edition (รุ่นจำกัด)"
   },
   {
     "word": "editor",
@@ -25942,7 +27840,10 @@ const wordsData = [
       "หนังสือพิมพ์"
     ],
     "phoneticUK": "/ˈedətə(r)/",
-    "syllables": "e·di·tor"
+    "syllables": "e·di·tor",
+    "extraExample": "The editor reviewed the article carefully before sending it to print.",
+    "extraExampleTranslation": "บรรณาธิการตรวจทานบทความอย่างละเอียดก่อนส่งไปตีพิมพ์",
+    "usageTip": "หมายถึงผู้ตรวจแก้และคัดเลือกเนื้อหาในสื่อสิ่งพิมพ์หรือเว็บไซต์ เช่น chief editor (บรรณาธิการบริหาร)"
   },
   {
     "word": "educate",
@@ -25982,7 +27883,10 @@ const wordsData = [
     "forms": [
       "V2/V3: educated",
       "V-ing: educating"
-    ]
+    ],
+    "extraExample": "Schools aim to educate students not only in academics but also in life skills.",
+    "extraExampleTranslation": "โรงเรียนมุ่งหวังที่จะให้การศึกษาแก่นักเรียนไม่เพียงแต่วิชาการแต่รวมถึงทักษะชีวิตด้วย",
+    "usageTip": "เป็นคำกริยา มักใช้ในรูป educate someone about something (ให้ความรู้แก่ใครเกี่ยวกับเรื่องใด)"
   },
   {
     "word": "educated",
@@ -26015,7 +27919,10 @@ const wordsData = [
     "wordFamily": [
       "educate"
     ],
-    "syllables": "e·du·ca·ted"
+    "syllables": "e·du·ca·ted",
+    "extraExample": "She is a well-educated woman who speaks three languages fluently.",
+    "extraExampleTranslation": "เธอเป็นผู้หญิงที่มีการศึกษาดีซึ่งพูดได้สามภาษาอย่างคล่องแคล่ว",
+    "usageTip": "มักใช้เป็นคำคุณศัพท์ในรูป well-educated (มีการศึกษาดี) หรือ highly educated (มีการศึกษาสูง)"
   },
   {
     "word": "education",
@@ -26050,7 +27957,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Access to quality education is essential for a child's future.",
+    "extraExampleTranslation": "การเข้าถึงการศึกษาที่มีคุณภาพเป็นสิ่งจำเป็นสำหรับอนาคตของเด็ก",
+    "usageTip": "เป็นคำนามนับไม่ได้ หมายถึงระบบการศึกษาหรือการเรียนรู้ เช่น higher education (การศึกษาระดับอุดมศึกษา)"
   },
   {
     "word": "effect",
@@ -26082,7 +27992,9 @@ const wordsData = [
       "ดี"
     ],
     "usageTip": "effect เป็นคำนาม (ผลกระทบ); ถ้าต้องการคำกริยาที่แปลว่า 'ส่งผลต่อ' ให้ใช้ affect",
-    "syllables": "ef·fect"
+    "syllables": "ef·fect",
+    "extraExample": "Lack of sleep can have a negative effect on your concentration.",
+    "extraExampleTranslation": "การนอนหลับไม่เพียงพออาจส่งผลเสียต่อสมาธิของคุณได้"
   },
   {
     "word": "effective",
@@ -26117,7 +28029,10 @@ const wordsData = [
     "antonyms": [
       "ineffective"
     ],
-    "syllables": "ef·fec·tive"
+    "syllables": "ef·fec·tive",
+    "extraExample": "Regular exercise is an effective way to reduce stress and stay healthy.",
+    "extraExampleTranslation": "การออกกำลังกายสม่ำเสมอเป็นวิธีที่ได้ผลในการลดความเครียดและรักษาสุขภาพ",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าได้ผลดีหรือมีประสิทธิภาพ เช่น effective method (วิธีที่ได้ผล)"
   },
   {
     "word": "effectively",
@@ -26150,7 +28065,10 @@ const wordsData = [
     ],
     "antonyms": [
       "ineffectively"
-    ]
+    ],
+    "extraExample": "Good leaders know how to communicate effectively with their team members.",
+    "extraExampleTranslation": "ผู้นำที่ดีรู้วิธีสื่อสารอย่างมีประสิทธิภาพกับสมาชิกในทีมของตน",
+    "usageTip": "เป็นคำกริยาวิเศษณ์ ใช้ขยายคำกริยาเพื่อบอกว่าทำสิ่งนั้นได้อย่างได้ผลหรือมีประสิทธิภาพ"
   },
   {
     "word": "efficient",
@@ -26271,7 +28189,10 @@ const wordsData = [
       "viii",
       "eighter",
       "octad"
-    ]
+    ],
+    "extraExample": "The train leaves at eight in the morning.",
+    "extraExampleTranslation": "รถไฟออกตอนแปดโมงเช้า",
+    "usageTip": "ใช้บอกเวลา จำนวน หรืออายุ เช่น at eight (ตอนแปดโมง)"
   },
   {
     "word": "eighteen",
@@ -26300,7 +28221,10 @@ const wordsData = [
       "แปด",
       "ปี"
     ],
-    "syllables": "eigh·teen"
+    "syllables": "eigh·teen",
+    "extraExample": "You must be eighteen to vote in this country.",
+    "extraExampleTranslation": "คุณต้องมีอายุสิบแปดปีจึงจะลงคะแนนเสียงในประเทศนี้ได้",
+    "usageTip": "ใช้นำหน้าคำนามหรือบอกอายุ เช่น eighteen years old"
   },
   {
     "word": "eighth",
@@ -26327,7 +28251,10 @@ const wordsData = [
       "แปด",
       "ใน",
       "การแข่งขัน"
-    ]
+    ],
+    "extraExample": "She finished eighth in the marathon.",
+    "extraExampleTranslation": "เธอเข้าเส้นชัยเป็นอันดับที่แปดในการวิ่งมาราธอน",
+    "usageTip": "ใช้บอกลำดับที่หรือวันที่ เช่น the eighth of May"
   },
   {
     "word": "eighty",
@@ -26363,7 +28290,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: eightier",
       "ขั้นสุด: eightiest"
-    ]
+    ],
+    "extraExample": "My grandfather is eighty years old and still walks every day.",
+    "extraExampleTranslation": "คุณปู่ของฉันอายุแปดสิบปีแล้วและยังเดินทุกวัน",
+    "usageTip": "ใช้บอกจำนวนหรือช่วงทศวรรษ เช่น in the eighties"
   },
   {
     "word": "either",
@@ -26395,7 +28325,9 @@ const wordsData = [
     ],
     "phoneticUK": "/ˈaɪðə(r)/",
     "syllables": "ei·ther",
-    "usageTip": "จับคู่โครงสร้าง: either A or B (ไม่ A ก็ B) โดยกริยาผันตามประธานตัวหลัง B"
+    "usageTip": "จับคู่โครงสร้าง: either A or B (ไม่ A ก็ B) โดยกริยาผันตามประธานตัวหลัง B",
+    "extraExample": "You can take either the bus or the train to get there.",
+    "extraExampleTranslation": "คุณสามารถขึ้นรถบัสหรือรถไฟก็ได้เพื่อไปที่นั่น"
   },
   {
     "word": "elbow",
@@ -26424,7 +28356,10 @@ const wordsData = [
       "ซ้าย"
     ],
     "phoneticUK": "/ˈelbˌəʊ/",
-    "syllables": "el·bow"
+    "syllables": "el·bow",
+    "extraExample": "He accidentally bumped his elbow against the table.",
+    "extraExampleTranslation": "เขาเผลอชนข้อศอกเข้ากับโต๊ะโดยไม่ได้ตั้งใจ",
+    "usageTip": "ใช้เรียกข้อศอกหรือกริยาที่แปลว่าเบียด/กระทุ้งด้วยศอก"
   },
   {
     "word": "elderly",
@@ -26458,7 +28393,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: elderlier",
       "ขั้นสุด: elderliest"
-    ]
+    ],
+    "extraExample": "The community center offers free classes for elderly residents.",
+    "extraExampleTranslation": "ศูนย์ชุมชนเปิดสอนฟรีสำหรับผู้อยู่อาศัยสูงวัย",
+    "usageTip": "ใช้เรียกผู้สูงอายุอย่างสุภาพ มักใช้กับคำนามหรือ the elderly"
   },
   {
     "word": "elect",
@@ -26490,7 +28428,10 @@ const wordsData = [
       "คน",
       "ใหม่"
     ],
-    "syllables": "e·lect"
+    "syllables": "e·lect",
+    "extraExample": "Citizens will elect a new mayor next month.",
+    "extraExampleTranslation": "ประชาชนจะเลือกตั้งนายกเทศมนตรีคนใหม่ในเดือนหน้า",
+    "usageTip": "ใช้กับผู้มีสิทธิ์เลือกตั้งที่เลือกผู้นำหรือตัวแทน"
   },
   {
     "word": "election",
@@ -26522,7 +28463,10 @@ const wordsData = [
       "เดือน",
       "หน้า"
     ],
-    "syllables": "e·lec·tion"
+    "syllables": "e·lec·tion",
+    "extraExample": "The national election will be held on Sunday.",
+    "extraExampleTranslation": "การเลือกตั้งระดับชาติจะจัดขึ้นในวันอาทิตย์",
+    "usageTip": "ใช้เรียกกระบวนการเลือกตั้ง มักใช้คู่กับ hold หรือ win"
   },
   {
     "word": "electric",
@@ -26553,7 +28497,10 @@ const wordsData = [
       "รถยนต์",
       "ไฟฟ้า"
     ],
-    "syllables": "e·lec·tric"
+    "syllables": "e·lec·tric",
+    "extraExample": "They bought an electric car to save on fuel costs.",
+    "extraExampleTranslation": "พวกเขาซื้อรถยนต์ไฟฟ้าเพื่อประหยัดค่าน้ำมัน",
+    "usageTip": "ใช้กับสิ่งที่ใช้ไฟฟ้าโดยตรงหรือสร้างความตื่นเต้น"
   },
   {
     "word": "electrical",
@@ -26581,7 +28528,10 @@ const wordsData = [
       "เป็น",
       "วิศวกรไฟฟ้า"
     ],
-    "syllables": "e·lec·tri·cal"
+    "syllables": "e·lec·tri·cal",
+    "extraExample": "Please call a technician to fix the electrical problem.",
+    "extraExampleTranslation": "กรุณาเรียกช่างเทคนิคมาซ่อมปัญหาเกี่ยวกับระบบไฟฟ้า",
+    "usageTip": "ใช้กับระบบ วิศวกรรม หรืออุปกรณ์ที่เกี่ยวข้องกับไฟฟ้า"
   },
   {
     "word": "electricity",
@@ -26614,7 +28564,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "We lost electricity during the heavy storm last night.",
+    "extraExampleTranslation": "ไฟฟ้าดับระหว่างพายุฝนตกหนักเมื่อคืนนี้",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้เรียกพลังงานไฟฟ้าทั่วไป"
   },
   {
     "word": "electronic",
@@ -26642,7 +28595,10 @@ const wordsData = [
       "อิเล็กทรอนิกส์"
     ],
     "phoneticUK": "/ɪlˌektrˈɒnɪk/",
-    "syllables": "e·lec·tro·nic"
+    "syllables": "e·lec·tro·nic",
+    "extraExample": "You can store all your electronic documents in the cloud.",
+    "extraExampleTranslation": "คุณสามารถเก็บเอกสารอิเล็กทรอนิกส์ทั้งหมดไว้ในคลาวด์ได้",
+    "usageTip": "ใช้กับอุปกรณ์หรือข้อมูลดิจิทัลที่ทำงานด้วยวงจรอิเล็กทรอนิกส์"
   },
   {
     "word": "elegant",
@@ -26673,7 +28629,10 @@ const wordsData = [
     "antonyms": [
       "inelegant"
     ],
-    "syllables": "e·le·gant"
+    "syllables": "e·le·gant",
+    "extraExample": "She wore an elegant black dress to the gala.",
+    "extraExampleTranslation": "เธอสวมชุดราตรีสีดำที่สง่างามไปงานกาล่า",
+    "usageTip": "ใช้ชมรูปลักษณ์ การแต่งกาย หรือวิธีแก้ปัญหาที่ดูดีมีระดับ"
   },
   {
     "word": "element",
@@ -26704,7 +28663,10 @@ const wordsData = [
       "ที่",
       "ดี"
     ],
-    "syllables": "e·le·ment"
+    "syllables": "e·le·ment",
+    "extraExample": "Trust is an essential element of any strong relationship.",
+    "extraExampleTranslation": "ความไว้วางใจเป็นปัจจัยสำคัญของความสัมพันธ์ที่แข็งแกร่ง",
+    "usageTip": "ใช้หมายถึงองค์ประกอบ ปัจจัย หรือธาตุทางเคมี"
   },
   {
     "word": "elevator",
@@ -26735,7 +28697,9 @@ const wordsData = [
     ],
     "phoneticUK": "/ˈeləvˌeɪtə(r)/",
     "syllables": "e·le·va·tor",
-    "usageTip": "US ใช้ elevator (ลิฟต์) | UK ใช้ lift"
+    "usageTip": "US ใช้ elevator (ลิฟต์) | UK ใช้ lift",
+    "extraExample": "Take the elevator to the fifth floor and turn left.",
+    "extraExampleTranslation": "ขึ้นลิฟต์ไปที่ชั้นห้าแล้วเลี้ยวซ้าย"
   },
   {
     "word": "eleven",
@@ -26760,7 +28724,10 @@ const wordsData = [
       "สิบเอ็ด",
       "ปี"
     ],
-    "syllables": "e·le·ven"
+    "syllables": "e·le·ven",
+    "extraExample": "There are eleven players on a football team.",
+    "extraExampleTranslation": "มีผู้เล่นสิบเอ็ดคนในทีมฟุตบอลหนึ่งทีม",
+    "usageTip": "ใช้นำหน้าคำนามพหูพจน์หรือบอกเวลา"
   },
   {
     "word": "else",
@@ -26786,7 +28753,10 @@ const wordsData = [
       "อะไร",
       "อีก",
       "ไหม"
-    ]
+    ],
+    "extraExample": "Would you like anything else with your coffee?",
+    "extraExampleTranslation": "คุณต้องการอะไรเพิ่มกับกาแฟไหม",
+    "usageTip": "วางหลังคำอย่าง anything, someone, what เพื่อหมายถึงอื่นหรือเพิ่ม"
   },
   {
     "word": "elsewhere",
@@ -26816,7 +28786,10 @@ const wordsData = [
     "antonyms": [
       "here"
     ],
-    "phoneticUK": "/ˈelswˌe/"
+    "phoneticUK": "/ˈelswˌe/",
+    "extraExample": "If the restaurant is full, we can eat elsewhere.",
+    "extraExampleTranslation": "ถ้าร้านอาหารเต็ม เราไปกินที่อื่นก็ได้",
+    "usageTip": "ใช้บอกสถานที่อื่นโดยไม่ต้องระบุชื่อสถานที่ซ้ำ"
   },
   {
     "word": "email",
@@ -26842,7 +28815,10 @@ const wordsData = [
       "ฉัน",
       "ด้วย"
     ],
-    "syllables": "e·mail"
+    "syllables": "e·mail",
+    "extraExample": "Please send me an email with the attached report.",
+    "extraExampleTranslation": "กรุณาส่งอีเมลพร้อมแนบรายงานมาให้ฉันด้วย",
+    "usageTip": "ใช้ได้ทั้งคำนามและคำกริยา แปลว่าส่งอีเมล"
   },
   {
     "word": "embarrass",
@@ -26971,7 +28947,10 @@ const wordsData = [
       "disembarrassment"
     ],
     "syllables": "em·bar·ras·sment",
-    "rootBreakdown": "embarrass + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "embarrass + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "She blushed with embarrassment after forgetting his name.",
+    "extraExampleTranslation": "เธอหน้าแดงด้วยความอับอายหลังจากลืมชื่อของเขา",
+    "usageTip": "มักใช้กับคำว่า with embarrassment หรือ to one's embarrassment เพื่อบอกอาการเขินอาย"
   },
   {
     "word": "emerge",
@@ -27006,7 +28985,10 @@ const wordsData = [
     "forms": [
       "V2/V3: emerged",
       "V-ing: emerging"
-    ]
+    ],
+    "extraExample": "A new leader began to emerge from the crisis.",
+    "extraExampleTranslation": "ผู้นำคนใหม่เริ่มปรากฏตัวขึ้นจากวิกฤตครั้งนี้",
+    "usageTip": "ใช้กับสิ่งที่ค่อยๆ ปรากฏหรือโผล่ออกมาทั้งรูปธรรมและนามธรรม มักตามด้วย from"
   },
   {
     "word": "emergency",
@@ -27038,7 +29020,10 @@ const wordsData = [
     "syllables": "e·mer·gen·cy",
     "forms": [
       "พหูพจน์: emergencies"
-    ]
+    ],
+    "extraExample": "Call this number only in case of an emergency.",
+    "extraExampleTranslation": "โทรเบอร์นี้เฉพาะในกรณีฉุกเฉินเท่านั้น",
+    "usageTip": "มักใช้ในวลี in case of emergency หรือใช้เป็นคำนามขยายคำอื่น เช่น emergency exit"
   },
   {
     "word": "emotion",
@@ -27070,7 +29055,10 @@ const wordsData = [
       "ใดๆ"
     ],
     "phoneticUK": "/ɪmˈəʊʃən/",
-    "syllables": "e·mo·tion"
+    "syllables": "e·mo·tion",
+    "extraExample": "He tried to hide his emotion during the speech.",
+    "extraExampleTranslation": "เขาพยายามซ่อนอารมณ์ของตัวเองไว้ระหว่างการกล่าวสุนทรพจน์",
+    "usageTip": "ใช้ได้ทั้งแบบนับได้และนับไม่ได้ มักใช้กับกริยา show, hide, express"
   },
   {
     "word": "emotional",
@@ -27106,7 +29094,10 @@ const wordsData = [
       "unemotional"
     ],
     "phoneticUK": "/ɪmˈəʊʃənəl/",
-    "syllables": "e·mo·tio·nal"
+    "syllables": "e·mo·tio·nal",
+    "extraExample": "The movie had a very emotional ending.",
+    "extraExampleTranslation": "ภาพยนตร์เรื่องนั้นมีตอนจบที่สะเทือนอารมณ์มาก",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อบอกสิ่งที่เกี่ยวกับอารมณ์หรือทำให้รู้สึกสะเทือนใจ"
   },
   {
     "word": "emphasis",
@@ -27140,7 +29131,10 @@ const wordsData = [
     "syllables": "em·pha·sis",
     "forms": [
       "พหูพจน์: emphasises"
-    ]
+    ],
+    "extraExample": "The school puts great emphasis on science.",
+    "extraExampleTranslation": "โรงเรียนให้ความสำคัญอย่างมากกับวิชาวิทยาศาสตร์",
+    "usageTip": "มักใช้คู่กับกริยา put หรือ place แล้วตามด้วย on + สิ่งที่เน้น"
   },
   {
     "word": "emphasize",
@@ -27178,7 +29172,10 @@ const wordsData = [
     "forms": [
       "V2/V3: emphasized",
       "V-ing: emphasizing"
-    ]
+    ],
+    "extraExample": "I want to emphasize the importance of teamwork.",
+    "extraExampleTranslation": "ฉันอยากจะเน้นย้ำถึงความสำคัญของการทำงานเป็นทีม",
+    "usageTip": "ตามด้วยคำนามหรือ that-clause ได้เลย ไม่ต้องมี on ตามหลังเหมือน emphasis"
   },
   {
     "word": "empire",
@@ -27207,7 +29204,10 @@ const wordsData = [
       "มาก"
     ],
     "phoneticUK": "/ˈempaɪə(r)/",
-    "syllables": "em·pi·re"
+    "syllables": "em·pi·re",
+    "extraExample": "The Roman Empire lasted for centuries.",
+    "extraExampleTranslation": "จักรวรรดิโรมันดำรงอยู่มาหลายศตวรรษ",
+    "usageTip": "ใช้กล่าวถึงอาณาจักรยิ่งใหญ่ในประวัติศาสตร์ หรือธุรกิจขนาดมหึมาในเชิงเปรียบเทียบ"
   },
   {
     "word": "employ",
@@ -27243,7 +29243,10 @@ const wordsData = [
       "200",
       "คน"
     ],
-    "syllables": "em·ploy"
+    "syllables": "em·ploy",
+    "extraExample": "The company plans to employ fifty new workers.",
+    "extraExampleTranslation": "บริษัทวางแผนที่จะจ้างพนักงานใหม่ห้าสิบคน",
+    "usageTip": "ใช้เมื่อพูดถึงการจ้างงานอย่างเป็นทางการ หรือแปลว่านำวิธี/เครื่องมือมาใช้ก็ได้"
   },
   {
     "word": "employee",
@@ -27274,7 +29277,10 @@ const wordsData = [
     ],
     "antonyms": [
       "employer"
-    ]
+    ],
+    "extraExample": "Every employee must wear an ID badge.",
+    "extraExampleTranslation": "พนักงานทุกคนต้องสวมบัตรประจำตัว",
+    "usageTip": "หมายถึงลูกจ้างหรือพนักงาน ใช้คู่กับ employer ที่แปลว่านายจ้าง"
   },
   {
     "word": "employer",
@@ -27308,7 +29314,10 @@ const wordsData = [
     "antonyms": [
       "employee"
     ],
-    "phoneticUK": "/emplˈɔɪə(r)/"
+    "phoneticUK": "/emplˈɔɪə(r)/",
+    "extraExample": "My employer offers flexible working hours.",
+    "extraExampleTranslation": "นายจ้างของฉันมีเวลาทำงานที่ยืดหยุ่นให้",
+    "usageTip": "หมายถึงนายจ้างหรือบริษัทผู้ว่าจ้าง มักใช้คู่กับคำว่า potential หรือ current"
   },
   {
     "word": "employment",
@@ -27351,7 +29360,10 @@ const wordsData = [
       "[U] ไม่มีรูปพหูพจน์"
     ],
     "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
-    "rootBreakdown": "employ + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "employ + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "She is looking for full-time employment in Bangkok.",
+    "extraExampleTranslation": "เธอกำลังหางานประจำทำในกรุงเทพฯ",
+    "usageTip": "เป็นคำนามนับไม่ได้ หมายถึงการจ้างงานหรือการมีงานทำ"
   },
   {
     "word": "empty",
@@ -27383,7 +29395,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: emptier",
       "ขั้นสุด: emptiest"
-    ]
+    ],
+    "extraExample": "The box was completely empty when I opened it.",
+    "extraExampleTranslation": "กล่องว่างเปล่าสนิทตอนที่ฉันเปิดมันออกมา",
+    "usageTip": "ใช้นำหน้าคำนามหรือตามหลัง verb to be และยังใช้เป็นกริยาแปลว่าเทออกได้ด้วย"
   },
   {
     "word": "enable",
@@ -27420,7 +29435,10 @@ const wordsData = [
     "forms": [
       "V2/V3: enabled",
       "V-ing: enabling"
-    ]
+    ],
+    "extraExample": "This app will enable you to learn faster.",
+    "extraExampleTranslation": "แอปนี้จะช่วยให้คุณเรียนรู้ได้เร็วขึ้น",
+    "usageTip": "โครงสร้างที่พบบ่อยคือ enable + กรรม + to + กริยาช่อง 1"
   },
   {
     "word": "encounter",
@@ -27450,7 +29468,10 @@ const wordsData = [
       "แปลกประหลาด"
     ],
     "phoneticUK": "/ɪnkˈaʊntə(r)/",
-    "syllables": "en·coun·ter"
+    "syllables": "en·coun·ter",
+    "extraExample": "Our first encounter was at a coffee shop.",
+    "extraExampleTranslation": "การพบกันครั้งแรกของเราเกิดขึ้นที่ร้านกาแฟ",
+    "usageTip": "ใช้เป็นคำนามแปลว่าการเผชิญหน้าหรือการพบกันโดยบังเอิญ มักใช้กับ brief หรือ close"
   },
   {
     "word": "encourage",
@@ -27490,7 +29511,10 @@ const wordsData = [
       "V2/V3: encouraged",
       "V-ing: encouraging"
     ],
-    "grammarPattern": "encourage + someone + to V (ส่งเสริมให้ใครทำอะไร)"
+    "grammarPattern": "encourage + someone + to V (ส่งเสริมให้ใครทำอะไร)",
+    "extraExample": "Parents should encourage children to read daily.",
+    "extraExampleTranslation": "พ่อแม่ควรส่งเสริมให้เด็กๆ อ่านหนังสือทุกวัน",
+    "usageTip": "โครงสร้างหลักคือ encourage + กรรม + to + กริยาช่อง 1"
   },
   {
     "word": "encouragement",
@@ -27524,7 +29548,10 @@ const wordsData = [
       "discouragement"
     ],
     "phoneticUK": "/enkˈɜːɪdʒmənt/",
-    "rootBreakdown": "encourage + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "encourage + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "Her kind words gave me a lot of encouragement.",
+    "extraExampleTranslation": "คำพูดดีๆ ของเธอให้กำลังใจฉันมากเลย",
+    "usageTip": "เป็นคำนามนับไม่ได้ มักใช้กับกริยา give หรือ offer"
   },
   {
     "word": "end",
@@ -27563,7 +29590,10 @@ const wordsData = [
       "in the end (ในที่สุดท้ายสุด)",
       "at the end of (ตอนจบของ...)",
       "make ends meet (หาเงินพอใช้ชนเดือน)"
-    ]
+    ],
+    "extraExample": "Everything worked out well in the end.",
+    "extraExampleTranslation": "ทุกอย่างลงเอยด้วยดีในที่สุด",
+    "usageTip": "มักใช้ในสำนวน in the end (ในที่สุด) หรือ at the end of (ตอนท้ายของ)"
   },
   {
     "word": "ending",
@@ -27597,7 +29627,10 @@ const wordsData = [
       "เรื่อง",
       "นี้"
     ],
-    "syllables": "en·ding"
+    "syllables": "en·ding",
+    "extraExample": "Everyone loved the happy ending of the story.",
+    "extraExampleTranslation": "ทุกคนชอบตอนจบที่มีความสุขของเรื่องนี้",
+    "usageTip": "ใช้พูดถึงตอนจบของเรื่องราว หนัง หรือหนังสือ มักใช้คู่กับ happy หรือ sad"
   },
   {
     "word": "enemy",
@@ -27632,7 +29665,10 @@ const wordsData = [
     "syllables": "e·ne·my",
     "forms": [
       "พหูพจน์: enemies"
-    ]
+    ],
+    "extraExample": "Fear is often our worst enemy.",
+    "extraExampleTranslation": "ความกลัวมักเป็นศัตรูที่ร้ายกาจที่สุดของเรา",
+    "usageTip": "ใช้ได้ทั้งศัตรูในสงคราม คู่แข่ง หรือสิ่งที่เป็นอุปสรรคในเชิงเปรียบเทียบ"
   },
   {
     "word": "energy",
@@ -27764,7 +29800,10 @@ const wordsData = [
       "ที่",
       "ทรงพลัง"
     ],
-    "syllables": "e·ngine"
+    "syllables": "e·ngine",
+    "extraExample": "The mechanic checked the car's engine before the long trip.",
+    "extraExampleTranslation": "ช่างซ่อมรถตรวจเช็กเครื่องยนต์ของรถก่อนออกเดินทางไกล",
+    "usageTip": "มักใช้กับเครื่องยนต์หรือกลไก (car engine, search engine)"
   },
   {
     "word": "engineer",
@@ -27797,7 +29836,10 @@ const wordsData = [
       "ซอฟต์แวร์"
     ],
     "phoneticUK": "/ˈendʒənˈɪ/",
-    "syllables": "e·ngi·neer"
+    "syllables": "e·ngi·neer",
+    "extraExample": "She works as a software engineer at a tech company.",
+    "extraExampleTranslation": "เธอทำงานเป็นวิศวกรซอฟต์แวร์ที่บริษัทเทคโนโลยีแห่งหนึ่ง",
+    "usageTip": "ใช้เรียกผู้ประกอบวิชาชีพวิศวกรรม (civil/software engineer)"
   },
   {
     "word": "engineering",
@@ -27825,7 +29867,10 @@ const wordsData = [
       "เรียน",
       "วิศวกรรมศาสตร์"
     ],
-    "syllables": "e·ngi·nee·ring"
+    "syllables": "e·ngi·nee·ring",
+    "extraExample": "He is studying civil engineering at university.",
+    "extraExampleTranslation": "เขากำลังเรียนวิศวกรรมโยธาที่มหาวิทยาลัย",
+    "usageTip": "หมายถึงสาขาวิชาหรือศาสตร์ด้านวิศวกรรม"
   },
   {
     "word": "enjoy",
@@ -27863,7 +29908,9 @@ const wordsData = [
     ],
     "usageTip": "ตามด้วยคำนามหรือ V-ing เสมอ (I enjoy reading.) ห้ามตามด้วย to V เด็ดขาด",
     "syllables": "en·joy",
-    "grammarPattern": "V + V-ing / N (ห้ามตามด้วย to V เด็ดขาด เช่น enjoy reading)"
+    "grammarPattern": "V + V-ing / N (ห้ามตามด้วย to V เด็ดขาด เช่น enjoy reading)",
+    "extraExample": "We really enjoy spending time together on weekends.",
+    "extraExampleTranslation": "พวกเราชอบใช้เวลาด้วยกันในวันหยุดสุดสัปดาห์มาก"
   },
   {
     "word": "enjoyable",
@@ -27895,7 +29942,10 @@ const wordsData = [
     "wordFamily": [
       "enjoy"
     ],
-    "rootBreakdown": "enjoy + -able (สามารถ...ได้ (Adj.))"
+    "rootBreakdown": "enjoy + -able (สามารถ...ได้ (Adj.))",
+    "extraExample": "It was an enjoyable evening with good food and great music.",
+    "extraExampleTranslation": "เป็นค่ำคืนที่น่าประทับใจด้วยอาหารอร่อยและดนตรีเพราะๆ",
+    "usageTip": "ใช้อธิบายสิ่งของ กิจกรรม หรือช่วงเวลาที่ทำให้รู้สึกเพลิดเพลิน"
   },
   {
     "word": "enjoyment",
@@ -27926,7 +29976,10 @@ const wordsData = [
       "ความเพลิดเพลิน"
     ],
     "syllables": "en·joy·ment",
-    "rootBreakdown": "enjoy + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "enjoy + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "Reading brings me a lot of enjoyment after work.",
+    "extraExampleTranslation": "การอ่านหนังสือให้ความเพลิดเพลินกับฉันมากหลังเลิกงาน",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้พูดถึงความสุขหรือความสนุกที่ได้รับ"
   },
   {
     "word": "enormous",
@@ -27956,7 +30009,10 @@ const wordsData = [
       "หลัง",
       "มหึมา"
     ],
-    "syllables": "e·nor·mous"
+    "syllables": "e·nor·mous",
+    "extraExample": "They made an enormous effort to finish the project on time.",
+    "extraExampleTranslation": "พวกเขาทุ่มเทความพยายามอย่างมหาศาลเพื่อให้งานเสร็จทันเวลา",
+    "usageTip": "ใช้เน้นขนาด ปริมาณ หรือระดับที่ใหญ่มากกว่าปกติ"
   },
   {
     "word": "enough",
@@ -27983,7 +30039,10 @@ const wordsData = [
       "เพียงพอ",
       "ไหม"
     ],
-    "syllables": "e·nough"
+    "syllables": "e·nough",
+    "extraExample": "We have enough time to catch the train.",
+    "extraExampleTranslation": "พวกเรามีเวลาพอที่จะไปขึ้นรถไฟ",
+    "usageTip": "วางหน้าคำนาม (enough time) แต่วางหลังคำคุณศัพท์ (good enough)"
   },
   {
     "word": "enquiry",
@@ -28014,7 +30073,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: enquiries"
-    ]
+    ],
+    "extraExample": "Please send your enquiry to our customer service team.",
+    "extraExampleTranslation": "กรุณาส่งคำถามของคุณไปยังทีมบริการลูกค้าของเรา",
+    "usageTip": "นิยมใช้ในภาษาอังกฤษแบบอังกฤษ (BrE) ส่วนแบบอเมริกันมักใช้ inquiry"
   },
   {
     "word": "ensure",
@@ -28050,7 +30112,10 @@ const wordsData = [
     "forms": [
       "V2/V3: ensured",
       "V-ing: ensuring"
-    ]
+    ],
+    "extraExample": "Please ensure that all doors are locked before leaving.",
+    "extraExampleTranslation": "กรุณาตรวจสอบให้แน่ใจว่าประตูทุกบานล็อกแล้วก่อนออกไป",
+    "usageTip": "มักตามด้วย that + ประโยค เพื่อย้ำความมั่นใจหรือรับรอง"
   },
   {
     "word": "enter",
@@ -28082,7 +30147,9 @@ const wordsData = [
     ],
     "phoneticUK": "/ˈentə(r)/",
     "syllables": "en·ter",
-    "usageTip": "enter (เข้าไปในสถานที่) ไม่ต้องเติม into ตามหลัง เช่น enter the room (ยกเว้น enter into an agreement)"
+    "usageTip": "enter (เข้าไปในสถานที่) ไม่ต้องเติม into ตามหลัง เช่น enter the room (ยกเว้น enter into an agreement)",
+    "extraExample": "Please knock before you enter the room.",
+    "extraExampleTranslation": "กรุณาเคาะประตูก่อนเข้ามาในห้อง"
   },
   {
     "word": "entertain",
@@ -28115,7 +30182,10 @@ const wordsData = [
       "ให้",
       "เด็กๆ"
     ],
-    "syllables": "en·ter·tain"
+    "syllables": "en·ter·tain",
+    "extraExample": "The host tried to entertain the guests with funny stories.",
+    "extraExampleTranslation": "เจ้าภาพพยายามสร้างความเพลิดเพลินให้แขกด้วยเรื่องตลก",
+    "usageTip": "ใช้ได้ทั้งการให้ความบันเทิงและการต้อนรับขับสู้แขก"
   },
   {
     "word": "entertainer",
@@ -28147,7 +30217,10 @@ const wordsData = [
       "มีชื่อเสียง"
     ],
     "phoneticUK": "/ˌentətˈeɪnə(r)/",
-    "syllables": "en·ter·tai·ner"
+    "syllables": "en·ter·tai·ner",
+    "extraExample": "He is a talented entertainer who can sing and dance.",
+    "extraExampleTranslation": "เขาเป็นผู้ให้ความบันเทิงมากความสามารถที่ร้องและเต้นได้",
+    "usageTip": "ใช้เรียกนักแสดง นักร้อง หรือผู้ที่ทำงานสร้างความบันเทิง"
   },
   {
     "word": "entertaining",
@@ -28177,7 +30250,10 @@ const wordsData = [
     "wordFamily": [
       "entertain"
     ],
-    "syllables": "en·ter·tai·ning"
+    "syllables": "en·ter·tai·ning",
+    "extraExample": "The movie was very entertaining from start to finish.",
+    "extraExampleTranslation": "ภาพยนตร์เรื่องนี้สนุกสนานเพลิดเพลินตั้งแต่ต้นจนจบ",
+    "usageTip": "ใช้อธิบายสิ่งที่ดูหรือฟังแล้วสนุก (ต่างจาก entertained ที่แปลว่ารู้สึกสนุก)"
   },
   {
     "word": "entertainment",
@@ -28208,7 +30284,10 @@ const wordsData = [
       "ไหน"
     ],
     "syllables": "en·ter·tain·ment",
-    "rootBreakdown": "entertain + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "entertain + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "The city offers plenty of entertainment options at night.",
+    "extraExampleTranslation": "เมืองนี้มีตัวเลือกความบันเทิงมากมายในยามค่ำคืน",
+    "usageTip": "เป็นคำนามนับไม่ได้ ครอบคลุมทั้งดนตรี หนัง และงานแสดง"
   },
   {
     "word": "enthusiasm",
@@ -28241,7 +30320,10 @@ const wordsData = [
       "สำหรับ",
       "โครงการ",
       "นี้"
-    ]
+    ],
+    "extraExample": "She showed great enthusiasm for the new project.",
+    "extraExampleTranslation": "เธอแสดงความกระตือรือร้นอย่างมากต่อโปรเจกต์ใหม่นี้",
+    "usageTip": "มักใช้คู่กับคำบุพบท for (enthusiasm for something)"
   },
   {
     "word": "enthusiastic",
@@ -28279,7 +30361,9 @@ const wordsData = [
     "grammarPattern": "be enthusiastic about + N/V-ing",
     "register": "ทั่วไป / การศึกษา",
     "usageTip": "ใช้คู่กับ about: enthusiastic about + N / V-ing",
-    "phoneticUK": "/ɪnˌθjuːziˈæstɪk/"
+    "phoneticUK": "/ɪnˌθjuːziˈæstɪk/",
+    "extraExample": "The students were enthusiastic about the school trip.",
+    "extraExampleTranslation": "นักเรียนต่างตื่นเต้นและกระตือรือร้นกับการไปทัศนศึกษา"
   },
   {
     "word": "entire",
@@ -28312,7 +30396,10 @@ const wordsData = [
       "entirely"
     ],
     "phoneticUK": "/ɪntˈaɪə(r)/",
-    "syllables": "en·ti·re"
+    "syllables": "en·ti·re",
+    "extraExample": "I read the entire book in just one day.",
+    "extraExampleTranslation": "ฉันอ่านหนังสือทั้งเล่มจบภายในวันเดียว",
+    "usageTip": "วางหน้าคำนามเอกพจน์เพื่อเน้นว่าทั้งหมดทั้งสิ้น (ไม่ใช้กับคำนามพหูพจน์)"
   },
   {
     "word": "entirely",
@@ -28343,7 +30430,10 @@ const wordsData = [
     "wordFamily": [
       "entire"
     ],
-    "syllables": "en·ti·re·ly"
+    "syllables": "en·ti·re·ly",
+    "extraExample": "I entirely agree with your decision.",
+    "extraExampleTranslation": "ฉันเห็นด้วยกับการตัดสินใจของคุณอย่างสิ้นเชิง",
+    "usageTip": "ใช้ขยายคำกริยาหรือคำคุณศัพท์เพื่อเน้นว่า 100% หรือทั้งหมด"
   },
   {
     "word": "entitle",
@@ -28380,7 +30470,10 @@ const wordsData = [
     "forms": [
       "V2/V3: entitled",
       "V-ing: entitling"
-    ]
+    ],
+    "extraExample": "This ticket will entitle you to a free drink.",
+    "extraExampleTranslation": "ตั๋วใบนี้จะให้สิทธิ์คุณได้รับเครื่องดื่มฟรีหนึ่งแก้ว",
+    "usageTip": "มักใช้ในรูป be entitled to (มีสิทธิ์ได้รับ) หรือใช้เมื่อตั้งชื่อหนังสือ/บทความ"
   },
   {
     "word": "entrance",
@@ -28496,7 +30589,10 @@ const wordsData = [
       "ปกป้อง",
       "สิ่งแวดล้อม"
     ],
-    "syllables": "en·vi·ron·ment"
+    "syllables": "en·vi·ron·ment",
+    "extraExample": "We must work together to protect the natural environment for future generations.",
+    "extraExampleTranslation": "เราต้องร่วมมือกันปกป้องสิ่งแวดล้อมทางธรรมชาติเพื่อคนรุ่นหลัง",
+    "usageTip": "ใช้กับสิ่งแวดล้อมรอบตัวหรือธรรมชาติ นิยมใช้ร่วมกับ protect หรือ natural"
   },
   {
     "word": "environmental",
@@ -28524,7 +30620,10 @@ const wordsData = [
       "เป็นปัญหา",
       "สิ่งแวดล้อม"
     ],
-    "syllables": "en·vi·ron·men·tal"
+    "syllables": "en·vi·ron·men·tal",
+    "extraExample": "The company launched a new campaign to raise awareness about environmental issues.",
+    "extraExampleTranslation": "บริษัทได้เปิดตัวแคมเปญใหม่เพื่อสร้างความตระหนักรู้เกี่ยวกับปัญหาสิ่งแวดล้อม",
+    "usageTip": "วางหน้าคำนามเพื่อขยายความหมายว่าเกี่ยวข้องกับสิ่งแวดล้อม เช่น issues หรือ impact"
   },
   {
     "word": "equal",
@@ -28560,7 +30659,10 @@ const wordsData = [
     "antonyms": [
       "unequal"
     ],
-    "syllables": "e·qual"
+    "syllables": "e·qual",
+    "extraExample": "All employees should have equal opportunities for promotion regardless of their background.",
+    "extraExampleTranslation": "พนักงานทุกคนควรมีโอกาสในการเลื่อนตำแหน่งที่เท่าเทียมกันโดยไม่คำนึงถึงภูมิหลัง",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าเท่ากันหรือเสมอภาค มักใช้คู่กับ to เมื่อเปรียบเทียบ"
   },
   {
     "word": "equally",
@@ -28593,7 +30695,10 @@ const wordsData = [
     "antonyms": [
       "unequally"
     ],
-    "syllables": "e·qual·ly"
+    "syllables": "e·qual·ly",
+    "extraExample": "The prize money was divided equally among the four winning team members.",
+    "extraExampleTranslation": "เงินรางวัลถูกแบ่งอย่างเท่าเทียมกันในหมู่สมาชิกทีมที่ชนะทั้งสี่คน",
+    "usageTip": "วางหลังกริยาหรือหน้าคำคุณศัพท์เพื่อบอกว่าทำอย่างเท่าเทียมกัน"
   },
   {
     "word": "equipment",
@@ -28625,7 +30730,9 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Make sure you check all the safety equipment before entering the construction site.",
+    "extraExampleTranslation": "ตรวจสอบให้แน่ใจว่าคุณได้เช็กอุปกรณ์ความปลอดภัยทั้งหมดก่อนเข้าไปในเขตก่อสร้าง"
   },
   {
     "word": "equivalent",
@@ -28656,7 +30763,10 @@ const wordsData = [
       "หนึ่ง",
       "ดอลลาร์"
     ],
-    "syllables": "e·qui·va·lent"
+    "syllables": "e·qui·va·lent",
+    "extraExample": "One kilometer is roughly equivalent to 0.62 miles.",
+    "extraExampleTranslation": "หนึ่งกิโลเมตรมีค่าประมาณเท่ากับ 0.62 ไมล์",
+    "usageTip": "มักใช้คู่กับคำบุพบท to เพื่อบอกว่ามีค่าหรือความหมายเทียบเท่ากับอีกสิ่งหนึ่ง"
   },
   {
     "word": "error",
@@ -28686,7 +30796,10 @@ const wordsData = [
       "คุณ"
     ],
     "phoneticUK": "/ˈerə(r)/",
-    "syllables": "er·ror"
+    "syllables": "er·ror",
+    "extraExample": "The system crashed because of a minor human error during the data entry process.",
+    "extraExampleTranslation": "ระบบล่มเนื่องจากความผิดพลาดเล็กน้อยของมนุษย์ในระหว่างขั้นตอนการป้อนข้อมูล",
+    "usageTip": "ใช้พูดถึงข้อผิดพลาดในระบบ งานเอกสาร หรือการคำนวณ"
   },
   {
     "word": "escape",
@@ -28718,7 +30831,10 @@ const wordsData = [
     "forms": [
       "V2/V3: escaped",
       "V-ing: escaping"
-    ]
+    ],
+    "extraExample": "The prisoner managed to escape from the maximum-security facility last night.",
+    "extraExampleTranslation": "นักโทษสามารถหลบหนีออกจากเรือนจำที่มีความปลอดภัยสูงสุดได้เมื่อคืนนี้",
+    "usageTip": "ใช้ได้ทั้งแบบมีกรรมและไม่มีกรรม หากหนีออกจากสถานที่นิยมใช้ escape from"
   },
   {
     "word": "especially",
@@ -28745,7 +30861,10 @@ const wordsData = [
       "อาหาร",
       "โดยเฉพาะ",
       "พิซซ่า"
-    ]
+    ],
+    "extraExample": "I love tropical fruits, especially mangoes and pineapples when they are ripe.",
+    "extraExampleTranslation": "ฉันชอบผลไม้เมืองร้อน โดยเฉพาะอย่างยิ่งมะม่วงและสับปะรดเวลาที่สุกงอม",
+    "usageTip": "ใช้เน้นย้ำสิ่งใดสิ่งหนึ่งเป็นพิเศษ มักวางหน้าคำหรือวลีที่ต้องการเน้น"
   },
   {
     "word": "essay",
@@ -28772,7 +30891,10 @@ const wordsData = [
       "เรียงความ",
       "ภาษาอังกฤษ"
     ],
-    "syllables": "es·say"
+    "syllables": "es·say",
+    "extraExample": "Students are required to submit a two-thousand-word essay by the end of the semester.",
+    "extraExampleTranslation": "นักศึกษาต้องส่งเรียงความความยาวสองพันคำภายในสิ้นภาคเรียนนี้",
+    "usageTip": "ใช้กับงานเขียนเชิงวิชาการหรือเรียงความสั้นๆ นิยมใช้กับกริยา write หรือ submit"
   },
   {
     "word": "essential",
@@ -28806,7 +30928,10 @@ const wordsData = [
     "antonyms": [
       "inessential"
     ],
-    "syllables": "es·sen·tial"
+    "syllables": "es·sen·tial",
+    "extraExample": "Drinking enough water every day is essential for maintaining good health.",
+    "extraExampleTranslation": "การดื่มน้ำให้เพียงพอทุกวันเป็นสิ่งจำเป็นอย่างยิ่งต่อการรักษาสุขภาพที่ดี",
+    "usageTip": "มีความหมายหนักแน่นกว่า important ใช้คู่กับ for หรือ to"
   },
   {
     "word": "essentially",
@@ -28838,7 +30963,10 @@ const wordsData = [
     "wordFamily": [
       "essential"
     ],
-    "syllables": "es·sen·tial·ly"
+    "syllables": "es·sen·tial·ly",
+    "extraExample": "Although the two phones look different, they are essentially the same inside.",
+    "extraExampleTranslation": "แม้ว่าโทรศัพท์สองเครื่องจะดูต่างกัน แต่โดยพื้นฐานแล้วข้างในเหมือนกัน",
+    "usageTip": "ใช้สรุปใจความสำคัญหรือแก่นแท้ของเรื่อง แปลว่าโดยพื้นฐานแล้ว"
   },
   {
     "word": "establish",
@@ -28871,7 +30999,10 @@ const wordsData = [
     "antonyms": [
       "abolish"
     ],
-    "syllables": "e·sta·blish"
+    "syllables": "e·sta·blish",
+    "extraExample": "The organization was established in 1995 to support local educational programs.",
+    "extraExampleTranslation": "องค์กรนี้ก่อตั้งขึ้นในปี 1995 เพื่อสนับสนุนโครงการการศึกษาในท้องถิ่น",
+    "usageTip": "เป็นคำทางการ ใช้กับการก่อตั้งบริษัท องค์กร กฎเกณฑ์ หรือความสัมพันธ์"
   },
   {
     "word": "estate",
@@ -28900,7 +31031,10 @@ const wordsData = [
       "ใน",
       "ชนบท"
     ],
-    "syllables": "e·state"
+    "syllables": "e·state",
+    "extraExample": "She inherited a large country estate from her grandfather last year.",
+    "extraExampleTranslation": "เธอได้รับมรดกเป็นที่ดินและคฤหาสน์ในชนบทขนาดใหญ่จากคุณปู่เมื่อปีที่แล้ว",
+    "usageTip": "ใช้หมายถึงที่ดินขนาดใหญ่ ทรัพย์สิน หรือธุรกิจอสังหาริมทรัพย์ (real estate)"
   },
   {
     "word": "estimate",
@@ -28932,7 +31066,10 @@ const wordsData = [
     "forms": [
       "V2/V3: estimated",
       "V-ing: estimating"
-    ]
+    ],
+    "extraExample": "Experts estimate that the renovation project will cost around five million baht.",
+    "extraExampleTranslation": "ผู้เชี่ยวชาญประเมินว่าโครงการปรับปรุงนี้จะมีค่าใช้จ่ายประมาณห้าล้านบาท",
+    "usageTip": "ใช้กับการคาดคะเนตัวเลข ราคา หรือเวลาอย่างมีหลักการ"
   },
   {
     "word": "even",
@@ -28962,7 +31099,10 @@ const wordsData = [
       "ก็",
       "ทำได้"
     ],
-    "syllables": "e·ven"
+    "syllables": "e·ven",
+    "extraExample": "He didn't even call to let us know that he would be arriving late.",
+    "extraExampleTranslation": "เขาไม่แม้แต่จะโทรมาบอกเราเลยว่าเขาจะมาถึงสาย",
+    "usageTip": "ใช้เน้นย้ำความประหลาดใจหรือสิ่งที่คาดไม่ถึง มักวางหน้ากริยาหรือคำที่ต้องการเน้น"
   },
   {
     "word": "evening",
@@ -28996,7 +31136,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "even"
-    ]
+    ],
+    "extraExample": "We usually go for a relaxing walk around the park every evening after dinner.",
+    "extraExampleTranslation": "เรามักจะไปเดินเล่นผ่อนคลายรอบสวนสาธารณะทุกตอนเย็นหลังอาหารค่ำ",
+    "usageTip": "ใช้กับช่วงเวลาเย็นถึงหัวค่ำ นิยมใช้คู่กับบุพบท in (in the evening)"
   },
   {
     "word": "event",
@@ -29026,7 +31169,10 @@ const wordsData = [
       "ที่",
       "สำคัญ"
     ],
-    "syllables": "e·vent"
+    "syllables": "e·vent",
+    "extraExample": "The annual charity concert is the biggest social event of the year in our town.",
+    "extraExampleTranslation": "คอนเสิร์ตการกุศลประจำปีเป็นงานสังคมที่ใหญ่ที่สุดแห่งปีในเมืองของเรา",
+    "usageTip": "ใช้เรียกเหตุการณ์สำคัญหรือกิจกรรมที่มีการจัดขึ้นอย่างเป็นทางการ"
   },
   {
     "word": "eventually",
@@ -29054,7 +31200,10 @@ const wordsData = [
       "จะ",
       "หา",
       "ทางได้"
-    ]
+    ],
+    "extraExample": "After months of hard work and dedication, she eventually achieved her dream.",
+    "extraExampleTranslation": "หลังจากทำงานหนักและทุ่มเทมาหลายเดือน ในที่สุดเธอก็ทำตามความฝันได้สำเร็จ",
+    "usageTip": "ใช้บอกผลลัพธ์ที่เกิดขึ้นในตอนท้ายหลังจากผ่านเวลามาพอสมควร มักวางหน้ากริยาหลัก"
   },
   {
     "word": "ever",
@@ -29088,7 +31237,10 @@ const wordsData = [
       "never"
     ],
     "phoneticUK": "/ˈevə(r)/",
-    "syllables": "e·ver"
+    "syllables": "e·ver",
+    "extraExample": "Have you ever visited the northern mountains of Thailand during the winter?",
+    "extraExampleTranslation": "คุณเคยไปเที่ยวภูเขาทางภาคเหนือของประเทศไทยในช่วงฤดูหนาวบ้างไหม",
+    "usageTip": "นิยมใช้ในประโยคคำถามเพื่อถามประสบการณ์ (เคยไหม) หรือใช้เน้นขั้นสุด"
   },
   {
     "word": "every",
@@ -29195,7 +31347,10 @@ const wordsData = [
     ],
     "antonyms": [
       "nothing"
-    ]
+    ],
+    "extraExample": "Everything is ready for the meeting tomorrow morning.",
+    "extraExampleTranslation": "ทุกอย่างพร้อมสำหรับการประชุมพรุ่งนี้เช้าแล้ว",
+    "usageTip": "ใช้เป็นสรรพนามเอกพจน์ กริยาที่ตามมาต้องผันเป็นเอกพจน์เสมอ เช่น Everything is..."
   },
   {
     "word": "everywhere",
@@ -29222,7 +31377,10 @@ const wordsData = [
     "synonyms": [
       "everyplace"
     ],
-    "phoneticUK": "/ˈevriːwˌe/"
+    "phoneticUK": "/ˈevriːwˌe/",
+    "extraExample": "I looked everywhere for my keys, but I couldn't find them.",
+    "extraExampleTranslation": "ฉันหากุญแจทุกที่แล้ว แต่ก็หาไม่เจอ",
+    "usageTip": "ใช้ขยายกริยาหรือวางท้ายประโยคเพื่อบอกสถานที่ทั่วทุกหนทุกแห่ง"
   },
   {
     "word": "evidence",
@@ -29254,7 +31412,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "The police found new evidence at the crime scene.",
+    "extraExampleTranslation": "ตำรวจพบหลักฐานใหม่ในที่เกิดเหตุ",
+    "usageTip": "เป็นคำนามนับไม่ได้ (uncountable noun) จึงไม่เติม -s และใช้กับกริยาเอกพจน์"
   },
   {
     "word": "evil",
@@ -29284,7 +31445,10 @@ const wordsData = [
     "antonyms": [
       "good"
     ],
-    "syllables": "e·vil"
+    "syllables": "e·vil",
+    "extraExample": "The story is about a battle between good and evil.",
+    "extraExampleTranslation": "เรื่องราวนี้เกี่ยวกับการต่อสู้ระหว่างความดีและความชั่วร้าย",
+    "usageTip": "ใช้นำหน้าคำนามหรือหลัง V. to be เพื่อบรรยายสิ่งที่ชั่วร้ายมาก"
   },
   {
     "word": "exact",
@@ -29319,7 +31483,10 @@ const wordsData = [
       "approximate",
       "inexact"
     ],
-    "syllables": "e·xact"
+    "syllables": "e·xact",
+    "extraExample": "Can you tell me the exact time the train arrives?",
+    "extraExampleTranslation": "คุณบอกเวลาที่แน่ชัดที่รถไฟจะมาถึงได้ไหม",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อเน้นความถูกต้องแม่นยำ 100%"
   },
   {
     "word": "exactly",
@@ -29356,7 +31523,10 @@ const wordsData = [
     "antonyms": [
       "inexactly"
     ],
-    "syllables": "e·xac·tly"
+    "syllables": "e·xac·tly",
+    "extraExample": "That is exactly what I was thinking.",
+    "extraExampleTranslation": "นั่นคือสิ่งที่ฉันกำลังคิดอยู่เป๊ะเลย",
+    "usageTip": "ใช้เน้นย้ำความถูกต้องตรงกัน หรือใช้ตอบรับเมื่อเห็นด้วยอย่างยิ่ง"
   },
   {
     "word": "exaggerate",
@@ -29390,7 +31560,10 @@ const wordsData = [
     "forms": [
       "V2/V3: exaggerated",
       "V-ing: exaggerating"
-    ]
+    ],
+    "extraExample": "He tends to exaggerate his achievements when talking to others.",
+    "extraExampleTranslation": "เขามักจะคุยโม้เกินจริงเกี่ยวกับความสำเร็จของตัวเองเวลาคุยกับคนอื่น",
+    "usageTip": "ใช้ได้ทั้งแบบมีกรรมและไม่มีกรรม เพื่อบอกว่าพูดเกินความจริง"
   },
   {
     "word": "exam",
@@ -29419,7 +31592,10 @@ const wordsData = [
       "ผ่าน",
       "แล้ว"
     ],
-    "syllables": "e·xam"
+    "syllables": "e·xam",
+    "extraExample": "She studied hard all week to pass the final exam.",
+    "extraExampleTranslation": "เธอตั้งใจเรียนหนักทั้งสัปดาห์เพื่อที่จะสอบปลายภาคให้ผ่าน",
+    "usageTip": "เป็นรูปย่อที่นิยมใช้ในชีวิตประจำวันมากกว่า examination"
   },
   {
     "word": "examination",
@@ -29449,7 +31625,10 @@ const wordsData = [
       "ทำการ",
       "ตรวจร่างกาย"
     ],
-    "syllables": "e·xa·mi·na·tion"
+    "syllables": "e·xa·mi·na·tion",
+    "extraExample": "The doctor performed a thorough medical examination.",
+    "extraExampleTranslation": "คุณหมอได้ทำการตรวจร่างกายอย่างละเอียด",
+    "usageTip": "เป็นคำทางการกว่า exam ใช้ได้ทั้งการสอบและการตรวจร่างกาย/ตรวจสอบ"
   },
   {
     "word": "examine",
@@ -29483,7 +31662,10 @@ const wordsData = [
     "forms": [
       "V2/V3: examined",
       "V-ing: examining"
-    ]
+    ],
+    "extraExample": "The scientist will examine the samples under a microscope.",
+    "extraExampleTranslation": "นักวิทยาศาสตร์จะตรวจสอบตัวอย่างภายใต้กล้องจุลทรรศน์",
+    "usageTip": "ใช้กับการตรวจพิจารณาอย่างละเอียดรอบคอบ ทั้งทางการแพทย์และงานวิจัย"
   },
   {
     "word": "example",
@@ -29514,7 +31696,10 @@ const wordsData = [
       "ไหม"
     ],
     "phoneticUK": "/ɪɡzˈɑːmpəl/",
-    "syllables": "e·xam·ple"
+    "syllables": "e·xam·ple",
+    "extraExample": "Could you give me an example of how to use this word?",
+    "extraExampleTranslation": "คุณช่วยยกตัวอย่างวิธีการใช้คำนี้ให้ฉันหน่อยได้ไหม",
+    "usageTip": "นิยมใช้ในวลี for example (ตัวอย่างเช่น) หรือ set an example (เป็นแบบอย่าง)"
   },
   {
     "word": "excellent",
@@ -29541,7 +31726,10 @@ const wordsData = [
       "ยอดเยี่ยม",
       "มาก"
     ],
-    "syllables": "ex·cel·lent"
+    "syllables": "ex·cel·lent",
+    "extraExample": "The food at that restaurant was absolutely excellent.",
+    "extraExampleTranslation": "อาหารที่ร้านนั้นยอดเยี่ยมมากจริงๆ",
+    "usageTip": "เป็นคำคุณศัพท์ขั้นสุดอยู่แล้ว จึงไม่นิยมใช้คู่กับ very (ให้ใช้ absolutely แทน)"
   },
   {
     "word": "except",
@@ -29573,7 +31761,9 @@ const wordsData = [
       "ฉัน"
     ],
     "usageTip": "except = ยกเว้น; ระวังสับสนกับ accept (verb) ที่แปลว่า ยอมรับ",
-    "syllables": "ex·cept"
+    "syllables": "ex·cept",
+    "extraExample": "Everyone was invited to the party except John.",
+    "extraExampleTranslation": "ทุกคนได้รับเชิญไปงานปาร์ตี้ ยกเว้นจอห์น"
   },
   {
     "word": "exception",
@@ -29604,7 +31794,10 @@ const wordsData = [
       "ทุก",
       "กฎ"
     ],
-    "syllables": "ex·cep·tion"
+    "syllables": "ex·cep·tion",
+    "extraExample": "There is an exception to every rule.",
+    "extraExampleTranslation": "ทุกกฎย่อมมีข้อยกเว้นเสมอ",
+    "usageTip": "มักใช้ในสำนวน with the exception of (ยกเว้น...) หรือ make an exception"
   },
   {
     "word": "exchange",
@@ -29636,7 +31829,10 @@ const wordsData = [
     "forms": [
       "V2/V3: exchanged",
       "V-ing: exchanging"
-    ]
+    ],
+    "extraExample": "We often exchange ideas during our weekly team meetings.",
+    "extraExampleTranslation": "พวกเรามักจะแลกเปลี่ยนความคิดเห็นกันในการประชุมทีมประจำสัปดาห์",
+    "usageTip": "นิยมใช้ในโครงสร้าง exchange A for B (แลก A กับ B)"
   },
   {
     "word": "excite",
@@ -29673,7 +31869,10 @@ const wordsData = [
     "forms": [
       "V2/V3: excited",
       "V-ing: exciting"
-    ]
+    ],
+    "extraExample": "The news of the concert will surely excite the fans.",
+    "extraExampleTranslation": "ข่าวเรื่องคอนเสิร์ตจะต้องปลุกเร้าความตื่นเต้นให้แฟนๆ แน่นอน",
+    "usageTip": "ใช้ในรูปกริยาเมื่อต้องการสื่อว่าสิ่งใดสิ่งหนึ่งไปกระตุ้นความรู้สึกคนอื่น"
   },
   {
     "word": "excited",
@@ -29710,7 +31909,10 @@ const wordsData = [
     "wordFamily": [
       "excite"
     ],
-    "syllables": "ex·ci·ted"
+    "syllables": "ex·ci·ted",
+    "extraExample": "The children were very excited about the trip to the zoo.",
+    "extraExampleTranslation": "เด็กๆ ตื่นเต้นมากเกี่ยวกับการไปเที่ยวสวนสัตว์",
+    "usageTip": "ใช้กับคนหรือสัตว์เพื่อบอกความรู้สึกตื่นเต้น มักตามด้วย about หรือ to + V.inf"
   },
   {
     "word": "excitement",
@@ -29739,7 +31941,10 @@ const wordsData = [
       "เต็มไปด้วย",
       "ความตื่นเต้น"
     ],
-    "rootBreakdown": "excite + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "excite + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "She couldn't hide her excitement when she opened the gift.",
+    "extraExampleTranslation": "เธอไม่สามารถซ่อนความตื่นเต้นไว้ได้เมื่อเปิดของขวัญ",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้บอกสภาวะหรือบรรยากาศที่เต็มไปด้วยความตื่นเต้น"
   },
   {
     "word": "exciting",
@@ -29773,7 +31978,9 @@ const wordsData = [
     "wordFamily": [
       "excite"
     ],
-    "syllables": "ex·ci·ting"
+    "syllables": "ex·ci·ting",
+    "extraExample": "Watching a live football match is always an exciting experience.",
+    "extraExampleTranslation": "การดูการแข่งขันฟุตบอลสดเป็นประสบการณ์ที่น่าตื่นเต้นเสมอ"
   },
   {
     "word": "exclude",
@@ -29809,7 +32016,10 @@ const wordsData = [
       "V2/V3: excluded",
       "V-ing: excluding"
     ],
-    "syllables": "ex·clude"
+    "syllables": "ex·clude",
+    "extraExample": "The club decided to exclude anyone who broke the rules.",
+    "extraExampleTranslation": "ทางชมรมตัดสินใจกันคนที่ทำผิดกฎออกไป",
+    "usageTip": "มักใช้คู่กับ from ในโครงสร้าง exclude someone from something"
   },
   {
     "word": "excuse",
@@ -29932,7 +32142,10 @@ const wordsData = [
       "expose",
       "display"
     ],
-    "syllables": "ex·hi·bit"
+    "syllables": "ex·hi·bit",
+    "extraExample": "The museum will exhibit rare paintings from the nineteenth century next month.",
+    "extraExampleTranslation": "พิพิธภัณฑ์จะจัดแสดงภาพวาดหายากจากศตวรรษที่ 19 ในเดือนหน้า",
+    "usageTip": "ใช้เป็นกริยาแปลว่าแสดงหรือจัดแสดง มักใช้กับงานศิลปะหรือพิพิธภัณฑ์"
   },
   {
     "word": "exhibition",
@@ -29962,7 +32175,10 @@ const wordsData = [
       "นิทรรศการ",
       "ศิลปะ"
     ],
-    "syllables": "ex·hi·bi·tion"
+    "syllables": "ex·hi·bi·tion",
+    "extraExample": "We visited a photography exhibition at the city gallery yesterday.",
+    "extraExampleTranslation": "เราไปชมนิทรรศการภาพถ่ายที่หอศิลป์ประจำเมืองเมื่อวานนี้",
+    "usageTip": "ใช้เป็นคำนามคู่กับกริยา hold, visit หรือ attend"
   },
   {
     "word": "exist",
@@ -29993,7 +32209,10 @@ const wordsData = [
       "จริง",
       "หรือ"
     ],
-    "syllables": "e·xist"
+    "syllables": "e·xist",
+    "extraExample": "Many people wonder if intelligent life forms exist on other planets.",
+    "extraExampleTranslation": "หลายคนสงสัยว่าสิ่งมีชีวิตที่ฉลาดมีอยู่บนดาวเคราะห์ดวงอื่นหรือไม่",
+    "usageTip": "ไม่นิยมใช้ในรูป continuous (existing) เมื่อหมายถึงการมีอยู่ทั่วไป"
   },
   {
     "word": "existence",
@@ -30030,7 +32249,10 @@ const wordsData = [
     "antonyms": [
       "nonexistence"
     ],
-    "syllables": "e·xi·stence"
+    "syllables": "e·xi·stence",
+    "extraExample": "Scientists are still debating the existence of water on that distant moon.",
+    "extraExampleTranslation": "นักวิทยาศาสตร์ยังคงถกเถียงเรื่องการมีอยู่ของน้ำบนดวงจันทร์อันไกลโพ้นดวงนั้น",
+    "usageTip": "มักใช้กับบุพบท of เพื่อระบุสิ่งที่ดำรงอยู่"
   },
   {
     "word": "exit",
@@ -30057,7 +32279,10 @@ const wordsData = [
       "อยู่",
       "ที่ไหน"
     ],
-    "syllables": "e·xit"
+    "syllables": "e·xit",
+    "extraExample": "Please follow the green signs to the nearest emergency exit.",
+    "extraExampleTranslation": "กรุณาเดินตามป้ายสีเขียวไปยังทางออกฉุกเฉินที่ใกล้ที่สุด",
+    "usageTip": "ใช้เป็นคำนามแปลว่าทางออก หรือใช้คู่กับคำว่า emergency"
   },
   {
     "word": "expand",
@@ -30086,7 +32311,10 @@ const wordsData = [
     "antonyms": [
       "contract"
     ],
-    "syllables": "ex·pand"
+    "syllables": "ex·pand",
+    "extraExample": "The company plans to expand its business into Southeast Asia this year.",
+    "extraExampleTranslation": "บริษัทวางแผนที่จะขยายธุรกิจเข้าสู่เอเชียตะวันออกเฉียงใต้ในปีนี้",
+    "usageTip": "ใช้ได้ทั้งแบบมีกรรม (ขยายบางสิ่ง) และไม่มีกรรม (ขยายตัว)"
   },
   {
     "word": "expect",
@@ -30122,7 +32350,9 @@ const wordsData = [
     ],
     "usageTip": "โครงสร้าง: expect (someone) to + V.inf เช่น I expect to arrive soon",
     "syllables": "ex·pect",
-    "grammarPattern": "expect + (someone) + to V (คาดหวังว่า...จะ...)"
+    "grammarPattern": "expect + (someone) + to V (คาดหวังว่า...จะ...)",
+    "extraExample": "I expect the package to arrive before noon tomorrow.",
+    "extraExampleTranslation": "ฉันคาดว่าพัสดุจะมาถึงก่อนเที่ยงวันพรุ่งนี้"
   },
   {
     "word": "expectation",
@@ -30154,7 +32384,10 @@ const wordsData = [
       "ของ",
       "พวกเรา"
     ],
-    "syllables": "ex·pec·ta·tion"
+    "syllables": "ex·pec·ta·tion",
+    "extraExample": "The new movie exceeded every expectation of the audience.",
+    "extraExampleTranslation": "ภาพยนตร์เรื่องใหม่ทำได้เกินความคาดหมายของผู้ชมทุกคน",
+    "usageTip": "มักใช้ในรูปพหูพจน์ (expectations) เมื่อพูดถึงความคาดหวังโดยรวม"
   },
   {
     "word": "expected",
@@ -30190,7 +32423,10 @@ const wordsData = [
     "antonyms": [
       "unexpected"
     ],
-    "syllables": "ex·pec·ted"
+    "syllables": "ex·pec·ted",
+    "extraExample": "The expected arrival time for the flight is three o'clock.",
+    "extraExampleTranslation": "เวลาที่คาดว่าจะมาถึงของเที่ยวบินคือบ่ายสามโมง",
+    "usageTip": "มักวางหน้าคำนามเพื่อบอกสิ่งที่คาดการณ์ไว้ล่วงหน้า"
   },
   {
     "word": "expense",
@@ -30224,7 +32460,10 @@ const wordsData = [
     "wordFamily": [
       "expensive"
     ],
-    "syllables": "ex·pense"
+    "syllables": "ex·pense",
+    "extraExample": "Travel can be a major expense when planning a family vacation.",
+    "extraExampleTranslation": "การเดินทางอาจเป็นค่าใช้จ่ายหลักเมื่อวางแผนไปเที่ยวกับครอบครัว",
+    "usageTip": "ใช้กับกริยา cover หรือ cut และมักใช้ในรูปพหูพจน์เมื่อพูดถึงรายจ่าย"
   },
   {
     "word": "expensive",
@@ -30257,7 +32496,10 @@ const wordsData = [
     "wordFamily": [
       "expense"
     ],
-    "syllables": "ex·pen·sive"
+    "syllables": "ex·pen·sive",
+    "extraExample": "Eating at that famous restaurant is too expensive for my budget.",
+    "extraExampleTranslation": "การไปทานอาหารที่ร้านดังแห่งนั้นแพงเกินไปสำหรับงบของฉัน",
+    "usageTip": "ใช้ขยายคำนามหรือตามหลัง verb to be เพื่อบอกราคาสูง"
   },
   {
     "word": "experience",
@@ -30292,7 +32534,9 @@ const wordsData = [
     "wordFamily": [
       "experienced"
     ],
-    "syllables": "ex·pe·rien·ce"
+    "syllables": "ex·pe·rien·ce",
+    "extraExample": "Working abroad gave her valuable experience in international marketing.",
+    "extraExampleTranslation": "การทำงานต่างประเทศทำให้เธอได้รับประสบการณ์อันมีค่าด้านการตลาดระหว่างประเทศ"
   },
   {
     "word": "experienced",
@@ -30326,7 +32570,10 @@ const wordsData = [
     "wordFamily": [
       "experience"
     ],
-    "syllables": "ex·pe·rien·ced"
+    "syllables": "ex·pe·rien·ced",
+    "extraExample": "We need an experienced mechanic to fix this old engine.",
+    "extraExampleTranslation": "เราต้องการช่างเครื่องที่มีประสบการณ์มาซ่อมเครื่องยนต์เก่าเครื่องนี้",
+    "usageTip": "มักวางหน้าคำนามเพื่อบอกความชำนาญ หรือใช้คู่กับ in/at"
   },
   {
     "word": "experiment",
@@ -30355,7 +32602,10 @@ const wordsData = [
       "ชั้นเรียน",
       "เคมี"
     ],
-    "syllables": "ex·pe·ri·ment"
+    "syllables": "ex·pe·ri·ment",
+    "extraExample": "The students conducted a simple chemistry experiment in the lab.",
+    "extraExampleTranslation": "นักเรียนได้ทำการทดลองทางเคมีอย่างง่ายในห้องปฏิบัติการ",
+    "usageTip": "มักใช้คู่กับกริยา do, conduct หรือ carry out"
   },
   {
     "word": "expert",
@@ -30383,7 +32633,10 @@ const wordsData = [
       "วิทยาการ",
       "คอมพิวเตอร์"
     ],
-    "syllables": "ex·pert"
+    "syllables": "ex·pert",
+    "extraExample": "She is a leading expert on renewable energy technology.",
+    "extraExampleTranslation": "เธอเป็นผู้เชี่ยวชาญชั้นนำด้านเทคโนโลยีพลังงานหมุนเวียน",
+    "usageTip": "ใช้คู่กับบุพบท on หรือ in เพื่อระบุสาขาที่เชี่ยวชาญ"
   },
   {
     "word": "explain",
@@ -30419,7 +32672,9 @@ const wordsData = [
       "ไหม"
     ],
     "usageTip": "ห้ามเขียน explain me! ต้องใช้ explain something to someone (เช่น explain the rule to me)",
-    "syllables": "ex·plain"
+    "syllables": "ex·plain",
+    "extraExample": "Could you please explain how this new software works?",
+    "extraExampleTranslation": "คุณช่วยอธิบายหน่อยได้ไหมว่าซอฟต์แวร์ใหม่นี้ทำงานอย่างไร"
   },
   {
     "word": "explanation",
@@ -30451,7 +32706,10 @@ const wordsData = [
       "เรื่อง",
       "นี้"
     ],
-    "syllables": "ex·pla·na·tion"
+    "syllables": "ex·pla·na·tion",
+    "extraExample": "He gave a clear explanation of the rules before the game started.",
+    "extraExampleTranslation": "เขาให้คำอธิบายกติกาอย่างชัดเจนก่อนที่เกมจะเริ่ม",
+    "usageTip": "มักใช้คู่กับกริยา give หรือ offer ตามด้วย of หรือ for"
   },
   {
     "word": "explode",
@@ -30487,7 +32745,10 @@ const wordsData = [
       "V2/V3: exploded",
       "V-ing: exploding"
     ],
-    "syllables": "ex·plode"
+    "syllables": "ex·plode",
+    "extraExample": "The fireworks began to explode in the night sky at midnight.",
+    "extraExampleTranslation": "ดอกไม้ไฟเริ่มระเบิดขึ้นบนท้องฟ้ายามค่ำคืนตอนเที่ยงคืน",
+    "usageTip": "ใช้ได้ทั้งความหมายตรง (ระเบิด) และความหมายเปรียบเทียบ (ปะทุอารมณ์)"
   },
   {
     "word": "explore",
@@ -30519,7 +32780,10 @@ const wordsData = [
     "forms": [
       "V2/V3: explored",
       "V-ing: exploring"
-    ]
+    ],
+    "extraExample": "Tourists love to explore the narrow streets of the old town.",
+    "extraExampleTranslation": "นักท่องเที่ยวชอบสำรวจถนนแคบๆ ของย่านเมืองเก่า",
+    "usageTip": "ตามด้วยสถานที่หรือแนวคิดโดยตรง ไม่ต้องมีบุพบท"
   },
   {
     "word": "explosion",
@@ -30549,7 +32813,10 @@ const wordsData = [
       "ดังสนั่น"
     ],
     "phoneticUK": "/ɪksplˈəʊʒən/",
-    "syllables": "ex·plo·sion"
+    "syllables": "ex·plo·sion",
+    "extraExample": "A loud explosion was heard miles away from the factory.",
+    "extraExampleTranslation": "ได้ยินเสียงระเบิดดังสนั่นห่างจากโรงงานไปหลายไมล์",
+    "usageTip": "มักใช้คู่กับคำคุณศัพท์ loud หรือ massive เพื่อบอกความรุนแรง"
   },
   {
     "word": "export",
@@ -30680,7 +32947,10 @@ const wordsData = [
       "สีหน้า",
       "เศร้าสร้อย"
     ],
-    "syllables": "ex·pres·sion"
+    "syllables": "ex·pres·sion",
+    "extraExample": "Her facial expression showed that she was surprised by the news.",
+    "extraExampleTranslation": "สีหน้าของเธอแสดงให้เห็นว่าเธอประหลาดใจกับข่าวนี้",
+    "usageTip": "ใช้กล่าวถึงการแสดงออกทางสีหน้า คำพูด หรือความรู้สึก"
   },
   {
     "word": "extend",
@@ -30715,7 +32985,10 @@ const wordsData = [
       "ได้",
       "ไหม"
     ],
-    "syllables": "ex·tend"
+    "syllables": "ex·tend",
+    "extraExample": "We decided to extend our stay in Chiang Mai for two more days.",
+    "extraExampleTranslation": "เราตัดสินใจขยายเวลาการพักในเชียงใหม่ออกไปอีกสองวัน",
+    "usageTip": "ใช้เมื่อต้องการขยายเวลา พื้นที่ หรือขอบเขตให้ยาวขึ้นหรือกว้างขึ้น"
   },
   {
     "word": "extension",
@@ -30746,7 +33019,10 @@ const wordsData = [
       "ของ",
       "บ้าน"
     ],
-    "syllables": "ex·ten·sion"
+    "syllables": "ex·ten·sion",
+    "extraExample": "I asked my professor for an extension on the final essay.",
+    "extraExampleTranslation": "ฉันขอเลื่อนกำหนดส่งเรียงความฉบับสุดท้ายกับอาจารย์",
+    "usageTip": "มักใช้กับการขอต่อเวลาหรือส่วนต่อขยายของอาคาร"
   },
   {
     "word": "extensive",
@@ -30781,7 +33057,10 @@ const wordsData = [
     "antonyms": [
       "intensive"
     ],
-    "syllables": "ex·ten·sive"
+    "syllables": "ex·ten·sive",
+    "extraExample": "The museum has an extensive collection of ancient ceramics.",
+    "extraExampleTranslation": "พิพิธภัณฑ์แห่งนี้มีคอลเลกชันเครื่องปั้นดินเผาโบราณที่กว้างขวางมาก",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่ามีจำนวนมาก กว้างขวาง หรือครอบคลุม"
   },
   {
     "word": "extent",
@@ -30813,7 +33092,10 @@ const wordsData = [
       "ระดับ",
       "หนึ่ง"
     ],
-    "syllables": "ex·tent"
+    "syllables": "ex·tent",
+    "extraExample": "To a certain extent, I agree with your point of view.",
+    "extraExampleTranslation": "ในระดับหนึ่ง ฉันเห็นด้วยกับมุมมองของคุณ",
+    "usageTip": "มักใช้ในสำนวน to some extent หรือ to a certain extent เพื่อบอกระดับ"
   },
   {
     "word": "extra",
@@ -30839,7 +33121,10 @@ const wordsData = [
       "ผ้าห่ม",
       "เพิ่ม"
     ],
-    "syllables": "ex·tra"
+    "syllables": "ex·tra",
+    "extraExample": "She worked extra hours this week to finish the project on time.",
+    "extraExampleTranslation": "สัปดาห์นี้เธอทำงานล่วงเวลาเพิ่มเป็นพิเศษเพื่อให้งานเสร็จทันกำหนด",
+    "usageTip": "ใช้ขยายคำกริยาหรือคำนามเพื่อบอกว่าเพิ่มเติมหรือเป็นพิเศษ"
   },
   {
     "word": "extraordinary",
@@ -30871,7 +33156,10 @@ const wordsData = [
     "antonyms": [
       "ordinary"
     ],
-    "syllables": "ex·traor·di·na·ry"
+    "syllables": "ex·traor·di·na·ry",
+    "extraExample": "The team made an extraordinary effort to rescue the stranded hikers.",
+    "extraExampleTranslation": "ทีมงานใช้ความพยายามอย่างเหนือธรรมดาในการช่วยเหลือนักเดินป่าที่ติดค้าง",
+    "usageTip": "ใช้เมื่อสิ่งที่เกิดขึ้นนั้นพิเศษมากจนน่าทึ่งหรือผิดไปจากปกติ"
   },
   {
     "word": "extreme",
@@ -30901,7 +33189,10 @@ const wordsData = [
     "wordFamily": [
       "extremely"
     ],
-    "syllables": "ex·treme"
+    "syllables": "ex·treme",
+    "extraExample": "They had to survive in extreme weather conditions during the expedition.",
+    "extraExampleTranslation": "พวกเขาต้องเอาชีวิตรอดในสภาพอากาศที่รุนแรงสุดขีดระหว่างการสำรวจ",
+    "usageTip": "ใช้บอกระดับที่รุนแรงที่สุดหรือเกินกว่าปกติมาก"
   },
   {
     "word": "extremely",
@@ -30930,7 +33221,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "extreme"
-    ]
+    ],
+    "extraExample": "It is extremely important to back up your files regularly.",
+    "extraExampleTranslation": "การสำรองไฟล์ของคุณอย่างสม่ำเสมอเป็นสิ่งสำคัญอย่างยิ่ง",
+    "usageTip": "ใช้ขยายคำคุณศัพท์หรือคำกริยาวิเศษณ์เพื่อเน้นย้ำว่า 'มากที่สุด' หรือ 'อย่างยิ่ง'"
   },
   {
     "word": "eye",
@@ -30958,7 +33252,10 @@ const wordsData = [
       "และ",
       "ไป",
       "นอน"
-    ]
+    ],
+    "extraExample": "Keep an eye on the soup while I answer the phone.",
+    "extraExampleTranslation": "ช่วยดูซุปให้หน่อยนะระหว่างที่ฉันรับโทรศัพท์",
+    "usageTip": "ใช้ได้ทั้งความหมายตรงคือดวงตา และสำนวนเช่น keep an eye on (ช่วยดูแล)"
   },
   {
     "word": "face",
@@ -30983,7 +33280,10 @@ const wordsData = [
       "ล้างหน้า",
       "ของ",
       "คุณ"
-    ]
+    ],
+    "extraExample": "He washed his face with cold water to wake himself up.",
+    "extraExampleTranslation": "เขาล้างหน้าด้วยน้ำเย็นเพื่อปลุกตัวเองให้ตื่น",
+    "usageTip": "นอกจากแปลว่าใบหน้า ยังใช้เป็นคำกริยาแปลว่า 'เผชิญหน้า' ได้ด้วย"
   },
   {
     "word": "facility",
@@ -31018,7 +33318,10 @@ const wordsData = [
     "syllables": "fa·ci·li·ty",
     "forms": [
       "พหูพจน์: facilities"
-    ]
+    ],
+    "extraExample": "The new sports facility includes an Olympic-sized swimming pool.",
+    "extraExampleTranslation": "ศูนย์กีฬาแห่งใหม่มีสิ่งอำนวยความสะดวกอย่างสระว่ายน้ำขนาดโอลิมปิก",
+    "usageTip": "มักใช้ในรูปพหูพจน์ facilities เมื่อหมายถึงสิ่งอำนวยความสะดวกต่างๆ"
   },
   {
     "word": "fact",
@@ -31051,7 +33354,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "factor"
-    ]
+    ],
+    "extraExample": "In fact, I have never been to Japan before.",
+    "extraExampleTranslation": "ที่จริงแล้ว ฉันไม่เคยไปประเทศญี่ปุ่นมาก่อนเลย",
+    "usageTip": "มักใช้ในวลี in fact (ที่จริงแล้ว) หรือ as a matter of fact"
   },
   {
     "word": "factor",
@@ -31082,7 +33388,10 @@ const wordsData = [
       "factory"
     ],
     "phoneticUK": "/fˈæktə(r)/",
-    "syllables": "fac·tor"
+    "syllables": "fac·tor",
+    "extraExample": "Cost was the main factor in our decision to rent this apartment.",
+    "extraExampleTranslation": "ค่าใช้จ่ายเป็นปัจจัยหลักในการตัดสินใจเช่าอพาร์ตเมนต์นี้ของเรา",
+    "usageTip": "ใช้ระบุสาเหตุหรือองค์ประกอบที่มีผลต่อผลลัพธ์"
   },
   {
     "word": "factory",
@@ -31117,7 +33426,10 @@ const wordsData = [
     "syllables": "fac·to·ry",
     "forms": [
       "พหูพจน์: factories"
-    ]
+    ],
+    "extraExample": "My uncle has worked at that car factory for twenty years.",
+    "extraExampleTranslation": "ลุงของฉันทำงานที่โรงงานผลิตรถยนต์แห่งนั้นมาเป็นเวลายี่สิบปีแล้ว",
+    "usageTip": "ใช้เรียกสถานที่ผลิตสินค้าขนาดใหญ่"
   },
   {
     "word": "fail",
@@ -31153,7 +33465,10 @@ const wordsData = [
       "succeed",
       "pass"
     ],
-    "grammarPattern": "fail + to V / fail + N (ล้มเหลวในการทำ / สอบตก)"
+    "grammarPattern": "fail + to V / fail + N (ล้มเหลวในการทำ / สอบตก)",
+    "extraExample": "If you fail to submit the form by Friday, your application will be rejected.",
+    "extraExampleTranslation": "หากคุณไม่ส่งแบบฟอร์มภายในวันศุกร์ ใบสมัครของคุณจะถูกปฏิเสธ",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าสอบตก ล้มเหลว หรือไม่ทำตามที่กำหนด (fail to do)"
   },
   {
     "word": "failure",
@@ -31186,7 +33501,10 @@ const wordsData = [
       "success"
     ],
     "phoneticUK": "/fˈeɪljə(r)/",
-    "syllables": "fai·lure"
+    "syllables": "fai·lure",
+    "extraExample": "The power failure left the entire neighborhood in darkness.",
+    "extraExampleTranslation": "เหตุไฟฟ้าดับทำให้ทั้งย่านตกอยู่ในความมืดมิด",
+    "usageTip": "เป็นคำนามของ fail ใช้บอกความล้มเหลวหรือการขัดข้องของระบบ"
   },
   {
     "word": "faint",
@@ -31213,7 +33531,10 @@ const wordsData = [
       "หน้ามืด",
       "เพราะ",
       "ความร้อน"
-    ]
+    ],
+    "extraExample": "She felt a sudden faint after standing in the hot sun for too long.",
+    "extraExampleTranslation": "เธอรู้สึกหน้ามืดจะเป็นลมกะทันหันหลังจากยืนตากแดดร้อนนานเกินไป",
+    "usageTip": "ใช้เมื่อรู้สึกวิงเวียนหรือหมดสติชั่วคราว และใช้เป็นคำคุณศัพท์แปลว่าจางๆ ได้ด้วย"
   },
   {
     "word": "fair",
@@ -31248,7 +33569,8 @@ const wordsData = [
     ],
     "phoneticUK": "/fˈe/",
     "extraExample": "We went to the annual book fair downtown.",
-    "extraExampleTranslation": "พวกเราไปงานมหกรรมหนังสือประจำปีในเมือง (ความหมายรอง [n.]: งานแสดงสินค้า)"
+    "extraExampleTranslation": "พวกเราไปงานมหกรรมหนังสือประจำปีในเมือง (ความหมายรอง [n.]: งานแสดงสินค้า)",
+    "usageTip": "ใช้บอกว่ายุติธรรม ไม่ลำเอียง หรือใช้บอกว่าอากาศแจ่มใส/ผิวขาวก็ได้"
   },
   {
     "word": "fairly",
@@ -31284,7 +33606,10 @@ const wordsData = [
     "antonyms": [
       "unfairly"
     ],
-    "syllables": "fair·ly"
+    "syllables": "fair·ly",
+    "extraExample": "The instructions were fairly easy to follow, even for beginners.",
+    "extraExampleTranslation": "คำแนะนำนั้นค่อนข้างเข้าใจง่าย แม้แต่สำหรับผู้เริ่มต้น",
+    "usageTip": "ใช้ได้สองความหมายคือ 'อย่างยุติธรรม' หรือ 'ค่อนข้าง' (คล้าย quite)"
   },
   {
     "word": "faith",
@@ -31425,7 +33750,10 @@ const wordsData = [
       "fall in love (ตกหลุมรัก)",
       "fall asleep (เผลอหลับ)",
       "fall behind (ตามหลัง/ล้าหลัง)"
-    ]
+    ],
+    "extraExample": "Leaves fall from the trees in autumn.",
+    "extraExampleTranslation": "ใบไม้ร่วงหล่นจากต้นไม้ในฤดูใบไม้ร่วง",
+    "usageTip": "ใช้เป็นกริยาช่อง 2 ว่า fell และช่อง 3 ว่า fallen"
   },
   {
     "word": "false",
@@ -31454,7 +33782,10 @@ const wordsData = [
     ],
     "antonyms": [
       "true"
-    ]
+    ],
+    "extraExample": "The witness gave a false statement to the police.",
+    "extraExampleTranslation": "พยานให้การเท็จต่อตำรวจ",
+    "usageTip": "ใช้ขยายคำนามหรือตามหลัง verb to be เพื่อบอกว่าไม่จริงหรือปลอม"
   },
   {
     "word": "fame",
@@ -31487,7 +33818,10 @@ const wordsData = [
     ],
     "antonyms": [
       "infamy"
-    ]
+    ],
+    "extraExample": "She achieved international fame as a singer.",
+    "extraExampleTranslation": "เธอมีชื่อเสียงระดับนานาชาติในฐานะนักร้อง",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้คู่กับกริยาเช่น achieve หรือ gain"
   },
   {
     "word": "familiar",
@@ -31519,7 +33853,10 @@ const wordsData = [
       "strange"
     ],
     "phoneticUK": "/fəmˈɪljə(r)/",
-    "syllables": "fa·mi·liar"
+    "syllables": "fa·mi·liar",
+    "extraExample": "His face looks very familiar to me.",
+    "extraExampleTranslation": "หน้าของเขาดูคุ้นเคยมากสำหรับฉัน",
+    "usageTip": "มักใช้คู่กับบุพบท with (คุ้นเคยกับ) หรือ to (เป็นที่คุ้นเคยแก่)"
   },
   {
     "word": "family",
@@ -31548,7 +33885,10 @@ const wordsData = [
     "syllables": "fa·mi·ly",
     "forms": [
       "พหูพจน์: families"
-    ]
+    ],
+    "extraExample": "My family gathers together every Sunday.",
+    "extraExampleTranslation": "ครอบครัวของฉันมารวมตัวกันทุกวันอาทิตย์",
+    "usageTip": "ใช้ได้ทั้งเอกพจน์ (ทั้งกลุ่ม) และพหูพจน์ (สมาชิกแต่ละคน)"
   },
   {
     "word": "famous",
@@ -31583,7 +33923,10 @@ const wordsData = [
       "unknown"
     ],
     "syllables": "fa·mous",
-    "grammarPattern": "be famous for + จุดเด่น (มีชื่อเสียงด้าน...)"
+    "grammarPattern": "be famous for + จุดเด่น (มีชื่อเสียงด้าน...)",
+    "extraExample": "Paris is famous for its art and culture.",
+    "extraExampleTranslation": "ปารีสมีชื่อเสียงในด้านศิลปะและวัฒนธรรม",
+    "usageTip": "มักใช้คู่กับคำว่า for เพื่อบอกเหตุผลที่มีชื่อเสียง (famous for)"
   },
   {
     "word": "fan",
@@ -31612,7 +33955,10 @@ const wordsData = [
       "ของ",
       "วงดนตรี",
       "นี้"
-    ]
+    ],
+    "extraExample": "Please turn on the fan because it is hot.",
+    "extraExampleTranslation": "กรุณาเปิดพัดลมหน่อยเพราะอากาศร้อน",
+    "usageTip": "นอกจากแปลว่าพัดลมแล้ว ยังแปลว่าแฟนคลับหรือผู้ชื่นชอบได้ด้วย"
   },
   {
     "word": "fancy",
@@ -31645,7 +33991,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: fancier",
       "ขั้นสุด: fanciest"
-    ]
+    ],
+    "extraExample": "They had dinner at a fancy restaurant last night.",
+    "extraExampleTranslation": "พวกเขาทานอาหารเย็นที่ร้านอาหารหรูหราเมื่อคืนนี้",
+    "usageTip": "ใช้เป็นคำคุณศัพท์แปลว่าหรูหรา หรือเป็นกริยาแปลว่าอยากได้/ชอบ"
   },
   {
     "word": "far",
@@ -31677,7 +34026,10 @@ const wordsData = [
       "near",
       "close"
     ],
-    "phoneticUK": "/fˈɑː/"
+    "phoneticUK": "/fˈɑː/",
+    "extraExample": "The train station is not far from here.",
+    "extraExampleTranslation": "สถานีรถไฟอยู่ไม่ไกลจากที่นี่",
+    "usageTip": "มักใช้ในประโยคคำถามและปฏิเสธ หรือใช้คู่กับ from และ away"
   },
   {
     "word": "farm",
@@ -31707,7 +34059,10 @@ const wordsData = [
       "อยู่",
       "ใน",
       "ฟาร์ม"
-    ]
+    ],
+    "extraExample": "My uncle grows vegetables on his farm.",
+    "extraExampleTranslation": "ลุงของฉันปลูกผักในฟาร์มของเขา",
+    "usageTip": "ใช้คู่กับบุพบท on (on a farm) ไม่ใช่ in"
   },
   {
     "word": "farmer",
@@ -31738,7 +34093,10 @@ const wordsData = [
       "วัว"
     ],
     "phoneticUK": "/fˈɑːmə(r)/",
-    "syllables": "far·mer"
+    "syllables": "far·mer",
+    "extraExample": "The farmer wakes up early to water the crops.",
+    "extraExampleTranslation": "ชาวนาตื่นแต่เช้าเพื่อรดน้ำพืชผล",
+    "usageTip": "เติม -er ต่อท้าย farm เพื่อบอกอาชีพผู้ทำฟาร์มหรือชาวนา"
   },
   {
     "word": "farming",
@@ -31767,7 +34125,10 @@ const wordsData = [
       "เป็น",
       "งานหนัก"
     ],
-    "syllables": "far·ming"
+    "syllables": "far·ming",
+    "extraExample": "Many people in this village make a living by farming.",
+    "extraExampleTranslation": "คนจำนวนมากในหมู่บ้านนี้หาเลี้ยงชีพด้วยการทำเกษตร",
+    "usageTip": "ใช้เป็นคำนามหรือกริยาเติม -ing เพื่อพูดถึงอาชีพหรือกิจกรรมเกษตรกรรม"
   },
   {
     "word": "farther",
@@ -31798,7 +34159,10 @@ const wordsData = [
       "แล้ว"
     ],
     "phoneticUK": "/fˈɑːðə(r)/",
-    "syllables": "far·ther"
+    "syllables": "far·ther",
+    "extraExample": "We walked farther down the road to find a shop.",
+    "extraExampleTranslation": "พวกเราเดินไกลออกไปตามถนนเพื่อหาร้านค้า",
+    "usageTip": "เป็นขั้นกว่าของ far เน้นระยะทางทางกายภาพที่ไกลกว่า"
   },
   {
     "word": "farthest",
@@ -31830,7 +34194,10 @@ const wordsData = [
       "มาก",
       "ที่สุด"
     ],
-    "syllables": "far·thest"
+    "syllables": "far·thest",
+    "extraExample": "Pluto is the farthest planet from the sun in our solar system.",
+    "extraExampleTranslation": "ดาวพลูโตเป็นดาวเคราะห์ที่อยู่ไกลจากดวงอาทิตย์ที่สุด",
+    "usageTip": "เป็นขั้นสุดของ far ใช้คู่กับ the เพื่อบอกระยะทางที่ไกลที่สุด"
   },
   {
     "word": "fashion",
@@ -31860,7 +34227,10 @@ const wordsData = [
     "wordFamily": [
       "fashionable"
     ],
-    "syllables": "fa·shion"
+    "syllables": "fa·shion",
+    "extraExample": "Bright colors are back in fashion this summer.",
+    "extraExampleTranslation": "สีสันสดใสกลับมาเป็นที่นิยมในแฟชั่นฤดูร้อนนี้",
+    "usageTip": "มักใช้ในสำนวน in fashion (ทันสมัย) และ out of fashion (ล้าสมัย)"
   },
   {
     "word": "fashionable",
@@ -31896,7 +34266,10 @@ const wordsData = [
       "fashion"
     ],
     "syllables": "fa·shio·na·ble",
-    "rootBreakdown": "fashion + -able (สามารถ...ได้ (Adj.))"
+    "rootBreakdown": "fashion + -able (สามารถ...ได้ (Adj.))",
+    "extraExample": "She always wears fashionable clothes to work.",
+    "extraExampleTranslation": "เธอมักจะสวมเสื้อผ้าที่ทันสมัยไปทำงานเสมอ",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่ากำลังเป็นที่นิยมหรือดูดีมีสไตล์"
   },
   {
     "word": "fast",
@@ -31926,7 +34299,10 @@ const wordsData = [
     "antonyms": [
       "slow"
     ],
-    "phoneticUK": "/fˈɑːst/"
+    "phoneticUK": "/fˈɑːst/",
+    "extraExample": "He drives too fast on the highway.",
+    "extraExampleTranslation": "เขาขับรถเร็วเกินไปบนทางหลวง",
+    "usageTip": "รูปคำวิเศษณ์คือ fast เหมือนคำคุณศัพท์ ห้ามเติม -ly เป็น fastly"
   },
   {
     "word": "fasten",
@@ -31954,7 +34330,10 @@ const wordsData = [
     "antonyms": [
       "unfasten"
     ],
-    "syllables": "fa·sten"
+    "syllables": "fa·sten",
+    "extraExample": "Please fasten your seatbelt before takeoff.",
+    "extraExampleTranslation": "กรุณารัดเข็มขัดนิรภัยก่อนเครื่องขึ้น",
+    "usageTip": "ตัว t ไม่ออกเสียง (ออกเสียงว่า แฟส-เซิน) มักใช้กับเข็มขัดหรือกระดุม"
   },
   {
     "word": "fat",
@@ -31988,7 +34367,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: fatter",
       "ขั้นสุด: fattest"
-    ]
+    ],
+    "extraExample": "The cat is getting fat because it eats too much.",
+    "extraExampleTranslation": "แมวกำลังอ้วนขึ้นเพราะมันกินมากเกินไป",
+    "usageTip": "การเรียกคนว่า fat อาจดูไม่สุภาพ ควรใช้คำว่า overweight แทนในบางบริบท"
   },
   {
     "word": "father",
@@ -32020,7 +34402,10 @@ const wordsData = [
       "mother"
     ],
     "phoneticUK": "/fˈɑːðə(r)/",
-    "syllables": "fa·ther"
+    "syllables": "fa·ther",
+    "extraExample": "My father taught me how to ride a bike.",
+    "extraExampleTranslation": "พ่อของฉันสอนฉันขี่จักรยาน",
+    "usageTip": "ใช้เรียกพ่ออย่างเป็นทางการกว่า dad หรือ daddy"
   },
   {
     "word": "faucet",
@@ -32131,7 +34516,10 @@ const wordsData = [
       "favourite food",
       "all-time favourite",
       "personal favourite"
-    ]
+    ],
+    "extraExample": "Pizza is my favourite food on weekends.",
+    "extraExampleTranslation": "พิซซ่าเป็นอาหารจานโปรดของฉันในวันหยุดสุดสัปดาห์",
+    "usageTip": "ใช้นำหน้าคำนาม (แบบอังกฤษสะกด favourite แบบอเมริกันสะกด favorite)"
   },
   {
     "word": "fear",
@@ -32161,7 +34549,10 @@ const wordsData = [
     "antonyms": [
       "fearlessness"
     ],
-    "phoneticUK": "/fˈɪ/"
+    "phoneticUK": "/fˈɪ/",
+    "extraExample": "She spoke openly about her fear of heights.",
+    "extraExampleTranslation": "เธอพูดอย่างเปิดเผยเกี่ยวกับความกลัวความสูงของเธอ",
+    "usageTip": "มักใช้คู่กับ of เช่น fear of heights หรือ fear of failure"
   },
   {
     "word": "feather",
@@ -32191,7 +34582,10 @@ const wordsData = [
       "ฟ้า"
     ],
     "phoneticUK": "/fˈeðə(r)/",
-    "syllables": "fea·ther"
+    "syllables": "fea·ther",
+    "extraExample": "A light bird feather fell onto the grass.",
+    "extraExampleTranslation": "ขนนกเบาๆ ปลิวตกลงบนพื้นหญ้า",
+    "usageTip": "เป็นคำนามนับได้ ใช้รูปพหูพจน์ feathers เมื่อพูดถึงขนนกหลายเส้น"
   },
   {
     "word": "feature",
@@ -32223,7 +34617,10 @@ const wordsData = [
       "มากมาย"
     ],
     "phoneticUK": "/fˈiːtʃə(r)/",
-    "syllables": "fea·ture"
+    "syllables": "fea·ture",
+    "extraExample": "The main feature of this phone is its long battery life.",
+    "extraExampleTranslation": "จุดเด่นหลักของโทรศัพท์เครื่องนี้คือแบตเตอรี่ที่ใช้งานได้นาน",
+    "usageTip": "ใช้ได้ทั้งลักษณะเด่นของสิ่งของและองค์ประกอบบนใบหน้า"
   },
   {
     "word": "February",
@@ -32253,7 +34650,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: februaries"
-    ]
+    ],
+    "extraExample": "My birthday is in February, the shortest month of the year.",
+    "extraExampleTranslation": "วันเกิดของฉันอยู่ในเดือนกุมภาพันธ์ ซึ่งเป็นเดือนที่สั้นที่สุดของปี",
+    "usageTip": "ขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ และใช้คู่กับ in เช่น in February"
   },
   {
     "word": "federal",
@@ -32281,7 +34681,10 @@ const wordsData = [
       "รัฐบาล",
       "กลาง"
     ],
-    "syllables": "fe·de·ral"
+    "syllables": "fe·de·ral",
+    "extraExample": "The federal government announced a new education budget.",
+    "extraExampleTranslation": "รัฐบาลกลางประกาศงบประมาณด้านการศึกษาชุดใหม่",
+    "usageTip": "มักใช้ขยายคำนามเกี่ยวกับการปกครองหรือกฎหมายในระบบสหพันธรัฐ"
   },
   {
     "word": "fee",
@@ -32307,7 +34710,10 @@ const wordsData = [
       "จ่าย",
       "ค่า",
       "เข้าชม"
-    ]
+    ],
+    "extraExample": "You have to pay a small registration fee before joining.",
+    "extraExampleTranslation": "คุณต้องจ่ายค่าธรรมเนียมการลงทะเบียนเล็กน้อยก่อนเข้าร่วม",
+    "usageTip": "ใช้คู่กับกริยา pay หรือ charge เช่น pay a fee"
   },
   {
     "word": "feed",
@@ -32339,7 +34745,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: fed"
-    ]
+    ],
+    "extraExample": "Please feed the dog before you leave for work.",
+    "extraExampleTranslation": "กรุณาให้อาหารสุนัขก่อนที่คุณจะออกไปทำงาน",
+    "usageTip": "ใช้ได้ทั้ง feed + สัตว์/คน และ feed + อาหาร + to + สัตว์"
   },
   {
     "word": "feel",
@@ -32371,7 +34780,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: felt"
-    ]
+    ],
+    "extraExample": "I can feel the cold wind on my face.",
+    "extraExampleTranslation": "ฉันสัมผัสได้ถึงลมเย็นที่พัดมาโดนใบหน้า",
+    "usageTip": "เป็น linking verb ได้ (feel + adj) หรือกริยาสัมผัส (feel + noun)"
   },
   {
     "word": "feeling",
@@ -32404,7 +34816,10 @@ const wordsData = [
       "เรื่อง",
       "นี้"
     ],
-    "syllables": "fee·ling"
+    "syllables": "fee·ling",
+    "extraExample": "He had a strange feeling that someone was watching him.",
+    "extraExampleTranslation": "เขามีความรู้สึกแปลกๆ ว่ามีคนกำลังมองเขาอยู่",
+    "usageTip": "ใช้เป็นคำนามนับได้เมื่อพูดถึงความรู้สึกเฉพาะเรื่อง"
   },
   {
     "word": "fellow",
@@ -32434,7 +34849,10 @@ const wordsData = [
     "syllables": "fel·low",
     "wordFamily": [
       "fellowship"
-    ]
+    ],
+    "extraExample": "He is a friendly fellow who always helps his neighbours.",
+    "extraExampleTranslation": "เขาเป็นเพื่อนบ้านที่เป็นมิตรและคอยช่วยเหลือคนรอบข้างเสมอ",
+    "usageTip": "ใช้เรียกผู้ชายหรือเพื่อนร่วมงานในเชิงเป็นกันเอง มักไม่ใช้กับผู้หญิง"
   },
   {
     "word": "female",
@@ -32469,7 +34887,10 @@ const wordsData = [
     "antonyms": [
       "male"
     ],
-    "syllables": "fe·male"
+    "syllables": "fe·male",
+    "extraExample": "The company hired more female engineers this year.",
+    "extraExampleTranslation": "บริษัทจ้างวิศวกรหญิงเพิ่มขึ้นในปีนี้",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อระบุเพศหญิงได้อย่างเป็นทางการ"
   },
   {
     "word": "fence",
@@ -32495,7 +34916,10 @@ const wordsData = [
       "ปีน",
       "ข้าม",
       "รั้ว"
-    ]
+    ],
+    "extraExample": "We painted the wooden fence white last Sunday.",
+    "extraExampleTranslation": "เราทาสีรั้วไม้เป็นสีขาวเมื่อวันอาทิตย์ที่ผ่านมา",
+    "usageTip": "ใช้กับรั้วบ้านหรือรั้วกั้นพื้นที่ทั่วไป"
   },
   {
     "word": "festival",
@@ -32522,7 +34946,10 @@ const wordsData = [
       "งานเทศกาล",
       "ดนตรี"
     ],
-    "syllables": "fe·sti·val"
+    "syllables": "fe·sti·val",
+    "extraExample": "The town holds a lantern festival every autumn.",
+    "extraExampleTranslation": "เมืองนี้จัดเทศกาลโคมไฟทุกฤดูใบไม้ร่วง",
+    "usageTip": "ใช้กับงานเทศกาลหรือวันสำคัญทางวัฒนธรรม มักใช้คู่กับ hold หรือ attend"
   },
   {
     "word": "fetch",
@@ -32553,7 +34980,10 @@ const wordsData = [
       "ฉัน",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "Could you fetch my glasses from the bedroom?",
+    "extraExampleTranslation": "ช่วยไปหยิบแว่นตาของฉันจากห้องนอนให้หน่อยได้ไหม",
+    "usageTip": "หมายถึงการเดินไปเอาของแล้วนำกลับมาต่างจาก bring ที่นำมาด้วยเฉยๆ"
   },
   {
     "word": "fever",
@@ -32580,7 +35010,10 @@ const wordsData = [
       "สูง"
     ],
     "phoneticUK": "/fˈiːvə(r)/",
-    "syllables": "fe·ver"
+    "syllables": "fe·ver",
+    "extraExample": "The child has a high fever and needs to rest.",
+    "extraExampleTranslation": "เด็กมีไข้สูงและต้องการการพักผ่อน",
+    "usageTip": "มักใช้คู่กับ have เช่น have a fever หรือ high fever"
   },
   {
     "word": "few",
@@ -32611,7 +35044,9 @@ const wordsData = [
     "antonyms": [
       "many"
     ],
-    "usageTip": "few (ไม่มี a) = แทบไม่มีเลย (ความหมายเชิงลบ); a few = พอมีอยู่บ้าง 2-3 ชิ้น (ใช้กับนามพหูพจน์)"
+    "usageTip": "few (ไม่มี a) = แทบไม่มีเลย (ความหมายเชิงลบ); a few = พอมีอยู่บ้าง 2-3 ชิ้น (ใช้กับนามพหูพจน์)",
+    "extraExample": "Only a few students stayed after class to ask questions.",
+    "extraExampleTranslation": "มีนักเรียนเพียงไม่กี่คนที่อยู่ต่อหลังเลิกเรียนเพื่อถามคำถาม"
   },
   {
     "word": "field",
@@ -32637,7 +35072,10 @@ const wordsData = [
       "อยู่",
       "ใน",
       "ทุ่งหญ้า"
-    ]
+    ],
+    "extraExample": "The cows are grazing in the green field behind the farm.",
+    "extraExampleTranslation": "วัวกำลังกินหญ้าอยู่ในทุ่งสีเขียวหลังฟาร์ม",
+    "usageTip": "ใช้ได้ทั้งทุ่งหญ้า สนามกีฬา หรือสาขาวิชา"
   },
   {
     "word": "fifteen",
@@ -32662,7 +35100,10 @@ const wordsData = [
       "สิบห้า",
       "ดอลลาร์"
     ],
-    "syllables": "fif·teen"
+    "syllables": "fif·teen",
+    "extraExample": "There are fifteen chairs arranged in the meeting room.",
+    "extraExampleTranslation": "มีเก้าอี้สิบห้าตัวจัดวางอยู่ในห้องประชุม",
+    "usageTip": "วางหน้าคำนามพหูพจน์เพื่อระบุจำนวนสิบห้า"
   },
   {
     "word": "fifth",
@@ -32690,7 +35131,10 @@ const wordsData = [
       "ห้า",
       "ของ",
       "เธอ"
-    ]
+    ],
+    "extraExample": "This is the fifth time I have visited Bangkok.",
+    "extraExampleTranslation": "นี่เป็นครั้งที่ห้าแล้วที่ฉันมาเที่ยวกรุงเทพฯ",
+    "usageTip": "ใช้บอกลำดับที่ 5 มักมี the นำหน้า เช่น the fifth time"
   },
   {
     "word": "fifty",
@@ -32812,7 +35256,10 @@ const wordsData = [
       "ไว้",
       "ใน",
       "แฟ้ม"
-    ]
+    ],
+    "extraExample": "Please put these documents in the blue file.",
+    "extraExampleTranslation": "กรุณาเก็บเอกสารเหล่านี้ไว้ในแฟ้มสีน้ำเงิน",
+    "usageTip": "ใช้เป็นคำนามหมายถึงแฟ้มเอกสารหรือไฟล์คอมพิวเตอร์ก็ได้"
   },
   {
     "word": "fill",
@@ -32839,7 +35286,10 @@ const wordsData = [
       "ให้",
       "เต็ม",
       "แก้ว"
-    ]
+    ],
+    "extraExample": "Give the tank a quick fill before we leave.",
+    "extraExampleTranslation": "เติมน้ำมันให้เต็มถังก่อนที่เราจะออกเดินทาง",
+    "usageTip": "ใช้กับสิ่งที่ถูกเติมจนเต็ม หรือปริมาณที่เติมเข้าไป"
   },
   {
     "word": "film",
@@ -32869,7 +35319,10 @@ const wordsData = [
       "เรื่อง",
       "หนึ่ง",
       "เมื่อคืนนี้"
-    ]
+    ],
+    "extraExample": "I need to buy a new roll of film for my camera.",
+    "extraExampleTranslation": "ฉันต้องซื้อฟิล์มม้วนใหม่สำหรับกล้องของฉัน",
+    "usageTip": "ใช้หมายถึงฟิล์มถ่ายภาพหรือภาพยนตร์ก็ได้"
   },
   {
     "word": "final",
@@ -32902,7 +35355,10 @@ const wordsData = [
       "finally",
       "fine"
     ],
-    "syllables": "fi·nal"
+    "syllables": "fi·nal",
+    "extraExample": "This is my final offer, so please think carefully.",
+    "extraExampleTranslation": "นี่คือข้อเสนอสุดท้ายของฉัน โปรดคิดให้รอบคอบ",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อบอกว่าเป็นครั้งสุดท้ายหรือท้ายที่สุด"
   },
   {
     "word": "finally",
@@ -32932,7 +35388,10 @@ const wordsData = [
     "wordFamily": [
       "final"
     ],
-    "syllables": "fi·nal·ly"
+    "syllables": "fi·nal·ly",
+    "extraExample": "After waiting for two hours, the train finally arrived.",
+    "extraExampleTranslation": "หลังจากรอมาสองชั่วโมง ในที่สุดรถไฟก็มาถึง",
+    "usageTip": "มักวางไว้หน้ากริยาหลักหรือต้นประโยคเพื่อเน้นว่าเกิดขึ้นในที่สุด"
   },
   {
     "word": "finance",
@@ -32961,7 +35420,10 @@ const wordsData = [
       "การเงิน"
     ],
     "phoneticUK": "/ˈfaɪnæns/",
-    "syllables": "fi·nance"
+    "syllables": "fi·nance",
+    "extraExample": "She works in the finance department of a large bank.",
+    "extraExampleTranslation": "เธอทำงานในแผนกการเงินของธนาคารขนาดใหญ่แห่งหนึ่ง",
+    "usageTip": "ใช้เป็นคำนามนับไม่ได้เมื่อหมายถึงเรื่องการเงินหรือการบริหารเงิน"
   },
   {
     "word": "financial",
@@ -32993,7 +35455,10 @@ const wordsData = [
     "antonyms": [
       "nonfinancial"
     ],
-    "syllables": "fi·nan·cial"
+    "syllables": "fi·nan·cial",
+    "extraExample": "The company is facing serious financial problems this year.",
+    "extraExampleTranslation": "บริษัทกำลังเผชิญกับปัญหาทางการเงินอย่างร้ายแรงในปีนี้",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าเกี่ยวข้องกับเงินหรือการคลัง"
   },
   {
     "word": "find",
@@ -33032,7 +35497,10 @@ const wordsData = [
     "phrases": [
       "find out (สืบหาจนรู้ความจริง)",
       "find it hard to (พบว่ามันยากที่จะ...)"
-    ]
+    ],
+    "extraExample": "I cannot find my keys anywhere in the house.",
+    "extraExampleTranslation": "ฉันหากุญแจไม่เจอเลยในบ้าน",
+    "usageTip": "ใช้เมื่อค้นหาแล้วพบ หรือรู้สึกว่าสิ่งนั้นเป็นอย่างไร"
   },
   {
     "word": "fine",
@@ -33064,7 +35532,8 @@ const wordsData = [
       "สบายดี"
     ],
     "extraExample": "He had to pay a heavy fine for speeding.",
-    "extraExampleTranslation": "เขาต้องเสียค่าปรับราคาแพงฐานขับรถเร็ว (ความหมายรอง [n.]: ค่าปรับ)"
+    "extraExampleTranslation": "เขาต้องเสียค่าปรับราคาแพงฐานขับรถเร็ว (ความหมายรอง [n.]: ค่าปรับ)",
+    "usageTip": "ใช้บอกว่าสบายดี โอเค หรือใช้เป็นคำนามแปลว่าค่าปรับ"
   },
   {
     "word": "finely",
@@ -33087,6 +35556,13 @@ const wordsData = [
     ],
     "antonyms": [
       "coarsely"
+    ],
+    "extraExample": "Chop the onions finely before adding them to the pan.",
+    "extraExampleTranslation": "สับหัวหอมให้ละเอียดก่อนนำไปใส่ในกระทะ",
+    "usageTip": "ใช้ขยายกริยาเพื่อบอกว่าทำอย่างละเอียด ประณีต หรือเป็นชิ้นเล็กๆ",
+    "collocations": [
+      "finely chopped",
+      "finely tuned"
     ]
   },
   {
@@ -33116,7 +35592,10 @@ const wordsData = [
       "นิ้ว"
     ],
     "phoneticUK": "/fˈɪŋɡə(r)/",
-    "syllables": "fi·nger"
+    "syllables": "fi·nger",
+    "extraExample": "She pointed her finger at the map on the wall.",
+    "extraExampleTranslation": "เธอชี้มือไปที่แผนที่บนผนัง",
+    "usageTip": "ใช้เรียกนิ้วมือทั้งสี่นิ้ว (ส่วนนิ้วโป้งมักเรียกว่า thumb)"
   },
   {
     "word": "finish",
@@ -33153,7 +35632,9 @@ const wordsData = [
     ],
     "syllables": "fi·nish",
     "grammarPattern": "V + V-ing / N (เช่น finish writing the report)",
-    "usageTip": "finish ตามด้วย V-ing เสมอ เช่น Did you finish reading?"
+    "usageTip": "finish ตามด้วย V-ing เสมอ เช่น Did you finish reading?",
+    "extraExample": "We need to finish this report before five o'clock.",
+    "extraExampleTranslation": "เราต้องทำรายงานฉบับนี้ให้เสร็จก่อนห้าโมงเย็น"
   },
   {
     "word": "finished",
@@ -33182,7 +35663,10 @@ const wordsData = [
       "ทำ",
       "เสร็จ",
       "หรือยัง"
-    ]
+    ],
+    "extraExample": "The workers showed us the finished product.",
+    "extraExampleTranslation": "คนงานนำผลิตภัณฑ์ที่ทำเสร็จเรียบร้อยแล้วมาให้เราดู",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าเสร็จสมบูรณ์พร้อมใช้งานแล้ว"
   },
   {
     "word": "fire",
@@ -33210,7 +35694,10 @@ const wordsData = [
       "กองไฟ"
     ],
     "phoneticUK": "/fˈaɪə(r)/",
-    "syllables": "fi·re"
+    "syllables": "fi·re",
+    "extraExample": "They lit a fire to keep warm during the night.",
+    "extraExampleTranslation": "พวกเขาจุดไฟเพื่อให้ความอบอุ่นตลอดทั้งคืน",
+    "usageTip": "ใช้กับเปลวไฟ หรือการยิงปืน/ไล่ออกในบริบทอื่น"
   },
   {
     "word": "firm",
@@ -33242,7 +35729,10 @@ const wordsData = [
     "wordFamily": [
       "firmly"
     ],
-    "phoneticUK": "/fˈɜːm/"
+    "phoneticUK": "/fˈɜːm/",
+    "extraExample": "He joined a famous law firm after graduating.",
+    "extraExampleTranslation": "เขาเข้าทำงานในบริษัทกฎหมายที่มีชื่อเสียงหลังจากเรียนจบ",
+    "usageTip": "นิยมใช้เรียกบริษัทที่ให้บริการเฉพาะทาง เช่น กฎหมายหรือบัญชี"
   },
   {
     "word": "firmly",
@@ -33275,7 +35765,10 @@ const wordsData = [
       "unwaveringly"
     ],
     "phoneticUK": "/fˈɜːmliː/",
-    "syllables": "fir·mly"
+    "syllables": "fir·mly",
+    "extraExample": "She firmly believes that honesty is the best policy.",
+    "extraExampleTranslation": "เธอเชื่ออย่างหนักแน่นว่าความซื่อสัตย์คือสิ่งที่ดีที่สุด",
+    "usageTip": "ใช้วางหน้ากริยาเพื่อเน้นความมั่นใจหรือการทำอย่างมั่นคง"
   },
   {
     "word": "first",
@@ -33306,7 +35799,10 @@ const wordsData = [
     "antonyms": [
       "last"
     ],
-    "phoneticUK": "/fˈɜːst/"
+    "phoneticUK": "/fˈɜːst/",
+    "extraExample": "This is the first time I have ever visited Japan.",
+    "extraExampleTranslation": "นี่เป็นครั้งแรกที่ฉันได้มาเยือนประเทศญี่ปุ่น",
+    "usageTip": "ใช้บอกลำดับที่หนึ่ง และมักใช้คู่กับคำว่า the"
   },
   {
     "word": "fish",
@@ -33339,7 +35835,10 @@ const wordsData = [
     "forms": [
       "พหูพจน์ปกติคงรูป: fish"
     ],
-    "grammarPattern": "[C] ปกติรูปเอกพจน์และพหูพจน์เหมือนกัน (fish)"
+    "grammarPattern": "[C] ปกติรูปเอกพจน์และพหูพจน์เหมือนกัน (fish)",
+    "extraExample": "We saw many colorful fish swimming in the clear water.",
+    "extraExampleTranslation": "เราเห็นปลาสีสันสดใสมากมายว่ายอยู่ในน้ำใส",
+    "usageTip": "รูปเอกพจน์และพหูพจน์เขียนเหมือนกันว่า fish"
   },
   {
     "word": "fishing",
@@ -33370,7 +35869,10 @@ const wordsData = [
       "เมื่อวาน",
       "นี้"
     ],
-    "syllables": "fi·shing"
+    "syllables": "fi·shing",
+    "extraExample": "My grandfather enjoys fishing by the river every weekend.",
+    "extraExampleTranslation": "คุณปู่ของฉันชอบไปตกปลาที่ริมแม่น้ำทุกสุดสัปดาห์",
+    "usageTip": "มักใช้ตามหลังคำว่า go เป็น go fishing เพื่อบอกว่าไปตกปลา"
   },
   {
     "word": "fit",
@@ -33406,7 +35908,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "fitness"
-    ]
+    ],
+    "extraExample": "These shoes do not fit me because they are too tight.",
+    "extraExampleTranslation": "รองเท้าคู่นี้ไม่พอดีกับฉันเพราะมันคับเกินไป",
+    "usageTip": "ใช้บอกว่าขนาดพอดี หรือเหมาะสมสอดคล้องกับสถานการณ์"
   },
   {
     "word": "five",
@@ -33526,7 +36031,10 @@ const wordsData = [
       "ขาว",
       "และ",
       "สีน้ำเงิน"
-    ]
+    ],
+    "extraExample": "The national flag waved proudly in the morning breeze.",
+    "extraExampleTranslation": "ธงชาติโบกสะบัดอย่างภาคภูมิใจในสายลมยามเช้า",
+    "usageTip": "ใช้เป็นคำนามหมายถึงธง หรือเป็นกริยาหมายถึงทำเครื่องหมาย/ส่งสัญญาณเตือน"
   },
   {
     "word": "flame",
@@ -33552,7 +36060,10 @@ const wordsData = [
       "เทียน",
       "สั่น",
       "ไหว"
-    ]
+    ],
+    "extraExample": "A bright flame danced above the candle wick.",
+    "extraExampleTranslation": "เปลวไฟสว่างไสวเต้นระริกอยู่เหนือไส้เทียน",
+    "usageTip": "ใช้หมายถึงเปลวไฟที่ลุกไหม้เป็นรูปเป็นร่าง ต่างจาก fire ที่หมายถึงไฟโดยรวม"
   },
   {
     "word": "flash",
@@ -33579,7 +36090,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: flashes"
-    ]
+    ],
+    "extraExample": "A sudden flash of lightning lit up the dark sky.",
+    "extraExampleTranslation": "แสงวาบของฟ้าผ่าสว่างจ้าขึ้นบนท้องฟ้าที่มืดมิด",
+    "usageTip": "ใช้กับแสงที่สว่างวาบขึ้นชั่วครู่ เช่น แฟลชกล้องหรือฟ้าแลบ"
   },
   {
     "word": "flat",
@@ -33605,7 +36119,10 @@ const wordsData = [
       "ไม่",
       "ได้",
       "แบน"
-    ]
+    ],
+    "extraExample": "We need a flat surface to set up the board game.",
+    "extraExampleTranslation": "เราต้องการพื้นผิวที่ราบเรียบเพื่อวางกระดานเกม",
+    "usageTip": "ใช้บอกลักษณะแบน ราบ หรือเรียบ และในภาษาอังกฤษแบบอังกฤษยังหมายถึงห้องชุดได้ด้วย"
   },
   {
     "word": "flavour",
@@ -33633,7 +36150,10 @@ const wordsData = [
       "rich flavour",
       "natural flavour",
       "add flavour"
-    ]
+    ],
+    "extraExample": "This soup has a rich, spicy flavour that warms you up.",
+    "extraExampleTranslation": "ซุปนี้มีรสชาติเข้มข้นและเผ็ดร้อนที่ช่วยให้ร่างกายอบอุ่น",
+    "usageTip": "ใช้สะกดแบบอังกฤษ (flavour) ส่วนแบบอเมริกันสะกดว่า flavor"
   },
   {
     "word": "flesh",
@@ -33664,7 +36184,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: fleshes"
-    ]
+    ],
+    "extraExample": "Cut the mango and scoop out the sweet yellow flesh.",
+    "extraExampleTranslation": "หั่นมะม่วงแล้วตักเนื้อสีเหลืองหวานออกมา",
+    "usageTip": "ใช้หมายถึงเนื้อของผลไม้หรือเนื้อเยื่อของสิ่งมีชีวิต ไม่นิยมใช้เรียกเนื้อสัตว์ที่ปรุงอาหาร"
   },
   {
     "word": "flight",
@@ -33687,7 +36210,10 @@ const wordsData = [
       "ขอให้",
       "เดินทาง",
       "โดยสวัสดิภาพ"
-    ]
+    ],
+    "extraExample": "Our flight to Tokyo was delayed by two hours due to fog.",
+    "extraExampleTranslation": "เที่ยวบินไปโตเกียวของเราล่าช้าไปสองชั่วโมงเนื่องจากหมอกลง",
+    "usageTip": "ใช้กับเที่ยวบินโดยสารหรือการบิน มักใช้คู่กับคำว่า book หรือ catch"
   },
   {
     "word": "float",
@@ -33715,7 +36241,10 @@ const wordsData = [
     "antonyms": [
       "sink"
     ],
-    "phoneticUK": "/flˈəʊt/"
+    "phoneticUK": "/flˈəʊt/",
+    "extraExample": "Dry leaves float gently on the surface of the pond.",
+    "extraExampleTranslation": "ใบไม้แห้งลอยอยู่เบาๆ บนผิวน้ำในสระ",
+    "usageTip": "ใช้กับสิ่งที่ลอยอยู่บนน้ำหรือในอากาศโดยไม่จม"
   },
   {
     "word": "flood",
@@ -33744,7 +36273,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "flooding"
-    ]
+    ],
+    "extraExample": "Heavy rain caused a severe flood in the downtown area.",
+    "extraExampleTranslation": "ฝนตกหนักทำให้เกิดน้ำท่วมรุนแรงในย่านใจกลางเมือง",
+    "usageTip": "ใช้เป็นคำนามหมายถึงน้ำท่วม หรือเป็นกริยาหมายถึงท่วมท้น"
   },
   {
     "word": "floor",
@@ -33771,7 +36303,10 @@ const wordsData = [
       "บน",
       "พื้น"
     ],
-    "phoneticUK": "/flˈɔː/"
+    "phoneticUK": "/flˈɔː/",
+    "extraExample": "Please wipe up the spilled water on the kitchen floor.",
+    "extraExampleTranslation": "กรุณาเช็ดน้ำที่หกอยู่บนพื้นห้องครัวด้วย",
+    "usageTip": "ใช้หมายถึงพื้นห้องหรือชั้นของอาคาร"
   },
   {
     "word": "flour",
@@ -33804,7 +36339,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Sift the flour before mixing it with the eggs and sugar.",
+    "extraExampleTranslation": "ร่อนแป้งก่อนนำไปผสมกับไข่และน้ำตาล",
+    "usageTip": "ใช้หมายถึงแป้งทำอาหารหรือทำขนม ออกเสียงเหมือน flower"
   },
   {
     "word": "flow",
@@ -33836,7 +36374,10 @@ const wordsData = [
       "สู่",
       "ทะเล"
     ],
-    "phoneticUK": "/flˈəʊ/"
+    "phoneticUK": "/flˈəʊ/",
+    "extraExample": "Clear water continues to flow down the mountain stream.",
+    "extraExampleTranslation": "น้ำใสยังคงไหลลงมาตามลำธารบนภูเขา",
+    "usageTip": "ใช้กับการไหลของของเหลว การจราจร หรือข้อมูล"
   },
   {
     "word": "flower",
@@ -33868,7 +36409,10 @@ const wordsData = [
       "flow"
     ],
     "phoneticUK": "/flˈaʊə(r)/",
-    "syllables": "flo·wer"
+    "syllables": "flo·wer",
+    "extraExample": "She placed a fresh flower in the vase on her desk.",
+    "extraExampleTranslation": "เธอวางดอกไม้สดหนึ่งดอกลงในแจกันบนโต๊ะทำงาน",
+    "usageTip": "ใช้เรียกส่วนดอกของพืช และใช้เป็นกริยาเมื่อพืชออกดอกได้ด้วย"
   },
   {
     "word": "flu",
@@ -33897,7 +36441,10 @@ const wordsData = [
       "catch the flu",
       "flu symptoms",
       "flu shot"
-    ]
+    ],
+    "extraExample": "He stayed home for three days because he caught the flu.",
+    "extraExampleTranslation": "เขาอยู่บ้านสามวันเพราะติดไข้หวัดใหญ่",
+    "usageTip": "เป็นคำย่อของ influenza มักใช้กับคำว่า catch หรือ have the flu"
   },
   {
     "word": "fly",
@@ -33932,7 +36479,10 @@ const wordsData = [
     "forms": [
       "V2: flew",
       "V3: flown"
-    ]
+    ],
+    "extraExample": "Several birds fly south before winter arrives.",
+    "extraExampleTranslation": "นกหลายตัวบินลงใต้ก่อนที่ฤดูหนาวจะมาถึง",
+    "usageTip": "ใช้กับการบินของนก แมลง หรือเครื่องบิน"
   },
   {
     "word": "flying",
@@ -33960,7 +36510,10 @@ const wordsData = [
     "synonyms": [
       "fly",
       "wing"
-    ]
+    ],
+    "extraExample": "The children watched the flying kites with excitement.",
+    "extraExampleTranslation": "เด็กๆ มองดูว่าวที่กำลังลอยบินอยู่ด้วยความตื่นเต้น",
+    "usageTip": "ใช้เป็นคำคุณศัพท์วางหน้าคำนามเพื่อบอกว่ากำลังบิน หรือใช้เป็นคำนามหมายถึงการบิน"
   },
   {
     "word": "focus",
@@ -33994,7 +36547,10 @@ const wordsData = [
     ],
     "phoneticUK": "/fˈəʊkəs/",
     "syllables": "fo·cus",
-    "grammarPattern": "focus on + N / V-ing (มุ่งความสนใจไปที่)"
+    "grammarPattern": "focus on + N / V-ing (มุ่งความสนใจไปที่)",
+    "extraExample": "Try to focus on one task at a time to finish faster.",
+    "extraExampleTranslation": "พยายามจดจ่อกับงานทีละอย่างเพื่อจะได้เสร็จเร็วขึ้น",
+    "usageTip": "มักใช้คู่กับบุพบท on เพื่อบอกว่ามุ่งความสนใจไปที่เรื่องใด"
   },
   {
     "word": "fold",
@@ -34023,7 +36579,10 @@ const wordsData = [
     "antonyms": [
       "unfold"
     ],
-    "phoneticUK": "/fˈəʊld/"
+    "phoneticUK": "/fˈəʊld/",
+    "extraExample": "Fold the paper neatly in half along the dotted line.",
+    "extraExampleTranslation": "พับกระดาษครึ่งหนึ่งอย่างเรียบร้อยตามเส้นประ",
+    "usageTip": "ใช้กับการพับกระดาษ เสื้อผ้า หรือพับเก็บสิ่งของ"
   },
   {
     "word": "follow",
@@ -34058,7 +36617,10 @@ const wordsData = [
       "lead"
     ],
     "phoneticUK": "/fˈɒləʊ/",
-    "syllables": "fol·low"
+    "syllables": "fol·low",
+    "extraExample": "Please follow the signs to reach the main exit.",
+    "extraExampleTranslation": "กรุณาเดินตามป้ายเพื่อไปยังทางออกหลัก",
+    "usageTip": "ใช้หมายถึงเดินตาม ปฏิบัติตาม หรือติดตามบนโซเชียลมีเดีย"
   },
   {
     "word": "following",
@@ -34090,7 +36652,10 @@ const wordsData = [
       "leading"
     ],
     "phoneticUK": "/fˈɒləʊɪŋ/",
-    "syllables": "fol·lo·wing"
+    "syllables": "fol·lo·wing",
+    "extraExample": "The following morning, the weather cleared up completely.",
+    "extraExampleTranslation": "เช้าวันรุ่งขึ้น อากาศก็แจ่มใสขึ้นอย่างสมบูรณ์",
+    "usageTip": "ใช้เป็นคำคุณศัพท์วางหน้าคำนามเพื่อหมายถึงถัดไป หรือใช้ในความหมายว่าผู้ติดตาม/ผู้สนับสนุนได้ด้วย"
   },
   {
     "word": "food",
@@ -34176,7 +36741,10 @@ const wordsData = [
       "กัน",
       "เถอะ"
     ],
-    "syllables": "foot·ball"
+    "syllables": "foot·ball",
+    "extraExample": "They play football in the park every Sunday afternoon.",
+    "extraExampleTranslation": "พวกเขาเล่นฟุตบอลที่สวนสาธารณะทุกบ่ายวันอาทิตย์",
+    "usageTip": "ใช้ play football โดยไม่ต้องมี a หรือ the นำหน้ากีฬา"
   },
   {
     "word": "for",
@@ -34200,7 +36768,9 @@ const wordsData = [
       "คุณ"
     ],
     "usageTip": "ใช้ for + ช่วงระยะเวลา (for 3 years, for two hours); ถ้าจุดเริ่มต้นใช้ since (since 2020)",
-    "phoneticUK": "/fˈɔː/"
+    "phoneticUK": "/fˈɔː/",
+    "extraExample": "I bought this gift for my mother's birthday.",
+    "extraExampleTranslation": "ฉันซื้อของขวัญชิ้นนี้สำหรับวันเกิดของแม่"
   },
   {
     "word": "force",
@@ -34232,7 +36802,10 @@ const wordsData = [
       "V2/V3: forced",
       "V-ing: forcing"
     ],
-    "grammarPattern": "force + someone + to V (บังคับให้...)"
+    "grammarPattern": "force + someone + to V (บังคับให้...)",
+    "extraExample": "We should not force children to eat when they are full.",
+    "extraExampleTranslation": "เราไม่ควรบังคับให้เด็กกินเมื่อพวกเขาอิ่มแล้ว",
+    "usageTip": "มักใช้ในโครงสร้าง force + กรรม + to + กริยาช่อง 1"
   },
   {
     "word": "forecast",
@@ -34260,7 +36833,10 @@ const wordsData = [
       "ฝน",
       "จะ",
       "ตก"
-    ]
+    ],
+    "extraExample": "The weather forecast says it will rain tomorrow morning.",
+    "extraExampleTranslation": "พยากรณ์อากาศบอกว่าพรุ่งนี้เช้าฝนจะตก",
+    "usageTip": "ใช้เป็นได้ทั้งคำนามและคำกริยา แปลว่าการคาดการณ์ล่วงหน้า"
   },
   {
     "word": "foreign",
@@ -34292,7 +36868,10 @@ const wordsData = [
       "local",
       "domestic"
     ],
-    "syllables": "fo·reign"
+    "syllables": "fo·reign",
+    "extraExample": "Learning a foreign language opens up many new opportunities.",
+    "extraExampleTranslation": "การเรียนรู้ภาษาต่างประเทศเปิดโอกาสใหม่ๆ มากมาย",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าเป็นของต่างประเทศหรือต่างชาติ"
   },
   {
     "word": "forest",
@@ -34320,7 +36899,10 @@ const wordsData = [
       "ใน",
       "ป่า"
     ],
-    "syllables": "fo·rest"
+    "syllables": "fo·rest",
+    "extraExample": "Many rare birds live deep inside the tropical forest.",
+    "extraExampleTranslation": "นกหายากหลายชนิดอาศัยอยู่ลึกเข้าไปในป่าเขตร้อน",
+    "usageTip": "ใช้กับป่าขนาดใหญ่ที่มีต้นไม้ขึ้นหนาแน่น"
   },
   {
     "word": "forever",
@@ -34349,7 +36931,10 @@ const wordsData = [
       "ตลอดไป"
     ],
     "phoneticUK": "/fərˈevə(r)/",
-    "syllables": "fo·re·ver"
+    "syllables": "fo·re·ver",
+    "extraExample": "Nothing lasts forever, so we should cherish every moment.",
+    "extraExampleTranslation": "ไม่มีอะไรอยู่ตลอดไป ดังนั้นเราควรเห็นคุณค่าของทุกช่วงเวลา",
+    "usageTip": "วางไว้ท้ายประโยคเพื่อเน้นความหมายว่าตลอดกาล"
   },
   {
     "word": "forget",
@@ -34387,7 +36972,9 @@ const wordsData = [
     ],
     "syllables": "for·get",
     "grammarPattern": "forget + V-ing (ลืมเรื่องที่ทำแล้ว) vs + to V (ลืมทำสิ่งที่ต้องทำ)",
-    "usageTip": "forget + V-ing = ลืมว่าเคยทำแล้ว | forget + to V = ลืมทำ (ยังไม่ได้ทำ)"
+    "usageTip": "forget + V-ing = ลืมว่าเคยทำแล้ว | forget + to V = ลืมทำ (ยังไม่ได้ทำ)",
+    "extraExample": "Please do not forget to lock the front door before leaving.",
+    "extraExampleTranslation": "กรุณาอย่าลืมล็อกประตูหน้าก่อนออกจากบ้าน"
   },
   {
     "word": "forgive",
@@ -34413,7 +37000,10 @@ const wordsData = [
       "ฉัน",
       "ด้วย"
     ],
-    "syllables": "for·give"
+    "syllables": "for·give",
+    "extraExample": "It takes a lot of strength to forgive someone who hurt you.",
+    "extraExampleTranslation": "ต้องใช้ความเข้มแข็งอย่างมากในการให้อภัยคนที่ทำร้ายคุณ",
+    "usageTip": "ใช้คู่กับกรรมที่เป็นคน หรือใช้ forgive someone for something"
   },
   {
     "word": "fork",
@@ -34442,7 +37032,10 @@ const wordsData = [
       "ส้อม",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "Use a fork and knife to eat your steak politely.",
+    "extraExampleTranslation": "ใช้ส้อมและมีดรับประทานสเต็กอย่างสุภาพ",
+    "usageTip": "หมายถึงส้อมกินข้าว หรือทางแยกของถนนก็ได้"
   },
   {
     "word": "form",
@@ -34474,7 +37067,10 @@ const wordsData = [
       "กรอก",
       "ใบสมัคร",
       "นี้"
-    ]
+    ],
+    "extraExample": "Please fill out this application form with a black pen.",
+    "extraExampleTranslation": "กรุณากรอกแบบฟอร์มใบสมัครนี้ด้วยปากกาสีดำ",
+    "usageTip": "ใช้ได้ทั้งแบบฟอร์มเอกสาร รูปแบบ หรือกริยาที่แปลว่าก่อตัว"
   },
   {
     "word": "formal",
@@ -34511,7 +37107,10 @@ const wordsData = [
       "informal",
       "casual"
     ],
-    "syllables": "for·mal"
+    "syllables": "for·mal",
+    "extraExample": "You need to wear formal clothes for the job interview.",
+    "extraExampleTranslation": "คุณต้องสวมชุดที่เป็นทางการสำหรับการสัมภาษณ์งาน",
+    "usageTip": "ใช้กับเสื้อผ้า ภาษา หรือพิธีการที่ดูสุภาพและเป็นระเบียบ"
   },
   {
     "word": "former",
@@ -34548,7 +37147,10 @@ const wordsData = [
       "latter"
     ],
     "phoneticUK": "/fˈɔːmə(r)/",
-    "syllables": "for·mer"
+    "syllables": "for·mer",
+    "extraExample": "Her former teacher still remembers her very well.",
+    "extraExampleTranslation": "อดีตครูของเธอยังคงจำเธอได้ดีมาก",
+    "usageTip": "วางหน้าคำนามเพื่อบอกว่าเคยเป็นตำแหน่งนั้นในอดีต"
   },
   {
     "word": "formerly",
@@ -34581,7 +37183,10 @@ const wordsData = [
     "wordFamily": [
       "former"
     ],
-    "syllables": "for·mer·ly"
+    "syllables": "for·mer·ly",
+    "extraExample": "This building was formerly used as a local post office.",
+    "extraExampleTranslation": "อาคารนี้เดิมเคยใช้เป็นที่ทำการไปรษณีย์ท้องถิ่น",
+    "usageTip": "เป็นคำกริยาวิเศษณ์ วางหน้าคำกริยาเพื่อบอกว่าในอดีตเคยเป็นอย่างไร"
   },
   {
     "word": "formula",
@@ -34607,7 +37212,10 @@ const wordsData = [
       "expression",
       "recipe"
     ],
-    "syllables": "for·mu·la"
+    "syllables": "for·mu·la",
+    "extraExample": "The scientist discovered a new formula for the medicine.",
+    "extraExampleTranslation": "นักวิทยาศาสตร์ค้นพบสูตรใหม่สำหรับยานี้",
+    "usageTip": "ใช้กับสูตรคณิตศาสตร์ สูตรเคมี หรือสูตรลับความสำเร็จ"
   },
   {
     "word": "fortune",
@@ -34636,7 +37244,10 @@ const wordsData = [
       "จาก",
       "ธุรกิจ"
     ],
-    "syllables": "for·tune"
+    "syllables": "for·tune",
+    "extraExample": "She made a small fortune by selling handmade jewelry online.",
+    "extraExampleTranslation": "เธอสร้างรายได้ก้อนโตจากการขายเครื่องประดับทำมือออนไลน์",
+    "usageTip": "นอกจากแปลว่าโชคลาภ ยังหมายถึงทรัพย์สมบัติจำนวนมากได้ด้วย"
   },
   {
     "word": "forty",
@@ -34667,7 +37278,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: fortier",
       "ขั้นสุด: fortiest"
-    ]
+    ],
+    "extraExample": "My uncle is forty years old and runs every morning.",
+    "extraExampleTranslation": "คุณลุงของฉันอายุสี่สิบปีแล้วและวิ่งทุกเช้า",
+    "usageTip": "สะกดว่า forty ไม่มีตัว u ต่างจากคำว่า four"
   },
   {
     "word": "forward",
@@ -34697,7 +37311,10 @@ const wordsData = [
     "antonyms": [
       "backward"
     ],
-    "syllables": "for·ward"
+    "syllables": "for·ward",
+    "extraExample": "We are looking forward to seeing you at the party.",
+    "extraExampleTranslation": "พวกเราตั้งตารอที่จะได้พบคุณที่งานปาร์ตี้",
+    "usageTip": "สำนวน look forward to ตามด้วยคำนามหรือกริยาเติม -ing เสมอ"
   },
   {
     "word": "found",
@@ -34728,7 +37345,10 @@ const wordsData = [
       "ที่",
       "หลงทาง",
       "แล้ว"
-    ]
+    ],
+    "extraExample": "They plan to found a new charity for stray animals.",
+    "extraExampleTranslation": "พวกเขาวางแผนที่จะก่อตั้งองค์กรการกุศลใหม่สำหรับสัตว์จรจัด",
+    "usageTip": "เป็นกริยาช่อง 1 (founded, founded) แปลว่าก่อตั้ง ไม่ใช่ช่อง 2 ของ find"
   },
   {
     "word": "foundation",
@@ -34757,7 +37377,10 @@ const wordsData = [
       "ที่",
       "แข็งแรง"
     ],
-    "syllables": "foun·da·tion"
+    "syllables": "foun·da·tion",
+    "extraExample": "Good communication is the foundation of a strong relationship.",
+    "extraExampleTranslation": "การสื่อสารที่ดีคือรากฐานของความสัมพันธ์ที่มั่นคง",
+    "usageTip": "ใช้ได้ทั้งความหมายว่ารากฐาน ฐานราก และมูลนิธิ"
   },
   {
     "word": "four",
@@ -34841,7 +37464,10 @@ const wordsData = [
       "ที่สี่",
       "ใน",
       "แถว"
-    ]
+    ],
+    "extraExample": "Our office is on the fourth floor of this building.",
+    "extraExampleTranslation": "สำนักงานของเราอยู่บนชั้นสี่ของอาคารนี้",
+    "usageTip": "ใช้ fourth เพื่อบอกลำดับที่ 4 มักมี the นำหน้า เช่น the fourth floor"
   },
   {
     "word": "frame",
@@ -34863,7 +37489,10 @@ const wordsData = [
       "cold frame",
       "interlocking frame",
       "frame buildings"
-    ]
+    ],
+    "extraExample": "She put the family photo in a wooden frame.",
+    "extraExampleTranslation": "เธอใส่รูปครอบครัวลงในกรอบไม้",
+    "usageTip": "ใช้ frame เป็นคำนามหมายถึงกรอบรูปหรือโครงสร้าง"
   },
   {
     "word": "free",
@@ -34895,7 +37524,10 @@ const wordsData = [
     "antonyms": [
       "busy",
       "occupied"
-    ]
+    ],
+    "extraExample": "Are you free to meet for coffee tomorrow afternoon?",
+    "extraExampleTranslation": "พรุ่งนี้บ่ายคุณว่างไปเจอกันดื่มกาแฟไหม",
+    "usageTip": "ใช้ free ได้ทั้งความหมายว่า ว่าง ไม่มีค่าใช้จ่าย หรือเป็นอิสระ"
   },
   {
     "word": "freedom",
@@ -34922,7 +37554,10 @@ const wordsData = [
       "ใน",
       "เสรีภาพ"
     ],
-    "syllables": "free·dom"
+    "syllables": "free·dom",
+    "extraExample": "Everyone has the freedom to express their own opinions.",
+    "extraExampleTranslation": "ทุกคนมีเสรีภาพในการแสดงความคิดเห็นของตนเอง",
+    "usageTip": "freedom มักตามด้วย to + V.1 หรือ of + นาม เพื่อระบุเสรีภาพในเรื่องใด"
   },
   {
     "word": "freely",
@@ -34947,7 +37582,13 @@ const wordsData = [
     "wordFamily": [
       "free"
     ],
-    "syllables": "free·ly"
+    "syllables": "free·ly",
+    "extraExample": "You can speak freely here without worrying about anything.",
+    "extraExampleTranslation": "คุณสามารถพูดได้อย่างอิสระที่นี่โดยไม่ต้องกังวลอะไร",
+    "usageTip": "วาง freely หลังกริยาเพื่อขยายว่าทำสิ่งนั้นได้อย่างอิสระหรือไม่มีข้อจำกัด",
+    "collocations": [
+      "speak freely"
+    ]
   },
   {
     "word": "freeze",
@@ -34980,7 +37621,10 @@ const wordsData = [
     "forms": [
       "V2: froze",
       "V3: frozen"
-    ]
+    ],
+    "extraExample": "Please freeze the leftover soup so it stays fresh.",
+    "extraExampleTranslation": "กรุณาแช่แข็งซุปที่เหลือไว้เพื่อจะได้สดใหม่",
+    "usageTip": "ใช้ freeze กับอาหารหรือของเหลวที่ทำให้แข็งตัวด้วยความเย็นจัด"
   },
   {
     "word": "frequent",
@@ -35013,7 +37657,10 @@ const wordsData = [
     "antonyms": [
       "infrequent"
     ],
-    "syllables": "fre·quent"
+    "syllables": "fre·quent",
+    "extraExample": "He is a frequent visitor to the local library.",
+    "extraExampleTranslation": "เขาเป็นผู้มาเยือนห้องสมุดท้องถิ่นเป็นประจำ",
+    "usageTip": "วาง frequent หน้านามเพื่อบอกว่าเกิดขึ้นบ่อยหรือเป็นประจำ"
   },
   {
     "word": "frequently",
@@ -35048,7 +37695,10 @@ const wordsData = [
     "antonyms": [
       "infrequently"
     ],
-    "syllables": "fre·quen·tly"
+    "syllables": "fre·quen·tly",
+    "extraExample": "I frequently check my email during the workday.",
+    "extraExampleTranslation": "ฉันเช็กอีเมลบ่อยครั้งในระหว่างวันทำงาน",
+    "usageTip": "ใช้ frequently ขยายกริยาเพื่อบอกว่าทำสิ่งนั้นบ่อยๆ หรือหลายครั้ง"
   },
   {
     "word": "fresh",
@@ -35078,7 +37728,10 @@ const wordsData = [
     "antonyms": [
       "stale",
       "old"
-    ]
+    ],
+    "extraExample": "We bought some fresh vegetables from the morning market.",
+    "extraExampleTranslation": "เราซื้อผักสดจากตลาดเช้ามาบ้าง",
+    "usageTip": "ใช้ fresh กับอาหารที่เพิ่งเก็บหรือทำใหม่ รวมถึงอากาศที่สดชื่น"
   },
   {
     "word": "Friday",
@@ -35106,7 +37759,10 @@ const wordsData = [
     "synonyms": [
       "fri"
     ],
-    "syllables": "Fri·day"
+    "syllables": "Fri·day",
+    "extraExample": "We usually have a team meeting every Friday morning.",
+    "extraExampleTranslation": "เรามักจะมีการประชุมทีมทุกเช้าวันศุกร์",
+    "usageTip": "ใช้ตัวพิมพ์ใหญ่เสมอและมักใช้คู่กับ on เช่น on Friday"
   },
   {
     "word": "fridge",
@@ -35129,7 +37785,10 @@ const wordsData = [
       "put in the fridge",
       "fridge door",
       "keep in the fridge"
-    ]
+    ],
+    "extraExample": "There is some cold water inside the fridge.",
+    "extraExampleTranslation": "มีน้ำเย็นอยู่ข้างในตู้เย็น",
+    "usageTip": "fridge เป็นรูปย่อที่นิยมใช้ในภาษาพูดของ refrigerator"
   },
   {
     "word": "friend",
@@ -35164,7 +37823,10 @@ const wordsData = [
     ],
     "antonyms": [
       "enemy"
-    ]
+    ],
+    "extraExample": "My best friend lives in another city now.",
+    "extraExampleTranslation": "เพื่อนสนิทของฉันอาศัยอยู่ในอีกเมืองหนึ่งตอนนี้",
+    "usageTip": "ใช้ friend กับคำแสดงความเป็นเจ้าของหรือคุณศัพท์ เช่น close friend"
   },
   {
     "word": "friendly",
@@ -35199,7 +37861,10 @@ const wordsData = [
     "antonyms": [
       "unfriendly"
     ],
-    "syllables": "frien·dly"
+    "syllables": "frien·dly",
+    "extraExample": "The staff at that hotel are very friendly and helpful.",
+    "extraExampleTranslation": "พนักงานที่โรงแรมนั้นเป็นมิตรและช่วยเหลือดีมาก",
+    "usageTip": "ลงท้ายด้วย -ly แต่เป็นคำคุณศัพท์ ไม่ใช่กริยาวิเศษณ์ ใช้ขยายนามหรือหลัง is/am/are"
   },
   {
     "word": "friendship",
@@ -35231,7 +37896,10 @@ const wordsData = [
       "ฉัน",
       "มาก"
     ],
-    "syllables": "friend·ship"
+    "syllables": "friend·ship",
+    "extraExample": "Their friendship has lasted for more than ten years.",
+    "extraExampleTranslation": "มิตรภาพของพวกเขาคงอยู่มานานกว่าสิบปีแล้ว",
+    "usageTip": "ใช้ friendship เมื่อพูดถึงความสัมพันธ์ฉันเพื่อนมักใช้คู่กับ build หรือ lasting"
   },
   {
     "word": "frighten",
@@ -35262,7 +37930,10 @@ const wordsData = [
       "เด็กๆ",
       "ตกใจกลัว"
     ],
-    "syllables": "frigh·ten"
+    "syllables": "frigh·ten",
+    "extraExample": "Loud thunder can easily frighten small children.",
+    "extraExampleTranslation": "เสียงฟ้าร้องดังๆ สามารถทำให้เด็กเล็กตกใจกลัวได้ง่าย",
+    "usageTip": "ใช้ frighten + กรรม เพื่อบอกว่าทำให้ใครตกใจหรือกลัว"
   },
   {
     "word": "frightened",
@@ -35290,7 +37961,10 @@ const wordsData = [
       "ฉัน",
       "กลัว",
       "แมงมุม"
-    ]
+    ],
+    "extraExample": "The little dog looked frightened during the fireworks.",
+    "extraExampleTranslation": "สุนัขตัวน้อยดูตกใจกลัวระหว่างที่มีดอกไม้ไฟ",
+    "usageTip": "ใช้ frightened (เติม -ed) เพื่อบอกความรู้สึกของคนหรือสัตว์ที่กำลังกลัว มักตามด้วย of"
   },
   {
     "word": "frightening",
@@ -35319,7 +37993,10 @@ const wordsData = [
       "น่ากลัว",
       "มาก"
     ],
-    "syllables": "frigh·te·ning"
+    "syllables": "frigh·te·ning",
+    "extraExample": "Walking alone in the dark alley was a frightening experience.",
+    "extraExampleTranslation": "การเดินคนเดียวในซอยมืดเป็นประสบการณ์ที่น่ากลัว",
+    "usageTip": "ใช้ frightening (เติม -ing) เพื่ออธิบายสิ่งที่ทำให้เกิดความกลัว"
   },
   {
     "word": "from",
@@ -35343,7 +38020,10 @@ const wordsData = [
       "มาจาก",
       "ประเทศ",
       "ไทย"
-    ]
+    ],
+    "extraExample": "I received a lovely postcard from my cousin today.",
+    "extraExampleTranslation": "ฉันได้รับโปสการ์ดน่ารักๆ จากลูกพี่ลูกน้องวันนี้",
+    "usageTip": "ใช้ from เพื่อบอกจุดเริ่มต้น แหล่งที่มา หรือผู้ส่ง"
   },
   {
     "word": "front",
@@ -35370,7 +38050,10 @@ const wordsData = [
     ],
     "antonyms": [
       "back"
-    ]
+    ],
+    "extraExample": "Please wait for me in front of the main entrance.",
+    "extraExampleTranslation": "กรุณารอฉันที่ด้านหน้าทางเข้าหลัก",
+    "usageTip": "ใช้ front ในสำนวน in front of เพื่อบอกตำแหน่งด้านหน้า"
   },
   {
     "word": "frozen",
@@ -35401,7 +38084,10 @@ const wordsData = [
       "unfrozen"
     ],
     "phoneticUK": "/frˈəʊzən/",
-    "syllables": "fro·zen"
+    "syllables": "fro·zen",
+    "extraExample": "She bought a bag of frozen peas for dinner.",
+    "extraExampleTranslation": "เธอซื้อถั่วลันเตาแช่แข็งหนึ่งถุงสำหรับมื้อเย็น",
+    "usageTip": "ใช้ frozen หน้านามเพื่อบอกว่าอาหารหรือสิ่งนั้นถูกแช่แข็งไว้"
   },
   {
     "word": "fruit",
@@ -35477,7 +38163,10 @@ const wordsData = [
       "น้ำมัน",
       "หมด",
       "แล้ว"
-    ]
+    ],
+    "extraExample": "We need to stop at the gas station because the car is running low on fuel.",
+    "extraExampleTranslation": "เราต้องแวะปั๊มน้ำมันเพราะรถกำลังจะหมดเชื้อเพลิงแล้ว",
+    "usageTip": "ใช้ได้ทั้งความหมายตรง (น้ำมัน/เชื้อเพลิง) และเปรียบเทียบ (สิ่งที่กระตุ้นให้เกิดบางอย่าง เช่น fuel the debate)"
   },
   {
     "word": "full",
@@ -35509,7 +38198,10 @@ const wordsData = [
     ],
     "antonyms": [
       "empty"
-    ]
+    ],
+    "extraExample": "The restaurant was completely full, so we had to wait for a table.",
+    "extraExampleTranslation": "ร้านอาหารเต็มหมดเลย เราจึงต้องรอโต๊ะ",
+    "usageTip": "มักใช้คู่กับ of (full of...) เพื่อบอกว่าเต็มไปด้วยสิ่งใดสิ่งหนึ่ง"
   },
   {
     "word": "fully",
@@ -35541,7 +38233,10 @@ const wordsData = [
       "อย่าง",
       "เต็มที่"
     ],
-    "syllables": "ful·ly"
+    "syllables": "ful·ly",
+    "extraExample": "I fully understand your concern and will look into the matter right away.",
+    "extraExampleTranslation": "ฉันเข้าใจความกังวลของคุณอย่างเต็มที่และจะตรวจสอบเรื่องนี้ทันที",
+    "usageTip": "วางไว้หน้าคำกริยาแท้หรือหลังกริยาช่วยเพื่อเน้นความสมบูรณ์ (100%)"
   },
   {
     "word": "fun",
@@ -35578,7 +38273,9 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "We had so much fun at the amusement park yesterday.",
+    "extraExampleTranslation": "เมื่อวานเราสนุกกันมากที่สวนสนุก"
   },
   {
     "word": "function",
@@ -35607,7 +38304,10 @@ const wordsData = [
       "ทำ",
       "อะไร"
     ],
-    "syllables": "fun·ction"
+    "syllables": "fun·ction",
+    "extraExample": "The main function of the heart is to pump blood through the body.",
+    "extraExampleTranslation": "หน้าที่หลักของหัวใจคือการสูบฉีดเลือดไปเลี้ยงทั่วร่างกาย",
+    "usageTip": "นอกจากแปลว่าหน้าที่/การทำงานแล้ว ยังใช้หมายถึงงานเลี้ยงหรือพิธีการที่เป็นทางการได้ด้วย"
   },
   {
     "word": "fund",
@@ -35635,7 +38335,10 @@ const wordsData = [
       "ต้องการ",
       "เงินทุน",
       "เพิ่ม"
-    ]
+    ],
+    "extraExample": "The school raised money to create a scholarship fund for students.",
+    "extraExampleTranslation": "โรงเรียนระดมทุนเพื่อสร้างกองทุนทุนการศึกษาสำหรับนักเรียน",
+    "usageTip": "รูปเอกพจน์มักหมายถึงกองทุนเฉพาะกิจ ส่วนรูปพหูพจน์ (funds) หมายถึงเงินทุนหรือเงินสดที่มีอยู่"
   },
   {
     "word": "fundamental",
@@ -35662,7 +38365,10 @@ const wordsData = [
       "สิทธิมนุษยชน",
       "ขั้นพื้นฐาน"
     ],
-    "syllables": "fun·da·men·tal"
+    "syllables": "fun·da·men·tal",
+    "extraExample": "Learning the alphabet is a fundamental step in reading any language.",
+    "extraExampleTranslation": "การเรียนรู้ตัวอักษรเป็นขั้นตอนพื้นฐานที่สำคัญในการอ่านทุกภาษา",
+    "usageTip": "ใช้ขยายสิ่งที่เป็นรากฐานสำคัญที่สุด ขาดไม่ได้"
   },
   {
     "word": "funeral",
@@ -35689,7 +38395,10 @@ const wordsData = [
       "funeral parlor",
       "funeral home"
     ],
-    "syllables": "fu·ne·ral"
+    "syllables": "fu·ne·ral",
+    "extraExample": "Many friends and relatives attended the funeral service to pay their respects.",
+    "extraExampleTranslation": "เพื่อนและญาติจำนวนมากมาร่วมพิธีศพเพื่อแสดงความเคารพ",
+    "usageTip": "ใช้เป็นคำคุณศัพท์หน้าคำนาม เช่น funeral service หรือเป็นคำนามได้เช่นกัน"
   },
   {
     "word": "funny",
@@ -35729,7 +38438,9 @@ const wordsData = [
       "ขั้นสุด: funniest"
     ],
     "usageTip": "funny = ตลก ชวนหัวเราะ; ถ้าสนุกสนานเพลิดเพลินใช้ fun",
-    "syllables": "fun·ny"
+    "syllables": "fun·ny",
+    "extraExample": "That movie was so funny that I could not stop laughing.",
+    "extraExampleTranslation": "หนังเรื่องนั้นตลกมากจนฉันหยุดหัวเราะไม่ได้เลย"
   },
   {
     "word": "fur",
@@ -35757,7 +38468,10 @@ const wordsData = [
       "ขาว",
       "นุ่ม"
     ],
-    "phoneticUK": "/fˈɜː/"
+    "phoneticUK": "/fˈɜː/",
+    "extraExample": "The cat has soft white fur that needs brushing every day.",
+    "extraExampleTranslation": "แมวตัวนี้มีขนสีขาวนุ่มที่ต้องแปรงทุกวัน",
+    "usageTip": "ใช้เรียกขนสัตว์ที่ขึ้นปกคลุมตัวสัตว์เลี้ยงลูกด้วยนม (ไม่ใช่ขนมนุษย์ที่เรียก hair)"
   },
   {
     "word": "furniture",
@@ -35791,7 +38505,9 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "They bought some new furniture for their living room.",
+    "extraExampleTranslation": "พวกเขาซื้อเฟอร์นิเจอร์ใหม่สำหรับห้องนั่งเล่น"
   },
   {
     "word": "further",
@@ -35821,7 +38537,10 @@ const wordsData = [
       "เพิ่มเติม"
     ],
     "phoneticUK": "/fˈɜːðə(r)/",
-    "syllables": "fur·ther"
+    "syllables": "fur·ther",
+    "extraExample": "She decided to further her education by taking a master's degree.",
+    "extraExampleTranslation": "เธอตัดสินใจศึกษาต่อในระดับปริญญาโท",
+    "usageTip": "เมื่อใช้เป็นคำกริยา จะแปลว่าส่งเสริมหรือทำให้ก้าวหน้าต่อไป"
   },
   {
     "word": "future",
@@ -35853,7 +38572,10 @@ const wordsData = [
       "past"
     ],
     "phoneticUK": "/fjˈuːtʃə(r)/",
-    "syllables": "fu·ture"
+    "syllables": "fu·ture",
+    "extraExample": "No one can predict what will happen in the future.",
+    "extraExampleTranslation": "ไม่มีใครสามารถทำนายได้ว่าจะเกิดอะไรขึ้นในอนาคต",
+    "usageTip": "มักใช้ในวลี in the future (ในอนาคต) หรือ near future (อนาคตอันใกล้)"
   },
   {
     "word": "gain",
@@ -35883,7 +38605,10 @@ const wordsData = [
     ],
     "antonyms": [
       "lose"
-    ]
+    ],
+    "extraExample": "You can gain valuable experience by working as a volunteer.",
+    "extraExampleTranslation": "คุณสามารถได้รับประสบการณ์อันมีค่าจากการทำงานเป็นอาสาสมัคร",
+    "usageTip": "นิยมใช้กับสิ่งที่เป็นนามธรรมหรือปริมาณที่เพิ่มขึ้น เช่น ประสบการณ์ น้ำหนัก ความเร็ว"
   },
   {
     "word": "gallon",
@@ -35910,7 +38635,10 @@ const wordsData = [
     "collocations": [
       "per gallon"
     ],
-    "syllables": "gal·lon"
+    "syllables": "gal·lon",
+    "extraExample": "We need to buy a gallon of milk for the weekend.",
+    "extraExampleTranslation": "เราต้องซื้อนมหนึ่งแกลลอนสำหรับวันหยุดสุดสัปดาห์",
+    "usageTip": "เป็นหน่วยตวงของเหลว (1 แกลลอนสหรัฐฯ ประมาณ 3.785 ลิตร)"
   },
   {
     "word": "gamble",
@@ -35947,7 +38675,10 @@ const wordsData = [
     "forms": [
       "V2/V3: gambled",
       "V-ing: gambling"
-    ]
+    ],
+    "extraExample": "He likes to gamble on horse races every Sunday.",
+    "extraExampleTranslation": "เขาชอบพนันแข่งม้าทุกวันอาทิตย์",
+    "usageTip": "ใช้เป็นกริยาแปลว่าเล่นการพนัน หรือเสี่ยงโชคทำบางสิ่งโดยไม่รู้ผลลัพธ์"
   },
   {
     "word": "gambling",
@@ -35978,7 +38709,10 @@ const wordsData = [
       "gambling addiction",
       "online gambling",
       "illegal gambling"
-    ]
+    ],
+    "extraExample": "Gambling can easily lead to serious financial problems.",
+    "extraExampleTranslation": "การเล่นการพนันสามารถนำไปสู่ปัญหาทางการเงินที่ร้ายแรงได้ง่าย",
+    "usageTip": "เป็นรูปกริยาเติม -ing (หรือคำนาม) ที่พูดถึงการเล่นการพนันโดยทั่วไป"
   },
   {
     "word": "game",
@@ -36005,7 +38739,10 @@ const wordsData = [
       "ที่",
       "สนุก",
       "มาก"
-    ]
+    ],
+    "extraExample": "Let's play a board game together tonight.",
+    "extraExampleTranslation": "คืนนี้มาเล่นบอร์ดเกมด้วยกันเถอะ",
+    "usageTip": "ใช้กับกริยา play (play a game) และใช้เรียกการแข่งขันกีฬาได้ด้วย"
   },
   {
     "word": "gap",
@@ -36031,7 +38768,10 @@ const wordsData = [
       "ช่องว่าง",
       "ที่",
       "รั้ว"
-    ]
+    ],
+    "extraExample": "There is a huge gap between the rich and the poor in this city.",
+    "extraExampleTranslation": "มีช่องว่างขนาดใหญ่ระหว่างคนรวยกับคนจนในเมืองนี้",
+    "usageTip": "ใช้ได้ทั้งช่องว่างทางกายภาพและช่องว่างความแตกต่าง เช่น วัย รายได้ ความคิด"
   },
   {
     "word": "garage",
@@ -36058,7 +38798,10 @@ const wordsData = [
       "โรงรถ"
     ],
     "phoneticUK": "/ˈɡærɑːʒ/",
-    "syllables": "ga·rage"
+    "syllables": "ga·rage",
+    "extraExample": "Please park the car inside the garage before it starts raining.",
+    "extraExampleTranslation": "กรุณาจอดรถไว้ในโรงรถก่อนที่ฝนจะตก",
+    "usageTip": "นอกจากโรงรถที่บ้านแล้ว ในภาษาอังกฤษแบบบริติชยังใช้หมายถึงอู่ซ่อมรถหรือปั๊มน้ำมันได้ด้วย"
   },
   {
     "word": "garbage",
@@ -36147,7 +38890,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: gases"
-    ]
+    ],
+    "extraExample": "We need to stop for gas before we get on the highway.",
+    "extraExampleTranslation": "เราต้องแวะเติมน้ำมันก่อนขึ้นทางด่วน",
+    "usageTip": "ในภาษาอังกฤษแบบอเมริกัน gas มักใช้หมายถึงน้ำมันรถ ส่วนแบบอังกฤษใช้ petrol"
   },
   {
     "word": "gasoline",
@@ -36175,7 +38921,9 @@ const wordsData = [
       "gasoline price"
     ],
     "syllables": "ga·so·line",
-    "usageTip": "US ใช้ gas / gasoline (น้ำมันเบนซิน) | UK ใช้ petrol"
+    "usageTip": "US ใช้ gas / gasoline (น้ำมันเบนซิน) | UK ใช้ petrol",
+    "extraExample": "The price of gasoline has risen sharply this month.",
+    "extraExampleTranslation": "ราคาน้ำมันเบนซินพุ่งสูงขึ้นอย่างมากในเดือนนี้"
   },
   {
     "word": "gate",
@@ -36199,7 +38947,10 @@ const wordsData = [
       "โปรด",
       "ปิด",
       "ประตูรั้ว"
-    ]
+    ],
+    "extraExample": "Please close the garden gate so the dog stays inside.",
+    "extraExampleTranslation": "กรุณาปิดประตูรั้วสวนเพื่อไม่ให้สุนัขวิ่งออกไปข้างนอก",
+    "usageTip": "ใช้กับประตูรั้ว ประตูทางเข้าขนาดใหญ่ หรือประตูขึ้นเครื่องบิน (boarding gate)"
   },
   {
     "word": "gather",
@@ -36232,7 +38983,10 @@ const wordsData = [
       "spread"
     ],
     "phoneticUK": "/ɡˈæðə(r)/",
-    "syllables": "ga·ther"
+    "syllables": "ga·ther",
+    "extraExample": "The students began to gather in the courtyard after class.",
+    "extraExampleTranslation": "นักเรียนเริ่มมารวมตัวกันที่ลานกลางแจ้งหลังเลิกเรียน",
+    "usageTip": "ใช้ได้ทั้งการรวมกลุ่มของผู้คนและการรวบรวมข้อมูลหรือสิ่งของ"
   },
   {
     "word": "gear",
@@ -36261,7 +39015,10 @@ const wordsData = [
       "ให้",
       "รถ"
     ],
-    "phoneticUK": "/ɡˈɪ/"
+    "phoneticUK": "/ɡˈɪ/",
+    "extraExample": "Make sure you shift into a lower gear when driving up a steep hill.",
+    "extraExampleTranslation": "อย่าลืมเปลี่ยนเป็นเกียร์ต่ำเวลาขับขึ้นเนินชัน",
+    "usageTip": "นอกจากแปลว่าเฟืองหรือเกียร์รถ ยังหมายถึงอุปกรณ์เฉพาะทาง เช่น camping gear"
   },
   {
     "word": "general",
@@ -36295,7 +39052,10 @@ const wordsData = [
     "antonyms": [
       "specific"
     ],
-    "syllables": "ge·ne·ral"
+    "syllables": "ge·ne·ral",
+    "extraExample": "The general opinion is that the new policy will help everyone.",
+    "extraExampleTranslation": "ความเห็นโดยทั่วไปคือมาตรการใหม่นี้จะช่วยทุกคนได้",
+    "usageTip": "วางหน้าคำนามเพื่อบอกว่าเป็นภาพรวมหรือทั่วไป หรือใช้ในวลี in general"
   },
   {
     "word": "generally",
@@ -36330,7 +39090,10 @@ const wordsData = [
     "antonyms": [
       "specifically"
     ],
-    "syllables": "ge·ne·ral·ly"
+    "syllables": "ge·ne·ral·ly",
+    "extraExample": "People generally prefer to stay indoors during heavy rain.",
+    "extraExampleTranslation": "โดยทั่วไปผู้คนมักชอบอยู่แต่ในบ้านเวลาฝนตกหนัก",
+    "usageTip": "มักวางหน้ากริยาแท้หรือหลังกริยาช่วย เพื่อบอกสิ่งที่เกิดขึ้นเป็นส่วนใหญ่"
   },
   {
     "word": "generate",
@@ -36363,7 +39126,10 @@ const wordsData = [
     "forms": [
       "V2/V3: generated",
       "V-ing: generating"
-    ]
+    ],
+    "extraExample": "Solar panels generate electricity from sunlight.",
+    "extraExampleTranslation": "แผงโซลาร์เซลล์ผลิตไฟฟ้าจากแสงอาทิตย์",
+    "usageTip": "นิยมใช้กับการสร้างพลังงาน ความร้อน รายได้ หรือความคิดใหม่ๆ"
   },
   {
     "word": "generation",
@@ -36395,7 +39161,10 @@ const wordsData = [
       "ออก",
       "ไป"
     ],
-    "syllables": "ge·ne·ra·tion"
+    "syllables": "ge·ne·ra·tion",
+    "extraExample": "This new generation of smartphones has much better cameras.",
+    "extraExampleTranslation": "สมาร์ตโฟนรุ่นใหม่นี้มีกล้องที่ดีกว่าเดิมมาก",
+    "usageTip": "ใช้ได้ทั้งรุ่นของคนในครอบครัว/ยุคสมัย และรุ่นของเทคโนโลยี"
   },
   {
     "word": "generous",
@@ -36425,7 +39194,10 @@ const wordsData = [
       "selfish",
       "greedy"
     ],
-    "syllables": "ge·ne·rous"
+    "syllables": "ge·ne·rous",
+    "extraExample": "She was very generous with her time and helped us all.",
+    "extraExampleTranslation": "เธอใจกว้างและสละเวลามาช่วยพวกเราทุกคนมาก",
+    "usageTip": "ใช้ชมคนที่มีน้ำใจ แบ่งปันเงิน เวลา หรือความช่วยเหลืออย่างเต็มใจ"
   },
   {
     "word": "gentle",
@@ -36459,7 +39231,10 @@ const wordsData = [
     "wordFamily": [
       "gently"
     ],
-    "syllables": "gen·tle"
+    "syllables": "gen·tle",
+    "extraExample": "The nurse spoke in a gentle voice to calm the child.",
+    "extraExampleTranslation": "พยาบาลพูดด้วยน้ำเสียงอ่อนโยนเพื่อให้เด็กสงบลง",
+    "usageTip": "ใช้บรรยายน้ำเสียง สัมผัส ลม หรือนิสัยที่นุ่มนวลไม่รุนแรง"
   },
   {
     "word": "gentleman",
@@ -36490,7 +39265,10 @@ const wordsData = [
     "forms": [
       "พหูพจน์: gentlemen"
     ],
-    "syllables": "gen·tle·man"
+    "syllables": "gen·tle·man",
+    "extraExample": "An older gentleman offered me his seat on the train.",
+    "extraExampleTranslation": "สุภาพบุรุษสูงวัยคนหนึ่งสละที่นั่งบนรถไฟให้ฉัน",
+    "usageTip": "เป็นคำสุภาพใช้เรียกผู้ชาย หรือใช้ชมผู้ชายที่มีมารยาทดีและให้เกียรติผู้อื่น"
   },
   {
     "word": "gently",
@@ -36518,7 +39296,10 @@ const wordsData = [
     "synonyms": [
       "mildly"
     ],
-    "syllables": "gen·tly"
+    "syllables": "gen·tly",
+    "extraExample": "He gently placed the sleeping baby into the crib.",
+    "extraExampleTranslation": "เขาค่อยๆ วางทารกที่หลับอยู่ลงในเปลอย่างเบามือ",
+    "usageTip": "ใช้ขยายกริยาเพื่อบอกว่าทำอย่างเบามือ นุ่มนวล หรือไม่รีบร้อน"
   },
   {
     "word": "genuine",
@@ -36552,7 +39333,9 @@ const wordsData = [
     ],
     "register": "ทั่วไป / ธุรกิจ",
     "usageTip": "อ่านว่า /ˈdʒenjuɪn/ (เจ็น-ยู-อิน) ลงท้ายเสียงสั้น",
-    "syllables": "ge·nui·ne"
+    "syllables": "ge·nui·ne",
+    "extraExample": "She showed genuine interest in learning about our culture.",
+    "extraExampleTranslation": "เธอแสดงความสนใจอย่างแท้จริงในการเรียนรู้วัฒนธรรมของเรา"
   },
   {
     "word": "geography",
@@ -36583,7 +39366,10 @@ const wordsData = [
     "forms": [
       "พหูพจน์: geographies"
     ],
-    "rootBreakdown": "geo- (โลก/แผ่นดิน) + graph (วาด/เขียน) → ภูมิศาสตร์"
+    "rootBreakdown": "geo- (โลก/แผ่นดิน) + graph (วาด/เขียน) → ภูมิศาสตร์",
+    "extraExample": "We are studying the geography of Southeast Asia this term.",
+    "extraExampleTranslation": "เทอมนี้พวกเรากำลังเรียนเรื่องภูมิศาสตร์ของเอเชียตะวันออกเฉียงใต้",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อหมายถึงวิชาภูมิศาสตร์"
   },
   {
     "word": "get",
@@ -36619,7 +39405,10 @@ const wordsData = [
       "get along with (เข้ากันได้ดีกับ)",
       "get over (ทำใจ/หายจากอาการ)",
       "get used to + V-ing (เริ่มชินกับ)"
-    ]
+    ],
+    "extraExample": "Did you get the message I sent you this morning?",
+    "extraExampleTranslation": "คุณได้รับข้อความที่ฉันส่งให้เมื่อเช้านี้ไหม",
+    "usageTip": "เป็นกริยาอเนกประสงค์ ใช้ได้ทั้งแปลว่าได้รับ ซื้อ ไปถึง หรือกลายเป็น"
   },
   {
     "word": "giant",
@@ -36647,7 +39436,10 @@ const wordsData = [
       "ยักษ์",
       "ที่",
       "เป็นมิตร"
-    ]
+    ],
+    "extraExample": "There is a giant statue of a lion at the park entrance.",
+    "extraExampleTranslation": "มีรูปปั้นสิงโตขนาดยักษ์อยู่ที่ทางเข้าสวนสาธารณะ",
+    "usageTip": "ใช้เป็นคำนามแปลว่ายักษ์ หรือเป็นคำคุณศัพท์แปลว่าใหญ่โตมาก"
   },
   {
     "word": "gift",
@@ -36674,7 +39466,10 @@ const wordsData = [
       "ของขวัญ",
       "สำหรับ",
       "คุณ"
-    ]
+    ],
+    "extraExample": "Thank you so much for the lovely birthday gift.",
+    "extraExampleTranslation": "ขอบคุณมากสำหรับของขวัญวันเกิดที่น่ารักชิ้นนี้",
+    "usageTip": "นอกจากของขวัญ ยังใช้หมายถึงพรสวรรค์ติดตัว เช่น a gift for music"
   },
   {
     "word": "girl",
@@ -36705,7 +39500,10 @@ const wordsData = [
     "antonyms": [
       "boy"
     ],
-    "phoneticUK": "/ɡˈɜːl/"
+    "phoneticUK": "/ɡˈɜːl/",
+    "extraExample": "The little girl was excited to see the dolphins at the aquarium.",
+    "extraExampleTranslation": "เด็กหญิงตัวน้อยตื่นเต้นมากที่ได้เห็นโลมาที่พิพิธภัณฑ์สัตว์น้ำ",
+    "usageTip": "ใช้เรียกเด็กผู้หญิงหรือหญิงสาวอายุน้อย ไม่ควรใช้เรียกผู้หญิงวัยทำงานอย่างไม่เป็นทางการ"
   },
   {
     "word": "girlfriend",
@@ -36737,7 +39535,10 @@ const wordsData = [
       "เขา"
     ],
     "phoneticUK": "/ɡˈɜːlfrˌend/",
-    "syllables": "girl·friend"
+    "syllables": "girl·friend",
+    "extraExample": "He invited his girlfriend to have dinner with his family.",
+    "extraExampleTranslation": "เขาชวนแฟนสาวมากินมื้อค่ำกับครอบครัวของเขา",
+    "usageTip": "มักหมายถึงแฟนสาว แต่บางครั้งผู้หญิงก็ใช้เรียกเพื่อนสนิทผู้หญิงได้เช่นกัน"
   },
   {
     "word": "give",
@@ -36838,7 +39639,10 @@ const wordsData = [
     "phoneticUK": "/ɡlˈɑːs/",
     "forms": [
       "พหูพจน์: glasses"
-    ]
+    ],
+    "extraExample": "Please pour some cold water into this glass.",
+    "extraExampleTranslation": "กรุณารินน้ำเย็นใส่แก้วใบนี้หน่อย",
+    "usageTip": "ใช้ได้ทั้งแก้วน้ำ (a glass of water) และกระจก (broken glass) ถ้าเป็นแว่นตาจะใช้รูปพหูพจน์ glasses"
   },
   {
     "word": "global",
@@ -36870,7 +39674,10 @@ const wordsData = [
       "local"
     ],
     "phoneticUK": "/ɡlˈəʊbəl/",
-    "syllables": "glo·bal"
+    "syllables": "glo·bal",
+    "extraExample": "Climate change is a serious global issue that affects everyone.",
+    "extraExampleTranslation": "การเปลี่ยนแปลงสภาพภูมิอากาศเป็นปัญหาระดับโลกที่ร้ายแรงซึ่งส่งผลกระทบต่อทุกคน",
+    "usageTip": "ใช้ขยายคำนามเพื่อสื่อถึงระดับโลกหรือครอบคลุมทั่วโลก เช่น global market หรือ global warming"
   },
   {
     "word": "glove",
@@ -36898,7 +39705,10 @@ const wordsData = [
       "ไป",
       "หนึ่ง",
       "ข้าง"
-    ]
+    ],
+    "extraExample": "She put on a warm glove before stepping out into the snow.",
+    "extraExampleTranslation": "เธอสวมถุงมืออุ่นๆ ก่อนก้าวออกไปในหิมะ",
+    "usageTip": "มักใช้เป็นคู่ (a pair of gloves) แต่ใช้รูปเอกพจน์เมื่อพูดถึงข้างเดียว"
   },
   {
     "word": "glue",
@@ -36924,7 +39734,10 @@ const wordsData = [
       "กาว",
       "ติด",
       "กระดาษ"
-    ]
+    ],
+    "extraExample": "Use strong glue to fix the broken wooden chair.",
+    "extraExampleTranslation": "ใช้กาวติดแน่นซ่อมเก้าอี้ไม้ที่หัก",
+    "usageTip": "เป็นได้ทั้งคำนามและคำกริยา (glue the pieces together) ถ้าเป็นกาวแท่งเรียก glue stick"
   },
   {
     "word": "go",
@@ -36963,7 +39776,10 @@ const wordsData = [
       "go through (ผ่านช่วงยากลำบาก/ตรวจดู)",
       "go ahead (เชิญเลย/เดินหน้าต่อ)",
       "go wrong (ผิดพลาด)"
-    ]
+    ],
+    "extraExample": "I usually go to work by train every morning.",
+    "extraExampleTranslation": "ฉันมักจะไปทำงานโดยรถไฟทุกเช้า",
+    "usageTip": "ใช้คู่กับ to เมื่อระบุสถานที่ (go to school) แต่ไม่ต้องมี to หน้า home, there, here"
   },
   {
     "word": "goal",
@@ -36995,7 +39811,10 @@ const wordsData = [
     "wordFamily": [
       "go"
     ],
-    "phoneticUK": "/ɡˈəʊl/"
+    "phoneticUK": "/ɡˈəʊl/",
+    "extraExample": "Our main goal is to finish the project before Friday.",
+    "extraExampleTranslation": "เป้าหมายหลักของเราคือทำโปรเจกต์ให้เสร็จก่อนวันศุกร์",
+    "usageTip": "ใช้ได้ทั้งเป้าหมายในชีวิต/การทำงาน (achieve a goal) และประตูในกีฬาฟุตบอล (score a goal)"
   },
   {
     "word": "god",
@@ -37023,7 +39842,10 @@ const wordsData = [
       "พระเจ้า",
       "ไหม"
     ],
-    "phoneticUK": "/ɡˈɒd/"
+    "phoneticUK": "/ɡˈɒd/",
+    "extraExample": "In ancient myths, people prayed to a god for rain.",
+    "extraExampleTranslation": "ในตำนานโบราณ ผู้คนสวดอ้อนวอนขอฝนต่อพระเจ้า",
+    "usageTip": "ใช้ตัวพิมพ์ใหญ่ God เมื่อหมายถึงพระเจ้าองค์เดียวในศาสนา และตัวพิมพ์เล็กเมื่อหมายถึงเทพเจ้าทั่วไป"
   },
   {
     "word": "gold",
@@ -37053,7 +39875,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "He won a gold medal at the national swimming competition.",
+    "extraExampleTranslation": "เขาคว้าเหรียญทองในการแข่งขันว่ายน้ำระดับชาติ",
+    "usageTip": "ใช้เป็นคำนามหมายถึงโลหะทองคำ และใช้ขยายคำนามอื่นได้ เช่น gold ring, gold medal"
   },
   {
     "word": "good",
@@ -37092,7 +39917,9 @@ const wordsData = [
       "ขั้นสุด: best"
     ],
     "usageTip": "good (Adj) ขยายคำนาม (a good singer); ถ้าขยายกริยาต้องใช้ well (She sings well.)",
-    "grammarPattern": "be good at + N / V-ing (เก่งด้าน...) vs good for (ดีต่อ...)"
+    "grammarPattern": "be good at + N / V-ing (เก่งด้าน...) vs good for (ดีต่อ...)",
+    "extraExample": "Reading books is a good habit for improving your vocabulary.",
+    "extraExampleTranslation": "การอ่านหนังสือเป็นนิสัยที่ดีในการพัฒนาคำศัพท์ของคุณ"
   },
   {
     "word": "goodbye",
@@ -37120,7 +39947,10 @@ const wordsData = [
       "ของ",
       "ฉัน"
     ],
-    "syllables": "good·bye"
+    "syllables": "good·bye",
+    "extraExample": "We waved goodbye to our friends at the airport.",
+    "extraExampleTranslation": "พวกเราโบกมือลาเพื่อนๆ ที่สนามบิน",
+    "usageTip": "ใช้ได้ทั้งการกล่าวลาโดยตรง (say goodbye) หรือใช้เป็นคำนาม (a sad goodbye)"
   },
   {
     "word": "goods",
@@ -37153,7 +39983,10 @@ const wordsData = [
     "forms": [
       "[Plural] ใช้รูปพหูพจน์เสมอ"
     ],
-    "grammarPattern": "[Plural] ใช้รูปพหูพจน์กับกริยาพหูพจน์เสมอ"
+    "grammarPattern": "[Plural] ใช้รูปพหูพจน์กับกริยาพหูพจน์เสมอ",
+    "extraExample": "The truck was carrying fresh goods to the local market.",
+    "extraExampleTranslation": "รถบรรทุกกำลังขนส่งสินค้าสดใหม่ไปยังตลาดท้องถิ่น",
+    "usageTip": "มักใช้ในรูปพหูพจน์เสมอเมื่อหมายถึงสินค้าหรือสิ่งของที่ซื้อขายกัน"
   },
   {
     "word": "govern",
@@ -37184,7 +40017,10 @@ const wordsData = [
       "ปกครอง",
       "ประเทศ"
     ],
-    "syllables": "go·vern"
+    "syllables": "go·vern",
+    "extraExample": "Fair laws should govern how companies treat their workers.",
+    "extraExampleTranslation": "กฎหมายที่เป็นธรรมควรใช้ปกครองและกำกับดูแลวิธีที่บริษัทปฏิบัติต่อพนักงาน",
+    "usageTip": "ใช้กับรัฐบาล กฎหมาย หรือหลักการที่ควบคุมดูแลประเทศหรือองค์กร"
   },
   {
     "word": "government",
@@ -37215,7 +40051,10 @@ const wordsData = [
       "ออกกฎหมาย"
     ],
     "syllables": "go·ver·nment",
-    "rootBreakdown": "govern + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "govern + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "The government announced a new plan to support small businesses.",
+    "extraExampleTranslation": "รัฐบาลได้ประกาศแผนใหม่เพื่อสนับสนุนธุรกิจขนาดเล็ก",
+    "usageTip": "ใช้ได้ทั้งในฐานะเอกพจน์และพหูพจน์ขึ้นอยู่กับบริบท (เช่น The government has/have)"
   },
   {
     "word": "governor",
@@ -37245,7 +40084,10 @@ const wordsData = [
       "กล่าวสุนทรพจน์"
     ],
     "phoneticUK": "/ɡˈʌvənə(r)/",
-    "syllables": "go·ver·nor"
+    "syllables": "go·ver·nor",
+    "extraExample": "The governor visited the flooded areas to check on the residents.",
+    "extraExampleTranslation": "ผู้ว่าราชการจังหวัดลงพื้นที่น้ำท่วมเพื่อตรวจเยี่ยมประชาชน",
+    "usageTip": "ใช้เรียกผู้ว่าราชการจังหวัดหรือผู้ว่าการรัฐ รวมถึงผู้ว่าการธนาคารกลาง"
   },
   {
     "word": "grab",
@@ -37278,7 +40120,10 @@ const wordsData = [
     "forms": [
       "V2/V3: grabbed",
       "V-ing: grabbing"
-    ]
+    ],
+    "extraExample": "Let's grab a quick lunch before the afternoon meeting.",
+    "extraExampleTranslation": "ไปหาอะไรกินมื้อเที่ยงแบบเร็วๆ ก่อนประชุมบ่ายกันเถอะ",
+    "usageTip": "นอกจากแปลว่าคว้าหรือจับอย่างรวดเร็วแล้ว ยังนิยมใช้ในภาษาพูดหมายถึง รีบไปหา/ซื้อ (grab a coffee)"
   },
   {
     "word": "grade",
@@ -37310,7 +40155,10 @@ const wordsData = [
       "ใน",
       "วิชา",
       "คณิตศาสตร์"
-    ]
+    ],
+    "extraExample": "She studied hard and got a top grade in mathematics.",
+    "extraExampleTranslation": "เธอตั้งใจเรียนหนักและได้เกรดระดับสูงสุดในวิชาคณิตศาสตร์",
+    "usageTip": "ใช้ได้ทั้งระดับคะแนนผลการเรียน ระดับชั้นเรียน และระดับคุณภาพของสินค้า"
   },
   {
     "word": "gradual",
@@ -37344,7 +40192,10 @@ const wordsData = [
     "antonyms": [
       "sudden",
       "steep"
-    ]
+    ],
+    "extraExample": "Doctors noticed a gradual improvement in the patient's health.",
+    "extraExampleTranslation": "แพทย์สังเกตเห็นอาการดีขึ้นอย่างค่อยเป็นค่อยไปในสุขภาพของผู้ป่วย",
+    "usageTip": "เป็นคำคุณศัพท์ใช้วางหน้าคำนามเพื่อบอกการเปลี่ยนแปลงที่เกิดขึ้นทีละน้อย ไม่ฉับพลัน"
   },
   {
     "word": "gradually",
@@ -37372,7 +40223,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "gradual"
-    ]
+    ],
+    "extraExample": "The sky gradually turned dark as the storm approached.",
+    "extraExampleTranslation": "ท้องฟ้าค่อยๆ มืดลงเมื่อพายุเคลื่อนเข้ามาใกล้",
+    "usageTip": "เป็นคำกริยาวิเศษณ์ใช้วางหน้าคำกริยาแท้หรือหลัง V.to be เพื่อบอกลักษณะที่เกิดขึ้นทีละน้อย"
   },
   {
     "word": "grain",
@@ -37398,7 +40252,10 @@ const wordsData = [
       "ธัญพืช",
       "ชนิด",
       "หนึ่ง"
-    ]
+    ],
+    "extraExample": "Each grain of rice is important to the farmers.",
+    "extraExampleTranslation": "ข้าวแต่ละเมล็ดมีความสำคัญต่อชาวนา",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อหมายถึงธัญพืชรวมๆ แต่ถ้านับเป็นเม็ดให้ใช้ a grain of..."
   },
   {
     "word": "gram",
@@ -37422,7 +40279,10 @@ const wordsData = [
     ],
     "synonyms": [
       "gramme"
-    ]
+    ],
+    "extraExample": "Add one hundred gram portions of sugar to the mixing bowl.",
+    "extraExampleTranslation": "เติมน้ำตาลส่วนละหนึ่งร้อยกรัมลงในชามผสม",
+    "usageTip": "ใช้ย่อว่า g (เช่น 100g) และเติม s เป็น grams เมื่อมีจำนวนมากกว่า 1 หน่วย"
   },
   {
     "word": "grammar",
@@ -37503,7 +40363,10 @@ const wordsData = [
       "ของ",
       "เธอ"
     ],
-    "syllables": "grand·child"
+    "syllables": "grand·child",
+    "extraExample": "She is excited to meet her first grandchild next month.",
+    "extraExampleTranslation": "เธอตื่นเต้นที่จะได้พบหลานคนแรกของเธอในเดือนหน้า",
+    "usageTip": "ใช้เรียกหลาน (ลูกของลูก) โดยไม่ระบุเพศ พหูพจน์คือ grandchildren"
   },
   {
     "word": "granddaughter",
@@ -37532,7 +40395,10 @@ const wordsData = [
       "ขวบ"
     ],
     "phoneticUK": "/ɡrˈændˌɔːtə(r)/",
-    "syllables": "gran·ddaugh·ter"
+    "syllables": "gran·ddaugh·ter",
+    "extraExample": "My granddaughter loves painting with watercolors.",
+    "extraExampleTranslation": "หลานสาวของฉันชอบวาดภาพด้วยสีน้ำ",
+    "usageTip": "ใช้เรียกหลานสาวที่เป็นลูกของลูกชายหรือลูกสาว"
   },
   {
     "word": "grandfather",
@@ -37562,7 +40428,10 @@ const wordsData = [
       "ปี"
     ],
     "phoneticUK": "/ɡrˈændfˌɑːðə(r)/",
-    "syllables": "gran·dfa·ther"
+    "syllables": "gran·dfa·ther",
+    "extraExample": "My grandfather taught me how to fish by the river.",
+    "extraExampleTranslation": "คุณปู่ของฉันสอนวิธีตกปลาที่ริมแม่น้ำ",
+    "usageTip": "ใช้เรียกปู่หรือตา หากต้องการความสุภาพหรือเรียกสั้นๆ มักใช้ grandpa"
   },
   {
     "word": "grandmother",
@@ -37592,7 +40461,10 @@ const wordsData = [
       "มาก"
     ],
     "phoneticUK": "/ɡrˈændmˌʌðə(r)/",
-    "syllables": "gran·dmo·ther"
+    "syllables": "gran·dmo·ther",
+    "extraExample": "We visit our grandmother every Sunday for dinner.",
+    "extraExampleTranslation": "พวกเราไปเยี่ยมคุณย่าทุกวันอาทิตย์เพื่อทานมื้อเย็น",
+    "usageTip": "ใช้เรียกย่าหรือยาย มักเรียกสั้นๆ ว่า grandma หรือ granny"
   },
   {
     "word": "grandparent",
@@ -37619,7 +40491,10 @@ const wordsData = [
       "เยี่ยม",
       "ปู่ย่าตายาย"
     ],
-    "syllables": "gran·dpa·rent"
+    "syllables": "gran·dpa·rent",
+    "extraExample": "Every grandparent wants to see their family happy.",
+    "extraExampleTranslation": "ปู่ย่าตายายทุกคนอยากเห็นครอบครัวมีความสุข",
+    "usageTip": "มักใช้ในรูปพหูพจน์ grandparents เพื่อหมายถึงปู่ย่าตายายโดยรวม"
   },
   {
     "word": "grandson",
@@ -37646,7 +40521,10 @@ const wordsData = [
       "เล่น",
       "ฟุตบอล"
     ],
-    "syllables": "gran·dson"
+    "syllables": "gran·dson",
+    "extraExample": "He is very proud of his grandson for graduating.",
+    "extraExampleTranslation": "เขาภูมิใจในตัวหลานชายที่เรียนจบมาก",
+    "usageTip": "ใช้เรียกหลานชายที่เป็นลูกของลูก"
   },
   {
     "word": "grant",
@@ -37672,7 +40550,10 @@ const wordsData = [
       "ได้รับ",
       "เงินอุดหนุน"
     ],
-    "phoneticUK": "/ɡrˈɑːnt/"
+    "phoneticUK": "/ɡrˈɑːnt/",
+    "extraExample": "The university awarded her a grant for her research.",
+    "extraExampleTranslation": "มหาวิทยาลัยมอบทุนสนับสนุนงานวิจัยให้เธอ",
+    "usageTip": "ในฐานะคำนามมักหมายถึงเงินทุนสนับสนุนจากรัฐหรือองค์กร"
   },
   {
     "word": "grass",
@@ -37701,7 +40582,10 @@ const wordsData = [
     "phoneticUK": "/ɡrˈɑːs/",
     "forms": [
       "พหูพจน์: grasses"
-    ]
+    ],
+    "extraExample": "The children were playing barefoot on the green grass.",
+    "extraExampleTranslation": "เด็กๆ กำลังวิ่งเล่นเท้าเปล่าบนสนามหญ้าสีเขียว",
+    "usageTip": "เป็นคำนามนับไม่ได้ ไม่ต้องเติม s เมื่อพูดถึงหญ้าทั่วไป"
   },
   {
     "word": "grateful",
@@ -37735,7 +40619,9 @@ const wordsData = [
     ],
     "grammarPattern": "be grateful to sb for sth",
     "register": "ทั่วไป / สุภาพ",
-    "usageTip": "ใช้คู่กับ to + คน และ for + สิ่งที่ช่วย เช่น grateful to you for your help (เขียน g-r-a-t-e ไม่ใช่ greatful!)"
+    "usageTip": "ใช้คู่กับ to + คน และ for + สิ่งที่ช่วย เช่น grateful to you for your help (เขียน g-r-a-t-e ไม่ใช่ greatful!)",
+    "extraExample": "I am deeply grateful for all your help this week.",
+    "extraExampleTranslation": "ฉันซาบซึ้งใจอย่างยิ่งสำหรับความช่วยเหลือทั้งหมดของคุณในสัปดาห์นี้"
   },
   {
     "word": "grave",
@@ -37761,7 +40647,10 @@ const wordsData = [
       "หลุมศพ",
       "ของ",
       "เขา"
-    ]
+    ],
+    "extraExample": "They placed fresh flowers on his grave.",
+    "extraExampleTranslation": "พวกเขาวางดอกไม้สดไว้บนหลุมฝังศพของเขา",
+    "usageTip": "นอกจากแปลว่าหลุมฝังศพ ยังใช้เป็นคำคุณศัพท์แปลว่า ร้ายแรง หรือ เคร่งขรึม ได้ด้วย"
   },
   {
     "word": "great",
@@ -37788,7 +40677,10 @@ const wordsData = [
       "ความคิด",
       "ที่",
       "ยอดเยี่ยม"
-    ]
+    ],
+    "extraExample": "That was a great movie with an unexpected ending.",
+    "extraExampleTranslation": "นั่นเป็นหนังที่ยอดเยี่ยมมากพร้อมตอนจบที่คาดไม่ถึง",
+    "usageTip": "ใช้ชมเชยหรือเน้นย้ำความยิ่งใหญ่ ระดับสูงกว่า good"
   },
   {
     "word": "green",
@@ -37817,7 +40709,10 @@ const wordsData = [
     ],
     "antonyms": [
       "ripe"
-    ]
+    ],
+    "extraExample": "She wore a bright green dress to the party.",
+    "extraExampleTranslation": "เธอสวมชุดสีเขียวสดใสไปงานปาร์ตี้",
+    "usageTip": "นอกจากแปลว่าสีเขียว ยังหมายถึงเป็นมิตรต่อสิ่งแวดล้อมหรือยังไม่มีประสบการณ์"
   },
   {
     "word": "grey",
@@ -37843,7 +40738,10 @@ const wordsData = [
       "ท้องฟ้า",
       "เป็น",
       "สีเทา"
-    ]
+    ],
+    "extraExample": "The sky turned grey right before the storm hit.",
+    "extraExampleTranslation": "ท้องฟ้ากลายเป็นสีเทาก่อนที่พายุจะพัดเข้ามา",
+    "usageTip": "สะกดได้ทั้ง grey (แบบอังกฤษ) และ gray (แบบอเมริกัน)"
   },
   {
     "word": "grocery",
@@ -37879,7 +40777,9 @@ const wordsData = [
     "syllables": "gro·ce·ry",
     "forms": [
       "พหูพจน์: groceries"
-    ]
+    ],
+    "extraExample": "I need to stop by the grocery store on my way home.",
+    "extraExampleTranslation": "ฉันต้องแวะร้านขายของชำระหว่างทางกลับบ้าน"
   },
   {
     "word": "ground",
@@ -37906,7 +40806,10 @@ const wordsData = [
       "มัน",
       "ตก",
       "พื้น"
-    ]
+    ],
+    "extraExample": "The leaves fell softly onto the wet ground.",
+    "extraExampleTranslation": "ใบไม้ร่วงลงบนพื้นดินที่เปียกชื้นอย่างแผ่วเบา",
+    "usageTip": "หมายถึงพื้นดินภายนอกอาคาร หากเป็นพื้นในบ้านมักใช้คำว่า floor"
   },
   {
     "word": "group",
@@ -37934,7 +40837,10 @@ const wordsData = [
       "ใน",
       "กลุ่ม",
       "เล็กๆ"
-    ]
+    ],
+    "extraExample": "A small group of tourists gathered near the entrance.",
+    "extraExampleTranslation": "นักท่องเที่ยวกลุ่มเล็กๆ มารวมตัวกันใกล้ทางเข้า",
+    "usageTip": "เป็นคำนามรวมกลุ่ม ใช้กับกริยาเอกพจน์หรือพหูพจน์ขึ้นอยู่กับบริบท"
   },
   {
     "word": "grow",
@@ -37969,7 +40875,10 @@ const wordsData = [
       "V2: grew",
       "V3: grown"
     ],
-    "phoneticUK": "/ɡrˈəʊ/"
+    "phoneticUK": "/ɡrˈəʊ/",
+    "extraExample": "We plan to grow fresh vegetables in our backyard.",
+    "extraExampleTranslation": "เราวางแผนจะปลูกผักสดในสวนหลังบ้าน",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าปลูก (พืช) และเติบโต (คน/ธุรกิจ) กริยา 3 ช่องคือ grow-grew-grown"
   },
   {
     "word": "growth",
@@ -38002,7 +40911,10 @@ const wordsData = [
       "อย่าง",
       "รวดเร็ว"
     ],
-    "phoneticUK": "/ɡrˈəʊθ/"
+    "phoneticUK": "/ɡrˈəʊθ/",
+    "extraExample": "The company saw rapid growth in sales this year.",
+    "extraExampleTranslation": "บริษัทมียอดขายเติบโตอย่างรวดเร็วในปีนี้",
+    "usageTip": "เป็นคำนามของ grow ใช้พูดถึงการเติบโตทางเศรษฐกิจ ร่างกาย หรือจำนวน"
   },
   {
     "word": "guarantee",
@@ -38037,7 +40949,10 @@ const wordsData = [
     "forms": [
       "V2/V3: guaranteed",
       "V-ing: guaranteing"
-    ]
+    ],
+    "extraExample": "We guarantee that your package will arrive on time.",
+    "extraExampleTranslation": "เรารับประกันว่าพัสดุของคุณจะมาถึงตรงเวลา",
+    "usageTip": "ใช้เป็นทั้งคำกริยาและคำนาม หมายถึงการรับรองคุณภาพหรือสัญญา"
   },
   {
     "word": "guard",
@@ -38063,7 +40978,10 @@ const wordsData = [
       "อยู่",
       "ที่",
       "ประตู"
-    ]
+    ],
+    "extraExample": "The security guard checked everyone's ID at the gate.",
+    "extraExampleTranslation": "เจ้าหน้าที่รักษาความปลอดภัยตรวจบัตรประชาชนของทุกคนที่ประตู",
+    "usageTip": "ใช้เรียกผู้ทำหน้าที่เฝ้ายามหรือผู้คุ้มกัน และใช้เป็นกริยาแปลว่าเฝ้าระวังได้"
   },
   {
     "word": "guess",
@@ -38184,7 +41102,10 @@ const wordsData = [
       "ขั้นกว่า: guiltier",
       "ขั้นสุด: guiltiest"
     ],
-    "grammarPattern": "be guilty of + ความผิด/อาชญากรรม (มีความผิดฐาน...)"
+    "grammarPattern": "be guilty of + ความผิด/อาชญากรรม (มีความผิดฐาน...)",
+    "extraExample": "He felt guilty about forgetting his friend's birthday.",
+    "extraExampleTranslation": "เขารู้สึกผิดที่ลืมวันเกิดของเพื่อน",
+    "usageTip": "ใช้กับ about (รู้สึกผิดเรื่อง...) หรือ of (มีความผิดฐาน...)"
   },
   {
     "word": "gun",
@@ -38209,7 +41130,10 @@ const wordsData = [
     "synonyms": [
       "artillery",
       "ordnance"
-    ]
+    ],
+    "extraExample": "The police officer carried a gun on his belt.",
+    "extraExampleTranslation": "เจ้าหน้าที่ตำรวจพกปืนไว้ที่เข็มขัด",
+    "usageTip": "คำนามนับได้ ใช้กับกริยา carry, fire, point"
   },
   {
     "word": "guy",
@@ -38239,7 +41163,10 @@ const wordsData = [
       "cat",
       "hombre",
       "bozo"
-    ]
+    ],
+    "extraExample": "That guy over there is my older brother.",
+    "extraExampleTranslation": "ผู้ชายคนนั้นคือพี่ชายของฉันเอง",
+    "usageTip": "ใช้เรียกผู้ชายแบบไม่เป็นทางการ ในรูปพหูพจน์ guys ใช้เรียกกลุ่มคนได้ทั้งชายและหญิง"
   },
   {
     "word": "habit",
@@ -38269,7 +41196,10 @@ const wordsData = [
       "ไม่",
       "ดี"
     ],
-    "syllables": "ha·bit"
+    "syllables": "ha·bit",
+    "extraExample": "Waking up early is a good habit to have.",
+    "extraExampleTranslation": "การตื่นเช้าเป็นนิสัยที่ดีที่ควรมี",
+    "usageTip": "มักใช้คู่กับกริยา form, break, kick หรือ get into"
   },
   {
     "word": "hair",
@@ -38298,7 +41228,10 @@ const wordsData = [
       "ดำ",
       "ยาว"
     ],
-    "phoneticUK": "/hˈe/"
+    "phoneticUK": "/hˈe/",
+    "extraExample": "She brushed her long hair before going to bed.",
+    "extraExampleTranslation": "เธอหวีผมยาวของเธอก่อนเข้านอน",
+    "usageTip": "โดยทั่วไปเป็นคำนามนับไม่ได้ หมายถึงเส้นผมทั้งหมดบนศีรษะ"
   },
   {
     "word": "hairdresser",
@@ -38328,7 +41261,10 @@ const wordsData = [
       "ผม"
     ],
     "phoneticUK": "/hˈedrˌesə(r)/",
-    "syllables": "hair·dres·ser"
+    "syllables": "hair·dres·ser",
+    "extraExample": "I have an appointment with my hairdresser this afternoon.",
+    "extraExampleTranslation": "ฉันมีนัดกับช่างทำผมบ่ายนี้",
+    "usageTip": "ใช้เรียกช่างตัดผมหรือช่างทำผม ทั้งชายและหญิง"
   },
   {
     "word": "half",
@@ -38356,7 +41292,10 @@ const wordsData = [
     "forms": [
       "พหูพจน์: halves"
     ],
-    "phoneticUK": "/hˈɑːf/"
+    "phoneticUK": "/hˈɑːf/",
+    "extraExample": "She ate half of the pizza by herself.",
+    "extraExampleTranslation": "เธอกินพิซซ่าไปครึ่งหนึ่งด้วยตัวเอง",
+    "usageTip": "ใช้ได้ทั้งนำหน้านาม (half an hour) และตามด้วย of"
   },
   {
     "word": "hall",
@@ -38383,7 +41322,10 @@ const wordsData = [
       "ที่",
       "ห้องโถง",
       "ใหญ่"
-    ]
+    ],
+    "extraExample": "The guests waited in the main hall before the ceremony.",
+    "extraExampleTranslation": "แขกรออยู่ในห้องโถงใหญ่ก่อนเริ่มพิธี",
+    "usageTip": "หมายถึงห้องโถงใหญ่หรือทางเดินในอาคาร"
   },
   {
     "word": "hammer",
@@ -38411,7 +41353,10 @@ const wordsData = [
       "ตะปู"
     ],
     "phoneticUK": "/hˈæmə(r)/",
-    "syllables": "ham·mer"
+    "syllables": "ham·mer",
+    "extraExample": "Use a hammer to hit the nail into the wood.",
+    "extraExampleTranslation": "ใช้ค้อนตอกตะปูลงไปในเนื้อไม้",
+    "usageTip": "เป็นได้ทั้งคำนาม (ค้อน) และกริยา (ตอกด้วยค้อน)"
   },
   {
     "word": "hand",
@@ -38443,7 +41388,10 @@ const wordsData = [
       "on the other hand (ในทางกลับกัน)",
       "give someone a hand (ช่วยเหลือนิดนึง)",
       "hand in (ส่งงาน/การบ้าน)"
-    ]
+    ],
+    "extraExample": "Please raise your hand if you have a question.",
+    "extraExampleTranslation": "กรุณายกมือขึ้นหากคุณมีคำถาม",
+    "usageTip": "ใช้ในสำนวนอย่าง give someone a hand (ช่วย) ได้บ่อย"
   },
   {
     "word": "handle",
@@ -38469,7 +41417,10 @@ const wordsData = [
       "อย่าง",
       "ระมัดระวัง"
     ],
-    "syllables": "han·dle"
+    "syllables": "han·dle",
+    "extraExample": "She knows how to handle difficult customers calmly.",
+    "extraExampleTranslation": "เธอรู้วิธีจัดการกับลูกค้าที่รับมือยากอย่างใจเย็น",
+    "usageTip": "ในความหมายว่าจัดการ มักใช้เป็นกริยาตามด้วยปัญหาหรือสถานการณ์"
   },
   {
     "word": "hang",
@@ -38504,7 +41455,10 @@ const wordsData = [
       "hang out (ออกไปเที่ยวเล่นสังสรรค์)",
       "hang on (รอเดี๋ยว)",
       "hang up (วางสายโทรศัพท์)"
-    ]
+    ],
+    "extraExample": "You can hang your wet coat on the hook.",
+    "extraExampleTranslation": "คุณสามารถแขวนเสื้อโค้ตที่เปียกไว้บนตะขอได้",
+    "usageTip": "กริยา 3 ช่องคือ hang-hung-hung (แขวนสิ่งของ)"
   },
   {
     "word": "happen",
@@ -38532,7 +41486,10 @@ const wordsData = [
       "ขึ้นกับ",
       "คุณ"
     ],
-    "syllables": "hap·pen"
+    "syllables": "hap·pen",
+    "extraExample": "What did happen at the meeting yesterday?",
+    "extraExampleTranslation": "เกิดอะไรขึ้นในการประชุมเมื่อวานนี้",
+    "usageTip": "ใช้กับเหตุการณ์ที่เกิดขึ้น ไม่ต้องมีกรรมมารองรับ (intransitive)"
   },
   {
     "word": "happily",
@@ -38569,7 +41526,10 @@ const wordsData = [
       "unhappily",
       "sadly"
     ],
-    "syllables": "hap·pi·ly"
+    "syllables": "hap·pi·ly",
+    "extraExample": "The children played happily in the park all afternoon.",
+    "extraExampleTranslation": "เด็กๆ เล่นกันอย่างมีความสุขในสวนสาธารณะตลอดบ่าย",
+    "usageTip": "วางไว้หลังคำกริยาเพื่อขยายลักษณะอาการ"
   },
   {
     "word": "happy",
@@ -38608,7 +41568,10 @@ const wordsData = [
       "ขั้นกว่า: happier",
       "ขั้นสุด: happiest"
     ],
-    "syllables": "hap·py"
+    "syllables": "hap·py",
+    "extraExample": "I am really happy to see you again.",
+    "extraExampleTranslation": "ฉันดีใจมากที่ได้พบคุณอีกครั้ง",
+    "usageTip": "ใช้กับ about (ดีใจเรื่อง...) หรือ with (พอใจกับ...)"
   },
   {
     "word": "hard",
@@ -38642,7 +41605,10 @@ const wordsData = [
     "antonyms": [
       "easy",
       "soft"
-    ]
+    ],
+    "extraExample": "This math problem is too hard for me to solve.",
+    "extraExampleTranslation": "โจทย์คณิตศาสตร์ข้อนี้ยากเกินไปสำหรับฉันที่จะแก้",
+    "usageTip": "เป็นได้ทั้งคุณศัพท์ (ยาก/แข็ง) และกริยาวิเศษณ์ (อย่างหนัก)"
   },
   {
     "word": "hardly",
@@ -38675,7 +41641,9 @@ const wordsData = [
       "hard"
     ],
     "usageTip": "hardly = แทบจะไม่ (ความหมายเป็นปฏิเสธในตัว ห้ามใช้ซ้ำกับ not); ถ้าทำงานหนักใช้ work hard",
-    "syllables": "har·dly"
+    "syllables": "har·dly",
+    "extraExample": "I could hardly hear him because of the loud music.",
+    "extraExampleTranslation": "ฉันแทบจะไม่ได้ยินเสียงเขาเลยเพราะเสียงเพลงดังมาก"
   },
   {
     "word": "harm",
@@ -38713,7 +41681,10 @@ const wordsData = [
     "antonyms": [
       "protect",
       "benefit"
-    ]
+    ],
+    "extraExample": "Smoking can seriously harm your health.",
+    "extraExampleTranslation": "การสูบบุหรี่สามารถทำลายสุขภาพของคุณได้อย่างร้ายแรง",
+    "usageTip": "ใช้ได้ทั้งเป็นกริยา (ทำอันตราย) และคำนาม (อันตราย)"
   },
   {
     "word": "harmful",
@@ -38749,7 +41720,10 @@ const wordsData = [
       "harm"
     ],
     "syllables": "har·mful",
-    "rootBreakdown": "harm + -ful (เต็มไปด้วย (Adj.))"
+    "rootBreakdown": "harm + -ful (เต็มไปด้วย (Adj.))",
+    "extraExample": "Too much sugar is harmful to your teeth.",
+    "extraExampleTranslation": "น้ำตาลที่มากเกินไปเป็นอันตรายต่อฟันของคุณ",
+    "usageTip": "มักตามด้วยบุพบท to เพื่อบอกว่าส่งผลเสียต่อสิ่งใด"
   },
   {
     "word": "harmless",
@@ -38783,7 +41757,10 @@ const wordsData = [
       "harm"
     ],
     "syllables": "har·mless",
-    "rootBreakdown": "harm + -less (ปราศจาก / ไม่มี (Adj.))"
+    "rootBreakdown": "harm + -less (ปราศจาก / ไม่มี (Adj.))",
+    "extraExample": "Don't worry, this spider is completely harmless.",
+    "extraExampleTranslation": "ไม่ต้องกังวล แมงมุมตัวนี้ไม่มีอันตรายเลย",
+    "usageTip": "ใช้บอกว่าสิ่งใดสิ่งหนึ่งไม่ก่อให้เกิดอันตราย มักใช้คู่กับ completely หรือ totally"
   },
   {
     "word": "hat",
@@ -38908,7 +41885,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: had"
-    ]
+    ],
+    "extraExample": "We have a meeting at ten o'clock tomorrow morning.",
+    "extraExampleTranslation": "เรามีประชุมตอนสิบโมงเช้าพรุ่งนี้",
+    "usageTip": "ใช้กับประธานพหูพจน์และ I/you ส่วน he/she/it ใช้ has"
   },
   {
     "word": "have to",
@@ -38925,6 +41905,12 @@ const wordsData = [
       "ต้อง",
       "ไป",
       "แล้ว"
+    ],
+    "extraExample": "I have to finish this report before Friday.",
+    "extraExampleTranslation": "ฉันต้องทำรายงานนี้ให้เสร็จก่อนวันศุกร์",
+    "usageTip": "ใช้บอกความจำเป็นหรือหน้าที่ ตามด้วยกริยาช่อง 1 ไม่ผัน",
+    "collocations": [
+      "have to go"
     ]
   },
   {
@@ -38950,7 +41936,10 @@ const wordsData = [
     ],
     "synonyms": [
       "helium"
-    ]
+    ],
+    "extraExample": "He always arrives at the office early.",
+    "extraExampleTranslation": "เขามาถึงที่ทำงานแต่เช้าเสมอ",
+    "usageTip": "ใช้แทนผู้ชายหนึ่งคนในตำแหน่งประธานของประโยค"
   },
   {
     "word": "head",
@@ -38974,7 +41963,10 @@ const wordsData = [
     "thTokens": [
       "ฉัน",
       "ปวดหัว"
-    ]
+    ],
+    "extraExample": "She nodded her head to show that she agreed.",
+    "extraExampleTranslation": "เธอพยักหน้าเพื่อแสดงว่าเห็นด้วย",
+    "usageTip": "นอกจากแปลว่าศีรษะ ยังใช้เป็นคำกริยาแปลว่ามุ่งหน้าหรือเป็นหัวหน้าได้"
   },
   {
     "word": "headache",
@@ -39001,7 +41993,10 @@ const wordsData = [
       "terrible headache",
       "relieve a headache"
     ],
-    "syllables": "hea·dache"
+    "syllables": "hea·dache",
+    "extraExample": "I took some medicine because I had a terrible headache.",
+    "extraExampleTranslation": "ฉันกินยาเพราะปวดหัวอย่างหนัก",
+    "usageTip": "มักใช้คู่กับกริยา have เช่น have a headache"
   },
   {
     "word": "heal",
@@ -39030,7 +42025,10 @@ const wordsData = [
       "heal quickly",
       "heal a wound",
       "time heals"
-    ]
+    ],
+    "extraExample": "It takes time for a broken bone to heal completely.",
+    "extraExampleTranslation": "กระดูกที่หักต้องใช้เวลาในการรักษาให้หายสนิท",
+    "usageTip": "ใช้ได้ทั้งการหายของบาดแผลทางกายและการเยียวยาจิตใจ"
   },
   {
     "word": "health",
@@ -39067,7 +42065,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Regular exercise is essential for good health.",
+    "extraExampleTranslation": "การออกกำลังกายสม่ำเสมอเป็นสิ่งจำเป็นสำหรับสุขภาพที่ดี",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้พูดถึงสภาพร่างกายและจิตใจโดยรวม"
   },
   {
     "word": "healthy",
@@ -39105,7 +42106,10 @@ const wordsData = [
       "ขั้นกว่า: healthier",
       "ขั้นสุด: healthiest"
     ],
-    "syllables": "heal·thy"
+    "syllables": "heal·thy",
+    "extraExample": "Eating plenty of vegetables helps you stay healthy.",
+    "extraExampleTranslation": "การกินผักมากๆ ช่วยให้คุณมีสุขภาพดี",
+    "usageTip": "ใช้ขยายคำนามหรือตามหลังกริยาอย่าง stay, keep, look"
   },
   {
     "word": "hear",
@@ -39139,7 +42143,9 @@ const wordsData = [
       "V2/V3: heard"
     ],
     "usageTip": "hear = ได้ยินเสียงผ่านเข้าหู (ไม่ตั้งใจ); ส่วน listen (to) = ตั้งใจฟัง",
-    "phoneticUK": "/hˈiː/"
+    "phoneticUK": "/hˈiː/",
+    "extraExample": "Did you hear that strange noise outside?",
+    "extraExampleTranslation": "คุณได้ยินเสียงประหลาดข้างนอกนั่นไหม"
   },
   {
     "word": "hearing",
@@ -39167,7 +42173,10 @@ const wordsData = [
       "เสียการ",
       "ได้ยิน"
     ],
-    "syllables": "hea·ring"
+    "syllables": "hea·ring",
+    "extraExample": "The court scheduled a hearing for next Monday.",
+    "extraExampleTranslation": "ศาลได้กำหนดวันไต่สวนเป็นวันจันทร์หน้า",
+    "usageTip": "ในบริบทกฎหมายแปลว่าการไต่สวน ส่วนทั่วไปแปลว่าความสามารถในการได้ยิน"
   },
   {
     "word": "heart",
@@ -39199,7 +42208,10 @@ const wordsData = [
       "learn by heart (ท่องจำขึ้นใจ)",
       "broken heart (อกหัก)",
       "from the bottom of my heart (จากใจจริง)"
-    ]
+    ],
+    "extraExample": "She has a kind heart and always helps others.",
+    "extraExampleTranslation": "เธอเป็นคนใจดีและคอยช่วยเหลือผู้อื่นเสมอ",
+    "usageTip": "ใช้สื่อถึงทั้งอวัยวะหัวใจและอารมณ์ความรู้สึกหรือจิตใจ"
   },
   {
     "word": "heat",
@@ -39228,7 +42240,10 @@ const wordsData = [
       "ความร้อน",
       "ไม่",
       "ได้"
-    ]
+    ],
+    "extraExample": "You should avoid going out in the midday heat.",
+    "extraExampleTranslation": "คุณควรหลีกเลี่ยงการออกไปข้างนอกท่ามกลางความร้อนตอนเที่ยง",
+    "usageTip": "ใช้เป็นคำนามแปลว่าความร้อน หรือคำกริยาแปลว่าทำให้ร้อน"
   },
   {
     "word": "heating",
@@ -39256,7 +42271,10 @@ const wordsData = [
       "เปิด",
       "เครื่องทำความร้อน"
     ],
-    "syllables": "hea·ting"
+    "syllables": "hea·ting",
+    "extraExample": "The heating broke down during the coldest week of winter.",
+    "extraExampleTranslation": "เครื่องทำความร้อนเสียในช่วงสัปดาห์ที่หนาวที่สุดของฤดูหนาว",
+    "usageTip": "หมายถึงระบบทำความร้อนภายในอาคารหรือบ้าน"
   },
   {
     "word": "heaven",
@@ -39286,7 +42304,10 @@ const wordsData = [
     "antonyms": [
       "hell"
     ],
-    "syllables": "hea·ven"
+    "syllables": "hea·ven",
+    "extraExample": "The view from the mountain top felt like heaven.",
+    "extraExampleTranslation": "ทิวทัศน์จากยอดเขารู้สึกเหมือนอยู่บนสวรรค์",
+    "usageTip": "ใช้พูดถึงสวรรค์หรือสิ่งที่ให้ความรู้สึกสุขสบายอย่างยิ่ง"
   },
   {
     "word": "heavily",
@@ -39314,7 +42335,10 @@ const wordsData = [
     "wordFamily": [
       "heavy"
     ],
-    "syllables": "hea·vi·ly"
+    "syllables": "hea·vi·ly",
+    "extraExample": "It rained heavily throughout the entire night.",
+    "extraExampleTranslation": "ฝนตกหนักตลอดทั้งคืน",
+    "usageTip": "มักใช้ขยายกริยาเพื่อบอกว่าเกิดมากหรือรุนแรง เช่น ฝนตกหนัก"
   },
   {
     "word": "heavy",
@@ -39351,7 +42375,10 @@ const wordsData = [
     "wordFamily": [
       "heavily"
     ],
-    "syllables": "hea·vy"
+    "syllables": "hea·vy",
+    "extraExample": "This suitcase is too heavy for me to lift alone.",
+    "extraExampleTranslation": "กระเป๋าเดินทางใบนี้หนักเกินกว่าที่ฉันจะยกคนเดียวได้",
+    "usageTip": "ใช้กับน้ำหนัก สิ่งของ หรือปริมาณที่มาก เช่น การจราจรหนาแน่น"
   },
   {
     "word": "heel",
@@ -39375,7 +42402,10 @@ const wordsData = [
       "ของ",
       "ฉัน",
       "หัก"
-    ]
+    ],
+    "extraExample": "My left heel started hurting after walking for hours.",
+    "extraExampleTranslation": "ส้นเท้าซ้ายของฉันเริ่มเจ็บหลังจากเดินมาหลายชั่วโมง",
+    "usageTip": "ใช้เรียกส้นเท้าหรือส้นรองเท้า เช่น high heels (รองเท้าส้นสูง)"
   },
   {
     "word": "height",
@@ -39402,7 +42432,10 @@ const wordsData = [
       "คุณ",
       "คือ",
       "เท่าไหร่"
-    ]
+    ],
+    "extraExample": "The height of the building is over three hundred meters.",
+    "extraExampleTranslation": "ความสูงของอาคารนี้มากกว่าสามร้อยเมตร",
+    "usageTip": "ใช้บอกระดับความสูงของคน อาคาร หรือสิ่งของ"
   },
   {
     "word": "hell",
@@ -39432,7 +42465,10 @@ const wordsData = [
     ],
     "antonyms": [
       "heaven"
-    ]
+    ],
+    "extraExample": "The traffic jam on Friday evening was absolute hell.",
+    "extraExampleTranslation": "รถติดในเย็นวันศุกร์คือนรกชัดๆ",
+    "usageTip": "นอกจากความหมายตามตัว ยังใช้เปรียบเปรยถึงสถานการณ์ที่เลวร้ายมาก"
   },
   {
     "word": "hello",
@@ -39460,7 +42496,10 @@ const wordsData = [
       "ไหม"
     ],
     "phoneticUK": "/həlˈəʊ/",
-    "syllables": "hel·lo"
+    "syllables": "hel·lo",
+    "extraExample": "She smiled and said hello to everyone in the room.",
+    "extraExampleTranslation": "เธอยิ้มและกล่าวทักทายทุกคนในห้อง",
+    "usageTip": "เป็นคำทักทายมาตรฐาน ใช้ได้ทั้งในสถานการณ์สุภาพและเป็นกันเอง"
   },
   {
     "word": "help",
@@ -39557,7 +42596,10 @@ const wordsData = [
       "จะ",
       "อยู่",
       "ข้างใน"
-    ]
+    ],
+    "extraExample": "The roads were icy, and hence we decided to stay home.",
+    "extraExampleTranslation": "ถนนเป็นน้ำแข็ง ดังนั้นเราจึงตัดสินใจอยู่บ้าน",
+    "usageTip": "มักใช้ในภาษาเขียนหรือทางการเพื่อบอกผลลัพธ์ (แปลว่า ดังนั้น) หรือบอกเวลาในอนาคต (นับจากนี้)"
   },
   {
     "word": "her",
@@ -39584,7 +42626,10 @@ const wordsData = [
       "here",
       "hers"
     ],
-    "phoneticUK": "/hə(r)/"
+    "phoneticUK": "/hə(r)/",
+    "extraExample": "I gave her the keys before leaving the office.",
+    "extraExampleTranslation": "ฉันให้กุญแจเธอไปก่อนออกจากออฟฟิศ",
+    "usageTip": "ใช้เป็นกรรมของกริยาหรือบุพบท และใช้แสดงความเป็นเจ้าของหน้าคำนามได้ด้วย"
   },
   {
     "word": "here",
@@ -39613,7 +42658,10 @@ const wordsData = [
       "her",
       "hers"
     ],
-    "phoneticUK": "/hˈiː/"
+    "phoneticUK": "/hˈiː/",
+    "extraExample": "Please leave the package right here on the table.",
+    "extraExampleTranslation": "กรุณาวางพัสดุไว้ตรงนี้บนโต๊ะเลยครับ",
+    "usageTip": "ใช้บอกตำแหน่งใกล้ตัวผู้พูด และมักวางไว้ท้ายประโยคหรือหลังคำกริยา"
   },
   {
     "word": "hero",
@@ -39641,7 +42689,10 @@ const wordsData = [
       "ชาติ"
     ],
     "phoneticUK": "/hˈɪrəʊ/",
-    "syllables": "he·ro"
+    "syllables": "he·ro",
+    "extraExample": "The firefighter became a local hero after saving the family.",
+    "extraExampleTranslation": "นักดับเพลิงกลายเป็นวีรบุรุษประจำท้องถิ่นหลังจากช่วยครอบครัวนั้นไว้",
+    "usageTip": "ใช้เรียกคนกล้าหาญที่ช่วยเหลือผู้อื่น หรือใช้เรียกตัวเอกในเรื่องราว"
   },
   {
     "word": "hers",
@@ -39668,7 +42719,10 @@ const wordsData = [
     "wordFamily": [
       "her",
       "here"
-    ]
+    ],
+    "extraExample": "That blue umbrella on the chair is hers.",
+    "extraExampleTranslation": "ร่มสีฟ้าบนเก้าอี้ตัวนั้นเป็นของเธอ",
+    "usageTip": "ใช้แทนคำนามเพื่อแสดงความเป็นเจ้าของ โดยไม่ต้องมีคำนามตามหลัง"
   },
   {
     "word": "herself",
@@ -39690,7 +42744,10 @@ const wordsData = [
       "ตัวเอง",
       "เจ็บ"
     ],
-    "syllables": "her·self"
+    "syllables": "her·self",
+    "extraExample": "She taught herself how to play the guitar online.",
+    "extraExampleTranslation": "เธอฝึกเล่นกีตาร์ด้วยตัวเองผ่านทางออนไลน์",
+    "usageTip": "ใช้เมื่อประธานหญิงทำกริยานั้นกับตัวเอง หรือใช้เน้นย้ำว่าทำด้วยตัวเอง"
   },
   {
     "word": "hesitate",
@@ -39721,7 +42778,10 @@ const wordsData = [
     "forms": [
       "V2/V3: hesitated",
       "V-ing: hesitating"
-    ]
+    ],
+    "extraExample": "Don't hesitate to call me if you need any help.",
+    "extraExampleTranslation": "อย่าลังเลที่จะโทรหาฉันถ้าคุณต้องการความช่วยเหลือ",
+    "usageTip": "มักตามด้วย to + กริยาช่อง 1 เมื่อหมายถึงลังเลที่จะทำบางสิ่ง"
   },
   {
     "word": "hi",
@@ -39747,7 +42807,10 @@ const wordsData = [
       "ฉัน",
       "ชื่อ",
       "จอห์น"
-    ]
+    ],
+    "extraExample": "Hi, it's so good to see you again after all these years.",
+    "extraExampleTranslation": "สวัสดี ดีใจมากที่ได้เจอคุณอีกครั้งหลังจากไม่ได้เจอกันตั้งหลายปี",
+    "usageTip": "เป็นคำทักทายแบบไม่เป็นทางการ ใช้กับเพื่อน คนคุ้นเคย หรือบรรยากาศสบายๆ"
   },
   {
     "word": "hide",
@@ -39782,7 +42845,10 @@ const wordsData = [
     "forms": [
       "V2: hid",
       "V3: hidden"
-    ]
+    ],
+    "extraExample": "The cat likes to hide under the bed during thunderstorms.",
+    "extraExampleTranslation": "แมวชอบไปซ่อนอยู่ใต้เตียงเวลาฝนฟ้าคะนอง",
+    "usageTip": "ใช้ได้ทั้งแบบมีกรรม (ซ่อนบางสิ่ง) และไม่มีกรรม (หลบซ่อน)"
   },
   {
     "word": "high",
@@ -39812,7 +42878,10 @@ const wordsData = [
     ],
     "antonyms": [
       "low"
-    ]
+    ],
+    "extraExample": "The mountain peak is too high for beginners to climb.",
+    "extraExampleTranslation": "ยอดเขานั้นสูงเกินไปสำหรับมือใหม่ที่จะปีนขึ้นไป",
+    "usageTip": "ใช้อธิบายความสูงของสิ่งของ ระดับราคา หรือปริมาณที่มาก"
   },
   {
     "word": "highlight",
@@ -39839,7 +42908,10 @@ const wordsData = [
       "ที่",
       "สำคัญ"
     ],
-    "syllables": "high·light"
+    "syllables": "high·light",
+    "extraExample": "The fireworks display was the highlight of the festival.",
+    "extraExampleTranslation": "การแสดงดอกไม้ไฟเป็นจุดเด่นของเทศกาลนี้เลย",
+    "usageTip": "ในรูปคำนามหมายถึงจุดเด่นหรือช่วงเวลาที่ดีที่สุด ส่วนกริยาแปลว่าเน้นให้เด่น"
   },
   {
     "word": "highly",
@@ -39867,7 +42939,10 @@ const wordsData = [
     "wordFamily": [
       "high"
     ],
-    "syllables": "high·ly"
+    "syllables": "high·ly",
+    "extraExample": "I highly recommend this restaurant for its fresh seafood.",
+    "extraExampleTranslation": "ฉันขอแนะนำร้านอาหารนี้อย่างยิ่งเพราะอาหารทะเลสดมาก",
+    "usageTip": "มักวางไว้หน้าคำกริยาหรือคำคุณศัพท์เพื่อเน้นระดับที่มากหรือยอดเยี่ยม"
   },
   {
     "word": "highway",
@@ -39894,7 +42969,9 @@ const wordsData = [
       "มาก"
     ],
     "syllables": "high·way",
-    "usageTip": "US ใช้ highway / freeway | UK ใช้ motorway"
+    "usageTip": "US ใช้ highway / freeway | UK ใช้ motorway",
+    "extraExample": "We drove along the coastal highway to enjoy the ocean view.",
+    "extraExampleTranslation": "เราขับรถไปตามทางหลวงเลียบชายฝั่งเพื่อชมวิวทะเล"
   },
   {
     "word": "hill",
@@ -39920,7 +42997,10 @@ const wordsData = [
       "เดิน",
       "ขึ้น",
       "เขา"
-    ]
+    ],
+    "extraExample": "They walked up the steep hill to watch the sunset.",
+    "extraExampleTranslation": "พวกเขาเดินขึ้นเนินเขาที่ชันเพื่อไปดูพระอาทิตย์ตก",
+    "usageTip": "ใช้เรียกเนินเขาที่เตี้ยกว่าภูเขา (mountain) มักใช้กับ climb up หรือ walk up"
   },
   {
     "word": "him",
@@ -39945,7 +43025,10 @@ const wordsData = [
       "เขา",
       "เมื่อวาน",
       "นี้"
-    ]
+    ],
+    "extraExample": "We invited him to join our dinner party tonight.",
+    "extraExampleTranslation": "พวกเราชวนเขามาร่วมงานเลี้ยงอาหารค่ำคืนนี้",
+    "usageTip": "ใช้เป็นกรรมของคำกริยาหรือคำบุพบทสำหรับผู้ชายคนเดียวเท่านั้น"
   },
   {
     "word": "himself",
@@ -39967,7 +43050,10 @@ const wordsData = [
       "มัน",
       "ด้วยตัวเอง"
     ],
-    "syllables": "him·self"
+    "syllables": "him·self",
+    "extraExample": "He hurt himself while trying to fix the broken chair.",
+    "extraExampleTranslation": "เขาทำตัวเองเจ็บตอนที่พยายามซ่อมเก้าอี้ที่พัง",
+    "usageTip": "ใช้เมื่อประธานชายกระทำต่อตัวเอง หรือวางท้ายประโยคเพื่อเน้นว่าทำเอง"
   },
   {
     "word": "hip",
@@ -39994,7 +43080,10 @@ const wordsData = [
       "สะโพก",
       "ที่",
       "ผาย"
-    ]
+    ],
+    "extraExample": "She put her hands on her hips and waited for an answer.",
+    "extraExampleTranslation": "เธอเอามือเท้าสะเอวแล้วรอฟังคำตอบ",
+    "usageTip": "ใช้เรียกระดับสะโพกหรือข้อต่อสะโพก และในภาษาพูดยังแปลว่าทันสมัยได้ด้วย"
   },
   {
     "word": "hire",
@@ -40031,7 +43120,10 @@ const wordsData = [
     "forms": [
       "V2/V3: hired",
       "V-ing: hiring"
-    ]
+    ],
+    "extraExample": "The company plans to hire ten new engineers next month.",
+    "extraExampleTranslation": "บริษัทวางแผนจะจ้างวิศวกรใหม่สิบคนในเดือนหน้า",
+    "usageTip": "ใช้เมื่อต้องการจ้างพนักงานหรือเช่าสิ่งของชั่วคราว มักตามด้วยคนหรือตำแหน่งงาน"
   },
   {
     "word": "his",
@@ -40057,7 +43149,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "hi"
-    ]
+    ],
+    "extraExample": "He forgot his wallet on the kitchen counter this morning.",
+    "extraExampleTranslation": "เขาลืมกระเป๋าสตางค์ของเขาไว้บนเคาน์เตอร์ครัวเมื่อเช้านี้",
+    "usageTip": "ใช้วางหน้าคำนามเพื่อแสดงความเป็นเจ้าของของผู้ชาย และใช้แทนคำนามโดดๆ ได้ด้วย"
   },
   {
     "word": "historical",
@@ -40088,7 +43183,9 @@ const wordsData = [
       "ahistorical"
     ],
     "usageTip": "historical = เกี่ยวกับประวัติศาสตร์ (a historical novel); สำคัญระดับประวัติศาสตร์ใช้ historic",
-    "syllables": "hi·sto·ri·cal"
+    "syllables": "hi·sto·ri·cal",
+    "extraExample": "This museum houses many important historical documents.",
+    "extraExampleTranslation": "พิพิธภัณฑ์แห่งนี้เก็บรักษาเอกสารทางประวัติศาสตร์ที่สำคัญไว้มากมาย"
   },
   {
     "word": "history",
@@ -40219,7 +43316,10 @@ const wordsData = [
       "hold on (รอสักครู่/ยึดไว้แน่น)",
       "on hold (รอสาย/ระงับไว้ก่อน)",
       "hold back (ยับยั้ง/กลั้นไว้)"
-    ]
+    ],
+    "extraExample": "Please hold my bag for a moment while I tie my shoes.",
+    "extraExampleTranslation": "ช่วยถือกระเป๋าให้ฉันสักครู่ระหว่างที่ฉันผูกเชือกรองเท้าหน่อย",
+    "usageTip": "ใช้กับสิ่งของที่จับหรือถือไว้ในมือ หรือใช้ในความหมายว่าจัดงาน (hold a meeting) ก็ได้"
   },
   {
     "word": "hole",
@@ -40250,7 +43350,10 @@ const wordsData = [
     "wordFamily": [
       "holy"
     ],
-    "phoneticUK": "/hˈəʊl/"
+    "phoneticUK": "/hˈəʊl/",
+    "extraExample": "There is a small hole in the fence where the dog got out.",
+    "extraExampleTranslation": "มีรูเล็กๆ ตรงรั้วที่สุนัขมุดออกไป",
+    "usageTip": "ใช้ได้ทั้งรูบนพื้นผิว หลุมบนถนน หรือโพรงในต้นไม้"
   },
   {
     "word": "holiday",
@@ -40278,7 +43381,9 @@ const wordsData = [
     ],
     "phoneticUK": "/hˈɒlədˌeɪ/",
     "syllables": "ho·li·day",
-    "usageTip": "UK ใช้ holiday (วันหยุดพักผ่อน) | US นิยมใช้ vacation (holiday ของ US มักหมายถึงวันนักขัตฤกษ์)"
+    "usageTip": "UK ใช้ holiday (วันหยุดพักผ่อน) | US นิยมใช้ vacation (holiday ของ US มักหมายถึงวันนักขัตฤกษ์)",
+    "extraExample": "We are planning a trip to the beach during the summer holiday.",
+    "extraExampleTranslation": "พวกเรากำลังวางแผนไปเที่ยวทะเลในช่วงวันหยุดฤดูร้อน"
   },
   {
     "word": "hollow",
@@ -40308,7 +43413,10 @@ const wordsData = [
       "solid"
     ],
     "phoneticUK": "/hˈɒləʊ/",
-    "syllables": "hol·low"
+    "syllables": "hol·low",
+    "extraExample": "The old tree trunk was completely hollow inside.",
+    "extraExampleTranslation": "ลำต้นของต้นไม้เก่าแก่นั้นกลวงโบ๋อยู่ข้างในทั้งหมด",
+    "usageTip": "ใช้บรรยายสิ่งที่ข้างในว่างเปล่าไม่มีเนื้อ หรือใช้กับเสียงที่ฟังดูก้องๆ ว่างๆ"
   },
   {
     "word": "holy",
@@ -40342,7 +43450,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: holier",
       "ขั้นสุด: holiest"
-    ]
+    ],
+    "extraExample": "Many people visit this holy temple every year to pray.",
+    "extraExampleTranslation": "ผู้คนจำนวนมากเดินทางมาที่วัดอันศักดิ์สิทธิ์แห่งนี้ทุกปีเพื่อสวดมนต์",
+    "usageTip": "ใช้กับสถานที่ บุคคล หรือสิ่งของที่มีความสำคัญทางศาสนา"
   },
   {
     "word": "home",
@@ -40368,7 +43479,10 @@ const wordsData = [
       "กำลังจะ",
       "กลับบ้าน"
     ],
-    "phoneticUK": "/hˈəʊm/"
+    "phoneticUK": "/hˈəʊm/",
+    "extraExample": "After a long day at work, I just want to go home and rest.",
+    "extraExampleTranslation": "หลังจากทำงานมาทั้งวัน ฉันแค่อยากกลับบ้านไปพักผ่อน",
+    "usageTip": "มักใช้โดยไม่ต้องมีคำบุพบท 'to' นำหน้าเมื่อตามหลังคำว่า go หรือ come (เช่น go home)"
   },
   {
     "word": "homework",
@@ -40399,7 +43513,9 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "You should finish your homework before watching television.",
+    "extraExampleTranslation": "เธอควรทำการบ้านให้เสร็จก่อนดูโทรทัศน์"
   },
   {
     "word": "honest",
@@ -40434,7 +43550,10 @@ const wordsData = [
       "dishonest"
     ],
     "phoneticUK": "/ˈɒnəst/",
-    "syllables": "ho·nest"
+    "syllables": "ho·nest",
+    "extraExample": "She gave an honest answer when asked about the mistake.",
+    "extraExampleTranslation": "เธอให้คำตอบอย่างซื่อสัตย์เมื่อถูกถามเกี่ยวกับความผิดพลาดนั้น",
+    "usageTip": "ออกเสียงโดยไม่ออกเสียงตัว h (ออกเสียงว่า ออน-เนิสท์) จึงใช้กับ article 'an'"
   },
   {
     "word": "honestly",
@@ -40472,7 +43591,10 @@ const wordsData = [
       "dishonestly"
     ],
     "phoneticUK": "/ˈɒnəstliː/",
-    "syllables": "ho·nes·tly"
+    "syllables": "ho·nes·tly",
+    "extraExample": "I honestly believe that this is the best decision for us.",
+    "extraExampleTranslation": "ฉันเชื่ออย่างซื่อสัตย์เลยว่านี่คือการตัดสินใจที่ดีที่สุดสำหรับพวกเรา",
+    "usageTip": "มักใช้เพื่อเน้นย้ำความจริงใจหรือความรู้สึกจริงๆ ของผู้พูด"
   },
   {
     "word": "honour",
@@ -40501,7 +43623,10 @@ const wordsData = [
       "sense of honour",
       "guest of honour",
       "in honour of"
-    ]
+    ],
+    "extraExample": "It was a great honour to receive the award from the king.",
+    "extraExampleTranslation": "นับเป็นเกียรติอย่างยิ่งที่ได้รับรางวัลจากพระมหากษัตริย์",
+    "usageTip": "สะกดแบบอังกฤษ (honour) ส่วนแบบอเมริกันสะกดว่า honor และไม่ออกเสียงตัว h"
   },
   {
     "word": "hook",
@@ -40531,7 +43656,10 @@ const wordsData = [
       "ไว้",
       "ที่",
       "ตะขอ"
-    ]
+    ],
+    "extraExample": "He put a worm on the hook before throwing his fishing line into the river.",
+    "extraExampleTranslation": "เขาเกี่ยวหนอนไว้ที่เบ็ดก่อนจะเหวี่ยงสายเบ็ดลงไปในแม่น้ำ",
+    "usageTip": "ใช้ได้ทั้งเบ็ดตกปลาและตะขอสำหรับแขวนสิ่งของ"
   },
   {
     "word": "hope",
@@ -40570,7 +43698,9 @@ const wordsData = [
       "V2/V3: hoped",
       "V-ing: hoping"
     ],
-    "grammarPattern": "hope + to V หรือ hope (that) S + V (ห้าม hope sb to do)"
+    "grammarPattern": "hope + to V หรือ hope (that) S + V (ห้าม hope sb to do)",
+    "extraExample": "I hope you have a safe and pleasant journey back home.",
+    "extraExampleTranslation": "ฉันหวังว่าคุณจะเดินทางกลับบ้านอย่างปลอดภัยและราบรื่น"
   },
   {
     "word": "horizontal",
@@ -40600,7 +43730,10 @@ const wordsData = [
       "inclined"
     ],
     "phoneticUK": "/hˌɔːrəzˈɒntəl/",
-    "syllables": "ho·ri·zon·tal"
+    "syllables": "ho·ri·zon·tal",
+    "extraExample": "Draw a horizontal line across the middle of the page.",
+    "extraExampleTranslation": "ลากเส้นในแนวนอนพาดผ่านตรงกลางหน้ากระดาษ",
+    "usageTip": "ตรงข้ามกับ vertical (แนวตั้ง) มักใช้ในบริบทการวาดภาพ กราฟ หรือการจัดวางสิ่งของ"
   },
   {
     "word": "horn",
@@ -40623,7 +43756,10 @@ const wordsData = [
     "thTokens": [
       "รถ",
       "บีบแตร"
-    ]
+    ],
+    "extraExample": "The bull lowered its head and pointed a sharp horn toward the fence.",
+    "extraExampleTranslation": "วัวกระทิงก้มหัวลงและชี้เขาสัตว์ที่แหลมคมไปทางรั้ว",
+    "usageTip": "นอกจากเขาสัตว์แล้วยังหมายถึงแตรรถยนต์หรือเครื่องดนตรีประเภทเป่าได้ด้วย"
   },
   {
     "word": "horror",
@@ -40650,7 +43786,10 @@ const wordsData = [
       "สยองขวัญ"
     ],
     "phoneticUK": "/hˈɔːrə(r)/",
-    "syllables": "hor·ror"
+    "syllables": "hor·ror",
+    "extraExample": "She watched the movie in horror as the monster appeared on screen.",
+    "extraExampleTranslation": "เธอจ้องมองภาพยนตร์ด้วยความน่ากลัวเมื่อสัตว์ประหลาดปรากฏขึ้นบนหน้าจอ",
+    "usageTip": "มักใช้กับคำว่า movie หรือ film เพื่อระบุประเภทภาพยนตร์สยองขวัญ"
   },
   {
     "word": "horse",
@@ -40674,7 +43813,10 @@ const wordsData = [
       "เขา",
       "กำลัง",
       "ขี่ม้า"
-    ]
+    ],
+    "extraExample": "They learned how to ride a horse during their stay at the farm.",
+    "extraExampleTranslation": "พวกเขาเรียนรู้วิธีขี่ม้าระหว่างที่พักอยู่ที่ฟาร์ม",
+    "usageTip": "ใช้คู่กับกริยา ride เมื่อพูดถึงการขี่ม้า"
   },
   {
     "word": "hospital",
@@ -40702,7 +43844,10 @@ const wordsData = [
       "โรงพยาบาล"
     ],
     "phoneticUK": "/hˈɒspˌɪtəl/",
-    "syllables": "ho·spi·tal"
+    "syllables": "ho·spi·tal",
+    "extraExample": "My grandfather was taken to the hospital for a routine checkup.",
+    "extraExampleTranslation": "คุณปู่ของฉันถูกพาไปที่โรงพยาบาลเพื่อตรวจร่างกายตามปกติ",
+    "usageTip": "ใช้ 'in the hospital' (อเมริกัน) หรือ 'in hospital' (อังกฤษ) เมื่อหมายถึงการนอนรักษาตัว"
   },
   {
     "word": "host",
@@ -40733,7 +43878,10 @@ const wordsData = [
     "antonyms": [
       "parasite"
     ],
-    "phoneticUK": "/hˈəʊst/"
+    "phoneticUK": "/hˈəʊst/",
+    "extraExample": "The host welcomed every guest warmly at the front door.",
+    "extraExampleTranslation": "เจ้าภาพต้อนรับแขกทุกคนอย่างอบอุ่นที่หน้าประตูบ้าน",
+    "usageTip": "ใช้ได้ทั้งเจ้าภาพงานเลี้ยง ประเทศเจ้าภาพ หรือพิธีกรรายการโทรทัศน์"
   },
   {
     "word": "hot",
@@ -40765,7 +43913,10 @@ const wordsData = [
       "ขั้นกว่า: hotter",
       "ขั้นสุด: hottest"
     ],
-    "phoneticUK": "/hˈɒt/"
+    "phoneticUK": "/hˈɒt/",
+    "extraExample": "Be careful with the soup because the bowl is still very hot.",
+    "extraExampleTranslation": "ระวังซุปด้วยนะเพราะชามยังร้อนอยู่มาก",
+    "usageTip": "ใช้ได้ทั้งอุณหภูมิ อากาศ และรสชาติที่เผ็ดร้อน"
   },
   {
     "word": "hotel",
@@ -40794,7 +43945,10 @@ const wordsData = [
       "สวยงาม"
     ],
     "phoneticUK": "/həʊtˈel/",
-    "syllables": "ho·tel"
+    "syllables": "ho·tel",
+    "extraExample": "We booked a comfortable hotel near the train station for two nights.",
+    "extraExampleTranslation": "พวกเราจองโรงแรมที่สะดวกสบายใกล้สถานีรถไฟไว้สองคืน",
+    "usageTip": "มักใช้คู่กับกริยา book หรือ stay at"
   },
   {
     "word": "hour",
@@ -40913,7 +44067,10 @@ const wordsData = [
       "ขาดแคลน",
       "ที่อยู่อาศัย"
     ],
-    "syllables": "hou·sing"
+    "syllables": "hou·sing",
+    "extraExample": "The city is building more affordable housing for young families.",
+    "extraExampleTranslation": "เมืองกำลังสร้างที่อยู่อาศัยราคาประหยัดเพิ่มขึ้นสำหรับครอบครัวรุ่นใหม่",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้พูดถึงระบบที่อยู่อาศัยหรือการจัดหาบ้านพักโดยรวม"
   },
   {
     "word": "how",
@@ -40936,7 +44093,10 @@ const wordsData = [
       "นี้",
       "ได้",
       "อย่างไร"
-    ]
+    ],
+    "extraExample": "Could you show me how to use this new coffee machine?",
+    "extraExampleTranslation": "ช่วยสอนวิธีใช้เครื่องชงกาแฟเครื่องใหม่นี้ให้หน่อยได้ไหม",
+    "usageTip": "ใช้ถามวิธีการหรือระดับ เช่น how + adjective/adverb หรือ how to + V.1"
   },
   {
     "word": "however",
@@ -40967,7 +44127,10 @@ const wordsData = [
       "ข้างนอก"
     ],
     "phoneticUK": "/hˌaʊˈevə(r)/",
-    "syllables": "ho·we·ver"
+    "syllables": "ho·we·ver",
+    "extraExample": "The weather was cold; however, we still enjoyed our walk.",
+    "extraExampleTranslation": "อากาศหนาว อย่างไรก็ตาม พวกเราก็ยังสนุกกับการเดินเล่น",
+    "usageTip": "ใช้เชื่อมประโยคที่ขัดแย้งกัน มักวางต้นประโยคตามด้วยเครื่องหมายจุลภาค (,)"
   },
   {
     "word": "huge",
@@ -40997,7 +44160,10 @@ const wordsData = [
     ],
     "antonyms": [
       "tiny"
-    ]
+    ],
+    "extraExample": "They live in a huge house with a swimming pool.",
+    "extraExampleTranslation": "พวกเขาอาศัยอยู่ในบ้านหลังใหญ่มากที่มีสระว่ายน้ำ",
+    "usageTip": "ใช้ขยายคำนามเพื่อเน้นว่ามีขนาดใหญ่มากเป็นพิเศษ (แรงกว่า big)"
   },
   {
     "word": "human",
@@ -41024,7 +44190,10 @@ const wordsData = [
       "เป็น",
       "สัตว์เลี้ยงลูกด้วยนม"
     ],
-    "syllables": "hu·man"
+    "syllables": "hu·man",
+    "extraExample": "Every human needs clean water and nutritious food to survive.",
+    "extraExampleTranslation": "มนุษย์ทุกคนต้องการน้ำสะอาดและอาหารที่มีประโยชน์เพื่อความอยู่รอด",
+    "usageTip": "ใช้เป็นคำนามหมายถึงมนุษย์ (เติม s เป็น humans เมื่อพูดถึงคนทั่วไป)"
   },
   {
     "word": "humorous",
@@ -41054,7 +44223,10 @@ const wordsData = [
     "antonyms": [
       "humorless"
     ],
-    "syllables": "hu·mo·rous"
+    "syllables": "hu·mo·rous",
+    "extraExample": "He wrote a humorous story about his cat's daily adventures.",
+    "extraExampleTranslation": "เขาเขียนเรื่องตลกเกี่ยวกับการผจญภัยประจำวันของแมวเขา",
+    "usageTip": "เป็นคำคุณศัพท์ ใช้อธิบายสิ่งที่มีอารมณ์ขันหรือชวนให้ขำ"
   },
   {
     "word": "humour",
@@ -41084,7 +44256,10 @@ const wordsData = [
       "อารมณ์ขัน",
       "ที่",
       "ดี"
-    ]
+    ],
+    "extraExample": "She has a great sense of humour and always makes us laugh.",
+    "extraExampleTranslation": "เธอเป็นคนมีอารมณ์ขันมากและทำให้พวกเราหัวเราะได้เสมอ",
+    "usageTip": "สะกดแบบอังกฤษ (แบบอเมริกันคือ humor) มักใช้คู่กับ sense of"
   },
   {
     "word": "hundred",
@@ -41110,7 +44285,9 @@ const wordsData = [
       "ดอลลาร์"
     ],
     "syllables": "hun·dred",
-    "usageTip": "เมื่อมีตัวเลขนำหน้าห้ามเติม -s (five hundred baht), แต่ใช้ hundreds of + N เมื่อแปลว่าหลายร้อย"
+    "usageTip": "เมื่อมีตัวเลขนำหน้าห้ามเติม -s (five hundred baht), แต่ใช้ hundreds of + N เมื่อแปลว่าหลายร้อย",
+    "extraExample": "More than a hundred people attended the charity concert last night.",
+    "extraExampleTranslation": "มีผู้คนมากกว่าร้อยคนเข้าร่วมคอนเสิร์ตการกุศลเมื่อคืนนี้"
   },
   {
     "word": "hundredth",
@@ -41136,7 +44313,10 @@ const wordsData = [
     "collocations": [
       "hundredth time"
     ],
-    "syllables": "hun·dredth"
+    "syllables": "hun·dredth",
+    "extraExample": "Today marks the hundredth anniversary of the local library.",
+    "extraExampleTranslation": "วันนี้เป็นวันครบรอบปีที่หนึ่งร้อยของห้องสมุดท้องถิ่น",
+    "usageTip": "ใช้บอกลำดับที่ 100 มักวางหน้าคำนามและมี the นำหน้า"
   },
   {
     "word": "hungry",
@@ -41169,7 +44349,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: hungrier",
       "ขั้นสุด: hungriest"
-    ]
+    ],
+    "extraExample": "I am so hungry that I could eat a whole pizza right now.",
+    "extraExampleTranslation": "ฉันหิวมากจนสามารถกินพิซซ่าทั้งถาดได้ในตอนนี้เลย",
+    "usageTip": "ใช้คู่กับ verb to be หรือ feel/get เพื่อบอกว่าหิว"
   },
   {
     "word": "hunt",
@@ -41198,7 +44381,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "hunting"
-    ]
+    ],
+    "extraExample": "The police launched a massive hunt for the missing jewels.",
+    "extraExampleTranslation": "ตำรวจเปิดฉากการไล่ล่าครั้งใหญ่เพื่อตามหาอัญมณีที่หายไป",
+    "usageTip": "ในฐานะคำนาม หมายถึงการล่าสัตว์หรือการค้นหาอย่างจริงจัง"
   },
   {
     "word": "hunting",
@@ -41229,7 +44415,10 @@ const wordsData = [
       "hunting rifles",
       "hunting grounds"
     ],
-    "syllables": "hun·ting"
+    "syllables": "hun·ting",
+    "extraExample": "Wolves are hunting for food in the snowy forest tonight.",
+    "extraExampleTranslation": "หมาป่ากำลังออกล่าเหยื่อในป่าที่เต็มไปด้วยหิมะคืนนี้",
+    "usageTip": "รูป V-ing ของ hunt ใช้กับเหตุการณ์ที่กำลังเกิดขึ้นหรือกิจกรรมล่าสัตว์"
   },
   {
     "word": "hurry",
@@ -41260,7 +44449,10 @@ const wordsData = [
       "V-ing: hurrying"
     ],
     "phoneticUK": "/hˈɜːiː/",
-    "syllables": "hur·ry"
+    "syllables": "hur·ry",
+    "extraExample": "We need to hurry if we want to catch the last train.",
+    "extraExampleTranslation": "เราต้องรีบหน่อยถ้าอยากจะขึ้นรถไฟขบวนสุดท้ายให้ทัน",
+    "usageTip": "ใช้เป็นกริยาแปลว่ารีบ หรือใช้ในสำนวน in a hurry (กำลังรีบ)"
   },
   {
     "word": "hurt",
@@ -41289,7 +44481,10 @@ const wordsData = [
     "forms": [
       "V2/V3: hurt"
     ],
-    "phoneticUK": "/hˈɜːt/"
+    "phoneticUK": "/hˈɜːt/",
+    "extraExample": "Be careful with that knife, or you might hurt yourself.",
+    "extraExampleTranslation": "ระวังมีดเล่มนั้นด้วย ไม่อย่างนั้นคุณอาจจะทำตัวเองบาดเจ็บได้",
+    "usageTip": "ใช้ได้ทั้งแบบมีกรรม (hurt someone) และไม่มีกรรม (my leg hurts)"
   },
   {
     "word": "husband",
@@ -41320,7 +44515,10 @@ const wordsData = [
     "antonyms": [
       "wife"
     ],
-    "syllables": "hus·band"
+    "syllables": "hus·band",
+    "extraExample": "Her husband cooked a delicious dinner for their anniversary.",
+    "extraExampleTranslation": "สามีของเธอทำอาหารเย็นแสนอร่อยสำหรับวันครบรอบของพวกเขา",
+    "usageTip": "ใช้เรียกสามีที่เป็นคู่สมรสชาย มักใช้คู่กับคำแสดงความเป็นเจ้าของ"
   },
   {
     "word": "I",
@@ -41345,7 +44543,10 @@ const wordsData = [
       "ฉัน",
       "รัก",
       "คุณ"
-    ]
+    ],
+    "extraExample": "I usually wake up early to go for a morning run.",
+    "extraExampleTranslation": "ฉันมักจะตื่นแต่เช้าเพื่อออกไปวิ่งตอนเช้า",
+    "usageTip": "ใช้เป็นประธานของประโยคและต้องเขียนด้วยตัวพิมพ์ใหญ่ (I) เสมอ"
   },
   {
     "word": "ice",
@@ -41373,7 +44574,10 @@ const wordsData = [
       "ของ",
       "ฉัน",
       "หน่อย"
-    ]
+    ],
+    "extraExample": "Would you like some ice in your iced tea?",
+    "extraExampleTranslation": "คุณต้องการน้ำแข็งในชาเย็นของคุณเพิ่มไหม",
+    "usageTip": "เป็นคำนามนับไม่ได้ เมื่อต้องการบอกจำนวนให้ใช้ a cube of ice"
   },
   {
     "word": "ice cream",
@@ -41398,7 +44602,10 @@ const wordsData = [
       "ต้องการ",
       "ไอศกรีม",
       "ช็อกโกแลต"
-    ]
+    ],
+    "extraExample": "The children were excited to eat strawberry ice cream after lunch.",
+    "extraExampleTranslation": "เด็กๆ ตื่นเต้นที่จะได้กินไอศกรีมสตรอว์เบอร์รีหลังอาหารกลางวัน",
+    "usageTip": "มักใช้เป็นคำนามนับไม่ได้ ยกเว้นเมื่อหมายถึงไอศกรีม 1 โคนหรือ 1 ถ้วย"
   },
   {
     "word": "idea",
@@ -41428,7 +44635,10 @@ const wordsData = [
       "ความคิด",
       "ที่",
       "ยอดเยี่ยม"
-    ]
+    ],
+    "extraExample": "That sounds like a great idea for our weekend trip!",
+    "extraExampleTranslation": "นั่นฟังดูเป็นความคิดที่ดีมากสำหรับการไปเที่ยวสุดสัปดาห์ของเรา!",
+    "usageTip": "ใช้พูดถึงความคิดหรือไอเดีย มักใช้กับกริยา have หรือ get"
   },
   {
     "word": "ideal",
@@ -41460,7 +44670,10 @@ const wordsData = [
       "การ",
       "ปิกนิก"
     ],
-    "syllables": "i·deal"
+    "syllables": "i·deal",
+    "extraExample": "This quiet café is an ideal place for studying.",
+    "extraExampleTranslation": "คาเฟ่เงียบๆ แห่งนี้เป็นสถานที่ในอุดมคติสำหรับการอ่านหนังสือ",
+    "usageTip": "ใช้ขยายสิ่งที่เหมาะสมที่สุดหรือสมบูรณ์แบบที่สุดสำหรับสถานการณ์นั้น"
   },
   {
     "word": "identify",
@@ -41557,7 +44770,10 @@ const wordsData = [
       "จะ",
       "อยู่",
       "บ้าน"
-    ]
+    ],
+    "extraExample": "If it rains tomorrow, we will stay at home.",
+    "extraExampleTranslation": "ถ้าพรุ่งนี้ฝนตก เราจะอยู่บ้าน",
+    "usageTip": "ใช้เชื่อมประโยคเงื่อนไข มักตามด้วย present simple ในเงื่อนไขที่เป็นไปได้"
   },
   {
     "word": "ignore",
@@ -41593,7 +44809,10 @@ const wordsData = [
     "forms": [
       "V2/V3: ignored",
       "V-ing: ignoring"
-    ]
+    ],
+    "extraExample": "Please ignore the noise outside and focus on your work.",
+    "extraExampleTranslation": "กรุณาอย่าสนใจเสียงรบกวนข้างนอกและตั้งใจทำงานของคุณ",
+    "usageTip": "ใช้เมื่อต้องการบอกว่าไม่ใส่ใจหรือเมินเฉยต่อบางสิ่ง"
   },
   {
     "word": "ill",
@@ -41624,7 +44843,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: worse",
       "ขั้นสุด: worst"
-    ]
+    ],
+    "extraExample": "She felt ill after eating the seafood last night.",
+    "extraExampleTranslation": "เธอรู้สึกป่วยหลังจากกินอาหารทะเลเมื่อคืนนี้",
+    "usageTip": "มักใช้ตามหลัง verb to be หรือ feel ไม่ค่อยวางหน้าคำนามโดยตรง"
   },
   {
     "word": "illegal",
@@ -41661,7 +44883,10 @@ const wordsData = [
     "antonyms": [
       "legal"
     ],
-    "syllables": "il·le·gal"
+    "syllables": "il·le·gal",
+    "extraExample": "It is illegal to park your car in front of the fire exit.",
+    "extraExampleTranslation": "การจอดรถหน้าทางหนีไฟเป็นเรื่องผิดกฎหมาย",
+    "usageTip": "ใช้กับสิ่งที่ขัดต่อกฎหมายหรือข้อบังคับของรัฐ"
   },
   {
     "word": "illness",
@@ -41698,7 +44923,10 @@ const wordsData = [
     "syllables": "il·lness",
     "forms": [
       "พหูพจน์: illnesses"
-    ]
+    ],
+    "extraExample": "He missed a week of school due to a sudden illness.",
+    "extraExampleTranslation": "เขาขาดเรียนหนึ่งสัปดาห์เนื่องจากอาการป่วยกะทันหัน",
+    "usageTip": "เป็นคำนามนับได้หรือนับไม่ได้ ขึ้นอยู่กับบริบทว่าหมายถึงโรคเฉพาะหรือภาวะป่วยทั่วไป"
   },
   {
     "word": "illustrate",
@@ -41732,7 +44960,10 @@ const wordsData = [
     "forms": [
       "V2/V3: illustrated",
       "V-ing: illustrating"
-    ]
+    ],
+    "extraExample": "Let me illustrate this point with a simple example.",
+    "extraExampleTranslation": "ขอให้ฉันอธิบายประเด็นนี้ให้เห็นภาพด้วยตัวอย่างง่ายๆ",
+    "usageTip": "ใช้เมื่อต้องการอธิบายให้ชัดเจนด้วยภาพ แผนภูมิ หรือตัวอย่าง"
   },
   {
     "word": "image",
@@ -41760,7 +44991,10 @@ const wordsData = [
       "ชัดเจน",
       "มาก"
     ],
-    "syllables": "i·mage"
+    "syllables": "i·mage",
+    "extraExample": "The company is working hard to improve its public image.",
+    "extraExampleTranslation": "บริษัทกำลังทำงานอย่างหนักเพื่อปรับปรุงภาพลักษณ์ต่อสาธารณะ",
+    "usageTip": "นอกจากแปลว่าภาพถ่ายหรือรูปภาพ ยังแปลว่าภาพลักษณ์ได้ด้วย"
   },
   {
     "word": "imaginary",
@@ -41785,7 +45019,10 @@ const wordsData = [
     "collocations": [
       "imaginary commonwealth"
     ],
-    "syllables": "i·ma·gi·na·ry"
+    "syllables": "i·ma·gi·na·ry",
+    "extraExample": "Young children often have an imaginary friend to talk to.",
+    "extraExampleTranslation": "เด็กเล็กมักมีเพื่อนในจินตนาการไว้พูดคุยด้วย",
+    "usageTip": "ใช้กับสิ่งที่ไม่มีอยู่จริง เกิดจากความคิดหรือจินตนาการ"
   },
   {
     "word": "imagination",
@@ -41815,7 +45052,10 @@ const wordsData = [
       "vision",
       "imaging"
     ],
-    "syllables": "i·ma·gi·na·tion"
+    "syllables": "i·ma·gi·na·tion",
+    "extraExample": "You need a lot of imagination to write a good fantasy novel.",
+    "extraExampleTranslation": "คุณต้องใช้จินตนาการอย่างมากในการเขียนนิยายแฟนตาซีที่ดี",
+    "usageTip": "เป็นคำนาม มักใช้คู่กับกริยา use หรือ capture"
   },
   {
     "word": "imagine",
@@ -41853,7 +45093,10 @@ const wordsData = [
       "V2/V3: imagined",
       "V-ing: imagining"
     ],
-    "grammarPattern": "imagine + V-ing / (sb) doing sth (จินตนาการว่า...)"
+    "grammarPattern": "imagine + V-ing / (sb) doing sth (จินตนาการว่า...)",
+    "extraExample": "Can you imagine living in a world without smartphones?",
+    "extraExampleTranslation": "คุณนึกภาพออกไหมว่าการใช้ชีวิตในโลกที่ไม่มีสมาร์ทโฟนจะเป็นอย่างไร",
+    "usageTip": "ตามด้วยคำนามหรือ V-ing ได้เลย ไม่ต้องมี to"
   },
   {
     "word": "immediate",
@@ -41888,7 +45131,10 @@ const wordsData = [
     "antonyms": [
       "mediate"
     ],
-    "syllables": "im·me·dia·te"
+    "syllables": "im·me·dia·te",
+    "extraExample": "The new policy had an immediate effect on sales.",
+    "extraExampleTranslation": "นโยบายใหม่ส่งผลกระทบในทันทีต่อยอดขาย",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าเกิดขึ้นทันทีโดยไม่รอช้า"
   },
   {
     "word": "immediately",
@@ -41917,7 +45163,10 @@ const wordsData = [
       "immediate",
       "mediate"
     ],
-    "syllables": "im·me·dia·te·ly"
+    "syllables": "im·me·dia·te·ly",
+    "extraExample": "Please call me immediately when you arrive at the airport.",
+    "extraExampleTranslation": "กรุณาโทรหาฉันทันทีเมื่อคุณมาถึงสนามบิน",
+    "usageTip": "เป็น adverb วางได้ทั้งต้นประโยค หลังคำกริยา หรือท้ายประโยค"
   },
   {
     "word": "immoral",
@@ -41947,7 +45196,14 @@ const wordsData = [
     "antonyms": [
       "moral"
     ],
-    "syllables": "im·mo·ral"
+    "syllables": "im·mo·ral",
+    "extraExample": "Cheating on an exam is considered immoral behavior.",
+    "extraExampleTranslation": "การโกงข้อสอบถือเป็นพฤติกรรมที่ผิดศีลธรรม",
+    "usageTip": "ใช้กับเรื่องศีลธรรมหรือจริยธรรม ไม่จำเป็นต้องผิดกฎหมายเสมอไป",
+    "collocations": [
+      "immoral behavior",
+      "morally wrong"
+    ]
   },
   {
     "word": "impact",
@@ -41975,7 +45231,10 @@ const wordsData = [
       "อย่าง",
       "ใหญ่หลวง"
     ],
-    "syllables": "im·pact"
+    "syllables": "im·pact",
+    "extraExample": "Social media has a huge impact on how we communicate.",
+    "extraExampleTranslation": "โซเชียลมีเดียมีผลกระทบอย่างมากต่อวิธีที่เราสื่อสารกัน",
+    "usageTip": "มักใช้คู่กับ preposition on เพื่อบอกสิ่งที่ได้รับผลกระทบ"
   },
   {
     "word": "impatient",
@@ -42008,7 +45267,10 @@ const wordsData = [
       "impatient to leave",
       "impatient tone"
     ],
-    "syllables": "im·pa·tient"
+    "syllables": "im·pa·tient",
+    "extraExample": "Don't be so impatient; your food will be ready soon.",
+    "extraExampleTranslation": "อย่าใจร้อนนักเลย อาหารของคุณจะเสร็จในไม่ช้า",
+    "usageTip": "มักใช้คู่กับ with (คน) หรือ for (สิ่งที่รอ)"
   },
   {
     "word": "implication",
@@ -42037,7 +45299,10 @@ const wordsData = [
       "คือ",
       "อะไร"
     ],
-    "syllables": "im·pli·ca·tion"
+    "syllables": "im·pli·ca·tion",
+    "extraExample": "We must consider the financial implication of this decision.",
+    "extraExampleTranslation": "เราต้องพิจารณานัยสำคัญทางการเงินของการตัดสินใจครั้งนี้",
+    "usageTip": "มักใช้ในรูปพหูพจน์ (implications) เมื่อพูดถึงผลที่ตามมาหลายด้าน"
   },
   {
     "word": "imply",
@@ -42070,7 +45335,10 @@ const wordsData = [
     "wordFamily": [
       "reply"
     ],
-    "syllables": "im·ply"
+    "syllables": "im·ply",
+    "extraExample": "Are you trying to imply that I am not telling the truth?",
+    "extraExampleTranslation": "คุณกำลังจะบอกเป็นนัยว่าฉันไม่ได้พูดความจริงหรือเปล่า",
+    "usageTip": "ใช้เมื่อผู้พูดสื่อความหมายโดยอ้อม ไม่ได้พูดตรงๆ"
   },
   {
     "word": "import",
@@ -42100,7 +45368,10 @@ const wordsData = [
       "export"
     ],
     "syllables": "im·port",
-    "rootBreakdown": "im- (เข้า) + port (ขน) → นำเข้าสินค้า"
+    "rootBreakdown": "im- (เข้า) + port (ขน) → นำเข้าสินค้า",
+    "extraExample": "Thailand imports a large amount of crude oil every year.",
+    "extraExampleTranslation": "ประเทศไทยนำเข้าน้ำมันดิบเป็นจำนวนมากในแต่ละปี",
+    "usageTip": "ใช้เป็นได้ทั้งกริยาและคำนาม โดยความหมายนี้เน้นการนำสินค้าเข้าประเทศ"
   },
   {
     "word": "importance",
@@ -42136,7 +45407,10 @@ const wordsData = [
     "antonyms": [
       "unimportance"
     ],
-    "syllables": "im·por·tance"
+    "syllables": "im·por·tance",
+    "extraExample": "The teacher emphasized the importance of reading every day.",
+    "extraExampleTranslation": "คุณครูเน้นย้ำถึงความสำคัญของการอ่านหนังสือทุกวัน",
+    "usageTip": "มักใช้ในโครงสร้าง the importance of + นาม/V-ing"
   },
   {
     "word": "important",
@@ -42171,7 +45445,10 @@ const wordsData = [
       "unimportant",
       "trivial"
     ],
-    "syllables": "im·por·tant"
+    "syllables": "im·por·tant",
+    "extraExample": "It is important to drink enough water every day.",
+    "extraExampleTranslation": "การดื่มน้ำให้เพียงพอทุกวันเป็นสิ่งสำคัญ",
+    "usageTip": "มักใช้ในโครงสร้าง It is important to + V.inf"
   },
   {
     "word": "impose",
@@ -42208,7 +45485,10 @@ const wordsData = [
     "forms": [
       "V2/V3: imposed",
       "V-ing: imposing"
-    ]
+    ],
+    "extraExample": "The government decided to impose a new tax on sugary drinks.",
+    "extraExampleTranslation": "รัฐบาลตัดสินใจที่จะกำหนดภาษีใหม่สำหรับเครื่องดื่มที่มีน้ำตาล",
+    "usageTip": "มักใช้กับกฎเกณฑ์ ภาษี หรือบทลงโทษ โดยใช้คู่กับบุพบท on (impose something on someone)"
   },
   {
     "word": "impossible",
@@ -42245,7 +45525,10 @@ const wordsData = [
       "possible"
     ],
     "phoneticUK": "/ɪmpˈɒsəbəl/",
-    "syllables": "im·pos·si·ble"
+    "syllables": "im·pos·si·ble",
+    "extraExample": "It is impossible to finish this huge project in just one hour.",
+    "extraExampleTranslation": "มันเป็นไปไม่ได้ที่จะทำโครงการใหญ่ขนาดนี้ให้เสร็จภายในเวลาเพียงชั่วโมงเดียว",
+    "usageTip": "นิยมใช้ในโครงสร้าง It is impossible to + V.1 เพื่อบอกว่าสิ่งใดทำไม่ได้จริง"
   },
   {
     "word": "impress",
@@ -42278,7 +45561,10 @@ const wordsData = [
       "เธอ",
       "ประทับใจ"
     ],
-    "syllables": "im·press"
+    "syllables": "im·press",
+    "extraExample": "She tried to impress the interviewers with her fluent English.",
+    "extraExampleTranslation": "เธอพยายามสร้างความประทับใจให้ผู้สัมภาษณ์ด้วยภาษาอังกฤษที่คล่องแคล่วของเธอ",
+    "usageTip": "ใช้เมื่อต้องการทำให้ผู้อื่นรู้สึกชื่นชมหรือประทับใจ มักใช้คู่กับ with (impress someone with ...)"
   },
   {
     "word": "impression",
@@ -42309,7 +45595,10 @@ const wordsData = [
       "ที่",
       "ดี"
     ],
-    "syllables": "im·pres·sion"
+    "syllables": "im·pres·sion",
+    "extraExample": "His polite manner left a very good impression on everyone.",
+    "extraExampleTranslation": "กิริยามารยาทที่สุภาพของเขาสร้างความประทับใจที่ดีมากให้กับทุกคน",
+    "usageTip": "มักใช้คู่กับกริยา leave หรือ make (leave/make an impression on someone)"
   },
   {
     "word": "impressive",
@@ -42344,7 +45633,10 @@ const wordsData = [
     "antonyms": [
       "unimpressive"
     ],
-    "syllables": "im·pres·sive"
+    "syllables": "im·pres·sive",
+    "extraExample": "The new stadium looks truly impressive when lit up at night.",
+    "extraExampleTranslation": "สนามกีฬาแห่งใหม่ดูน่าประทับใจอย่างยิ่งเมื่อเปิดไฟในตอนกลางคืน",
+    "usageTip": "ใช้ขยายคำนามหรือตามหลัง linking verb (เช่น look, seem, be) เพื่อชมว่ายอดเยี่ยมหรือน่าทึ่ง"
   },
   {
     "word": "improve",
@@ -42385,7 +45677,10 @@ const wordsData = [
     "forms": [
       "V2/V3: improved",
       "V-ing: improving"
-    ]
+    ],
+    "extraExample": "Reading every day can help you improve your vocabulary quickly.",
+    "extraExampleTranslation": "การอ่านทุกวันสามารถช่วยให้คุณพัฒนาคำศัพท์ได้อย่างรวดเร็ว",
+    "usageTip": "ใช้ได้ทั้งแบบมีกรรม (พัฒนาสิ่งใด) และไม่มีกรรม (อาการหรือสถานการณ์ดีขึ้น)"
   },
   {
     "word": "improvement",
@@ -42420,7 +45715,10 @@ const wordsData = [
     "antonyms": [
       "decline"
     ],
-    "rootBreakdown": "improve + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "improve + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "There has been a significant improvement in the air quality today.",
+    "extraExampleTranslation": "วันนี้คุณภาพอากาศมีการปรับปรุงดีขึ้นอย่างเห็นได้ชัด",
+    "usageTip": "เป็นคำนาม นิยมใช้หลังคำคุณศัพท์เช่น significant หรือ slight และมักตามด้วย in"
   },
   {
     "word": "in",
@@ -42449,7 +45747,10 @@ const wordsData = [
     ],
     "antonyms": [
       "out"
-    ]
+    ],
+    "extraExample": "Please put all the important documents in this blue folder.",
+    "extraExampleTranslation": "กรุณาใส่เอกสารสำคัญทั้งหมดลงในแฟ้มสีน้ำเงินนี้",
+    "usageTip": "ใช้บอกตำแหน่งภายในพื้นที่ เวลาที่เป็นเดือน/ปี หรือสภาพการณ์"
   },
   {
     "word": "inability",
@@ -42486,7 +45787,10 @@ const wordsData = [
     "syllables": "i·na·bi·li·ty",
     "forms": [
       "พหูพจน์: inabilities"
-    ]
+    ],
+    "extraExample": "His inability to speak French made the trip slightly difficult.",
+    "extraExampleTranslation": "การที่เขาไม่สามารถพูดภาษาฝรั่งเศสได้ทำให้การเดินทางค่อนข้างลำบาก",
+    "usageTip": "มักตามด้วย to + V.1 เพื่อระบุว่าไร้ความสามารถในการทำสิ่งใด"
   },
   {
     "word": "inch",
@@ -42516,7 +45820,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: inches"
-    ]
+    ],
+    "extraExample": "The snow was about an inch deep when we woke up this morning.",
+    "extraExampleTranslation": "หิมะหนาประมาณหนึ่งนิ้วเมื่อเราตื่นขึ้นมาในเช้าวันนี้",
+    "usageTip": "ใช้วัดความยาวขนาดเล็ก หรือใช้ในสำนวน inch by inch เพื่อสื่อถึงความคืบหน้าทีละน้อย"
   },
   {
     "word": "incident",
@@ -42544,7 +45851,10 @@ const wordsData = [
       "ฟัง",
       "หน่อย"
     ],
-    "syllables": "in·ci·dent"
+    "syllables": "in·ci·dent",
+    "extraExample": "The police are investigating a minor incident near the train station.",
+    "extraExampleTranslation": "ตำรวจกำลังสอบสวนเหตุการณ์เล็กน้อยที่เกิดขึ้นใกล้สถานีรถไฟ",
+    "usageTip": "มักใช้กับเหตุการณ์ที่ไม่ปกติ อุบัติเหตุ หรือเรื่องที่เกิดขึ้นโดยไม่คาดคิด"
   },
   {
     "word": "include",
@@ -42583,7 +45893,10 @@ const wordsData = [
       "V2/V3: included",
       "V-ing: including"
     ],
-    "syllables": "in·clude"
+    "syllables": "in·clude",
+    "extraExample": "Does the hotel price include breakfast for two people?",
+    "extraExampleTranslation": "ราคาโรงแรมนี้รวมอาหารเช้าสำหรับสองคนด้วยหรือไม่",
+    "usageTip": "ใช้บอกว่าสิ่งหนึ่งเป็นส่วนหนึ่งของอีกสิ่งหนึ่ง ไม่ใช้ในรูป continuous (ไม่ใช้ is including)"
   },
   {
     "word": "including",
@@ -42615,7 +45928,10 @@ const wordsData = [
     "wordFamily": [
       "include"
     ],
-    "syllables": "in·clu·ding"
+    "syllables": "in·clu·ding",
+    "extraExample": "Five people were injured, including two young children.",
+    "extraExampleTranslation": "มีผู้ได้รับบาดเจ็บห้าคน รวมถึงเด็กเล็กสองคนด้วย",
+    "usageTip": "ใช้เหมือนบุพบทเพื่อยกตัวอย่างบางส่วนจากกลุ่มที่กล่าวถึงข้างหน้า"
   },
   {
     "word": "income",
@@ -42649,7 +45965,10 @@ const wordsData = [
     "antonyms": [
       "outgo"
     ],
-    "syllables": "in·come"
+    "syllables": "in·come",
+    "extraExample": "Many families rely on tourism as their main source of income.",
+    "extraExampleTranslation": "หลายครอบครัวพึ่งพาการท่องเที่ยวเป็นแหล่งรายได้หลักของพวกเขา",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อพูดถึงรายได้โดยรวม มักใช้คู่กับ source of income หรือ low/high income"
   },
   {
     "word": "increase",
@@ -42683,7 +46002,10 @@ const wordsData = [
     "forms": [
       "V2/V3: increased",
       "V-ing: increasing"
-    ]
+    ],
+    "extraExample": "The company hopes to increase its sales by twenty percent.",
+    "extraExampleTranslation": "บริษัทหวังว่าจะเพิ่มยอดขายให้ได้ร้อยละยี่สิบ",
+    "usageTip": "ใช้ได้ทั้งเป็นกริยาและคำนาม หากใช้บอกว่าเพิ่มขึ้นเท่าไรนิยมใช้คู่กับ by"
   },
   {
     "word": "indeed",
@@ -42709,7 +46031,10 @@ const wordsData = [
       "มาก",
       "จริงๆ"
     ],
-    "syllables": "in·deed"
+    "syllables": "in·deed",
+    "extraExample": "The test was indeed much harder than we had expected.",
+    "extraExampleTranslation": "ข้อสอบนั้นยากกว่าที่เราคาดไว้มากจริงๆ",
+    "usageTip": "ใช้เน้นย้ำความจริงหรือเห็นด้วยกับสิ่งที่กล่าวมาก่อนหน้า"
   },
   {
     "word": "independence",
@@ -42739,7 +46064,10 @@ const wordsData = [
       "เพื่อ",
       "เอกราช"
     ],
-    "syllables": "in·de·pen·dence"
+    "syllables": "in·de·pen·dence",
+    "extraExample": "The country finally gained its independence in 1965.",
+    "extraExampleTranslation": "ในที่สุดประเทศก็ได้รับเอกราชในปี 1965",
+    "usageTip": "ใช้พูดถึงความเป็นอิสระทางการเมืองหรือการพึ่งพาตนเองได้"
   },
   {
     "word": "independent",
@@ -42775,7 +46103,10 @@ const wordsData = [
     "antonyms": [
       "dependent"
     ],
-    "syllables": "in·de·pen·dent"
+    "syllables": "in·de·pen·dent",
+    "extraExample": "She has been financially independent since she graduated from college.",
+    "extraExampleTranslation": "เธอพึ่งพาตนเองทางการเงินได้ตั้งแต่เรียนจบมหาวิทยาลัย",
+    "usageTip": "มักตามด้วย of (independent of ...) เพื่อบอกว่าไม่ขึ้นอยู่กับสิ่งใด"
   },
   {
     "word": "index",
@@ -42805,7 +46136,10 @@ const wordsData = [
     "syllables": "in·dex",
     "forms": [
       "พหูพจน์: indexes"
-    ]
+    ],
+    "extraExample": "You can look up that topic in the index at the back of the book.",
+    "extraExampleTranslation": "คุณสามารถค้นหาหัวข้อนั้นได้ในดรรชนีที่ด้านหลังของหนังสือ",
+    "usageTip": "ใช้ได้ทั้งดรรชนีท้ายเล่มหนังสือและดัชนีชี้วัดทางเศรษฐกิจหรือหุ้น"
   },
   {
     "word": "indicate",
@@ -42912,7 +46246,10 @@ const wordsData = [
     "antonyms": [
       "direct"
     ],
-    "syllables": "in·di·rect"
+    "syllables": "in·di·rect",
+    "extraExample": "She gave an indirect answer to avoid hurting his feelings.",
+    "extraExampleTranslation": "เธอให้คำตอบแบบอ้อมค้อมเพื่อหลีกเลี่ยงการทำร้ายความรู้สึกของเขา",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกถึงสิ่งที่ไม่ตรงไปตรงมา เช่น คำตอบ หรือผลกระทบ"
   },
   {
     "word": "individual",
@@ -42938,7 +46275,10 @@ const wordsData = [
       "มี",
       "ความแตกต่าง",
       "กัน"
-    ]
+    ],
+    "extraExample": "Every individual has the right to express their opinion freely.",
+    "extraExampleTranslation": "ทุกคนมีสิทธิ์ที่จะแสดงความคิดเห็นของตนเองได้อย่างเสรี",
+    "usageTip": "ใช้เมื่อต้องการเน้นที่คนคนเดียวแยกออกจากกลุ่มหรือสังคม"
   },
   {
     "word": "indoor",
@@ -42971,7 +46311,10 @@ const wordsData = [
       "indoor air"
     ],
     "phoneticUK": "/ˈɪndˌɔː/",
-    "syllables": "in·door"
+    "syllables": "in·door",
+    "extraExample": "We decided to visit an indoor swimming pool because it was raining.",
+    "extraExampleTranslation": "พวกเราตัดสินใจไปสระว่ายน้ำในร่มเพราะฝนกำลังตก",
+    "usageTip": "ใช้วางหน้าคำนามเพื่อบอกว่าอยู่ภายในอาคาร ไม่มี s ต่อท้าย"
   },
   {
     "word": "indoors",
@@ -43008,7 +46351,10 @@ const wordsData = [
     "antonyms": [
       "outdoors"
     ],
-    "syllables": "in·doors"
+    "syllables": "in·doors",
+    "extraExample": "It is too cold to play outside, so let's stay indoors.",
+    "extraExampleTranslation": "ข้างนอกหนาวเกินกว่าจะเล่นได้ ดังนั้นเราอยู่ข้างในบ้านกันเถอะ",
+    "usageTip": "ใช้เป็นคำกริยาวิเศษณ์วางท้ายประโยคหรือหลังคำกริยา เพื่อบอกว่าอยู่ภายในอาคาร"
   },
   {
     "word": "industrial",
@@ -43039,7 +46385,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "industry"
-    ]
+    ],
+    "extraExample": "The city grew rapidly as a major industrial center in the region.",
+    "extraExampleTranslation": "เมืองนี้เติบโตอย่างรวดเร็วในฐานะศูนย์กลางอุตสาหกรรมหลักของภูมิภาค",
+    "usageTip": "ใช้ขยายคำนามที่เกี่ยวข้องกับโรงงาน การผลิต หรือเขตอุตสาหกรรม"
   },
   {
     "word": "industry",
@@ -43073,7 +46422,10 @@ const wordsData = [
     "syllables": "in·dus·try",
     "forms": [
       "พหูพจน์: industries"
-    ]
+    ],
+    "extraExample": "The tourism industry is a vital part of the country's economy.",
+    "extraExampleTranslation": "อุตสาหกรรมการท่องเที่ยวเป็นส่วนสำคัญของเศรษฐกิจของประเทศ",
+    "usageTip": "ใช้เรียกภาคธุรกิจหรือการผลิตขนาดใหญ่ มักใช้คู่กับประเภทของธุรกิจนั้นๆ"
   },
   {
     "word": "inevitable",
@@ -43105,7 +46457,10 @@ const wordsData = [
     "antonyms": [
       "evitable"
     ],
-    "syllables": "i·ne·vi·ta·ble"
+    "syllables": "i·ne·vi·ta·ble",
+    "extraExample": "With so many cars on the road, traffic jams are almost inevitable.",
+    "extraExampleTranslation": "ด้วยจำนวนรถที่มากขนาดนี้บนถนน รถติดจึงเป็นสิ่งที่แทบจะหลีกเลี่ยงไม่ได้",
+    "usageTip": "ใช้บอกว่าบางสิ่งต้องเกิดขึ้นแน่นอน ป้องกันหรือเลี่ยงไม่ได้"
   },
   {
     "word": "infect",
@@ -43141,7 +46496,10 @@ const wordsData = [
     "antonyms": [
       "disinfect"
     ],
-    "syllables": "in·fect"
+    "syllables": "in·fect",
+    "extraExample": "The virus can easily infect people who have weak immune systems.",
+    "extraExampleTranslation": "ไวรัสสามารถติดเชื้อสู่ผู้ที่มีระบบภูมิคุ้มกันอ่อนแอได้อย่างง่ายดาย",
+    "usageTip": "เป็นคำกริยา ใช้บอกว่าเชื้อโรคเข้าสู่ร่างกายหรือคอมพิวเตอร์"
   },
   {
     "word": "infection",
@@ -43173,7 +46531,10 @@ const wordsData = [
       "ที่",
       "หู"
     ],
-    "syllables": "in·fec·tion"
+    "syllables": "in·fec·tion",
+    "extraExample": "He had to take antibiotics to treat a serious ear infection.",
+    "extraExampleTranslation": "เขาต้องกินยาปฏิชีวนะเพื่อรักษาอาการติดเชื้อในหูอย่างรุนแรง",
+    "usageTip": "ใช้เป็นคำนามนับได้หรือนับไม่ได้เมื่อพูดถึงอาการเจ็บป่วยจากการติดเชื้อ"
   },
   {
     "word": "infectious",
@@ -43208,7 +46569,10 @@ const wordsData = [
     "antonyms": [
       "noninfectious"
     ],
-    "syllables": "in·fec·tious"
+    "syllables": "in·fec·tious",
+    "extraExample": "Her infectious laugh made everyone in the room smile.",
+    "extraExampleTranslation": "เสียงหัวเราะที่ชวนให้หัวเราะตามของเธอทำให้ทุกคนในห้องยิ้มได้",
+    "usageTip": "ใช้ได้ทั้งกับโรคที่ติดต่อได้ และความรู้สึกหรืออารมณ์ที่ส่งต่อถึงคนอื่นได้"
   },
   {
     "word": "influence",
@@ -43238,7 +46602,10 @@ const wordsData = [
     "syllables": "in·fluen·ce",
     "wordFamily": [
       "influencer"
-    ]
+    ],
+    "extraExample": "Parents have a strong influence on their children's behavior.",
+    "extraExampleTranslation": "พ่อแม่มีอิทธิพลอย่างมากต่อพฤติกรรมของลูกๆ",
+    "usageTip": "มักใช้คู่กับคำว่า on เพื่อบอกว่ามีอิทธิพลต่อใครหรือสิ่งใด"
   },
   {
     "word": "inform",
@@ -43275,7 +46642,10 @@ const wordsData = [
       "มี",
       "การเปลี่ยนแปลง"
     ],
-    "syllables": "in·form"
+    "syllables": "in·form",
+    "extraExample": "Please inform us immediately if there are any changes to the schedule.",
+    "extraExampleTranslation": "กรุณาแจ้งให้เราทราบทันทีหากมีการเปลี่ยนแปลงตารางเวลา",
+    "usageTip": "ใช้ในบริบททางการหรือสุภาพ มักตามด้วยบุคคลและคำว่า of หรือ that"
   },
   {
     "word": "informal",
@@ -43313,7 +46683,10 @@ const wordsData = [
     "antonyms": [
       "formal"
     ],
-    "syllables": "in·for·mal"
+    "syllables": "in·for·mal",
+    "extraExample": "We had an informal meeting over coffee to discuss the new project.",
+    "extraExampleTranslation": "พวกเรามีการประชุมแบบไม่เป็นทางการระหว่างดื่มกาแฟเพื่อหารือเรื่องโปรเจกต์ใหม่",
+    "usageTip": "ใช้บอกว่าไม่เป็นทางการ สบายๆ ไม่มีพิธีรีตอง"
   },
   {
     "word": "information",
@@ -43350,7 +46723,9 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "You can find more information about the course on our website.",
+    "extraExampleTranslation": "คุณสามารถหาข้อมูลเพิ่มเติมเกี่ยวกับหลักสูตรได้บนเว็บไซต์ของเรา"
   },
   {
     "word": "ingredient",
@@ -43379,7 +46754,10 @@ const wordsData = [
       "เข้าด้วยกัน"
     ],
     "grammarPattern": "[C] นามนับได้",
-    "register": "อาหาร / ทั่วไป"
+    "register": "อาหาร / ทั่วไป",
+    "extraExample": "Fresh basil is the key ingredient in this traditional Thai dish.",
+    "extraExampleTranslation": "ใบโหระพาสดเป็นส่วนประกอบสำคัญในอาหารไทยจานดั้งเดิมนี้",
+    "usageTip": "ใช้เรียกส่วนผสมในการทำอาหาร หรือองค์ประกอบของความสำเร็จ"
   },
   {
     "word": "initial",
@@ -43411,7 +46789,10 @@ const wordsData = [
     "wordFamily": [
       "initially"
     ],
-    "syllables": "i·ni·tial"
+    "syllables": "i·ni·tial",
+    "extraExample": "My initial reaction to the news was complete surprise.",
+    "extraExampleTranslation": "ปฏิกิริยาแรกเริ่มของฉันต่อข่าวนี้คือความประหลาดใจอย่างยิ่ง",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าเกิดขึ้นในตอนเริ่มต้น หรือเป็นช่วงแรก"
   },
   {
     "word": "initially",
@@ -43441,7 +46822,10 @@ const wordsData = [
     "wordFamily": [
       "initial"
     ],
-    "syllables": "i·ni·tial·ly"
+    "syllables": "i·ni·tial·ly",
+    "extraExample": "Initially, I thought the job would be easy, but it was quite challenging.",
+    "extraExampleTranslation": "ในตอนแรก ฉันคิดว่างานนี้จะง่าย แต่มันค่อนข้างท้าทายทีเดียว",
+    "usageTip": "มักวางไว้ต้นประโยคเพื่อเกริ่นถึงสถานการณ์ในตอนเริ่มต้นก่อนจะเปลี่ยนแปลง"
   },
   {
     "word": "initiative",
@@ -43469,7 +46853,10 @@ const wordsData = [
       "ที่",
       "ยอดเยี่ยม"
     ],
-    "syllables": "i·ni·tia·tive"
+    "syllables": "i·ni·tia·tive",
+    "extraExample": "She took the initiative to organize a charity event for the local school.",
+    "extraExampleTranslation": "เธอเป็นฝ่ายริเริ่มจัดงานการกุศลให้กับโรงเรียนในท้องถิ่น",
+    "usageTip": "มักใช้ในสำนวน take the initiative เพื่อบอกว่าลงมือทำก่อนโดยไม่ต้องรอให้ใครสั่ง"
   },
   {
     "word": "injure",
@@ -43510,7 +46897,10 @@ const wordsData = [
     "forms": [
       "V2/V3: injured",
       "V-ing: injuring"
-    ]
+    ],
+    "extraExample": "Be careful with that knife, or you might injure yourself.",
+    "extraExampleTranslation": "ระวังมีดเล่มนั้นด้วย ไม่อย่างนั้นคุณอาจจะทำให้ตัวเองบาดเจ็บได้",
+    "usageTip": "เป็นคำกริยา ใช้เมื่อร่างกายได้รับบาดเจ็บจากอุบัติเหตุหรือการกระทำ"
   },
   {
     "word": "injured",
@@ -43544,7 +46934,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "injure"
-    ]
+    ],
+    "extraExample": "The injured player was carried off the field by the medical team.",
+    "extraExampleTranslation": "ผู้เล่นที่ได้รับบาดเจ็บถูกทีมแพทย์หามออกจากสนาม",
+    "usageTip": "ใช้ขยายคำนามหรือตามหลัง verb to be เพื่อบอกสภาพของผู้ที่บาดเจ็บ"
   },
   {
     "word": "injury",
@@ -43668,7 +47061,10 @@ const wordsData = [
     "antonyms": [
       "guilty"
     ],
-    "syllables": "in·no·cent"
+    "syllables": "in·no·cent",
+    "extraExample": "The jury found the young man innocent of all charges.",
+    "extraExampleTranslation": "คณะลูกขุนตัดสินว่าชายหนุ่มคนนั้นบริสุทธิ์จากทุกข้อกล่าวหา",
+    "usageTip": "ใช้บรรยายความบริสุทธิ์หรือไร้เดียงสา มักใช้คู่กับ of เพื่อระบุสิ่งที่ไม่ได้ทำผิด"
   },
   {
     "word": "insect",
@@ -43697,7 +47093,10 @@ const wordsData = [
     "wordFamily": [
       "sector"
     ],
-    "syllables": "in·sect"
+    "syllables": "in·sect",
+    "extraExample": "A small green insect landed on the windowpane.",
+    "extraExampleTranslation": "แมลงตัวเล็กสีเขียวเกาะอยู่ที่กระจกหน้าต่าง",
+    "usageTip": "คำนามนับได้ ใช้เรียกแมลงทั่วไป เช่น มด ผึ้ง หรือผีเสื้อ"
   },
   {
     "word": "insert",
@@ -43723,6 +47122,13 @@ const wordsData = [
     "syllables": "in·sert",
     "wordFamily": [
       "dissertation"
+    ],
+    "extraExample": "Please insert your keycard into the slot to open the door.",
+    "extraExampleTranslation": "กรุณาเสียบคีย์การ์ดของคุณลงในช่องเพื่อเปิดประตู",
+    "usageTip": "ใช้เมื่อต้องการใส่หรือสอดสิ่งของเข้าไปในช่องหรือเอกสาร มักตามด้วย into",
+    "collocations": [
+      "insert into",
+      "insert a coin"
     ]
   },
   {
@@ -43754,7 +47160,10 @@ const wordsData = [
     "antonyms": [
       "outside"
     ],
-    "syllables": "in·side"
+    "syllables": "in·side",
+    "extraExample": "Wait for me inside the lobby because it is raining.",
+    "extraExampleTranslation": "รอฉันอยู่ภายในล็อบบี้นะเพราะฝนกำลังตก",
+    "usageTip": "ใช้บอกตำแหน่งว่าอยู่ข้างในพื้นที่หรืออาคาร ไม่ต้องมี of ตามหลัง"
   },
   {
     "word": "insist",
@@ -43787,7 +47196,10 @@ const wordsData = [
       "sister"
     ],
     "syllables": "in·sist",
-    "grammarPattern": "insist on + N / V-ing (ยืนกรานที่จะ...)"
+    "grammarPattern": "insist on + N / V-ing (ยืนกรานที่จะ...)",
+    "extraExample": "She insisted on paying for the entire dinner herself.",
+    "extraExampleTranslation": "เธอยืนกรานที่จะจ่ายค่าอาหารเย็นทั้งหมดด้วยตัวเอง",
+    "usageTip": "ใช้เมื่อยืนยันหรือดึงดันในสิ่งหนึ่ง มักตามด้วย on + V.ing หรือ that"
   },
   {
     "word": "install",
@@ -43818,7 +47230,10 @@ const wordsData = [
     "wordFamily": [
       "installment",
       "uninstall"
-    ]
+    ],
+    "extraExample": "We need to install the latest security update on our computers.",
+    "extraExampleTranslation": "เราต้องติดตั้งอัปเดตความปลอดภัยล่าสุดบนคอมพิวเตอร์ของเรา",
+    "usageTip": "ใช้กับการติดตั้งโปรแกรม เครื่องจักร หรืออุปกรณ์ต่างๆ"
   },
   {
     "word": "instance",
@@ -43845,7 +47260,10 @@ const wordsData = [
       "อาจจะ",
       "อ่านหนังสือ"
     ],
-    "syllables": "in·stance"
+    "syllables": "in·stance",
+    "extraExample": "In this instance, we should double-check the contract before signing.",
+    "extraExampleTranslation": "ในกรณีนี้ เราควรตรวจสอบสัญญาซ้ำอีกครั้งก่อนเซ็นชื่อ",
+    "usageTip": "ใช้ยกตัวอย่างหรืออ้างถึงเหตุการณ์เฉพาะเจาะจง มักใช้ในวลี for instance"
   },
   {
     "word": "instead",
@@ -43876,7 +47294,10 @@ const wordsData = [
       "steady",
       "unsteady"
     ],
-    "syllables": "in·stead"
+    "syllables": "in·stead",
+    "extraExample": "He decided not to drive and took the train instead.",
+    "extraExampleTranslation": "เขาตัดสินใจไม่ขับรถและนั่งรถไฟแทน",
+    "usageTip": "วางไว้ท้ายประโยคหรือต้นประโยคเพื่อบอกว่าทำสิ่งนี้แทนอีกสิ่งหนึ่ง"
   },
   {
     "word": "instead of",
@@ -43899,7 +47320,10 @@ const wordsData = [
       "ขับรถ",
       "กัน",
       "เถอะ"
-    ]
+    ],
+    "extraExample": "Let us drink green tea instead of coffee this afternoon.",
+    "extraExampleTranslation": "บ่ายนี้เราดื่มชาเขียวแทนกาแฟกันเถอะ",
+    "usageTip": "ใช้เชื่อมคำนามหรือ V.ing เพื่อบอกว่าเลือกสิ่งหนึ่งแทนที่จะเลือกอีกสิ่ง"
   },
   {
     "word": "institute",
@@ -43929,7 +47353,10 @@ const wordsData = [
       "สถาบันวิจัย"
     ],
     "phoneticUK": "/ˈɪnstɪtjuːt/",
-    "syllables": "in·sti·tute"
+    "syllables": "in·sti·tute",
+    "extraExample": "The research institute announced a breakthrough in clean energy.",
+    "extraExampleTranslation": "สถาบันวิจัยได้ประกาศความก้าวหน้าครั้งสำคัญด้านพลังงานสะอาด",
+    "usageTip": "ใช้เรียกสถาบันเฉพาะทาง เช่น สถาบันวิจัยหรือสถาบันการศึกษา และใช้เป็นกริยาแปลว่าจัดตั้งได้ด้วย"
   },
   {
     "word": "institution",
@@ -43958,7 +47385,10 @@ const wordsData = [
       "เป็น",
       "สถาบันการเงิน"
     ],
-    "syllables": "in·sti·tu·tion"
+    "syllables": "in·sti·tu·tion",
+    "extraExample": "The university is a respected educational institution in this country.",
+    "extraExampleTranslation": "มหาวิทยาลัยแห่งนี้เป็นสถาบันการศึกษาที่ได้รับความนับถือในประเทศนี้",
+    "usageTip": "ใช้เรียกองค์กรหรือสถาบันขนาดใหญ่ที่มีบทบาทสำคัญในสังคม เช่น ธนาคารหรือโรงเรียน"
   },
   {
     "word": "instruction",
@@ -43986,7 +47416,10 @@ const wordsData = [
       "อย่าง",
       "ละเอียด"
     ],
-    "syllables": "ins·truc·tion"
+    "syllables": "ins·truc·tion",
+    "extraExample": "Read the instruction manual carefully before assembling the furniture.",
+    "extraExampleTranslation": "อ่านคู่มือการใช้งานอย่างละเอียดก่อนประกอบเฟอร์นิเจอร์",
+    "usageTip": "มักใช้ในรูปพหูพจน์ (instructions) เมื่อหมายถึงคำแนะนำหรือขั้นตอนการทำ"
   },
   {
     "word": "instrument",
@@ -44013,7 +47446,10 @@ const wordsData = [
       "ได้",
       "ไหม"
     ],
-    "syllables": "ins·tru·ment"
+    "syllables": "ins·tru·ment",
+    "extraExample": "Learning to play a musical instrument requires daily practice.",
+    "extraExampleTranslation": "การหัดเล่นเครื่องดนตรีต้องอาศัยการฝึกฝนทุกวัน",
+    "usageTip": "ใช้ได้ทั้งเครื่องดนตรีและเครื่องมือเฉพาะทาง เช่น เครื่องมือแพทย์หรือวิทยาศาสตร์"
   },
   {
     "word": "insult",
@@ -44042,7 +47478,10 @@ const wordsData = [
     "wordFamily": [
       "result"
     ],
-    "syllables": "in·sult"
+    "syllables": "in·sult",
+    "extraExample": "It is rude to insult someone because of their appearance.",
+    "extraExampleTranslation": "การดูถูกผู้อื่นเพราะรูปลักษณ์ภายนอกเป็นเรื่องเสียมารยาท",
+    "usageTip": "ใช้ได้ทั้งเป็นกริยา (ดูถูก) และคำนาม (คำดูถูก) มักใช้กับคำพูดหรือการกระทำที่ทำให้เสียหน้า"
   },
   {
     "word": "insurance",
@@ -44070,7 +47509,10 @@ const wordsData = [
       "รถยนต์",
       "ไหม"
     ],
-    "syllables": "in·su·rance"
+    "syllables": "in·su·rance",
+    "extraExample": "Make sure you buy travel insurance before your trip abroad.",
+    "extraExampleTranslation": "อย่าลืมซื้อประกันการเดินทางก่อนเดินทางไปต่างประเทศนะ",
+    "usageTip": "คำนามนับไม่ได้ ใช้เรียกการทำประกันประเภทต่างๆ เช่น ประกันชีวิตหรือประกันรถยนต์"
   },
   {
     "word": "intelligence",
@@ -44106,7 +47548,10 @@ const wordsData = [
     "antonyms": [
       "stupidity"
     ],
-    "syllables": "in·tel·li·gence"
+    "syllables": "in·tel·li·gence",
+    "extraExample": "Artificial intelligence is changing the way many industries operate.",
+    "extraExampleTranslation": "ปัญญาประดิษฐ์กำลังเปลี่ยนวิธีการทำงานของหลายอุตสาหกรรม",
+    "usageTip": "คำนามนับไม่ได้ หมายถึงความฉลาด ไหวพริบ หรือข้อมูลข่าวกรอง"
   },
   {
     "word": "intelligent",
@@ -44140,7 +47585,10 @@ const wordsData = [
     "antonyms": [
       "stupid"
     ],
-    "syllables": "in·tel·li·gent"
+    "syllables": "in·tel·li·gent",
+    "extraExample": "She is an intelligent student who asks thoughtful questions in class.",
+    "extraExampleTranslation": "เธอเป็นนักเรียนที่ฉลาดและมักถามคำถามที่ชวนคิดในห้องเรียน",
+    "usageTip": "ใช้ขยายคำนามหรือวางหลัง verb to be เพื่อชมว่ามีสติปัญญาดีหรือหลักแหลม"
   },
   {
     "word": "intend",
@@ -44174,7 +47622,10 @@ const wordsData = [
       "ทำ",
       "อะไร"
     ],
-    "syllables": "in·tend"
+    "syllables": "in·tend",
+    "extraExample": "I intend to finish this report before five o'clock today.",
+    "extraExampleTranslation": "ฉันตั้งใจจะทำรายงานฉบับนี้ให้เสร็จก่อนห้าโมงเย็นวันนี้",
+    "usageTip": "มักตามด้วย to + V.1 เพื่อบอกความตั้งใจหรือแผนการในอนาคต"
   },
   {
     "word": "intended",
@@ -44210,7 +47661,10 @@ const wordsData = [
       "ถึง",
       "คุณ"
     ],
-    "syllables": "in·ten·ded"
+    "syllables": "in·ten·ded",
+    "extraExample": "The joke was intended to make everyone feel relaxed.",
+    "extraExampleTranslation": "มุกตลกนั้นมีเจตนาเพื่อให้ทุกคนรู้สึกผ่อนคลาย",
+    "usageTip": "มักใช้ในรูป passive (be intended to/for) เพื่อบอกว่าถูกออกแบบหรือตั้งใจไว้สำหรับสิ่งใด"
   },
   {
     "word": "intention",
@@ -44245,7 +47699,10 @@ const wordsData = [
       "ทำร้าย",
       "คุณ"
     ],
-    "syllables": "in·ten·tion"
+    "syllables": "in·ten·tion",
+    "extraExample": "He had no intention of hurting your feelings with that remark.",
+    "extraExampleTranslation": "เขาไม่มีเจตนาที่จะทำร้ายความรู้สึกของคุณด้วยคำพูดนั้น",
+    "usageTip": "ใช้บอกความตั้งใจหรือเจตนา มักใช้คู่กับ have no intention of"
   },
   {
     "word": "interest",
@@ -44374,7 +47831,10 @@ const wordsData = [
       "สวยงาม",
       "มาก"
     ],
-    "phoneticUK": "/ɪntˈɪriːə(r)/"
+    "phoneticUK": "/ɪntˈɪriːə(r)/",
+    "extraExample": "The hotel's interior was decorated with warm wood and soft lighting.",
+    "extraExampleTranslation": "การตกแต่งภายในของโรงแรมใช้ไม้โทนอบอุ่นและแสงไฟนวลตา",
+    "usageTip": "ใช้เป็นคำนามหมายถึงด้านในหรือการตกแต่งภายในอาคาร/รถ มักใช้คู่กับ design หรือ decoration"
   },
   {
     "word": "internal",
@@ -44405,7 +47865,10 @@ const wordsData = [
       "external"
     ],
     "phoneticUK": "/ɪntˈɜːnəl/",
-    "syllables": "in·ter·nal"
+    "syllables": "in·ter·nal",
+    "extraExample": "The company conducted an internal review before releasing the report.",
+    "extraExampleTranslation": "บริษัทได้ดำเนินการตรวจสอบภายในก่อนเผยแพร่รายงาน",
+    "usageTip": "เป็นคำคุณศัพท์ วางหน้าคำนามเพื่อบอกว่าเป็นเรื่องภายในองค์กร ร่างกาย หรือระบบ"
   },
   {
     "word": "international",
@@ -44438,7 +47901,10 @@ const wordsData = [
       "national"
     ],
     "syllables": "in·ter·na·tio·nal",
-    "rootBreakdown": "inter- (ระหว่าง) + nation (ชาติ) + -al → นานาชาติ"
+    "rootBreakdown": "inter- (ระหว่าง) + nation (ชาติ) + -al → นานาชาติ",
+    "extraExample": "She works for an international organization based in Geneva.",
+    "extraExampleTranslation": "เธอทำงานให้กับองค์กรระหว่างประเทศที่ตั้งอยู่ในเจนีวา",
+    "usageTip": "ใช้ขยายคำนามที่เกี่ยวข้องกับหลายประเทศหรือระดับโลก"
   },
   {
     "word": "Internet",
@@ -44465,7 +47931,10 @@ const wordsData = [
       "อินเทอร์เน็ต",
       "ทุกวัน"
     ],
-    "syllables": "In·ter·net"
+    "syllables": "In·ter·net",
+    "extraExample": "Fast Internet access is essential for remote work today.",
+    "extraExampleTranslation": "การเข้าถึงอินเทอร์เน็ตที่รวดเร็วเป็นสิ่งจำเป็นสำหรับการทำงานทางไกลในปัจจุบัน",
+    "usageTip": "มักใช้ตัวพิมพ์ใหญ่ขึ้นต้น (Internet) และใช้นำหน้าด้วย the เมื่อพูดถึงเครือข่ายโดยรวม"
   },
   {
     "word": "interpret",
@@ -44501,7 +47970,10 @@ const wordsData = [
       "ไหม"
     ],
     "phoneticUK": "/ɪntˈɜːprət/",
-    "syllables": "in·ter·pret"
+    "syllables": "in·ter·pret",
+    "extraExample": "It is difficult to interpret his silence as agreement.",
+    "extraExampleTranslation": "มันยากที่จะตีความความเงียบของเขาว่าเป็นการเห็นด้วย",
+    "usageTip": "ใช้ได้ทั้งการแปลภาษาแบบพูด (ล่าม) และการตีความหมายหรือท่าที"
   },
   {
     "word": "interpretation",
@@ -44532,7 +48004,10 @@ const wordsData = [
       "น่าสนใจ"
     ],
     "phoneticUK": "/ɪntˌɜːprɪtˈeɪʃən/",
-    "syllables": "in·ter·pre·ta·tion"
+    "syllables": "in·ter·pre·ta·tion",
+    "extraExample": "Her interpretation of the poem impressed the entire class.",
+    "extraExampleTranslation": "การตีความบทกวีของเธอสร้างความประทับใจให้คนทั้งห้อง",
+    "usageTip": "เป็นคำนาม หมายถึงการตีความหรือการแปลความหมาย มักตามด้วย of"
   },
   {
     "word": "interrupt",
@@ -44563,7 +48038,10 @@ const wordsData = [
       "ฉัน",
       "พูด"
     ],
-    "syllables": "in·ter·rupt"
+    "syllables": "in·ter·rupt",
+    "extraExample": "Please do not interrupt me while I am explaining the rules.",
+    "extraExampleTranslation": "กรุณาอย่าขัดจังหวะฉันในขณะที่ฉันกำลังอธิบายกฎ",
+    "usageTip": "ใช้เมื่อมีคนหรือเหตุการณ์มาแทรกกลางคันทำให้หยุดชะงัก"
   },
   {
     "word": "interruption",
@@ -44597,7 +48075,10 @@ const wordsData = [
       "brief interruption",
       "constant interruption"
     ],
-    "syllables": "in·ter·rup·tion"
+    "syllables": "in·ter·rup·tion",
+    "extraExample": "We worked for three hours without a single interruption.",
+    "extraExampleTranslation": "เราทำงานติดต่อกันสามชั่วโมงโดยไม่มีการหยุดชะงักเลยแม้แต่ครั้งเดียว",
+    "usageTip": "เป็นคำนามนับได้หรือนับไม่ได้ก็ได้ หมายถึงการขัดจังหวะหรือสิ่งที่มาแทรก"
   },
   {
     "word": "interval",
@@ -44623,7 +48104,10 @@ const wordsData = [
       "short interval",
       "at intervals"
     ],
-    "syllables": "in·ter·val"
+    "syllables": "in·ter·val",
+    "extraExample": "The trains run at ten-minute intervals during rush hour.",
+    "extraExampleTranslation": "รถไฟวิ่งห่างกันเป็นช่วงละสิบนาทีในช่วงเวลาเร่งด่วน",
+    "usageTip": "ใช้บอกระยะห่างของเวลาหรือพื้นที่ รวมถึงช่วงพักครึ่งของการแสดง"
   },
   {
     "word": "interview",
@@ -44651,7 +48135,10 @@ const wordsData = [
       "งาน",
       "พรุ่งนี้"
     ],
-    "syllables": "in·ter·view"
+    "syllables": "in·ter·view",
+    "extraExample": "He felt nervous before his first job interview.",
+    "extraExampleTranslation": "เขารู้สึกประหม่าก่อนการสัมภาษณ์งานครั้งแรก",
+    "usageTip": "ใช้ได้ทั้งการสัมภาษณ์งานและสัมภาษณ์สื่อ มักใช้คู่กับ have หรือ attend"
   },
   {
     "word": "into",
@@ -44678,7 +48165,10 @@ const wordsData = [
       "ใน",
       "ห้อง"
     ],
-    "syllables": "in·to"
+    "syllables": "in·to",
+    "extraExample": "She poured the hot tea into a ceramic cup.",
+    "extraExampleTranslation": "เธอรินชาร้อนลงในถ้วยเซรามิก",
+    "usageTip": "เป็นคำบุพบทบอกการเคลื่อนที่จากข้างนอกเข้าไปข้างใน หรือการเปลี่ยนสภาพ"
   },
   {
     "word": "introduce",
@@ -44713,7 +48203,10 @@ const wordsData = [
     "forms": [
       "V2/V3: introduced",
       "V-ing: introducing"
-    ]
+    ],
+    "extraExample": "Let me introduce you to my colleague from Tokyo.",
+    "extraExampleTranslation": "ขอแนะนำให้คุณรู้จักกับเพื่อนร่วมงานของฉันจากโตเกียว",
+    "usageTip": "ใช้โครงสร้าง introduce A to B เมื่อแนะนำคนให้รู้จักกัน หรือแนะนำสิ่งใหม่"
   },
   {
     "word": "introduction",
@@ -44743,7 +48236,10 @@ const wordsData = [
       "ก่อน"
     ],
     "syllables": "in·tro·duc·tion",
-    "rootBreakdown": "introduce + -tion (การกระทำ / สภาวะ (Noun))"
+    "rootBreakdown": "introduce + -tion (การกระทำ / สภาวะ (Noun))",
+    "extraExample": "The book's introduction explains the main themes clearly.",
+    "extraExampleTranslation": "บทนำของหนังสืออธิบายประเด็นหลักไว้อย่างชัดเจน",
+    "usageTip": "หมายถึงการแนะนำตัวหรือบทนำของหนังสือ/รายงาน มักใช้คู่กับ make หรือ write"
   },
   {
     "word": "invent",
@@ -44774,7 +48270,10 @@ const wordsData = [
       "ประดิษฐ์",
       "โทรศัพท์"
     ],
-    "syllables": "in·vent"
+    "syllables": "in·vent",
+    "extraExample": "Who did invent the first practical electric light bulb?",
+    "extraExampleTranslation": "ใครเป็นผู้ประดิษฐ์หลอดไฟฟ้ารุ่นแรกที่ใช้งานได้จริง",
+    "usageTip": "ใช้กับสิ่งของหรือวิธีการที่คิดค้นขึ้นใหม่เป็นครั้งแรก ไม่ใช่สิ่งที่ค้นพบตามธรรมชาติ"
   },
   {
     "word": "invention",
@@ -44805,7 +48304,10 @@ const wordsData = [
       "ที่",
       "ยิ่งใหญ่"
     ],
-    "syllables": "in·ven·tion"
+    "syllables": "in·ven·tion",
+    "extraExample": "The printing press was a life-changing invention in human history.",
+    "extraExampleTranslation": "แท่นพิมพ์เป็นการประดิษฐ์ที่เปลี่ยนวิถีชีวิตในประวัติศาสตร์มนุษยชาติ",
+    "usageTip": "เป็นคำนามหมายถึงสิ่งประดิษฐ์หรือการคิดค้นสิ่งใหม่"
   },
   {
     "word": "invest",
@@ -44839,7 +48341,10 @@ const wordsData = [
     "antonyms": [
       "divest"
     ],
-    "syllables": "in·vest"
+    "syllables": "in·vest",
+    "extraExample": "They decided to invest their savings in renewable energy.",
+    "extraExampleTranslation": "พวกเขาตัดสินใจลงทุนเงินออมในพลังงานหมุนเวียน",
+    "usageTip": "มักใช้คู่กับคำบุพบท in เพื่อบอกว่าลงทุนในอะไร (เงิน เวลา หรือความพยายาม)"
   },
   {
     "word": "investigate",
@@ -44874,7 +48379,10 @@ const wordsData = [
     "forms": [
       "V2/V3: investigated",
       "V-ing: investigating"
-    ]
+    ],
+    "extraExample": "Police are continuing to investigate the cause of the fire.",
+    "extraExampleTranslation": "ตำรวจยังคงสืบสวนหาสาเหตุของเพลิงไหม้ต่อไป",
+    "usageTip": "ใช้กับการสืบสวนคดี การตรวจสอบข้อเท็จจริง หรือการสำรวจทางวิทยาศาสตร์"
   },
   {
     "word": "investigation",
@@ -44902,7 +48410,10 @@ const wordsData = [
       "probe",
       "investigating"
     ],
-    "syllables": "in·ve·sti·ga·tion"
+    "syllables": "in·ve·sti·ga·tion",
+    "extraExample": "The investigation revealed several safety violations at the factory.",
+    "extraExampleTranslation": "การสืบสวนเปิดเผยให้เห็นการละเมิดความปลอดภัยหลายจุดในโรงงาน",
+    "usageTip": "เป็นคำนาม มักใช้คู่กับ conduct, launch หรือ under"
   },
   {
     "word": "investment",
@@ -44936,7 +48447,10 @@ const wordsData = [
       "ดี"
     ],
     "syllables": "in·ves·tment",
-    "rootBreakdown": "invest + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "invest + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "Buying a house is often considered a long-term investment.",
+    "extraExampleTranslation": "การซื้อบ้านมักถูกมองว่าเป็นการลงทุนระยะยาว",
+    "usageTip": "หมายถึงการลงทุนหรือสิ่งที่เราลงเงิน/เวลาไปเพื่อหวังผลตอบแทนในอนาคต"
   },
   {
     "word": "invitation",
@@ -44959,7 +48473,14 @@ const wordsData = [
       "งาน",
       "ปาร์ตี้"
     ],
-    "syllables": "in·vi·ta·tion"
+    "syllables": "in·vi·ta·tion",
+    "extraExample": "Thank you very much for your kind invitation to dinner.",
+    "extraExampleTranslation": "ขอบคุณมากสำหรับคำเชิญอันแสนดีของคุณให้ไปทานมื้อค่ำ",
+    "usageTip": "มักตามด้วย to + สถานที่/งาน หรือ to + กริยาช่อง 1",
+    "collocations": [
+      "accept an invitation",
+      "wedding invitation"
+    ]
   },
   {
     "word": "invite",
@@ -45074,7 +48595,10 @@ const wordsData = [
       "non-involvement"
     ],
     "phoneticUK": "/ɪnvˈɒlvmənt/",
-    "rootBreakdown": "involve + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "involve + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "Her involvement in the community project made a big difference.",
+    "extraExampleTranslation": "การมีส่วนร่วมของเธอในโครงการชุมชนสร้างความแตกต่างอย่างมาก",
+    "usageTip": "มักใช้กับคำบุพบท in หรือ with เพื่อบอกสิ่งที่เข้าไปเกี่ยวข้อง"
   },
   {
     "word": "iron",
@@ -45102,7 +48626,10 @@ const wordsData = [
       "จาก",
       "เหล็ก"
     ],
-    "syllables": "i·ron"
+    "syllables": "i·ron",
+    "extraExample": "He used a hot iron to press his shirt before the meeting.",
+    "extraExampleTranslation": "เขาใช้เตารีดร้อนๆ รีดเสื้อเชิ้ตก่อนเข้าประชุม",
+    "usageTip": "ใช้เป็นคำนามหมายถึงเตารีดหรือเหล็ก และเป็นกริยาหมายถึงการรีดผ้า"
   },
   {
     "word": "irritate",
@@ -45144,7 +48671,10 @@ const wordsData = [
     "forms": [
       "V2/V3: irritated",
       "V-ing: irritating"
-    ]
+    ],
+    "extraExample": "Loud noises from the street always irritate me when I try to sleep.",
+    "extraExampleTranslation": "เสียงดังจากถนนมักจะรบกวนฉันเสมอเวลาที่ฉันพยายามจะนอน",
+    "usageTip": "ใช้เมื่อบางสิ่งทำให้รู้สึกรำคาญใจหรือระคายเคืองทางร่างกาย"
   },
   {
     "word": "irritated",
@@ -45174,7 +48704,10 @@ const wordsData = [
     "wordFamily": [
       "irritate"
     ],
-    "syllables": "ir·ri·ta·ted"
+    "syllables": "ir·ri·ta·ted",
+    "extraExample": "She looked irritated when the train was delayed again.",
+    "extraExampleTranslation": "เธอดูหงุดหงิดเมื่อรถไฟล่าช้าอีกครั้ง",
+    "usageTip": "มักใช้ตามหลัง verb to be หรือ linking verbs เพื่อบอกความรู้สึก"
   },
   {
     "word": "island",
@@ -45201,7 +48734,10 @@ const wordsData = [
       "บน",
       "เกาะเล็กๆ"
     ],
-    "syllables": "i·sland"
+    "syllables": "i·sland",
+    "extraExample": "We spent our summer vacation on a quiet tropical island.",
+    "extraExampleTranslation": "เราใช้เวลาช่วงวันหยุดฤดูร้อนบนเกาะเขตร้อนที่เงียบสงบ",
+    "usageTip": "ออกเสียงว่า อาย-แลนด์ โดยไม่ออกเสียงตัว s"
   },
   {
     "word": "issue",
@@ -45230,7 +48766,10 @@ const wordsData = [
       "สำคัญ",
       "มาก"
     ],
-    "syllables": "is·sue"
+    "syllables": "is·sue",
+    "extraExample": "Climate change is a major issue that affects everyone.",
+    "extraExampleTranslation": "การเปลี่ยนแปลงสภาพภูมิอากาศเป็นประเด็นสำคัญที่ส่งผลกระทบต่อทุกคน",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าประเด็นปัญหา และฉบับของนิตยสาร"
   },
   {
     "word": "it",
@@ -45254,7 +48793,10 @@ const wordsData = [
       "ฝน",
       "กำลัง",
       "ตก"
-    ]
+    ],
+    "extraExample": "It is raining heavily outside, so take an umbrella.",
+    "extraExampleTranslation": "ข้างนอกฝนกำลังตกหนัก ดังนั้นพกร่มไปด้วยนะ",
+    "usageTip": "ใช้เป็นประธานในประโยคบอกเล่าเรื่องอากาศ เวลา หรือระยะทางได้"
   },
   {
     "word": "item",
@@ -45284,7 +48826,10 @@ const wordsData = [
       "ใบ",
       "รายการ"
     ],
-    "syllables": "i·tem"
+    "syllables": "i·tem",
+    "extraExample": "Please check every item on the shopping list before paying.",
+    "extraExampleTranslation": "กรุณาตรวจสอบสินค้าทุกรายการในรายการซื้อของก่อนจ่ายเงิน",
+    "usageTip": "ใช้เรียกรายการสิ่งของแต่ละชิ้น หรือหัวข้อในรายการ"
   },
   {
     "word": "its",
@@ -45311,7 +48856,9 @@ const wordsData = [
     "usageTip": "its (ไม่มี ') = ของมัน; ส่วน it's (มี ') ย่อมาจาก it is หรือ it has",
     "wordFamily": [
       "it"
-    ]
+    ],
+    "extraExample": "The dog wagged its tail happily when we came home.",
+    "extraExampleTranslation": "สุนัขกระดิกหางของมันอย่างมีความสุขเมื่อเรากลับถึงบ้าน"
   },
   {
     "word": "itself",
@@ -45341,7 +48888,10 @@ const wordsData = [
       "มัน",
       "เอง"
     ],
-    "syllables": "it·self"
+    "syllables": "it·self",
+    "extraExample": "The cat cleaned itself after eating dinner.",
+    "extraExampleTranslation": "แมวทำความสะอาดตัวเองหลังจากกินอาหารเย็นเสร็จ",
+    "usageTip": "ใช้เป็นกรรมสะท้อนกลับเมื่อประธานและกรรมเป็นสิ่งเดียวกัน"
   },
   {
     "word": "jacket",
@@ -45372,7 +48922,10 @@ const wordsData = [
       "หนาว",
       "นะ"
     ],
-    "syllables": "ja·cket"
+    "syllables": "ja·cket",
+    "extraExample": "Put on your warm jacket because it is freezing tonight.",
+    "extraExampleTranslation": "สวมเสื้อแจ๊คเก็ตอุ่นๆ ของคุณด้วยนะเพราะคืนนี้หนาวจัด",
+    "usageTip": "ใช้เรียกเสื้อคลุมตัวนอกที่มีความยาวระดับเอวหรือสะโพก"
   },
   {
     "word": "jam",
@@ -45398,7 +48951,10 @@ const wordsData = [
       "ชอบ",
       "แยม",
       "สตรอว์เบอร์รี"
-    ]
+    ],
+    "extraExample": "We were stuck in a terrible traffic jam for two hours.",
+    "extraExampleTranslation": "เราติดอยู่ในรถติดอย่างหนักนานถึงสองชั่วโมง",
+    "usageTip": "นอกจากแยมผลไม้แล้ว ยังใช้บ่อยในคำว่า traffic jam (รถติด)"
   },
   {
     "word": "January",
@@ -45428,7 +48984,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: januaries"
-    ]
+    ],
+    "extraExample": "My birthday is on the tenth of January.",
+    "extraExampleTranslation": "วันเกิดของฉันตรงกับวันที่สิบมกราคม",
+    "usageTip": "ชื่อเดือนในภาษาอังกฤษต้องขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ"
   },
   {
     "word": "jealous",
@@ -45458,7 +49017,10 @@ const wordsData = [
       "เขา"
     ],
     "syllables": "jea·lous",
-    "grammarPattern": "be jealous of + someone/something (อิจฉา...)"
+    "grammarPattern": "be jealous of + someone/something (อิจฉา...)",
+    "extraExample": "He felt jealous of his friend's new sports car.",
+    "extraExampleTranslation": "เขารู้สึกอิจฉารถสปอร์ตคันใหม่ของเพื่อน",
+    "usageTip": "มักใช้คู่กับคำบุพบท of ตามด้วยสิ่งที่เราอิจฉา"
   },
   {
     "word": "jeans",
@@ -45489,7 +49051,10 @@ const wordsData = [
     "forms": [
       "[Plural] ใช้รูปพหูพจน์เสมอ"
     ],
-    "grammarPattern": "[Plural] ใช้รูปพหูพจน์กับกริยาพหูพจน์เสมอ"
+    "grammarPattern": "[Plural] ใช้รูปพหูพจน์กับกริยาพหูพจน์เสมอ",
+    "extraExample": "She likes to wear comfortable blue jeans on weekends.",
+    "extraExampleTranslation": "เธอชอบใส่กางเกงยีนส์สีฟ้าที่ใส่สบายในวันหยุดสุดสัปดาห์",
+    "usageTip": "ใช้เป็นรูปพหูพจน์เสมอและใช้กริยาพหูพจน์ตาม"
   },
   {
     "word": "jelly",
@@ -45516,7 +49081,10 @@ const wordsData = [
       "กิน",
       "เยลลี่"
     ],
-    "syllables": "jel·ly"
+    "syllables": "jel·ly",
+    "extraExample": "The children enjoyed eating sweet strawberry jelly for dessert.",
+    "extraExampleTranslation": "เด็กๆ สนุกกับการกินวุ้นสตรอว์เบอร์รีหวานๆ เป็นของหวาน",
+    "usageTip": "ในแบบอังกฤษหมายถึงวุ้นเจลาติน ส่วนในแบบอเมริกันมักหมายถึงแยมเนื้อใส"
   },
   {
     "word": "jewellery",
@@ -45540,6 +49108,13 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: jewelleries"
+    ],
+    "extraExample": "She keeps all her expensive jewellery in a locked box.",
+    "extraExampleTranslation": "เธอเก็บเครื่องประดับราคาแพงทั้งหมดไว้ในกล่องที่ล็อกกุญแจ",
+    "usageTip": "เป็นคำนามนับไม่ได้ ห้ามเติม s และมักใช้ในแบบอังกฤษ (อเมริกันสะกด jewelry)",
+    "collocations": [
+      "gold jewellery",
+      "costume jewellery"
     ]
   },
   {
@@ -45569,7 +49144,9 @@ const wordsData = [
       "ใหม่"
     ],
     "usageTip": "job (อาชีพ/งานเป็นตำแหน่ง) เป็นนามนับได้ (apply for a job); ต่างจาก work ที่นับไม่ได้",
-    "phoneticUK": "/dʒˈɒb/"
+    "phoneticUK": "/dʒˈɒb/",
+    "extraExample": "Finding a good job after graduation can be challenging.",
+    "extraExampleTranslation": "การหางานที่ดีหลังเรียนจบอาจเป็นเรื่องท้าทาย"
   },
   {
     "word": "join",
@@ -45600,7 +49177,10 @@ const wordsData = [
     "antonyms": [
       "leave",
       "separate"
-    ]
+    ],
+    "extraExample": "Would you like to join us for dinner tonight?",
+    "extraExampleTranslation": "คุณอยากจะมาร่วมรับประทานอาหารเย็นกับพวกเราคืนนี้ไหม",
+    "usageTip": "ใช้ได้ทั้งการเข้าร่วมกิจกรรมและชวนคนอื่นมาร่วมด้วย"
   },
   {
     "word": "joint",
@@ -45628,7 +49208,10 @@ const wordsData = [
     ],
     "antonyms": [
       "separate"
-    ]
+    ],
+    "extraExample": "The two companies made a joint effort to solve the problem.",
+    "extraExampleTranslation": "ทั้งสองบริษัทได้ร่วมมือกันเพื่อแก้ไขปัญหานี้",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อบอกว่าทำร่วมกันตั้งแต่สองฝ่ายขึ้นไป"
   },
   {
     "word": "joke",
@@ -45748,7 +49331,10 @@ const wordsData = [
     ],
     "antonyms": [
       "sorrow"
-    ]
+    ],
+    "extraExample": "Seeing her family again brought tears of joy to her eyes.",
+    "extraExampleTranslation": "การได้พบครอบครัวอีกครั้งทำให้เธอน้ำตาไหลด้วยความปีติยินดี",
+    "usageTip": "ใช้เป็นคำนามนับไม่ได้ (uncountable) เมื่อพูดถึงความสุขหรือความปีติยินดีทั่วไป"
   },
   {
     "word": "judge",
@@ -45780,7 +49366,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "judgement"
-    ]
+    ],
+    "extraExample": "The judge listened carefully to both sides before making a decision.",
+    "extraExampleTranslation": "ผู้พิพากษาฟังความทั้งสองฝ่ายอย่างตั้งใจก่อนตัดสินใจ",
+    "usageTip": "ใช้นำหน้าชื่อตำแหน่งหรือพูดถึงผู้ตัดสินในศาลและในการแข่งขัน"
   },
   {
     "word": "judgement",
@@ -45812,7 +49401,10 @@ const wordsData = [
       "ของ",
       "คุณ"
     ],
-    "rootBreakdown": "judge + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "judge + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "We should trust his judgement because he has years of experience.",
+    "extraExampleTranslation": "เราควรเชื่อในการตัดสินใจของเขาเพราะเขามีประสบการณ์หลายปี",
+    "usageTip": "สะกดได้ทั้ง judgement (แบบอังกฤษ) และ judgment (แบบอเมริกัน)"
   },
   {
     "word": "juice",
@@ -45843,7 +49435,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "She always drinks a glass of fresh orange juice with breakfast.",
+    "extraExampleTranslation": "เธอมักจะดื่มน้ำส้มคั้นสดหนึ่งแก้วพร้อมอาหารเช้าเสมอ",
+    "usageTip": "มักใช้เป็นคำนามนับไม่ได้ เว้นแต่จะหมายถึงน้ำผลไม้หลายชนิดหรือหลายแก้ว"
   },
   {
     "word": "July",
@@ -45871,7 +49466,10 @@ const wordsData = [
     "syllables": "Ju·ly",
     "forms": [
       "พหูพจน์: julies"
-    ]
+    ],
+    "extraExample": "Our school summer camp usually starts in early July.",
+    "extraExampleTranslation": "ค่ายฤดูร้อนของโรงเรียนเรามักจะเริ่มในช่วงต้นเดือนกรกฎาคม",
+    "usageTip": "ชื่อเดือนต้องขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ และใช้คู่กับ in (เช่น in July)"
   },
   {
     "word": "jump",
@@ -45899,7 +49497,10 @@ const wordsData = [
       "ได้",
       "สูง",
       "มาก"
-    ]
+    ],
+    "extraExample": "The cat can easily jump onto the high kitchen counter.",
+    "extraExampleTranslation": "แมวตัวนั้นสามารถกระโดดขึ้นไปบนเคาน์เตอร์ครัวที่สูงได้อย่างง่ายดาย",
+    "usageTip": "ใช้คู่กับบุพบทอย่าง onto, over หรือ into เพื่อบอกทิศทางการกระโดด"
   },
   {
     "word": "June",
@@ -45923,7 +49524,10 @@ const wordsData = [
       "ร้อนใน",
       "เดือน",
       "มิถุนายน"
-    ]
+    ],
+    "extraExample": "They are planning to get married next June in Chiang Mai.",
+    "extraExampleTranslation": "พวกเขาวางแผนจะแต่งงานกันในเดือนมิถุนายนหน้า ที่เชียงใหม่",
+    "usageTip": "ใช้ in นำหน้าชื่อเดือนเมื่อไม่ระบุวันที่ (เช่น in June) และขึ้นต้นด้วยตัวพิมพ์ใหญ่"
   },
   {
     "word": "junior",
@@ -45954,7 +49558,10 @@ const wordsData = [
       "senior"
     ],
     "phoneticUK": "/dʒˈuːnjə(r)/",
-    "syllables": "ju·nior"
+    "syllables": "ju·nior",
+    "extraExample": "As a junior employee, he is still learning the company's procedures.",
+    "extraExampleTranslation": "ในฐานะพนักงานระดับล่าง เขายังคงเรียนรู้ขั้นตอนการทำงานของบริษัทอยู่",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกระดับอาวุโสที่น้อยกว่า หรือใช้เรียกนักศึกษาปี 3 ในระบบอเมริกัน"
   },
   {
     "word": "just",
@@ -45980,7 +49587,10 @@ const wordsData = [
       "เพิ่ง",
       "ทำการบ้าน",
       "เสร็จ"
-    ]
+    ],
+    "extraExample": "I have just finished my homework, so I can play games now.",
+    "extraExampleTranslation": "ฉันเพิ่งจะทำการบ้านเสร็จ ตอนนี้เลยเล่นเกมได้แล้ว",
+    "usageTip": "เมื่อแปลว่า 'เพิ่งจะ' มักวางไว้หน้ากริยาหลัก หรือระหว่าง have/has กับกริยาช่อง 3"
   },
   {
     "word": "justice",
@@ -46011,7 +49621,10 @@ const wordsData = [
     "antonyms": [
       "injustice"
     ],
-    "syllables": "ju·stice"
+    "syllables": "ju·stice",
+    "extraExample": "Everyone deserves equal justice under the law regardless of their background.",
+    "extraExampleTranslation": "ทุกคนสมควรได้รับความยุติธรรมอย่างเท่าเทียมภายใต้กฎหมายโดยไม่คำนึงถึงภูมิหลัง",
+    "usageTip": "เป็นคำนามนับไม่ได้ มักใช้คู่กับคำกริยาอย่าง seek, demand หรือ serve"
   },
   {
     "word": "justified",
@@ -46040,7 +49653,14 @@ const wordsData = [
     "wordFamily": [
       "justify"
     ],
-    "syllables": "ju·sti·fied"
+    "syllables": "ju·sti·fied",
+    "extraExample": "She felt completely justified in asking for a higher salary after her hard work.",
+    "extraExampleTranslation": "เธอรู้สึกว่ามีเหตุผลอันสมควรอย่างยิ่งในการขอขึ้นเงินเดือนหลังจากทำงานหนัก",
+    "usageTip": "มักใช้หลังคำกริยาอย่าง feel หรือ be เพื่อบอกว่าการกระทำนั้นมีเหตุผลรองรับ",
+    "collocations": [
+      "completely justified",
+      "morally justified"
+    ]
   },
   {
     "word": "justify",
@@ -46079,7 +49699,10 @@ const wordsData = [
     "wordFamily": [
       "justified"
     ],
-    "syllables": "ju·sti·fy"
+    "syllables": "ju·sti·fy",
+    "extraExample": "Can you justify why we need to spend so much money on this project?",
+    "extraExampleTranslation": "คุณช่วยอธิบายเหตุผลได้ไหมว่าทำไมเราต้องใช้เงินมากขนาดนี้กับโครงการนี้",
+    "usageTip": "มักใช้คู่กับคำนามหรือประโยคเพื่อแสดงเหตุผลว่าสิ่งที่ทำนั้นถูกต้องหรือสมควร"
   },
   {
     "word": "keen",
@@ -46108,7 +49731,10 @@ const wordsData = [
       "เล่น",
       "กีตาร์"
     ],
-    "grammarPattern": "be keen on + N / V-ing หรือ keen to V (ชื่นชอบ/กระตือรือร้น)"
+    "grammarPattern": "be keen on + N / V-ing หรือ keen to V (ชื่นชอบ/กระตือรือร้น)",
+    "extraExample": "He is very keen on learning new languages during his free time.",
+    "extraExampleTranslation": "เขากระตือรือร้นมากในการเรียนรู้ภาษาใหม่ๆ ในเวลาว่าง",
+    "usageTip": "นิยมใช้ในโครงสร้าง keen on + V-ing/คำนาม หรือ keen to + V.1"
   },
   {
     "word": "keep",
@@ -46146,7 +49772,10 @@ const wordsData = [
       "keep in touch (ติดต่อกันเรื่อยๆ)",
       "keep calm (ใจเย็นๆ)",
       "keep an eye on (ช่วยจับตาดูให้ที)"
-    ]
+    ],
+    "extraExample": "Please keep your passport in a safe place while traveling abroad.",
+    "extraExampleTranslation": "กรุณาเก็บหนังสือเดินทางของคุณไว้ในที่ปลอดภัยขณะเดินทางไปต่างประเทศ",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าเก็บรักษาสิ่งของ หรือรักษาสัญญาและกฎระเบียบ"
   },
   {
     "word": "key",
@@ -46173,7 +49802,10 @@ const wordsData = [
       "กุญแจ",
       "รถ",
       "หาย"
-    ]
+    ],
+    "extraExample": "I cannot open the front door because I lost my house key.",
+    "extraExampleTranslation": "ฉันเปิดประตูหน้าบ้านไม่ได้เพราะฉันทำกุญแจบ้านหาย",
+    "usageTip": "นอกจากแปลว่าลูกกุญแจแล้ว ยังใช้ในความหมายว่าสิ่งสำคัญหรือกุญแจสู่ความสำเร็จได้ด้วย"
   },
   {
     "word": "keyboard",
@@ -46196,7 +49828,10 @@ const wordsData = [
       "คอมพิวเตอร์",
       "ใหม่"
     ],
-    "syllables": "key·board"
+    "syllables": "key·board",
+    "extraExample": "My new mechanical keyboard makes typing much faster and more comfortable.",
+    "extraExampleTranslation": "แป้นพิมพ์แบบกลไกอันใหม่ของฉันทำให้การพิมพ์เร็วขึ้นและสบายมือขึ้นมาก",
+    "usageTip": "ใช้ได้ทั้งกับคีย์บอร์ดคอมพิวเตอร์และเครื่องดนตรีประเภทคีย์บอร์ด"
   },
   {
     "word": "kick",
@@ -46221,7 +49856,10 @@ const wordsData = [
       "เด็กผู้ชาย",
       "เตะ",
       "ลูกบอล"
-    ]
+    ],
+    "extraExample": "The soccer player tried to kick the ball into the corner of the net.",
+    "extraExampleTranslation": "นักฟุตบอลพยายามเตะลูกบอลเข้าไปที่มุมตาข่าย",
+    "usageTip": "ใช้เป็นกริยาที่ต้องมีกรรมมารองรับ (transitive verb) หรือใช้ในสำนวน kick off"
   },
   {
     "word": "kid",
@@ -46249,7 +49887,10 @@ const wordsData = [
       "เล่น",
       "อยู่",
       "ข้างนอก"
-    ]
+    ],
+    "extraExample": "Every kid in the neighborhood loves playing at the park after school.",
+    "extraExampleTranslation": "เด็กทุกคนในละแวกนี้ชอบไปเล่นที่สวนสาธารณะหลังเลิกเรียน",
+    "usageTip": "เป็นคำเรียกเด็กแบบไม่เป็นทางการ นิยมใช้ในภาษาพูดมากกว่า child/children"
   },
   {
     "word": "kill",
@@ -46279,7 +49920,10 @@ const wordsData = [
       "ฆ่า",
       "คุณ",
       "ได้"
-    ]
+    ],
+    "extraExample": "Smoking can seriously damage your lungs and eventually kill you.",
+    "extraExampleTranslation": "การสูบบุหรี่สามารถทำลายปอดอย่างรุนแรงและอาจฆ่าคุณได้ในที่สุด",
+    "usageTip": "ใช้ได้ทั้งกับการทำให้สิ่งมีชีวิตตาย หรือใช้แบบเปรียบเปรย เช่น kill time (ฆ่าเวลา)"
   },
   {
     "word": "killing",
@@ -46309,7 +49953,10 @@ const wordsData = [
     "collocations": [
       "admitted killing"
     ],
-    "syllables": "kil·ling"
+    "syllables": "kil·ling",
+    "extraExample": "The movie tells a dark story about a brutal killing in a quiet town.",
+    "extraExampleTranslation": "ภาพยนตร์เรื่องนี้เล่าเรื่องราวมืดหม่นเกี่ยวกับการฆาตกรรมอันโหดเหี้ยมในเมืองที่เงียบสงบ",
+    "usageTip": "เมื่อเป็นคำนามที่เติม -ing จะหมายถึงเหตุการณ์การฆ่าหรือการสังหาร"
   },
   {
     "word": "kilogram",
@@ -46394,7 +50041,8 @@ const wordsData = [
       "unkind"
     ],
     "extraExample": "What kind of music do you usually listen to?",
-    "extraExampleTranslation": "ปกติคุณฟังเพลงแนวไหนเป็นประจำ? (ความหมาย [n.]: ชนิด/ประเภท)"
+    "extraExampleTranslation": "ปกติคุณฟังเพลงแนวไหนเป็นประจำ? (ความหมาย [n.]: ชนิด/ประเภท)",
+    "usageTip": "ใช้คู่กับ of เพื่อระบุชนิดหรือประเภทของสิ่งต่างๆ"
   },
   {
     "word": "kindly",
@@ -46430,7 +50078,10 @@ const wordsData = [
     "antonyms": [
       "unkindly"
     ],
-    "syllables": "kin·dly"
+    "syllables": "kin·dly",
+    "extraExample": "She kindly offered to drive me to the airport.",
+    "extraExampleTranslation": "เธอเสนอตัวขับรถไปส่งฉันที่สนามบินอย่างมีน้ำใจ",
+    "usageTip": "ใช้ขยายกริยาเพื่อแสดงความสุภาพหรือความมีน้ำใจ"
   },
   {
     "word": "kindness",
@@ -46469,7 +50120,10 @@ const wordsData = [
     "forms": [
       "พหูพจน์: kindnesses"
     ],
-    "rootBreakdown": "kind + -ness (ความเป็น / สภาวะ (Noun))"
+    "rootBreakdown": "kind + -ness (ความเป็น / สภาวะ (Noun))",
+    "extraExample": "I will never forget the kindness you showed me.",
+    "extraExampleTranslation": "ฉันจะไม่มีวันลืมความมีน้ำใจที่คุณแสดงต่อฉัน",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้พูดถึงความเมตตาหรือความเอื้อเฟื้อ"
   },
   {
     "word": "king",
@@ -46500,7 +50154,10 @@ const wordsData = [
     ],
     "antonyms": [
       "queen"
-    ]
+    ],
+    "extraExample": "The king ruled the country wisely for many years.",
+    "extraExampleTranslation": "กษัตริย์ทรงปกครองประเทศอย่างชาญฉลาดเป็นเวลาหลายปี",
+    "usageTip": "คำนามนับได้ มักใช้กับ the เมื่อกล่าวถึงกษัตริย์พระองค์ใดพระองค์หนึ่งโดยเฉพาะ"
   },
   {
     "word": "kiss",
@@ -46530,7 +50187,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: kisses"
-    ]
+    ],
+    "extraExample": "She gave her son a quick kiss on the cheek before leaving.",
+    "extraExampleTranslation": "เธอจูบแก้มลูกชายเบาๆ ก่อนออกจากบ้าน",
+    "usageTip": "ในฐานะคำนาม มักใช้คู่กับกริยา give"
   },
   {
     "word": "kitchen",
@@ -46557,7 +50217,10 @@ const wordsData = [
       "ใน",
       "ห้องครัว"
     ],
-    "syllables": "kit·chen"
+    "syllables": "kit·chen",
+    "extraExample": "We usually eat breakfast together in the kitchen.",
+    "extraExampleTranslation": "เรามักจะกินอาหารเช้าด้วยกันในห้องครัว",
+    "usageTip": "ใช้กับบุพบท in เมื่ออยู่ภายในห้องครัว"
   },
   {
     "word": "knee",
@@ -46584,7 +50247,10 @@ const wordsData = [
       "ที่",
       "หัวเข่า",
       "ซ้าย"
-    ]
+    ],
+    "extraExample": "He hurt his knee while playing football yesterday.",
+    "extraExampleTranslation": "เขาเจ็บหัวเข่าขณะเล่นฟุตบอลเมื่อวานนี้",
+    "usageTip": "ใช้รูปพหูพจน์ knees เมื่อกล่าวถึงหัวเข่าทั้งสองข้าง"
   },
   {
     "word": "knife",
@@ -46612,7 +50278,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: knives"
-    ]
+    ],
+    "extraExample": "Be careful when you use that sharp knife.",
+    "extraExampleTranslation": "ระวังด้วยนะเวลาใช้มีดคมเล่มนั้น",
+    "usageTip": "รูปพหูพจน์เปลี่ยน f เป็น v แล้วเติม es เป็น knives"
   },
   {
     "word": "knit",
@@ -46642,7 +50311,10 @@ const wordsData = [
       "ฉัน",
       "ถัก",
       "นิตติ้ง"
-    ]
+    ],
+    "extraExample": "My grandmother taught me how to knit a warm scarf.",
+    "extraExampleTranslation": "คุณย่าสอนฉันถักผ้าพันคอที่ให้ความอบอุ่น",
+    "usageTip": "กริยาช่อง 2 และ 3 สามารถใช้ได้ทั้ง knit หรือ knitted"
   },
   {
     "word": "knitting",
@@ -46669,7 +50341,14 @@ const wordsData = [
       "knit",
       "entwine"
     ],
-    "syllables": "knit·ting"
+    "syllables": "knit·ting",
+    "extraExample": "She enjoys knitting while watching television in the evening.",
+    "extraExampleTranslation": "เธอชอบถักไหมพรมขณะดูโทรทัศน์ในตอนเย็น",
+    "usageTip": "ใช้เป็นคำนามหรือกริยาเติม -ing เพื่อบอกกิจกรรมงานอดิเรก",
+    "collocations": [
+      "do knitting",
+      "knitting needles"
+    ]
   },
   {
     "word": "knock",
@@ -46697,7 +50376,10 @@ const wordsData = [
       "เคาะ",
       "ประตู"
     ],
-    "phoneticUK": "/nˈɒk/"
+    "phoneticUK": "/nˈɒk/",
+    "extraExample": "Please knock on the door before entering the office.",
+    "extraExampleTranslation": "กรุณาเคาะประตูก่อนเข้าห้องทำงาน",
+    "usageTip": "มักใช้คู่กับบุพบท on หรือ at เมื่อหมายถึงการเคาะประตู"
   },
   {
     "word": "knot",
@@ -46714,7 +50396,14 @@ const wordsData = [
       "ที่",
       "เชือก"
     ],
-    "phoneticUK": "/nˈɒt/"
+    "phoneticUK": "/nˈɒt/",
+    "extraExample": "Tie a tight knot so the rope does not come loose.",
+    "extraExampleTranslation": "ผูกปมให้แน่นเพื่อไม่ให้เชือกหลุดออก",
+    "usageTip": "ตัว k ไม่ออกเสียง อ่านออกเสียงเหมือน not",
+    "collocations": [
+      "tie a knot",
+      "a tight knot"
+    ]
   },
   {
     "word": "know",
@@ -46750,7 +50439,10 @@ const wordsData = [
       "V2: knew",
       "V3: known"
     ],
-    "phoneticUK": "/nˈəʊ/"
+    "phoneticUK": "/nˈəʊ/",
+    "extraExample": "Do you know where the nearest train station is?",
+    "extraExampleTranslation": "คุณรู้ไหมว่าสถานีรถไฟที่ใกล้ที่สุดอยู่ที่ไหน",
+    "usageTip": "เป็นคำกริยาบอกสภาวะ จึงมักไม่ใช้ในรูป continuous (-ing)"
   },
   {
     "word": "knowledge",
@@ -46784,7 +50476,9 @@ const wordsData = [
       "[U] ไม่มีรูปพหูพจน์"
     ],
     "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
-    "usageTip": "knowledge นับไม่ได้ ไม่มีรูปพหูพจน์ ใช้ have a good knowledge of"
+    "usageTip": "knowledge นับไม่ได้ ไม่มีรูปพหูพจน์ ใช้ have a good knowledge of",
+    "extraExample": "Reading books helps expand your knowledge of the world.",
+    "extraExampleTranslation": "การอ่านหนังสือช่วยเพิ่มพูนความรู้เกี่ยวกับโลกของคุณ"
   },
   {
     "word": "lab",
@@ -46805,6 +50499,13 @@ const wordsData = [
     ],
     "synonyms": [
       "laboratory"
+    ],
+    "extraExample": "The students are conducting an experiment in the science lab.",
+    "extraExampleTranslation": "นักเรียนกำลังทำการทดลองในห้องแล็บวิทยาศาสตร์",
+    "usageTip": "เป็นคำย่อของ laboratory นิยมใช้ในภาษาพูดและบริบททั่วไป",
+    "collocations": [
+      "science lab",
+      "lab report"
     ]
   },
   {
@@ -46831,7 +50532,10 @@ const wordsData = [
       "บน",
       "ขวด"
     ],
-    "syllables": "la·bel"
+    "syllables": "la·bel",
+    "extraExample": "Always read the label before taking any medicine.",
+    "extraExampleTranslation": "อ่านฉลากทุกครั้งก่อนรับประทานยาใดๆ",
+    "usageTip": "ใช้ได้ทั้งฉลากสินค้า ป้ายราคา และป้ายข้อมูล"
   },
   {
     "word": "laboratory",
@@ -46862,7 +50566,10 @@ const wordsData = [
     "phoneticUK": "/ləˈbɒrətri/",
     "forms": [
       "พหูพจน์: laboratories"
-    ]
+    ],
+    "extraExample": "Scientists tested the new vaccine in the laboratory.",
+    "extraExampleTranslation": "นักวิทยาศาสตร์ทดสอบวัคซีนตัวใหม่ในห้องปฏิบัติการ",
+    "usageTip": "เป็นคำเต็มที่เป็นทางการมากกว่าคำว่า lab"
   },
   {
     "word": "labour",
@@ -46889,7 +50596,14 @@ const wordsData = [
       "parturiency"
     ],
     "phoneticUK": "/lˈeɪbˌaʊ/",
-    "syllables": "la·bour"
+    "syllables": "la·bour",
+    "extraExample": "The project required months of hard manual labour.",
+    "extraExampleTranslation": "โครงการนี้ต้องใช้แรงงานคนทำงานหนักเป็นเวลาหลายเดือน",
+    "usageTip": "สะกดแบบอังกฤษคือ labour ส่วนแบบอเมริกันคือ labor",
+    "collocations": [
+      "manual labour",
+      "labour market"
+    ]
   },
   {
     "word": "lack",
@@ -46915,7 +50629,10 @@ const wordsData = [
       "นี้",
       "ขาดแคลน",
       "น้ำจืด"
-    ]
+    ],
+    "extraExample": "The project failed due to a lack of funding.",
+    "extraExampleTranslation": "โครงการล้มเหลวเนื่องจากขาดแคลนเงินทุน",
+    "usageTip": "มักใช้ในโครงสร้าง a lack of ตามด้วยคำนาม"
   },
   {
     "word": "lady",
@@ -46950,7 +50667,10 @@ const wordsData = [
     "syllables": "la·dy",
     "forms": [
       "พหูพจน์: ladies"
-    ]
+    ],
+    "extraExample": "An elderly lady asked me for directions to the museum.",
+    "extraExampleTranslation": "สุภาพสตรีสูงอายุท่านหนึ่งถามทางไปพิพิธภัณฑ์กับฉัน",
+    "usageTip": "ใช้เรียกผู้หญิงอย่างสุภาพ รูปพหูพจน์คือ ladies"
   },
   {
     "word": "lake",
@@ -47052,7 +50772,10 @@ const wordsData = [
       "สวยงาม",
       "มาก"
     ],
-    "syllables": "land·scape"
+    "syllables": "land·scape",
+    "extraExample": "The mountain landscape looked breathtaking in the early morning light.",
+    "extraExampleTranslation": "ทิวทัศน์ของภูเขานั้นงดงามตระการตาในแสงยามเช้า",
+    "usageTip": "ใช้เป็นคำนามนับได้เมื่อพูดถึงภาพหรือลักษณะภูมิประเทศเฉพาะแห่ง"
   },
   {
     "word": "lane",
@@ -47074,7 +50797,10 @@ const wordsData = [
     ],
     "collocations": [
       "drury lane"
-    ]
+    ],
+    "extraExample": "Please stay in the right lane until you reach the next exit.",
+    "extraExampleTranslation": "กรุณาขับอยู่ในเลนขวาจนกว่าจะถึงทางออกถัดไป",
+    "usageTip": "ใช้กับช่องทางจราจรบนถนนหรือทางเดินแคบๆ"
   },
   {
     "word": "language",
@@ -47099,7 +50825,10 @@ const wordsData = [
       "เป็น",
       "ภาษาสากล"
     ],
-    "syllables": "la·nguage"
+    "syllables": "la·nguage",
+    "extraExample": "Learning a new language opens doors to different cultures.",
+    "extraExampleTranslation": "การเรียนรู้ภาษาใหม่เปิดประตูสู่หลากหลายวัฒนธรรม",
+    "usageTip": "ใช้ได้ทั้งกับภาษาพูด ภาษาเขียน และภาษาโปรแกรม"
   },
   {
     "word": "large",
@@ -47134,7 +50863,10 @@ const wordsData = [
     "antonyms": [
       "small",
       "tiny"
-    ]
+    ],
+    "extraExample": "We ordered a large pizza to share with everyone at the party.",
+    "extraExampleTranslation": "เราสั่งพิซซ่าถาดใหญ่มาแบ่งกันกินในงานปาร์ตี้",
+    "usageTip": "ใช้บอกขนาดหรือปริมาณที่ใหญ่โตกว่าปกติ มักวางหน้าคำนาม"
   },
   {
     "word": "largely",
@@ -47165,7 +50897,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "large"
-    ]
+    ],
+    "extraExample": "The success of the project was largely due to good teamwork.",
+    "extraExampleTranslation": "ความสำเร็จของโครงการส่วนใหญ่เกิดจากการทำงานเป็นทีมที่ดี",
+    "usageTip": "วางไว้หน้าคำกริยาหรือคำคุณศัพท์เพื่อบอกว่าส่วนใหญ่เป็นเช่นนั้น"
   },
   {
     "word": "last",
@@ -47195,7 +50930,10 @@ const wordsData = [
     "antonyms": [
       "first"
     ],
-    "phoneticUK": "/lˈɑːst/"
+    "phoneticUK": "/lˈɑːst/",
+    "extraExample": "We caught the last train home just before midnight.",
+    "extraExampleTranslation": "เราขึ้นรถไฟขบวนสุดท้ายกลับบ้านทันก่อนเที่ยงคืนพอดี",
+    "usageTip": "วางหน้าคำนามเพื่อระบุว่าเป็นลำดับสุดท้ายหรือครั้งล่าสุด"
   },
   {
     "word": "late",
@@ -47232,7 +50970,10 @@ const wordsData = [
     ],
     "antonyms": [
       "early"
-    ]
+    ],
+    "extraExample": "He arrived late to the meeting because of heavy traffic.",
+    "extraExampleTranslation": "เขามาประชุมสายเพราะการจราจรติดขัดอย่างหนัก",
+    "usageTip": "วางหลังคำกริยาเพื่อบอกว่าช้ากว่าเวลาที่กำหนด"
   },
   {
     "word": "later",
@@ -47266,7 +51007,10 @@ const wordsData = [
       "relate"
     ],
     "phoneticUK": "/lˈeɪtə(r)/",
-    "syllables": "la·ter"
+    "syllables": "la·ter",
+    "extraExample": "I will call you back later after I finish this report.",
+    "extraExampleTranslation": "ฉันจะโทรกลับหาคุณในภายหลังหลังจากทำรายงานนี้เสร็จ",
+    "usageTip": "ใช้บอกเวลาในอนาคตที่ห่างออกไปจากตอนนี้"
   },
   {
     "word": "latest",
@@ -47293,7 +51037,10 @@ const wordsData = [
       "ล่าสุด",
       "หรือยัง"
     ],
-    "syllables": "la·test"
+    "syllables": "la·test",
+    "extraExample": "Have you heard the latest news about the upcoming concert?",
+    "extraExampleTranslation": "คุณได้ยินข่าวล่าสุดเกี่ยวกับคอนเสิร์ตที่กำลังจะมาถึงหรือยัง",
+    "usageTip": "ใช้กับสิ่งที่ใหม่ที่สุดหรือเพิ่งเกิดขึ้นเมื่อไม่นานมานี้"
   },
   {
     "word": "latter",
@@ -47323,7 +51070,10 @@ const wordsData = [
       "former"
     ],
     "phoneticUK": "/lˈætə(r)/",
-    "syllables": "lat·ter"
+    "syllables": "lat·ter",
+    "extraExample": "Between coffee and tea, I usually prefer the latter.",
+    "extraExampleTranslation": "ระหว่างกาแฟกับชา ฉันมักจะชอบอย่างหลังมากกว่า",
+    "usageTip": "ใช้กล่าวถึงสิ่งที่ถูกเอ่ยถึงเป็นลำดับที่สองจากสองสิ่ง"
   },
   {
     "word": "laugh",
@@ -47355,7 +51105,10 @@ const wordsData = [
     "antonyms": [
       "cry"
     ],
-    "phoneticUK": "/lˈɑːf/"
+    "phoneticUK": "/lˈɑːf/",
+    "extraExample": "She let out a loud laugh when she heard the funny joke.",
+    "extraExampleTranslation": "เธอหัวเราะออกมาเสียงดังเมื่อได้ยินเรื่องตลกนั้น",
+    "usageTip": "ใช้เป็นคำนามหมายถึงเสียงหัวเราะหรือการหัวเราะหนึ่งครั้ง"
   },
   {
     "word": "launch",
@@ -47385,7 +51138,10 @@ const wordsData = [
       "ใน",
       "เดือน",
       "หน้า"
-    ]
+    ],
+    "extraExample": "The company plans to launch its new smartphone next month.",
+    "extraExampleTranslation": "บริษัทวางแผนจะเปิดตัวสมาร์ตโฟนรุ่นใหม่ในเดือนหน้า",
+    "usageTip": "ใช้กับการเปิดตัวสินค้า โครงการ หรือการปล่อยจรวด"
   },
   {
     "word": "law",
@@ -47414,7 +51170,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "lawyer"
-    ]
+    ],
+    "extraExample": "Everyone must obey the law to keep the community safe.",
+    "extraExampleTranslation": "ทุกคนต้องปฏิบัติตามกฎหมายเพื่อให้ชุมชนปลอดภัย",
+    "usageTip": "มักใช้คู่กับคำกริยาเช่น obey หรือ break"
   },
   {
     "word": "lawyer",
@@ -47444,7 +51203,10 @@ const wordsData = [
       "ทนายความ"
     ],
     "phoneticUK": "/lˈɔːjə(r)/",
-    "syllables": "la·wyer"
+    "syllables": "la·wyer",
+    "extraExample": "She hired an experienced lawyer to handle the contract dispute.",
+    "extraExampleTranslation": "เธอจ้างทนายความที่มีประสบการณ์มาจัดการข้อพิพาทเรื่องสัญญา",
+    "usageTip": "ใช้เรียกผู้ประกอบวิชาชีพทางกฎหมายที่เป็นตัวแทนลูกความ"
   },
   {
     "word": "lay",
@@ -47478,7 +51240,9 @@ const wordsData = [
     "forms": [
       "V2/V3: laid"
     ],
-    "usageTip": "lay - laid - laid = วางลง/วางไข่ (ต้องมีกรรมตาม); ส่วน lie - lay - lain = นอนลง (ไม่มีกรรม)"
+    "usageTip": "lay - laid - laid = วางลง/วางไข่ (ต้องมีกรรมตาม); ส่วน lie - lay - lain = นอนลง (ไม่มีกรรม)",
+    "extraExample": "Please lay the books neatly on the wooden table.",
+    "extraExampleTranslation": "กรุณาวางหนังสือไว้อย่างเป็นระเบียบบนโต๊ะไม้"
   },
   {
     "word": "layer",
@@ -47508,7 +51272,10 @@ const wordsData = [
       "มี",
       "สามชั้น"
     ],
-    "phoneticUK": "/lˈeɪə(r)/"
+    "phoneticUK": "/lˈeɪə(r)/",
+    "extraExample": "Add a thin layer of cheese on top before baking.",
+    "extraExampleTranslation": "เพิ่มชีสเป็นชั้นบางๆ ด้านบนก่อนนำไปอบ",
+    "usageTip": "ใช้อธิบายสิ่งที่ซ้อนทับกันเป็นชั้นๆ ทั้งในอาหารและวัตถุ"
   },
   {
     "word": "lazy",
@@ -47541,7 +51308,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: lazier",
       "ขั้นสุด: laziest"
-    ]
+    ],
+    "extraExample": "He felt too lazy to cook dinner, so he ordered takeout.",
+    "extraExampleTranslation": "เขารู้สึกขี้เกียจเกินกว่าจะทำอาหารเย็น จึงสั่งอาหารกลับบ้าน",
+    "usageTip": "ใช้บรรยายนิสัยหรือความรู้สึกไม่อยากทำงานหรือออกแรง"
   },
   {
     "word": "lead",
@@ -47578,7 +51348,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: led"
-    ]
+    ],
+    "extraExample": "Good communication skills can lead to better teamwork.",
+    "extraExampleTranslation": "ทักษะการสื่อสารที่ดีสามารถนำไปสู่การทำงานเป็นทีมที่ดีขึ้น",
+    "usageTip": "ใช้ได้ทั้งความหมายว่านำทางและก่อให้เกิดผลลัพธ์ (lead to)"
   },
   {
     "word": "leader",
@@ -47613,7 +51386,10 @@ const wordsData = [
       "follower"
     ],
     "phoneticUK": "/lˈiːdə(r)/",
-    "syllables": "lea·der"
+    "syllables": "lea·der",
+    "extraExample": "A good leader listens carefully to the ideas of the team.",
+    "extraExampleTranslation": "ผู้นำที่ดีจะรับฟังความคิดเห็นของทีมอย่างตั้งใจ",
+    "usageTip": "ใช้เรียกบุคคลที่เป็นหัวหน้าหรือผู้ชี้นำกลุ่มคนหรือองค์กร"
   },
   {
     "word": "leading",
@@ -47647,7 +51423,10 @@ const wordsData = [
     "wordFamily": [
       "lead"
     ],
-    "syllables": "lea·ding"
+    "syllables": "lea·ding",
+    "extraExample": "She plays a leading role in the new television drama.",
+    "extraExampleTranslation": "เธอรับบทนำในละครโทรทัศน์เรื่องใหม่",
+    "usageTip": "วางหน้าคำนามเพื่อบอกว่าสำคัญที่สุดหรืออยู่แถวหน้า"
   },
   {
     "word": "leaf",
@@ -47706,7 +51485,10 @@ const wordsData = [
       "ใน",
       "ลีก",
       "ระดับชาติ"
-    ]
+    ],
+    "extraExample": "Our local football team plays in the national league every weekend.",
+    "extraExampleTranslation": "ทีมฟุตบอลท้องถิ่นของเราลงแข่งในลีกแห่งชาติทุกสุดสัปดาห์",
+    "usageTip": "ใช้เรียกสมาพันธ์กีฬาหรือกลุ่มที่มีระดับเดียวกัน เช่น in a league of one's own (เหนือชั้นกว่าใคร)"
   },
   {
     "word": "lean",
@@ -47734,7 +51516,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: leaned / leant"
-    ]
+    ],
+    "extraExample": "Please do not lean against the freshly painted wall.",
+    "extraExampleTranslation": "กรุณาอย่าพิงกำแพงที่เพิ่งทาสีใหม่",
+    "usageTip": "มักใช้คู่กับ against หรือ on เมื่อหมายถึงการพิงสิ่งของ เช่น lean on someone (พึ่งพาใครบางคน)"
   },
   {
     "word": "learn",
@@ -47767,7 +51552,9 @@ const wordsData = [
     ],
     "usageTip": "มักตามด้วย to + V.inf (learn to drive) หรือ about (learn about history)",
     "phoneticUK": "/lˈɜːn/",
-    "grammarPattern": "learn + to V / learn how to V / learn about + N"
+    "grammarPattern": "learn + to V / learn how to V / learn about + N",
+    "extraExample": "Children learn new languages much faster than adults.",
+    "extraExampleTranslation": "เด็กๆ เรียนรู้ภาษาใหม่ได้เร็วกว่าผู้ใหญ่มาก"
   },
   {
     "word": "least",
@@ -47798,7 +51585,10 @@ const wordsData = [
     ],
     "antonyms": [
       "most"
-    ]
+    ],
+    "extraExample": "This is the least expensive hotel in the whole city.",
+    "extraExampleTranslation": "นี่คือโรงแรมที่ราคาถูกที่สุดในทั้งเมือง",
+    "usageTip": "ใช้ในรูป at least เพื่อบอกอย่างน้อยที่สุด หรือใช้ขยายคำคุณศัพท์เพื่อบอกระดับน้อยที่สุด"
   },
   {
     "word": "leather",
@@ -47826,7 +51616,10 @@ const wordsData = [
       "หนัง"
     ],
     "phoneticUK": "/lˈeðə(r)/",
-    "syllables": "lea·ther"
+    "syllables": "lea·ther",
+    "extraExample": "She bought a new pair of brown leather boots for winter.",
+    "extraExampleTranslation": "เธอซื้อรองเท้าบูทหนังสีน้ำตาลคู่ใหม่สำหรับฤดูหนาว",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อหมายถึงวัสดุหนังสัตว์ เช่น genuine leather (หนังแท้)"
   },
   {
     "word": "leave",
@@ -47857,7 +51650,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: left"
-    ]
+    ],
+    "extraExample": "We need to leave the house early to catch the first train.",
+    "extraExampleTranslation": "เราต้องออกจากบ้านแต่เช้าเพื่อไปให้ทันรถไฟขบวนแรก",
+    "usageTip": "ใช้ได้ทั้งแบบมีกรรม (leave the room) และไม่มีกรรม หรือใช้ในรูป leave for + สถานที่ (ออกเดินทางไปยัง)"
   },
   {
     "word": "lecture",
@@ -47884,7 +51680,10 @@ const wordsData = [
       "ประวัติศาสตร์"
     ],
     "phoneticUK": "/lˈektʃə(r)/",
-    "syllables": "lec·ture"
+    "syllables": "lec·ture",
+    "extraExample": "The professor gave an interesting lecture on climate change.",
+    "extraExampleTranslation": "ศาสตราจารย์บรรยายเรื่องการเปลี่ยนแปลงสภาพภูมิอากาศได้อย่างน่าสนใจ",
+    "usageTip": "มักใช้คู่กับ give a lecture (บรรยาย) หรือ attend a lecture (เข้าฟังบรรยาย)"
   },
   {
     "word": "left",
@@ -47915,7 +51714,8 @@ const wordsData = [
       "right"
     ],
     "extraExample": "There are only three tickets left for tonight's show.",
-    "extraExampleTranslation": "เหลือตั๋วแค่ 3 ใบสำหรับรอบการแสดงคืนนี้ (ความหมาย: เหลืออยู่)"
+    "extraExampleTranslation": "เหลือตั๋วแค่ 3 ใบสำหรับรอบการแสดงคืนนี้ (ความหมาย: เหลืออยู่)",
+    "usageTip": "ใช้บอกทิศทาง (on the left) หรือเป็นคำกริยาช่อง 2/3 ของ leave ด้วย"
   },
   {
     "word": "leg",
@@ -47944,7 +51744,10 @@ const wordsData = [
     "wordFamily": [
       "illegal",
       "legal"
-    ]
+    ],
+    "extraExample": "He broke his left leg while skiing in the mountains.",
+    "extraExampleTranslation": "เขาขาหักข้างซ้ายขณะเล่นสกีบนภูเขา",
+    "usageTip": "นอกจากแปลว่าขาแล้ว ยังใช้ในสำนวน break a leg เพื่ออวยพรให้โชคดีก่อนขึ้นแสดง"
   },
   {
     "word": "legal",
@@ -47977,7 +51780,10 @@ const wordsData = [
     "antonyms": [
       "illegal"
     ],
-    "syllables": "le·gal"
+    "syllables": "le·gal",
+    "extraExample": "You should seek legal advice before signing that contract.",
+    "extraExampleTranslation": "คุณควรขอคำปรึกษาทางกฎหมายก่อนเซ็นสัญญานั้น",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าถูกต้องหรือเกี่ยวข้องกับกฎหมาย คำตรงข้ามคือ illegal"
   },
   {
     "word": "lemon",
@@ -48008,7 +51814,10 @@ const wordsData = [
       "ของ",
       "คุณ"
     ],
-    "syllables": "le·mon"
+    "syllables": "le·mon",
+    "extraExample": "Add a squeeze of fresh lemon juice to the iced tea.",
+    "extraExampleTranslation": "บีบน้ำมะนาวสดลงในชาเย็นสักหน่อย",
+    "usageTip": "หมายถึงเลมอนผลสีเหลือง หากเป็นมะนาวสีเขียวแบบไทยใช้คำว่า lime"
   },
   {
     "word": "lend",
@@ -48046,7 +51855,9 @@ const wordsData = [
     "forms": [
       "V2/V3: lent"
     ],
-    "usageTip": "lend = ให้คนอื่นยืม (lend someone something); ถ้า 'ขอยืม' ใช้ borrow"
+    "usageTip": "lend = ให้คนอื่นยืม (lend someone something); ถ้า 'ขอยืม' ใช้ borrow",
+    "extraExample": "Could you lend me your umbrella until tomorrow morning?",
+    "extraExampleTranslation": "ขอยืมร่มของคุณหน่อยได้ไหมจนถึงพรุ่งนี้เช้า"
   },
   {
     "word": "length",
@@ -48075,7 +51886,10 @@ const wordsData = [
       "นี้",
       "คือ",
       "เท่าไหร่"
-    ]
+    ],
+    "extraExample": "What is the total length of this swimming pool?",
+    "extraExampleTranslation": "ความยาวทั้งหมดของสระว่ายน้ำนี้เท่าไร",
+    "usageTip": "เป็นคำนามของ long ใช้บอกระยะความยาวหรือระยะเวลา เช่น at length (อย่างละเอียด)"
   },
   {
     "word": "less",
@@ -48106,7 +51920,10 @@ const wordsData = [
     ],
     "antonyms": [
       "more"
-    ]
+    ],
+    "extraExample": "You should eat less sugar if you want to stay healthy.",
+    "extraExampleTranslation": "คุณควรกินน้ำตาลให้น้อยลงหากต้องการมีสุขภาพดี",
+    "usageTip": "ใช้กับคำนามนับไม่ได้ (less time, less money) ต่างจาก fewer ที่ใช้กับคำนามนับได้พหูพจน์"
   },
   {
     "word": "lesson",
@@ -48134,7 +51951,10 @@ const wordsData = [
       "ภาษาอังกฤษ",
       "วันนี้"
     ],
-    "syllables": "les·son"
+    "syllables": "les·son",
+    "extraExample": "Today's history lesson was about ancient civilizations.",
+    "extraExampleTranslation": "บทเรียนวิชาประวัติศาสตร์วันนี้เกี่ยวกับอารยธรรมโบราณ",
+    "usageTip": "ใช้ได้ทั้งบทเรียนในห้องเรียนและบทเรียนชีวิต เช่น learn a lesson (ได้บทเรียน)"
   },
   {
     "word": "let",
@@ -48170,7 +51990,10 @@ const wordsData = [
     "forms": [
       "V2/V3: let"
     ],
-    "grammarPattern": "let + someone + V.inf (อนุญาตให้... ห้ามใส่ to)"
+    "grammarPattern": "let + someone + V.inf (อนุญาตให้... ห้ามใส่ to)",
+    "extraExample": "Please let me know as soon as you arrive at the airport.",
+    "extraExampleTranslation": "โปรดแจ้งให้ฉันทราบเมื่อคุณเดินทางถึงสนามบิน",
+    "usageTip": "ตามด้วยกรรมและกริยาไม่ผัน (let + someone + verb) เช่น let him go"
   },
   {
     "word": "letter",
@@ -48204,7 +52027,8 @@ const wordsData = [
     "phoneticUK": "/lˈetə(r)/",
     "syllables": "let·ter",
     "extraExample": "Write your name in capital letters on the form.",
-    "extraExampleTranslation": "เขียนชื่อของคุณด้วยตัวอักษรพิมพ์ใหญ่ในแบบฟอร์ม (ความหมายรอง: ตัวอักษร)"
+    "extraExampleTranslation": "เขียนชื่อของคุณด้วยตัวอักษรพิมพ์ใหญ่ในแบบฟอร์ม (ความหมายรอง: ตัวอักษร)",
+    "usageTip": "แปลได้ทั้งจดหมายและตัวอักษร มักใช้คู่กับ write a letter หรือ capital letter (ตัวพิมพ์ใหญ่)"
   },
   {
     "word": "level",
@@ -48231,7 +52055,10 @@ const wordsData = [
       "สูง",
       "ขึ้น"
     ],
-    "syllables": "le·vel"
+    "syllables": "le·vel",
+    "extraExample": "The water level in the river rose rapidly after the heavy rain.",
+    "extraExampleTranslation": "ระดับน้ำในแม่น้ำสูงขึ้นอย่างรวดเร็วหลังฝนตกหนัก",
+    "usageTip": "ใช้บอกระดับความสูง ความสามารถ หรือความยากง่าย เช่น high level, beginner level"
   },
   {
     "word": "library",
@@ -48257,7 +52084,10 @@ const wordsData = [
     "syllables": "li·bra·ry",
     "forms": [
       "พหูพจน์: libraries"
-    ]
+    ],
+    "extraExample": "Students often study quietly in the university library.",
+    "extraExampleTranslation": "นักศึกษามักอ่านหนังสืออย่างเงียบๆ ในห้องสมุดของมหาวิทยาลัย",
+    "usageTip": "สถานที่รวบรวมหนังสือและสื่อการเรียนรู้ มักใช้คู่กับ public library หรือ borrow from the library"
   },
   {
     "word": "licence",
@@ -48285,7 +52115,10 @@ const wordsData = [
     "synonyms": [
       "license"
     ],
-    "syllables": "li·cence"
+    "syllables": "li·cence",
+    "extraExample": "You must carry a valid driving licence whenever you drive.",
+    "extraExampleTranslation": "คุณต้องพกใบอนุญาตขับขี่ที่ยังไม่หมดอายุทุกครั้งที่ขับรถ",
+    "usageTip": "สะกดว่า licence ในภาษาอังกฤษแบบอังกฤษ (คำนาม) ส่วนแบบอเมริกันสะกดว่า license ทั้งคำนามและกริยา"
   },
   {
     "word": "license",
@@ -48396,7 +52229,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: lives"
-    ]
+    ],
+    "extraExample": "She enjoys a peaceful life in the countryside.",
+    "extraExampleTranslation": "เธอมีความสุขกับชีวิตที่สงบสุขในชนบท",
+    "usageTip": "ใช้ในความหมายทั่วไปว่าชีวิตหรือวิถีชีวิต มักใช้คู่กับคำว่า enjoy, live หรือ save"
   },
   {
     "word": "lift",
@@ -48424,7 +52260,10 @@ const wordsData = [
       "กล่อง",
       "ที่",
       "หนัก"
-    ]
+    ],
+    "extraExample": "Can you help me lift this heavy box onto the table?",
+    "extraExampleTranslation": "คุณช่วยฉันยกกล่องหนักๆ ใบนี้ขึ้นไปบนโต๊ะได้ไหม",
+    "usageTip": "ใช้เมื่อพูดถึงการยกสิ่งของขึ้นจากพื้นหรือระดับต่ำกว่า มักใช้กับวัตถุที่มีน้ำหนัก"
   },
   {
     "word": "light",
@@ -48453,7 +52292,10 @@ const wordsData = [
     "antonyms": [
       "dark",
       "heavy"
-    ]
+    ],
+    "extraExample": "The morning light filled the bedroom through the window.",
+    "extraExampleTranslation": "แสงยามเช้าส่องเข้ามาเต็มห้องนอนผ่านทางหน้าต่าง",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อหมายถึงแสงสว่างทั่วไป แต่ถ้านับได้จะหมายถึงหลอดไฟหรือโคมไฟ"
   },
   {
     "word": "lightly",
@@ -48483,7 +52325,10 @@ const wordsData = [
       "ไหล่เขา",
       "เบาๆ"
     ],
-    "syllables": "ligh·tly"
+    "syllables": "ligh·tly",
+    "extraExample": "She touched his shoulder lightly to wake him up.",
+    "extraExampleTranslation": "เธอแตะไหล่เขาอย่างเบาๆ เพื่อปลุกให้เขาตื่น",
+    "usageTip": "วางไว้หลังกริยาหรือกรรมเพื่อขยายว่าทำสิ่งนั้นอย่างเบามือ ไม่รุนแรง หรือไม่หนักหน่วง"
   },
   {
     "word": "like",
@@ -48522,7 +52367,10 @@ const wordsData = [
     "forms": [
       "V2/V3: liked",
       "V-ing: liking"
-    ]
+    ],
+    "extraExample": "I really like listening to jazz music while working.",
+    "extraExampleTranslation": "ฉันชอบฟังเพลงแจ๊สมากในขณะที่กำลังทำงาน",
+    "usageTip": "ตามด้วยคำนามหรือกริยาเติม -ing (gerund) หรือ to + กริยา เพื่อบอกว่าชอบทำอะไร"
   },
   {
     "word": "likely",
@@ -48560,7 +52408,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: likelier",
       "ขั้นสุด: likeliest"
-    ]
+    ],
+    "extraExample": "It is likely to rain this afternoon, so bring an umbrella.",
+    "extraExampleTranslation": "บ่ายนี้น่าจะฝนตก ดังนั้นพกร่มไปด้วยนะ",
+    "usageTip": "มักใช้ในโครงสร้าง be likely to + กริยาช่อง 1 เพื่อคาดการณ์สิ่งที่มีแนวโน้มจะเกิดขึ้น"
   },
   {
     "word": "limit",
@@ -48591,7 +52442,10 @@ const wordsData = [
     "wordFamily": [
       "limited"
     ],
-    "syllables": "li·mit"
+    "syllables": "li·mit",
+    "extraExample": "There is a speed limit of 60 kilometers per hour on this road.",
+    "extraExampleTranslation": "ถนนสายนี้มีการจำกัดความเร็วอยู่ที่ 60 กิโลเมตรต่อชั่วโมง",
+    "usageTip": "ใช้เป็นคำนามหมายถึงขีดจำกัดหรือขอบเขตสูงสุดที่อนุญาต เช่น ความเร็ว อายุ หรือเวลา"
   },
   {
     "word": "limited",
@@ -48624,7 +52478,10 @@ const wordsData = [
     "antonyms": [
       "unlimited"
     ],
-    "syllables": "li·mi·ted"
+    "syllables": "li·mi·ted",
+    "extraExample": "We have a limited amount of time to finish the project.",
+    "extraExampleTranslation": "เรามีเวลาที่จำกัดในการทำงานโปรเจกต์นี้ให้เสร็จ",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่ามีจำนวน ปริมาณ หรือขอบเขตน้อยกว่าที่ต้องการ"
   },
   {
     "word": "line",
@@ -48647,7 +52504,10 @@ const wordsData = [
     "thTokens": [
       "วาด",
       "เส้นตรง"
-    ]
+    ],
+    "extraExample": "Please sign your name on the dotted line at the bottom.",
+    "extraExampleTranslation": "กรุณาเซ็นชื่อของคุณลงบนเส้นประที่ด้านล่าง",
+    "usageTip": "หมายถึงเส้นขีด เส้นแบ่ง หรือแถวคอยที่ผู้คนยืนเรียงต่อกัน"
   },
   {
     "word": "link",
@@ -48672,7 +52532,10 @@ const wordsData = [
       "คลิก",
       "ลิงก์",
       "ด้านล่าง"
-    ]
+    ],
+    "extraExample": "Click the link below to open the registration form.",
+    "extraExampleTranslation": "คลิกที่ลิงก์ด้านล่างเพื่อเปิดแบบฟอร์มลงทะเบียน",
+    "usageTip": "ใช้หมายถึงจุดเชื่อมโยงบนเว็บไซต์ หรือความสัมพันธ์ที่เชื่อมโยงระหว่างสองสิ่งเข้าด้วยกัน"
   },
   {
     "word": "lip",
@@ -48698,7 +52561,10 @@ const wordsData = [
       "ริมฝีปาก",
       "ของ",
       "เธอ"
-    ]
+    ],
+    "extraExample": "She bit her lower lip nervously while waiting for the results.",
+    "extraExampleTranslation": "เธอกัดริมฝีปากล่างด้วยความประหม่าขณะรอผล",
+    "usageTip": "มักใช้รูปพหูพจน์ lips เมื่อพูดถึงริมฝีปากทั้งบนและล่างรวมกัน"
   },
   {
     "word": "liquid",
@@ -48724,7 +52590,10 @@ const wordsData = [
       "เป็น",
       "ของเหลว"
     ],
-    "syllables": "li·quid"
+    "syllables": "li·quid",
+    "extraExample": "Water turns into a liquid when ice melts at room temperature.",
+    "extraExampleTranslation": "น้ำจะกลายเป็นของเหลวเมื่อน้ำแข็งละลายที่อุณหภูมิห้อง",
+    "usageTip": "ใช้เป็นคำนามหมายถึงของเหลว หรือใช้เป็นคำคุณศัพท์วางหน้าคำนามเพื่อบอกว่ามีลักษณะเหลว"
   },
   {
     "word": "list",
@@ -48751,7 +52620,10 @@ const wordsData = [
       "รายการ",
       "ซื้อ",
       "ของ"
-    ]
+    ],
+    "extraExample": "I made a shopping list before going to the supermarket.",
+    "extraExampleTranslation": "ฉันทำรายการซื้อของไว้ก่อนที่จะไปซูเปอร์มาร์เก็ต",
+    "usageTip": "ใช้กับรายการสิ่งของ รายชื่อ หรือสิ่งที่ต้องทำ โดยมักใช้คู่กับกริยา make หรือ write"
   },
   {
     "word": "listen",
@@ -48777,7 +52649,9 @@ const wordsData = [
     ],
     "usageTip": "ต้องมี to เสมอเมื่อตามด้วยกรรม เช่น listen to music (ห้ามพูด listen music)",
     "syllables": "li·sten",
-    "grammarPattern": "listen to + someone / something (ต้องมี to เมื่อมีกรรม)"
+    "grammarPattern": "listen to + someone / something (ต้องมี to เมื่อมีกรรม)",
+    "extraExample": "You should listen carefully to the teacher's instructions.",
+    "extraExampleTranslation": "คุณควรตั้งใจฟังคำแนะนำของครูอย่างระมัดระวัง"
   },
   {
     "word": "literature",
@@ -48805,7 +52679,10 @@ const wordsData = [
       "อังกฤษ"
     ],
     "phoneticUK": "/lˈɪtərətʃə(r)/",
-    "syllables": "li·te·ra·ture"
+    "syllables": "li·te·ra·ture",
+    "extraExample": "She is studying English literature at the university.",
+    "extraExampleTranslation": "เธอกำลังศึกษาวรรณคดีอังกฤษอยู่ที่มหาวิทยาลัย",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อหมายถึงวรรณกรรมหรืองานเขียนเชิงศิลปะโดยรวม"
   },
   {
     "word": "litre",
@@ -48833,7 +52710,10 @@ const wordsData = [
     ],
     "synonyms": [
       "liter"
-    ]
+    ],
+    "extraExample": "The recipe requires one litre of fresh milk.",
+    "extraExampleTranslation": "สูตรอาหารนี้ต้องใช้นมสดหนึ่งลิตร",
+    "usageTip": "เป็นหน่วยวัดปริมาตรของเหลวในระบบเมตริก ใช้รูปพหูพจน์ litres เมื่อมีมากกว่าหนึ่ง"
   },
   {
     "word": "little",
@@ -48869,7 +52749,9 @@ const wordsData = [
       "ขั้นสุด: least"
     ],
     "usageTip": "little = แทบไม่มีเลย; a little = มีอยู่บ้างเล็กน้อย (ใช้กับนามนับไม่ได้ เช่น water, time)",
-    "syllables": "lit·tle"
+    "syllables": "lit·tle",
+    "extraExample": "There is very little sugar left in the jar.",
+    "extraExampleTranslation": "มีน้ำตาลเหลืออยู่ในโหลน้อยมาก"
   },
   {
     "word": "live",
@@ -48906,7 +52788,10 @@ const wordsData = [
     "forms": [
       "V2/V3: lived",
       "V-ing: living"
-    ]
+    ],
+    "extraExample": "My grandparents live in a quiet village near the mountains.",
+    "extraExampleTranslation": "ปู่ย่าตายายของฉันอาศัยอยู่ในหมู่บ้านที่เงียบสงบใกล้ภูเขา",
+    "usageTip": "ใช้หมายถึงการอาศัยอยู่หรือการมีชีวิตอยู่ มักตามด้วยบุพบท in หรือ at เพื่อบอกสถานที่"
   },
   {
     "word": "lively",
@@ -48927,6 +52812,13 @@ const wordsData = [
       "บุคลิก",
       "ที่",
       "ร่าเริง"
+    ],
+    "extraExample": "The street market becomes very lively after sunset.",
+    "extraExampleTranslation": "ตลาดนัดริมถนนจะดูมีชีวิตชีวามากหลังพระอาทิตย์ตกดิน",
+    "usageTip": "แม้จะลงท้ายด้วย -ly แต่มักใช้เป็นคำคุณศัพท์เพื่อบรรยายบรรยากาศหรือผู้คนที่คึกคัก สดใส",
+    "collocations": [
+      "lively atmosphere",
+      "lively discussion"
     ]
   },
   {
@@ -48962,7 +52854,10 @@ const wordsData = [
     "antonyms": [
       "dead"
     ],
-    "syllables": "li·ving"
+    "syllables": "li·ving",
+    "extraExample": "He earns a living by teaching piano to young children.",
+    "extraExampleTranslation": "เขาหาเลี้ยงชีพด้วยการสอนเปียโนให้เด็กเล็ก",
+    "usageTip": "มักใช้ในสำนวน earn a living หรือ make a living ที่แปลว่าหาเลี้ยงชีพ"
   },
   {
     "word": "load",
@@ -49094,7 +52989,10 @@ const wordsData = [
     "forms": [
       "V2/V3: located",
       "V-ing: locating"
-    ]
+    ],
+    "extraExample": "We couldn't locate the missing files on the server.",
+    "extraExampleTranslation": "เราไม่พบไฟล์ที่หายไปบนเซิร์ฟเวอร์",
+    "usageTip": "ใช้เมื่อต้องการระบุตำแหน่งหรือหาสิ่งของ/สถานที่ให้เจอ มักตามด้วยคำนามหรือตำแหน่งที่ตั้ง"
   },
   {
     "word": "location",
@@ -49127,7 +53025,10 @@ const wordsData = [
       "สวยงาม"
     ],
     "phoneticUK": "/ləʊkˈeɪʃən/",
-    "syllables": "lo·ca·tion"
+    "syllables": "lo·ca·tion",
+    "extraExample": "The hotel is in a convenient location near the station.",
+    "extraExampleTranslation": "โรงแรมตั้งอยู่ในทำเลที่สะดวกใกล้สถานีรถไฟ",
+    "usageTip": "ใช้พูดถึงตำแหน่งที่ตั้งทางกายภาพหรือสถานที่ถ่ายทำ มักใช้คู่กับคำว่า convenient หรือ central"
   },
   {
     "word": "lock",
@@ -49159,7 +53060,10 @@ const wordsData = [
     "antonyms": [
       "unlock"
     ],
-    "phoneticUK": "/lˈɒk/"
+    "phoneticUK": "/lˈɒk/",
+    "extraExample": "Make sure the front door lock is secure before leaving.",
+    "extraExampleTranslation": "ตรวจสอบให้แน่ใจว่ากลอนประตูหน้าบ้านล็อกแน่นหนาก่อนออกไป",
+    "usageTip": "ใช้เป็นคำนามหมายถึงตัวกุญแจหรือกลอนประตู ถ้าใช้กับกริยาให้ระวังว่ามีรูปเดียวกันแต่ความหมายต่างกัน"
   },
   {
     "word": "logic",
@@ -49191,7 +53095,10 @@ const wordsData = [
       "logical"
     ],
     "phoneticUK": "/lˈɒdʒɪk/",
-    "syllables": "lo·gic"
+    "syllables": "lo·gic",
+    "extraExample": "I don't understand the logic behind his decision.",
+    "extraExampleTranslation": "ฉันไม่เข้าใจตรรกะเบื้องหลังการตัดสินใจของเขา",
+    "usageTip": "ใช้อธิบายเหตุผลหรือระบบความคิดที่เป็นลำดับขั้นตอน มักใช้ในรูปเอกพจน์"
   },
   {
     "word": "logical",
@@ -49226,7 +53133,10 @@ const wordsData = [
       "illogical"
     ],
     "phoneticUK": "/lˈɒdʒɪkəl/",
-    "syllables": "lo·gi·cal"
+    "syllables": "lo·gi·cal",
+    "extraExample": "Taking the train is the most logical choice in this traffic.",
+    "extraExampleTranslation": "การนั่งรถไฟเป็นตัวเลือกที่สมเหตุสมผลที่สุดในสภาพจราจรแบบนี้",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่ามีเหตุผลรองรับหรือเป็นไปตามตรรกะ ตรงข้ามกับ illogical"
   },
   {
     "word": "lonely",
@@ -49263,7 +53173,9 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: lonelier",
       "ขั้นสุด: loneliest"
-    ]
+    ],
+    "extraExample": "She felt lonely after moving to a new city by herself.",
+    "extraExampleTranslation": "เธอรู้สึกเหงาหลังจากย้ายมาอยู่เมืองใหม่คนเดียว"
   },
   {
     "word": "long",
@@ -49292,7 +53204,10 @@ const wordsData = [
     ],
     "antonyms": [
       "short"
-    ]
+    ],
+    "extraExample": "We had to wait in a long line for over an hour.",
+    "extraExampleTranslation": "เราต้องยืนรอในแถวยาวนานกว่าหนึ่งชั่วโมง",
+    "usageTip": "ใช้บอกระยะทางหรือระยะเวลาที่ยาวนาน มักวางไว้หน้าคำนามหรือหลังกริยาเชื่อม"
   },
   {
     "word": "look",
@@ -49326,7 +53241,9 @@ const wordsData = [
       "look forward to + V-ing (ตั้งตารอคอย)",
       "look up (เปิดหาคำศัพท์/ข้อมูล)",
       "look after (ดูแล)"
-    ]
+    ],
+    "extraExample": "Please look at the board while I explain the diagram.",
+    "extraExampleTranslation": "กรุณามองที่กระดานขณะที่ฉันอธิบายแผนภาพ"
   },
   {
     "word": "loose",
@@ -49358,7 +53275,9 @@ const wordsData = [
     "antonyms": [
       "tight"
     ],
-    "usageTip": "loose (Adj, ออกเสียง /s/) = หลวม; ส่วนกริยาที่แปลว่า 'ทำหาย/แพ้' คือ lose (o เดียว)"
+    "usageTip": "loose (Adj, ออกเสียง /s/) = หลวม; ส่วนกริยาที่แปลว่า 'ทำหาย/แพ้' คือ lose (o เดียว)",
+    "extraExample": "This shirt is too loose around the shoulders.",
+    "extraExampleTranslation": "เสื้อตัวนี้หลวมเกินไปตรงช่วงไหล่"
   },
   {
     "word": "loosely",
@@ -49380,6 +53299,13 @@ const wordsData = [
     ],
     "synonyms": [
       "slackly"
+    ],
+    "extraExample": "The rules are loosely based on the original game.",
+    "extraExampleTranslation": "กฎกติกานี้อิงจากเกมต้นฉบับแบบคร่าวๆ ไม่ได้เคร่งครัดมาก",
+    "usageTip": "ใช้ขยายกริยาเพื่อบอกว่าไม่แน่น ไม่เคร่งครัด หรือทำแบบหลวมๆ",
+    "collocations": [
+      "loosely based on",
+      "loosely connected"
     ]
   },
   {
@@ -49410,7 +53336,10 @@ const wordsData = [
     ],
     "antonyms": [
       "lady"
-    ]
+    ],
+    "extraExample": "The local lord owned most of the farmland in the valley.",
+    "extraExampleTranslation": "ขุนนางท้องถิ่นเป็นเจ้าของพื้นที่เกษตรส่วนใหญ่ในหุบเขา",
+    "usageTip": "ใช้เรียกขุนนาง เจ้าของที่ดิน หรือผู้มีอำนาจในอดีต ปัจจุบันใช้ในบริบทประวัติศาสตร์หรือคำนำหน้าชื่อ"
   },
   {
     "word": "lorry",
@@ -49433,6 +53362,13 @@ const wordsData = [
     "syllables": "lor·ry",
     "forms": [
       "พหูพจน์: lorries"
+    ],
+    "extraExample": "A large lorry blocked the narrow road this morning.",
+    "extraExampleTranslation": "รถบรรทุกขนาดใหญ่จอดขวางถนนแคบๆ เมื่อเช้านี้",
+    "usageTip": "เป็นคำภาษาอังกฤษแบบบริติช ใช้เรียกรถบรรทุกขนาดใหญ่ ตรงกับคำว่า truck ในภาษาอเมริกัน",
+    "collocations": [
+      "delivery lorry",
+      "lorry driver"
     ]
   },
   {
@@ -49469,7 +53405,9 @@ const wordsData = [
     "usageTip": "lose - lost - lost = ทำหาย, แพ้; ระวังสะกดสับสนกับ loose (o สองตัว) ที่แปลว่า หลวม",
     "wordFamily": [
       "loss"
-    ]
+    ],
+    "extraExample": "Don't lose your passport while traveling abroad.",
+    "extraExampleTranslation": "อย่าทำพาสปอร์ตหายระหว่างเดินทางไปต่างประเทศ"
   },
   {
     "word": "loss",
@@ -49506,7 +53444,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: losses"
-    ]
+    ],
+    "extraExample": "The company suffered a heavy financial loss last year.",
+    "extraExampleTranslation": "บริษัทประสบภาวะขาดทุนทางการเงินอย่างหนักเมื่อปีที่แล้ว",
+    "usageTip": "เป็นคำนามของ lose ใช้พูดถึงการสูญเสียหรือการขาดทุน มักใช้คู่กับคำกริยา suffer หรือ at a loss"
   },
   {
     "word": "lost",
@@ -49530,7 +53471,10 @@ const wordsData = [
     "thTokens": [
       "ฉัน",
       "หลงทาง"
-    ]
+    ],
+    "extraExample": "He lost his wallet on the bus yesterday.",
+    "extraExampleTranslation": "เขาทำกระเป๋าสตางค์หายบนรถเมล์เมื่อวานนี้",
+    "usageTip": "เป็นรูปอดีตและกริยาช่อง 3 ของ lose ใช้บอกเหตุการณ์ที่ทำหายหรือสูญเสียไปแล้ว"
   },
   {
     "word": "lot",
@@ -49560,7 +53504,10 @@ const wordsData = [
       "เยอะ",
       "มาก"
     ],
-    "phoneticUK": "/lˈɒt/"
+    "phoneticUK": "/lˈɒt/",
+    "extraExample": "There is a lot of traffic on the highway today.",
+    "extraExampleTranslation": "วันนี้มีการจราจรติดขัดมากบนทางด่วน",
+    "usageTip": "นิยมใช้ในโครงสร้าง a lot of เพื่อบอกปริมาณมาก หรือใช้เดี่ยวๆ ในความหมายว่ากองหรือแปลงที่ดิน"
   },
   {
     "word": "loud",
@@ -49589,7 +53536,10 @@ const wordsData = [
     "antonyms": [
       "quiet",
       "soft"
-    ]
+    ],
+    "extraExample": "The music was so loud that I couldn't hear you.",
+    "extraExampleTranslation": "เพลงดังมากจนฉันไม่ได้ยินเสียงคุณ",
+    "usageTip": "ใช้บอกระดับเสียงที่ดังชัดเจน หรือใช้กับสีสันที่ฉูดฉาดบาดตา"
   },
   {
     "word": "love",
@@ -49627,7 +53577,10 @@ const wordsData = [
     "forms": [
       "V2/V3: loved",
       "V-ing: loving"
-    ]
+    ],
+    "extraExample": "I really love spending quiet weekends with my family.",
+    "extraExampleTranslation": "ฉันชอบการใช้เวลาช่วงวันหยุดสุดสัปดาห์อย่างสงบกับครอบครัวมาก",
+    "usageTip": "ใช้แสดงความรักหรือความชอบอย่างมาก สามารถตามด้วยคำนาม กริยาเติม -ing หรือ to + กริยาช่อง 1"
   },
   {
     "word": "lovely",
@@ -49661,7 +53614,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: lovelier",
       "ขั้นสุด: loveliest"
-    ]
+    ],
+    "extraExample": "What a lovely garden you have behind your house.",
+    "extraExampleTranslation": "สวนหลังบ้านของคุณช่างสวยงามน่ารักจริงๆ",
+    "usageTip": "ใช้ชมสิ่งของ สถานที่ หรือบุคคลว่าน่ารัก สวยงาม หรือน่าประทับใจ เป็นคำที่ใช้บ่อยในภาษาพูด"
   },
   {
     "word": "lover",
@@ -49692,7 +53648,10 @@ const wordsData = [
       "สัตว์"
     ],
     "phoneticUK": "/lˈʌvə(r)/",
-    "syllables": "lo·ver"
+    "syllables": "lo·ver",
+    "extraExample": "She is a true lover of classical music and art.",
+    "extraExampleTranslation": "เธอเป็นคนรักดนตรีคลาสสิกและศิลปะตัวจริง",
+    "usageTip": "ใช้เรียกคู่รักหรือคนที่ชื่นชอบสิ่งใดสิ่งหนึ่งเป็นพิเศษ มักตามด้วย of เมื่อระบุสิ่งที่ชอบ"
   },
   {
     "word": "low",
@@ -49819,7 +53778,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: luckier",
       "ขั้นสุด: luckiest"
-    ]
+    ],
+    "extraExample": "We were very lucky to catch the last train home.",
+    "extraExampleTranslation": "พวกเราโชคดีมากที่ทันรถไฟขบวนสุดท้ายกลับบ้าน",
+    "usageTip": "ใช้กับเหตุการณ์หรือโอกาสดีๆ มักตามด้วย to + V1 หรือ that"
   },
   {
     "word": "luggage",
@@ -49852,7 +53814,9 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Please do not leave your luggage unattended at the airport.",
+    "extraExampleTranslation": "กรุณาอย่าวางกระเป๋าเดินทางทิ้งไว้โดยไม่มีคนดูแลที่สนามบิน"
   },
   {
     "word": "lump",
@@ -49882,7 +53846,10 @@ const wordsData = [
       "คอ",
       "ของ",
       "ฉัน"
-    ]
+    ],
+    "extraExample": "There was a small lump of sugar at the bottom of the cup.",
+    "extraExampleTranslation": "มีน้ำตาลก้อนเล็กๆ อยู่ที่ก้นถ้วย",
+    "usageTip": "ใช้นับก้อนเล็กๆ ของของแข็ง มักใช้คู่กับ of"
   },
   {
     "word": "lunch",
@@ -49913,7 +53880,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: lunches"
-    ]
+    ],
+    "extraExample": "Let's meet for lunch at that new cafe around noon.",
+    "extraExampleTranslation": "เรามาเจอกันกินอาหารกลางวันที่ร้านกาแฟใหม่ตอนเที่ยงกันเถอะ",
+    "usageTip": "ไม่ใช้ a/the นำหน้าเมื่อพูดถึงมื้ออาหารทั่วไป (have lunch)"
   },
   {
     "word": "lung",
@@ -49937,7 +53907,10 @@ const wordsData = [
       "ปอด",
       "ของ",
       "คุณ"
-    ]
+    ],
+    "extraExample": "Smoking can cause serious damage to your lungs.",
+    "extraExampleTranslation": "การสูบบุหรี่สามารถทำลายปอดของคุณอย่างรุนแรงได้",
+    "usageTip": "มักใช้รูปพหูพจน์ lungs เมื่อพูดถึงปอดทั้งสองข้าง"
   },
   {
     "word": "machine",
@@ -49967,7 +53940,10 @@ const wordsData = [
     "wordFamily": [
       "machinery"
     ],
-    "syllables": "ma·chine"
+    "syllables": "ma·chine",
+    "extraExample": "This coffee machine is very easy to clean and use.",
+    "extraExampleTranslation": "เครื่องชงกาแฟเครื่องนี้ทำความสะอาดและใช้งานง่ายมาก",
+    "usageTip": "ใช้กับเครื่องจักรหรืออุปกรณ์ที่มีกลไกเฉพาะอย่าง"
   },
   {
     "word": "machinery",
@@ -50000,7 +53976,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "The factory invested in modern machinery to speed up production.",
+    "extraExampleTranslation": "โรงงานลงทุนซื้อเครื่องจักรกลสมัยใหม่เพื่อเร่งการผลิต",
+    "usageTip": "เป็นคำนามนับไม่ได้ หมายถึงเครื่องจักรโดยรวม"
   },
   {
     "word": "mad",
@@ -50026,7 +54005,10 @@ const wordsData = [
       "โกรธ",
       "ฉัน",
       "มาก"
-    ]
+    ],
+    "extraExample": "She was mad at him for forgetting her birthday again.",
+    "extraExampleTranslation": "เธอโกรธเขามากที่ลืมวันเกิดของเธออีกครั้ง",
+    "usageTip": "ในภาษาพูดแปลว่า โกรธ (mad at/about) หรือ บ้าคลั่ง"
   },
   {
     "word": "magazine",
@@ -50054,7 +54036,10 @@ const wordsData = [
       "นิตยสาร",
       "แฟชั่น"
     ],
-    "syllables": "ma·ga·zine"
+    "syllables": "ma·ga·zine",
+    "extraExample": "I enjoy reading a fashion magazine while waiting at the salon.",
+    "extraExampleTranslation": "ฉันชอบอ่านนิตยสารแฟชั่นระหว่างรอที่ร้านทำผม",
+    "usageTip": "ใช้คู่กับกริยา read หรือ subscribe to"
   },
   {
     "word": "magic",
@@ -50082,7 +54067,10 @@ const wordsData = [
       "เวทมนตร์",
       "ไหม"
     ],
-    "syllables": "ma·gic"
+    "syllables": "ma·gic",
+    "extraExample": "The children watched the magic trick with wide eyes.",
+    "extraExampleTranslation": "เด็กๆ ดูกลมายากลด้วยความตื่นตาตื่นใจ",
+    "usageTip": "ใช้เป็นคำนามหรือคำคุณศัพท์ก็ได้ (เช่น magic trick)"
   },
   {
     "word": "mail",
@@ -50108,7 +54096,10 @@ const wordsData = [
       "เช็ค",
       "จดหมาย",
       "หรือยัง"
-    ]
+    ],
+    "extraExample": "I checked my mail this morning and found an invitation.",
+    "extraExampleTranslation": "ฉันเช็กไปรษณีย์เมื่อเช้านี้และเจอบัตรเชิญใบหนึ่ง",
+    "usageTip": "ใช้ได้ทั้งจดหมายกระดาษและอีเมล (check mail / send by mail)"
   },
   {
     "word": "main",
@@ -50139,7 +54130,10 @@ const wordsData = [
       "mainly",
       "remain",
       "remains"
-    ]
+    ],
+    "extraExample": "The main reason we moved here is the quiet neighborhood.",
+    "extraExampleTranslation": "เหตุผลหลักที่เราย้ายมาที่นี่คือย่านนี้เงียบสงบ",
+    "usageTip": "วางหน้าคำนามเท่านั้น ใช้เน้นสิ่งที่สำคัญที่สุด"
   },
   {
     "word": "mainly",
@@ -50173,7 +54167,10 @@ const wordsData = [
       "main",
       "remain"
     ],
-    "syllables": "main·ly"
+    "syllables": "main·ly",
+    "extraExample": "The audience consisted mainly of university students.",
+    "extraExampleTranslation": "ผู้ชมส่วนใหญ่ประกอบด้วยนักศึกษามหาวิทยาลัย",
+    "usageTip": "มักวางไว้หน้ากริยาแท้หรือหลัง verb to be"
   },
   {
     "word": "maintain",
@@ -50203,7 +54200,10 @@ const wordsData = [
       "อาหาร"
     ],
     "syllables": "main·tain",
-    "rootBreakdown": "main (มือ/หลัก) + tain (ถือไว้) → รักษาไว้/ซ่อมบำรุง"
+    "rootBreakdown": "main (มือ/หลัก) + tain (ถือไว้) → รักษาไว้/ซ่อมบำรุง",
+    "extraExample": "It is important to maintain a healthy balance between work and rest.",
+    "extraExampleTranslation": "การรักษาสมดุลที่ดีระหว่างการทำงานและการพักผ่อนเป็นสิ่งสำคัญ",
+    "usageTip": "แปลว่า รักษาให้คงอยู่ หรือ บำรุงรักษา"
   },
   {
     "word": "major",
@@ -50235,7 +54235,10 @@ const wordsData = [
       "minor"
     ],
     "phoneticUK": "/mˈeɪdʒə(r)/",
-    "syllables": "ma·jor"
+    "syllables": "ma·jor",
+    "extraExample": "Traffic congestion is a major problem in big cities.",
+    "extraExampleTranslation": "ปัญหาการจราจรติดขัดเป็นปัญหาใหญ่ในเมืองใหญ่",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกความสำคัญหรือขนาดใหญ่"
   },
   {
     "word": "majority",
@@ -50269,7 +54272,10 @@ const wordsData = [
     "syllables": "ma·jo·ri·ty",
     "forms": [
       "พหูพจน์: majorities"
-    ]
+    ],
+    "extraExample": "The majority of people prefer working from home at least once a week.",
+    "extraExampleTranslation": "คนส่วนใหญ่นิยมทำงานจากที่บ้านอย่างน้อยสัปดาห์ละครั้ง",
+    "usageTip": "มักใช้โครงสร้าง the majority of + นามพหูพจน์"
   },
   {
     "word": "make",
@@ -50307,7 +54313,9 @@ const wordsData = [
       "make up one's mind (ตัดสินใจ)",
       "make sense (ฟังดูมีเหตุผล)",
       "make a difference (สร้างความเปลี่ยนแปลง)"
-    ]
+    ],
+    "extraExample": "Could you make some tea for our guests, please?",
+    "extraExampleTranslation": "ช่วยชงชาให้แขกของเราหน่อยได้ไหมครับ"
   },
   {
     "word": "make-up",
@@ -50328,6 +54336,12 @@ const wordsData = [
       "makeup",
       "constitution",
       "composition"
+    ],
+    "extraExample": "She wears light make-up for work every day.",
+    "extraExampleTranslation": "เธอแต่งหน้าเบาๆ ไปทำงานทุกวัน",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้กับกริยา wear หรือ put on",
+    "collocations": [
+      "wear make-up"
     ]
   },
   {
@@ -50357,7 +54371,10 @@ const wordsData = [
     ],
     "antonyms": [
       "female"
-    ]
+    ],
+    "extraExample": "The survey included both male and female participants.",
+    "extraExampleTranslation": "แบบสำรวจนี้รวมผู้เข้าร่วมทั้งเพศชายและเพศหญิง",
+    "usageTip": "ใช้ได้ทั้งเป็นคำคุณศัพท์และคำนามในบริบทที่เป็นทางการ"
   },
   {
     "word": "mall",
@@ -50384,7 +54401,10 @@ const wordsData = [
       "ช้อปปิ้ง",
       "ที่",
       "ห้างสรรพสินค้า"
-    ]
+    ],
+    "extraExample": "We spent the whole afternoon shopping at the local mall.",
+    "extraExampleTranslation": "เราใช้เวลาทั้งบ่ายเดินซื้อของที่ห้างสรรพสินค้าใกล้บ้าน",
+    "usageTip": "ใช้กับสถานที่ช้อปปิ้งขนาดใหญ่ มักใช้คู่กับ at the mall"
   },
   {
     "word": "man",
@@ -50490,7 +54510,10 @@ const wordsData = [
       "จัดการ",
       "ธุรกิจ"
     ],
-    "rootBreakdown": "manage + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "manage + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "Good time management helps reduce stress at work.",
+    "extraExampleTranslation": "การบริหารเวลาที่ดีช่วยลดความเครียดในการทำงาน",
+    "usageTip": "ใช้เป็นคำนามนับไม่ได้เมื่อหมายถึงการจัดการ หรือใช้กับกริยาเอกพจน์/พหูพจน์เมื่อหมายถึงคณะผู้บริหาร"
   },
   {
     "word": "manager",
@@ -50521,7 +54544,10 @@ const wordsData = [
       "ร้าน"
     ],
     "phoneticUK": "/mˈænədʒə(r)/",
-    "syllables": "ma·na·ger"
+    "syllables": "ma·na·ger",
+    "extraExample": "The store manager greeted every customer at the door.",
+    "extraExampleTranslation": "ผู้จัดการร้านทักทายลูกค้าทุกคนที่ประตู",
+    "usageTip": "ใช้ระบุตำแหน่งผู้ดูแลหรือผู้จัดการแผนก มักตามหลังชื่อแผนกหรือองค์กร"
   },
   {
     "word": "manner",
@@ -50550,7 +54576,10 @@ const wordsData = [
       "ดี"
     ],
     "phoneticUK": "/mˈænə(r)/",
-    "syllables": "man·ner"
+    "syllables": "man·ner",
+    "extraExample": "He spoke in a calm and polite manner during the meeting.",
+    "extraExampleTranslation": "เขาพูดด้วยท่าทีที่สงบและสุภาพระหว่างการประชุม",
+    "usageTip": "มักใช้ในรูป in a ... manner เพื่อบอกลักษณะอาการหรือวิธีการกระทำ"
   },
   {
     "word": "manufacture",
@@ -50588,7 +54617,10 @@ const wordsData = [
     "forms": [
       "V2/V3: manufactured",
       "V-ing: manufacturing"
-    ]
+    ],
+    "extraExample": "This factory can manufacture thousands of cars each year.",
+    "extraExampleTranslation": "โรงงานแห่งนี้สามารถผลิตรถยนต์ได้หลายพันคันต่อปี",
+    "usageTip": "เป็นคำกริยาที่เป็นทางการกว่า make ใช้กับการผลิตสินค้าจำนวนมากในโรงงาน"
   },
   {
     "word": "manufacturer",
@@ -50619,7 +54651,10 @@ const wordsData = [
       "รายใหญ่"
     ],
     "phoneticUK": "/mˌænjəfˈæktʃərə(r)/",
-    "syllables": "ma·nu·fac·tu·rer"
+    "syllables": "ma·nu·fac·tu·rer",
+    "extraExample": "You should contact the manufacturer if the product is defective.",
+    "extraExampleTranslation": "คุณควรติดต่อผู้ผลิตหากสินค้ามีตำหนิ",
+    "usageTip": "ใช้เรียกบริษัทหรือผู้ประกอบการที่ผลิตสินค้า ไม่ใช่ตัวบุคคลทั่วไป"
   },
   {
     "word": "manufacturing",
@@ -50646,7 +54681,10 @@ const wordsData = [
     "wordFamily": [
       "manufacture"
     ],
-    "syllables": "ma·nu·fac·tu·ring"
+    "syllables": "ma·nu·fac·tu·ring",
+    "extraExample": "The country's manufacturing sector grew rapidly last year.",
+    "extraExampleTranslation": "ภาคอุตสาหกรรมการผลิตของประเทศเติบโตอย่างรวดเร็วในปีที่ผ่านมา",
+    "usageTip": "ใช้เป็นคำนามหรือคำคุณศัพท์หน้าคำนามเพื่อระบุถึงภาคส่วนหรือกระบวนการผลิต"
   },
   {
     "word": "many",
@@ -50683,7 +54721,9 @@ const wordsData = [
     "wordFamily": [
       "man"
     ],
-    "syllables": "ma·ny"
+    "syllables": "ma·ny",
+    "extraExample": "There are many reasons why people learn a new language.",
+    "extraExampleTranslation": "มีเหตุผลมากมายที่ผู้คนเรียนรู้ภาษาใหม่"
   },
   {
     "word": "map",
@@ -50714,7 +54754,10 @@ const wordsData = [
       "แผนที่",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "We checked the map to find the shortest route to the hotel.",
+    "extraExampleTranslation": "เราดูแผนที่เพื่อหาเส้นทางที่สั้นที่สุดไปยังโรงแรม",
+    "usageTip": "ใช้ได้ทั้งแผนที่กระดาษและแผนที่ดิจิทัล มักใช้คู่กับกริยา read หรือ check"
   },
   {
     "word": "March",
@@ -50745,7 +54788,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: marches"
-    ]
+    ],
+    "extraExample": "The weather usually gets warmer in March.",
+    "extraExampleTranslation": "อากาศมักจะอุ่นขึ้นในเดือนมีนาคม",
+    "usageTip": "ขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ ใช้คู่กับบุพบท in เมื่อระบุเดือน"
   },
   {
     "word": "mark",
@@ -50777,7 +54823,10 @@ const wordsData = [
       "เสื้อ",
       "ของ",
       "คุณ"
-    ]
+    ],
+    "extraExample": "Please leave a mark next to the correct answer.",
+    "extraExampleTranslation": "กรุณาทำเครื่องหมายไว้ข้างคำตอบที่ถูกต้อง",
+    "usageTip": "ใช้ได้ทั้งเครื่องหมาย รอยเปื้อน หรือคะแนนสอบในภาษาอังกฤษแบบบริติช"
   },
   {
     "word": "market",
@@ -50807,7 +54856,10 @@ const wordsData = [
     "wordFamily": [
       "marketing"
     ],
-    "syllables": "mar·ket"
+    "syllables": "mar·ket",
+    "extraExample": "She buys fresh vegetables at the local market every morning.",
+    "extraExampleTranslation": "เธอซื้อผักสดที่ตลาดท้องถิ่นทุกเช้า",
+    "usageTip": "ใช้ได้ทั้งตลาดสด ตลาดนัด และตลาดการค้าในเชิงเศรษฐกิจ"
   },
   {
     "word": "marketing",
@@ -50838,7 +54890,10 @@ const wordsData = [
       "แผนก",
       "การตลาด"
     ],
-    "syllables": "mar·ke·ting"
+    "syllables": "mar·ke·ting",
+    "extraExample": "Our marketing team launched a new campaign on social media.",
+    "extraExampleTranslation": "ทีมการตลาดของเราเปิดตัวแคมเปญใหม่บนโซเชียลมีเดีย",
+    "usageTip": "ใช้เป็นคำนามนับไม่ได้ หรือวางหน้าคำนามอื่นเพื่อขยายความด้านการตลาด"
   },
   {
     "word": "marriage",
@@ -50870,7 +54925,10 @@ const wordsData = [
       "มีความสุข",
       "มาก"
     ],
-    "syllables": "mar·riage"
+    "syllables": "mar·riage",
+    "extraExample": "Their marriage has lasted for more than twenty years.",
+    "extraExampleTranslation": "การแต่งงานของพวกเขาคงอยู่ยาวนานกว่ายี่สิบปีแล้ว",
+    "usageTip": "หมายถึงสถาบันการสมรสหรือชีวิตคู่ ไม่ใช่แค่พิธีแต่งงาน (ซึ่งใช้ wedding)"
   },
   {
     "word": "married",
@@ -50902,7 +54960,10 @@ const wordsData = [
     "antonyms": [
       "single"
     ],
-    "syllables": "mar·ried"
+    "syllables": "mar·ried",
+    "extraExample": "They got married in a small ceremony by the sea.",
+    "extraExampleTranslation": "พวกเขาแต่งงานกันในพิธีเล็กๆ ริมทะเล",
+    "usageTip": "มักใช้ในรูป get married (แต่งงาน) หรือ be married to (แต่งงานกับใคร)"
   },
   {
     "word": "marry",
@@ -50940,7 +55001,9 @@ const wordsData = [
       "V-ing: marrying"
     ],
     "usageTip": "พูดว่า marry someone ได้เลย (ไม่ต้องมี with เช่น He married her. หรือ be married to someone)",
-    "syllables": "mar·ry"
+    "syllables": "mar·ry",
+    "extraExample": "He plans to marry his longtime partner next spring.",
+    "extraExampleTranslation": "เขาวางแผนจะแต่งงานกับคนรักที่คบกันมานานในฤดูใบไม้ผลิหน้า"
   },
   {
     "word": "mass",
@@ -50973,7 +55036,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: masses"
-    ]
+    ],
+    "extraExample": "The family attends mass together every Sunday morning.",
+    "extraExampleTranslation": "ครอบครัวไปร่วมพิธีมิสซาด้วยกันทุกเช้าวันอาทิตย์",
+    "usageTip": "เมื่อหมายถึงพิธีทางศาสนาคริสต์มักใช้คู่กับกริยา attend หรือ go to"
   },
   {
     "word": "massive",
@@ -51004,7 +55070,10 @@ const wordsData = [
     "wordFamily": [
       "mass"
     ],
-    "syllables": "mas·sive"
+    "syllables": "mas·sive",
+    "extraExample": "A massive crowd gathered in the square to watch the concert.",
+    "extraExampleTranslation": "ฝูงชนจำนวนมหาศาลมารวมตัวกันที่จัตุรัสเพื่อชมคอนเสิร์ต",
+    "usageTip": "เป็นคำคุณศัพท์ที่เน้นความใหญ่โตหรือปริมาณมากเป็นพิเศษ ใช้ได้ทั้งวัตถุและนามธรรม"
   },
   {
     "word": "master",
@@ -51033,7 +55102,10 @@ const wordsData = [
       "มัน"
     ],
     "phoneticUK": "/mˈɑːstə(r)/",
-    "syllables": "ma·ster"
+    "syllables": "ma·ster",
+    "extraExample": "The dog waited patiently for its master to return home.",
+    "extraExampleTranslation": "สุนัขรอเจ้านายกลับบ้านอย่างอดทน",
+    "usageTip": "นอกจากแปลว่าเจ้านายแล้ว ยังใช้หมายถึงผู้เชี่ยวชาญในด้านใดด้านหนึ่งได้ด้วย"
   },
   {
     "word": "match",
@@ -51069,7 +55141,8 @@ const wordsData = [
       "พหูพจน์: matches"
     ],
     "extraExample": "These shoes match your dress perfectly.",
-    "extraExampleTranslation": "รองเท้าคู่นี้เข้ากับชุดของคุณอย่างลงตัว (ความหมายรอง: เข้ากัน)"
+    "extraExampleTranslation": "รองเท้าคู่นี้เข้ากับชุดของคุณอย่างลงตัว (ความหมายรอง: เข้ากัน)",
+    "usageTip": "เป็นคำนามที่แปลได้ทั้งการแข่งขัน ไม้ขีดไฟ และสิ่งที่เข้าคู่กัน"
   },
   {
     "word": "matching",
@@ -51101,7 +55174,10 @@ const wordsData = [
     "wordFamily": [
       "match"
     ],
-    "syllables": "mat·ching"
+    "syllables": "mat·ching",
+    "extraExample": "She wore a matching hat and scarf to keep warm.",
+    "extraExampleTranslation": "เธอสวมหมวกและผ้าพันคอที่เข้าชุดกันเพื่อให้ความอบอุ่น",
+    "usageTip": "นิยมใช้เป็นคำคุณศัพท์วางหน้าคำนามเพื่อบอกว่าสิ่งของสองอย่างเข้าชุดกัน"
   },
   {
     "word": "mate",
@@ -51185,7 +55261,10 @@ const wordsData = [
     "syllables": "ma·the·ma·tics",
     "forms": [
       "พหูพจน์: mathematicses"
-    ]
+    ],
+    "extraExample": "She has been studying mathematics at the university for three years.",
+    "extraExampleTranslation": "เธอเรียนคณิตศาสตร์ที่มหาวิทยาลัยมาเป็นเวลาสามปีแล้ว",
+    "usageTip": "คำนามนับไม่ได้ ใช้กริยาเอกพจน์เสมอ แม้จะลงท้ายด้วย -s (มักย่อว่า math หรือ maths)"
   },
   {
     "word": "matter",
@@ -51215,7 +55294,8 @@ const wordsData = [
     "phoneticUK": "/mˈætə(r)/",
     "syllables": "mat·ter",
     "extraExample": "Does it matter which train we take?",
-    "extraExampleTranslation": "มันสำคัญหรือเปล่าว่าเราจะขึ้นรถไฟขบวนไหน? (ความหมาย [v.]: สำคัญ)"
+    "extraExampleTranslation": "มันสำคัญหรือเปล่าว่าเราจะขึ้นรถไฟขบวนไหน? (ความหมาย [v.]: สำคัญ)",
+    "usageTip": "ใช้เป็นกริยาแปลว่า มีความสำคัญ มักใช้กับประโยคปฏิเสธหรือคำถาม เช่น It doesn't matter"
   },
   {
     "word": "maximum",
@@ -51246,7 +55326,10 @@ const wordsData = [
     "antonyms": [
       "minimum"
     ],
-    "syllables": "ma·xi·mum"
+    "syllables": "ma·xi·mum",
+    "extraExample": "The maximum speed limit on this highway is ninety kilometers per hour.",
+    "extraExampleTranslation": "ความเร็วสูงสุดที่อนุญาตบนทางหลวงสายนี้คือเก้าสิบกิโลเมตรต่อชั่วโมง",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกระดับสูงสุดที่เป็นไปได้ หรือใช้คู่กับคำว่า limit, amount"
   },
   {
     "word": "May",
@@ -51278,7 +55361,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "mayor"
-    ]
+    ],
+    "extraExample": "Our school usually starts the new semester in May.",
+    "extraExampleTranslation": "โรงเรียนของเรามักจะเปิดภาคเรียนใหม่ในเดือนพฤษภาคม",
+    "usageTip": "ชื่อเดือนต้องขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ และใช้กับบุพบท in (in May)"
   },
   {
     "word": "maybe",
@@ -51305,7 +55391,10 @@ const wordsData = [
       "อาจจะ",
       "ถูก"
     ],
-    "syllables": "may·be"
+    "syllables": "may·be",
+    "extraExample": "Maybe we should leave early tomorrow to avoid heavy traffic.",
+    "extraExampleTranslation": "บางทีพรุ่งนี้เราควรออกเดินทางแต่เช้าเพื่อหลีกเลี่ยงรถติด",
+    "usageTip": "วางไว้ต้นประโยคหรือท้ายประโยคเพื่อแสดงความไม่แน่ใจ คล้ายกับ perhaps"
   },
   {
     "word": "mayor",
@@ -51333,7 +55422,10 @@ const wordsData = [
     "wordFamily": [
       "may"
     ],
-    "phoneticUK": "/mˈeɪə(r)/"
+    "phoneticUK": "/mˈeɪə(r)/",
+    "extraExample": "The mayor promised to build more public parks in the city.",
+    "extraExampleTranslation": "นายกเทศมนตรีสัญญาว่าจะสร้างสวนสาธารณะเพิ่มขึ้นในเมือง",
+    "usageTip": "ใช้เรียกผู้นำสูงสุดของเทศบาลหรือเมือง มักใช้กับคำว่า elect หรือ office"
   },
   {
     "word": "me",
@@ -51357,7 +55449,10 @@ const wordsData = [
       "ให้",
       "ฉัน",
       "สิ"
-    ]
+    ],
+    "extraExample": "Please send me the final report before five o'clock.",
+    "extraExampleTranslation": "กรุณาส่งรายงานฉบับสมบูรณ์ให้ฉันก่อนห้าโมงเย็น",
+    "usageTip": "เป็นรูปกรรมของ I ใช้ตามหลังคำกริยาหรือคำบุพบท เช่น for me, with me"
   },
   {
     "word": "meal",
@@ -51386,7 +55481,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "me"
-    ]
+    ],
+    "extraExample": "We enjoyed a delicious meal together at a local restaurant.",
+    "extraExampleTranslation": "พวกเราเพลิดเพลินกับมื้ออาหารแสนอร่อยด้วยกันที่ร้านอาหารท้องถิ่น",
+    "usageTip": "หมายถึงมื้ออาหารทั่วไป ใช้กับกริยา have, cook, prepare หรือ enjoy"
   },
   {
     "word": "mean",
@@ -51425,7 +55523,8 @@ const wordsData = [
       "V2/V3: meant"
     ],
     "extraExample": "That was a really mean thing to say.",
-    "extraExampleTranslation": "นั่นเป็นคำพูดที่ใจร้ายจริงๆ (ความหมายรอง [adj.]: ใจร้าย/ขี้เหนียว)"
+    "extraExampleTranslation": "นั่นเป็นคำพูดที่ใจร้ายจริงๆ (ความหมายรอง [adj.]: ใจร้าย/ขี้เหนียว)",
+    "usageTip": "ใช้ถามหรืออธิบายความหมายของคำ สัญลักษณ์ หรือการกระทำ"
   },
   {
     "word": "meaning",
@@ -51457,7 +55556,10 @@ const wordsData = [
       "คือ",
       "อะไร"
     ],
-    "syllables": "mea·ning"
+    "syllables": "mea·ning",
+    "extraExample": "You can look up the exact meaning of the word in a dictionary.",
+    "extraExampleTranslation": "คุณสามารถค้นหาความหมายที่แท้จริงของคำนี้ได้ในพจนานุกรม",
+    "usageTip": "เป็นคำนามนับได้หรือนับไม่ได้ก็ได้ มักใช้คู่กับคำว่า exact, true หรือ hidden"
   },
   {
     "word": "means",
@@ -51489,7 +55591,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: meanses"
-    ]
+    ],
+    "extraExample": "Email is a fast and reliable means of communication.",
+    "extraExampleTranslation": "อีเมลเป็นช่องทางการสื่อสารที่รวดเร็วและเชื่อถือได้",
+    "usageTip": "รูปเอกพจน์และพหูพจน์เขียนเหมือนกัน (มี -s เสมอ) มักใช้ในวลี by means of"
   },
   {
     "word": "meanwhile",
@@ -51521,7 +55626,9 @@ const wordsData = [
     "grammarPattern": "Meanwhile, + ประโยค",
     "register": "งานเขียน / เล่าเรื่อง",
     "usageTip": "ใช้เชื่อมเหตุการณ์สองอย่างที่เกิดขึ้นพร้อมกัน โดยมักตามด้วยเครื่องหมายจุลภาค (,)",
-    "syllables": "mean·while"
+    "syllables": "mean·while",
+    "extraExample": "I will prepare the slides; meanwhile, you can check the data.",
+    "extraExampleTranslation": "ฉันจะเตรียมสไลด์ ส่วนในระหว่างนั้นคุณสามารถตรวจสอบข้อมูลได้"
   },
   {
     "word": "measure",
@@ -51557,7 +55664,10 @@ const wordsData = [
     "forms": [
       "V2/V3: measured",
       "V-ing: measuring"
-    ]
+    ],
+    "extraExample": "We need to measure the room before buying new furniture.",
+    "extraExampleTranslation": "เราต้องวัดขนาดห้องก่อนที่จะซื้อเฟอร์นิเจอร์ใหม่",
+    "usageTip": "ใช้กับการวัดขนาด ความยาว น้ำหนัก หรือประเมินผล มักตามด้วยคำนามที่เป็นสิ่งของ"
   },
   {
     "word": "measurement",
@@ -51588,7 +55698,10 @@ const wordsData = [
       "ให้",
       "แม่นยำ"
     ],
-    "rootBreakdown": "measure + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "measure + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "Accurate measurement is essential for this science experiment.",
+    "extraExampleTranslation": "การวัดที่แม่นยำเป็นสิ่งจำเป็นสำหรับการทดลองทางวิทยาศาสตร์นี้",
+    "usageTip": "ใช้เมื่อพูดถึงกระบวนการวัดหรือตัวเลขที่ได้จากการวัด มักใช้คู่กับ accurate หรือ precise"
   },
   {
     "word": "meat",
@@ -51618,7 +55731,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "He decided to stop eating red meat for health reasons.",
+    "extraExampleTranslation": "เขาตัดสินใจเลิกกินเนื้อแดงด้วยเหตุผลด้านสุขภาพ",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้เรียกรวมเนื้อสัตว์ที่นำมาปรุงอาหาร (ไม่รวมปลาในบางบริบท)"
   },
   {
     "word": "media",
@@ -51646,7 +55762,10 @@ const wordsData = [
       "ไป",
       "ทั่ว",
       "สื่อ"
-    ]
+    ],
+    "extraExample": "Social media has changed the way people share news.",
+    "extraExampleTranslation": "สื่อสังคมออนไลน์ได้เปลี่ยนวิธีที่ผู้คนแบ่งปันข่าวสาร",
+    "usageTip": "มักใช้เรียกรวมช่องทางสื่อสารมวลชน เช่น โทรทัศน์ วิทยุ และอินเทอร์เน็ต"
   },
   {
     "word": "medical",
@@ -51678,7 +55797,10 @@ const wordsData = [
     "antonyms": [
       "surgical"
     ],
-    "syllables": "me·di·cal"
+    "syllables": "me·di·cal",
+    "extraExample": "She needs to get a medical checkup before starting the new job.",
+    "extraExampleTranslation": "เธอต้องไปตรวจสุขภาพทางการแพทย์ก่อนเริ่มงานใหม่",
+    "usageTip": "เป็นคำคุณศัพท์ ใช้ขยายคำนามที่เกี่ยวข้องกับการแพทย์และการรักษาโรค"
   },
   {
     "word": "medicine",
@@ -51708,7 +55830,10 @@ const wordsData = [
       "ยา",
       "หรือยัง"
     ],
-    "syllables": "me·di·cine"
+    "syllables": "me·di·cine",
+    "extraExample": "Remember to take your medicine twice a day after meals.",
+    "extraExampleTranslation": "อย่าลืมทานยาวันละสองครั้งหลังอาหาร",
+    "usageTip": "ใช้กับกริยา take (ไม่ใช้ eat) เมื่อหมายถึงการกินยาเพื่อรักษาโรค"
   },
   {
     "word": "medium",
@@ -51736,7 +55861,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: media"
-    ]
+    ],
+    "extraExample": "Please choose a medium size if the large one feels too loose.",
+    "extraExampleTranslation": "กรุณาเลือกขนาดกลางหากขนาดใหญ่รู้สึกหลวมเกินไป",
+    "usageTip": "ใช้บอกระดับหรือขนาดที่อยู่ตรงกลางระหว่างเล็กกับใหญ่ หรือใช้เรียกสื่อกลาง"
   },
   {
     "word": "meet",
@@ -51768,7 +55896,10 @@ const wordsData = [
     ],
     "forms": [
       "V2/V3: met"
-    ]
+    ],
+    "extraExample": "Let us meet at the coffee shop near the station at noon.",
+    "extraExampleTranslation": "เรามาเจอกันที่ร้านกาแฟใกล้สถานีตอนเที่ยงกันเถอะ",
+    "usageTip": "ใช้เมื่อนัดพบหรือบังเอิญเจอใครสักคน หากเป็นการพบกันครั้งแรกมักใช้ Nice to meet you"
   },
   {
     "word": "meeting",
@@ -51894,7 +56025,10 @@ const wordsData = [
       "ของ",
       "เขา"
     ],
-    "syllables": "mem·ber·ship"
+    "syllables": "mem·ber·ship",
+    "extraExample": "Renewing your gym membership online takes only a few minutes.",
+    "extraExampleTranslation": "การต่ออายุสมาชิกฟิตเนสออนไลน์ใช้เวลาเพียงไม่กี่นาที",
+    "usageTip": "ใช้กับสถานะการเป็นสมาชิก เช่น gym membership หรือ membership fee"
   },
   {
     "word": "memory",
@@ -51928,7 +56062,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "memorize"
-    ]
+    ],
+    "extraExample": "I have a fond memory of walking along the beach at sunset.",
+    "extraExampleTranslation": "ฉันมีความทรงจำที่ดีเกี่ยวกับการเดินเล่นริมชายหาดตอนพระอาทิตย์ตก",
+    "usageTip": "ใช้ได้ทั้งความทรงจำและหน่วยความจำคอมพิวเตอร์ มักใช้กับคำกริยา have หรือ lose"
   },
   {
     "word": "mental",
@@ -51958,7 +56095,10 @@ const wordsData = [
     "antonyms": [
       "physical"
     ],
-    "syllables": "men·tal"
+    "syllables": "men·tal",
+    "extraExample": "Regular exercise is great for both physical and mental health.",
+    "extraExampleTranslation": "การออกกำลังกายเป็นประจำดีต่อทั้งสุขภาพกายและสุขภาพจิต",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกสิ่งที่เกี่ยวกับจิตใจหรือความคิด"
   },
   {
     "word": "mention",
@@ -51987,7 +56127,10 @@ const wordsData = [
       "เรื่อง",
       "นี้"
     ],
-    "syllables": "men·tion"
+    "syllables": "men·tion",
+    "extraExample": "Did she mention when the meeting would start?",
+    "extraExampleTranslation": "เธอได้พูดถึงไหมว่าการประชุมจะเริ่มเมื่อไหร่",
+    "usageTip": "ใช้บอกว่ากล่าวถึงหรือเอ่ยถึงโดยไม่ต้องลงรายละเอียด"
   },
   {
     "word": "menu",
@@ -52016,7 +56159,10 @@ const wordsData = [
       "ได้",
       "ไหม"
     ],
-    "syllables": "me·nu"
+    "syllables": "me·nu",
+    "extraExample": "The waiter handed us the menu and asked if we wanted drinks.",
+    "extraExampleTranslation": "พนักงานเสิร์ฟยื่นเมนูให้เราและถามว่าเราต้องการเครื่องดื่มไหม",
+    "usageTip": "ใช้กับรายการอาหารในร้านหรือรายการตัวเลือกบนหน้าจอ"
   },
   {
     "word": "mere",
@@ -52048,7 +56194,10 @@ const wordsData = [
     "wordFamily": [
       "merely"
     ],
-    "phoneticUK": "/mˈɪ/"
+    "phoneticUK": "/mˈɪ/",
+    "extraExample": "It took a mere five minutes to fix the broken chair.",
+    "extraExampleTranslation": "ใช้เวลาเพียงห้านาทีเท่านั้นในการซ่อมเก้าอี้ที่พัง",
+    "usageTip": "วางหน้าคำนามเพื่อเน้นว่าน้อยหรือเล็กน้อยมาก"
   },
   {
     "word": "merely",
@@ -52079,7 +56228,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "mere"
-    ]
+    ],
+    "extraExample": "I was merely trying to help you finish on time.",
+    "extraExampleTranslation": "ฉันเพียงแค่พยายามช่วยคุณให้ทำเสร็จทันเวลาเท่านั้น",
+    "usageTip": "ใช้ขยายกริยาหรือประโยคเพื่อบอกว่า 'เพียงแค่' (เป็นทางการกว่า just)"
   },
   {
     "word": "mess",
@@ -52108,7 +56260,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: messes"
-    ]
+    ],
+    "extraExample": "Please clean up the mess in the kitchen before dinner.",
+    "extraExampleTranslation": "กรุณาทำความสะอาดความยุ่งเหยิงในครัวก่อนมื้อเย็น",
+    "usageTip": "ใช้กับสภาพที่รก วุ่นวาย หรือสถานการณ์ที่ยุ่งเหยิง มักใช้คู่กับ make a mess"
   },
   {
     "word": "message",
@@ -52137,7 +56292,10 @@ const wordsData = [
       "ฉัน",
       "ไหม"
     ],
-    "syllables": "mes·sage"
+    "syllables": "mes·sage",
+    "extraExample": "He left a short message on my desk this morning.",
+    "extraExampleTranslation": "เขาทิ้งข้อความสั้นๆ ไว้บนโต๊ะของฉันเมื่อเช้านี้",
+    "usageTip": "ใช้กับข้อความที่ส่งหรือฝากไว้ มักใช้คู่กับ send หรือ leave"
   },
   {
     "word": "metal",
@@ -52165,7 +56323,10 @@ const wordsData = [
       "จาก",
       "โลหะ"
     ],
-    "syllables": "me·tal"
+    "syllables": "me·tal",
+    "extraExample": "This bridge is built mostly from strong metal beams.",
+    "extraExampleTranslation": "สะพานนี้สร้างขึ้นจากคานโลหะที่แข็งแรงเป็นส่วนใหญ่",
+    "usageTip": "ใช้เป็นคำนามนับไม่ได้เมื่อพูดถึงวัสดุโลหะโดยรวม"
   },
   {
     "word": "method",
@@ -52193,7 +56354,10 @@ const wordsData = [
       "แบบ",
       "ใหม่"
     ],
-    "syllables": "me·thod"
+    "syllables": "me·thod",
+    "extraExample": "We need to find a faster method to solve this problem.",
+    "extraExampleTranslation": "เราต้องหาวิธีที่เร็วกว่านี้ในการแก้ปัญหานี้",
+    "usageTip": "ใช้กับวิธีการหรือขั้นตอนที่เป็นระบบในการทำสิ่งใดสิ่งหนึ่ง"
   },
   {
     "word": "metre",
@@ -52216,6 +56380,13 @@ const wordsData = [
       "meter",
       "measure",
       "beat"
+    ],
+    "extraExample": "The swimming pool is fifty metres long and twenty metres wide.",
+    "extraExampleTranslation": "สระว่ายน้ำยาวห้าสิบเมตรและกว้างยี่สิบเมตร",
+    "usageTip": "ใช้เป็นหน่วยวัดความยาวแบบอังกฤษ (แบบอเมริกันสะกดว่า meter)",
+    "collocations": [
+      "square metre",
+      "cubic metre"
     ]
   },
   {
@@ -52239,7 +56410,14 @@ const wordsData = [
       "noonday",
       "noontide"
     ],
-    "syllables": "mid·day"
+    "syllables": "mid·day",
+    "extraExample": "The sun is usually strongest around midday.",
+    "extraExampleTranslation": "แสงแดดมักจะแรงที่สุดในช่วงประมาณเที่ยงวัน",
+    "usageTip": "ใช้บอกเวลา 12:00 น. ตอนกลางวัน มักใช้กับคำบุพบท at หรือ around",
+    "collocations": [
+      "at midday",
+      "midday sun"
+    ]
   },
   {
     "word": "middle",
@@ -52270,7 +56448,10 @@ const wordsData = [
       "end",
       "beginning"
     ],
-    "syllables": "mid·dle"
+    "syllables": "mid·dle",
+    "extraExample": "She sat right in the middle of the front row.",
+    "extraExampleTranslation": "เธอนั่งอยู่ตรงกลางของแถวหน้าพอดี",
+    "usageTip": "ใช้บอกตำแหน่งตรงกลางหรือช่วงกึ่งกลาง มักใช้ในรูป in the middle of"
   },
   {
     "word": "midnight",
@@ -52293,7 +56474,10 @@ const wordsData = [
       "ตอน",
       "เที่ยงคืน"
     ],
-    "syllables": "mid·night"
+    "syllables": "mid·night",
+    "extraExample": "The train is scheduled to arrive just after midnight.",
+    "extraExampleTranslation": "รถไฟมีกำหนดจะมาถึงหลังเที่ยงคืนเล็กน้อย",
+    "usageTip": "ใช้บอกเวลา 24:00 น. มักใช้กับคำบุพบท at, before หรือ after"
   },
   {
     "word": "might",
@@ -52319,7 +56503,10 @@ const wordsData = [
       "ตกใน",
       "ภายหลัง"
     ],
-    "grammarPattern": "Modal Verb + V.inf (คาดการณ์ความน่าจะเป็นน้อยกว่า may)"
+    "grammarPattern": "Modal Verb + V.inf (คาดการณ์ความน่าจะเป็นน้อยกว่า may)",
+    "extraExample": "It might rain later this afternoon, so take an umbrella.",
+    "extraExampleTranslation": "บ่ายนี้อาจจะฝนตก ดังนั้นพกร่มไปด้วยนะ",
+    "usageTip": "ใช้แสดงความเป็นไปได้ที่ไม่แน่นอนหรือขออนุญาตอย่างสุภาพ"
   },
   {
     "word": "mild",
@@ -52351,7 +56538,10 @@ const wordsData = [
     ],
     "antonyms": [
       "intense"
-    ]
+    ],
+    "extraExample": "The doctor prescribed a mild cream for the skin rash.",
+    "extraExampleTranslation": "หมอสั่งจ่ายครีมอ่อนๆ สำหรับผื่นที่ผิวหนัง",
+    "usageTip": "ใช้บอกระดับที่ไม่รุนแรง เช่น อากาศอบอุ่น รสชาติไม่เผ็ด หรืออาการป่วยเล็กน้อย"
   },
   {
     "word": "mile",
@@ -52381,7 +56571,10 @@ const wordsData = [
     ],
     "synonyms": [
       "knot"
-    ]
+    ],
+    "extraExample": "The nearest gas station is about two miles down the road.",
+    "extraExampleTranslation": "ปั๊มน้ำมันที่ใกล้ที่สุดอยู่ห่างออกไปตามถนนประมาณสองไมล์",
+    "usageTip": "ใช้เป็นหน่วยวัดระยะทาง มักใช้ในสำนวน miles away เพื่อบอกว่าไกลมาก"
   },
   {
     "word": "military",
@@ -52408,7 +56601,10 @@ const wordsData = [
     "syllables": "mi·li·ta·ry",
     "forms": [
       "พหูพจน์: militaries"
-    ]
+    ],
+    "extraExample": "He served in the military for five years before retiring.",
+    "extraExampleTranslation": "เขารับราชการทหารเป็นเวลาห้าปีก่อนที่จะเกษียณ",
+    "usageTip": "ใช้ได้ทั้งคำนาม (กองทัพ) และคำคุณศัพท์ (เกี่ยวกับทหาร)"
   },
   {
     "word": "milk",
@@ -52441,7 +56637,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Would you like some cold milk with your cookies?",
+    "extraExampleTranslation": "คุณต้องการนมเย็นๆ สักหน่อยไหมทานคู่กับคุกกี้",
+    "usageTip": "เป็นคำนามนับไม่ได้ หากต้องการบอกปริมาณให้ใช้ a glass of milk หรือ a carton of milk"
   },
   {
     "word": "milligram",
@@ -52545,7 +56744,13 @@ const wordsData = [
       "ที่หนึ่ง",
       "ล้าน"
     ],
-    "syllables": "mil·lionth"
+    "syllables": "mil·lionth",
+    "extraExample": "The museum celebrated its millionth visitor with a special ceremony.",
+    "extraExampleTranslation": "พิพิธภัณฑ์ฉลองผู้เข้าชมคนที่หนึ่งล้านด้วยพิธีพิเศษ",
+    "usageTip": "ใช้บอกลำดับที่ 1,000,000 มักนำหน้าคำนามหรือใช้กับ the",
+    "collocations": [
+      "[\"millionth visitor\",\"one millionth\"]"
+    ]
   },
   {
     "word": "mind",
@@ -52586,7 +56791,9 @@ const wordsData = [
       "keep in mind (จำใส่ใจไว้ว่า)",
       "change one's mind (เปลี่ยนใจ)"
     ],
-    "usageTip": "Would you mind + V-ing? (ช่วย...หน่อยได้ไหมครับ/คะ) — ถ้าตอบว่า 'ยินดี/ไม่รังเกียจ' ให้ตอบ No, not at all / Of course not!"
+    "usageTip": "Would you mind + V-ing? (ช่วย...หน่อยได้ไหมครับ/คะ) — ถ้าตอบว่า 'ยินดี/ไม่รังเกียจ' ให้ตอบ No, not at all / Of course not!",
+    "extraExample": "Do you mind if I open the window for some fresh air?",
+    "extraExampleTranslation": "คุณจะรังเกียจไหมถ้าฉันจะเปิดหน้าต่างเพื่อรับอากาศบริสุทธิ์"
   },
   {
     "word": "mine",
@@ -52615,7 +56822,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "minor"
-    ]
+    ],
+    "extraExample": "That blue backpack on the chair is mine.",
+    "extraExampleTranslation": "กระเป๋าเป้สีน้ำเงินบนเก้าอี้นั้นเป็นของฉัน",
+    "usageTip": "ใช้เป็นสรรพนามแสดงความเป็นเจ้าของโดยไม่ต้องมีคำนามตามหลัง"
   },
   {
     "word": "mineral",
@@ -52642,7 +56852,10 @@ const wordsData = [
       "แร่ธาตุ",
       "มากมาย"
     ],
-    "syllables": "mi·ne·ral"
+    "syllables": "mi·ne·ral",
+    "extraExample": "Drinking water often contains essential minerals for the body.",
+    "extraExampleTranslation": "น้ำดื่มมักมีแร่ธาตุที่จำเป็นต่อร่างกาย",
+    "usageTip": "ใช้พูดถึงแร่ธาตุในอาหาร น้ำ หรือในธรรมชาติ"
   },
   {
     "word": "minimum",
@@ -52673,7 +56886,10 @@ const wordsData = [
     "antonyms": [
       "maximum"
     ],
-    "syllables": "mi·ni·mum"
+    "syllables": "mi·ni·mum",
+    "extraExample": "The minimum age to apply for a driver's license is eighteen.",
+    "extraExampleTranslation": "อายุขั้นต่ำในการสมัครใบขับขี่คือสิบแปดปี",
+    "usageTip": "ใช้บอกระดับหรือจำนวนที่น้อยที่สุดที่กำหนดไว้"
   },
   {
     "word": "minister",
@@ -52702,7 +56918,10 @@ const wordsData = [
       "กระทรวงศึกษาธิการ"
     ],
     "phoneticUK": "/mˈɪnəstə(r)/",
-    "syllables": "mi·ni·ster"
+    "syllables": "mi·ni·ster",
+    "extraExample": "The minister of education announced a new school policy today.",
+    "extraExampleTranslation": "รัฐมนตรีว่าการกระทรวงศึกษาธิการประกาศนโยบายโรงเรียนใหม่วันนี้",
+    "usageTip": "ใช้เรียกตำแหน่งรัฐมนตรีในรัฐบาล"
   },
   {
     "word": "ministry",
@@ -52723,6 +56942,12 @@ const wordsData = [
     "syllables": "mi·nis·try",
     "forms": [
       "พหูพจน์: ministries"
+    ],
+    "extraExample": "She works as a translator at the Ministry of Foreign Affairs.",
+    "extraExampleTranslation": "เธอทำงานเป็นนักแปลที่กระทรวงการต่างประเทศ",
+    "usageTip": "ใช้เรียกหน่วยงานระดับกระทรวง มักตามด้วย of และชื่อด้านที่ดูแล",
+    "collocations": [
+      "[\"Ministry of Education\",\"government ministry\"]"
     ]
   },
   {
@@ -52758,7 +56983,10 @@ const wordsData = [
       "major"
     ],
     "phoneticUK": "/mˈaɪnə(r)/",
-    "syllables": "mi·nor"
+    "syllables": "mi·nor",
+    "extraExample": "We made a few minor changes to the final report.",
+    "extraExampleTranslation": "เราได้แก้ไขเล็กน้อยในรายงานฉบับสุดท้าย",
+    "usageTip": "ใช้บอกว่าเรื่องนั้นเล็กน้อย ไม่สำคัญมาก หรือหมายถึงผู้เยาว์"
   },
   {
     "word": "minority",
@@ -52791,7 +57019,10 @@ const wordsData = [
     "syllables": "mi·no·ri·ty",
     "forms": [
       "พหูพจน์: minorities"
-    ]
+    ],
+    "extraExample": "Only a small minority of students voted against the proposal.",
+    "extraExampleTranslation": "มีนักเรียนเพียงส่วนน้อยเท่านั้นที่ลงคะแนนไม่เห็นด้วยกับข้อเสนอ",
+    "usageTip": "ใช้พูดถึงกลุ่มคนหรือจำนวนที่เป็นส่วนน้อย มักใช้คู่กับ of"
   },
   {
     "word": "minute",
@@ -52816,7 +57047,10 @@ const wordsData = [
       "รอ",
       "สักครู่"
     ],
-    "syllables": "mi·nute"
+    "syllables": "mi·nute",
+    "extraExample": "Wait a minute, I need to grab my keys before we leave.",
+    "extraExampleTranslation": "รอสักครู่ ฉันต้องหยิบกุญแจก่อนที่เราจะออกไป",
+    "usageTip": "ใช้บอกเวลา 60 วินาที หรือใช้พูดว่าขอเวลาสักครู่"
   },
   {
     "word": "mirror",
@@ -52843,7 +57077,10 @@ const wordsData = [
       "สิ"
     ],
     "phoneticUK": "/mˈɪrə(r)/",
-    "syllables": "mir·ror"
+    "syllables": "mir·ror",
+    "extraExample": "She looked in the mirror to check her hair before the meeting.",
+    "extraExampleTranslation": "เธอมองกระจกเงาเพื่อเช็กทรงผมก่อนเข้าประชุม",
+    "usageTip": "ใช้เรียกกระจกสำหรับส่องดูภาพสะท้อน มักใช้กับ look in the mirror"
   },
   {
     "word": "miss",
@@ -52880,7 +57117,8 @@ const wordsData = [
     ],
     "grammarPattern": "miss + V-ing / N (คิดถึง หรือ พลาด เช่น miss catching the bus)",
     "extraExample": "If we hurry, we won't miss the last train.",
-    "extraExampleTranslation": "ถ้าเรารีบหน่อย เราจะไม่พลาดรถไฟขบวนสุดท้าย (พลาดรถ/โอกาส)"
+    "extraExampleTranslation": "ถ้าเรารีบหน่อย เราจะไม่พลาดรถไฟขบวนสุดท้าย (พลาดรถ/โอกาส)",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าพลาดโอกาส พลาดรถ หรือคิดถึงคน/สถานที่"
   },
   {
     "word": "missing",
@@ -52914,7 +57152,10 @@ const wordsData = [
       "ไป"
     ],
     "syllables": "mis·sing",
-    "rootBreakdown": "mis- (ผิดพลาด / ไม่ถูกต้อง) + sing"
+    "rootBreakdown": "mis- (ผิดพลาด / ไม่ถูกต้อง) + sing",
+    "extraExample": "The police are still searching for the missing wallet.",
+    "extraExampleTranslation": "ตำรวจยังคงตามหากระเป๋าสตางค์ที่หายไปอยู่",
+    "usageTip": "ใช้วางหน้าคำนามเพื่อบอกว่าหายไปหรือหาไม่พบ"
   },
   {
     "word": "mistake",
@@ -52944,7 +57185,10 @@ const wordsData = [
       "ผิดพลาด"
     ],
     "syllables": "mi·stake",
-    "rootBreakdown": "mis- (ผิดพลาด / ไม่ถูกต้อง) + take"
+    "rootBreakdown": "mis- (ผิดพลาด / ไม่ถูกต้อง) + take",
+    "extraExample": "Everyone makes a mistake when learning something new.",
+    "extraExampleTranslation": "ทุกคนต่างเคยทำผิดพลาดเมื่อเรียนรู้สิ่งใหม่ๆ",
+    "usageTip": "ใช้เป็นคำนามคู่กับ make หรือ by mistake (โดยไม่ได้ตั้งใจ)"
   },
   {
     "word": "mistaken",
@@ -52970,7 +57214,10 @@ const wordsData = [
     "collocations": [
       "mistaken about"
     ],
-    "syllables": "mi·sta·ken"
+    "syllables": "mi·sta·ken",
+    "extraExample": "I think you are mistaken about the time of the flight.",
+    "extraExampleTranslation": "ฉันคิดว่าคุณเข้าใจผิดเกี่ยวกับเวลาของเที่ยวบินแล้วล่ะ",
+    "usageTip": "มักใช้ในรูป be mistaken (about) เพื่อบอกว่าเข้าใจผิด"
   },
   {
     "word": "mix",
@@ -53004,7 +57251,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: mixes"
-    ]
+    ],
+    "extraExample": "Please mix the flour and sugar together in a large bowl.",
+    "extraExampleTranslation": "กรุณาผสมแป้งและน้ำตาลเข้าด้วยกันในชามใบใหญ่",
+    "usageTip": "ใช้บอกการผสมสิ่งของเข้าด้วยกัน หรือหมายถึงส่วนผสมสำเร็จรูป"
   },
   {
     "word": "mixed",
@@ -53035,7 +57285,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "mix"
-    ]
+    ],
+    "extraExample": "I have mixed feelings about moving to a new city.",
+    "extraExampleTranslation": "ฉันรู้สึกสับสนปนเปเกี่ยวกับการย้ายไปเมืองใหม่",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่ามีหลายอย่างปนกันอยู่"
   },
   {
     "word": "mixture",
@@ -53067,7 +57320,10 @@ const wordsData = [
       "กระทะ"
     ],
     "phoneticUK": "/mˈɪkstʃə(r)/",
-    "syllables": "mix·ture"
+    "syllables": "mix·ture",
+    "extraExample": "The sauce is a delicious mixture of garlic, herbs, and olive oil.",
+    "extraExampleTranslation": "ซอสนี้เป็นส่วนผสมที่อร่อยของกระเทียม สมุนไพร และน้ำมันมะกอก",
+    "usageTip": "ใช้เรียกสิ่งที่เกิดจากการนำหลายอย่างมาผสมรวมกัน"
   },
   {
     "word": "mobile",
@@ -53099,7 +57355,9 @@ const wordsData = [
     ],
     "phoneticUK": "/ˈməʊbaɪl/",
     "usageTip": "UK เรียกมือถือว่า mobile phone | US มักเรียกว่า cell phone",
-    "syllables": "mo·bile"
+    "syllables": "mo·bile",
+    "extraExample": "This mobile clinic provides free health checkups in rural areas.",
+    "extraExampleTranslation": "คลินิกเคลื่อนที่แห่งนี้ให้บริการตรวจสุขภาพฟรีในพื้นที่ชนบท"
   },
   {
     "word": "mobile phone",
@@ -53124,7 +57382,10 @@ const wordsData = [
       "โทรศัพท์มือถือ",
       "เครื่อง",
       "ใหม่"
-    ]
+    ],
+    "extraExample": "Please turn off your mobile phone during the movie.",
+    "extraExampleTranslation": "กรุณาปิดโทรศัพท์มือถือของคุณระหว่างชมภาพยนตร์",
+    "usageTip": "ใช้เรียกโทรศัพท์มือถือในภาษาอังกฤษแบบบริติชและทั่วไป"
   },
   {
     "word": "model",
@@ -53153,7 +57414,10 @@ const wordsData = [
       "แฟชั่น"
     ],
     "phoneticUK": "/mˈɒdəl/",
-    "syllables": "mo·del"
+    "syllables": "mo·del",
+    "extraExample": "She built a small wooden model of the Eiffel Tower.",
+    "extraExampleTranslation": "เธอสร้างแบบจำลองหอไอเฟลขนาดเล็กจากไม้",
+    "usageTip": "ใช้ได้ทั้งแบบจำลอง นางแบบ/นายแบบ หรือรุ่นของสินค้า"
   },
   {
     "word": "modern",
@@ -53187,7 +57451,10 @@ const wordsData = [
       "traditional"
     ],
     "phoneticUK": "/mˈɒdən/",
-    "syllables": "mo·dern"
+    "syllables": "mo·dern",
+    "extraExample": "Our school has a very modern computer lab.",
+    "extraExampleTranslation": "โรงเรียนของเรามีห้องคอมพิวเตอร์ที่ทันสมัยมาก",
+    "usageTip": "ใช้อธิบายสิ่งที่ทันสมัยหรือยุคปัจจุบัน ตรงข้ามกับ ancient หรือ traditional"
   },
   {
     "word": "mom",
@@ -53216,7 +57483,10 @@ const wordsData = [
       "ทำ",
       "อาหารเย็น"
     ],
-    "phoneticUK": "/mˈɒm/"
+    "phoneticUK": "/mˈɒm/",
+    "extraExample": "My mom makes the best pancakes on Sunday mornings.",
+    "extraExampleTranslation": "แม่ของฉันทำแพนเค้กอร่อยที่สุดในเช้าวันอาทิตย์",
+    "usageTip": "เป็นคำเรียกแม่แบบไม่เป็นทางการ (ภาษาพูด) นิยมใช้ในครอบครัว"
   },
   {
     "word": "moment",
@@ -53243,7 +57513,10 @@ const wordsData = [
       "โปรด"
     ],
     "phoneticUK": "/mˈəʊmənt/",
-    "syllables": "mo·ment"
+    "syllables": "mo·ment",
+    "extraExample": "Please wait a moment while I check your order.",
+    "extraExampleTranslation": "กรุณารอสักครู่ระหว่างที่ฉันตรวจสอบรายการสั่งซื้อของคุณ",
+    "usageTip": "ใช้กับช่วงเวลาสั้นๆ มักใช้ในสำนวน wait a moment หรือ at the moment (ในขณะนี้)"
   },
   {
     "word": "Monday",
@@ -53270,7 +57543,10 @@ const wordsData = [
     "synonyms": [
       "mon"
     ],
-    "syllables": "Mon·day"
+    "syllables": "Mon·day",
+    "extraExample": "We have a team meeting every Monday morning.",
+    "extraExampleTranslation": "เรามีประชุมทีมทุกเช้าวันจันทร์",
+    "usageTip": "ชื่อวันในภาษาอังกฤษต้องขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ และใช้บุพบท on นำหน้า"
   },
   {
     "word": "money",
@@ -53301,7 +57577,9 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "He is saving money to buy a new laptop.",
+    "extraExampleTranslation": "เขากำลังเก็บเงินเพื่อซื้อโน้ตบุ๊กเครื่องใหม่"
   },
   {
     "word": "monitor",
@@ -53329,7 +57607,10 @@ const wordsData = [
       "คอมพิวเตอร์"
     ],
     "phoneticUK": "/mˈɒnətə(r)/",
-    "syllables": "mo·ni·tor"
+    "syllables": "mo·ni·tor",
+    "extraExample": "The nurse checked the heart monitor beside the bed.",
+    "extraExampleTranslation": "พยาบาลตรวจดูจอภาพวัดชีพจรข้างเตียง",
+    "usageTip": "เป็นได้ทั้งคำนาม (จอภาพ) และคำกริยา (เฝ้าติดตาม/ตรวจสอบ)"
   },
   {
     "word": "month",
@@ -53352,7 +57633,10 @@ const wordsData = [
       "ญี่ปุ่น",
       "เดือน",
       "หน้า"
-    ]
+    ],
+    "extraExample": "Next month we are going to visit Chiang Mai.",
+    "extraExampleTranslation": "เดือนหน้าพวกเราจะไปเที่ยวเชียงใหม่กัน",
+    "usageTip": "ใช้บุพบท in นำหน้าชื่อเดือน แต่ใช้ last/next month โดยไม่ต้องมี in"
   },
   {
     "word": "mood",
@@ -53377,7 +57661,10 @@ const wordsData = [
       "วันนี้",
       "เขา",
       "อารมณ์ไม่ดี"
-    ]
+    ],
+    "extraExample": "Listening to upbeat music always puts me in a good mood.",
+    "extraExampleTranslation": "การฟังเพลงจังหวะสนุกๆ ทำให้ฉันอารมณ์ดีเสมอ",
+    "usageTip": "มักใช้กับคำว่า in a good/bad mood เพื่อบอกอารมณ์ในขณะนั้น"
   },
   {
     "word": "moon",
@@ -53402,7 +57689,10 @@ const wordsData = [
       "ดวงจันทร์",
       "สว่าง",
       "มาก"
-    ]
+    ],
+    "extraExample": "The full moon shone brightly over the quiet beach.",
+    "extraExampleTranslation": "พระจันทร์เต็มดวงส่องแสงสว่างไสวเหนือชายหาดที่เงียบสงบ",
+    "usageTip": "มักใช้คู่กับ the (the moon) เมื่อหมายถึงดวงจันทร์ของโลก"
   },
   {
     "word": "moral",
@@ -53438,7 +57728,10 @@ const wordsData = [
     "antonyms": [
       "immoral"
     ],
-    "syllables": "mo·ral"
+    "syllables": "mo·ral",
+    "extraExample": "She refused to lie because of her strong moral values.",
+    "extraExampleTranslation": "เธอปฏิเสธที่จะโกหกเพราะยึดมั่นในคุณธรรมอย่างแรงกล้า",
+    "usageTip": "ใช้ขยายคำนามเกี่ยวกับศีลธรรม จริยธรรม หรือความถูกต้องดีงาม"
   },
   {
     "word": "morally",
@@ -53467,7 +57760,13 @@ const wordsData = [
     "antonyms": [
       "immorally"
     ],
-    "syllables": "mo·ral·ly"
+    "syllables": "mo·ral·ly",
+    "extraExample": "He felt morally obligated to help the injured stranger.",
+    "extraExampleTranslation": "เขารู้สึกว่ามีหน้าที่ทางศีลธรรมที่จะต้องช่วยคนแปลกหน้าที่บาดเจ็บ",
+    "usageTip": "เป็นคำวิเศษณ์ วางหน้าคำคุณศัพท์หรือกริยา เพื่อบอกว่าทำอย่างมีคุณธรรม",
+    "collocations": [
+      "morally right"
+    ]
   },
   {
     "word": "more",
@@ -53504,7 +57803,10 @@ const wordsData = [
       "immoral",
       "moral"
     ],
-    "phoneticUK": "/mˈɔː/"
+    "phoneticUK": "/mˈɔː/",
+    "extraExample": "Could you give me a little more time to finish this?",
+    "extraExampleTranslation": "คุณช่วยเพิ่มเวลาให้ฉันอีกสักหน่อยเพื่อทำสิ่งนี้ให้เสร็จได้ไหม",
+    "usageTip": "ใช้เปรียบเทียบขั้นกว่า หรือใช้หน้าคำนามเพื่อบอกว่าเพิ่มขึ้น"
   },
   {
     "word": "moreover",
@@ -53539,7 +57841,9 @@ const wordsData = [
     "register": "ทางการ / วิชาการ",
     "usageTip": "นิยมใช้ในข้อเขียน IELTS/TOEIC เพื่อเสริมเหตุผลเพิ่มเติมในทิศทางเดียวกัน",
     "phoneticUK": "/mɔːrˈəʊvə(r)/",
-    "syllables": "mo·reo·ver"
+    "syllables": "mo·reo·ver",
+    "extraExample": "The hotel is affordable; moreover, it is close to the beach.",
+    "extraExampleTranslation": "โรงแรมนี้ราคาไม่แพง ยิ่งไปกว่านั้น ยังอยู่ใกล้ชายหาดอีกด้วย"
   },
   {
     "word": "morning",
@@ -53567,7 +57871,10 @@ const wordsData = [
       "evening",
       "night"
     ],
-    "syllables": "mor·ning"
+    "syllables": "mor·ning",
+    "extraExample": "I usually drink a cup of black coffee in the morning.",
+    "extraExampleTranslation": "ฉันมักจะดื่มกาแฟดำหนึ่งแก้วในตอนเช้า",
+    "usageTip": "ใช้คู่กับบุพบท in (in the morning) แต่ถ้ามีวันนำหน้าให้ใช้ on (on Monday morning)"
   },
   {
     "word": "most",
@@ -53599,7 +57906,10 @@ const wordsData = [
     "antonyms": [
       "least"
     ],
-    "phoneticUK": "/mˈəʊst/"
+    "phoneticUK": "/mˈəʊst/",
+    "extraExample": "Most students in this class enjoy learning English.",
+    "extraExampleTranslation": "นักเรียนส่วนใหญ่ในห้องนี้ชอบเรียนภาษาอังกฤษ",
+    "usageTip": "ใช้หน้าคำนามพหูพจน์หรือคำนามนับไม่ได้เพื่อหมายถึง 'ส่วนใหญ่' หรือใช้ทำขั้นสูงสุด (the most)"
   },
   {
     "word": "mostly",
@@ -53630,7 +57940,10 @@ const wordsData = [
       "most"
     ],
     "phoneticUK": "/mˈəʊstliː/",
-    "syllables": "mos·tly"
+    "syllables": "mos·tly",
+    "extraExample": "The audience at the concert consisted mostly of teenagers.",
+    "extraExampleTranslation": "ผู้ชมในคอนเสิร์ตส่วนใหญ่เป็นวัยรุ่น",
+    "usageTip": "วางหน้ากริยาแท้ หรือหลังกริยา to be เพื่อบอกว่า 'โดยส่วนใหญ่แล้ว'"
   },
   {
     "word": "mother",
@@ -53661,7 +57974,10 @@ const wordsData = [
       "father"
     ],
     "phoneticUK": "/mˈʌðə(r)/",
-    "syllables": "mo·ther"
+    "syllables": "mo·ther",
+    "extraExample": "My mother taught me how to cook traditional Thai food.",
+    "extraExampleTranslation": "แม่ของฉันสอนฉันทำอาหารไทยแบบดั้งเดิม",
+    "usageTip": "เป็นคำเรียกแม่ที่เป็นทางการกว่า mom นิยมใช้ในงานเขียนหรือสถานการณ์สุภาพ"
   },
   {
     "word": "motion",
@@ -53691,7 +58007,10 @@ const wordsData = [
       "ง่วงนอน"
     ],
     "phoneticUK": "/mˈəʊʃən/",
-    "syllables": "mo·tion"
+    "syllables": "mo·tion",
+    "extraExample": "The officer used a hand motion to signal the cars to stop.",
+    "extraExampleTranslation": "เจ้าหน้าที่ใช้สัญญาณมือโบกให้รถหยุด",
+    "usageTip": "ใช้ได้ทั้งการเคลื่อนไหว การทำท่าทางให้สัญญาณ หรือการเสนอญัตติในที่ประชุม"
   },
   {
     "word": "motor",
@@ -53745,7 +58064,14 @@ const wordsData = [
       "minibike"
     ],
     "phoneticUK": "/mˈəʊtəbˌaɪk/",
-    "syllables": "mo·tor·bike"
+    "syllables": "mo·tor·bike",
+    "extraExample": "He rides his motorbike to work every morning to avoid traffic.",
+    "extraExampleTranslation": "เขาขี่รถจักรยานยนต์ไปทำงานทุกเช้าเพื่อหลีกเลี่ยงรถติด",
+    "usageTip": "คำนิยมใช้ในอังกฤษแบบไม่เป็นทางการ หมายถึงมอเตอร์ไซค์ทั่วไป",
+    "collocations": [
+      "ride a motorbike",
+      "motorbike helmet"
+    ]
   },
   {
     "word": "motorcycle",
@@ -53768,7 +58094,14 @@ const wordsData = [
       "bike"
     ],
     "phoneticUK": "/mˈəʊtəsˌaɪkəl/",
-    "syllables": "mo·tor·cy·cle"
+    "syllables": "mo·tor·cy·cle",
+    "extraExample": "She bought a new motorcycle for weekend road trips.",
+    "extraExampleTranslation": "เธอซื้อรถจักรยานยนต์คันใหม่สำหรับขับเที่ยวช่วงสุดสัปดาห์",
+    "usageTip": "คำทางการกว่า motorbike และนิยมใช้ในอเมริกา",
+    "collocations": [
+      "motorcycle license",
+      "motorcycle gang"
+    ]
   },
   {
     "word": "mount",
@@ -53796,7 +58129,10 @@ const wordsData = [
       "รูปภาพ",
       "บน",
       "ผนัง"
-    ]
+    ],
+    "extraExample": "They helped him mount the horse before the trail ride began.",
+    "extraExampleTranslation": "พวกเขาช่วยเขาขึ้นขี่ม้าก่อนการเดินทางตามเส้นทางจะเริ่มขึ้น",
+    "usageTip": "ใช้ได้ทั้งการขึ้นขี่ (ม้า/จักรยาน) และแปลว่าเพิ่มขึ้นหรือติดตั้ง"
   },
   {
     "word": "mountain",
@@ -53823,7 +58159,10 @@ const wordsData = [
       "ภูเขา",
       "สูง"
     ],
-    "syllables": "moun·tain"
+    "syllables": "moun·tain",
+    "extraExample": "We hiked up the mountain to watch the sunrise.",
+    "extraExampleTranslation": "พวกเราเดินขึ้นภูเขาเพื่อดูพระอาทิตย์ขึ้น",
+    "usageTip": "ใช้กับภูเขาขนาดใหญ่ หากเป็นเนินเขาเตี้ยๆ จะใช้ hill"
   },
   {
     "word": "mouse",
@@ -53851,7 +58190,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: mice"
-    ]
+    ],
+    "extraExample": "A tiny mouse ran across the kitchen floor.",
+    "extraExampleTranslation": "หนูตัวเล็กตัวหนึ่งวิ่งข้ามพื้นห้องครัวไป",
+    "usageTip": "พหูพจน์คือ mice และยังใช้เรียกเมาส์คอมพิวเตอร์ได้ด้วย"
   },
   {
     "word": "mouth",
@@ -53875,7 +58217,10 @@ const wordsData = [
       "ปาก",
       "ของ",
       "คุณ"
-    ]
+    ],
+    "extraExample": "Please cover your mouth when you cough or sneeze.",
+    "extraExampleTranslation": "กรุณาปิดปากเวลาคุณไอหรือจาม",
+    "usageTip": "ใช้เรียกทั้งปากคน ปากสัตว์ และปากทางเข้าเช่นปากแม่น้ำ"
   },
   {
     "word": "move",
@@ -53916,7 +58261,10 @@ const wordsData = [
     "forms": [
       "V2/V3: moved",
       "V-ing: moving"
-    ]
+    ],
+    "extraExample": "We need to move the sofa closer to the window.",
+    "extraExampleTranslation": "เราต้องย้ายโซฟาให้เข้าไปใกล้หน้าต่างมากขึ้น",
+    "usageTip": "ใช้ได้ทั้งการขยับสิ่งของ ย้ายบ้าน และทำให้ซาบซึ้งใจ"
   },
   {
     "word": "movement",
@@ -53949,7 +58297,10 @@ const wordsData = [
       "ใน",
       "พุ่มไม้"
     ],
-    "rootBreakdown": "move + -ment (การ / ผลของการกระทำ (Noun))"
+    "rootBreakdown": "move + -ment (การ / ผลของการกระทำ (Noun))",
+    "extraExample": "The dancer's smooth movement amazed the audience.",
+    "extraExampleTranslation": "การเคลื่อนไหวที่ลื่นไหลของนักเต้นทำให้ผู้ชมทึ่ง",
+    "usageTip": "ใช้กับทั้งการเคลื่อนที่ทางกายภาพและขบวนการทางสังคม"
   },
   {
     "word": "movie",
@@ -53975,7 +58326,10 @@ const wordsData = [
       "ไปดู",
       "ภาพยนตร์"
     ],
-    "syllables": "mo·vie"
+    "syllables": "mo·vie",
+    "extraExample": "Let's watch a funny movie together tonight.",
+    "extraExampleTranslation": "คืนนี้มาดูหนังตลกด้วยกันเถอะ",
+    "usageTip": "นิยมใช้ในภาษาอังกฤษแบบอเมริกัน ส่วนแบบอังกฤษมักใช้ film"
   },
   {
     "word": "movie theater",
@@ -53991,6 +58345,13 @@ const wordsData = [
       "โรงภาพยนตร์",
       "ปิด",
       "แล้ว"
+    ],
+    "extraExample": "The new movie theater downtown has huge screens.",
+    "extraExampleTranslation": "โรงภาพยนตร์แห่งใหม่ในตัวเมืองมีจอขนาดใหญ่มาก",
+    "usageTip": "คำแบบอเมริกัน ส่วนแบบอังกฤษจะใช้ cinema",
+    "collocations": [
+      "go to the movie theater",
+      "movie theater ticket"
     ]
   },
   {
@@ -54024,7 +58385,10 @@ const wordsData = [
       "move",
       "remove"
     ],
-    "syllables": "mo·ving"
+    "syllables": "mo·ving",
+    "extraExample": "The moving train slowly disappeared into the tunnel.",
+    "extraExampleTranslation": "รถไฟที่กำลังเคลื่อนที่ค่อยๆ หายเข้าไปในอุโมงค์",
+    "usageTip": "ใช้เป็นคำขยายนาม (กำลังเคลื่อนที่) หรือแปลว่าซาบซึ้งกินใจก็ได้"
   },
   {
     "word": "Mr",
@@ -54049,7 +58413,14 @@ const wordsData = [
     "synonyms": [
       "mister"
     ],
-    "phoneticUK": "/mˈɪstə(r)/"
+    "phoneticUK": "/mˈɪstə(r)/",
+    "extraExample": "Mr Somchai will lead the meeting this afternoon.",
+    "extraExampleTranslation": "คุณสมชายจะเป็นผู้นำการประชุมในช่วงบ่ายวันนี้",
+    "usageTip": "ใช้เติมหน้านามสกุลหรือชื่อเต็มของผู้ชาย (เขียนแบบอเมริกันมักมีจุด Mr.)",
+    "collocations": [
+      "Mr Smith",
+      "Dear Mr"
+    ]
   },
   {
     "word": "Mrs",
@@ -54079,7 +58450,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: mrses"
-    ]
+    ],
+    "extraExample": "Mrs Tanaka teaches Japanese at the local school.",
+    "extraExampleTranslation": "คุณทานากะสอนภาษาญี่ปุ่นที่โรงเรียนในท้องถิ่น",
+    "usageTip": "ใช้เติมหน้าชื่อผู้หญิงที่แต่งงานแล้ว"
   },
   {
     "word": "Ms",
@@ -54104,7 +58478,10 @@ const wordsData = [
     ],
     "synonyms": [
       "mississippi"
-    ]
+    ],
+    "extraExample": "Ms Lee is the new manager of the marketing team.",
+    "extraExampleTranslation": "คุณลีเป็นผู้จัดการคนใหม่ของทีมการตลาด",
+    "usageTip": "ใช้เติมหน้าชื่อผู้หญิงโดยไม่ระบุสถานภาพสมรส เป็นคำสุภาพมาตรฐาน"
   },
   {
     "word": "much",
@@ -54133,7 +58510,9 @@ const wordsData = [
     "antonyms": [
       "little"
     ],
-    "usageTip": "ใช้ much กับนามนับไม่ได้ (much time) และนิยมใช้ในประโยคคำถาม/ปฏิเสธ; บอกเล่ามักใช้ a lot of"
+    "usageTip": "ใช้ much กับนามนับไม่ได้ (much time) และนิยมใช้ในประโยคคำถาม/ปฏิเสธ; บอกเล่ามักใช้ a lot of",
+    "extraExample": "Thank you very much for your kind help today.",
+    "extraExampleTranslation": "ขอบคุณมากสำหรับความช่วยเหลืออันดีของคุณในวันนี้"
   },
   {
     "word": "mud",
@@ -54159,7 +58538,10 @@ const wordsData = [
       "กำลัง",
       "เล่น",
       "โคลน"
-    ]
+    ],
+    "extraExample": "His boots were covered in thick mud after the rain.",
+    "extraExampleTranslation": "รองเท้าบูทของเขาเปื้อนโคลนหนาเตอะหลังฝนตก",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้เรียกดินที่เปียกแฉะ"
   },
   {
     "word": "multiply",
@@ -54198,7 +58580,10 @@ const wordsData = [
       "V2/V3: multiplied",
       "V-ing: multiplying"
     ],
-    "syllables": "mul·ti·ply"
+    "syllables": "mul·ti·ply",
+    "extraExample": "If you multiply four by five, you get twenty.",
+    "extraExampleTranslation": "ถ้าคุณคูณสี่ด้วยห้า คุณจะได้ยี่สิบ",
+    "usageTip": "ใช้ได้ทั้งการคูณเลขและการเพิ่มจำนวนอย่างรวดเร็ว"
   },
   {
     "word": "mum",
@@ -54225,7 +58610,10 @@ const wordsData = [
       "ฉัน",
       "ดี",
       "ที่สุด"
-    ]
+    ],
+    "extraExample": "My mum always bakes a cake for my birthday.",
+    "extraExampleTranslation": "แม่ของฉันมักจะอบเค้กให้ในวันเกิดของฉันเสมอ",
+    "usageTip": "คำไม่เป็นทางการแบบอังกฤษ เทียบเท่าคำว่า mom ในแบบอเมริกัน"
   },
   {
     "word": "murder",
@@ -54254,7 +58642,10 @@ const wordsData = [
       "ฆาตกรรม"
     ],
     "phoneticUK": "/mˈɜːdə(r)/",
-    "syllables": "mur·der"
+    "syllables": "mur·der",
+    "extraExample": "The detective worked hard to solve the murder case.",
+    "extraExampleTranslation": "นักสืบทำงานอย่างหนักเพื่อคลี่คลายคดีฆาตกรรม",
+    "usageTip": "ใช้ได้ทั้งเป็นคำนาม (การฆาตกรรม) และคำกริยา (ฆ่าโดยเจตนา)"
   },
   {
     "word": "muscle",
@@ -54282,7 +58673,10 @@ const wordsData = [
       "กล้ามเนื้อ",
       "ใหญ่"
     ],
-    "syllables": "mus·cle"
+    "syllables": "mus·cle",
+    "extraExample": "Regular exercise helps build strong muscle.",
+    "extraExampleTranslation": "การออกกำลังกายสม่ำเสมอช่วยสร้างกล้ามเนื้อที่แข็งแรง",
+    "usageTip": "ใช้ได้ทั้งรูปเอกพจน์รวมๆ และพหูพจน์ muscles"
   },
   {
     "word": "museum",
@@ -54407,7 +58801,10 @@ const wordsData = [
       "ที่",
       "มีชื่อเสียง"
     ],
-    "syllables": "mu·si·cian"
+    "syllables": "mu·si·cian",
+    "extraExample": "The street musician played a beautiful melody on his violin.",
+    "extraExampleTranslation": "นักดนตรีข้างถนนเล่นทำนองเพลงที่ไพเราะด้วยไวโอลินของเขา",
+    "usageTip": "ใช้เรียกผู้ที่เล่นดนตรีเป็นอาชีพหรือมีความสามารถทางดนตรี"
   },
   {
     "word": "must",
@@ -54430,7 +58827,9 @@ const wordsData = [
       "กฎ"
     ],
     "usageTip": "รูปปฏิเสธ mustn't = ห้ามทำเด็ดขาด; ถ้า 'ไม่จำเป็นต้องทำ' ให้ใช้ don't have to",
-    "grammarPattern": "Modal Verb + V.inf (mustn't = ห้ามทำ; ไม่จำเป็นใช้ don't have to)"
+    "grammarPattern": "Modal Verb + V.inf (mustn't = ห้ามทำ; ไม่จำเป็นใช้ don't have to)",
+    "extraExample": "You must wear a seatbelt when driving a car.",
+    "extraExampleTranslation": "คุณต้องคาดเข็มขัดนิรภัยเมื่อขับรถ"
   },
   {
     "word": "my",
@@ -54455,7 +58854,10 @@ const wordsData = [
       "รถ",
       "ของ",
       "ฉัน"
-    ]
+    ],
+    "extraExample": "My brother lives in Chiang Mai with his family.",
+    "extraExampleTranslation": "พี่ชายของฉันอาศัยอยู่ที่เชียงใหม่กับครอบครัวของเขา",
+    "usageTip": "ใช้แสดงความเป็นเจ้าของ วางไว้หน้าคำนามเสมอ"
   },
   {
     "word": "myself",
@@ -54483,7 +58885,10 @@ const wordsData = [
       "ฉัน",
       "เอง"
     ],
-    "syllables": "my·self"
+    "syllables": "my·self",
+    "extraExample": "I made this birthday cake all by myself.",
+    "extraExampleTranslation": "ฉันทำเค้กวันเกิดก้อนนี้ด้วยตัวของฉันเองทั้งหมด",
+    "usageTip": "ใช้เมื่อประธานและกรรมเป็นคนเดียวกัน หรือใช้เน้นย้ำ"
   },
   {
     "word": "mysterious",
@@ -54513,7 +58918,10 @@ const wordsData = [
       "เก่า",
       "ดู",
       "ลึกลับ"
-    ]
+    ],
+    "extraExample": "A mysterious stranger left a letter on the table.",
+    "extraExampleTranslation": "คนแปลกหน้าลึกลับคนหนึ่งทิ้งจดหมายไว้บนโต๊ะ",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกความน่าสงสัยหรืออธิบายไม่ได้"
   },
   {
     "word": "mystery",
@@ -54551,7 +58959,10 @@ const wordsData = [
     "syllables": "my·ste·ry",
     "forms": [
       "พหูพจน์: mysteries"
-    ]
+    ],
+    "extraExample": "The police are trying to solve the mystery of the missing painting.",
+    "extraExampleTranslation": "ตำรวจกำลังพยายามไขปริศนาของภาพวาดที่หายไป",
+    "usageTip": "มักใช้กับกริยา solve หรือ remain เพื่อพูดถึงเรื่องลึกลับ"
   },
   {
     "word": "nail",
@@ -54578,7 +58989,10 @@ const wordsData = [
       "เข้าไป",
       "ใน",
       "กำแพง"
-    ]
+    ],
+    "extraExample": "She painted her nails bright red for the party.",
+    "extraExampleTranslation": "เธอทาเล็บสีแดงสดสำหรับงานปาร์ตี้",
+    "usageTip": "นอกจากแปลว่าเล็บแล้ว ยังแปลว่าตะปูได้ด้วย"
   },
   {
     "word": "naked",
@@ -54604,7 +59018,10 @@ const wordsData = [
       "เปลือยเปล่า",
       "โดยสิ้นเชิง"
     ],
-    "syllables": "na·ked"
+    "syllables": "na·ked",
+    "extraExample": "The children were running around naked on the beach.",
+    "extraExampleTranslation": "เด็กๆ กำลังวิ่งเล่นตัวเปล่าอยู่บนชายหาด",
+    "usageTip": "ใช้บอกสภาพที่ไม่มีเสื้อผ้าปกปิด หรือแปลว่าเปล่าๆ ก็ได้"
   },
   {
     "word": "name",
@@ -54628,7 +59045,10 @@ const wordsData = [
       "คุณ",
       "ชื่อ",
       "อะไร"
-    ]
+    ],
+    "extraExample": "Please write your full name at the top of the page.",
+    "extraExampleTranslation": "กรุณาเขียนชื่อเต็มของคุณไว้ที่ด้านบนของหน้ากระดาษ",
+    "usageTip": "ใช้ได้ทั้งเป็นคำนามและคำกริยา (ตั้งชื่อ/ระบุชื่อ)"
   },
   {
     "word": "narrow",
@@ -54658,7 +59078,10 @@ const wordsData = [
       "broad"
     ],
     "phoneticUK": "/nˈerəʊ/",
-    "syllables": "nar·row"
+    "syllables": "nar·row",
+    "extraExample": "The old town has many narrow streets for walking.",
+    "extraExampleTranslation": "เมืองเก่ามีถนนแคบๆ หลายสายสำหรับเดินเล่น",
+    "usageTip": "ใช้บอกขนาดความกว้างที่น้อยกว่าปกติ หรือแปลว่าเฉียดฉิว"
   },
   {
     "word": "nation",
@@ -54689,7 +59112,10 @@ const wordsData = [
     "wordFamily": [
       "national"
     ],
-    "syllables": "na·tion"
+    "syllables": "na·tion",
+    "extraExample": "The whole nation celebrated the team's victory.",
+    "extraExampleTranslation": "คนทั้งชาติร่วมเฉลิมฉลองชัยชนะของทีม",
+    "usageTip": "หมายถึงประเทศหรือประชาชนทั้งหมดในประเทศนั้น"
   },
   {
     "word": "national",
@@ -54722,7 +59148,10 @@ const wordsData = [
       "international",
       "local"
     ],
-    "syllables": "na·tio·nal"
+    "syllables": "na·tio·nal",
+    "extraExample": "Songkran is an important national holiday in Thailand.",
+    "extraExampleTranslation": "สงกรานต์เป็นวันหยุดประจำชาติที่สำคัญในประเทศไทย",
+    "usageTip": "วางหน้าคำนามเพื่อระบุว่าเป็นระดับชาติหรือของประเทศ"
   },
   {
     "word": "natural",
@@ -54758,7 +59187,10 @@ const wordsData = [
     "antonyms": [
       "artificial"
     ],
-    "syllables": "na·tu·ral"
+    "syllables": "na·tu·ral",
+    "extraExample": "She has a natural talent for learning languages.",
+    "extraExampleTranslation": "เธอมีพรสวรรค์โดยธรรมชาติในการเรียนรู้ภาษา",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าเกิดขึ้นเองตามธรรมชาติ ไม่ได้ปรุงแต่ง"
   },
   {
     "word": "naturally",
@@ -54792,7 +59224,10 @@ const wordsData = [
       "unnaturally",
       "artificially"
     ],
-    "syllables": "na·tu·ral·ly"
+    "syllables": "na·tu·ral·ly",
+    "extraExample": "The interview went well, so she spoke very naturally.",
+    "extraExampleTranslation": "การสัมภาษณ์ผ่านไปด้วยดี เธอจึงพูดได้อย่างเป็นธรรมชาติมาก",
+    "usageTip": "วางหน้าหรือหลังกริยาเพื่อขยายว่าทำอย่างเป็นธรรมชาติ"
   },
   {
     "word": "nature",
@@ -54825,7 +59260,10 @@ const wordsData = [
       "natural"
     ],
     "phoneticUK": "/nˈeɪtʃə(r)/",
-    "syllables": "na·ture"
+    "syllables": "na·ture",
+    "extraExample": "I love spending my weekends out in nature.",
+    "extraExampleTranslation": "ฉันชอบใช้เวลาช่วงสุดสัปดาห์อยู่ท่ามกลางธรรมชาติ",
+    "usageTip": "นอกจากแปลว่าธรรมชาติแล้ว ยังแปลว่านิสัยหรือลักษณะเฉพาะได้"
   },
   {
     "word": "navy",
@@ -54853,7 +59291,10 @@ const wordsData = [
     "syllables": "na·vy",
     "forms": [
       "พหูพจน์: navies"
-    ]
+    ],
+    "extraExample": "He joined the navy right after finishing high school.",
+    "extraExampleTranslation": "เขาเข้าร่วมกองทัพเรือทันทีหลังจากเรียนจบมัธยมปลาย",
+    "usageTip": "ใช้พูดถึงกองทัพเรือ และยังใช้บอกสีกรมท่า (navy blue) ได้"
   },
   {
     "word": "near",
@@ -54888,7 +59329,10 @@ const wordsData = [
       "far",
       "distant"
     ],
-    "phoneticUK": "/nˈɪ/"
+    "phoneticUK": "/nˈɪ/",
+    "extraExample": "There is a convenient coffee shop near my office.",
+    "extraExampleTranslation": "มีร้านกาแฟที่สะดวกสบายอยู่ใกล้ที่ทำงานของฉัน",
+    "usageTip": "ใช้บอกระยะทางหรือเวลาที่อยู่ไม่ไกลจากจุดหนึ่ง"
   },
   {
     "word": "nearby",
@@ -54915,7 +59359,10 @@ const wordsData = [
       "นี้",
       "ไหม"
     ],
-    "syllables": "near·by"
+    "syllables": "near·by",
+    "extraExample": "We decided to eat at a restaurant nearby.",
+    "extraExampleTranslation": "พวกเราตัดสินใจไปทานอาหารที่ร้านอาหารใกล้ๆ",
+    "usageTip": "ใช้ได้ทั้งเป็นคำวิเศษณ์วางท้ายประโยคและคำคุณศัพท์วางหน้าคำนาม"
   },
   {
     "word": "nearly",
@@ -54945,7 +59392,10 @@ const wordsData = [
       "ลืม",
       "กุญแจ"
     ],
-    "syllables": "near·ly"
+    "syllables": "near·ly",
+    "extraExample": "It took us nearly two hours to get to the airport.",
+    "extraExampleTranslation": "เราใช้เวลาเกือบสองชั่วโมงในการเดินทางไปสนามบิน",
+    "usageTip": "ใช้บอกจำนวนหรือเวลาที่เกือบจะถึงจุดที่กำหนด"
   },
   {
     "word": "neat",
@@ -54971,7 +59421,10 @@ const wordsData = [
       "เธอ",
       "เรียบร้อย",
       "มาก"
-    ]
+    ],
+    "extraExample": "He always keeps his desk very neat and organized.",
+    "extraExampleTranslation": "เขามักจะจัดโต๊ะทำงานให้เรียบร้อยและเป็นระเบียบอยู่เสมอ",
+    "usageTip": "ใช้ชมความเป็นระเบียบ สะอาดตา หรือแปลว่าเจ๋งก็ได้"
   },
   {
     "word": "necessarily",
@@ -55094,7 +59547,10 @@ const wordsData = [
       "ฉัน",
       "ต้องการ",
       "ความช่วยเหลือ"
-    ]
+    ],
+    "extraExample": "I need a few minutes to finish this report.",
+    "extraExampleTranslation": "ฉันต้องการเวลาสักสองสามนาทีเพื่อทำรายงานนี้ให้เสร็จ",
+    "usageTip": "ใช้ need + คำนาม หรือ need to + กริยาช่อง 1 เพื่อบอกความจำเป็น"
   },
   {
     "word": "needle",
@@ -55123,7 +59579,10 @@ const wordsData = [
       "เพื่อ",
       "เย็บผ้า"
     ],
-    "syllables": "need·le"
+    "syllables": "need·le",
+    "extraExample": "Please pass me the needle and thread to fix this button.",
+    "extraExampleTranslation": "ช่วยส่งเข็มกับด้ายให้ฉันซ่อมกระดุมเม็ดนี้หน่อย",
+    "usageTip": "ใช้เมื่อพูดถึงเข็มเย็บผ้าหรือเข็มฉีดยาในชีวิตประจำวัน"
   },
   {
     "word": "negative",
@@ -55152,7 +59611,10 @@ const wordsData = [
     "antonyms": [
       "positive"
     ],
-    "syllables": "ne·ga·tive"
+    "syllables": "ne·ga·tive",
+    "extraExample": "Try not to focus on the negative comments.",
+    "extraExampleTranslation": "พยายามอย่าไปสนใจความคิดเห็นในแง่ลบเลย",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกความหมายเชิงลบ หรือผลตรวจที่ไม่พบเชื้อ"
   },
   {
     "word": "neighbour",
@@ -55176,6 +59638,13 @@ const wordsData = [
     ],
     "synonyms": [
       "neighbor"
+    ],
+    "extraExample": "Our new neighbour brought us some homemade cookies.",
+    "extraExampleTranslation": "เพื่อนบ้านคนใหม่ของเราเอาคุกกี้ทำเองมาฝาก",
+    "usageTip": "ใช้กับคนที่อาศัยอยู่บ้านใกล้เคียงกัน (สะกดแบบอังกฤษ)",
+    "collocations": [
+      "next-door neighbour",
+      "friendly neighbour"
     ]
   },
   {
@@ -55204,6 +59673,13 @@ const wordsData = [
       "vicinity",
       "locality",
       "neighborhood"
+    ],
+    "extraExample": "This is a very quiet and safe neighbourhood for families.",
+    "extraExampleTranslation": "ย่านนี้เป็นย่านที่เงียบสงบและปลอดภัยมากสำหรับครอบครัว",
+    "usageTip": "ใช้เรียกบริเวณหรือชุมชนรอบๆ ที่พักอาศัย",
+    "collocations": [
+      "quiet neighbourhood",
+      "local neighbourhood"
     ]
   },
   {
@@ -55232,7 +59708,10 @@ const wordsData = [
       "คน"
     ],
     "phoneticUK": "/ˈnaɪðə(r)/",
-    "syllables": "nei·ther"
+    "syllables": "nei·ther",
+    "extraExample": "Neither option seems suitable for our current budget.",
+    "extraExampleTranslation": "ไม่มีตัวเลือกไหนเลยที่ดูเหมาะกับงบประมาณปัจจุบันของเรา",
+    "usageTip": "ใช้กับคำนามเอกพจน์เมื่อต้องการปฏิเสธทั้งสองอย่าง"
   },
   {
     "word": "nephew",
@@ -55255,7 +59734,14 @@ const wordsData = [
     "antonyms": [
       "niece"
     ],
-    "syllables": "ne·phew"
+    "syllables": "ne·phew",
+    "extraExample": "My nephew is starting primary school next month.",
+    "extraExampleTranslation": "หลานชายของฉันกำลังจะเข้าเรียนชั้นประถมในเดือนหน้า",
+    "usageTip": "ใช้เรียกเฉพาะลูกชายของพี่ชาย พี่สาว น้องชาย หรือน้องสาว",
+    "collocations": [
+      "young nephew",
+      "favourite nephew"
+    ]
   },
   {
     "word": "nerve",
@@ -55287,7 +59773,10 @@ const wordsData = [
       "เงิน",
       "เพิ่ม"
     ],
-    "phoneticUK": "/nˈɜːv/"
+    "phoneticUK": "/nˈɜːv/",
+    "extraExample": "It takes a lot of nerve to speak in front of a huge crowd.",
+    "extraExampleTranslation": "ต้องใช้ความกล้ามากเลยทีเดียวในการพูดต่อหน้าคนหมู่มาก",
+    "usageTip": "นอกจากแปลว่าเส้นประสาท ยังใช้ในความหมายว่าความกล้าได้ด้วย"
   },
   {
     "word": "nervous",
@@ -55324,7 +59813,10 @@ const wordsData = [
     ],
     "phoneticUK": "/nˈɜːvəs/",
     "syllables": "ner·vous",
-    "grammarPattern": "be nervous about + N / V-ing (ประหม่าเรื่อง...)"
+    "grammarPattern": "be nervous about + N / V-ing (ประหม่าเรื่อง...)",
+    "extraExample": "She always feels nervous before a job interview.",
+    "extraExampleTranslation": "เธอมักจะรู้สึกประหม่าก่อนการสัมภาษณ์งานเสมอ",
+    "usageTip": "มักใช้คู่กับ about เพื่อบอกสิ่งที่ทำให้รู้สึกกังวล"
   },
   {
     "word": "nest",
@@ -55350,7 +59842,10 @@ const wordsData = [
       "รัง",
       "บน",
       "ต้นไม้"
-    ]
+    ],
+    "extraExample": "We found a small bird's nest in the garden tree.",
+    "extraExampleTranslation": "เราพบรังนกเล็กๆ บนต้นไม้ในสวน",
+    "usageTip": "ใช้เรียกรังนกหรือรังสัตว์ และใช้เปรียบเทียบถึงที่พักที่อบอุ่นได้"
   },
   {
     "word": "net",
@@ -55377,7 +59872,10 @@ const wordsData = [
       "ลง",
       "ใน",
       "ทะเล"
-    ]
+    ],
+    "extraExample": "After taxes, his net income is still quite comfortable.",
+    "extraExampleTranslation": "หลังหักภาษีแล้ว รายได้สุทธิของเขาก็ยังถือว่าอยู่ได้สบายๆ",
+    "usageTip": "ใช้หน้าคำนามทางการเงินเพื่อบอกว่าหักค่าใช้จ่ายหรือภาษีแล้ว"
   },
   {
     "word": "network",
@@ -55405,7 +59903,10 @@ const wordsData = [
       "แล้ว"
     ],
     "phoneticUK": "/nˈetwˌɜːk/",
-    "syllables": "ne·twork"
+    "syllables": "ne·twork",
+    "extraExample": "Building a strong professional network takes time.",
+    "extraExampleTranslation": "การสร้างเครือข่ายทางอาชีพที่แข็งแกร่งต้องใช้เวลา",
+    "usageTip": "ใช้ได้ทั้งเครือข่ายคน เครือข่ายคอมพิวเตอร์ และเครือข่ายการเดินทาง"
   },
   {
     "word": "never",
@@ -55432,7 +59933,10 @@ const wordsData = [
       "always"
     ],
     "phoneticUK": "/nˈevə(r)/",
-    "syllables": "ne·ver"
+    "syllables": "ne·ver",
+    "extraExample": "I have never visited Chiang Mai during the winter.",
+    "extraExampleTranslation": "ฉันไม่เคยไปเที่ยวเชียงใหม่ในช่วงฤดูหนาวเลย",
+    "usageTip": "วางไว้หน้ากริยาแท้ หรือหลังกริยาช่วยเพื่อบอกว่าไม่เคยเกิดขึ้น"
   },
   {
     "word": "nevertheless",
@@ -55466,7 +59970,9 @@ const wordsData = [
     "grammarPattern": "มักมี ; หรือ, นำหน้าและตามด้วย,",
     "register": "ทางการ / วิชาการ",
     "usageTip": "มีความหมายเชิงขัดแย้งคล้าย however แต่น้ำเสียงหนักแน่นและเป็นทางการกว่า",
-    "syllables": "ne·ver·the·less"
+    "syllables": "ne·ver·the·less",
+    "extraExample": "The weather was terrible; nevertheless, we enjoyed the trip.",
+    "extraExampleTranslation": "อากาศแย่มาก ถึงกระนั้นพวกเราก็ยังสนุกกับการเดินทาง"
   },
   {
     "word": "new",
@@ -55504,7 +60010,10 @@ const wordsData = [
       "news",
       "renewable"
     ],
-    "phoneticUK": "/njuː/"
+    "phoneticUK": "/njuː/",
+    "extraExample": "They just moved into a new apartment downtown.",
+    "extraExampleTranslation": "พวกเขาเพิ่งย้ายเข้าไปอยู่ในอพาร์ตเมนต์ใหม่ใจกลางเมือง",
+    "usageTip": "ใช้ได้ทั้งกับสิ่งของใหม่เอี่ยมและสิ่งที่เพิ่งเกิดขึ้นหรือเพิ่งรู้จัก"
   },
   {
     "word": "newly",
@@ -55534,7 +60043,10 @@ const wordsData = [
     "wordFamily": [
       "new"
     ],
-    "syllables": "new·ly"
+    "syllables": "new·ly",
+    "extraExample": "The newly opened cafe is already very popular.",
+    "extraExampleTranslation": "คาเฟ่ที่เพิ่งเปิดใหม่ได้รับความนิยมมากแล้วตอนนี้",
+    "usageTip": "มักวางไว้หน้าคำคุณศัพท์หรือกริยาช่อง 3 เพื่อบอกว่าเพิ่งเกิดขึ้นไม่นาน"
   },
   {
     "word": "news",
@@ -55570,7 +60082,9 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้เอกพจน์ (ใช้กับ is / was เสมอ ห้ามเติม -s)"
+    "grammarPattern": "[U] นามนับไม่ได้เอกพจน์ (ใช้กับ is / was เสมอ ห้ามเติม -s)",
+    "extraExample": "Have you heard the good news about her promotion?",
+    "extraExampleTranslation": "คุณได้ยินข่าวดีเรื่องการเลื่อนตำแหน่งของเธอหรือยัง"
   },
   {
     "word": "newspaper",
@@ -55599,7 +60113,10 @@ const wordsData = [
       "เช้า"
     ],
     "phoneticUK": "/ˈnjuːzpeɪpə(r)/",
-    "syllables": "new·spa·per"
+    "syllables": "new·spa·per",
+    "extraExample": "My father still reads the morning newspaper every day.",
+    "extraExampleTranslation": "พ่อของฉันยังคงอ่านหนังสือพิมพ์ตอนเช้าทุกวัน",
+    "usageTip": "ใช้เรียกหนังสือพิมพ์ที่เป็นฉบับกระดาษโดยทั่วไป"
   },
   {
     "word": "next",
@@ -55626,7 +60143,10 @@ const wordsData = [
       "อะไร",
       "ต่อไป",
       "ดี"
-    ]
+    ],
+    "extraExample": "What are we going to do next after finishing this project?",
+    "extraExampleTranslation": "หลังจากจบโปรเจกต์นี้แล้ว เราจะทำอะไรต่อไปดี",
+    "usageTip": "ใช้บอกลำดับเหตุการณ์ถัดไป มักวางไว้ท้ายประโยคหรือหน้าคำนาม"
   },
   {
     "word": "next to",
@@ -55644,6 +60164,13 @@ const wordsData = [
       "อยู่",
       "ข้างๆ",
       "ฉัน"
+    ],
+    "extraExample": "The pharmacy is right next to the post office.",
+    "extraExampleTranslation": "ร้านขายยาอยู่ติดกับที่ทำการไปรษณีย์เลย",
+    "usageTip": "ใช้บอกตำแหน่งที่อยู่ข้างๆ กันโดยตรงไม่มีอะไรคั่น",
+    "collocations": [
+      "right next to",
+      "sit next to"
     ]
   },
   {
@@ -55760,7 +60287,10 @@ const wordsData = [
     ],
     "antonyms": [
       "day"
-    ]
+    ],
+    "extraExample": "We stayed up talking late into the night.",
+    "extraExampleTranslation": "เราอยู่คุยกันจนดึกดื่นในตอนกลางคืน",
+    "usageTip": "ใช้ 'at night' สำหรับช่วงกลางคืนทั่วไป และ 'in the night' เมื่อเกิดเหตุการณ์ระหว่างนอนหลับ"
   },
   {
     "word": "nine",
@@ -55791,7 +60321,10 @@ const wordsData = [
       "niner",
       "ennead",
       "club"
-    ]
+    ],
+    "extraExample": "The library opens at nine o'clock every morning.",
+    "extraExampleTranslation": "ห้องสมุดเปิดเวลาเก้าโมงเช้าทุกวัน",
+    "usageTip": "ใช้บอกเวลา จำนวน หรือลำดับตัวเลขได้ทั้งแบบเดี่ยวและประกอบกับหน่วยนับ"
   },
   {
     "word": "nineteen",
@@ -55816,7 +60349,10 @@ const wordsData = [
     ],
     "synonyms": [
       "xix"
-    ]
+    ],
+    "extraExample": "My younger brother turns nineteen next week.",
+    "extraExampleTranslation": "น้องชายของฉันจะอายุครบสิบเก้าปีในสัปดาห์หน้า",
+    "usageTip": "ใช้นำหน้าคำนามพหูพจน์หรือใช้บอกอายุและปี ค.ศ. ได้"
   },
   {
     "word": "ninety",
@@ -55843,7 +60379,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: nineties"
-    ]
+    ],
+    "extraExample": "This old bridge was built ninety years ago.",
+    "extraExampleTranslation": "สะพานเก่าแห่งนี้ถูกสร้างขึ้นเมื่อเก้าสิบปีก่อน",
+    "usageTip": "มักใช้กับจำนวนมาก อายุ หรือเปอร์เซ็นต์ และสะกดแบบมี 'e' อยู่ตรงกลาง"
   },
   {
     "word": "ninth",
@@ -55870,7 +60409,10 @@ const wordsData = [
       "เก้า",
       "ใน",
       "การแข่งขัน"
-    ]
+    ],
+    "extraExample": "She finished in ninth place in the marathon.",
+    "extraExampleTranslation": "เธอเข้าเส้นชัยในอันดับที่เก้าของการแข่งขันมาราธอน",
+    "usageTip": "ใช้บอกลำดับที่มักมี 'the' นำหน้า หรือใช้บอกวันที่ในปฏิทิน"
   },
   {
     "word": "no",
@@ -55894,7 +60436,10 @@ const wordsData = [
       "คือ",
       "ไม่"
     ],
-    "phoneticUK": "/nˈəʊ/"
+    "phoneticUK": "/nˈəʊ/",
+    "extraExample": "There is no milk left in the fridge.",
+    "extraExampleTranslation": "ไม่มีนมเหลืออยู่ในตู้เย็นเลย",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อปฏิเสธว่าไม่มี หรือใช้ตอบปฏิเสธตรงๆ"
   },
   {
     "word": "no one",
@@ -55912,6 +60457,13 @@ const wordsData = [
       "ใคร",
       "รู้",
       "ความจริง"
+    ],
+    "extraExample": "No one knew the answer to the riddle.",
+    "extraExampleTranslation": "ไม่มีใครรู้คำตอบของปริศนานั้นเลย",
+    "usageTip": "ใช้กับกริยาเอกพจน์เสมอ และมักใช้แทนคำว่า nobody ในภาษาเขียน",
+    "collocations": [
+      "no one else",
+      "no one knows"
     ]
   },
   {
@@ -55941,7 +60493,10 @@ const wordsData = [
       "บ้าน"
     ],
     "phoneticUK": "/nˈəʊbˌɒdˌiː/",
-    "syllables": "no·bo·dy"
+    "syllables": "no·bo·dy",
+    "extraExample": "Nobody called while you were out.",
+    "extraExampleTranslation": "ไม่มีใครโทรมาเลยตอนที่คุณไม่อยู่",
+    "usageTip": "ใช้เป็นประธานคู่กับกริยาเอกพจน์ และไม่ใช้ซ้อนกับคำปฏิเสธอื่นอย่าง not"
   },
   {
     "word": "noise",
@@ -55970,7 +60525,10 @@ const wordsData = [
       "คือ",
       "เสียงดัง",
       "อะไร"
-    ]
+    ],
+    "extraExample": "The loud noise outside woke the baby up.",
+    "extraExampleTranslation": "เสียงดังรบกวนข้างนอกปลุกทารกให้ตื่น",
+    "usageTip": "มักใช้เป็นคำนามนับไม่ได้เมื่อหมายถึงเสียงรบกวนโดยรวม"
   },
   {
     "word": "noisy",
@@ -56002,7 +60560,10 @@ const wordsData = [
     "antonyms": [
       "quiet"
     ],
-    "syllables": "noi·sy"
+    "syllables": "noi·sy",
+    "extraExample": "The restaurant was too noisy for a quiet chat.",
+    "extraExampleTranslation": "ร้านอาหารเสียงดังเกินไปสำหรับการคุยกันเงียบๆ",
+    "usageTip": "ใช้ขยายคำนามหรือตามหลังกริยาเชื่อมเพื่อบอกสภาพแวดล้อมที่อึกทึก"
   },
   {
     "word": "none",
@@ -56030,7 +60591,10 @@ const wordsData = [
       "ไหน",
       "ดี",
       "เลย"
-    ]
+    ],
+    "extraExample": "None of the students failed the final exam.",
+    "extraExampleTranslation": "ไม่มีนักเรียนคนไหนสอบตกในข้อสอบปลายภาคเลย",
+    "usageTip": "ใช้แทนคำนามที่กล่าวถึงแล้วเพื่อบอกว่าไม่มีเลย โดยมักตามด้วย 'of'"
   },
   {
     "word": "nonsense",
@@ -56063,7 +60627,10 @@ const wordsData = [
     ],
     "phoneticUK": "/nˈɒnsens/",
     "syllables": "non·sense",
-    "rootBreakdown": "non- (ไม่ใช่ / ปราศจาก) + sense"
+    "rootBreakdown": "non- (ไม่ใช่ / ปราศจาก) + sense",
+    "extraExample": "Stop talking nonsense and focus on your work.",
+    "extraExampleTranslation": "เลิกพูดเรื่องไร้สาระแล้วตั้งใจทำงานได้แล้ว",
+    "usageTip": "เป็นคำนามนับไม่ได้ มักใช้กับคำว่า talk หรือ speak เพื่อแสดงความไม่เห็นด้วย"
   },
   {
     "word": "nor",
@@ -56093,7 +60660,10 @@ const wordsData = [
       "ไม่",
       "ได้"
     ],
-    "phoneticUK": "/nˈɔː/"
+    "phoneticUK": "/nˈɔː/",
+    "extraExample": "He neither smiled nor said a word.",
+    "extraExampleTranslation": "เขาไม่ยิ้มและไม่พูดอะไรออกมาสักคำ",
+    "usageTip": "มักใช้คู่กับ 'neither' เพื่อเชื่อมสองสิ่งที่เป็นเชิงปฏิเสธทั้งคู่"
   },
   {
     "word": "normal",
@@ -56127,7 +60697,10 @@ const wordsData = [
       "abnormal",
       "unusual"
     ],
-    "syllables": "nor·mal"
+    "syllables": "nor·mal",
+    "extraExample": "It is completely normal to feel nervous before a speech.",
+    "extraExampleTranslation": "เป็นเรื่องปกติอย่างยิ่งที่จะรู้สึกประหม่าก่อนพูดในที่สาธารณะ",
+    "usageTip": "ใช้บอกลักษณะที่เป็นไปตามมาตรฐานหรือไม่ผิดแปลกไปจากเดิม"
   },
   {
     "word": "normally",
@@ -56160,7 +60733,10 @@ const wordsData = [
     "wordFamily": [
       "normal"
     ],
-    "syllables": "nor·mal·ly"
+    "syllables": "nor·mal·ly",
+    "extraExample": "I normally drink coffee before starting work.",
+    "extraExampleTranslation": "โดยปกติฉันจะดื่มกาแฟก่อนเริ่มทำงาน",
+    "usageTip": "วางไว้หน้ากริยาแท้หรือหลังกริยาช่วย เพื่อบอกความถี่ที่เป็นกิจวัตร"
   },
   {
     "word": "north",
@@ -56188,7 +60764,10 @@ const wordsData = [
     ],
     "antonyms": [
       "south"
-    ]
+    ],
+    "extraExample": "The birds fly north when spring arrives.",
+    "extraExampleTranslation": "ฝูงนกบินไปทางทิศเหนือเมื่อฤดูใบไม้ผลิมาถึง",
+    "usageTip": "ใช้บอกทิศทางโดยไม่จำเป็นต้องมี 'the' นำหน้าเมื่อใช้เป็นคำวิเศษณ์"
   },
   {
     "word": "northern",
@@ -56220,7 +60799,10 @@ const wordsData = [
     "antonyms": [
       "southern"
     ],
-    "syllables": "nor·thern"
+    "syllables": "nor·thern",
+    "extraExample": "They live in the northern part of the country.",
+    "extraExampleTranslation": "พวกเขาอาศัยอยู่ทางตอนเหนือของประเทศ",
+    "usageTip": "ใช้ขยายคำนามเพื่อระบุตำแหน่งหรือภูมิภาคที่อยู่ทางทิศเหนือ"
   },
   {
     "word": "nose",
@@ -56246,7 +60828,10 @@ const wordsData = [
       "จมูก",
       "ใหญ่"
     ],
-    "phoneticUK": "/nˈəʊz/"
+    "phoneticUK": "/nˈəʊz/",
+    "extraExample": "She smelled the fresh bread with her nose.",
+    "extraExampleTranslation": "เธอได้กลิ่นขนมปังอบใหม่ด้วยจมูกของเธอ",
+    "usageTip": "นอกจากอวัยวะแล้ว ยังใช้ในสำนวนเรื่องการสอดรู้หรือสัญชาตญาณได้"
   },
   {
     "word": "not",
@@ -56274,7 +60859,10 @@ const wordsData = [
     "wordFamily": [
       "note"
     ],
-    "phoneticUK": "/nˈɒt/"
+    "phoneticUK": "/nˈɒt/",
+    "extraExample": "I am not ready to leave yet.",
+    "extraExampleTranslation": "ฉันยังไม่พร้อมที่จะออกไปตอนนี้",
+    "usageTip": "วางหลังกริยาช่วยหรือกริยา be เพื่อทำประโยคให้เป็นรูปปฏิเสธ"
   },
   {
     "word": "note",
@@ -56308,7 +60896,8 @@ const wordsData = [
     ],
     "phoneticUK": "/nˈəʊt/",
     "extraExample": "Please note that the office closes at 5 p.m.",
-    "extraExampleTranslation": "โปรดทราบว่าสำนักงานปิดเวลา 5 โมงเย็น (ความหมาย [v.]: สังเกต/ระบุ)"
+    "extraExampleTranslation": "โปรดทราบว่าสำนักงานปิดเวลา 5 โมงเย็น (ความหมาย [v.]: สังเกต/ระบุ)",
+    "usageTip": "ใช้ได้ทั้งเป็นกริยาแปลว่าจดบันทึกหรือสังเกต และเป็นคำนามแปลว่าข้อความสั้นๆ"
   },
   {
     "word": "nothing",
@@ -56445,7 +61034,10 @@ const wordsData = [
       "มีชื่อเสียง"
     ],
     "phoneticUK": "/nˈɒvəl/",
-    "syllables": "no·vel"
+    "syllables": "no·vel",
+    "extraExample": "She spent the rainy weekend reading a mystery novel by her favorite author.",
+    "extraExampleTranslation": "เธอใช้เวลาช่วงสุดสัปดาห์ที่ฝนตกอ่านนวนิยายสืบสวนของนักเขียนคนโปรด",
+    "usageTip": "ใช้เป็นคำนามหมายถึงนวนิยายเรื่องยาว แต่ถ้าเป็นคำคุณศัพท์จะแปลว่า 'แปลกใหม่'"
   },
   {
     "word": "November",
@@ -56473,7 +61065,10 @@ const wordsData = [
       "nov"
     ],
     "phoneticUK": "/nəʊvˈembə(r)/",
-    "syllables": "No·vem·ber"
+    "syllables": "No·vem·ber",
+    "extraExample": "The weather in northern Thailand starts getting cooler in November.",
+    "extraExampleTranslation": "อากาศทางภาคเหนือของไทยเริ่มเย็นลงในเดือนพฤศจิกายน",
+    "usageTip": "ชื่อเดือนต้องขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ และใช้คู่กับบุพบท in"
   },
   {
     "word": "now",
@@ -56502,7 +61097,10 @@ const wordsData = [
     ],
     "antonyms": [
       "later"
-    ]
+    ],
+    "extraExample": "Please submit your assignment now before the system closes.",
+    "extraExampleTranslation": "กรุณาส่งงานของคุณเดี๋ยวนี้ก่อนที่ระบบจะปิด",
+    "usageTip": "วางได้ทั้งต้นประโยค กลางประโยค หรือท้ายประโยคเพื่อเน้นเวลาปัจจุบัน"
   },
   {
     "word": "nowhere",
@@ -56526,7 +61124,10 @@ const wordsData = [
       "ซ่อนตัว"
     ],
     "phoneticUK": "/nˈəʊwˌe/",
-    "syllables": "no·where"
+    "syllables": "no·where",
+    "extraExample": "The keys were nowhere to be found, even after searching the whole house.",
+    "extraExampleTranslation": "หากุญแจไม่เจอเลยสักที่ แม้จะค้นหาทั่วทั้งบ้านแล้วก็ตาม",
+    "usageTip": "มีความหมายเชิงปฏิเสธอยู่แล้ว ห้ามใช้ซ้อนกับ not ในประโยคเดียวกัน"
   },
   {
     "word": "nuclear",
@@ -56556,7 +61157,10 @@ const wordsData = [
     "antonyms": [
       "conventional"
     ],
-    "phoneticUK": "/ˈnjuːkliə(r)/"
+    "phoneticUK": "/ˈnjuːkliə(r)/",
+    "extraExample": "Many countries are debating the safety of nuclear energy.",
+    "extraExampleTranslation": "หลายประเทศกำลังถกเถียงเรื่องความปลอดภัยของพลังงานนิวเคลียร์",
+    "usageTip": "มักใช้ขยายคำนาม เช่น energy, power, weapon เพื่อบอกประเภท"
   },
   {
     "word": "number",
@@ -56586,7 +61190,9 @@ const wordsData = [
     ],
     "phoneticUK": "/nˈʌmbə(r)/",
     "syllables": "num·ber",
-    "usageTip": "a number of + นามพหูพจน์ + กริยาพหูพจน์ (แปลว่า 'จำนวนมาก'); the number of + นามพหูพจน์ + กริยาเอกพจน์"
+    "usageTip": "a number of + นามพหูพจน์ + กริยาพหูพจน์ (แปลว่า 'จำนวนมาก'); the number of + นามพหูพจน์ + กริยาเอกพจน์",
+    "extraExample": "Could you please write down your phone number on this form?",
+    "extraExampleTranslation": "รบกวนช่วยเขียนหมายเลขโทรศัพท์ของคุณลงในแบบฟอร์มนี้หน่อยได้ไหม"
   },
   {
     "word": "nurse",
@@ -56614,7 +61220,10 @@ const wordsData = [
       "ให้",
       "ฉัน"
     ],
-    "phoneticUK": "/nˈɜːs/"
+    "phoneticUK": "/nˈɜːs/",
+    "extraExample": "The nurse checked my blood pressure before the doctor arrived.",
+    "extraExampleTranslation": "พยาบาลตรวจวัดความดันโลหิตให้ฉันก่อนที่หมอจะมาถึง",
+    "usageTip": "ใช้ได้ทั้งพยาบาลชายและหญิง ถ้าเป็นกริยาจะแปลว่า ดูแลผู้ป่วย หรือให้นมลูก"
   },
   {
     "word": "nut",
@@ -56641,7 +61250,10 @@ const wordsData = [
       "กิน",
       "ถั่ว",
       "รวม"
-    ]
+    ],
+    "extraExample": "Make sure this dessert doesn't contain any nut ingredients because I'm allergic.",
+    "extraExampleTranslation": "ตรวจสอบให้แน่ใจว่าขนมนี้ไม่มีส่วนผสมของถั่วเพราะฉันแพ้",
+    "usageTip": "ใช้เรียกถั่วเปลือกแข็งทั่วไป (เช่น อัลมอนด์ วอลนัต) ส่วนถั่วลิสงเรียก peanut"
   },
   {
     "word": "obey",
@@ -56671,7 +61283,10 @@ const wordsData = [
       "disobey"
     ],
     "phoneticUK": "/əʊbˈeɪ/",
-    "syllables": "o·bey"
+    "syllables": "o·bey",
+    "extraExample": "Drivers must obey traffic signals to keep the roads safe.",
+    "extraExampleTranslation": "ผู้ขับขี่ต้องปฏิบัติตามสัญญาณจราจรเพื่อความปลอดภัยบนท้องถนน",
+    "usageTip": "เป็นสกรรมกริยา ตามด้วยกรรมได้เลย ไม่ต้องมีคำว่า to คั่น"
   },
   {
     "word": "object",
@@ -56704,7 +61319,10 @@ const wordsData = [
       "อะไร"
     ],
     "phoneticUK": "/ˈɒbdʒekt/",
-    "syllables": "ob·ject"
+    "syllables": "ob·ject",
+    "extraExample": "There was a strange shiny object lying on the beach.",
+    "extraExampleTranslation": "มีวัตถุแวววาวแปลกๆ ชิ้นหนึ่งวางอยู่บนชายหาด",
+    "usageTip": "ในฐานะคำนามเน้นเสียงพยางค์แรก (OB-ject) แต่ถ้าเป็นกริยาแปลว่าคัดค้านจะเน้นพยางค์หลัง"
   },
   {
     "word": "objective",
@@ -56735,7 +61353,10 @@ const wordsData = [
     "wordFamily": [
       "object"
     ],
-    "syllables": "ob·jec·tive"
+    "syllables": "ob·jec·tive",
+    "extraExample": "Our main objective for this quarter is to increase customer satisfaction.",
+    "extraExampleTranslation": "วัตถุประสงค์หลักของเราในไตรมาสนี้คือการเพิ่มความพึงพอใจของลูกค้า",
+    "usageTip": "เป็นคำนามแปลว่าเป้าหมาย/วัตถุประสงค์ ถ้าเป็นคำคุณศัพท์แปลว่า 'เป็นกลาง ไม่ลำเอียง'"
   },
   {
     "word": "observation",
@@ -56766,7 +61387,10 @@ const wordsData = [
       "ระมัดระวัง"
     ],
     "phoneticUK": "/ˌɒbzəvˈeɪʃən/",
-    "syllables": "ob·ser·va·tion"
+    "syllables": "ob·ser·va·tion",
+    "extraExample": "The scientist made a careful observation of the bird's behavior.",
+    "extraExampleTranslation": "นักวิทยาศาสตร์ทำการสังเกตพฤติกรรมของนกอย่างละเอียดถี่ถ้วน",
+    "usageTip": "มักใช้คู่กับกริยา make เช่น make an observation แทนการพูดว่า do an observation"
   },
   {
     "word": "observe",
@@ -56803,7 +61427,10 @@ const wordsData = [
     "forms": [
       "V2/V3: observed",
       "V-ing: observing"
-    ]
+    ],
+    "extraExample": "Students were asked to observe how the plants grew over two weeks.",
+    "extraExampleTranslation": "นักเรียนถูกขอให้สังเกตว่าพืชเจริญเติบโตอย่างไรตลอดสองสัปดาห์",
+    "usageTip": "เป็นคำทางการกว่า look หรือ watch ใช้กับงานวิจัย การทดลอง หรือการปฏิบัติตามกฎ"
   },
   {
     "word": "obtain",
@@ -56833,7 +61460,10 @@ const wordsData = [
       "เข้าชม"
     ],
     "syllables": "ob·tain",
-    "rootBreakdown": "ob- (สู่) + tain (จับไว้) → ได้รับมา"
+    "rootBreakdown": "ob- (สู่) + tain (จับไว้) → ได้รับมา",
+    "extraExample": "You need to obtain a permit before you can fish in this lake.",
+    "extraExampleTranslation": "คุณต้องได้รับใบอนุญาตก่อนจึงจะสามารถตกปลาในทะเลสาบนี้ได้",
+    "usageTip": "มีความหมายทางการกว่า get มักใช้กับเอกสาร ข้อมูล หรือสิทธิ์ต่างๆ"
   },
   {
     "word": "obvious",
@@ -56867,7 +61497,10 @@ const wordsData = [
       "hidden",
       "unclear"
     ],
-    "phoneticUK": "/ˈɒbviːəs/"
+    "phoneticUK": "/ˈɒbviːəs/",
+    "extraExample": "It was obvious from her smile that she loved the birthday gift.",
+    "extraExampleTranslation": "เห็นได้ชัดเจนจากรอยยิ้มของเธอว่าเธอชอบของขวัญวันเกิดชิ้นนั้นมาก",
+    "usageTip": "มักใช้ในโครงสร้าง It is obvious that... เพื่อบอกว่าเรื่องนั้นชัดเจนอยู่แล้ว"
   },
   {
     "word": "obviously",
@@ -56899,7 +61532,10 @@ const wordsData = [
     "wordFamily": [
       "obvious"
     ],
-    "phoneticUK": "/ˈɒbviːəsliː/"
+    "phoneticUK": "/ˈɒbviːəsliː/",
+    "extraExample": "He was obviously tired after working twelve hours straight.",
+    "extraExampleTranslation": "เขาดูเหนื่อยอย่างเห็นได้ชัดหลังจากทำงานติดต่อกันสิบสองชั่วโมง",
+    "usageTip": "ใช้ขยายคำคุณศัพท์ กริยา หรือวางต้นประโยคเพื่อแสดงความเห็นว่า 'เห็นได้ชัดว่า...'"
   },
   {
     "word": "occasion",
@@ -56925,7 +61561,10 @@ const wordsData = [
       "คือ",
       "โอกาสพิเศษ"
     ],
-    "syllables": "oc·ca·sion"
+    "syllables": "oc·ca·sion",
+    "extraExample": "We bought a special cake to celebrate the happy occasion.",
+    "extraExampleTranslation": "เราซื้อเค้กพิเศษมาเพื่อฉลองโอกาสอันน่ายินดีนี้",
+    "usageTip": "ใช้กับเหตุการณ์พิเศษหรือโอกาสสำคัญ ต่างจาก opportunity ที่เน้นโอกาสในการทำบางสิ่ง"
   },
   {
     "word": "occasionally",
@@ -56951,7 +61590,10 @@ const wordsData = [
       "โรงภาพยนตร์",
       "เป็นครั้งคราว"
     ],
-    "syllables": "oc·ca·sio·nal·ly"
+    "syllables": "oc·ca·sio·nal·ly",
+    "extraExample": "I don't eat fast food often, only occasionally when I'm in a rush.",
+    "extraExampleTranslation": "ฉันไม่ค่อยกินอาหารจานด่วนบ่อยนัก กินแค่เป็นครั้งคราวเวลาเร่งรีบเท่านั้น",
+    "usageTip": "มีความถี่น้อยกว่า sometimes แต่มากกว่า rarely วางหน้ากริยาแท้หรือท้ายประโยคได้"
   },
   {
     "word": "occupied",
@@ -56983,7 +61625,10 @@ const wordsData = [
       "occupy"
     ],
     "phoneticUK": "/ˈɒkjəpˌaɪd/",
-    "syllables": "oc·cu·pied"
+    "syllables": "oc·cu·pied",
+    "extraExample": "Sorry, I can't talk right now because I'm occupied with an urgent report.",
+    "extraExampleTranslation": "ขอโทษนะ ตอนนี้ฉันคุยไม่ได้เพราะกำลังยุ่งอยู่กับรายงานด่วน",
+    "usageTip": "ใช้ในรูป be occupied with + สิ่งที่ทำ หรือใช้บอกสถานะห้องน้ำ/ที่นั่งว่า 'มีคนใช้อยู่'"
   },
   {
     "word": "occupy",
@@ -57018,7 +61663,10 @@ const wordsData = [
       "occupied"
     ],
     "phoneticUK": "/ˈɒkjəpˌaɪ/",
-    "syllables": "oc·cu·py"
+    "syllables": "oc·cu·py",
+    "extraExample": "The new office will occupy the entire fifth floor of the building.",
+    "extraExampleTranslation": "สำนักงานแห่งใหม่จะครอบครองพื้นที่ทั้งหมดของชั้นห้าในอาคารนี้",
+    "usageTip": "ใช้กับการครอบครองพื้นที่ เวลา หรือตำแหน่งงาน (occupy a position)"
   },
   {
     "word": "occur",
@@ -57100,7 +61748,10 @@ const wordsData = [
       "โมง",
       "ตรง"
     ],
-    "phoneticUK": "/əklˈɒk/"
+    "phoneticUK": "/əklˈɒk/",
+    "extraExample": "The meeting starts at nine o'clock sharp tomorrow morning.",
+    "extraExampleTranslation": "การประชุมเริ่มเวลาเก้านาฬิกาตรงในเช้าวันพรุ่งนี้",
+    "usageTip": "ใช้บอกเวลาเต็มชั่วโมงเท่านั้น ไม่ใช้กับนาทีหรือระบบ 24 ชั่วโมง"
   },
   {
     "word": "October",
@@ -57128,7 +61779,10 @@ const wordsData = [
       "oct"
     ],
     "phoneticUK": "/ɒktˈəʊbə(r)/",
-    "syllables": "Oc·to·ber"
+    "syllables": "Oc·to·ber",
+    "extraExample": "The weather usually gets cooler in October.",
+    "extraExampleTranslation": "อากาศมักจะเย็นลงในเดือนตุลาคม",
+    "usageTip": "ใช้กับคำบุพบท in เมื่อกล่าวถึงเดือน และขึ้นต้นด้วยตัวพิมพ์ใหญ่เสมอ"
   },
   {
     "word": "odd",
@@ -57162,7 +61816,10 @@ const wordsData = [
     "wordFamily": [
       "oddly"
     ],
-    "phoneticUK": "/ˈɒd/"
+    "phoneticUK": "/ˈɒd/",
+    "extraExample": "It is odd that he hasn't replied to my message yet.",
+    "extraExampleTranslation": "มันแปลกที่เขายังไม่ตอบข้อความของฉันเลย",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าแปลกประหลาดและเลขคี่"
   },
   {
     "word": "oddly",
@@ -57193,7 +61850,10 @@ const wordsData = [
       "odd"
     ],
     "phoneticUK": "/ˈɒdliː/",
-    "syllables": "od·dly"
+    "syllables": "od·dly",
+    "extraExample": "She looked at me oddly before walking away.",
+    "extraExampleTranslation": "เธอมองฉันอย่างประหลาดใจก่อนจะเดินจากไป",
+    "usageTip": "มักวางไว้หน้าคำกริยาหรือต้นประโยคเพื่อเน้นความรู้สึกแปลกๆ"
   },
   {
     "word": "of",
@@ -57213,7 +61873,10 @@ const wordsData = [
       "เค้ก",
       "หนึ่ง",
       "ชิ้น"
-    ]
+    ],
+    "extraExample": "A cup of hot coffee helps me wake up in the morning.",
+    "extraExampleTranslation": "กาแฟร้อนหนึ่งแก้วช่วยให้ฉันตื่นตัวในตอนเช้า",
+    "usageTip": "ใช้แสดงความเป็นเจ้าของ ส่วนหนึ่งของทั้งหมด หรือระบุปริมาณ"
   },
   {
     "word": "off",
@@ -57243,7 +61906,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "offer"
-    ]
+    ],
+    "extraExample": "Please turn off the lights before you leave the room.",
+    "extraExampleTranslation": "กรุณาปิดไฟก่อนที่คุณจะออกจากห้อง",
+    "usageTip": "ใช้ร่วมกับคำกริยาเพื่อแสดงการปิด หยุด หรือแยกออกจากกัน"
   },
   {
     "word": "offence",
@@ -57275,7 +61941,10 @@ const wordsData = [
     ],
     "antonyms": [
       "defence"
-    ]
+    ],
+    "extraExample": "Driving without a license is a serious offence.",
+    "extraExampleTranslation": "การขับรถโดยไม่มีใบขับขี่ถือเป็นการกระทำผิดที่ร้ายแรง",
+    "usageTip": "เป็นคำสะกดแบบอังกฤษ (UK) ส่วนแบบอเมริกันใช้ offense"
   },
   {
     "word": "offend",
@@ -57311,7 +61980,10 @@ const wordsData = [
       "คุณ",
       "โกรธ"
     ],
-    "syllables": "of·fend"
+    "syllables": "of·fend",
+    "extraExample": "I didn't mean to offend you with my honest opinion.",
+    "extraExampleTranslation": "ฉันไม่ได้ตั้งใจจะทำให้คุณขุ่นเคืองด้วยความเห็นที่ตรงไปตรงมาของฉัน",
+    "usageTip": "มักใช้ในรูป passive (be offended) เพื่อบอกว่าถูกทำให้รู้สึกไม่ดี"
   },
   {
     "word": "offense",
@@ -57342,7 +62014,10 @@ const wordsData = [
       "สถาน",
       "เบา"
     ],
-    "syllables": "of·fense"
+    "syllables": "of·fense",
+    "extraExample": "He meant no offense when he made that joke.",
+    "extraExampleTranslation": "เขาไม่ได้มีเจตนาทำให้ขุ่นเคืองตอนที่เล่นมุกนั้น",
+    "usageTip": "เป็นคำสะกดแบบอเมริกัน (US) ใช้ได้ทั้งความหมายว่าความผิดและการรุกในกีฬา"
   },
   {
     "word": "offensive",
@@ -57377,7 +62052,10 @@ const wordsData = [
       "defensive",
       "inoffensive"
     ],
-    "syllables": "of·fen·sive"
+    "syllables": "of·fen·sive",
+    "extraExample": "His offensive remarks upset everyone at the dinner table.",
+    "extraExampleTranslation": "คำพูดที่น่ารังเกียจของเขาทำให้ทุกคนบนโต๊ะอาหารไม่พอใจ",
+    "usageTip": "ใช้อธิบายคำพูดหรือพฤติกรรมที่หยาบคายและทำร้ายจิตใจผู้อื่น"
   },
   {
     "word": "offer",
@@ -57413,7 +62091,10 @@ const wordsData = [
     ],
     "phoneticUK": "/ˈɔːfə(r)/",
     "syllables": "of·fer",
-    "grammarPattern": "offer + to V หรือ offer + sb + sth (เสนอให้...)"
+    "grammarPattern": "offer + to V หรือ offer + sb + sth (เสนอให้...)",
+    "extraExample": "They decided to offer her the manager position.",
+    "extraExampleTranslation": "พวกเขาตัดสินใจเสนอตำแหน่งผู้จัดการให้เธอ",
+    "usageTip": "ตามด้วยกรรมตรงหรือคำนาม เช่น offer help, offer a job"
   },
   {
     "word": "office",
@@ -57444,7 +62125,10 @@ const wordsData = [
       "ไป",
       "ที่ทำงาน"
     ],
-    "syllables": "of·fice"
+    "syllables": "of·fice",
+    "extraExample": "I have to stay late at the office to finish this report.",
+    "extraExampleTranslation": "ฉันต้องอยู่ทำงานดึกที่สำนักงานเพื่อทำรายงานนี้ให้เสร็จ",
+    "usageTip": "ใช้กับ in the office หรือ at the office เพื่อบอกสถานที่ทำงาน"
   },
   {
     "word": "officer",
@@ -57474,7 +62158,10 @@ const wordsData = [
       "office"
     ],
     "phoneticUK": "/ˈɔːfəsə(r)/",
-    "syllables": "of·fi·cer"
+    "syllables": "of·fi·cer",
+    "extraExample": "The police officer asked to see my driver's license.",
+    "extraExampleTranslation": "เจ้าหน้าที่ตำรวจขอดูใบอนุญาตขับขี่ของฉัน",
+    "usageTip": "ใช้เรียกเจ้าหน้าที่ที่มีตำแหน่งหรือเครื่องแบบ เช่น ตำรวจ ทหาร"
   },
   {
     "word": "official",
@@ -57507,7 +62194,10 @@ const wordsData = [
     "antonyms": [
       "unofficial"
     ],
-    "syllables": "of·fi·cial"
+    "syllables": "of·fi·cial",
+    "extraExample": "The company made an official announcement about the new policy.",
+    "extraExampleTranslation": "บริษัทได้ออกประกาศอย่างเป็นทางการเกี่ยวกับนโยบายใหม่",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อระบุว่าเป็นทางการหรือได้รับการรับรอง"
   },
   {
     "word": "officially",
@@ -57540,7 +62230,10 @@ const wordsData = [
     "antonyms": [
       "unofficially"
     ],
-    "syllables": "of·fi·cial·ly"
+    "syllables": "of·fi·cial·ly",
+    "extraExample": "The new bridge will officially open to traffic next week.",
+    "extraExampleTranslation": "สะพานแห่งใหม่จะเปิดให้สัญจรอย่างเป็นทางการในสัปดาห์หน้า",
+    "usageTip": "มักวางไว้หน้าคำกริยาหลักเพื่อเน้นว่าได้รับการรับรองแล้ว"
   },
   {
     "word": "often",
@@ -57571,7 +62264,10 @@ const wordsData = [
       "rarely",
       "seldom"
     ],
-    "syllables": "of·ten"
+    "syllables": "of·ten",
+    "extraExample": "We often go for a walk in the park after dinner.",
+    "extraExampleTranslation": "พวกเรามักจะไปเดินเล่นในสวนสาธารณะหลังอาหารเย็น",
+    "usageTip": "วางไว้หน้าคำกริยาแท้ หรือหลัง verb to be เพื่อบอกความถี่"
   },
   {
     "word": "oh",
@@ -57598,7 +62294,10 @@ const wordsData = [
       "เข้าใจ",
       "แล้ว"
     ],
-    "phoneticUK": "/ˈəʊ/"
+    "phoneticUK": "/ˈəʊ/",
+    "extraExample": "Oh, I completely forgot to bring my umbrella today!",
+    "extraExampleTranslation": "โอ้ ฉันลืมเอาร่มมาวันนี้สนิทเลย!",
+    "usageTip": "ใช้แสดงอารมณ์ตกใจ ประหลาดใจ หรือเพิ่งนึกขึ้นได้"
   },
   {
     "word": "oil",
@@ -57626,7 +62325,10 @@ const wordsData = [
       "ใน",
       "กระทะ",
       "เล็กน้อย"
-    ]
+    ],
+    "extraExample": "You should check the engine oil before a long trip.",
+    "extraExampleTranslation": "คุณควรตรวจเช็กน้ำมันเครื่องก่อนเดินทางไกล",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้เรียกทั้งน้ำมันปรุงอาหารและน้ำมันเชื้อเพลิง"
   },
   {
     "word": "OK",
@@ -57648,7 +62350,14 @@ const wordsData = [
       "okay",
       "okey"
     ],
-    "phoneticUK": "/ˈəʊkˈeɪ/"
+    "phoneticUK": "/ˈəʊkˈeɪ/",
+    "extraExample": "Is it OK if I open the window for some fresh air?",
+    "extraExampleTranslation": "จะโอเคไหมถ้าฉันจะเปิดหน้าต่างเพื่อรับอากาศบริสุทธิ์",
+    "usageTip": "ใช้ในภาษาพูดและไม่เป็นทางการ เขียนได้ทั้ง OK และ okay",
+    "collocations": [
+      "that's OK",
+      "everything is OK"
+    ]
   },
   {
     "word": "old",
@@ -57682,7 +62391,10 @@ const wordsData = [
       "ขั้นกว่า: older / elder",
       "ขั้นสุด: oldest / eldest"
     ],
-    "phoneticUK": "/ˈəʊld/"
+    "phoneticUK": "/ˈəʊld/",
+    "extraExample": "My grandfather has an old watch that still works perfectly.",
+    "extraExampleTranslation": "คุณตาของฉันมีนาฬิกาเก่าแก่เรือนหนึ่งที่ยังเดินได้ดีมาก",
+    "usageTip": "ใช้อธิบายอายุของคนหรือความเก่าแก่ของสิ่งของ"
   },
   {
     "word": "old-fashioned",
@@ -57783,7 +62495,10 @@ const wordsData = [
       "พี่ชาย",
       "หนึ่ง",
       "คน"
-    ]
+    ],
+    "extraExample": "I have only one ticket left for tonight's concert.",
+    "extraExampleTranslation": "ฉันเหลือตั๋วสำหรับคอนเสิร์ตคืนนี้แค่ใบเดียวเท่านั้น",
+    "usageTip": "ใช้เป็นคำคุณศัพท์นำหน้านามนับได้เอกพจน์เพื่อบอกจำนวนหนึ่ง"
   },
   {
     "word": "one another",
@@ -57799,6 +62514,12 @@ const wordsData = [
       "พวกเขา",
       "ช่วยเหลือ",
       "ซึ่งกันและกัน"
+    ],
+    "extraExample": "Team members should support one another during difficult times.",
+    "extraExampleTranslation": "สมาชิกในทีมควรสนับสนุนซึ่งกันและกันในช่วงเวลาที่ยากลำบาก",
+    "usageTip": "ใช้กับคนหรือสิ่งของตั้งแต่สามขึ้นไป (คล้าย each other)",
+    "collocations": [
+      "help one another"
     ]
   },
   {
@@ -57825,7 +62546,10 @@ const wordsData = [
       "หั่น",
       "หัวหอม"
     ],
-    "syllables": "o·nion"
+    "syllables": "o·nion",
+    "extraExample": "Please chop the onion finely before frying it in the pan.",
+    "extraExampleTranslation": "กรุณาหั่นหัวหอมให้ละเอียดก่อนนำไปผัดในกระทะ",
+    "usageTip": "เป็นได้ทั้งนามนับได้ (เป็นหัว) และนับไม่ได้ (เมื่อหั่นแล้ว)"
   },
   {
     "word": "only",
@@ -57857,7 +62581,10 @@ const wordsData = [
       "on"
     ],
     "phoneticUK": "/ˈəʊnliː/",
-    "syllables": "on·ly"
+    "syllables": "on·ly",
+    "extraExample": "She is the only person who knows the secret password.",
+    "extraExampleTranslation": "เธอเป็นคนเดียวเท่านั้นที่รู้รหัสผ่านลับ",
+    "usageTip": "วางไว้หน้าคำหรือวลีที่ต้องการเน้นว่ามีเพียงสิ่งเดียวหรือคนเดียว"
   },
   {
     "word": "onto",
@@ -57885,7 +62612,10 @@ const wordsData = [
       "โต๊ะ"
     ],
     "phoneticUK": "/ˈɒntuː/",
-    "syllables": "on·to"
+    "syllables": "on·to",
+    "extraExample": "The cat jumped onto the kitchen table to reach the fish.",
+    "extraExampleTranslation": "แมวกระโดดขึ้นไปบนโต๊ะครัวเพื่อจะคว้าปลา",
+    "usageTip": "ใช้แสดงการเคลื่อนที่จากที่หนึ่งขึ้นไปบนพื้นผิวของอีกที่หนึ่ง"
   },
   {
     "word": "open",
@@ -57919,7 +62649,10 @@ const wordsData = [
       "shut"
     ],
     "phoneticUK": "/ˈəʊpən/",
-    "syllables": "o·pen"
+    "syllables": "o·pen",
+    "extraExample": "Could you please open the window to let some fresh air in?",
+    "extraExampleTranslation": "ช่วยเปิดหน้าต่างให้อากาศบริสุทธิ์เข้ามาหน่อยได้ไหม",
+    "usageTip": "ใช้เป็นกริยาได้ทั้งแบบมีกรรมและไม่มีกรรม (เช่น ร้านเปิด)"
   },
   {
     "word": "opening",
@@ -57948,7 +62681,10 @@ const wordsData = [
       "open"
     ],
     "phoneticUK": "/ˈəʊpənɪŋ/",
-    "syllables": "o·pe·ning"
+    "syllables": "o·pe·ning",
+    "extraExample": "The grand opening of the new museum attracted hundreds of visitors.",
+    "extraExampleTranslation": "พิธีเปิดอย่างเป็นทางการของพิพิธภัณฑ์แห่งใหม่ดึงดูดผู้เข้าชมหลายร้อยคน",
+    "usageTip": "มักใช้ในรูปคำนามหรือกริยาเติม -ing หมายถึงการเปิดหรือช่องว่าง"
   },
   {
     "word": "openly",
@@ -57973,7 +62709,13 @@ const wordsData = [
       "open"
     ],
     "phoneticUK": "/ˈəʊpənliː/",
-    "syllables": "o·pen·ly"
+    "syllables": "o·pen·ly",
+    "extraExample": "They discussed the budget problem openly at the morning meeting.",
+    "extraExampleTranslation": "พวกเขาหารือเรื่องปัญหางบประมาณอย่างเปิดเผยในการประชุมตอนเช้า",
+    "usageTip": "วางหลังกริยาหรือท้ายประโยคเพื่อขยายว่าทำอย่างตรงไปตรงมา",
+    "collocations": [
+      "talk openly"
+    ]
   },
   {
     "word": "operate",
@@ -58009,7 +62751,10 @@ const wordsData = [
     "forms": [
       "V2/V3: operated",
       "V-ing: operating"
-    ]
+    ],
+    "extraExample": "You need special training to operate this heavy machine safely.",
+    "extraExampleTranslation": "คุณต้องได้รับการฝึกอบรมพิเศษเพื่อควบคุมเครื่องจักรหนักนี้ได้อย่างปลอดภัย",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าควบคุมเครื่องจักร และดำเนินการ (ธุรกิจ/ระบบ)"
   },
   {
     "word": "operation",
@@ -58038,7 +62783,10 @@ const wordsData = [
       "ผ่าตัด"
     ],
     "phoneticUK": "/ˌɒpərˈeɪʃən/",
-    "syllables": "o·pe·ra·tion"
+    "syllables": "o·pe·ra·tion",
+    "extraExample": "The rescue operation lasted for more than twelve hours.",
+    "extraExampleTranslation": "ปฏิบัติการกู้ภัยดำเนินไปนานกว่าสิบสองชั่วโมง",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าปฏิบัติการ การดำเนินงาน และการผ่าตัด"
   },
   {
     "word": "opinion",
@@ -58065,7 +62813,10 @@ const wordsData = [
       "ความคิดเห็น",
       "อย่างไร"
     ],
-    "syllables": "o·pi·nion"
+    "syllables": "o·pi·nion",
+    "extraExample": "In my opinion, we should wait until tomorrow before deciding.",
+    "extraExampleTranslation": "ในความคิดเห็นของฉัน เราควรรอจนถึงพรุ่งนี้ก่อนตัดสินใจ",
+    "usageTip": "มักใช้กับคำบุพบท in (in my opinion) หรือกริยา give/express"
   },
   {
     "word": "opponent",
@@ -58093,7 +62844,13 @@ const wordsData = [
       "adversary"
     ],
     "phoneticUK": "/əpˈəʊnənt/",
-    "syllables": "op·po·nent"
+    "syllables": "op·po·nent",
+    "extraExample": "He shook hands with his opponent after the tennis match ended.",
+    "extraExampleTranslation": "เขาจับมือกับคู่แข่งขันหลังจากการแข่งขันเทนนิสจบลง",
+    "usageTip": "ใช้เรียกคู่แข่งในการกีฬา การโต้วาที หรือการเมือง",
+    "collocations": [
+      "political opponent"
+    ]
   },
   {
     "word": "opportunity",
@@ -58124,7 +62881,10 @@ const wordsData = [
     "syllables": "op·por·tu·ni·ty",
     "forms": [
       "พหูพจน์: opportunities"
-    ]
+    ],
+    "extraExample": "Studying abroad gave her a great opportunity to learn a new language.",
+    "extraExampleTranslation": "การไปเรียนต่างประเทศมอบโอกาสที่ดีให้เธอได้เรียนรู้ภาษาใหม่",
+    "usageTip": "มักใช้คู่กับกริยา have, get, miss หรือ take"
   },
   {
     "word": "oppose",
@@ -58161,7 +62921,10 @@ const wordsData = [
     "forms": [
       "V2/V3: opposed",
       "V-ing: opposing"
-    ]
+    ],
+    "extraExample": "Many local residents oppose the plan to build a factory nearby.",
+    "extraExampleTranslation": "ชาวบ้านในพื้นที่หลายคนคัดค้านแผนการสร้างโรงงานในบริเวณใกล้เคียง",
+    "usageTip": "เป็นสกรรมกริยา ตามด้วยกรรมได้ทันทีโดยไม่ต้องมี to"
   },
   {
     "word": "opposed",
@@ -58190,7 +62953,10 @@ const wordsData = [
     "collocations": [
       "who opposed"
     ],
-    "phoneticUK": "/əpˈəʊzd/"
+    "phoneticUK": "/əpˈəʊzd/",
+    "extraExample": "I am strongly opposed to working late every single weekend.",
+    "extraExampleTranslation": "ฉันต่อต้านอย่างยิ่งกับการต้องทำงานล่วงเวลาทุกสุดสัปดาห์",
+    "usageTip": "มักใช้ในรูป be opposed to + คำนาม หรือกริยาเติม -ing"
   },
   {
     "word": "opposite",
@@ -58224,7 +62990,10 @@ const wordsData = [
       "similar"
     ],
     "phoneticUK": "/ˈɒpəzət/",
-    "syllables": "op·po·site"
+    "syllables": "op·po·site",
+    "extraExample": "The bank is on the opposite side of the street from the hotel.",
+    "extraExampleTranslation": "ธนาคารอยู่ฝั่งตรงข้ามของถนนจากโรงแรม",
+    "usageTip": "ใช้ขยายนามหรือตามหลังกริยาเพื่อบอกตำแหน่งหรือลักษณะที่ตรงข้ามกัน"
   },
   {
     "word": "opposition",
@@ -58259,7 +63028,10 @@ const wordsData = [
       "หนัก"
     ],
     "phoneticUK": "/ˌɒpəzˈɪʃən/",
-    "syllables": "op·po·si·tion"
+    "syllables": "op·po·si·tion",
+    "extraExample": "The new tax law faced strong opposition from small business owners.",
+    "extraExampleTranslation": "กฎหมายภาษีใหม่เผชิญกับการคัดค้านอย่างหนักจากเจ้าของธุรกิจขนาดเล็ก",
+    "usageTip": "ใช้ได้ทั้งการคัดค้านทั่วไป และพรรคฝ่ายค้าน (the opposition)"
   },
   {
     "word": "option",
@@ -58287,7 +63059,10 @@ const wordsData = [
       "ทางเลือก"
     ],
     "phoneticUK": "/ˈɒpʃən/",
-    "syllables": "op·tion"
+    "syllables": "op·tion",
+    "extraExample": "Taking the train is the fastest option to get to the city center.",
+    "extraExampleTranslation": "การนั่งรถไฟเป็นทางเลือกที่เร็วที่สุดในการเดินทางเข้าสู่ใจกลางเมือง",
+    "usageTip": "ใช้พูดถึงทางเลือกที่มีอยู่ มักใช้กับกริยา have หรือ choose"
   },
   {
     "word": "or",
@@ -58315,7 +63090,10 @@ const wordsData = [
       "หรือ",
       "กาแฟ"
     ],
-    "phoneticUK": "/ˈɔː/"
+    "phoneticUK": "/ˈɔː/",
+    "extraExample": "You can pay by credit card or cash at the front counter.",
+    "extraExampleTranslation": "คุณสามารถจ่ายด้วยบัตรเครดิตหรือเงินสดได้ที่เคาน์เตอร์ด้านหน้า",
+    "usageTip": "ใช้เชื่อมคำหรือประโยคที่มีความหมายให้เลือกอย่างใดอย่างหนึ่ง"
   },
   {
     "word": "orange",
@@ -58343,7 +63121,10 @@ const wordsData = [
       "หนึ่ง",
       "ผล"
     ],
-    "syllables": "o·range"
+    "syllables": "o·range",
+    "extraExample": "She peeled a sweet orange and shared it with her younger brother.",
+    "extraExampleTranslation": "เธอปอกส้มรสหวานแล้วแบ่งให้น้องชายของเธอกิน",
+    "usageTip": "เป็นได้ทั้งคำนาม (ผลส้ม/สีส้ม) และคำคุณศัพท์ (มีสีส้ม)"
   },
   {
     "word": "order",
@@ -58376,7 +63157,10 @@ const wordsData = [
       "disorder"
     ],
     "phoneticUK": "/ˈɔːdə(r)/",
-    "syllables": "or·der"
+    "syllables": "or·der",
+    "extraExample": "Please put the files in alphabetical order before the meeting.",
+    "extraExampleTranslation": "กรุณาเรียงลำดับแฟ้มตามตัวอักษรก่อนการประชุม",
+    "usageTip": "ใช้เป็นคำนามหมายถึงลำดับหรือคำสั่ง มักใช้กับคำว่า in order หรือ out of order"
   },
   {
     "word": "ordinary",
@@ -58409,7 +63193,10 @@ const wordsData = [
       "extraordinary",
       "unusual"
     ],
-    "syllables": "or·di·na·ry"
+    "syllables": "or·di·na·ry",
+    "extraExample": "It was just an ordinary day at the office until the power went out.",
+    "extraExampleTranslation": "มันก็เป็นแค่วันธรรมดาวันหนึ่งในออฟฟิศจนกระทั่งไฟดับ",
+    "usageTip": "วางหน้าคำนามเพื่อบอกว่าเป็นเรื่องปกติธรรมดา ไม่ได้พิเศษอะไร"
   },
   {
     "word": "organ",
@@ -58431,6 +63218,13 @@ const wordsData = [
     "syllables": "or·gan",
     "wordFamily": [
       "organic"
+    ],
+    "extraExample": "The heart is a vital organ that pumps blood through the body.",
+    "extraExampleTranslation": "หัวใจเป็นอวัยวะสำคัญที่สูบฉีดเลือดไปทั่วร่างกาย",
+    "usageTip": "ใช้กล่าวถึงอวัยวะในร่างกายหรือเครื่องดนตรีออร์แกนก็ได้ ขึ้นอยู่กับบริบท",
+    "collocations": [
+      "vital organ",
+      "organ donor"
     ]
   },
   {
@@ -58463,7 +63257,10 @@ const wordsData = [
       "องค์กร",
       "การกุศล"
     ],
-    "syllables": "or·ga·ni·za·tion"
+    "syllables": "or·ga·ni·za·tion",
+    "extraExample": "She works for an international organization that helps children.",
+    "extraExampleTranslation": "เธอทำงานให้กับองค์กรระหว่างประเทศที่ช่วยเหลือเด็กๆ",
+    "usageTip": "ใช้เรียกองค์กรหรือหน่วยงาน รวมถึงการจัดการที่เป็นระบบ"
   },
   {
     "word": "organize",
@@ -58502,7 +63299,10 @@ const wordsData = [
       "V2/V3: organized",
       "V-ing: organizing"
     ],
-    "rootBreakdown": "organ + -ize (ทำให้เป็น (Verb))"
+    "rootBreakdown": "organ + -ize (ทำให้เป็น (Verb))",
+    "extraExample": "We need to organize a team meeting to discuss the schedule.",
+    "extraExampleTranslation": "เราต้องจัดการประชุมทีมเพื่อหารือเกี่ยวกับตารางเวลา",
+    "usageTip": "ใช้เป็นกริยาแปลว่าจัดเตรียม จัดระบบ หรือจัดตั้งกลุ่ม"
   },
   {
     "word": "organized",
@@ -58532,7 +63332,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "organize"
-    ]
+    ],
+    "extraExample": "He is very organized and always keeps his desk clean.",
+    "extraExampleTranslation": "เขาเป็นคนมีระเบียบมากและมักจะจัดโต๊ะทำงานให้สะอาดอยู่เสมอ",
+    "usageTip": "ใช้เป็นคำคุณศัพท์ขยายคนหรือระบบที่มีความเป็นระเบียบเรียบร้อย"
   },
   {
     "word": "origin",
@@ -58564,7 +63367,10 @@ const wordsData = [
       "คือ",
       "อะไร"
     ],
-    "syllables": "o·ri·gin"
+    "syllables": "o·ri·gin",
+    "extraExample": "Scientists are still studying the origin of the universe.",
+    "extraExampleTranslation": "นักวิทยาศาสตร์ยังคงศึกษาจุดกำเนิดของจักรวาลอยู่",
+    "usageTip": "ใช้บอกต้นกำเนิดหรือที่มาของสิ่งต่างๆ มักตามด้วย of"
   },
   {
     "word": "original",
@@ -58597,7 +63403,10 @@ const wordsData = [
     "antonyms": [
       "unoriginal"
     ],
-    "syllables": "o·ri·gi·nal"
+    "syllables": "o·ri·gi·nal",
+    "extraExample": "I prefer the original version of this song over the remix.",
+    "extraExampleTranslation": "ฉันชอบเพลงเวอร์ชันดั้งเดิมมากกว่าเวอร์ชันรีมิกซ์",
+    "usageTip": "วางหน้าคำนามเพื่อบอกว่ามาจากต้นฉบับหรือเป็นของดั้งเดิม"
   },
   {
     "word": "originally",
@@ -58626,7 +63435,10 @@ const wordsData = [
     "wordFamily": [
       "original"
     ],
-    "syllables": "o·ri·gi·nal·ly"
+    "syllables": "o·ri·gi·nal·ly",
+    "extraExample": "The building was originally used as a train station.",
+    "extraExampleTranslation": "เดิมทีอาคารหลังนี้ถูกใช้เป็นสถานีรถไฟ",
+    "usageTip": "มักวางไว้หน้ากริยาแท้หรือต้นประโยคเพื่อบอกว่าในตอนแรกเป็นอย่างไร"
   },
   {
     "word": "other",
@@ -58658,7 +63470,9 @@ const wordsData = [
     ],
     "usageTip": "other + นามพหูพจน์ (other people); another + นามเอกพจน์ (another day)",
     "phoneticUK": "/ˈʌðə(r)/",
-    "syllables": "o·ther"
+    "syllables": "o·ther",
+    "extraExample": "Do you have any other questions about the project?",
+    "extraExampleTranslation": "คุณมีคำถามอื่นๆ เกี่ยวกับโปรเจกต์นี้อีกไหม"
   },
   {
     "word": "otherwise",
@@ -58685,7 +63499,10 @@ const wordsData = [
       "จะ",
       "สาย"
     ],
-    "syllables": "o·ther·wise"
+    "syllables": "o·ther·wise",
+    "extraExample": "You should leave now, otherwise you will miss the last bus.",
+    "extraExampleTranslation": "คุณควรออกเดินทางตอนนี้ มิฉะนั้นคุณจะตกรถบัสเที่ยวสุดท้าย",
+    "usageTip": "ใช้เชื่อมประโยคเพื่อบอกผลที่จะตามมาหากไม่ทำตามเงื่อนไขก่อนหน้า"
   },
   {
     "word": "ought to",
@@ -58709,7 +63526,10 @@ const wordsData = [
       "คุณ",
       "ควรจะ",
       "ขอโทษ"
-    ]
+    ],
+    "extraExample": "You ought to apologize for being late to the interview.",
+    "extraExampleTranslation": "คุณควรจะขอโทษที่มาสายสำหรับการสัมภาษณ์",
+    "usageTip": "ความหมายคล้าย should ใช้แนะนำหรือบอกสิ่งที่ควรทำ โดยตามด้วยกริยาช่อง 1"
   },
   {
     "word": "our",
@@ -58735,7 +63555,10 @@ const wordsData = [
     "wordFamily": [
       "ours"
     ],
-    "phoneticUK": "/ˈaʊə(r)/"
+    "phoneticUK": "/ˈaʊə(r)/",
+    "extraExample": "We need to finish our homework before watching television.",
+    "extraExampleTranslation": "พวกเราต้องทำการบ้านของเราให้เสร็จก่อนดูโทรทัศน์",
+    "usageTip": "เป็นคำแสดงความเป็นเจ้าของ ต้องวางหน้าคำนามเสมอ"
   },
   {
     "word": "ours",
@@ -58763,7 +63586,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "our"
-    ]
+    ],
+    "extraExample": "That blue car parked outside the gate is ours.",
+    "extraExampleTranslation": "รถสีน้ำเงินที่จอดอยู่หน้าประตูรั้วคันนั้นเป็นของเรา",
+    "usageTip": "ใช้แทนคำนามเพื่อแสดงความเป็นเจ้าของ ไม่ต้องมีคำนามตามหลัง"
   },
   {
     "word": "ourselves",
@@ -58785,7 +63611,10 @@ const wordsData = [
       "อาหารเย็น",
       "ด้วยตัวเอง"
     ],
-    "syllables": "our·sel·ves"
+    "syllables": "our·sel·ves",
+    "extraExample": "We cooked dinner by ourselves because the restaurant was closed.",
+    "extraExampleTranslation": "พวกเราทำอาหารเย็นกินกันเองเพราะร้านอาหารปิด",
+    "usageTip": "ใช้เมื่อประธานและกรรมเป็นกลุ่มเดียวกัน หรือใช้เน้นว่าทำด้วยตัวเอง"
   },
   {
     "word": "out",
@@ -58813,7 +63642,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "outer"
-    ]
+    ],
+    "extraExample": "Let us go out for dinner tonight since it is Friday.",
+    "extraExampleTranslation": "คืนนี้เราออกไปกินข้าวข้างนอกกันเถอะเพราะเป็นวันศุกร์",
+    "usageTip": "ใช้บอกทิศทางออกไปข้างนอกหรือไม่อยู่ในสถานที่นั้น"
   },
   {
     "word": "outdoor",
@@ -58847,7 +63679,10 @@ const wordsData = [
       "indoor"
     ],
     "phoneticUK": "/ˈaʊtdˌɔː/",
-    "syllables": "out·door"
+    "syllables": "out·door",
+    "extraExample": "They enjoy outdoor activities like hiking and camping.",
+    "extraExampleTranslation": "พวกเขาชอบกิจกรรมกลางแจ้งอย่างการเดินป่าและตั้งแคมป์",
+    "usageTip": "เป็นคำคุณศัพท์ ต้องวางหน้าคำนามเพื่อบอกว่าเกิดขึ้นนอกอาคาร"
   },
   {
     "word": "outdoors",
@@ -58880,7 +63715,10 @@ const wordsData = [
     "syllables": "out·doors",
     "forms": [
       "พหูพจน์: outdoorses"
-    ]
+    ],
+    "extraExample": "Children should spend more time playing outdoors in the fresh air.",
+    "extraExampleTranslation": "เด็กๆ ควรใช้เวลาเล่นกลางแจ้งท่ามกลางอากาศบริสุทธิ์ให้มากขึ้น",
+    "usageTip": "ใช้เป็นคำนามหรือกริยาวิเศษณ์บอกสถานที่ว่าอยู่ภายนอกอาคาร"
   },
   {
     "word": "outer",
@@ -58914,7 +63752,10 @@ const wordsData = [
       "out"
     ],
     "phoneticUK": "/ˈaʊtə(r)/",
-    "syllables": "ou·ter"
+    "syllables": "ou·ter",
+    "extraExample": "The outer layer of the jacket is waterproof.",
+    "extraExampleTranslation": "ชั้นนอกของเสื้อแจ็คเก็ตตัวนี้กันน้ำได้",
+    "usageTip": "วางหน้าคำนามเพื่อบอกตำแหน่งที่อยู่ด้านนอกสุดหรือห่างจากจุดศูนย์กลาง"
   },
   {
     "word": "outline",
@@ -58998,7 +63839,10 @@ const wordsData = [
     "antonyms": [
       "inside"
     ],
-    "syllables": "out·side"
+    "syllables": "out·side",
+    "extraExample": "Please leave your muddy shoes outside the front door.",
+    "extraExampleTranslation": "กรุณาวางรองเท้าที่เปื้อนโคลนไว้ด้านนอกประตูหน้าบ้าน",
+    "usageTip": "ใช้เป็นบุพบทนำหน้าสถานที่เพื่อบอกว่าอยู่ด้านนอกของสิ่งนั้น"
   },
   {
     "word": "outstanding",
@@ -59025,7 +63869,10 @@ const wordsData = [
       "outstanding members",
       "outstanding handler"
     ],
-    "syllables": "out·stan·ding"
+    "syllables": "out·stan·ding",
+    "extraExample": "She received an award for her outstanding performance this year.",
+    "extraExampleTranslation": "เธอได้รับรางวัลจากผลงานที่โดดเด่นในปีนี้",
+    "usageTip": "ใช้อธิบายสิ่งที่ยอดเยี่ยมกว่าปกติ หรือใช้กับหนี้สินที่ยังค้างชำระ"
   },
   {
     "word": "oven",
@@ -59043,7 +63890,14 @@ const wordsData = [
       "เข้า",
       "เตาอบ"
     ],
-    "syllables": "o·ven"
+    "syllables": "o·ven",
+    "extraExample": "Preheat the oven to 180 degrees before baking the cake.",
+    "extraExampleTranslation": "อุ่นเตาอบไว้ที่ 180 องศาก่อนนำเค้กเข้าอบ",
+    "usageTip": "ใช้คู่กับคำว่า preheat (อุ่นเตาล่วงหน้า) หรือ bake in the oven",
+    "collocations": [
+      "preheat the oven",
+      "bake in the oven"
+    ]
   },
   {
     "word": "over",
@@ -59071,7 +63925,10 @@ const wordsData = [
       "บ้าน"
     ],
     "phoneticUK": "/ˈəʊvə(r)/",
-    "syllables": "o·ver"
+    "syllables": "o·ver",
+    "extraExample": "A flock of birds flew over the lake at sunset.",
+    "extraExampleTranslation": "ฝูงนกบินผ่านเหนือทะเลสาบในยามพระอาทิตย์ตก",
+    "usageTip": "ใช้บอกตำแหน่งที่อยู่สูงกว่าหรือเคลื่อนที่ข้ามสิ่งใดสิ่งหนึ่ง"
   },
   {
     "word": "overall",
@@ -59100,7 +63957,10 @@ const wordsData = [
       "really"
     ],
     "phoneticUK": "/ˈəʊvərˌɔːl/",
-    "syllables": "o·ve·rall"
+    "syllables": "o·ve·rall",
+    "extraExample": "The overall cost of the project was lower than expected.",
+    "extraExampleTranslation": "ค่าใช้จ่ายทั้งหมดของโครงการต่ำกว่าที่คาดไว้",
+    "usageTip": "ใช้สรุปภาพรวมหรือผลรวมทั้งหมด มักวางไว้หน้าคำนาม"
   },
   {
     "word": "overcome",
@@ -59139,7 +63999,10 @@ const wordsData = [
     ],
     "phoneticUK": "/ˈəʊvəkˌʌm/",
     "syllables": "o·ver·come",
-    "rootBreakdown": "over- (มากเกินไป / เหนือ) + come"
+    "rootBreakdown": "over- (มากเกินไป / เหนือ) + come",
+    "extraExample": "He worked hard to overcome his fear of public speaking.",
+    "extraExampleTranslation": "เขาพยายามอย่างหนักเพื่อเอาชนะความกลัวในการพูดต่อหน้าสาธารณชน",
+    "usageTip": "มักใช้กับปัญหา อุปสรรค หรือความกลัว เพื่อหมายถึงการก้าวข้ามหรือพิชิต"
   },
   {
     "word": "owe",
@@ -59169,7 +64032,10 @@ const wordsData = [
     "forms": [
       "V2/V3: owed",
       "V-ing: owing"
-    ]
+    ],
+    "extraExample": "I still owe my friend five hundred baht from last week.",
+    "extraExampleTranslation": "ฉันยังเป็นหนี้เพื่อนอยู่ห้าร้อยบาทจากสัปดาห์ที่แล้ว",
+    "usageTip": "ใช้โครงสร้าง owe + คน + จำนวนเงิน หรือ owe + สิ่งของ + to + คน"
   },
   {
     "word": "own",
@@ -59200,7 +64066,10 @@ const wordsData = [
       "ของ",
       "ตัวเอง"
     ],
-    "phoneticUK": "/ˈəʊn/"
+    "phoneticUK": "/ˈəʊn/",
+    "extraExample": "She started her own business after graduating from university.",
+    "extraExampleTranslation": "เธอเริ่มต้นธุรกิจของตัวเองหลังจากเรียนจบมหาวิทยาลัย",
+    "usageTip": "มักใช้ตามหลังคำแสดงความเป็นเจ้าของ เช่น my own, her own เพื่อเน้นย้ำ"
   },
   {
     "word": "owner",
@@ -59233,7 +64102,10 @@ const wordsData = [
       "นี้"
     ],
     "phoneticUK": "/ˈəʊnə(r)/",
-    "syllables": "ow·ner"
+    "syllables": "ow·ner",
+    "extraExample": "The shop owner greeted every customer with a warm smile.",
+    "extraExampleTranslation": "เจ้าของร้านทักทายลูกค้าทุกคนด้วยรอยยิ้มที่อบอุ่น",
+    "usageTip": "ใช้ระบุบุคคลที่เป็นเจ้าของสถานที่ สัตว์เลี้ยง หรือสิ่งของ"
   },
   {
     "word": "pace",
@@ -59260,7 +64132,10 @@ const wordsData = [
     "collocations": [
       "can pace",
       "slow pace"
-    ]
+    ],
+    "extraExample": "We walked at a steady pace to reach the summit before dark.",
+    "extraExampleTranslation": "เราเดินด้วยจังหวะที่สม่ำเสมอเพื่อไปให้ถึงยอดเขาก่อนมืด",
+    "usageTip": "ใช้บอกความเร็วหรือจังหวะการเดินและการทำงาน มักใช้กับ at a ... pace"
   },
   {
     "word": "pack",
@@ -59291,7 +64166,10 @@ const wordsData = [
     ],
     "antonyms": [
       "unpack"
-    ]
+    ],
+    "extraExample": "Don't forget to pack your charger before leaving for the trip.",
+    "extraExampleTranslation": "อย่าลืมเก็บสายชาร์จใส่กระเป๋าก่อนออกเดินทางนะ",
+    "usageTip": "ใช้กับการจัดของลงกระเป๋า หรือการห่อมัดสิ่งของให้เรียบร้อย"
   },
   {
     "word": "package",
@@ -59324,7 +64202,10 @@ const wordsData = [
       "ถึง",
       "คุณ"
     ],
-    "syllables": "pa·ckage"
+    "syllables": "pa·ckage",
+    "extraExample": "A delivery driver left a large package at the reception desk.",
+    "extraExampleTranslation": "พนักงานส่งของวางพัสดุกล่องใหญ่ไว้ที่โต๊ะประชาสัมพันธ์",
+    "usageTip": "ใช้เรียกรวมกล่องพัสดุหรือหีบห่อที่ส่งทางไปรษณีย์"
   },
   {
     "word": "packaging",
@@ -59350,7 +64231,14 @@ const wordsData = [
       "promotion",
       "publicity"
     ],
-    "syllables": "pa·cka·ging"
+    "syllables": "pa·cka·ging",
+    "extraExample": "The company switched to eco-friendly packaging for all products.",
+    "extraExampleTranslation": "บริษัทเปลี่ยนมาใช้บรรจุภัณฑ์ที่เป็นมิตรต่อสิ่งแวดล้อมสำหรับสินค้าทั้งหมด",
+    "usageTip": "เป็นคำนามนับไม่ได้ หมายถึงวัสดุที่ใช้ห่อหุ้มหรือบรรจุสินค้า",
+    "collocations": [
+      "eco-friendly packaging",
+      "plastic packaging"
+    ]
   },
   {
     "word": "packet",
@@ -59375,7 +64263,14 @@ const wordsData = [
       "bundle",
       "parcel"
     ],
-    "syllables": "pa·cket"
+    "syllables": "pa·cket",
+    "extraExample": "Could you pass me a packet of sugar for my coffee?",
+    "extraExampleTranslation": "ช่วยส่งซองน้ำตาลให้ฉันสักซองสำหรับกาแฟหน่อยได้ไหม",
+    "usageTip": "ใช้เรียกห่อหรือซองขนาดเล็ก เช่น ซองเครื่องปรุงหรือขนม",
+    "collocations": [
+      "a packet of",
+      "sugar packet"
+    ]
   },
   {
     "word": "page",
@@ -59406,7 +64301,10 @@ const wordsData = [
     "forms": [
       "V2/V3: paged",
       "V-ing: paging"
-    ]
+    ],
+    "extraExample": "Please turn to page twenty-five in your textbook.",
+    "extraExampleTranslation": "กรุณาเปิดไปที่หน้ายี่สิบห้าในหนังสือเรียนของคุณ",
+    "usageTip": "ใช้บอกหมายเลขหน้าของหนังสือหรือเอกสาร มักตามด้วยตัวเลขโดยไม่ต้องมี the"
   },
   {
     "word": "pain",
@@ -59438,7 +64336,10 @@ const wordsData = [
     ],
     "antonyms": [
       "pleasure"
-    ]
+    ],
+    "extraExample": "She felt a sharp pain in her knee after running.",
+    "extraExampleTranslation": "เธอรู้สึกเจ็บแปลบที่หัวเข่าหลังจากวิ่งเสร็จ",
+    "usageTip": "ใช้บอกอาการปวดทางร่างกายหรือความเจ็บปวดทางใจ"
   },
   {
     "word": "painful",
@@ -59473,7 +64374,10 @@ const wordsData = [
       "pain"
     ],
     "syllables": "pain·ful",
-    "rootBreakdown": "pain + -ful (เต็มไปด้วย (Adj.))"
+    "rootBreakdown": "pain + -ful (เต็มไปด้วย (Adj.))",
+    "extraExample": "Recovering from the ankle injury was a slow and painful process.",
+    "extraExampleTranslation": "การฟื้นตัวจากอาการบาดเจ็บที่ข้อเท้าเป็นกระบวนการที่ช้าและเจ็บปวด",
+    "usageTip": "ใช้ขยายคำนามหรือเหตุการณ์ที่ทำให้เกิดความเจ็บปวดทั้งกายและใจ"
   },
   {
     "word": "paint",
@@ -59505,7 +64409,10 @@ const wordsData = [
       "เป็น",
       "สี",
       "ฟ้า"
-    ]
+    ],
+    "extraExample": "They decided to paint the living room walls light blue.",
+    "extraExampleTranslation": "พวกเขาตัดสินใจทาสีผนังห้องนั่งเล่นเป็นสีฟ้าอ่อน",
+    "usageTip": "ใช้ได้ทั้งการทาสีผนังบ้านและการวาดภาพด้วยสี"
   },
   {
     "word": "painter",
@@ -59536,7 +64443,10 @@ const wordsData = [
       "มีชื่อเสียง"
     ],
     "phoneticUK": "/pˈeɪntə(r)/",
-    "syllables": "pain·ter"
+    "syllables": "pain·ter",
+    "extraExample": "The painter carefully covered the furniture before starting work.",
+    "extraExampleTranslation": "ช่างทาสีคลุมเฟอร์นิเจอร์อย่างระมัดระวังก่อนเริ่มทำงาน",
+    "usageTip": "ใช้เรียกได้ทั้งช่างทาสีบ้านและศิลปินผู้วาดภาพ"
   },
   {
     "word": "painting",
@@ -59566,7 +64476,10 @@ const wordsData = [
       "ที่",
       "สวยงาม"
     ],
-    "syllables": "pain·ting"
+    "syllables": "pain·ting",
+    "extraExample": "There is a beautiful oil painting hanging above the sofa.",
+    "extraExampleTranslation": "มีภาพวาดสีน้ำมันที่สวยงามแขวนอยู่เหนือโซฟา",
+    "usageTip": "ใช้เรียกผลงานภาพวาด หรือหมายถึงกิจกรรมและอาชีพการวาดภาพ"
   },
   {
     "word": "pair",
@@ -59674,7 +64587,10 @@ const wordsData = [
       "ไข่",
       "ใน",
       "กระทะ"
-    ]
+    ],
+    "extraExample": "Heat a little oil in a frying pan before adding the garlic.",
+    "extraExampleTranslation": "ตั้งน้ำมันเล็กน้อยในกระทะก่อนใส่กระเทียม",
+    "usageTip": "ใช้เรียกกระทะก้นแบนทั่วไปในการทำอาหาร"
   },
   {
     "word": "panel",
@@ -59698,7 +64614,10 @@ const wordsData = [
     "synonyms": [
       "jury"
     ],
-    "syllables": "pa·nel"
+    "syllables": "pa·nel",
+    "extraExample": "A panel of experts will review all the applications this week.",
+    "extraExampleTranslation": "คณะกรรมการผู้เชี่ยวชาญจะพิจารณาใบสมัครทั้งหมดในสัปดาห์นี้",
+    "usageTip": "หมายถึงคณะกรรมการหรือรายชื่อผู้เชี่ยวชาญที่ได้รับคัดเลือก"
   },
   {
     "word": "pants",
@@ -59729,7 +64648,10 @@ const wordsData = [
     "forms": [
       "[Plural] ใช้รูปพหูพจน์เสมอ"
     ],
-    "grammarPattern": "[Plural] ใช้รูปพหูพจน์กับกริยาพหูพจน์เสมอ"
+    "grammarPattern": "[Plural] ใช้รูปพหูพจน์กับกริยาพหูพจน์เสมอ",
+    "extraExample": "He bought a new pair of pants for the job interview.",
+    "extraExampleTranslation": "เขาซื้อกางเกงตัวใหม่สำหรับไปสัมภาษณ์งาน",
+    "usageTip": "ในภาษาอังกฤษแบบอเมริกันใช้เรียกกางเกงขายาว มักใช้เป็นพหูพจน์เสมอ"
   },
   {
     "word": "paper",
@@ -59760,7 +64682,10 @@ const wordsData = [
       "กระดาษ"
     ],
     "phoneticUK": "/pˈeɪpə(r)/",
-    "syllables": "pa·per"
+    "syllables": "pa·per",
+    "extraExample": "Could you hand me a blank sheet of paper to write this down?",
+    "extraExampleTranslation": "ช่วยหยิบกระดาษเปล่าให้ฉันสักแผ่นเพื่อจดเรื่องนี้หน่อยได้ไหม",
+    "usageTip": "เป็นคำนามนับไม่ได้เมื่อหมายถึงวัสดุกระดาษ ต้องใช้กับ sheet of"
   },
   {
     "word": "parallel",
@@ -59785,7 +64710,10 @@ const wordsData = [
       "perpendicular",
       "oblique"
     ],
-    "syllables": "pa·ral·lel"
+    "syllables": "pa·ral·lel",
+    "extraExample": "The train tracks run parallel to the main highway.",
+    "extraExampleTranslation": "รางรถไฟทอดตัวขนานไปกับทางหลวงสายหลัก",
+    "usageTip": "มักใช้คู่กับคำบุพบท to เพื่อบอกว่าขนานกับสิ่งใด"
   },
   {
     "word": "parent",
@@ -59817,7 +64745,10 @@ const wordsData = [
     "antonyms": [
       "child"
     ],
-    "syllables": "pa·rent"
+    "syllables": "pa·rent",
+    "extraExample": "Every parent wants their children to be safe and happy.",
+    "extraExampleTranslation": "พ่อแม่ทุกคนย่อมอยากให้ลูกของตนปลอดภัยและมีความสุข",
+    "usageTip": "ใช้ในรูปเอกพจน์เมื่อกล่าวถึงพ่อหรือแม่คนใดคนหนึ่ง หรือรูปพหูพจน์เมื่อรวมทั้งสอง"
   },
   {
     "word": "park",
@@ -59845,7 +64776,8 @@ const wordsData = [
       "สวนสาธารณะ"
     ],
     "extraExample": "You are not allowed to park your car here.",
-    "extraExampleTranslation": "ไม่อนุญาตให้คุณจอดรถตรงนี้ (ความหมาย [v.]: จอดรถ)"
+    "extraExampleTranslation": "ไม่อนุญาตให้คุณจอดรถตรงนี้ (ความหมาย [v.]: จอดรถ)",
+    "usageTip": "นอกจากแปลว่าสวนสาธารณะแล้ว ยังใช้เป็นกริยาแปลว่าจอดรถได้ด้วย"
   },
   {
     "word": "parliament",
@@ -59870,7 +64802,14 @@ const wordsData = [
       "fantan",
       "sevens"
     ],
-    "syllables": "par·lia·ment"
+    "syllables": "par·lia·ment",
+    "extraExample": "The new environmental law was passed by parliament yesterday.",
+    "extraExampleTranslation": "กฎหมายสิ่งแวดล้อมฉบับใหม่ผ่านการอนุมัติจากรัฐสภาเมื่อวานนี้",
+    "usageTip": "ใช้เรียกรัฐสภาหรือสภานิติบัญญัติในระบบรัฐสภา",
+    "collocations": [
+      "member of parliament",
+      "acts of parliament"
+    ]
   },
   {
     "word": "part",
@@ -59908,7 +64847,10 @@ const wordsData = [
     ],
     "antonyms": [
       "whole"
-    ]
+    ],
+    "extraExample": "Taking part in team sports helps build strong friendships.",
+    "extraExampleTranslation": "การมีส่วนร่วมในกีฬาประเภททีมช่วยสร้างมิตรภาพที่แน่นแฟ้น",
+    "usageTip": "ใช้ได้ทั้งความหมายว่าส่วนประกอบ ฝ่าย หรือบทบาทหน้าที่"
   },
   {
     "word": "particular",
@@ -59938,7 +64880,10 @@ const wordsData = [
       "ไหม"
     ],
     "phoneticUK": "/pətˈɪkjələ(r)/",
-    "syllables": "par·ti·cu·lar"
+    "syllables": "par·ti·cu·lar",
+    "extraExample": "Is there any particular reason why you chose this restaurant?",
+    "extraExampleTranslation": "มีเหตุผลอะไรเป็นพิเศษไหมที่คุณเลือกร้านอาหารนี้",
+    "usageTip": "ใช้เน้นย้ำถึงความเฉพาะเจาะจง มักใช้ในวลี in particular"
   },
   {
     "word": "particularly",
@@ -59968,7 +64913,10 @@ const wordsData = [
     "wordFamily": [
       "particular"
     ],
-    "syllables": "par·ti·cu·lar·ly"
+    "syllables": "par·ti·cu·lar·ly",
+    "extraExample": "I am particularly interested in learning more about local history.",
+    "extraExampleTranslation": "ฉันสนใจเรียนรู้เพิ่มเติมเกี่ยวกับประวัติศาสตร์ท้องถิ่นเป็นพิเศษ",
+    "usageTip": "ใช้ขยายคำคุณศัพท์หรือกริยาเพื่อเน้นว่ามากเป็นพิเศษ"
   },
   {
     "word": "partly",
@@ -60005,7 +64953,10 @@ const wordsData = [
     "antonyms": [
       "wholly"
     ],
-    "syllables": "par·tly"
+    "syllables": "par·tly",
+    "extraExample": "The flight was delayed partly because of the heavy fog.",
+    "extraExampleTranslation": "เที่ยวบินล่าช้าส่วนหนึ่งเป็นเพราะหมอกลงจัด",
+    "usageTip": "ใช้บอกสาเหตุหรือระดับที่เป็นเพียงบางส่วน ไม่ใช่ทั้งหมด"
   },
   {
     "word": "partner",
@@ -60039,7 +64990,10 @@ const wordsData = [
       "ฉัน"
     ],
     "phoneticUK": "/pˈɑːtnə(r)/",
-    "syllables": "par·tner"
+    "syllables": "par·tner",
+    "extraExample": "She opened a small bakery with her business partner.",
+    "extraExampleTranslation": "เธอเปิดร้านเบเกอรี่เล็กๆ ร่วมกับหุ้นส่วนทางธุรกิจของเธอ",
+    "usageTip": "ใช้เรียกได้ทั้งหุ้นส่วนธุรกิจ คู่หู หรือคู่ชีวิต"
   },
   {
     "word": "partnership",
@@ -60066,7 +65020,10 @@ const wordsData = [
     "collocations": [
       "such partnership"
     ],
-    "syllables": "par·tner·ship"
+    "syllables": "par·tner·ship",
+    "extraExample": "The two companies formed a partnership to develop new software.",
+    "extraExampleTranslation": "ทั้งสองบริษัทได้ร่วมมือกันเป็นพันธมิตรเพื่อพัฒนาซอฟต์แวร์ใหม่",
+    "usageTip": "หมายถึงความร่วมมือทางธุรกิจหรือห้างหุ้นส่วนที่ทำร่วมกัน"
   },
   {
     "word": "party",
@@ -60099,7 +65056,10 @@ const wordsData = [
     "syllables": "par·ty",
     "forms": [
       "พหูพจน์: parties"
-    ]
+    ],
+    "extraExample": "Are you going to Sarah's birthday party this Saturday night?",
+    "extraExampleTranslation": "คุณจะไปงานเลี้ยงวันเกิดของซาร่าคืนวันเสาร์นี้ไหม",
+    "usageTip": "ใช้ได้ทั้งความหมายว่างานสังสรรค์ พรรคการเมือง หรือฝ่ายในสัญญา"
   },
   {
     "word": "pass",
@@ -60139,7 +65099,10 @@ const wordsData = [
       "pass away (เสียชีวิตอย่างสุภาพ)",
       "pass out (เป็นลม/หมดสติ)",
       "pass down (ส่งต่อรุ่นสู่รุ่น)"
-    ]
+    ],
+    "extraExample": "Make sure you study hard so you can pass the final exam.",
+    "extraExampleTranslation": "ตั้งใจอ่านหนังสือให้ดีนะจะได้สอบปลายภาคผ่าน",
+    "usageTip": "ใช้ได้ทั้งสอบผ่าน ส่งต่อ หรือเวลาที่ผ่านพ้นไป"
   },
   {
     "word": "passage",
@@ -60171,7 +65134,10 @@ const wordsData = [
       "แคบๆ",
       "นี้"
     ],
-    "syllables": "pas·sage"
+    "syllables": "pas·sage",
+    "extraExample": "There is a narrow passage leading directly to the back garden.",
+    "extraExampleTranslation": "มีทางเดินแคบๆ ที่ตรงไปยังสวนหลังบ้าน",
+    "usageTip": "หมายถึงทางเดินแคบๆ หรือข้อความบางตอนในหนังสือ"
   },
   {
     "word": "passenger",
@@ -60199,7 +65165,10 @@ const wordsData = [
       "มากมาย"
     ],
     "phoneticUK": "/pˈæsəndʒə(r)/",
-    "syllables": "pas·se·nger"
+    "syllables": "pas·se·nger",
+    "extraExample": "Every passenger must fasten their seatbelt before takeoff.",
+    "extraExampleTranslation": "ผู้โดยสารทุกคนต้องคาดเข็มขัดนิรภัยก่อนเครื่องบินขึ้น",
+    "usageTip": "ใช้เรียกผู้โดยสารที่เดินทางด้วยยานพาหนะต่างๆ"
   },
   {
     "word": "passing",
@@ -60231,7 +65200,10 @@ const wordsData = [
       "อย่าง",
       "รวดเร็ว"
     ],
-    "syllables": "pas·sing"
+    "syllables": "pas·sing",
+    "extraExample": "I noticed a passing car splash water onto the sidewalk.",
+    "extraExampleTranslation": "ฉันสังเกตเห็นรถที่ขับผ่านไปสาดน้ำขึ้นไปบนทางเท้า",
+    "usageTip": "ใช้เป็นรูปกริยาหรือคำคุณศัพท์บอกสิ่งที่กำลังเคลื่อนผ่านไป"
   },
   {
     "word": "passport",
@@ -60261,7 +65233,10 @@ const wordsData = [
       "passport control"
     ],
     "phoneticUK": "/pˈɑːspˌɔːt/",
-    "syllables": "pas·sport"
+    "syllables": "pas·sport",
+    "extraExample": "Don't forget to bring your passport when you go to the airport.",
+    "extraExampleTranslation": "อย่าลืมนำหนังสือเดินทางติดตัวไปด้วยเวลาไปสนามบิน",
+    "usageTip": "เอกสารสำคัญที่ใช้ยืนยันตัวตนเมื่อเดินทางไปต่างประเทศ"
   },
   {
     "word": "past",
@@ -60292,7 +65267,10 @@ const wordsData = [
       "future",
       "present"
     ],
-    "phoneticUK": "/pˈɑːst/"
+    "phoneticUK": "/pˈɑːst/",
+    "extraExample": "She walked past the old bakery without noticing it.",
+    "extraExampleTranslation": "เธอเดินผ่านร้านเบเกอรี่เก่าโดยไม่ทันสังเกต",
+    "usageTip": "ใช้ past หลังคำกริยาเพื่อบอกว่าเดินหรือเคลื่อนที่ผ่านสิ่งใดสิ่งหนึ่งไป หรือใช้บอกเวลาที่เลยมาแล้ว เช่น half past two"
   },
   {
     "word": "path",
@@ -60319,7 +65297,10 @@ const wordsData = [
       "สู่",
       "แม่น้ำ"
     ],
-    "phoneticUK": "/pˈɑːθ/"
+    "phoneticUK": "/pˈɑːθ/",
+    "extraExample": "Follow the narrow path through the woods to reach the lake.",
+    "extraExampleTranslation": "เดินตามทางเดินแคบๆ ผ่านป่าเพื่อไปให้ถึงทะเลสาบ",
+    "usageTip": "ใช้หมายถึงทางเดินเล็กๆ หรือเส้นทางสู่ความสำเร็จ มักใช้คู่กับ follow หรือ take"
   },
   {
     "word": "patience",
@@ -60357,7 +65338,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Teaching young children requires a lot of patience.",
+    "extraExampleTranslation": "การสอนเด็กเล็กต้องใช้ความอดทนเป็นอย่างมาก",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้กับกริยา have, need หรือ require และห้ามเติม s"
   },
   {
     "word": "patient",
@@ -60391,7 +65375,8 @@ const wordsData = [
     ],
     "syllables": "pa·tient",
     "extraExample": "Please be patient while the page loads.",
-    "extraExampleTranslation": "กรุณาอดทนรอสักครู่ขณะหน้าเว็บกำลังโหลด (ความหมาย [adj.]: อดทน)"
+    "extraExampleTranslation": "กรุณาอดทนรอสักครู่ขณะหน้าเว็บกำลังโหลด (ความหมาย [adj.]: อดทน)",
+    "usageTip": "ใช้ได้ทั้งเป็นคำนาม (ผู้ป่วย) และคำคุณศัพท์ (อดทน) โดยมักใช้คู่กับ be patient with"
   },
   {
     "word": "pattern",
@@ -60418,7 +65403,10 @@ const wordsData = [
       "ลวดลาย",
       "ทาง"
     ],
-    "syllables": "pat·tern"
+    "syllables": "pat·tern",
+    "extraExample": "The shirt has a colorful floral pattern.",
+    "extraExampleTranslation": "เสื้อตัวนี้มีลวดลายดอกไม้หลากสีสัน",
+    "usageTip": "ใช้บอกลวดลายบนผ้าหรือรูปแบบพฤติกรรมที่เกิดขึ้นซ้ำๆ"
   },
   {
     "word": "pause",
@@ -60443,7 +65431,10 @@ const wordsData = [
       "มี",
       "การหยุดพัก",
       "สั้นๆ"
-    ]
+    ],
+    "extraExample": "There was a brief pause before she answered the question.",
+    "extraExampleTranslation": "มีความเงียบหยุดชั่วคราวก่อนที่เธอจะตอบคำถาม",
+    "usageTip": "ใช้ได้ทั้งคำนามและคำกริยา หมายถึงการหยุดชั่วคราวแล้วค่อยทำต่อ ไม่ใช่การหยุดถาวร"
   },
   {
     "word": "pay",
@@ -60482,7 +65473,10 @@ const wordsData = [
       "pay attention to (ตั้งใจฟัง/ให้ความสนใจ)",
       "pay off (คุ้มค่ากับที่ลงแรง/จ่ายหนี้หมด)",
       "pay back (คืนเงิน/แก้แค้น)"
-    ]
+    ],
+    "extraExample": "How much did you pay for that new jacket?",
+    "extraExampleTranslation": "คุณจ่ายเงินค่าเสื้อแจ็คเก็ตตัวใหม่นั้นไปเท่าไหร่",
+    "usageTip": "เมื่อบอกว่าจ่ายเงินเพื่อซื้ออะไร ให้ใช้โครงสร้าง pay + จำนวนเงิน + for + สิ่งของ"
   },
   {
     "word": "payment",
@@ -60516,7 +65510,10 @@ const wordsData = [
     "antonyms": [
       "nonpayment"
     ],
-    "syllables": "pay·ment"
+    "syllables": "pay·ment",
+    "extraExample": "You can make your payment online using a credit card.",
+    "extraExampleTranslation": "คุณสามารถชำระเงินออนไลน์ด้วยบัตรเครดิตได้",
+    "usageTip": "มักใช้คู่กับกริยา make เช่น make a payment หรือใช้ในบริบททางการเงินและการค้า"
   },
   {
     "word": "peace",
@@ -60549,7 +65546,10 @@ const wordsData = [
     ],
     "antonyms": [
       "war"
-    ]
+    ],
+    "extraExample": "After years of conflict, the country finally achieved peace.",
+    "extraExampleTranslation": "หลังจากความขัดแย้งหลายปี ในที่สุดประเทศก็บรรลุความสงบสุข",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้สื่อถึงความสงบสุขของบ้านเมืองหรือความสงบในจิตใจ"
   },
   {
     "word": "peaceful",
@@ -60582,7 +65582,10 @@ const wordsData = [
     "wordFamily": [
       "peace"
     ],
-    "rootBreakdown": "peace + -ful (เต็มไปด้วย (Adj.))"
+    "rootBreakdown": "peace + -ful (เต็มไปด้วย (Adj.))",
+    "extraExample": "We spent a peaceful weekend at a cabin by the lake.",
+    "extraExampleTranslation": "เราใช้เวลาวันหยุดสุดสัปดาห์อย่างเงียบสงบที่กระท่อมริมทะเลสาบ",
+    "usageTip": "ใช้ขยายสถานที่หรือช่วงเวลาที่เงียบสงบ ไม่มีเสียงรบกวนหรือความวุ่นวาย"
   },
   {
     "word": "peak",
@@ -60609,7 +65612,10 @@ const wordsData = [
       "ขึ้นไป",
       "ถึง",
       "ยอดเขา"
-    ]
+    ],
+    "extraExample": "Climbers reached the mountain peak just before sunrise.",
+    "extraExampleTranslation": "นักปีนเขาไปถึงยอดเขาพอดีก่อนพระอาทิตย์ขึ้น",
+    "usageTip": "ใช้หมายถึงยอดเขา หรือจุดสูงสุดของสิ่งต่างๆ เช่น ช่วงเวลาที่คนเยอะที่สุด (peak hours)"
   },
   {
     "word": "pen",
@@ -60630,7 +65636,10 @@ const wordsData = [
       "ต้องการ",
       "ปากกา",
       "สีน้ำเงิน"
-    ]
+    ],
+    "extraExample": "Do you have a spare pen I could borrow to sign this?",
+    "extraExampleTranslation": "คุณมีปากกาสำรองให้ฉันยืมเซ็นเอกสารนี้ไหม",
+    "usageTip": "เป็นคำนามนับได้ หมายถึงปากกา ใช้คู่กับกริยา write with a pen"
   },
   {
     "word": "pencil",
@@ -60652,7 +65661,10 @@ const wordsData = [
       "ดินสอ",
       "ไหม"
     ],
-    "syllables": "pen·cil"
+    "syllables": "pen·cil",
+    "extraExample": "Artists often sketch their ideas with a pencil first.",
+    "extraExampleTranslation": "ศิลปินมักร่างไอเดียของพวกเขาด้วยดินสอก่อน",
+    "usageTip": "ใช้สำหรับดินสอ มักใช้คู่กับ sharpen (เหลา) หรือ draw with a pencil"
   },
   {
     "word": "penny",
@@ -60682,7 +65694,10 @@ const wordsData = [
     "syllables": "pen·ny",
     "forms": [
       "พหูพจน์: pennies"
-    ]
+    ],
+    "extraExample": "I found a lucky penny on the sidewalk this morning.",
+    "extraExampleTranslation": "ฉันเจอเหรียญเพนนีนำโชคบนทางเท้าเมื่อเช้านี้",
+    "usageTip": "เป็นเหรียญมูลค่าต่ำของอังกฤษและอเมริกา มักใช้ในสำนวนเรื่องการประหยัดเงิน"
   },
   {
     "word": "pension",
@@ -60705,7 +65720,10 @@ const wordsData = [
     "collocations": [
       "pension plan"
     ],
-    "syllables": "pen·sion"
+    "syllables": "pen·sion",
+    "extraExample": "My grandfather receives a monthly pension from the government.",
+    "extraExampleTranslation": "คุณปู่ของฉันได้รับเงินบำนาญรายเดือนจากรัฐบาล",
+    "usageTip": "ใช้เรียกเงินบำนาญที่ได้รับหลังเกษียณอายุการทำงาน"
   },
   {
     "word": "people",
@@ -60734,7 +65752,9 @@ const wordsData = [
     ],
     "usageTip": "people เป็นรูปพหูพจน์อยู่แล้ว ใช้กับ are/were (People are friendly.); ห้ามเติม -s เว้นแต่หมายถึง 'ชนชาติ'",
     "syllables": "peo·ple",
-    "grammarPattern": "[C พหูพจน์] ใช้กับ are / were / many เสมอ (เอกพจน์คือ person)"
+    "grammarPattern": "[C พหูพจน์] ใช้กับ are / were / many เสมอ (เอกพจน์คือ person)",
+    "extraExample": "Many people gathered in the square for the festival.",
+    "extraExampleTranslation": "ประชาชนจำนวนมากมารวมตัวกันที่จัตุรัสเพื่อร่วมงานเทศกาล"
   },
   {
     "word": "pepper",
@@ -60763,7 +65783,10 @@ const wordsData = [
       "เล็กน้อย"
     ],
     "phoneticUK": "/pˈepə(r)/",
-    "syllables": "pep·per"
+    "syllables": "pep·per",
+    "extraExample": "Add a pinch of salt and black pepper to the soup.",
+    "extraExampleTranslation": "เติมเกลือและพริกไทยดำเล็กน้อยลงในซุป",
+    "usageTip": "ใช้เรียกทั้งพริกไทย (นับไม่ได้) และพริกหยวก/พริกหวาน (นับได้ เช่น bell pepper)"
   },
   {
     "word": "per",
@@ -60788,7 +65811,10 @@ const wordsData = [
       "ต่อ",
       "ชั่วโมง"
     ],
-    "phoneticUK": "/pˈɜː/"
+    "phoneticUK": "/pˈɜː/",
+    "extraExample": "The speed limit on this road is sixty kilometers per hour.",
+    "extraExampleTranslation": "จำกัดความเร็วบนถนนสายนี้คือหกสิบกิโลเมตรต่อชั่วโมง",
+    "usageTip": "ใช้เชื่อมหน่วยวัดเพื่อบอกอัตราส่วน เช่น ต่อชั่วโมง ต่อคน หรือต่อวัน"
   },
   {
     "word": "percent",
@@ -60816,7 +65842,9 @@ const wordsData = [
       "สอบผ่าน"
     ],
     "syllables": "per·cent",
-    "usageTip": "percent ใช้หลังตัวเลขโดยไม่เติม -s เสมอ (เช่น 50 percent ไม่ใช่ 50 percents)"
+    "usageTip": "percent ใช้หลังตัวเลขโดยไม่เติม -s เสมอ (เช่น 50 percent ไม่ใช่ 50 percents)",
+    "extraExample": "Prices have increased by ten percent since last year.",
+    "extraExampleTranslation": "ราคาสินค้าเพิ่มขึ้นสิบเปอร์เซ็นต์ตั้งแต่ปีที่แล้ว"
   },
   {
     "word": "perfect",
@@ -60849,7 +65877,10 @@ const wordsData = [
     "antonyms": [
       "imperfect"
     ],
-    "syllables": "per·fect"
+    "syllables": "per·fect",
+    "extraExample": "The weather was perfect for a picnic in the park.",
+    "extraExampleTranslation": "อากาศสมบูรณ์แบบมากสำหรับการไปปิกนิกในสวนสาธารณะ",
+    "usageTip": "เป็นคำคุณศัพท์ที่แสดงระดับสูงสุดอยู่แล้ว จึงไม่นิยมใช้คู่กับ very"
   },
   {
     "word": "perfectly",
@@ -60885,7 +65916,10 @@ const wordsData = [
       "imperfectly"
     ],
     "phoneticUK": "/pˈɜːfəktliː/",
-    "syllables": "per·fec·tly"
+    "syllables": "per·fec·tly",
+    "extraExample": "The new jacket fits me perfectly and looks great.",
+    "extraExampleTranslation": "เสื้อแจ็คเก็ตตัวใหม่ใส่ได้พอดีตัวฉันอย่างยอดเยี่ยมและดูดีมาก",
+    "usageTip": "ใช้ขยายคำกริยาหรือคำคุณศัพท์เพื่อบอกว่าสมบูรณ์แบบหรือไร้ที่ติ"
   },
   {
     "word": "perform",
@@ -60916,7 +65950,10 @@ const wordsData = [
       "การแสดง",
       "คืนนี้"
     ],
-    "syllables": "per·form"
+    "syllables": "per·form",
+    "extraExample": "The surgeons will perform the operation early tomorrow morning.",
+    "extraExampleTranslation": "ศัลยแพทย์จะดำเนินการผ่าตัดในเช้าตรู่ของวันพรุ่งนี้",
+    "usageTip": "ใช้กับงาน พิธีกรรม หรือการแสดงบนเวที มักตามด้วยกรรมตรง"
   },
   {
     "word": "performance",
@@ -60944,7 +65981,10 @@ const wordsData = [
       "ยอดเยี่ยม",
       "มาก"
     ],
-    "syllables": "per·for·mance"
+    "syllables": "per·for·mance",
+    "extraExample": "Her live performance at the concert amazed the entire audience.",
+    "extraExampleTranslation": "การแสดงสดของเธอในคอนเสิร์ตทำให้ผู้ชมทั้งงานประทับใจมาก",
+    "usageTip": "ใช้ได้ทั้งการแสดงศิลปะและประสิทธิภาพในการทำงานหรือเรียน"
   },
   {
     "word": "performer",
@@ -60975,7 +66015,10 @@ const wordsData = [
       "ท้องถนน"
     ],
     "phoneticUK": "/pəfˈɔːmə(r)/",
-    "syllables": "per·for·mer"
+    "syllables": "per·for·mer",
+    "extraExample": "Every performer on stage received loud applause after the show.",
+    "extraExampleTranslation": "ผู้แสดงทุกคนบนเวทีได้รับเสียงปรบมือดังสนั่นหลังจบการแสดง",
+    "usageTip": "หมายถึงนักแสดง นักดนตรี หรือผู้ที่แสดงความสามารถต่อหน้าผู้ชม"
   },
   {
     "word": "perhaps",
@@ -61003,7 +66046,10 @@ const wordsData = [
       "ตกใน",
       "ภายหลัง"
     ],
-    "syllables": "per·haps"
+    "syllables": "per·haps",
+    "extraExample": "Perhaps we should leave a bit earlier to avoid heavy traffic.",
+    "extraExampleTranslation": "บางทีเราควรออกเดินทางเร็วขึ้นอีกหน่อยเพื่อเลี่ยงรถติดหนัก",
+    "usageTip": "ใช้เมื่อคาดคะเนอย่างสุภาพ มักวางไว้ต้นประโยค"
   },
   {
     "word": "period",
@@ -61029,7 +66075,10 @@ const wordsData = [
       "ช่วง",
       "เวลาพักผ่อน",
       "สั้นๆ"
-    ]
+    ],
+    "extraExample": "We experienced a long period of dry weather last summer.",
+    "extraExampleTranslation": "เราเผชิญกับช่วงเวลาที่อากาศแห้งแล้งยาวนานเมื่อฤดูร้อนที่แล้ว",
+    "usageTip": "ใช้บอกช่วงเวลาที่มีจุดเริ่มต้นและสิ้นสุดชัดเจน หรือคาบเรียน"
   },
   {
     "word": "permanent",
@@ -61060,7 +66109,10 @@ const wordsData = [
       "temporary"
     ],
     "phoneticUK": "/pˈɜːmənənt/",
-    "syllables": "per·ma·nent"
+    "syllables": "per·ma·nent",
+    "extraExample": "She is looking for a permanent job with good benefits.",
+    "extraExampleTranslation": "เธอกำลังมองหางานประจำที่มั่นคงพร้อมสวัสดิการที่ดี",
+    "usageTip": "ตรงข้ามกับ temporary ใช้กับสิ่งที่อยู่คงทนถาวร"
   },
   {
     "word": "permission",
@@ -61095,7 +66147,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "You must ask for permission before using someone else's laptop.",
+    "extraExampleTranslation": "คุณต้องขออนุญาตก่อนใช้แล็ปท็อปของคนอื่น",
+    "usageTip": "เป็นคำนามนับไม่ได้ ห้ามเติม s และมักใช้คู่กับคำกริยา ask หรือ give"
   },
   {
     "word": "permit",
@@ -61135,7 +66190,10 @@ const wordsData = [
     "forms": [
       "V2/V3: permitted",
       "V-ing: permitting"
-    ]
+    ],
+    "extraExample": "The city council will not permit construction without a valid plan.",
+    "extraExampleTranslation": "สภาเทศบาลจะไม่อนุญาตให้ก่อสร้างหากไม่มีแบบแปลนที่ถูกต้อง",
+    "usageTip": "ในฐานะกริยาแปลว่าอนุญาต (เป็นทางการกว่า allow) ส่วนคำนามแปลว่าใบอนุญาต"
   },
   {
     "word": "person",
@@ -61168,7 +66226,10 @@ const wordsData = [
       "พหูพจน์: people"
     ],
     "phoneticUK": "/pˈɜːsən/",
-    "syllables": "per·son"
+    "syllables": "per·son",
+    "extraExample": "He is the kind of person who always keeps his promises.",
+    "extraExampleTranslation": "เขาเป็นคนประเภทที่รักษาสัญญาของตัวเองเสมอ",
+    "usageTip": "ใช้พูดถึงบุคคลหนึ่งคน รูปพหูพจน์ทั่วไปคือ people"
   },
   {
     "word": "personal",
@@ -61205,7 +66266,10 @@ const wordsData = [
       "impersonal"
     ],
     "phoneticUK": "/pˈɜːsɪnɪl/",
-    "syllables": "per·so·nal"
+    "syllables": "per·so·nal",
+    "extraExample": "Please keep your personal belongings safe while traveling.",
+    "extraExampleTranslation": "โปรดเก็บรักษาของใช้ส่วนตัวของคุณให้ปลอดภัยระหว่างเดินทาง",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อระบุว่าเป็นเรื่องเฉพาะบุคคลหรือส่วนตัว"
   },
   {
     "word": "personality",
@@ -61239,7 +66303,10 @@ const wordsData = [
     "syllables": "per·so·na·li·ty",
     "forms": [
       "พหูพจน์: personalities"
-    ]
+    ],
+    "extraExample": "Her warm personality makes everyone feel welcome immediately.",
+    "extraExampleTranslation": "บุคลิกภาพที่อบอุ่นของเธอทำให้ทุกคนรู้สึกยินดีและเป็นกันเองทันที",
+    "usageTip": "หมายถึงนิสัยใจคอและลักษณะเฉพาะตัวที่แสดงออกมาให้คนอื่นเห็น"
   },
   {
     "word": "personally",
@@ -61273,7 +66340,10 @@ const wordsData = [
       "impersonally"
     ],
     "phoneticUK": "/pˈɜːsənəliː/",
-    "syllables": "per·so·nal·ly"
+    "syllables": "per·so·nal·ly",
+    "extraExample": "Personally, I prefer working from home rather than commuting.",
+    "extraExampleTranslation": "โดยส่วนตัวแล้ว ฉันชอบทำงานจากที่บ้านมากกว่าการเดินทางไปทำงาน",
+    "usageTip": "วางไว้ต้นประโยคเพื่อแสดงความคิดเห็นส่วนตัวของผู้พูด"
   },
   {
     "word": "persuade",
@@ -61310,7 +66380,10 @@ const wordsData = [
       "V-ing: persuading"
     ],
     "grammarPattern": "persuade + someone + to V (โน้มน้าวใจให้...)",
-    "syllables": "per·suade"
+    "syllables": "per·suade",
+    "extraExample": "It was hard to persuade him to change his mind about moving.",
+    "extraExampleTranslation": "มันยากที่จะชักชวนให้เขาเปลี่ยนใจเรื่องการย้ายบ้าน",
+    "usageTip": "มักใช้ในโครงสร้าง persuade someone to do something"
   },
   {
     "word": "pet",
@@ -61333,6 +66406,13 @@ const wordsData = [
       "darling",
       "favorite",
       "favourite"
+    ],
+    "extraExample": "Having a pet can reduce stress and bring joy to your home.",
+    "extraExampleTranslation": "การมีสัตว์เลี้ยงช่วยลดความเครียดและนำความสุขมาสู่บ้านของคุณได้",
+    "usageTip": "ใช้เรียกสัตว์ที่เลี้ยงไว้เป็นเพื่อน เช่น สุนัขหรือแมว",
+    "collocations": [
+      "pet owner",
+      "keep a pet"
     ]
   },
   {
@@ -61357,7 +66437,14 @@ const wordsData = [
       "gas"
     ],
     "phoneticUK": "/pˈetrəʊl/",
-    "syllables": "pe·trol"
+    "syllables": "pe·trol",
+    "extraExample": "We need to stop at the station to buy some petrol for the car.",
+    "extraExampleTranslation": "เราต้องแวะปั๊มเพื่อเติมน้ำมันรถสักหน่อย",
+    "usageTip": "เป็นคำภาษาอังกฤษแบบอังกฤษ (UK) ส่วนแบบอเมริกันใช้คำว่า gas หรือ gasoline",
+    "collocations": [
+      "petrol station",
+      "run out of petrol"
+    ]
   },
   {
     "word": "phase",
@@ -61387,7 +66474,10 @@ const wordsData = [
       "กำลังจะ",
       "ผ่าน",
       "ไป"
-    ]
+    ],
+    "extraExample": "The project is now entering its final phase before launch.",
+    "extraExampleTranslation": "โครงการกำลังเข้าสู่ระยะสุดท้ายก่อนการเปิดตัวแล้ว",
+    "usageTip": "ใช้บอกขั้นตอนหรือช่วงเวลาสำคัญในกระบวนการหรือพัฒนาการ"
   },
   {
     "word": "philosophy",
@@ -61418,7 +66508,10 @@ const wordsData = [
     "syllables": "phi·lo·so·phy",
     "forms": [
       "พหูพจน์: philosophies"
-    ]
+    ],
+    "extraExample": "His philosophy of life is to stay curious and keep learning.",
+    "extraExampleTranslation": "ปรัชญาชีวิตของเขาคือการใฝ่รู้และเรียนรู้ต่อไปอยู่เสมอ",
+    "usageTip": "หมายถึงหลักคิด แนวทางชีวิต หรือวิชาปรัชญา"
   },
   {
     "word": "phone",
@@ -61449,7 +66542,10 @@ const wordsData = [
       "ได้",
       "ไหม"
     ],
-    "phoneticUK": "/fˈəʊn/"
+    "phoneticUK": "/fˈəʊn/",
+    "extraExample": "I forgot to charge my phone before leaving the house this morning.",
+    "extraExampleTranslation": "ฉันลืมชาร์จโทรศัพท์ก่อนออกจากบ้านเมื่อเช้านี้",
+    "usageTip": "ใช้ได้ทั้งคำนาม (โทรศัพท์) และคำกริยา (โทรหา)"
   },
   {
     "word": "photo",
@@ -61478,7 +66574,10 @@ const wordsData = [
       "ไหม"
     ],
     "phoneticUK": "/fˈəʊtˌəʊ/",
-    "syllables": "pho·to"
+    "syllables": "pho·to",
+    "extraExample": "Let's take a group photo in front of the main building.",
+    "extraExampleTranslation": "มาถ่ายรูปหมู่หน้าอาคารหลักกันเถอะ",
+    "usageTip": "เป็นคำย่อที่นิยมใช้ทั่วไปของ photograph มักใช้คู่กับกริยา take"
   },
   {
     "word": "photocopy",
@@ -61607,7 +66706,10 @@ const wordsData = [
     "syllables": "pho·to·gra·phy",
     "forms": [
       "พหูพจน์: photographies"
-    ]
+    ],
+    "extraExample": "She studied photography in college and now works for a travel magazine.",
+    "extraExampleTranslation": "เธอเรียนการถ่ายภาพในมหาวิทยาลัยและตอนนี้ทำงานให้นิตยสารท่องเที่ยว",
+    "usageTip": "คำนามนับไม่ได้ ใช้พูดถึงศิลปะหรืออาชีพการถ่ายภาพ ไม่ต้องเติม s"
   },
   {
     "word": "phrase",
@@ -61633,7 +66735,10 @@ const wordsData = [
       "วลี",
       "ที่",
       "มีประโยชน์"
-    ]
+    ],
+    "extraExample": "This useful phrase will help you order food politely in a restaurant.",
+    "extraExampleTranslation": "วลีที่มีประโยชน์นี้จะช่วยให้คุณสั่งอาหารอย่างสุภาพในร้านอาหาร",
+    "usageTip": "หมายถึงกลุ่มคำที่รวมกันมีความหมาย แต่ยังไม่เป็นประโยคสมบูรณ์"
   },
   {
     "word": "physical",
@@ -61666,7 +66771,10 @@ const wordsData = [
     "antonyms": [
       "mental"
     ],
-    "syllables": "phy·si·cal"
+    "syllables": "phy·si·cal",
+    "extraExample": "Regular physical exercise is important for keeping your heart healthy.",
+    "extraExampleTranslation": "การออกกำลังกายทางกายภาพอย่างสม่ำเสมอสำคัญต่อการรักษาสุขภาพหัวใจให้แข็งแรง",
+    "usageTip": "ใช้นำหน้าคำนามเพื่อบอกสิ่งที่เกี่ยวกับร่างกายหรือจับต้องได้"
   },
   {
     "word": "physics",
@@ -61695,7 +66803,10 @@ const wordsData = [
     "syllables": "phy·sics",
     "forms": [
       "พหูพจน์: physicses"
-    ]
+    ],
+    "extraExample": "He finds physics challenging, especially when studying electricity and magnetism.",
+    "extraExampleTranslation": "เขาคิดว่าวิชาฟิสิกส์ท้าทาย โดยเฉพาะเวลาเรียนเรื่องไฟฟ้าและแม่เหล็ก",
+    "usageTip": "แม้ลงท้ายด้วย s แต่เป็นคำนามเอกพจน์ ใช้กริยาเอกพจน์เสมอ (Physics is...)"
   },
   {
     "word": "piano",
@@ -61723,7 +66834,10 @@ const wordsData = [
       "อย่าง",
       "ไพเราะ"
     ],
-    "phoneticUK": "/piːˈænəʊ/"
+    "phoneticUK": "/piːˈænəʊ/",
+    "extraExample": "My sister has been practicing the piano every afternoon for five years.",
+    "extraExampleTranslation": "น้องสาวของฉันฝึกเล่นเปียโนทุกบ่ายมาเป็นเวลาห้าปีแล้ว",
+    "usageTip": "เมื่อใช้กับกริยา play มักใส่ the นำหน้า เช่น play the piano"
   },
   {
     "word": "pick",
@@ -61757,7 +66871,10 @@ const wordsData = [
     "phrases": [
       "pick up (ไปรับ/หยิบขึ้นมา/เรียนรู้ไว)",
       "pick out (เลือกคัดออกมา)"
-    ]
+    ],
+    "extraExample": "You can pick any book you like from the shelf.",
+    "extraExampleTranslation": "คุณสามารถเลือกหนังสือเล่มไหนก็ได้ที่ชอบจากชั้นวาง",
+    "usageTip": "ใช้ได้ทั้งความหมายว่า เลือก หยิบ หรือเด็ด และใช้กับ up เป็น pick up (ไปรับ/หยิบขึ้น)"
   },
   {
     "word": "picture",
@@ -61783,7 +66900,10 @@ const wordsData = [
       "บ้าน"
     ],
     "phoneticUK": "/pˈɪktʃə(r)/",
-    "syllables": "pic·ture"
+    "syllables": "pic·ture",
+    "extraExample": "We took a family picture in front of the old temple.",
+    "extraExampleTranslation": "พวกเราถ่ายรูปครอบครัวหน้าวัดเก่าแก่",
+    "usageTip": "ใช้ได้ทั้งภาพถ่ายและภาพวาด มักใช้กับกริยา take (ถ่าย) หรือ draw (วาด)"
   },
   {
     "word": "piece",
@@ -61814,7 +66934,10 @@ const wordsData = [
     "phrases": [
       "a piece of cake (ง่ายมากเหมือนปอกกล้วย)",
       "in one piece (ปลอดภัยครบสมบูรณ์)"
-    ]
+    ],
+    "extraExample": "Would you like another piece of chocolate cake?",
+    "extraExampleTranslation": "คุณอยากรับเค้กช็อกโกแลตเพิ่มอีกสักชิ้นไหม",
+    "usageTip": "ใช้นับสิ่งของที่เป็นชิ้นหรือส่วนหนึ่งของทั้งหมด คู่กับ of เสมอ"
   },
   {
     "word": "pig",
@@ -61839,7 +66962,10 @@ const wordsData = [
       "หมู",
       "กำลังกิน",
       "อาหาร"
-    ]
+    ],
+    "extraExample": "The little pig rolled happily in the mud on the farm.",
+    "extraExampleTranslation": "หมูน้อยกลิ้งไปมาอย่างมีความสุขในโคลนที่ฟาร์ม",
+    "usageTip": "ใช้เรียกสัตว์เป็นตัว ส่วนเนื้อหมูสำหรับทำอาหารมักเรียกว่า pork"
   },
   {
     "word": "pile",
@@ -61867,7 +66993,10 @@ const wordsData = [
       "อยู่",
       "บน",
       "โต๊ะทำงาน"
-    ]
+    ],
+    "extraExample": "There is a huge pile of dirty laundry waiting to be washed.",
+    "extraExampleTranslation": "มีกองเสื้อผ้าสกปรกกองใหญ่อยู่รอการซัก",
+    "usageTip": "ใช้บอกลักษณะสิ่งของที่วางซ้อนกันเป็นกอง มักตามด้วย of"
   },
   {
     "word": "pill",
@@ -61897,7 +67026,10 @@ const wordsData = [
       "เม็ด",
       "ทุก",
       "เช้า"
-    ]
+    ],
+    "extraExample": "Remember to take one pill after breakfast every morning.",
+    "extraExampleTranslation": "อย่าลืมกินยาหนึ่งเม็ดหลังอาหารเช้าทุกวันนะ",
+    "usageTip": "ใช้กับกริยา take (กินยา) ไม่ใช้ eat"
   },
   {
     "word": "pilot",
@@ -61923,7 +67055,10 @@ const wordsData = [
       "ขับ",
       "เครื่องบิน"
     ],
-    "syllables": "pi·lot"
+    "syllables": "pi·lot",
+    "extraExample": "The pilot announced that our flight would land twenty minutes early.",
+    "extraExampleTranslation": "นักบินประกาศว่าเที่ยวบินของเราจะลงจอดเร็วกว่ากำหนดยี่สิบนาที",
+    "usageTip": "ใช้เรียกผู้ควบคุมเครื่องบิน และยังใช้เป็นคำนามหรือคุณศัพท์แปลว่า โครงการนำร่อง ได้ด้วย"
   },
   {
     "word": "pin",
@@ -61951,7 +67086,10 @@ const wordsData = [
       "ยึด",
       "มัน",
       "เข้าด้วยกัน"
-    ]
+    ],
+    "extraExample": "She used a small pin to attach the note to the board.",
+    "extraExampleTranslation": "เธอใช้หมุดตัวเล็กปักกระดาษโน้ตติดกับบอร์ด",
+    "usageTip": "ใช้เป็นคำนามแปลว่าหมุดหรือเข็มกลัด และเป็นคำกริยาแปลว่าปักหรือตรึง"
   },
   {
     "word": "pink",
@@ -61975,7 +67113,10 @@ const wordsData = [
       "สวม",
       "ชุด",
       "สีชมพู"
-    ]
+    ],
+    "extraExample": "The sky turned bright pink just before the sun went down.",
+    "extraExampleTranslation": "ท้องฟ้าเปลี่ยนเป็นสีชมพูสดใสก่อนพระอาทิตย์จะตกดิน",
+    "usageTip": "ใช้ได้ทั้งเป็นคำนามและคำคุณศัพท์วางหน้าคำนามเพื่อบอกสี"
   },
   {
     "word": "pint",
@@ -62003,7 +67144,10 @@ const wordsData = [
       "น์",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "He ordered a pint of cold beer at the local pub.",
+    "extraExampleTranslation": "เขาสั่งเบียร์เย็นหนึ่งไพนต์ที่ผับแถวบ้าน",
+    "usageTip": "เป็นหน่วยวัดปริมาตรของเหลว นิยมใช้ในสหราชอาณาจักรและสหรัฐอเมริกา"
   },
   {
     "word": "pipe",
@@ -62028,7 +67172,10 @@ const wordsData = [
       "ท่อน้ำ",
       "กำลัง",
       "รั่ว"
-    ]
+    ],
+    "extraExample": "A water pipe burst in the kitchen and flooded the floor.",
+    "extraExampleTranslation": "ท่อน้ำแตกในห้องครัวทำให้น้ำท่วมพื้น",
+    "usageTip": "ใช้เรียกท่อส่งน้ำ ก๊าซ หรือน้ำมัน รวมถึงไปป์สูบยา"
   },
   {
     "word": "pitch",
@@ -62055,7 +67202,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: pitches"
-    ]
+    ],
+    "extraExample": "Workers poured hot pitch onto the roof to stop the leak.",
+    "extraExampleTranslation": "คนงานเทยางมะตอยร้อนลงบนหลังคาเพื่ออุดรอยรั่ว",
+    "usageTip": "นอกจากแปลว่าน้ำมันดิบหรือยางไม้แล้ว ยังใช้แปลว่า สนามกีฬา ระดับเสียง หรือการนำเสนอขายงาน ได้ด้วย"
   },
   {
     "word": "pity",
@@ -62087,7 +67237,10 @@ const wordsData = [
     "syllables": "pi·ty",
     "forms": [
       "พหูพจน์: pities"
-    ]
+    ],
+    "extraExample": "I felt a deep sense of pity when I saw the stray dog in the rain.",
+    "extraExampleTranslation": "ฉันรู้สึกสงสารอย่างจับใจเมื่อเห็นสุนัขจรจัดท่ามกลางสายฝน",
+    "usageTip": "มักใช้ในสำนวน What a pity! (น่าเสียดายจัง) หรือ feel pity for (รู้สึกสงสาร)"
   },
   {
     "word": "place",
@@ -62119,7 +67272,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "replace"
-    ]
+    ],
+    "extraExample": "This quiet park is my favorite place to read on weekends.",
+    "extraExampleTranslation": "สวนสาธารณะที่เงียบสงบแห่งนี้เป็นสถานที่โปรดของฉันสำหรับอ่านหนังสือในวันสุดสัปดาห์",
+    "usageTip": "ใช้ระบุตำแหน่งหรือสถานที่ และใช้ในสำนวน take place ที่แปลว่า เกิดขึ้น"
   },
   {
     "word": "plain",
@@ -62151,7 +67307,10 @@ const wordsData = [
     "antonyms": [
       "fancy",
       "patterned"
-    ]
+    ],
+    "extraExample": "She prefers plain yogurt with fresh fruit instead of sweet flavors.",
+    "extraExampleTranslation": "เธอชอบโยเกิร์ตรสจืดทานคู่กับผลไม้สดมากกว่ารสหวาน",
+    "usageTip": "ใช้บอกสิ่งที่เรียบง่าย ไม่มีลวดลาย หรือรสชาติจืดไม่ปรุงแต่ง"
   },
   {
     "word": "plan",
@@ -62265,7 +67424,10 @@ const wordsData = [
       "จัดงาน",
       "ปาร์ตี้"
     ],
-    "syllables": "plan·ning"
+    "syllables": "plan·ning",
+    "extraExample": "We are planning a trip to Chiang Mai next month.",
+    "extraExampleTranslation": "พวกเรากำลังวางแผนไปเที่ยวเชียงใหม่เดือนหน้า",
+    "usageTip": "ใช้ในรูป continuous (is/are planning) หรือตามด้วย to + V.1 เพื่อบอกสิ่งที่วางแผนจะทำ"
   },
   {
     "word": "plant",
@@ -62290,7 +67452,10 @@ const wordsData = [
       "รดน้ำต้นไม้",
       "ทุกวัน"
     ],
-    "phoneticUK": "/plˈɑːnt/"
+    "phoneticUK": "/plˈɑːnt/",
+    "extraExample": "Make sure to water the plant every morning.",
+    "extraExampleTranslation": "อย่าลืมรดน้ำต้นไม้ทุกเช้าด้วยนะ",
+    "usageTip": "ใช้เป็นคำนามหมายถึงพืชหรือต้นไม้ และใช้เป็นกริยาหมายถึงปลูกได้ด้วย"
   },
   {
     "word": "plastic",
@@ -62316,7 +67481,10 @@ const wordsData = [
       "จาก",
       "พลาสติก"
     ],
-    "syllables": "pla·stic"
+    "syllables": "pla·stic",
+    "extraExample": "Please put the plastic bottle in the recycling bin.",
+    "extraExampleTranslation": "กรุณาทิ้งขวดพลาสติกลงในถังรีไซเคิล",
+    "usageTip": "ใช้เป็นคำนามหรือคำคุณศัพท์วางหน้าคำนามเพื่อบอกวัสดุ"
   },
   {
     "word": "plate",
@@ -62344,7 +67512,10 @@ const wordsData = [
       "ให้",
       "ฉัน",
       "หน่อย"
-    ]
+    ],
+    "extraExample": "She placed the hot food on a ceramic plate.",
+    "extraExampleTranslation": "เธอวางอาหารร้อนๆ ลงบนจานเซรามิก",
+    "usageTip": "หมายถึงจานแบนสำหรับใส่อาหาร ถ้าเป็นชามก้นลึกจะใช้ bowl"
   },
   {
     "word": "platform",
@@ -62372,7 +67543,10 @@ const wordsData = [
       "ชานชาลา",
       "4"
     ],
-    "syllables": "plat·form"
+    "syllables": "plat·form",
+    "extraExample": "The train will arrive at platform three in five minutes.",
+    "extraExampleTranslation": "รถไฟจะมาถึงชานชาลาที่สามในอีกห้านาที",
+    "usageTip": "ใช้ได้ทั้งชานชาลารถไฟ เวที หรือแพลตฟอร์มออนไลน์"
   },
   {
     "word": "play",
@@ -62400,7 +67574,10 @@ const wordsData = [
       "เด็กๆ",
       "ชอบ",
       "เล่น"
-    ]
+    ],
+    "extraExample": "The children love to play in the park after school.",
+    "extraExampleTranslation": "เด็กๆ ชอบเล่นในสวนสาธารณะหลังเลิกเรียน",
+    "usageTip": "ใช้กับกีฬา (ไม่ต้องมี the) และเครื่องดนตรี (มักมี the นำหน้า เช่น play the piano)"
   },
   {
     "word": "player",
@@ -62434,7 +67611,10 @@ const wordsData = [
       "ที่",
       "เก่ง"
     ],
-    "phoneticUK": "/plˈeɪə(r)/"
+    "phoneticUK": "/plˈeɪə(r)/",
+    "extraExample": "He is the best basketball player on the school team.",
+    "extraExampleTranslation": "เขาเป็นผู้เล่นบาสเกตบอลที่เก่งที่สุดในทีมโรงเรียน",
+    "usageTip": "เติม -er หลัง play เพื่อบอกผู้เล่นกีฬา เกม หรือเครื่องดนตรี"
   },
   {
     "word": "pleasant",
@@ -62469,7 +67649,10 @@ const wordsData = [
     "antonyms": [
       "unpleasant"
     ],
-    "syllables": "plea·sant"
+    "syllables": "plea·sant",
+    "extraExample": "We had a very pleasant walk along the beach.",
+    "extraExampleTranslation": "พวกเราเดินเล่นริมชายหาดอย่างน่ารื่นรมย์มาก",
+    "usageTip": "ใช้บรรยายอากาศ สถานที่ หรือประสบการณ์ที่ทำให้รู้สึกดีและสบายใจ"
   },
   {
     "word": "please",
@@ -62508,7 +67691,10 @@ const wordsData = [
     "forms": [
       "V2/V3: pleased",
       "V-ing: pleasing"
-    ]
+    ],
+    "extraExample": "Could you please close the window before you leave?",
+    "extraExampleTranslation": "กรุณาช่วยปิดหน้าต่างก่อนออกไปด้วยได้ไหม",
+    "usageTip": "ใช้เพื่อขอร้องอย่างสุภาพ หรือใช้เป็นกริยาแปลว่าทำให้พอใจ"
   },
   {
     "word": "pleased",
@@ -62536,7 +67722,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "please"
-    ]
+    ],
+    "extraExample": "I am very pleased with the results of the project.",
+    "extraExampleTranslation": "ฉันยินดีมากกับผลลัพธ์ของโครงการนี้",
+    "usageTip": "มักใช้คู่กับ with (พอใจกับ...) หรือ to + V.1 (ยินดีที่ได้...)"
   },
   {
     "word": "pleasing",
@@ -62560,7 +67749,14 @@ const wordsData = [
     "antonyms": [
       "displeasing"
     ],
-    "syllables": "plea·sing"
+    "syllables": "plea·sing",
+    "extraExample": "The new office design has a very pleasing appearance.",
+    "extraExampleTranslation": "การออกแบบสำนักงานใหม่มีรูปลักษณ์ที่ดูสบายตาและน่าพอใจมาก",
+    "usageTip": "ใช้อธิบายสิ่งที่ทำให้ผู้พบเห็นหรือผู้ฟังรู้สึกพอใจ",
+    "collocations": [
+      "visually pleasing",
+      "pleasing result"
+    ]
   },
   {
     "word": "pleasure",
@@ -62598,7 +67794,10 @@ const wordsData = [
       "pain"
     ],
     "phoneticUK": "/plˈeʒə(r)/",
-    "syllables": "plea·sure"
+    "syllables": "plea·sure",
+    "extraExample": "It was a great pleasure meeting you today.",
+    "extraExampleTranslation": "เป็นความยินดีอย่างยิ่งที่ได้พบคุณในวันนี้",
+    "usageTip": "ใช้ในประโยคสุภาพเพื่อแสดงความยินดีหรือความสุขที่ได้ทำสิ่งใดสิ่งหนึ่ง"
   },
   {
     "word": "plenty",
@@ -62628,7 +67827,10 @@ const wordsData = [
     "syllables": "plen·ty",
     "forms": [
       "พหูพจน์: plenties"
-    ]
+    ],
+    "extraExample": "There is plenty of time to finish the report.",
+    "extraExampleTranslation": "ยังมีเวลาอีกมากมายที่จะทำรายงานให้เสร็จ",
+    "usageTip": "มักใช้ในโครงสร้าง plenty of + คำนามนับได้พหูพจน์หรือคำนามนับไม่ได้"
   },
   {
     "word": "plot",
@@ -62656,7 +67858,10 @@ const wordsData = [
       "ที่",
       "น่าสนใจ"
     ],
-    "phoneticUK": "/plˈɒt/"
+    "phoneticUK": "/plˈɒt/",
+    "extraExample": "The movie has an exciting plot with many twists.",
+    "extraExampleTranslation": "ภาพยนตร์เรื่องนี้มีโครงเรื่องที่น่าตื่นเต้นและหักมุมหลายจุด",
+    "usageTip": "หมายถึงโครงเรื่อง ที่ดินแปลงเล็ก หรือการวางแผนลับ (คำกริยา)"
   },
   {
     "word": "plug",
@@ -62682,7 +67887,10 @@ const wordsData = [
       "ปลั๊ก",
       "ออกจาก",
       "เต้ารับ"
-    ]
+    ],
+    "extraExample": "Pull out the plug before cleaning the toaster.",
+    "extraExampleTranslation": "ดึงปลั๊กออกก่อนทำความสะอาดเครื่องปิ้งขนมปัง",
+    "usageTip": "ใช้ได้ทั้งปลั๊กไฟ จุกอุด หรือเป็นกริยาแปลว่าเสียบปลั๊ก/อุดรู"
   },
   {
     "word": "plus",
@@ -62712,7 +67920,10 @@ const wordsData = [
     ],
     "antonyms": [
       "minus"
-    ]
+    ],
+    "extraExample": "The hotel is clean and comfortable, plus it is near the station.",
+    "extraExampleTranslation": "โรงแรมสะอาดและสะดวกสบาย แถมยังอยู่ใกล้สถานีอีกด้วย",
+    "usageTip": "ใช้เชื่อมประโยคหรือข้อความเพื่อเพิ่มข้อมูลด้านบวกเข้าไป คล้ายกับ besides หรือ and also"
   },
   {
     "word": "pocket",
@@ -62742,7 +67953,10 @@ const wordsData = [
       "กระเป๋าเสื้อ"
     ],
     "phoneticUK": "/pˈɒkət/",
-    "syllables": "po·cket"
+    "syllables": "po·cket",
+    "extraExample": "He always keeps his keys in his right pocket.",
+    "extraExampleTranslation": "เขามักจะเก็บกุญแจไว้ในกระเป๋าเสื้อด้านขวาเสมอ",
+    "usageTip": "หมายถึงกระเป๋าที่เย็บติดกับเสื้อหรือกางเกง ไม่ใช่กระเป๋าถือ (bag)"
   },
   {
     "word": "poem",
@@ -62769,7 +67983,10 @@ const wordsData = [
       "ที่",
       "สวยงาม"
     ],
-    "phoneticUK": "/pˈəʊəm/"
+    "phoneticUK": "/pˈəʊəm/",
+    "extraExample": "She wrote a short poem about the autumn rain.",
+    "extraExampleTranslation": "เธอแต่งบทร้อยกรองสั้นๆ เกี่ยวกับฝนในฤดูใบไม้ร่วง",
+    "usageTip": "เป็นคำนามนับได้ หมายถึงบทกวีหรือกลอนหนึ่งบท"
   },
   {
     "word": "poetry",
@@ -62800,7 +68017,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "He enjoys reading classic poetry in his free time.",
+    "extraExampleTranslation": "เขาชอบอ่านบทกวีคลาสสิกในเวลาว่าง",
+    "usageTip": "เป็นคำนามนับไม่ได้ หมายถึงงานกวีนิพนธ์โดยรวม ไม่ต้องเติม -s"
   },
   {
     "word": "point",
@@ -62837,7 +68057,8 @@ const wordsData = [
       "get to the point (เข้าประเด็น)"
     ],
     "extraExample": "You made a very good point during the meeting.",
-    "extraExampleTranslation": "คุณเสนอประเด็นที่ดีมากระหว่างการประชุม (make a point = เสนอประเด็น)"
+    "extraExampleTranslation": "คุณเสนอประเด็นที่ดีมากระหว่างการประชุม (make a point = เสนอประเด็น)",
+    "usageTip": "ใช้หมายถึงจุด ประเด็นสำคัญ หรือคะแนนในการแข่งขัน"
   },
   {
     "word": "pointed",
@@ -62930,7 +68151,10 @@ const wordsData = [
       "ชนิด",
       "มีพิษ"
     ],
-    "syllables": "poi·so·nous"
+    "syllables": "poi·so·nous",
+    "extraExample": "Some mushrooms in the forest are extremely poisonous.",
+    "extraExampleTranslation": "เห็ดบางชนิดในป่ามีพิษร้ายแรงมาก",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่ามีพิษ เช่น poisonous snake หรือใช้เปรียบเปรยถึงคนหรือคำพูดที่ร้ายกาจ"
   },
   {
     "word": "pole",
@@ -62958,7 +68182,10 @@ const wordsData = [
       "บน",
       "เสา"
     ],
-    "phoneticUK": "/pˈəʊl/"
+    "phoneticUK": "/pˈəʊl/",
+    "extraExample": "The flag was raised to the top of the pole.",
+    "extraExampleTranslation": "ธงถูกชักขึ้นไปบนยอดเสา",
+    "usageTip": "หมายถึงเสายาวๆ หรือขั้วโลก (North/South Pole) และขั้วแม่เหล็ก"
   },
   {
     "word": "police",
@@ -62988,7 +68215,9 @@ const wordsData = [
     ],
     "usageTip": "police ถือเป็นพหูพจน์เสมอ ใช้กับกริยาพหูพจน์ เช่น The police are investigating",
     "syllables": "po·lice",
-    "grammarPattern": "[C พหูพจน์] ใช้กับกริยาพหูพจน์เสมอ (The police are...)"
+    "grammarPattern": "[C พหูพจน์] ใช้กับกริยาพหูพจน์เสมอ (The police are...)",
+    "extraExample": "The police arrived at the scene within minutes.",
+    "extraExampleTranslation": "ตำรวจมาถึงที่เกิดเหตุภายในไม่กี่นาที"
   },
   {
     "word": "policy",
@@ -63023,7 +68252,10 @@ const wordsData = [
     "syllables": "po·li·cy",
     "forms": [
       "พหูพจน์: policies"
-    ]
+    ],
+    "extraExample": "The company has a strict policy against discrimination.",
+    "extraExampleTranslation": "บริษัทมีนโยบายที่เข้มงวดในการต่อต้านการเลือกปฏิบัติ",
+    "usageTip": "แปลว่านโยบายขององค์กร/รัฐบาล หรือกรมธรรม์ประกันภัย (insurance policy)"
   },
   {
     "word": "polish",
@@ -63053,7 +68285,10 @@ const wordsData = [
       "เขา"
     ],
     "phoneticUK": "/pˈɒlɪʃ/",
-    "syllables": "po·lish"
+    "syllables": "po·lish",
+    "extraExample": "He spent the afternoon trying to polish his leather shoes.",
+    "extraExampleTranslation": "เขาใช้เวลาช่วงบ่ายขัดรองเท้าหนังให้เงางาม",
+    "usageTip": "นอกจากแปลว่าขัดเงาแล้ว ยังใช้เปรียบเปรยถึงการขัดเกลาทักษะหรืองานเขียนให้ดีขึ้นได้ด้วย"
   },
   {
     "word": "polite",
@@ -63085,7 +68320,10 @@ const wordsData = [
       "rude",
       "impolite"
     ],
-    "syllables": "po·lite"
+    "syllables": "po·lite",
+    "extraExample": "It is important to be polite to customers at all times.",
+    "extraExampleTranslation": "การพูดจาสุภาพกับลูกค้าตลอดเวลาเป็นสิ่งสำคัญ",
+    "usageTip": "มักใช้คู่กับบุพบท to (polite to someone) คำตรงข้ามคือ impolite หรือ rude"
   },
   {
     "word": "political",
@@ -63119,7 +68357,10 @@ const wordsData = [
     "antonyms": [
       "nonpolitical"
     ],
-    "syllables": "po·li·ti·cal"
+    "syllables": "po·li·ti·cal",
+    "extraExample": "They had a heated debate about recent political events.",
+    "extraExampleTranslation": "พวกเขามีการโต้เถียงอย่างดุเดือดเกี่ยวกับเหตุการณ์ทางการเมืองล่าสุด",
+    "usageTip": "ใช้ขยายคำนามเท่านั้น เช่น political party (พรรคการเมือง) หรือ political leader"
   },
   {
     "word": "politically",
@@ -63141,7 +68382,14 @@ const wordsData = [
     "wordFamily": [
       "political"
     ],
-    "syllables": "po·li·ti·cal·ly"
+    "syllables": "po·li·ti·cal·ly",
+    "extraExample": "The issue has become politically sensitive in recent months.",
+    "extraExampleTranslation": "ประเด็นนี้กลายเป็นเรื่องที่ละเอียดอ่อนทางการเมืองในช่วงไม่กี่เดือนที่ผ่านมา",
+    "usageTip": "มักวางไว้หน้าคำคุณศัพท์เพื่อขยายความว่าในแง่มุมทางการเมือง เช่น politically correct",
+    "collocations": [
+      "politically correct",
+      "politically active"
+    ]
   },
   {
     "word": "politician",
@@ -63172,7 +68420,10 @@ const wordsData = [
       "นักการเมือง"
     ],
     "phoneticUK": "/pˌɒlətˈɪʃən/",
-    "syllables": "po·li·ti·cian"
+    "syllables": "po·li·ti·cian",
+    "extraExample": "The young politician promised to bring real change to the city.",
+    "extraExampleTranslation": "นักการเมืองรุ่นใหม่สัญญาว่าจะนำการเปลี่ยนแปลงที่แท้จริงมาสู่เมืองนี้",
+    "usageTip": "ใช้เรียกผู้ที่ทำงานด้านการเมืองหรือลงสมัครรับเลือกตั้ง"
   },
   {
     "word": "politics",
@@ -63205,7 +68456,10 @@ const wordsData = [
     "syllables": "po·li·tics",
     "forms": [
       "พหูพจน์: politicses"
-    ]
+    ],
+    "extraExample": "She decided to enter politics after graduating from law school.",
+    "extraExampleTranslation": "เธอตัดสินใจเข้าสู่แวดวงการเมืองหลังจากเรียนจบกฎหมาย",
+    "usageTip": "ลงท้ายด้วย -s แต่มักใช้เป็นเอกพจน์เมื่อหมายถึงวิชาหรือเรื่องการเมือง (Politics is...)"
   },
   {
     "word": "pollution",
@@ -63235,7 +68489,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Air pollution is a major problem in many big cities.",
+    "extraExampleTranslation": "มลพิษทางอากาศเป็นปัญหาใหญ่ในเมืองใหญ่หลายแห่ง",
+    "usageTip": "เป็นคำนามนับไม่ได้ ใช้ระบุประเภทมลพิษโดยวางคำนามอื่นไว้ข้างหน้า เช่น air/water/noise pollution"
   },
   {
     "word": "pool",
@@ -63262,7 +68519,10 @@ const wordsData = [
       "สระ",
       "กัน",
       "เถอะ"
-    ]
+    ],
+    "extraExample": "The children are swimming in the hotel pool.",
+    "extraExampleTranslation": "เด็กๆ กำลังว่ายน้ำอยู่ในสระว่ายน้ำของโรงแรม",
+    "usageTip": "นอกจากสระว่ายน้ำ ยังหมายถึงแอ่งน้ำขัง หรือการรวมกลุ่มทรัพยากร/เงินทุน (carpool)"
   },
   {
     "word": "poor",
@@ -63294,7 +68554,10 @@ const wordsData = [
       "rich",
       "wealthy"
     ],
-    "phoneticUK": "/pˈʊ/"
+    "phoneticUK": "/pˈʊ/",
+    "extraExample": "The charity provides food and shelter for poor families.",
+    "extraExampleTranslation": "องค์กรการกุศลจัดหาอาหารและที่พักพิงให้ครอบครัวที่ยากจน",
+    "usageTip": "นอกจากแปลว่ายากจน ยังแปลว่าแย่/ไม่ได้มาตรฐาน (poor quality) หรือน่าสงสาร (poor thing) ได้ด้วย"
   },
   {
     "word": "pop",
@@ -63325,7 +68588,10 @@ const wordsData = [
     "forms": [
       "V2/V3: popped",
       "V-ing: popping"
-    ]
+    ],
+    "extraExample": "We heard the balloon pop loudly in the quiet room.",
+    "extraExampleTranslation": "เราได้ยินเสียงลูกโป่งแตกดังป๊อปในห้องที่เงียบสงบ",
+    "usageTip": "เป็นกริยาแปลว่าแตกดังป๊อป หรือโผล่มา (pop up) และเป็นคำนาม/คุณศัพท์หมายถึงเพลงป๊อป"
   },
   {
     "word": "popular",
@@ -63356,7 +68622,10 @@ const wordsData = [
       "unpopular"
     ],
     "phoneticUK": "/pˈɒpjələ(r)/",
-    "syllables": "po·pu·lar"
+    "syllables": "po·pu·lar",
+    "extraExample": "This café is very popular among university students.",
+    "extraExampleTranslation": "คาเฟ่แห่งนี้เป็นที่นิยมมากในหมู่นักศึกษามหาวิทยาลัย",
+    "usageTip": "มักใช้คู่กับบุพบท with หรือ among (popular with/among + กลุ่มคน)"
   },
   {
     "word": "population",
@@ -63384,7 +68653,10 @@ const wordsData = [
       "จำนวนมาก"
     ],
     "phoneticUK": "/pˌɒpjəlˈeɪʃən/",
-    "syllables": "po·pu·la·tion"
+    "syllables": "po·pu·la·tion",
+    "extraExample": "The population of the island has grown rapidly.",
+    "extraExampleTranslation": "ประชากรของเกาะแห่งนี้เพิ่มขึ้นอย่างรวดเร็ว",
+    "usageTip": "ใช้กับกริยาเอกพจน์เมื่อมองเป็นภาพรวม และมักใช้คู่กับ grow, increase หรือ decline"
   },
   {
     "word": "port",
@@ -63413,7 +68685,10 @@ const wordsData = [
     "wordFamily": [
       "import",
       "report"
-    ]
+    ],
+    "extraExample": "The cargo ship arrived at the port early in the morning.",
+    "extraExampleTranslation": "เรือบรรทุกสินค้ามาถึงท่าเรือตั้งแต่เช้าตรู่",
+    "usageTip": "หมายถึงท่าเรือหรือเมืองท่า และยังใช้เรียกช่องเสียบอุปกรณ์คอมพิวเตอร์ (USB port) ได้ด้วย"
   },
   {
     "word": "pose",
@@ -63436,7 +68711,14 @@ const wordsData = [
     "synonyms": [
       "airs"
     ],
-    "phoneticUK": "/pˈəʊz/"
+    "phoneticUK": "/pˈəʊz/",
+    "extraExample": "Climate change continues to pose a serious threat to wildlife.",
+    "extraExampleTranslation": "การเปลี่ยนแปลงสภาพภูมิอากาศยังคงเป็นภัยคุกคามร้ายแรงต่อสัตว์ป่า",
+    "usageTip": "นอกจากแปลว่าโพสท่าถ่ายรูป มักใช้ในสำนวน pose a threat/problem/question (ก่อให้เกิด/ตั้งคำถาม)",
+    "collocations": [
+      "pose a threat",
+      "pose a question"
+    ]
   },
   {
     "word": "position",
@@ -63465,7 +68747,10 @@ const wordsData = [
       "คือ",
       "อะไร"
     ],
-    "syllables": "po·si·tion"
+    "syllables": "po·si·tion",
+    "extraExample": "She applied for a senior management position at the bank.",
+    "extraExampleTranslation": "เธอสมัครตำแหน่งผู้บริหารระดับสูงที่ธนาคารแห่งนั้น",
+    "usageTip": "แปลว่าตำแหน่งงาน ตำแหน่งที่ตั้ง หรือจุดยืน/ท่าทีต่อเรื่องใดเรื่องหนึ่ง"
   },
   {
     "word": "positive",
@@ -63497,7 +68782,10 @@ const wordsData = [
       "negative"
     ],
     "phoneticUK": "/pˈɒzətɪv/",
-    "syllables": "po·si·tive"
+    "syllables": "po·si·tive",
+    "extraExample": "Try to stay positive even when things get difficult.",
+    "extraExampleTranslation": "พยายามมองโลกในแง่ดีเข้าไว้แม้ในยามที่สิ่งต่างๆ ยากลำบาก",
+    "usageTip": "ใช้ได้ทั้งความหมายเชิงบวก มองโลกในแง่ดี และผลตรวจทางการแพทย์ที่เป็นบวก (test positive)"
   },
   {
     "word": "possess",
@@ -63637,7 +68925,10 @@ const wordsData = [
       "impossible"
     ],
     "phoneticUK": "/pˈɒsəbəl/",
-    "syllables": "pos·si·ble"
+    "syllables": "pos·si·ble",
+    "extraExample": "Please let me know as soon as possible.",
+    "extraExampleTranslation": "กรุณาแจ้งให้ฉันทราบโดยเร็วที่สุดเท่าที่จะเป็นไปได้",
+    "usageTip": "ใช้คู่กับ as soon as possible เพื่อบอกว่าเร็วที่สุดเท่าที่ทำได้"
   },
   {
     "word": "possibly",
@@ -63674,7 +68965,10 @@ const wordsData = [
       "impossibly"
     ],
     "phoneticUK": "/pˈɒsəbliː/",
-    "syllables": "pos·si·bly"
+    "syllables": "pos·si·bly",
+    "extraExample": "Could you possibly help me carry this box?",
+    "extraExampleTranslation": "คุณพอจะช่วยฉันยกกล่องใบนี้หน่อยได้ไหม",
+    "usageTip": "ใช้ในประโยคคำถามเพื่อขอร้องอย่างสุภาพ"
   },
   {
     "word": "post",
@@ -63701,7 +68995,10 @@ const wordsData = [
       "ฉบับ",
       "นี้"
     ],
-    "phoneticUK": "/pˈəʊst/"
+    "phoneticUK": "/pˈəʊst/",
+    "extraExample": "Don't forget to post the notice on the board.",
+    "extraExampleTranslation": "อย่าลืมปิดประกาศบนกระดานด้วยนะ",
+    "usageTip": "ใช้เป็นกริยาแปลว่าติดประกาศหรือส่งไปรษณีย์"
   },
   {
     "word": "post office",
@@ -63720,6 +69017,13 @@ const wordsData = [
       "ที่สุด",
       "อยู่",
       "ที่ไหน"
+    ],
+    "extraExample": "I need to go to the post office to send a parcel.",
+    "extraExampleTranslation": "ฉันต้องไปที่ทำการไปรษณีย์เพื่อส่งพัสดุ",
+    "usageTip": "คำนามประสม หมายถึงสถานที่ส่งจดหมายและพัสดุ",
+    "collocations": [
+      "local post office",
+      "main post office"
     ]
   },
   {
@@ -63749,7 +69053,10 @@ const wordsData = [
       "ใน",
       "หม้อ"
     ],
-    "phoneticUK": "/pˈɒt/"
+    "phoneticUK": "/pˈɒt/",
+    "extraExample": "She boiled the soup in a large pot.",
+    "extraExampleTranslation": "เธอต้มซุปในหม้อใบใหญ่",
+    "usageTip": "ใช้กับภาชนะก้นลึกสำหรับต้มหรือตุ๋น"
   },
   {
     "word": "potato",
@@ -63778,7 +69085,10 @@ const wordsData = [
       "อาหารเย็น"
     ],
     "phoneticUK": "/pəˈteɪtəʊ/",
-    "syllables": "po·ta·to"
+    "syllables": "po·ta·to",
+    "extraExample": "We had mashed potato with grilled chicken for dinner.",
+    "extraExampleTranslation": "เรากินมันฝรั่งบดกับไก่ย่างเป็นมื้อเย็น",
+    "usageTip": "นับได้เมื่อเป็นหัว แต่มักใช้รูปเอกพจน์เมื่อบดหรือทำอาหาร"
   },
   {
     "word": "potential",
@@ -63811,7 +69121,10 @@ const wordsData = [
     "antonyms": [
       "actual"
     ],
-    "syllables": "po·ten·tial"
+    "syllables": "po·ten·tial",
+    "extraExample": "This project has great potential for growth.",
+    "extraExampleTranslation": "โครงการนี้มีศักยภาพสูงในการเติบโต",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกถึงความสามารถที่ซ่อนอยู่หรือโอกาสในอนาคต"
   },
   {
     "word": "pound",
@@ -63840,7 +69153,10 @@ const wordsData = [
       "ราคา",
       "สิบ",
       "ปอนด์"
-    ]
+    ],
+    "extraExample": "The book costs ten pound notes in London.",
+    "extraExampleTranslation": "หนังสือเล่มนี้ราคาสิบปอนด์ในลอนดอน",
+    "usageTip": "หน่วยเงินของสหราชอาณาจักรและเป็นหน่วยน้ำหนักด้วย"
   },
   {
     "word": "pour",
@@ -63867,7 +69183,10 @@ const wordsData = [
       "ใน",
       "แก้ว"
     ],
-    "phoneticUK": "/pˈɔː/"
+    "phoneticUK": "/pˈɔː/",
+    "extraExample": "Please pour some hot water into the cup.",
+    "extraExampleTranslation": "กรุณารินน้ำร้อนใส่แก้วให้หน่อย",
+    "usageTip": "ใช้กับการเทของเหลวอย่างต่อเนื่อง"
   },
   {
     "word": "powder",
@@ -63895,7 +69214,10 @@ const wordsData = [
       "ช้อน"
     ],
     "phoneticUK": "/pˈaʊdə(r)/",
-    "syllables": "pow·der"
+    "syllables": "pow·der",
+    "extraExample": "Mix the cocoa powder with warm milk.",
+    "extraExampleTranslation": "ผสมผงโกโก้กับนมอุ่น",
+    "usageTip": "คำนามนับไม่ได้ ใช้กับของแห้งที่บดละเอียด"
   },
   {
     "word": "power",
@@ -63929,7 +69251,10 @@ const wordsData = [
       "powerlessness"
     ],
     "phoneticUK": "/pˈaʊə(r)/",
-    "syllables": "po·wer"
+    "syllables": "po·wer",
+    "extraExample": "The storm cut off the power to the whole town.",
+    "extraExampleTranslation": "พายุทำให้ไฟฟ้าดับทั้งเมือง",
+    "usageTip": "ใช้ได้ทั้งความหมายว่ากำลัง อำนาจ และพลังงานไฟฟ้า"
   },
   {
     "word": "powerful",
@@ -63964,7 +69289,10 @@ const wordsData = [
       "power"
     ],
     "syllables": "po·wer·ful",
-    "rootBreakdown": "power + -ful (เต็มไปด้วย (Adj.))"
+    "rootBreakdown": "power + -ful (เต็มไปด้วย (Adj.))",
+    "extraExample": "He gave a powerful speech that moved everyone.",
+    "extraExampleTranslation": "เขากล่าวสุนทรพจน์ที่ทรงพลังจนทำให้ทุกคนซาบซึ้ง",
+    "usageTip": "ใช้ขยายได้ทั้งคน เครื่องจักร หรือคำพูดที่มีอิทธิพลสูง"
   },
   {
     "word": "practical",
@@ -64000,7 +69328,10 @@ const wordsData = [
     "antonyms": [
       "impractical"
     ],
-    "syllables": "prac·ti·cal"
+    "syllables": "prac·ti·cal",
+    "extraExample": "She gave me some very practical advice.",
+    "extraExampleTranslation": "เธอให้คำแนะนำที่นำไปใช้ได้จริงมากกับฉัน",
+    "usageTip": "เน้นสิ่งที่ทำได้จริงและมีประโยชน์ในชีวิตประจำวัน"
   },
   {
     "word": "practically",
@@ -64022,7 +69353,10 @@ const wordsData = [
     ],
     "collocations": [
       "practically all"
-    ]
+    ],
+    "extraExample": "The hall was practically empty when we arrived.",
+    "extraExampleTranslation": "ห้องโถงแทบจะว่างเปล่าตอนที่เรามาถึง",
+    "usageTip": "ใช้ขยายคุณศัพท์หรือกริยา แปลว่าแทบจะหรือในทางปฏิบัติ"
   },
   {
     "word": "practice",
@@ -64053,7 +69387,10 @@ const wordsData = [
       "มากกว่า",
       "นี้"
     ],
-    "syllables": "prac·tice"
+    "syllables": "prac·tice",
+    "extraExample": "You need daily practice to speak fluently.",
+    "extraExampleTranslation": "คุณต้องฝึกฝนทุกวันเพื่อให้พูดได้คล่อง",
+    "usageTip": "ในภาษาอังกฤษแบบอังกฤษ practice เป็นคำนาม ส่วน practise เป็นคำกริยา"
   },
   {
     "word": "practise",
@@ -64090,7 +69427,10 @@ const wordsData = [
       "V2/V3: practised",
       "V-ing: practising"
     ],
-    "grammarPattern": "practise + V-ing / N (สะกดแบบอังกฤษ; US ใช้ practise/practice)"
+    "grammarPattern": "practise + V-ing / N (สะกดแบบอังกฤษ; US ใช้ practise/practice)",
+    "extraExample": "I practise speaking English every morning.",
+    "extraExampleTranslation": "ฉันฝึกพูดภาษาอังกฤษทุกเช้า",
+    "usageTip": "ใช้ตามด้วยคำนามหรือกริยาเติม -ing"
   },
   {
     "word": "praise",
@@ -64117,6 +69457,13 @@ const wordsData = [
     "forms": [
       "V2/V3: praised",
       "V-ing: praising"
+    ],
+    "extraExample": "The teacher praised her for working so hard.",
+    "extraExampleTranslation": "คุณครูชมเชยเธอที่ตั้งใจทำงานอย่างหนัก",
+    "usageTip": "มักใช้โครงสร้าง praise someone for something",
+    "collocations": [
+      "praise someone",
+      "deserve praise"
     ]
   },
   {
@@ -64140,6 +69487,13 @@ const wordsData = [
     "synonyms": [
       "beg",
       "implore"
+    ],
+    "extraExample": "They pray for peace every night.",
+    "extraExampleTranslation": "พวกเขาอธิษฐานขอให้เกิดสันติภาพทุกคืน",
+    "usageTip": "มักใช้คู่กับบุพบท for หรือ to",
+    "collocations": [
+      "pray for",
+      "pray to"
     ]
   },
   {
@@ -64166,7 +69520,14 @@ const wordsData = [
       "petition",
       "orison"
     ],
-    "phoneticUK": "/prˈe/"
+    "phoneticUK": "/prˈe/",
+    "extraExample": "She said a quiet prayer before the exam.",
+    "extraExampleTranslation": "เธอสวดอธิษฐานเบาๆ ก่อนเข้าสอบ",
+    "usageTip": "คำนามที่ใช้คู่กับกริยา say หรือ offer",
+    "collocations": [
+      "say a prayer",
+      "answer a prayer"
+    ]
   },
   {
     "word": "precise",
@@ -64202,7 +69563,10 @@ const wordsData = [
     "antonyms": [
       "imprecise"
     ],
-    "syllables": "pre·cise"
+    "syllables": "pre·cise",
+    "extraExample": "Please give me the precise measurements of the room.",
+    "extraExampleTranslation": "กรุณาบอกขนาดที่แม่นยำของห้องให้ฉันหน่อย",
+    "usageTip": "ใช้เมื่อต้องการความถูกต้องและรายละเอียดที่ชัดเจน"
   },
   {
     "word": "precisely",
@@ -64305,7 +69669,10 @@ const wordsData = [
     "forms": [
       "V2/V3: preferred",
       "V-ing: preferring"
-    ]
+    ],
+    "extraExample": "I prefer drinking green tea in the morning rather than coffee.",
+    "extraExampleTranslation": "ฉันชอบดื่มชาเขียวในตอนเช้ามากกว่ากาแฟ",
+    "usageTip": "ใช้ prefer + V-ing หรือ prefer A to B เพื่อเปรียบเทียบสิ่งที่ชอบมากกว่า"
   },
   {
     "word": "preference",
@@ -64337,7 +69704,10 @@ const wordsData = [
       "คือ",
       "อะไร"
     ],
-    "syllables": "pre·fe·rence"
+    "syllables": "pre·fe·rence",
+    "extraExample": "Do you have any preference for where we should sit?",
+    "extraExampleTranslation": "คุณมีความชอบเป็นพิเศษไหมว่าเราควรนั่งตรงไหน",
+    "usageTip": "มักใช้คู่กับคำว่า for หรือ have a preference for"
   },
   {
     "word": "pregnant",
@@ -64369,7 +69739,10 @@ const wordsData = [
     "antonyms": [
       "nonpregnant"
     ],
-    "syllables": "preg·nant"
+    "syllables": "preg·nant",
+    "extraExample": "She found out that she was pregnant last month.",
+    "extraExampleTranslation": "เธอเพิ่งรู้ว่าตัวเองตั้งครรภ์เมื่อเดือนที่แล้ว",
+    "usageTip": "ใช้เป็นคำคุณศัพท์หลัง verb to be หรือหน้าคำนาม เช่น pregnant woman"
   },
   {
     "word": "premises",
@@ -64397,6 +69770,13 @@ const wordsData = [
     "syllables": "pre·mi·ses",
     "forms": [
       "พหูพจน์: premiseses"
+    ],
+    "extraExample": "Smoking is strictly forbidden anywhere on the school premises.",
+    "extraExampleTranslation": "ห้ามสูบบุหรี่ในบริเวณพื้นที่ของโรงเรียนโดยเด็ดขาด",
+    "usageTip": "คำนี้มักใช้ในรูปพหูพจน์ (มี s) เสมอเมื่อหมายถึงสถานที่หรืออาคาร",
+    "collocations": [
+      "on the premises",
+      "business premises"
     ]
   },
   {
@@ -64430,7 +69810,10 @@ const wordsData = [
       "ตัวอย่าง",
       "มาก"
     ],
-    "syllables": "pre·pa·ra·tion"
+    "syllables": "pre·pa·ra·tion",
+    "extraExample": "Good preparation is the key to passing the final exam.",
+    "extraExampleTranslation": "การเตรียมตัวที่ดีคือกุญแจสำคัญในการสอบปลายภาคให้ผ่าน",
+    "usageTip": "มักใช้คู่กับคำกริยา make หรือ in preparation for"
   },
   {
     "word": "prepare",
@@ -64468,7 +69851,10 @@ const wordsData = [
     "forms": [
       "V2/V3: prepared",
       "V-ing: preparing"
-    ]
+    ],
+    "extraExample": "We need to prepare all the documents before the meeting starts.",
+    "extraExampleTranslation": "เราต้องเตรียมเอกสารทั้งหมดให้พร้อมก่อนการประชุมจะเริ่ม",
+    "usageTip": "ใช้ prepare + นาม หรือ prepare for + สิ่งที่กำลังจะเกิดขึ้น"
   },
   {
     "word": "prepared",
@@ -64499,7 +69885,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "prepare"
-    ]
+    ],
+    "extraExample": "Make sure you are fully prepared for the unexpected weather.",
+    "extraExampleTranslation": "ตรวจสอบให้แน่ใจว่าคุณเตรียมพร้อมรับมือกับสภาพอากาศที่คาดไม่ถึงแล้ว",
+    "usageTip": "ใช้คู่กับ be prepared for หรือ be prepared to + V.1"
   },
   {
     "word": "presence",
@@ -64534,7 +69923,10 @@ const wordsData = [
     "antonyms": [
       "absence"
     ],
-    "syllables": "pre·sence"
+    "syllables": "pre·sence",
+    "extraExample": "Her calm presence helped everyone feel more relaxed.",
+    "extraExampleTranslation": "การมีอยู่ของเธอที่ดูสงบช่วยให้ทุกคนรู้สึกผ่อนคลายมากขึ้น",
+    "usageTip": "ตรงข้ามกับ absence มักใช้ในรูป in the presence of"
   },
   {
     "word": "present",
@@ -64573,7 +69965,8 @@ const wordsData = [
     ],
     "syllables": "pre·sent",
     "extraExample": "Thank you for the lovely birthday present.",
-    "extraExampleTranslation": "ขอบคุณสำหรับของขวัญวันเกิดที่น่ารักนะ (ความหมาย [n.]: ของขวัญ)"
+    "extraExampleTranslation": "ขอบคุณสำหรับของขวัญวันเกิดที่น่ารักนะ (ความหมาย [n.]: ของขวัญ)",
+    "usageTip": "ใช้ได้ทั้งเป็นคำนาม (ปัจจุบัน/ของขวัญ) และคำกริยา (นำเสนอ/มอบให้)"
   },
   {
     "word": "presentation",
@@ -64603,7 +69996,10 @@ const wordsData = [
       "นำเสนอ",
       "ได้ดี"
     ],
-    "syllables": "pre·sen·ta·tion"
+    "syllables": "pre·sen·ta·tion",
+    "extraExample": "He gave a very clear and engaging presentation to the clients.",
+    "extraExampleTranslation": "เขานำเสนอข้อมูลได้อย่างชัดเจนและน่าสนใจมากต่อลูกค้า",
+    "usageTip": "มักใช้คู่กับกริยา give หรือ make เช่น give a presentation"
   },
   {
     "word": "preserve",
@@ -64643,7 +70039,10 @@ const wordsData = [
     "forms": [
       "V2/V3: preserved",
       "V-ing: preserving"
-    ]
+    ],
+    "extraExample": "The museum works hard to preserve ancient paintings for future generations.",
+    "extraExampleTranslation": "พิพิธภัณฑ์ทำงานอย่างหนักเพื่อเก็บรักษาภาพวาดโบราณไว้ให้คนรุ่นหลัง",
+    "usageTip": "ใช้เมื่อต้องการสื่อถึงการอนุรักษ์หรือรักษาสภาพเดิมไว้ไม่ให้เสียหาย"
   },
   {
     "word": "president",
@@ -64670,7 +70069,10 @@ const wordsData = [
       "ประธานาธิบดี",
       "กล่าวสุนทรพจน์"
     ],
-    "syllables": "pre·si·dent"
+    "syllables": "pre·si·dent",
+    "extraExample": "The company president announced a new plan for next year.",
+    "extraExampleTranslation": "ประธานบริษัทได้ประกาศแผนงานใหม่สำหรับปีหน้า",
+    "usageTip": "ใช้ได้ทั้งประธานาธิบดีของประเทศและประธานบริษัทหรือองค์กร"
   },
   {
     "word": "press",
@@ -64702,7 +70104,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: presses"
-    ]
+    ],
+    "extraExample": "Please press the green button to start the machine.",
+    "extraExampleTranslation": "กรุณากดปุ่มสีเขียวเพื่อเริ่มการทำงานของเครื่อง",
+    "usageTip": "ใช้ได้ทั้งกริยา (กด/อัด) และคำนาม (สื่อมวลชน)"
   },
   {
     "word": "pressure",
@@ -64728,7 +70133,10 @@ const wordsData = [
       "ต่ำ"
     ],
     "phoneticUK": "/prˈeʃə(r)/",
-    "syllables": "pres·sure"
+    "syllables": "pres·sure",
+    "extraExample": "She works well even under a lot of pressure.",
+    "extraExampleTranslation": "เธอทำงานได้ดีแม้จะอยู่ภายใต้ความกดดันอย่างมาก",
+    "usageTip": "มักใช้ในสำนวน under pressure เพื่อบอกถึงภาวะกดดัน"
   },
   {
     "word": "presumably",
@@ -64756,7 +70164,10 @@ const wordsData = [
       "มาถึง",
       "ในไม่ช้า"
     ],
-    "syllables": "pre·su·ma·bly"
+    "syllables": "pre·su·ma·bly",
+    "extraExample": "The lights are off, so they have presumably gone to bed.",
+    "extraExampleTranslation": "ไฟปิดอยู่ ดังนั้นพวกเขาน่าจะเข้านอนกันไปแล้ว",
+    "usageTip": "ใช้เพื่อคาดเดาอย่างมีเหตุผล มักวางไว้ต้นประโยคหรือหน้ากริยาหลัก"
   },
   {
     "word": "pretend",
@@ -64789,7 +70200,10 @@ const wordsData = [
       "tend"
     ],
     "syllables": "pre·tend",
-    "grammarPattern": "pretend + to V / (that) S + V (แกล้งทำเป็น...)"
+    "grammarPattern": "pretend + to V / (that) S + V (แกล้งทำเป็น...)",
+    "extraExample": "The children like to pretend that they are superheroes.",
+    "extraExampleTranslation": "เด็กๆ ชอบแสร้งทำเป็นว่าตัวเองเป็นซูเปอร์ฮีโร่",
+    "usageTip": "ตามด้วย that-clause หรือ to + V.1 เพื่อบอกว่าแกล้งทำเป็น"
   },
   {
     "word": "pretty",
@@ -64817,7 +70231,10 @@ const wordsData = [
       "ที่",
       "น่ารัก"
     ],
-    "syllables": "pret·ty"
+    "syllables": "pret·ty",
+    "extraExample": "The weather is pretty nice today for a walk in the park.",
+    "extraExampleTranslation": "วันนี้อากาศค่อนข้างดีทีเดียวสำหรับการเดินเล่นในสวนสาธารณะ",
+    "usageTip": "เมื่อเป็นคำวิเศษณ์ (adverb) จะแปลว่า 'ค่อนข้าง' วางไว้หน้าคำคุณศัพท์"
   },
   {
     "word": "prevent",
@@ -64853,7 +70270,9 @@ const wordsData = [
       "encourage"
     ],
     "syllables": "pre·vent",
-    "usageTip": "โครงสร้าง: prevent + someone/something + (from) + V-ing"
+    "usageTip": "โครงสร้าง: prevent + someone/something + (from) + V-ing",
+    "extraExample": "Washing your hands regularly helps prevent the spread of germs.",
+    "extraExampleTranslation": "การล้างมือเป็นประจำช่วยป้องกันการแพร่กระจายของเชื้อโรคได้"
   },
   {
     "word": "previous",
@@ -64879,7 +70298,10 @@ const wordsData = [
       "มีประสบการณ์",
       "ก่อนหน้านี้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "I learned a lot from my previous job before moving here.",
+    "extraExampleTranslation": "ฉันได้เรียนรู้หลายอย่างจากงานก่อนหน้านี้ก่อนที่จะย้ายมาที่นี่",
+    "usageTip": "วางไว้หน้าคำนามเสมอ เพื่ออ้างถึงสิ่งที่เกิดขึ้นมาก่อนหน้า"
   },
   {
     "word": "price",
@@ -64907,7 +70329,9 @@ const wordsData = [
       "ราคา",
       "เท่าไหร่"
     ],
-    "usageTip": "price = ราคา; ระวังสับสนกับ prize (z) = รางวัล"
+    "usageTip": "price = ราคา; ระวังสับสนกับ prize (z) = รางวัล",
+    "extraExample": "The price of fresh vegetables has increased this week.",
+    "extraExampleTranslation": "ราคาของผักสดเพิ่มขึ้นในสัปดาห์นี้"
   },
   {
     "word": "pride",
@@ -64994,7 +70418,10 @@ const wordsData = [
     "antonyms": [
       "secondarily"
     ],
-    "syllables": "pri·ma·ri·ly"
+    "syllables": "pri·ma·ri·ly",
+    "extraExample": "The course is designed primarily for beginners.",
+    "extraExampleTranslation": "หลักสูตรนี้ออกแบบมาเพื่อผู้เริ่มต้นเป็นหลัก",
+    "usageTip": "ใช้วางหน้าคำกริยาหรือคำคุณศัพท์เพื่อเน้นเหตุผลหรือกลุ่มเป้าหมายหลัก"
   },
   {
     "word": "primary",
@@ -65032,7 +70459,10 @@ const wordsData = [
     "forms": [
       "ขั้นกว่า: primarier",
       "ขั้นสุด: primariest"
-    ]
+    ],
+    "extraExample": "Our primary goal is to ensure customer satisfaction.",
+    "extraExampleTranslation": "เป้าหมายหลักของเราคือการสร้างความพึงพอใจให้ลูกค้า",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าสำคัญที่สุดหรือเป็นขั้นพื้นฐาน"
   },
   {
     "word": "prime minister",
@@ -65049,6 +70479,13 @@ const wordsData = [
       "พูดคุย",
       "กับ",
       "สื่อมวลชน"
+    ],
+    "extraExample": "The prime minister will address the nation tonight.",
+    "extraExampleTranslation": "นายกรัฐมนตรีจะแถลงต่อประชาชนคืนนี้",
+    "usageTip": "ใช้เรียกตำแหน่งนายกรัฐมนตรี มักใช้กับคำนำหน้านาม the",
+    "collocations": [
+      "prime minister's office",
+      "former prime minister"
     ]
   },
   {
@@ -65070,7 +70507,10 @@ const wordsData = [
     ],
     "collocations": [
       "prince souvanna"
-    ]
+    ],
+    "extraExample": "The young prince greeted the crowd from the palace balcony.",
+    "extraExampleTranslation": "เจ้าชายองค์น้อยทรงทักทายฝูงชนจากระเบียงพระราชวัง",
+    "usageTip": "คำนามใช้เรียกเจ้าชาย ระวังการออกเสียงไม่สับสนกับ prints"
   },
   {
     "word": "princess",
@@ -65095,7 +70535,10 @@ const wordsData = [
     "syllables": "prin·cess",
     "forms": [
       "พหูพจน์: princesses"
-    ]
+    ],
+    "extraExample": "The princess wore a stunning gown to the royal banquet.",
+    "extraExampleTranslation": "เจ้าหญิงทรงฉลองพระองค์ชุดราตรีอันงดงามในงานเลี้ยงหลวง",
+    "usageTip": "ใช้เรียกเจ้าหญิงที่เป็นพระราชธิดาหรือพระชายา"
   },
   {
     "word": "principle",
@@ -65126,7 +70569,10 @@ const wordsData = [
       "ทางศีลธรรม",
       "สูง"
     ],
-    "syllables": "prin·ci·ple"
+    "syllables": "prin·ci·ple",
+    "extraExample": "He refused to compromise on his moral principles.",
+    "extraExampleTranslation": "เขาปฏิเสธที่จะประนีประนอมในหลักการทางศีลธรรมของตนเอง",
+    "usageTip": "หมายถึงหลักการหรือความเชื่อพื้นฐาน อย่าสับสนกับ principal ที่แปลว่าผู้อำนวยการ"
   },
   {
     "word": "print",
@@ -65160,7 +70606,10 @@ const wordsData = [
       "ฉัน",
       "ได้",
       "ไหม"
-    ]
+    ],
+    "extraExample": "Please print two copies of the contract before the meeting.",
+    "extraExampleTranslation": "กรุณาพิมพ์สัญญาสองชุดก่อนเริ่มการประชุม",
+    "usageTip": "ใช้เป็นกริยาหมายถึงการพิมพ์เอกสารหรือหนังสือลงบนกระดาษ"
   },
   {
     "word": "printer",
@@ -65188,7 +70637,10 @@ const wordsData = [
       "หมด"
     ],
     "phoneticUK": "/prˈɪntə(r)/",
-    "syllables": "prin·ter"
+    "syllables": "prin·ter",
+    "extraExample": "The office printer ran out of black ink this morning.",
+    "extraExampleTranslation": "เครื่องพิมพ์ของสำนักงานหมึกสีดำหมดเมื่อเช้านี้",
+    "usageTip": "คำนามหมายถึงเครื่องพิมพ์ หรือผู้ประกอบอาชีพโรงพิมพ์"
   },
   {
     "word": "printing",
@@ -65217,7 +70669,10 @@ const wordsData = [
       "government printing",
       "printing office"
     ],
-    "syllables": "prin·ting"
+    "syllables": "prin·ting",
+    "extraExample": "The invention of printing changed the spread of knowledge forever.",
+    "extraExampleTranslation": "การประดิษฐ์แท่นพิมพ์ได้เปลี่ยนแปลงการเผยแพร่ความรู้ไปตลอดกาล",
+    "usageTip": "หมายถึงกระบวนการพิมพ์หรืออุตสาหกรรมการพิมพ์"
   },
   {
     "word": "prior",
@@ -65251,7 +70706,10 @@ const wordsData = [
       "มา",
       "ก่อน"
     ],
-    "phoneticUK": "/prˈaɪə(r)/"
+    "phoneticUK": "/prˈaɪə(r)/",
+    "extraExample": "Please notify us at least 24 hours prior to your arrival.",
+    "extraExampleTranslation": "กรุณาแจ้งให้เราทราบล่วงหน้าอย่างน้อย 24 ชั่วโมงก่อนเดินทางมาถึง",
+    "usageTip": "มักใช้คู่กับ to (prior to) แปลว่าก่อนหน้า ในภาษาที่เป็นทางการ"
   },
   {
     "word": "priority",
@@ -65290,7 +70748,10 @@ const wordsData = [
     ],
     "forms": [
       "พหูพจน์: priorities"
-    ]
+    ],
+    "extraExample": "Safety is always our top priority on the construction site.",
+    "extraExampleTranslation": "ความปลอดภัยเป็นสิ่งสำคัญอันดับแรกของเราเสมอในไซต์ก่อสร้าง",
+    "usageTip": "ใช้บอกลำดับความสำคัญ มักใช้คู่กับ top หรือ high"
   },
   {
     "word": "prison",
@@ -65323,7 +70784,10 @@ const wordsData = [
     "wordFamily": [
       "prisoner"
     ],
-    "syllables": "pri·son"
+    "syllables": "pri·son",
+    "extraExample": "He was sentenced to five years in prison for fraud.",
+    "extraExampleTranslation": "เขาถูกตัดสินจำคุกห้าปีในข้อหาฉ้อโกง",
+    "usageTip": "เมื่อหมายถึงการถูกคุมขังไม่ต้องมี the นำหน้า เช่น in prison"
   },
   {
     "word": "prisoner",
@@ -65354,7 +70818,10 @@ const wordsData = [
       "prison"
     ],
     "phoneticUK": "/prˈɪzənə(r)/",
-    "syllables": "pri·so·ner"
+    "syllables": "pri·so·ner",
+    "extraExample": "The prisoner was released early for good behavior.",
+    "extraExampleTranslation": "นักโทษได้รับการปล่อยตัวก่อนกำหนดเนื่องจากความประพฤติดี",
+    "usageTip": "ใช้เรียกผู้ต้องขังหรือเชลยศึก"
   },
   {
     "word": "private",
@@ -65383,7 +70850,10 @@ const wordsData = [
     "antonyms": [
       "public"
     ],
-    "syllables": "pri·vate"
+    "syllables": "pri·vate",
+    "extraExample": "Let's discuss this matter in a private room.",
+    "extraExampleTranslation": "เราไปคุยเรื่องนี้กันในห้องส่วนตัวดีกว่า",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกว่าเป็นเรื่องส่วนตัวหรือเอกชน"
   },
   {
     "word": "prize",
@@ -65415,7 +70885,10 @@ const wordsData = [
     "forms": [
       "V2/V3: prized",
       "V-ing: prizing"
-    ]
+    ],
+    "extraExample": "I deeply prize the trust my team places in me.",
+    "extraExampleTranslation": "ฉันให้คุณค่าอย่างยิ่งกับความไว้วางใจที่ทีมมอบให้ฉัน",
+    "usageTip": "เมื่อเป็นคำกริยาแปลว่าให้คุณค่าสูงหรือหวงแหนมาก"
   },
   {
     "word": "probable",
@@ -65450,7 +70923,10 @@ const wordsData = [
       "seems probable"
     ],
     "phoneticUK": "/prˈɒbəbəl/",
-    "syllables": "pro·ba·ble"
+    "syllables": "pro·ba·ble",
+    "extraExample": "Rain is probable later this afternoon, so bring an umbrella.",
+    "extraExampleTranslation": "ช่วงบ่ายวันนี้น่าจะมีฝนตก ดังนั้นพกร่มไปด้วยนะ",
+    "usageTip": "เป็นคำคุณศัพท์แปลว่ามีความเป็นไปได้สูง มักใช้ในประโยคคาดการณ์"
   },
   {
     "word": "probably",
@@ -65481,7 +70957,10 @@ const wordsData = [
       "probable"
     ],
     "phoneticUK": "/prˈɒbəbliː/",
-    "syllables": "pro·ba·bly"
+    "syllables": "pro·ba·bly",
+    "extraExample": "She will probably arrive at the station around six.",
+    "extraExampleTranslation": "เธอน่าจะมาถึงสถานีประมาณหกโมงเย็น",
+    "usageTip": "วางหน้ากริยาแท้หรือหลังกริยาช่วยเพื่อแสดงความน่าจะเป็น"
   },
   {
     "word": "problem",
@@ -65515,7 +70994,10 @@ const wordsData = [
       "solution"
     ],
     "phoneticUK": "/prˈɒbləm/",
-    "syllables": "pro·blem"
+    "syllables": "pro·blem",
+    "extraExample": "We need to find a quick solution to this technical problem.",
+    "extraExampleTranslation": "เราต้องหาทางออกอย่างรวดเร็วสำหรับปัญหาทางเทคนิคนี้",
+    "usageTip": "ใช้คู่กับคำกริยาอย่าง solve หรือ face เพื่อพูดถึงการจัดการปัญหา"
   },
   {
     "word": "procedure",
@@ -65545,7 +71027,10 @@ const wordsData = [
       "ความปลอดภัย"
     ],
     "phoneticUK": "/prəsˈiːdʒə(r)/",
-    "syllables": "pro·ce·dure"
+    "syllables": "pro·ce·dure",
+    "extraExample": "Follow the safety procedure carefully when operating the machine.",
+    "extraExampleTranslation": "ปฏิบัติตามขั้นตอนความปลอดภัยอย่างระมัดระวังเมื่อใช้งานเครื่องจักร",
+    "usageTip": "หมายถึงลำดับขั้นตอนหรือระเบียบปฏิบัติที่เป็นทางการ"
   },
   {
     "word": "proceed",
@@ -65576,7 +71061,10 @@ const wordsData = [
       "ประตู",
       "ถัดไป"
     ],
-    "syllables": "pro·ceed"
+    "syllables": "pro·ceed",
+    "extraExample": "After a short break, we will proceed with the next agenda item.",
+    "extraExampleTranslation": "หลังจากพักสั้นๆ เราจะดำเนินการในวาระถัดไปต่อ",
+    "usageTip": "เป็นกริยาที่เป็นทางการ มักใช้คู่กับ with หรือ to"
   },
   {
     "word": "process",
@@ -113073,6 +118561,4409 @@ const wordsData = [
     ],
     "extraExample": "Customs officers inspected every bag at the border.",
     "extraExampleTranslation": "เจ้าหน้าที่ศุลกากรตรวจกระเป๋าทุกใบที่ชายแดน",
+    "novaBatch": true
+  },
+  {
+    "word": "inconvenience",
+    "partOfSpeech": "noun",
+    "translation": "ความไม่สะดวก",
+    "definition": "a state or situation that causes trouble or difficulty",
+    "example": "We apologize for any inconvenience caused by the construction.",
+    "exampleTranslation": "เราขออภัยในความไม่สะดวกที่เกิดจากการก่อสร้าง",
+    "phonetic": "/ˌɪnkənˈviːniəns/",
+    "cefr": "B1",
+    "collocations": [
+      "cause inconvenience",
+      "apologize for the inconvenience"
+    ],
+    "synonyms": [
+      "trouble",
+      "discomfort"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ความไม่สะดวก",
+      "ก่อให้เกิดความลำบาก",
+      "ขออภัยในความไม่สะดวก"
+    ],
+    "extraExample": "Would it be an inconvenience if I arrived an hour early?",
+    "extraExampleTranslation": "จะรบกวนไหมถ้าฉันจะมาถึงเร็วกว่ากำหนดหนึ่งชั่วโมง",
+    "novaBatch": true
+  },
+  {
+    "word": "favor",
+    "partOfSpeech": "noun",
+    "translation": "ความช่วยเหลือ, น้ำใจ",
+    "definition": "a kind or helpful act that you do for someone",
+    "example": "Could you do me a favor and water my plants this weekend?",
+    "exampleTranslation": "ช่วยทำอะไรให้หน่อยได้ไหม รดน้ำต้นไม้ให้ฉันสุดสัปดาห์นี้ที",
+    "phonetic": "/ˈfeɪvər/",
+    "cefr": "B1",
+    "collocations": [
+      "do a favor",
+      "ask a favor"
+    ],
+    "synonyms": [
+      "kindness",
+      "service"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ขอความช่วยเหลือ",
+      "ทำคุณให้",
+      "น้ำใจ"
+    ],
+    "extraExample": "I owe you a huge favor for covering my shift.",
+    "extraExampleTranslation": "ฉันติดหนี้บุญคุณคุณมากเลยที่ช่วยเข้าเวรแทน",
+    "novaBatch": true
+  },
+  {
+    "word": "gluten",
+    "partOfSpeech": "noun",
+    "translation": "กลูเตน (โปรตีนในข้าวสาลี)",
+    "definition": "a protein found in wheat and some other grains",
+    "example": "She avoids bread because she is sensitive to gluten.",
+    "exampleTranslation": "เธอหลีกเลี่ยงขนมปังเพราะแพ้กลูเตน",
+    "phonetic": "/ˈɡluːtən/",
+    "cefr": "B1",
+    "collocations": [
+      "gluten-free",
+      "wheat gluten"
+    ],
+    "synonyms": [
+      "wheat protein",
+      "grain protein"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "กลูเตน",
+      "โปรตีนในข้าวสาลี",
+      "สารก่อภูมิแพ้"
+    ],
+    "extraExample": "This pasta is made without gluten.",
+    "extraExampleTranslation": "พาสต้าจานนี้ทำโดยไม่มีกลูเตน",
+    "novaBatch": true
+  },
+  {
+    "word": "dairy",
+    "partOfSpeech": "noun",
+    "translation": "ผลิตภัณฑ์จากนม",
+    "definition": "foods made from milk, such as cheese and yogurt",
+    "example": "I cut out dairy to see if my stomach feels better.",
+    "exampleTranslation": "ฉันงดผลิตภัณฑ์จากนมเพื่อดูว่าท้องจะดีขึ้นไหม",
+    "phonetic": "/ˈdɛri/",
+    "cefr": "B1",
+    "collocations": [
+      "dairy products",
+      "dairy-free"
+    ],
+    "synonyms": [
+      "milk products",
+      "lactose"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ผลิตภัณฑ์จากนม",
+      "ของที่ทำจากนม",
+      "อาหารประเภทนม"
+    ],
+    "extraExample": "Many cafés now offer milk alternatives to dairy.",
+    "extraExampleTranslation": "หลายร้านกาแฟมีทางเลือกแทนนมจากสัตว์แล้ว",
+    "novaBatch": true
+  },
+  {
+    "word": "intolerance",
+    "partOfSpeech": "noun",
+    "translation": "ภาวะแพ้หรือไม่สามารถย่อยได้",
+    "definition": "a difficulty digesting a particular food",
+    "example": "He has a mild lactose intolerance.",
+    "exampleTranslation": "เขามีภาวะย่อยน้ำตาลแลคโตสไม่ได้เล็กน้อย",
+    "phonetic": "/ɪnˈtɑːlərəns/",
+    "cefr": "B1",
+    "collocations": [
+      "food intolerance",
+      "lactose intolerance"
+    ],
+    "synonyms": [
+      "sensitivity",
+      "reaction"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ภาวะย่อยไม่ได้",
+      "ความไวต่ออาหาร",
+      "อาการแพ้"
+    ],
+    "extraExample": "Food intolerance can cause discomfort after eating.",
+    "extraExampleTranslation": "ภาวะแพ้อาหารอาจทำให้ไม่สบายท้องหลังทานอาหาร",
+    "novaBatch": true
+  },
+  {
+    "word": "allergen",
+    "partOfSpeech": "noun",
+    "translation": "สารก่อภูมิแพ้",
+    "definition": "a substance that causes an allergic reaction",
+    "example": "Peanuts are a common allergen for children.",
+    "exampleTranslation": "ถั่วลิสงเป็นสารก่อภูมิแพ้ที่พบบ่อยในเด็ก",
+    "phonetic": "/ˈælərdʒən/",
+    "cefr": "B1",
+    "collocations": [
+      "common allergen",
+      "food allergen"
+    ],
+    "synonyms": [
+      "trigger",
+      "irritant"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "สารก่อภูมิแพ้",
+      "ตัวกระตุ้นภูมิแพ้",
+      "สิ่งที่ทำให้แพ้"
+    ],
+    "extraExample": "Restaurants must list every major allergen on the menu.",
+    "extraExampleTranslation": "ร้านอาหารต้องระบุสารก่อภูมิแพ้หลักทุกชนิดในเมนู",
+    "novaBatch": true
+  },
+  {
+    "word": "plant-based",
+    "partOfSpeech": "adjective",
+    "translation": "ที่ทำจากพืชเป็นหลัก",
+    "definition": "made mostly or completely from plants",
+    "example": "More people are choosing a plant-based diet.",
+    "exampleTranslation": "ผู้คนจำนวนมากกำลังเลือกทานอาหารที่ทำจากพืชเป็นหลัก",
+    "phonetic": "/ˈplænt beɪst/",
+    "cefr": "B1",
+    "collocations": [
+      "plant-based diet",
+      "plant-based milk"
+    ],
+    "synonyms": [
+      "vegan",
+      "botanical"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "จากพืช",
+      "อาหารจากพืช",
+      "มังสวิรัติ"
+    ],
+    "extraExample": "This burger is 100 percent plant-based.",
+    "extraExampleTranslation": "เบอร์เกอร์ชิ้นนี้ทำจากพืชร้อยเปอร์เซ็นต์",
+    "novaBatch": true
+  },
+  {
+    "word": "nut-free",
+    "partOfSpeech": "adjective",
+    "translation": "ปราศจากถั่ว",
+    "definition": "containing no nuts",
+    "example": "The school cafeteria provides a nut-free menu.",
+    "exampleTranslation": "โรงอาหารโรงเรียนจัดเมนูที่ปราศจากถั่ว",
+    "phonetic": "/ˈnʌt friː/",
+    "cefr": "B1",
+    "collocations": [
+      "nut-free zone",
+      "nut-free snack"
+    ],
+    "synonyms": [
+      "without nuts",
+      "allergen-free"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ปราศจากถั่ว",
+      "ไม่มีถั่ว",
+      "ปลอดภัยจากถั่ว"
+    ],
+    "extraExample": "Please bring a nut-free dessert to the party.",
+    "extraExampleTranslation": "กรุณานำขนมที่ปราศจากถั่วมางานเลี้ยง",
+    "novaBatch": true
+  },
+  {
+    "word": "tendon",
+    "partOfSpeech": "noun",
+    "translation": "เส้นเอ็น",
+    "definition": "a strong band of tissue that connects a muscle to a bone",
+    "example": "Stretching gently warms up the tendon before you start running.",
+    "exampleTranslation": "การยืดเหยียดเบาๆ ช่วยอุ่นเส้นเอ็นก่อนที่คุณจะเริ่มวิ่ง",
+    "phonetic": "/ˈtendən/",
+    "cefr": "B1",
+    "collocations": [
+      "Achilles tendon",
+      "torn tendon"
+    ],
+    "synonyms": [
+      "sinew",
+      "ligament"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เส้นเอ็น",
+      "เอ็นยึดกล้ามเนื้อ",
+      "ส่วนเชื่อมต่อกระดูก"
+    ],
+    "extraExample": "He felt a sharp pain in his Achilles tendon after the sprint.",
+    "extraExampleTranslation": "เขารู้สึกเจ็บแปลบที่เอ็นร้อยหวายหลังจากวิ่งสปรินต์",
+    "novaBatch": true
+  },
+  {
+    "word": "hamstring",
+    "partOfSpeech": "noun",
+    "translation": "กล้ามเนื้อต้นขาด้านหลัง",
+    "definition": "a group of muscles at the back of the upper leg",
+    "example": "Tight hamstrings can limit how far you can bend forward.",
+    "exampleTranslation": "กล้ามเนื้อต้นขาด้านหลังที่ตึงอาจจำกัดระยะการก้มตัวไปข้างหน้าของคุณ",
+    "phonetic": "/ˈhæmstrɪŋ/",
+    "cefr": "B1",
+    "collocations": [
+      "pull a hamstring",
+      "tight hamstring"
+    ],
+    "synonyms": [
+      "thigh muscle",
+      "leg tendon"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กล้ามเนื้อต้นขาด้านหลัง",
+      "เอ็นหลังเข่า",
+      "กล้ามเนื้อขา"
+    ],
+    "extraExample": "Remember to stretch each hamstring for at least twenty seconds.",
+    "extraExampleTranslation": "อย่าลืมยืดกล้ามเนื้อต้นขาด้านหลังแต่ละข้างอย่างน้อยยี่สิบวินาที",
+    "novaBatch": true
+  },
+  {
+    "word": "calf",
+    "partOfSpeech": "noun",
+    "translation": "น่อง",
+    "definition": "the thick part at the back of the lower leg",
+    "example": "Raising your heels off the floor strengthens your calf muscles.",
+    "exampleTranslation": "การเขย่งส้นเท้าขึ้นจากพื้นช่วยเสริมสร้างกล้ามเนื้อน่องของคุณ",
+    "phonetic": "/kæf/",
+    "cefr": "B1",
+    "collocations": [
+      "calf muscle",
+      "calf stretch"
+    ],
+    "synonyms": [
+      "lower leg",
+      "shank"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "น่อง",
+      "กล้ามเนื้อน่อง",
+      "ช่วงขาส่วนล่าง"
+    ],
+    "extraExample": "My left calf felt sore after climbing the steep hill.",
+    "extraExampleTranslation": "น่องซ้ายของฉันรู้สึกปวดเมื่อยหลังจากเดินขึ้นเนินชัน",
+    "novaBatch": true
+  },
+  {
+    "word": "endurance",
+    "partOfSpeech": "noun",
+    "translation": "ความทนทาน",
+    "definition": "the ability to keep doing physical effort for a long time",
+    "example": "Regular cycling builds strong cardiovascular endurance.",
+    "exampleTranslation": "การปั่นจักรยานเป็นประจำช่วยสร้างความทนทานของระบบหัวใจและหลอดเลือด",
+    "phonetic": "/ɪnˈdʊrəns/",
+    "cefr": "B1",
+    "collocations": [
+      "build endurance",
+      "physical endurance"
+    ],
+    "synonyms": [
+      "durability",
+      "persistence"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ความทนทาน",
+      "ความอึด",
+      "ความสามารถในการออกแรงต่อเนื่อง"
+    ],
+    "extraExample": "Her endurance improved noticeably after a month of training.",
+    "extraExampleTranslation": "ความทนทานของเธอดีขึ้นอย่างเห็นได้ชัดหลังจากฝึกซ้อมหนึ่งเดือน",
+    "novaBatch": true
+  },
+  {
+    "word": "squat",
+    "partOfSpeech": "verb",
+    "translation": "ย่อตัว",
+    "definition": "to bend your knees and lower your hips close to the ground",
+    "example": "Keep your heels flat on the floor when you squat down.",
+    "exampleTranslation": "วางส้นเท้าให้ราบกับพื้นเมื่อคุณย่อตัวลง",
+    "phonetic": "/skwɑːt/",
+    "cefr": "B1",
+    "collocations": [
+      "squat down",
+      "deep squat"
+    ],
+    "synonyms": [
+      "crouch",
+      "bend"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ย่อตัว",
+      "ลุกนั่ง",
+      "ท่าสควอท"
+    ],
+    "extraExample": "You should squat slowly to control the movement.",
+    "extraExampleTranslation": "คุณควรย่อตัวลงช้าๆ เพื่อควบคุมการเคลื่อนไหว",
+    "novaBatch": true
+  },
+  {
+    "word": "lunge",
+    "partOfSpeech": "noun",
+    "translation": "ท่าย่อขาไปข้างหน้า",
+    "definition": "an exercise where you step forward with one leg and bend both knees",
+    "example": "Doing a forward lunge stretches your hips and strengthens your thighs.",
+    "exampleTranslation": "การทำท่าย่อขาไปข้างหน้าช่วยยืดสะโพกและเสริมสร้างความแข็งแรงให้ต้นขา",
+    "phonetic": "/lʌndʒ/",
+    "cefr": "B1",
+    "collocations": [
+      "forward lunge",
+      "side lunge"
+    ],
+    "synonyms": [
+      "stride",
+      "step"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ท่าย่อขาไปข้างหน้า",
+      "ท่าลันจ์",
+      "การก้าวย่อ"
+    ],
+    "extraExample": "Try ten repetitions of the lunge on each leg.",
+    "extraExampleTranslation": "ลองทำท่าย่อขาไปข้างหน้าข้างละสิบครั้ง",
+    "novaBatch": true
+  },
+  {
+    "word": "cramp",
+    "partOfSpeech": "noun",
+    "translation": "ตะคริว",
+    "definition": "a sudden, painful tightening of a muscle",
+    "example": "Drinking enough water helps prevent a muscle cramp during exercise.",
+    "exampleTranslation": "การดื่มน้ำให้เพียงพอช่วยป้องกันอาการตะคริวระหว่างออกกำลังกาย",
+    "phonetic": "/kræmp/",
+    "cefr": "B1",
+    "collocations": [
+      "muscle cramp",
+      "leg cramp"
+    ],
+    "synonyms": [
+      "spasm",
+      "charley horse"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ตะคริว",
+      "อาการกล้ามเนื้อเกร็ง",
+      "การหดเกร็งฉับพลัน"
+    ],
+    "extraExample": "He stopped jogging because of a sudden cramp in his leg.",
+    "extraExampleTranslation": "เขาหยุดวิ่งเหยาะๆ เพราะเกิดอาการตะคริวที่ขาอย่างกะทันหัน",
+    "novaBatch": true
+  },
+  {
+    "word": "warm-up",
+    "partOfSpeech": "noun",
+    "translation": "การอบอุ่นร่างกาย",
+    "definition": "light exercise done before a main workout to prepare the body",
+    "example": "A five-minute warm-up raises your heart rate safely.",
+    "exampleTranslation": "การอบอุ่นร่างกายห้านาทีช่วยเพิ่มอัตราการเต้นของหัวใจอย่างปลอดภัย",
+    "phonetic": "/ˈwɔːrm ʌp/",
+    "cefr": "B1",
+    "collocations": [
+      "dynamic warm-up",
+      "quick warm-up"
+    ],
+    "synonyms": [
+      "preparation",
+      "limbering up"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การอบอุ่นร่างกาย",
+      "การวอร์มอัพ",
+      "การเตรียมพร้อมก่อนออกกำลังกาย"
+    ],
+    "extraExample": "Never skip the warm-up if you want to avoid pulling a muscle.",
+    "extraExampleTranslation": "อย่าข้ามการอบอุ่นร่างกายหากคุณต้องการหลีกเลี่ยงอาการกล้ามเนื้อฉีก",
+    "novaBatch": true
+  },
+  {
+    "word": "agile",
+    "partOfSpeech": "adjective",
+    "translation": "คล่องแคล่ว",
+    "definition": "able to move quickly and easily",
+    "example": "Yoga and stretching help keep your body agile as you age.",
+    "exampleTranslation": "โยคะและการยืดเหยียดช่วยให้ร่างกายของคุณคล่องแคล่วเมื่ออายุมากขึ้น",
+    "phonetic": "/ˈædʒəl/",
+    "cefr": "B1",
+    "collocations": [
+      "stay agile",
+      "agile body"
+    ],
+    "synonyms": [
+      "nimble",
+      "lithe"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "คล่องแคล่ว",
+      "ว่องไว",
+      "ยืดหยุ่นและเคลื่อนไหวง่าย"
+    ],
+    "extraExample": "The gymnast is remarkably agile on the balance beam.",
+    "extraExampleTranslation": "นักยิมนาสติกมีความคล่องแคล่วอย่างน่าทึ่งบนคานทรงตัว",
+    "novaBatch": true
+  },
+  {
+    "word": "torso",
+    "partOfSpeech": "noun",
+    "translation": "ลำตัว",
+    "definition": "the main part of the human body, not including the head, arms, or legs",
+    "example": "Twist your torso gently from side to side to loosen your back.",
+    "exampleTranslation": "บิดลำตัวของคุณเบาๆ จากซ้ายไปขวาเพื่อคลายกล้ามเนื้อหลัง",
+    "phonetic": "/ˈtɔːrsoʊ/",
+    "cefr": "B1",
+    "collocations": [
+      "twist the torso",
+      "upper torso"
+    ],
+    "synonyms": [
+      "trunk",
+      "upper body"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ลำตัว",
+      "ช่วงลำตัว",
+      "ส่วนกลางของร่างกาย"
+    ],
+    "extraExample": "Keep your torso upright while performing the stretch.",
+    "extraExampleTranslation": "รักษาลำตัวให้ตั้งตรงในขณะที่ทำท่ายืดเหยียด",
+    "novaBatch": true
+  },
+  {
+    "word": "landlord",
+    "partOfSpeech": "noun",
+    "translation": "เจ้าของห้องเช่า",
+    "definition": "a person who rents out an apartment or house",
+    "example": "Our landlord fixed the broken air conditioner yesterday.",
+    "exampleTranslation": "เจ้าของห้องเช่าของเราซ่อมเครื่องปรับอากาศที่เสียเมื่อวานนี้",
+    "phonetic": "/ˈlænd.lɔːrd/",
+    "cefr": "B1",
+    "collocations": [
+      "pay the landlord",
+      "contact the landlord"
+    ],
+    "synonyms": [
+      "owner",
+      "property owner"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "เจ้าของ",
+      "ห้อง",
+      "เช่า"
+    ],
+    "extraExample": "I need to call the landlord about the leaking pipe.",
+    "extraExampleTranslation": "ฉันต้องโทรหาเจ้าของห้องเช่าเรื่องท่อน้ำรั่ว",
+    "novaBatch": true
+  },
+  {
+    "word": "tenant",
+    "partOfSpeech": "noun",
+    "translation": "ผู้เช่า",
+    "definition": "a person who pays rent to live in a place",
+    "example": "The new tenant moved into apartment 4B this morning.",
+    "exampleTranslation": "ผู้เช่าคนใหม่ย้ายเข้าห้อง 4B เมื่อเช้านี้",
+    "phonetic": "/ˈten.ənt/",
+    "cefr": "B1",
+    "collocations": [
+      "new tenant",
+      "quiet tenant"
+    ],
+    "synonyms": [
+      "renter",
+      "resident"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ผู้",
+      "เช่า",
+      "ห้อง"
+    ],
+    "extraExample": "Every tenant must follow the building rules.",
+    "extraExampleTranslation": "ผู้เช่าทุกคนต้องปฏิบัติตามกฎของอาคาร",
+    "novaBatch": true
+  },
+  {
+    "word": "lease",
+    "partOfSpeech": "noun",
+    "translation": "สัญญาเช่า",
+    "definition": "a legal agreement to rent an apartment for a period",
+    "example": "We signed a one-year lease for this apartment.",
+    "exampleTranslation": "เราเซ็นสัญญาเช่าหนึ่งปีสำหรับอพาร์ตเมนต์นี้",
+    "phonetic": "/liːs/",
+    "cefr": "B1",
+    "collocations": [
+      "sign a lease",
+      "renew a lease"
+    ],
+    "synonyms": [
+      "rental agreement",
+      "contract"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "สัญญา",
+      "เช่า",
+      "บ้าน"
+    ],
+    "extraExample": "My lease expires at the end of next month.",
+    "extraExampleTranslation": "สัญญาเช่าของฉันจะหมดอายุสิ้นเดือนหน้า",
+    "novaBatch": true
+  },
+  {
+    "word": "hallway",
+    "partOfSpeech": "noun",
+    "translation": "โถงทางเดิน",
+    "definition": "a long passage inside a building with doors to rooms",
+    "example": "Please keep your shoes out of the shared hallway.",
+    "exampleTranslation": "กรุณาอย่าวางรองเท้าไว้ในโถงทางเดินส่วนกลาง",
+    "phonetic": "/ˈhɔːl.weɪ/",
+    "cefr": "B1",
+    "collocations": [
+      "main hallway",
+      "clean the hallway"
+    ],
+    "synonyms": [
+      "corridor",
+      "passage"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "โถง",
+      "ทาง",
+      "เดิน"
+    ],
+    "extraExample": "The hallway lights turn on automatically at night.",
+    "extraExampleTranslation": "ไฟโถงทางเดินจะเปิดอัตโนมัติในตอนกลางคืน",
+    "novaBatch": true
+  },
+  {
+    "word": "intercom",
+    "partOfSpeech": "noun",
+    "translation": "อินเตอร์คอม",
+    "definition": "a system used to talk to someone at the front door",
+    "example": "Press the intercom button to let your guest inside.",
+    "exampleTranslation": "กดปุ่มอินเตอร์คอมเพื่อเปิดประตูให้แขกเข้ามา",
+    "phonetic": "/ˈɪn.tər.kɑːm/",
+    "cefr": "B1",
+    "collocations": [
+      "use the intercom",
+      "answer the intercom"
+    ],
+    "synonyms": [
+      "speakerphone",
+      "doorbell system"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "อิน",
+      "เตอร์",
+      "คอม"
+    ],
+    "extraExample": "The delivery driver buzzed my intercom downstairs.",
+    "extraExampleTranslation": "พนักงานส่งของกดอินเตอร์คอมเรียกฉันจากข้างล่าง",
+    "novaBatch": true
+  },
+  {
+    "word": "soundproof",
+    "partOfSpeech": "adjective",
+    "translation": "กันเสียง",
+    "definition": "designed to block noise from passing through",
+    "example": "The walls are not very soundproof, so I hear my neighbors.",
+    "exampleTranslation": "ผนังไม่ค่อยกันเสียง ฉันเลยได้ยินเสียงเพื่อนบ้าน",
+    "phonetic": "/ˈsaʊnd.pruːf/",
+    "cefr": "B1",
+    "collocations": [
+      "soundproof walls",
+      "soundproof room"
+    ],
+    "synonyms": [
+      "noise-canceling",
+      "insulated"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "กัน",
+      "เสียง",
+      "รบกวน"
+    ],
+    "extraExample": "We installed soundproof curtains to block street noise.",
+    "extraExampleTranslation": "เราติดผ้าม่านกันเสียงเพื่อลดเสียงรบกวนจากถนน",
+    "novaBatch": true
+  },
+  {
+    "word": "considerate",
+    "partOfSpeech": "adjective",
+    "translation": "เกรงใจ",
+    "definition": "careful not to bother or inconvenience other people",
+    "example": "Be considerate of your neighbors and lower the music.",
+    "exampleTranslation": "เกรงใจเพื่อนบ้านหน่อยและลดเสียงเพลงลงด้วย",
+    "phonetic": "/kənˈsɪd.ər.ət/",
+    "cefr": "B1",
+    "collocations": [
+      "be considerate",
+      "considerate neighbor"
+    ],
+    "synonyms": [
+      "thoughtful",
+      "polite"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "เกรง",
+      "ใจ",
+      "ผู้อื่น"
+    ],
+    "extraExample": "She is a considerate neighbor who always greets everyone.",
+    "extraExampleTranslation": "เธอเป็นเพื่อนบ้านที่น่ารักและทักทายทุกคนเสมอ",
+    "novaBatch": true
+  },
+  {
+    "word": "maintenance",
+    "partOfSpeech": "noun",
+    "translation": "การบำรุงรักษา",
+    "definition": "the work needed to keep a building in good condition",
+    "example": "The building is closed for elevator maintenance today.",
+    "exampleTranslation": "วันนี้อาคารปิดซ่อมบำรุงลิฟต์",
+    "phonetic": "/ˈmeɪn.tən.əns/",
+    "cefr": "B1",
+    "collocations": [
+      "building maintenance",
+      "maintenance fee"
+    ],
+    "synonyms": [
+      "upkeep",
+      "repair"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "การ",
+      "บำรุง",
+      "รักษา"
+    ],
+    "extraExample": "Call the maintenance team if your sink is clogged.",
+    "extraExampleTranslation": "โทรหาทีมซ่อมบำรุงถ้าอ่างล้างจานของคุณอุดตัน",
+    "novaBatch": true
+  },
+  {
+    "word": "delegate",
+    "partOfSpeech": "verb",
+    "translation": "มอบหมายงาน",
+    "definition": "to give a task or responsibility to another person",
+    "example": "A good manager knows when to delegate tasks to the team.",
+    "exampleTranslation": "ผู้จัดการที่ดีรู้ว่าเมื่อไหร่ควรมอบหมายงานให้ทีม",
+    "phonetic": "/ˈdɛlɪɡeɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "delegate tasks",
+      "delegate authority"
+    ],
+    "synonyms": [
+      "assign",
+      "entrust"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "มอบหมายงาน",
+      "กระจายหน้าที่",
+      "ส่งต่อความรับผิดชอบ"
+    ],
+    "extraExample": "He learned to delegate duties instead of doing everything alone.",
+    "extraExampleTranslation": "เขาเรียนรู้ที่จะมอบหมายหน้าที่แทนที่จะทำทุกอย่างคนเดียว",
+    "novaBatch": true
+  },
+  {
+    "word": "accountable",
+    "partOfSpeech": "adjective",
+    "translation": "มีความรับผิดชอบ",
+    "definition": "responsible for your own decisions and actions",
+    "example": "Everyone on the team is accountable for meeting the deadline.",
+    "exampleTranslation": "ทุกคนในทีมมีความรับผิดชอบในการส่งงานให้ทันกำหนด",
+    "phonetic": "/əˈkaʊntəbl/",
+    "cefr": "B1",
+    "collocations": [
+      "hold accountable",
+      "be accountable for"
+    ],
+    "synonyms": [
+      "responsible",
+      "answerable"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "มีความรับผิดชอบ",
+      "รับผิดชอบต่อผลลัพธ์",
+      "ตรวจสอบได้"
+    ],
+    "extraExample": "Leaders must hold themselves accountable when mistakes happen.",
+    "extraExampleTranslation": "ผู้นำต้องรับผิดชอบต่อตนเองเมื่อเกิดความผิดพลาด",
+    "novaBatch": true
+  },
+  {
+    "word": "mediator",
+    "partOfSpeech": "noun",
+    "translation": "ผู้ไกล่เกลี่ย",
+    "definition": "someone who helps two sides in a disagreement reach an agreement",
+    "example": "We asked a neutral mediator to help resolve the dispute.",
+    "exampleTranslation": "เราขอให้ผู้ไกล่เกลี่ยที่เป็นกลางช่วยยุติข้อพิพาท",
+    "phonetic": "/ˈmiːdieɪtər/",
+    "cefr": "B1",
+    "collocations": [
+      "neutral mediator",
+      "act as a mediator"
+    ],
+    "synonyms": [
+      "peacemaker",
+      "arbitrator"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ผู้ไกล่เกลี่ย",
+      "คนกลาง",
+      "ผู้ประสานรอยร้าว"
+    ],
+    "extraExample": "She acted as a mediator between the two arguing departments.",
+    "extraExampleTranslation": "เธอทำหน้าที่เป็นผู้ไกล่เกลี่ยระหว่างสองแผนกที่กำลังโต้เถียงกัน",
+    "novaBatch": true
+  },
+  {
+    "word": "consensus",
+    "partOfSpeech": "noun",
+    "translation": "ฉันทามติ",
+    "definition": "a general agreement among all members of a group",
+    "example": "The team reached a consensus on the project timeline.",
+    "exampleTranslation": "ทีมงานบรรลุฉันทามติเรื่องกรอบเวลาของโครงการแล้ว",
+    "phonetic": "/kənˈsɛnsəs/",
+    "cefr": "B1",
+    "collocations": [
+      "reach a consensus",
+      "build consensus"
+    ],
+    "synonyms": [
+      "agreement",
+      "harmony"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ฉันทามติ",
+      "ความเห็นพ้องต้องกัน",
+      "ข้อตกลงร่วมกัน"
+    ],
+    "extraExample": "Building consensus takes patience and open communication.",
+    "extraExampleTranslation": "การสร้างฉันทามติต้องใช้ความอดทนและการสื่อสารที่เปิดกว้าง",
+    "novaBatch": true
+  },
+  {
+    "word": "ally",
+    "partOfSpeech": "noun",
+    "translation": "พันธมิตร",
+    "definition": "a person who supports and helps you, especially in a difficult situation",
+    "example": "Having a strong ally in the meeting made me feel confident.",
+    "exampleTranslation": "การมีพันธมิตรที่แข็งแกร่งในที่ประชุมทำให้ฉันรู้สึกมั่นใจ",
+    "phonetic": "/ˈælaɪ/",
+    "cefr": "B1",
+    "collocations": [
+      "strong ally",
+      "trusted ally"
+    ],
+    "synonyms": [
+      "supporter",
+      "partner"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "พันธมิตร",
+      "ผู้สนับสนุน",
+      "แนวร่วม"
+    ],
+    "extraExample": "She proved to be a reliable ally during the reorganization.",
+    "extraExampleTranslation": "เธอพิสูจน์ให้เห็นว่าเป็นพันธมิตรที่พึ่งพาได้ในช่วงปรับโครงสร้างองค์กร",
+    "novaBatch": true
+  },
+  {
+    "word": "supportive",
+    "partOfSpeech": "adjective",
+    "translation": "คอยสนับสนุน",
+    "definition": "giving encouragement and help to someone",
+    "example": "I am grateful to have such a supportive team around me.",
+    "exampleTranslation": "ฉันรู้สึกขอบคุณที่มีทีมที่คอยสนับสนุนอยู่รอบตัวแบบนี้",
+    "phonetic": "/səˈpɔːrtɪv/",
+    "cefr": "B1",
+    "collocations": [
+      "supportive team",
+      "supportive environment"
+    ],
+    "synonyms": [
+      "encouraging",
+      "helpful"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "คอยสนับสนุน",
+      "ให้กำลังใจ",
+      "เกื้อกูล"
+    ],
+    "extraExample": "A supportive environment encourages people to share new ideas.",
+    "extraExampleTranslation": "สภาพแวดล้อมที่คอยสนับสนุนจะกระตุ้นให้ผู้คนกล้าแบ่งปันไอเดียใหม่ๆ",
+    "novaBatch": true
+  },
+  {
+    "word": "synergy",
+    "partOfSpeech": "noun",
+    "translation": "พลังร่วม",
+    "definition": "the extra energy or success created when people work together well",
+    "example": "The synergy between the two writers produced a brilliant script.",
+    "exampleTranslation": "พลังร่วมระหว่างนักเขียนทั้งสองคนทำให้เกิดบทที่ยอดเยี่ยม",
+    "phonetic": "/ˈsɪnərdʒi/",
+    "cefr": "B1",
+    "collocations": [
+      "team synergy",
+      "create synergy"
+    ],
+    "synonyms": [
+      "teamwork",
+      "cooperation"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "พลังร่วม",
+      "การทำงานประสานกัน",
+      "ผลลัพธ์ทวีคูณ"
+    ],
+    "extraExample": "Great teamwork creates synergy that multiplies everyone's efforts.",
+    "extraExampleTranslation": "การทำงานเป็นทีมที่ดีสร้างพลังร่วมที่ทวีคูณความพยายามของทุกคน",
+    "novaBatch": true
+  },
+  {
+    "word": "coverage",
+    "partOfSpeech": "noun",
+    "translation": "ความคุ้มครอง",
+    "definition": "protection provided by an insurance plan",
+    "example": "Does this plan include medical coverage abroad?",
+    "exampleTranslation": "แผนนี้รวมความคุ้มครองค่ารักษาพยาบาลในต่างประเทศไหม",
+    "phonetic": "/ˈkʌv.ɚ.ɪdʒ/",
+    "cefr": "B1",
+    "collocations": [
+      "medical coverage",
+      "full coverage"
+    ],
+    "synonyms": [
+      "protection",
+      "insurance"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ความคุ้มครอง",
+      "การประกัน",
+      "สิทธิประโยชน์"
+    ],
+    "extraExample": "We bought extra coverage for adventure sports.",
+    "extraExampleTranslation": "เราซื้อความคุ้มครองเพิ่มเติมสำหรับกีฬาผจญภัย",
+    "novaBatch": true
+  },
+  {
+    "word": "reimburse",
+    "partOfSpeech": "verb",
+    "translation": "ชดใช้เงินคืน",
+    "definition": "to pay back money someone has spent",
+    "example": "The insurer will reimburse your hospital bills.",
+    "exampleTranslation": "บริษัทประกันจะชดใช้ค่ารักษาพยาบาลคืนให้คุณ",
+    "phonetic": "/ˌriː.ɪmˈbɝːs/",
+    "cefr": "B1",
+    "collocations": [
+      "reimburse expenses",
+      "fully reimburse"
+    ],
+    "synonyms": [
+      "refund",
+      "repay"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ชดใช้คืน",
+      "จ่ายคืน",
+      "คืนเงิน"
+    ],
+    "extraExample": "They promised to reimburse us for the delayed train.",
+    "extraExampleTranslation": "พวกเขาสัญญาว่าจะจ่ายเงินคืนให้เราสำหรับรถไฟที่ล่าช้า",
+    "novaBatch": true
+  },
+  {
+    "word": "deductible",
+    "partOfSpeech": "noun",
+    "translation": "ค่าเสียหายส่วนแรก",
+    "definition": "the amount you pay before insurance pays",
+    "example": "This cheap plan has a very high deductible.",
+    "exampleTranslation": "แผนราคาถูกนี้มีค่าเสียหายส่วนแรกที่สูงมาก",
+    "phonetic": "/dɪˈdʌk.tə.bəl/",
+    "cefr": "B1",
+    "collocations": [
+      "annual deductible",
+      "low deductible"
+    ],
+    "synonyms": [
+      "excess",
+      "out-of-pocket"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ค่าเสียหายส่วนแรก",
+      "ส่วนที่ต้องจ่ายเอง",
+      "หักส่วนแรก"
+    ],
+    "extraExample": "You must pay the hundred-dollar deductible first.",
+    "extraExampleTranslation": "คุณต้องจ่ายค่าเสียหายส่วนแรกหนึ่งร้อยดอลลาร์ก่อน",
+    "novaBatch": true
+  },
+  {
+    "word": "premium",
+    "partOfSpeech": "noun",
+    "translation": "เบี้ยประกันภัย",
+    "definition": "the regular amount paid for insurance",
+    "example": "Paying a higher premium gives you better benefits.",
+    "exampleTranslation": "การจ่ายเบี้ยประกันที่สูงขึ้นจะให้สิทธิประโยชน์ที่ดีกว่า",
+    "phonetic": "/ˈpriː.mi.əm/",
+    "cefr": "B1",
+    "collocations": [
+      "insurance premium",
+      "monthly premium"
+    ],
+    "synonyms": [
+      "fee",
+      "rate"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "เบี้ยประกัน",
+      "ค่าเบี้ย",
+      "เงินประกัน"
+    ],
+    "extraExample": "Our travel insurance premium was only twenty dollars.",
+    "extraExampleTranslation": "เบี้ยประกันการเดินทางของเราแค่ยี่สิบดอลลาร์เท่านั้น",
+    "novaBatch": true
+  },
+  {
+    "word": "banknote",
+    "partOfSpeech": "noun",
+    "translation": "ธนบัตร",
+    "definition": "a piece of paper money",
+    "example": "Check the banknote carefully for any tears.",
+    "exampleTranslation": "ตรวจสอบธนบัตรอย่างละเอียดเผื่อมีรอยขาด",
+    "phonetic": "/ˈbæŋk.noʊt/",
+    "cefr": "B1",
+    "collocations": [
+      "foreign banknote",
+      "crisp banknote"
+    ],
+    "synonyms": [
+      "bill",
+      "note"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ธนบัตร",
+      "แบงก์",
+      "เงินกระดาษ"
+    ],
+    "extraExample": "Exchange booths often prefer clean, new banknotes.",
+    "extraExampleTranslation": "บูธแลกเงินมักชอบธนบัตรที่สะอาดและใหม่",
+    "novaBatch": true
+  },
+  {
+    "word": "surcharge",
+    "partOfSpeech": "noun",
+    "translation": "ค่าธรรมเนียมเพิ่มเติม",
+    "definition": "an extra charge added to a payment",
+    "example": "Some ATMs charge a high surcharge for foreign cards.",
+    "exampleTranslation": "ตู้เอทีเอ็มบางแห่งคิดค่าธรรมเนียมเพิ่มเติมสูงสำหรับบัตรต่างประเทศ",
+    "phonetic": "/ˈsɝː.tʃɑːrdʒ/",
+    "cefr": "B1",
+    "collocations": [
+      "extra surcharge",
+      "ATM surcharge"
+    ],
+    "synonyms": [
+      "fee",
+      "markup"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ค่าธรรมเนียมเพิ่ม",
+      "ค่าบริการพิเศษ",
+      "บวกเพิ่ม"
+    ],
+    "extraExample": "Watch out for the weekend currency surcharge.",
+    "extraExampleTranslation": "ระวังค่าธรรมเนียมเพิ่มเติมของการแลกเงินในวันหยุดสุดสัปดาห์",
+    "novaBatch": true
+  },
+  {
+    "word": "withdrawal",
+    "partOfSpeech": "noun",
+    "translation": "การถอนเงิน",
+    "definition": "the act of taking money out of a bank",
+    "example": "There is a daily limit on cash withdrawal abroad.",
+    "exampleTranslation": "มีวงเงินจำกัดต่อวันสำหรับการถอนเงินสดในต่างประเทศ",
+    "phonetic": "/wɪðˈdrɑː.əl/",
+    "cefr": "B1",
+    "collocations": [
+      "cash withdrawal",
+      "withdrawal limit"
+    ],
+    "synonyms": [
+      "payout",
+      "debit"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "การถอนเงิน",
+      "เบิกเงิน",
+      "ถอนสด"
+    ],
+    "extraExample": "My bank notified me about a large withdrawal.",
+    "extraExampleTranslation": "ธนาคารแจ้งเตือนฉันเกี่ยวกับการถอนเงินจำนวนมาก",
+    "novaBatch": true
+  },
+  {
+    "word": "conversion",
+    "partOfSpeech": "noun",
+    "translation": "การแปลงสกุลเงิน",
+    "definition": "the process of changing one currency to another",
+    "example": "The app shows the real-time currency conversion rate.",
+    "exampleTranslation": "แอปแสดงอัตราการแปลงสกุลเงินแบบเรียลไทม์",
+    "phonetic": "/kənˈvɝː.ʒən/",
+    "cefr": "B1",
+    "collocations": [
+      "currency conversion",
+      "conversion rate"
+    ],
+    "synonyms": [
+      "exchange",
+      "swap"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "การแปลงเงิน",
+      "เปลี่ยนสกุล",
+      "อัตราแลกเปลี่ยน"
+    ],
+    "extraExample": "Dynamic currency conversion at shops is often expensive.",
+    "extraExampleTranslation": "การแปลงสกุลเงินที่ร้านค้ามักมีราคาแพง",
+    "novaBatch": true
+  },
+  {
+    "word": "voucher",
+    "partOfSpeech": "noun",
+    "translation": "บัตรกำนัลหรือใบสำคัญ",
+    "definition": "a document used instead of cash for services",
+    "example": "The airline gave us a meal voucher during the delay.",
+    "exampleTranslation": "สายการบินให้คูปองอาหารแก่เราในช่วงที่เที่ยวบินล่าช้า",
+    "phonetic": "/ˈvaʊ.tʃɚ/",
+    "cefr": "B1",
+    "collocations": [
+      "meal voucher",
+      "travel voucher"
+    ],
+    "synonyms": [
+      "coupon",
+      "ticket"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "บัตรกำนัล",
+      "คูปอง",
+      "ใบสำคัญ"
+    ],
+    "extraExample": "Show this hotel voucher at the front desk.",
+    "extraExampleTranslation": "แสดงใบสำคัญจองโรงแรมนี้ที่เคาน์เตอร์ต้อนรับ",
+    "novaBatch": true
+  },
+  {
+    "word": "monsoon",
+    "partOfSpeech": "noun",
+    "translation": "มรสุม ฤดูมรสุม",
+    "definition": "a seasonal prevailing wind in South and Southeast Asia that brings heavy rain",
+    "example": "The monsoon usually arrives in late May and lasts until October.",
+    "exampleTranslation": "ฤดูมรสุมมักจะมาถึงในช่วงปลายเดือนพฤษภาคมและยาวไปจนถึงเดือนตุลาคม",
+    "phonetic": "/mɑːnˈsuːn/",
+    "cefr": "B1",
+    "collocations": [
+      "monsoon season",
+      "monsoon rains"
+    ],
+    "synonyms": [
+      "rainy season",
+      "downpour"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "มรสุม",
+      "ฤดูมรสุม",
+      "ลมมรสุม"
+    ],
+    "extraExample": "Heavy monsoon rains caused traffic delays across the city.",
+    "extraExampleTranslation": "ฝนตกหนักจากมรสุมทำให้การจราจรติดขัดทั่วเมือง",
+    "novaBatch": true
+  },
+  {
+    "word": "blizzard",
+    "partOfSpeech": "noun",
+    "translation": "พายุหิมะรุนแรง",
+    "definition": "a severe snowstorm with strong winds and low visibility",
+    "example": "The weather service issued a blizzard warning for the northern mountains.",
+    "exampleTranslation": "กรมอุตุนิยมวิทยาออกประกาศเตือนพายุหิมะสำหรับภูเขาทางตอนเหนือ",
+    "phonetic": "/ˈblɪzərd/",
+    "cefr": "B1",
+    "collocations": [
+      "blizzard warning",
+      "severe blizzard"
+    ],
+    "synonyms": [
+      "snowstorm",
+      "whiteout"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "พายุหิมะ",
+      "พายุหิมะรุนแรง",
+      "หิมะตกหนัก"
+    ],
+    "extraExample": "Drivers were advised to stay home until the blizzard passed.",
+    "extraExampleTranslation": "ผู้ขับขี่ได้รับคำแนะนำให้อยู่บ้านจนกว่าพายุหิมะจะผ่านพ้นไป",
+    "novaBatch": true
+  },
+  {
+    "word": "heatwave",
+    "partOfSpeech": "noun",
+    "translation": "คลื่นความร้อน",
+    "definition": "a prolonged period of abnormally hot weather",
+    "example": "During the summer heatwave, electricity demand reached a record high.",
+    "exampleTranslation": "ในช่วงคลื่นความร้อนฤดูร้อน ความต้องการใช้ไฟฟ้าพุ่งสูงเป็นประวัติการณ์",
+    "phonetic": "/ˈhiːtweɪv/",
+    "cefr": "B1",
+    "collocations": [
+      "summer heatwave",
+      "intense heatwave"
+    ],
+    "synonyms": [
+      "hot spell",
+      "swelter"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "คลื่นความร้อน",
+      "อากาศร้อนจัด",
+      "ช่วงอากาศร้อน"
+    ],
+    "extraExample": "Health officials warned elderly residents to stay hydrated during the heatwave.",
+    "extraExampleTranslation": "เจ้าหน้าที่สาธารณสุขเตือนผู้สูงอายุให้ดื่มน้ำให้เพียงพอในช่วงคลื่นความร้อน",
+    "novaBatch": true
+  },
+  {
+    "word": "frost",
+    "partOfSpeech": "noun",
+    "translation": "น้ำค้างแข็ง แม่คะนิ้ง",
+    "definition": "a thin layer of ice crystals formed on surfaces when temperatures drop below freezing",
+    "example": "Early morning frost covered the grass and car windshields.",
+    "exampleTranslation": "น้ำค้างแข็งยามเช้าปกคลุมพื้นหญ้าและกระจกหน้ารถ",
+    "phonetic": "/frɔːst/",
+    "cefr": "B1",
+    "collocations": [
+      "morning frost",
+      "frost warning"
+    ],
+    "synonyms": [
+      "ice crystals",
+      "freeze"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "น้ำค้างแข็ง",
+      "แม่คะนิ้ง",
+      "เกล็ดน้ำแข็ง"
+    ],
+    "extraExample": "Farmers worried that a sudden frost would damage their young crops.",
+    "extraExampleTranslation": "เกษตรกรกังวลว่าน้ำค้างแข็งกะทันหันจะทำลายพืชผลที่ยังอ่อนอยู่",
+    "novaBatch": true
+  },
+  {
+    "word": "hail",
+    "partOfSpeech": "noun",
+    "translation": "ลูกเห็บ",
+    "definition": "pellets of frozen rain that fall in showers from cumulonimbus clouds",
+    "example": "Golf-ball-sized hail dented several parked cars during the storm.",
+    "exampleTranslation": "ลูกเห็บขนาดเท่าลูกกอล์ฟทำให้รถที่จอดอยู่หลายคันบุบระหว่างพายุ",
+    "phonetic": "/heɪl/",
+    "cefr": "B1",
+    "collocations": [
+      "hail damage",
+      "heavy hail"
+    ],
+    "synonyms": [
+      "ice pellets",
+      "sleet"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ลูกเห็บ",
+      "พายุลูกเห็บ",
+      "ฝนลูกเห็บ"
+    ],
+    "extraExample": "The sudden hail forced hikers to seek shelter under a wooden roof.",
+    "extraExampleTranslation": "ลูกเห็บที่ตกลงมากะทันหันทำให้นักเดินป่าต้องหาที่หลบใต้หลังคาไม้",
+    "novaBatch": true
+  },
+  {
+    "word": "gale",
+    "partOfSpeech": "noun",
+    "translation": "พายุลมแรง ลมกรรโชกแรง",
+    "definition": "a very strong wind, especially one between 34 and 40 knots",
+    "example": "A coastal gale overturned small fishing boats near the harbor.",
+    "exampleTranslation": "ลมแรงชายฝั่งพัดเรือประมงขนาดเล็กคว่ำใกล้ท่าเรือ",
+    "phonetic": "/ɡeɪl/",
+    "cefr": "B1",
+    "collocations": [
+      "gale-force winds",
+      "coastal gale"
+    ],
+    "synonyms": [
+      "strong wind",
+      "squall"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ลมแรง",
+      "พายุลมแรง",
+      "ลมกรรโชก"
+    ],
+    "extraExample": "The weather alert warned of gale-force winds along the highway.",
+    "extraExampleTranslation": "ประกาศเตือนภัยอากาศเตือนเรื่องลมแรงระดับพายุตามแนวทางหลวง",
+    "novaBatch": true
+  },
+  {
+    "word": "drizzle",
+    "partOfSpeech": "noun",
+    "translation": "ฝนตกปรอยๆ ฝนละออง",
+    "definition": "light rain falling in very fine drops",
+    "example": "A light drizzle fell throughout the cool autumn afternoon.",
+    "exampleTranslation": "ฝนตกปรอยๆ เบาๆ ตลอดช่วงบ่ายฤดูใบไม้ร่วงที่อากาศเย็น",
+    "phonetic": "/ˈdrɪzl/",
+    "cefr": "B1",
+    "collocations": [
+      "light drizzle",
+      "morning drizzle"
+    ],
+    "synonyms": [
+      "sprinkle",
+      "mist"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ฝนปรอยๆ",
+      "ฝนละออง",
+      "ฝนตกเบาๆ"
+    ],
+    "extraExample": "You only need a light jacket for this gentle drizzle.",
+    "extraExampleTranslation": "คุณแค่ใส่เสื้อแจ็คเก็ตบางๆ ก็พอสำหรับฝนปรอยๆ เบาๆ นี้",
+    "novaBatch": true
+  },
+  {
+    "word": "humid",
+    "partOfSpeech": "adjective",
+    "translation": "ชื้น ชื้นแฉะ",
+    "definition": "marked by a relatively high level of water vapor in the atmosphere",
+    "example": "The air feels sticky and humid right before a summer storm.",
+    "exampleTranslation": "อากาศรู้สึกเหนียวเหนอะหนะและชื้นแฉะก่อนเกิดพายุฤดูร้อน",
+    "phonetic": "/ˈhjuːmɪd/",
+    "cefr": "B1",
+    "collocations": [
+      "humid weather",
+      "hot and humid"
+    ],
+    "synonyms": [
+      "muggy",
+      "damp"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ชื้น",
+      "ชื้นแฉะ",
+      "อบอ้าว"
+    ],
+    "extraExample": "Coastal cities are often much more humid than inland towns.",
+    "extraExampleTranslation": "เมืองชายฝั่งมักจะมีความชื้นสูงกว่าเมืองที่อยู่ลึกเข้าไปในแผ่นดินมาก",
+    "novaBatch": true
+  },
+  {
+    "word": "evacuate",
+    "partOfSpeech": "verb",
+    "translation": "อพยพ ออกจากพื้นที่เสี่ยง",
+    "definition": "to remove people from a dangerous place to a safer location",
+    "example": "Residents were ordered to evacuate before the floodwaters rose.",
+    "exampleTranslation": "ประชาชนได้รับคำสั่งให้อพยพก่อนที่ระดับน้ำท่วมจะสูงขึ้น",
+    "phonetic": "/ɪˈvækjueɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "evacuate residents",
+      "evacuate immediately"
+    ],
+    "synonyms": [
+      "relocate",
+      "clear out"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "อพยพ",
+      "ย้ายออก",
+      "หนีภัย"
+    ],
+    "extraExample": "Emergency crews helped families evacuate from the coastal zone.",
+    "extraExampleTranslation": "หน่วยกู้ภัยช่วยครอบครัวต่างๆ อพยพออกจากเขตชายฝั่ง",
+    "novaBatch": true
+  },
+  {
+    "word": "thaw",
+    "partOfSpeech": "verb",
+    "translation": "ละลาย คลายความหนาว",
+    "definition": "to become unfrozen or melt as temperatures rise",
+    "example": "The frozen lake began to thaw in early spring.",
+    "exampleTranslation": "ทะเลสาบที่แข็งตัวเริ่มละลายในช่วงต้นฤดูใบไม้ผลิ",
+    "phonetic": "/θɔː/",
+    "cefr": "B1",
+    "collocations": [
+      "begin to thaw",
+      "thaw out"
+    ],
+    "synonyms": [
+      "melt",
+      "unfreeze"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ละลาย",
+      "คลายความหนาว",
+      "น้ำแข็งละลาย"
+    ],
+    "extraExample": "It takes several hours for the icy roads to thaw under the sun.",
+    "extraExampleTranslation": "ถนนที่เป็นน้ำแข็งใช้เวลาหลายชั่วโมงกว่าจะละลายภายใต้แสงแดด",
+    "novaBatch": true
+  },
+  {
+    "word": "overcast",
+    "partOfSpeech": "adjective",
+    "translation": "มืดครึ้ม มีเมฆมาก",
+    "definition": "covered with clouds so that the sun is not visible",
+    "example": "The sky remained overcast all morning, with no sign of sunshine.",
+    "exampleTranslation": "ท้องฟ้ายังคงมืดครึ้มตลอดช่วงเช้าโดยไม่มีวี่แววของแสงแดด",
+    "phonetic": "/ˌoʊvərˈkæst/",
+    "cefr": "B1",
+    "collocations": [
+      "overcast sky",
+      "overcast afternoon"
+    ],
+    "synonyms": [
+      "cloudy",
+      "gloomy"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "มืดครึ้ม",
+      "มีเมฆมาก",
+      "ฟ้าครึ้ม"
+    ],
+    "extraExample": "An overcast afternoon often signals an approaching cold front.",
+    "extraExampleTranslation": "ช่วงบ่ายที่ฟ้ามืดครึ้มมักเป็นสัญญาณของแนวอากาศเย็นที่กำลังเคลื่อนเข้ามา",
+    "novaBatch": true
+  },
+  {
+    "word": "reassured",
+    "partOfSpeech": "adjective",
+    "translation": "รู้สึกอุ่นใจ, โล่งใจ",
+    "definition": "feeling less worried or more confident about something",
+    "example": "I felt reassured after hearing the doctor say the results were normal.",
+    "exampleTranslation": "ฉันรู้สึกอุ่นใจขึ้นหลังจากได้ยินหมอบอกว่าผลตรวจปกติดี",
+    "phonetic": "/ˌriːəˈʃʊrd/",
+    "cefr": "B1",
+    "collocations": [
+      "feel reassured",
+      "reassured by"
+    ],
+    "synonyms": [
+      "comforted",
+      "relieved"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "รู้สึกอุ่นใจ",
+      "คลายความกังวล",
+      "มั่นใจขึ้น"
+    ],
+    "extraExample": "Her calm voice made everyone in the room feel reassured.",
+    "extraExampleTranslation": "น้ำเสียงที่สงบของเธอทำให้ทุกคนในห้องรู้สึกอุ่นใจ",
+    "novaBatch": true
+  },
+  {
+    "word": "hopeful",
+    "partOfSpeech": "adjective",
+    "translation": "เต็มไปด้วยความหวัง",
+    "definition": "believing that something good will happen in the future",
+    "example": "We are hopeful that the new project will succeed.",
+    "exampleTranslation": "พวกเรามีความหวังว่าโครงการใหม่นี้จะประสบความสำเร็จ",
+    "phonetic": "/ˈhoʊpfəl/",
+    "cefr": "B1",
+    "collocations": [
+      "remain hopeful",
+      "hopeful about"
+    ],
+    "synonyms": [
+      "positive",
+      "expectant"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "มีความหวัง",
+      "มองในแง่ดี",
+      "คาดหวังสิ่งดี"
+    ],
+    "extraExample": "Despite the rain, she remained hopeful about the afternoon picnic.",
+    "extraExampleTranslation": "แม้ฝนจะตก เธอก็ยังคงมีความหวังเกี่ยวกับการปิกนิกช่วงบ่าย",
+    "novaBatch": true
+  },
+  {
+    "word": "unburdened",
+    "partOfSpeech": "adjective",
+    "translation": "รู้สึกโล่งอก, หมดภาระใจ",
+    "definition": "free from a heavy worry or emotional weight",
+    "example": "After telling the truth, he felt completely unburdened.",
+    "exampleTranslation": "หลังจากพูดความจริงออกไป เขาก็รู้สึกโล่งอกอย่างสมบูรณ์",
+    "phonetic": "/ʌnˈbɜːrdənd/",
+    "cefr": "B1",
+    "collocations": [
+      "feel unburdened",
+      "unburdened of"
+    ],
+    "synonyms": [
+      "freed",
+      "lightened"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "โล่งอก",
+      "หมดภาระใจ",
+      "เบาสบาย"
+    ],
+    "extraExample": "She walked out of the meeting feeling unburdened and ready to rest.",
+    "extraExampleTranslation": "เธอเดินออกจากห้องประชุมด้วยความรู้สึกโล่งใจและพร้อมที่จะพักผ่อน",
+    "novaBatch": true
+  },
+  {
+    "word": "upbeat",
+    "partOfSpeech": "adjective",
+    "translation": "ร่าเริง, มองโลกในแง่ดี",
+    "definition": "cheerful and quietly positive about what will happen",
+    "example": "She sounded upbeat during our phone call this morning.",
+    "exampleTranslation": "น้ำเสียงของเธอฟังดูร่าเริงและมองโลกในแง่ดีระหว่างที่เราคุยโทรศัพท์กันเมื่อเช้า",
+    "phonetic": "/ˈʌpbiːt/",
+    "cefr": "B1",
+    "collocations": [
+      "upbeat mood",
+      "sound upbeat"
+    ],
+    "synonyms": [
+      "cheerful",
+      "positive"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "ร่าเริง",
+      "สดใส",
+      "มองแง่ดี"
+    ],
+    "extraExample": "The coach gave an upbeat talk before the final match.",
+    "extraExampleTranslation": "โค้ชพูดให้กำลังใจอย่างสดใสก่อนการแข่งขันรอบชิงชนะเลิศ",
+    "novaBatch": true
+  },
+  {
+    "word": "soothed",
+    "partOfSpeech": "adjective",
+    "translation": "รู้สึกสงบลง, ผ่อนคลาย",
+    "definition": "made calmer and less upset or anxious",
+    "example": "The quiet music left her feeling soothed after a long day.",
+    "exampleTranslation": "เสียงเพลงเบาๆ ทำให้เธอรู้สึกสงบลงหลังจากวันที่ยาวนาน",
+    "phonetic": "/suːðd/",
+    "cefr": "B1",
+    "collocations": [
+      "feel soothed",
+      "soothed by"
+    ],
+    "synonyms": [
+      "calmed",
+      "relaxed"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "สงบลง",
+      "ผ่อนคลาย",
+      "สบายใจขึ้น"
+    ],
+    "extraExample": "He felt soothed by the warm tea and gentle conversation.",
+    "extraExampleTranslation": "เขารู้สึกผ่อนคลายจากชาอุ่นๆ และการพูดคุยอย่างอ่อนโยน",
+    "novaBatch": true
+  },
+  {
+    "word": "brighten",
+    "partOfSpeech": "verb",
+    "translation": "สดใสขึ้น, ทำให้ร่าเริงขึ้น",
+    "definition": "to become happier or make someone feel more cheerful",
+    "example": "Her smile always seems to brighten the whole office.",
+    "exampleTranslation": "รอยยิ้มของเธอมักจะทำให้ทั้งออฟฟิศดูสดใสขึ้นเสมอ",
+    "phonetic": "/ˈbraɪtən/",
+    "cefr": "B1",
+    "collocations": [
+      "brighten up",
+      "brighten someone's day"
+    ],
+    "synonyms": [
+      "cheer",
+      "lighten"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "สดใสขึ้น",
+      "ร่าเริงขึ้น",
+      "คลายเศร้า"
+    ],
+    "extraExample": "His mood began to brighten when the sun came out.",
+    "extraExampleTranslation": "อารมณ์ของเขาเริ่มสดใสขึ้นเมื่อพระอาทิตย์โผล่ออกมา",
+    "novaBatch": true
+  },
+  {
+    "word": "reassurance",
+    "partOfSpeech": "noun",
+    "translation": "คำปลอบใจ, ความอุ่นใจ",
+    "definition": "words or actions that remove someone's doubts or fears",
+    "example": "A little reassurance from a friend can make a big difference.",
+    "exampleTranslation": "คำปลอบใจเล็กๆ น้อยๆ จากเพื่อนสามารถสร้างความแตกต่างได้อย่างมาก",
+    "phonetic": "/ˌriːəˈʃʊrəns/",
+    "cefr": "B1",
+    "collocations": [
+      "offer reassurance",
+      "need reassurance"
+    ],
+    "synonyms": [
+      "comfort",
+      "support"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "คำปลอบใจ",
+      "ความอุ่นใจ",
+      "การยืนยันให้มั่นใจ"
+    ],
+    "extraExample": "She needed some reassurance before stepping onto the stage.",
+    "extraExampleTranslation": "เธอต้องการความอุ่นใจบ้างก่อนที่จะก้าวขึ้นไปบนเวที",
+    "novaBatch": true
+  },
+  {
+    "word": "solace",
+    "partOfSpeech": "noun",
+    "translation": "ความสบายใจ, การปลอบโยน",
+    "definition": "comfort in a time of sadness or worry",
+    "example": "He found solace in walking through the quiet park.",
+    "exampleTranslation": "เขาพบความสบายใจจากการเดินเล่นในสวนสาธารณะที่เงียบสงบ",
+    "phonetic": "/ˈsɑːləs/",
+    "cefr": "B1",
+    "collocations": [
+      "find solace",
+      "bring solace"
+    ],
+    "synonyms": [
+      "comfort",
+      "relief"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "ความสบายใจ",
+      "การปลอบโยน",
+      "ที่พึ่งทางใจ"
+    ],
+    "extraExample": "Reading old letters brought her solace during a hard week.",
+    "extraExampleTranslation": "การอ่านจดหมายเก่าๆ ช่วยปลอบโยนเธอในช่วงสัปดาห์ที่ยากลำบาก",
+    "novaBatch": true
+  },
+  {
+    "word": "uplifted",
+    "partOfSpeech": "adjective",
+    "translation": "รู้สึกมีพลังใจ, จิตใจเบิกบาน",
+    "definition": "feeling happier, more hopeful, and emotionally raised",
+    "example": "The audience felt uplifted by the inspiring speech.",
+    "exampleTranslation": "ผู้ฟังรู้สึกจิตใจเบิกบานจากสุนทรพจน์ที่สร้างแรงบันดาลใจ",
+    "phonetic": "/ʌpˈlɪftɪd/",
+    "cefr": "B1",
+    "collocations": [
+      "feel uplifted",
+      "uplifted by"
+    ],
+    "synonyms": [
+      "inspired",
+      "cheered"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "มีพลังใจ",
+      "จิตใจเบิกบาน",
+      "อิ่มเอมใจ"
+    ],
+    "extraExample": "She felt uplifted after spending the afternoon with her family.",
+    "extraExampleTranslation": "เธอรู้สึกมีพลังใจขึ้นหลังจากใช้เวลาช่วงบ่ายกับครอบครัว",
+    "novaBatch": true
+  },
+  {
+    "word": "lighthearted",
+    "partOfSpeech": "adjective",
+    "translation": "ร่าเริง, สบายใจ",
+    "definition": "cheerful and free from heavy worry or seriousness",
+    "example": "They shared a lighthearted laugh over dinner.",
+    "exampleTranslation": "พวกเขาหัวเราะกันอย่างสบายใจระหว่างมื้อค่ำ",
+    "phonetic": "/ˌlaɪtˈhɑːrtɪd/",
+    "cefr": "B1",
+    "collocations": [
+      "lighthearted mood",
+      "lighthearted joke"
+    ],
+    "synonyms": [
+      "carefree",
+      "cheerful"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "สบายใจ",
+      "ร่าเริง",
+      "ไม่เครียด"
+    ],
+    "extraExample": "The movie was lighthearted and helped me forget my stress.",
+    "extraExampleTranslation": "หนังเรื่องนี้ดูสบายๆ และช่วยให้ฉันลืมความเครียดไปได้",
+    "novaBatch": true
+  },
+  {
+    "word": "module",
+    "partOfSpeech": "noun",
+    "translation": "หน่วยการเรียน, โมดูล",
+    "definition": "each of a set of standardized parts or independent units in a course",
+    "example": "The first module covers basic grammar rules.",
+    "exampleTranslation": "หน่วยการเรียนแรกครอบคลุมกฎไวยากรณ์พื้นฐาน",
+    "phonetic": "/ˈmɑːdʒuːl/",
+    "cefr": "B1",
+    "collocations": [
+      "learning module",
+      "complete a module"
+    ],
+    "synonyms": [
+      "unit",
+      "section"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "หน่วยการเรียน",
+      "โมดูล",
+      "บทเรียนย่อย"
+    ],
+    "extraExample": "Each module ends with a short quiz to test your understanding.",
+    "extraExampleTranslation": "แต่ละหน่วยการเรียนจะจบด้วยแบบทดสอบสั้นๆ เพื่อทดสอบความเข้าใจของคุณ",
+    "novaBatch": true
+  },
+  {
+    "word": "accredited",
+    "partOfSpeech": "adjective",
+    "translation": "ที่ได้รับการรับรอง",
+    "definition": "officially recognized or authorized",
+    "example": "Employers prefer degrees from accredited online universities.",
+    "exampleTranslation": "นายจ้างชอบปริญญาจากมหาวิทยาลัยออนไลน์ที่ได้รับการรับรอง",
+    "phonetic": "/əˈkredɪtɪd/",
+    "cefr": "B1",
+    "collocations": [
+      "accredited program",
+      "accredited institution"
+    ],
+    "synonyms": [
+      "certified",
+      "recognized"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ที่ได้รับการรับรอง",
+      "ที่ได้มาตรฐาน",
+      "ที่เชื่อถือได้"
+    ],
+    "extraExample": "This program is fully accredited by the national board.",
+    "extraExampleTranslation": "โปรแกรมนี้ได้รับการรับรองอย่างสมบูรณ์จากคณะกรรมการแห่งชาติ",
+    "novaBatch": true
+  },
+  {
+    "word": "interactive",
+    "partOfSpeech": "adjective",
+    "translation": "เชิงโต้ตอบ, มีส่วนร่วม",
+    "definition": "allowing a two-way flow of information between a computer and a user",
+    "example": "The course includes interactive quizzes and video lessons.",
+    "exampleTranslation": "หลักสูตรนี้รวมแบบทดสอบเชิงโต้ตอบและบทเรียนวิดีโอ",
+    "phonetic": "/ˌɪntərˈæktɪv/",
+    "cefr": "B1",
+    "collocations": [
+      "interactive exercise",
+      "interactive platform"
+    ],
+    "synonyms": [
+      "engaging",
+      "participatory"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เชิงโต้ตอบ",
+      "มีปฏิสัมพันธ์",
+      "แบบมีส่วนร่วม"
+    ],
+    "extraExample": "Students learn faster through interactive exercises.",
+    "extraExampleTranslation": "นักเรียนเรียนรู้ได้เร็วขึ้นผ่านแบบฝึกหัดเชิงโต้ตอบ",
+    "novaBatch": true
+  },
+  {
+    "word": "webinar",
+    "partOfSpeech": "noun",
+    "translation": "การสัมมนาผ่านเว็บ",
+    "definition": "a seminar conducted over the internet",
+    "example": "I attended a live webinar on digital marketing yesterday.",
+    "exampleTranslation": "ฉันเข้าร่วมการสัมมนาผ่านเว็บสดเกี่ยวกับการตลาดดิจิทัลเมื่อวานนี้",
+    "phonetic": "/ˈwebɪnɑːr/",
+    "cefr": "B1",
+    "collocations": [
+      "attend a webinar",
+      "live webinar"
+    ],
+    "synonyms": [
+      "online seminar",
+      "virtual workshop"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "การสัมมนาผ่านเว็บ",
+      "สัมมนาออนไลน์",
+      "เวิร์กชอปออนไลน์"
+    ],
+    "extraExample": "The recorded webinar will be available for all participants.",
+    "extraExampleTranslation": "การสัมมนาผ่านเว็บที่บันทึกไว้จะพร้อมให้ผู้เข้าร่วมทุกคนรับชม",
+    "novaBatch": true
+  },
+  {
+    "word": "spokesperson",
+    "partOfSpeech": "noun",
+    "translation": "โฆษก",
+    "definition": "a person chosen to speak on behalf of a company or group",
+    "example": "Our spokesperson will answer questions from the press at noon.",
+    "exampleTranslation": "โฆษกของเราจะตอบคำถามจากสื่อมวลชนตอนเที่ยง",
+    "phonetic": "/ˈspoʊksˌpɜːrsən/",
+    "cefr": "B1",
+    "collocations": [
+      "official spokesperson",
+      "company spokesperson"
+    ],
+    "synonyms": [
+      "representative",
+      "speaker"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "โฆษกของบริษัท",
+      "ตอบคำถามสื่อ",
+      "ในช่วงวิกฤต"
+    ],
+    "extraExample": "The company hired a new spokesperson during the crisis.",
+    "extraExampleTranslation": "บริษัทจ้างโฆษกคนใหม่ในช่วงวิกฤต",
+    "novaBatch": true
+  },
+  {
+    "word": "transparency",
+    "partOfSpeech": "noun",
+    "translation": "ความโปร่งใส",
+    "definition": "the quality of being open and honest without hiding information",
+    "example": "Stakeholders expect full transparency during a recall.",
+    "exampleTranslation": "ผู้มีส่วนได้ส่วนเสียคาดหวังความโปร่งใสเต็มที่ระหว่างการเรียกคืนสินค้า",
+    "phonetic": "/trænsˈpærənsi/",
+    "cefr": "B1",
+    "collocations": [
+      "full transparency",
+      "lack of transparency"
+    ],
+    "synonyms": [
+      "openness",
+      "honesty"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ความโปร่งใสเต็มที่",
+      "สร้างความไว้วางใจ",
+      "เปิดเผยอย่างตรงไปตรงมา"
+    ],
+    "extraExample": "High transparency builds long-term trust with the public.",
+    "extraExampleTranslation": "ความโปร่งใสสูงช่วยสร้างความไว้วางใจระยะยาวกับสาธารณชน",
+    "novaBatch": true
+  },
+  {
+    "word": "rumor",
+    "partOfSpeech": "noun",
+    "translation": "ข่าวลือ",
+    "definition": "a piece of information that may not be true and spreads quickly",
+    "example": "We must address the rumor before it reaches the news.",
+    "exampleTranslation": "เราต้องจัดการกับข่าวลือก่อนที่มันจะไปถึงสื่อข่าว",
+    "phonetic": "/ˈruːmər/",
+    "cefr": "B1",
+    "collocations": [
+      "address a rumor",
+      "false rumor"
+    ],
+    "synonyms": [
+      "gossip",
+      "hearsay"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "จัดการข่าวลือ",
+      "ข่าวลือเท็จ",
+      "แพร่กระจายเร็ว"
+    ],
+    "extraExample": "The rumor about layoffs caused panic among staff.",
+    "extraExampleTranslation": "ข่าวลือเรื่องการเลิกจ้างทำให้พนักงานตื่นตระหนก",
+    "novaBatch": true
+  },
+  {
+    "word": "backlash",
+    "partOfSpeech": "noun",
+    "translation": "กระแสตีกลับ",
+    "definition": "a strong negative reaction from a large group of people",
+    "example": "The sudden price hike caused a huge public backlash.",
+    "exampleTranslation": "การขึ้นราคาอย่างกะทันหันทำให้เกิดกระแสตีกลับจากสาธารณชนอย่างมาก",
+    "phonetic": "/ˈbæklæʃ/",
+    "cefr": "B1",
+    "collocations": [
+      "public backlash",
+      "face backlash"
+    ],
+    "synonyms": [
+      "outcry",
+      "criticism"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "กระแสตีกลับ",
+      "ปฏิกิริยาเชิงลบ",
+      "เสียงวิจารณ์"
+    ],
+    "extraExample": "They changed the ad to avoid further backlash.",
+    "extraExampleTranslation": "พวกเขาเปลี่ยนโฆษณาเพื่อหลีกเลี่ยงกระแสตีกลับเพิ่มเติม",
+    "novaBatch": true
+  },
+  {
+    "word": "credible",
+    "partOfSpeech": "adjective",
+    "translation": "น่าเชื่อถือ",
+    "definition": "able to be believed or trusted",
+    "example": "Make sure every fact in the press release is credible.",
+    "exampleTranslation": "ตรวจสอบให้แน่ใจว่าข้อเท็จจริงทุกอย่างในข่าวประชาสัมพันธ์น่าเชื่อถือ",
+    "phonetic": "/ˈkredəbəl/",
+    "cefr": "B1",
+    "collocations": [
+      "credible source",
+      "credible explanation"
+    ],
+    "synonyms": [
+      "believable",
+      "trustworthy"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "แหล่งข้อมูลที่น่าเชื่อถือ",
+      "คำอธิบายที่น่าเชื่อถือ",
+      "เชื่อถือได้"
+    ],
+    "extraExample": "Customers want a credible explanation for the delay.",
+    "extraExampleTranslation": "ลูกค้าต้องการคำอธิบายที่น่าเชื่อถือสำหรับความล่าช้า",
+    "novaBatch": true
+  },
+  {
+    "word": "heritage",
+    "partOfSpeech": "noun",
+    "translation": "มรดกทางวัฒนธรรม",
+    "definition": "the traditions, buildings, and values passed down from past generations",
+    "example": "The old temple is an important part of our national heritage.",
+    "exampleTranslation": "วัดเก่าแก่แห่งนี้เป็นส่วนสำคัญของมรดกทางวัฒนธรรมแห่งชาติของเรา",
+    "phonetic": "/ˈhɛrɪtɪdʒ/",
+    "cefr": "B1",
+    "collocations": [
+      "cultural heritage",
+      "world heritage"
+    ],
+    "synonyms": [
+      "tradition",
+      "legacy"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "มรดกทางวัฒนธรรม",
+      "สืบทอด",
+      "คนรุ่นหลัง"
+    ],
+    "extraExample": "We must protect our cultural heritage for future generations.",
+    "extraExampleTranslation": "เราต้องปกป้องมรดกทางวัฒนธรรมของเราไว้ให้คนรุ่นหลัง",
+    "novaBatch": true
+  },
+  {
+    "word": "ritual",
+    "partOfSpeech": "noun",
+    "translation": "พิธีกรรม",
+    "definition": "a set of traditional actions performed for a special ceremony",
+    "example": "The morning ritual at the shrine attracts many visitors.",
+    "exampleTranslation": "พิธีกรรมยามเช้าที่ศาลเจ้าดึงดูดผู้มาเยือนจำนวนมาก",
+    "phonetic": "/ˈrɪtʃuəl/",
+    "cefr": "B1",
+    "collocations": [
+      "ancient ritual",
+      "perform a ritual"
+    ],
+    "synonyms": [
+      "ceremony",
+      "custom"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "พิธีกรรม",
+      "การปฏิบัติ",
+      "ตามประเพณี"
+    ],
+    "extraExample": "Lighting candles is a common ritual during the festival.",
+    "extraExampleTranslation": "การจุดเทียนเป็นพิธีกรรมที่พบได้ทั่วไปในช่วงเทศกาล",
+    "novaBatch": true
+  },
+  {
+    "word": "procession",
+    "partOfSpeech": "noun",
+    "translation": "ขบวนแห่",
+    "definition": "a line of people or vehicles moving slowly in a ceremony",
+    "example": "A colorful procession marched down the main street.",
+    "exampleTranslation": "ขบวนแห่สีสันสดใสเดินไปตามถนนสายหลัก",
+    "phonetic": "/prəˈsɛʃən/",
+    "cefr": "B1",
+    "collocations": [
+      "street procession",
+      "lantern procession"
+    ],
+    "synonyms": [
+      "parade",
+      "march"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ขบวนแห่",
+      "เดินขบวน",
+      "งานพิธี"
+    ],
+    "extraExample": "Children carried lanterns in the evening procession.",
+    "extraExampleTranslation": "เด็กๆ ถือโคมไฟในขบวนแห่ยามค่ำคืน",
+    "novaBatch": true
+  },
+  {
+    "word": "folklore",
+    "partOfSpeech": "noun",
+    "translation": "คติชนวิทยา, เรื่องเล่าพื้นบ้าน",
+    "definition": "traditional stories, beliefs, and customs of a community",
+    "example": "Local folklore explains how the mountain got its name.",
+    "exampleTranslation": "เรื่องเล่าพื้นบ้านอธิบายว่าภูเขาลูกนี้ได้ชื่อมาอย่างไร",
+    "phonetic": "/ˈfoʊklɔːr/",
+    "cefr": "B1",
+    "collocations": [
+      "local folklore",
+      "rich folklore"
+    ],
+    "synonyms": [
+      "mythology",
+      "legend"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "เรื่องเล่าพื้นบ้าน",
+      "ตำนาน",
+      "ความเชื่อ"
+    ],
+    "extraExample": "The dance is inspired by ancient regional folklore.",
+    "extraExampleTranslation": "การเต้นรำนี้ได้รับแรงบันดาลใจจากคติชนวิทยาโบราณของภูมิภาค",
+    "novaBatch": true
+  },
+  {
+    "word": "commemorate",
+    "partOfSpeech": "verb",
+    "translation": "รำลึกถึง, เฉลิมฉลอง",
+    "definition": "to remember and honor an important person or event with a ceremony",
+    "example": "The festival is held every year to commemorate the city's founders.",
+    "exampleTranslation": "เทศกาลนี้จัดขึ้นทุกปีเพื่อรำลึกถึงผู้ก่อตั้งเมือง",
+    "phonetic": "/kəˈmɛməreɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "commemorate an event",
+      "commemorate the anniversary"
+    ],
+    "synonyms": [
+      "honor",
+      "celebrate"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "รำลึกถึง",
+      "เชิดชู",
+      "เหตุการณ์สำคัญ"
+    ],
+    "extraExample": "A special monument was built to commemorate the historic victory.",
+    "extraExampleTranslation": "อนุสาวรีย์พิเศษถูกสร้างขึ้นเพื่อรำลึกถึงชัยชนะครั้งประวัติศาสตร์",
+    "novaBatch": true
+  },
+  {
+    "word": "artisan",
+    "partOfSpeech": "noun",
+    "translation": "ช่างฝีมือ",
+    "definition": "a skilled worker who makes things by hand",
+    "example": "Local artisans sell handmade pottery at the heritage market.",
+    "exampleTranslation": "ช่างฝีมือท้องถิ่นขายเครื่องปั้นดินเผาทำมือที่ตลาดมรดกวัฒนธรรม",
+    "phonetic": "/ˈɑːrtɪzən/",
+    "cefr": "B1",
+    "collocations": [
+      "local artisan",
+      "skilled artisan"
+    ],
+    "synonyms": [
+      "craftsman",
+      "maker"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ช่างฝีมือ",
+      "งานทำมือ",
+      "ทักษะดั้งเดิม"
+    ],
+    "extraExample": "The festival supports traditional artisans from nearby villages.",
+    "extraExampleTranslation": "เทศกาลนี้สนับสนุนช่างฝีมือดั้งเดิมจากหมู่บ้านใกล้เคียง",
+    "novaBatch": true
+  },
+  {
+    "word": "carnival",
+    "partOfSpeech": "noun",
+    "translation": "งานรื่นเริง, งานคาร์นิวัล",
+    "definition": "a lively public festival with music, dancing, and parades",
+    "example": "The annual carnival fills the town with music and laughter.",
+    "exampleTranslation": "งานคาร์นิวัลประจำปีทำให้เมืองเต็มไปด้วยเสียงดนตรีและเสียงหัวเราะ",
+    "phonetic": "/ˈkɑːrnɪvəl/",
+    "cefr": "B1",
+    "collocations": [
+      "street carnival",
+      "annual carnival"
+    ],
+    "synonyms": [
+      "festival",
+      "fiesta"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "งานรื่นเริง",
+      "ขบวนพาเหรด",
+      "ความสนุกสนาน"
+    ],
+    "extraExample": "Tourists travel from afar to see the vibrant street carnival.",
+    "extraExampleTranslation": "นักท่องเที่ยวเดินทางมาจากแดนไกลเพื่อชมงานรื่นเริงริมถนนที่มีชีวิตชีวา",
+    "novaBatch": true
+  },
+  {
+    "word": "costume",
+    "partOfSpeech": "noun",
+    "translation": "ชุดแต่งกายประจำเทศกาล",
+    "definition": "special clothes worn for a festival, performance, or tradition",
+    "example": "Dancers wore bright traditional costumes for the opening ceremony.",
+    "exampleTranslation": "นักเต้นสวมชุดแต่งกายดั้งเดิมสีสันสดใสสำหรับพิธีเปิด",
+    "phonetic": "/ˈkɑːstuːm/",
+    "cefr": "B1",
+    "collocations": [
+      "traditional costume",
+      "colorful costume"
+    ],
+    "synonyms": [
+      "outfit",
+      "attire"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ชุดแต่งกาย",
+      "เครื่องแต่งกาย",
+      "ประเพณี"
+    ],
+    "extraExample": "Children love dressing up in colorful costumes during the parade.",
+    "extraExampleTranslation": "เด็กๆ ชอบแต่งตัวในชุดประจำเทศกาลสีสันสดใสระหว่างขบวนแห่",
+    "novaBatch": true
+  },
+  {
+    "word": "sacred",
+    "partOfSpeech": "adjective",
+    "translation": "ศักดิ์สิทธิ์",
+    "definition": "considered holy and deserving deep respect in a culture or religion",
+    "example": "Visitors must speak quietly inside the sacred temple grounds.",
+    "exampleTranslation": "ผู้มาเยือนต้องพูดเบาๆ ภายในบริเวณวัดอันศักดิ์สิทธิ์",
+    "phonetic": "/ˈseɪkrɪd/",
+    "cefr": "B1",
+    "collocations": [
+      "sacred site",
+      "sacred tradition"
+    ],
+    "synonyms": [
+      "holy",
+      "revered"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ศักดิ์สิทธิ์",
+      "เคารพบูชา",
+      "ความศรัทธา"
+    ],
+    "extraExample": "The river is regarded as a sacred place by local communities.",
+    "extraExampleTranslation": "แม่น้ำสายนี้ได้รับการยกย่องว่าเป็นสถานที่ศักดิ์สิทธิ์โดยชุมชนท้องถิ่น",
+    "novaBatch": true
+  },
+  {
+    "word": "festive",
+    "partOfSpeech": "adjective",
+    "translation": "เกี่ยวกับเทศกาล, รื่นเริง",
+    "definition": "joyful and celebratory, suitable for a festival",
+    "example": "The streets look very festive with red lanterns everywhere.",
+    "exampleTranslation": "ถนนหนทางดูรื่นเริงมากเมื่อมีโคมไฟสีแดงประดับอยู่ทั่วทุกแห่ง",
+    "phonetic": "/ˈfɛstɪv/",
+    "cefr": "B1",
+    "collocations": [
+      "festive atmosphere",
+      "festive season"
+    ],
+    "synonyms": [
+      "celebratory",
+      "joyful"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "รื่นเริง",
+      "บรรยากาศเทศกาล",
+      "ความสุข"
+    ],
+    "extraExample": "Everyone enjoyed the festive atmosphere at the night market.",
+    "extraExampleTranslation": "ทุกคนเพลิดเพลินกับบรรยากาศแห่งการเฉลิมฉลองที่ตลาดกลางคืน",
+    "novaBatch": true
+  },
+  {
+    "word": "scrutinize",
+    "partOfSpeech": "verb",
+    "translation": "พินิจพิเคราะห์",
+    "definition": "To examine something very carefully to find any flaws or hidden details.",
+    "example": "Auditors scrutinize every receipt during the annual review.",
+    "exampleTranslation": "ผู้ตรวจสอบบัญชีพินิจพิเคราะห์ใบเสร็จทุกใบระหว่างการตรวจประจำปี",
+    "phonetic": "/ˈskruːtənaɪz/",
+    "cefr": "B1",
+    "collocations": [
+      "scrutinize details",
+      "scrutinize closely"
+    ],
+    "synonyms": [
+      "analyze",
+      "study"
+    ],
+    "topic": "actions",
+    "thTokens": [
+      "พินิจพิเคราะห์",
+      "เพ่งพินิจ",
+      "ตรวจตราอย่างเข้มงวด"
+    ],
+    "extraExample": "She scrutinized the signature to make sure it was real.",
+    "extraExampleTranslation": "เธอพินิจพิเคราะห์ลายเซ็นเพื่อให้แน่ใจว่าเป็นของจริง",
+    "novaBatch": true
+  },
+  {
+    "word": "verify",
+    "partOfSpeech": "verb",
+    "translation": "ยืนยันความถูกต้อง",
+    "definition": "To check and prove that something is true or accurate.",
+    "example": "Please verify your email address by clicking the link.",
+    "exampleTranslation": "กรุณายืนยันความถูกต้องของอีเมลของคุณโดยคลิกลิงก์",
+    "phonetic": "/ˈverɪfaɪ/",
+    "cefr": "B1",
+    "collocations": [
+      "verify identity",
+      "verify facts"
+    ],
+    "synonyms": [
+      "confirm",
+      "validate"
+    ],
+    "topic": "actions",
+    "thTokens": [
+      "ยืนยันความถูกต้อง",
+      "ตรวจสอบยืนยัน",
+      "พิสูจน์ความจริง"
+    ],
+    "extraExample": "We need to verify the witness's story before publishing.",
+    "extraExampleTranslation": "เราต้องยืนยันความถูกต้องของเรื่องราวพยานก่อนเผยแพร่",
+    "novaBatch": true
+  },
+  {
+    "word": "detect",
+    "partOfSpeech": "verb",
+    "translation": "ตรวจจับ, สังเกตเห็น",
+    "definition": "To notice or discover something that is partly hidden or not clear.",
+    "example": "The sensor can detect even small amounts of smoke.",
+    "exampleTranslation": "เซ็นเซอร์สามารถตรวจจับควันได้แม้ในปริมาณเพียงเล็กน้อย",
+    "phonetic": "/dɪˈtekt/",
+    "cefr": "B1",
+    "collocations": [
+      "detect a problem",
+      "detect changes"
+    ],
+    "synonyms": [
+      "spot",
+      "discover"
+    ],
+    "topic": "actions",
+    "thTokens": [
+      "ตรวจจับ",
+      "สังเกตเห็น",
+      "ค้นพบ"
+    ],
+    "extraExample": "I detected a slight hesitation in his voice.",
+    "extraExampleTranslation": "ฉันสังเกตเห็นความลังเลเล็กน้อยในน้ำเสียงของเขา",
+    "novaBatch": true
+  },
+  {
+    "word": "cross-check",
+    "partOfSpeech": "verb",
+    "translation": "ตรวจสอบซ้ำกับแหล่งอื่น",
+    "definition": "To check information by comparing it with another source.",
+    "example": "Journalists cross-check facts before printing a story.",
+    "exampleTranslation": "นักข่าวตรวจสอบข้อมูลซ้ำกับแหล่งอื่นก่อนตีพิมพ์ข่าว",
+    "phonetic": "/ˈkrɔːs tʃek/",
+    "cefr": "B1",
+    "collocations": [
+      "cross-check data",
+      "cross-check facts"
+    ],
+    "synonyms": [
+      "double-check",
+      "verify"
+    ],
+    "topic": "actions",
+    "thTokens": [
+      "ตรวจสอบซ้ำ",
+      "เช็กเทียบกับแหล่งอื่น",
+      "ทวนสอบ"
+    ],
+    "extraExample": "I will cross-check the invoice against our delivery list.",
+    "extraExampleTranslation": "ฉันจะตรวจสอบใบแจ้งหนี้ซ้ำกับรายการส่งของของเรา",
+    "novaBatch": true
+  },
+  {
+    "word": "courtesy",
+    "partOfSpeech": "noun",
+    "translation": "ความสุภาพ, มารยาท",
+    "definition": "polite behavior that shows respect for other people",
+    "example": "Thank you for your courtesy and patience today.",
+    "exampleTranslation": "ขอบคุณสำหรับความสุภาพและความอดทนของคุณในวันนี้",
+    "phonetic": "/ˈkɜːrtəsi/",
+    "cefr": "B1",
+    "collocations": [
+      "common courtesy",
+      "out of courtesy"
+    ],
+    "synonyms": [
+      "politeness",
+      "manners"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ขอบคุณสำหรับ",
+      "ความสุภาพและ",
+      "ความอดทนของคุณ"
+    ],
+    "extraExample": "It is common courtesy to hold the door open for others.",
+    "extraExampleTranslation": "การเปิดประตูค้างไว้ให้ผู้อื่นเป็นมารยาทพื้นฐาน",
+    "novaBatch": true
+  },
+  {
+    "word": "lactose",
+    "partOfSpeech": "noun",
+    "translation": "น้ำตาลแลคโตส (ในนม)",
+    "definition": "a type of sugar found in milk and milk products",
+    "example": "Many people cannot digest lactose properly.",
+    "exampleTranslation": "หลายคนไม่สามารถย่อยน้ำตาลแลคโตสได้อย่างเหมาะสม",
+    "phonetic": "/ˈlæktoʊs/",
+    "cefr": "B1",
+    "collocations": [
+      "lactose intolerance",
+      "lactose-free"
+    ],
+    "synonyms": [
+      "milk sugar",
+      "dairy sugar"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "น้ำตาลในนม",
+      "แลคโตส",
+      "ไม่มีแลคโตส"
+    ],
+    "extraExample": "This yogurt is completely free of lactose.",
+    "extraExampleTranslation": "โยเกิร์ตนี้ปราศจากน้ำตาลแลคโตสอย่างสิ้นเชิง",
+    "novaBatch": true
+  },
+  {
+    "word": "pescatarian",
+    "partOfSpeech": "noun",
+    "translation": "ผู้ที่กินมังสวิรัติแต่กินปลา",
+    "definition": "a person who does not eat meat but does eat fish",
+    "example": "As a pescatarian, she orders grilled salmon instead of steak.",
+    "exampleTranslation": "ในฐานะผู้ที่กินมังสวิรัติแต่กินปลา เธอจึงสั่งแซลมอนย่างแทนสเต็ก",
+    "phonetic": "/ˌpɛskəˈtɛriən/",
+    "cefr": "B1",
+    "collocations": [
+      "strict pescatarian",
+      "pescatarian diet"
+    ],
+    "synonyms": [
+      "fish-eater",
+      "seafood-only vegetarian"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "มังสวิรัติกินปลา",
+      "ไม่กินเนื้อสัตว์บก",
+      "กินอาหารทะเล"
+    ],
+    "extraExample": "The restaurant has several great options for a pescatarian.",
+    "extraExampleTranslation": "ร้านอาหารมีตัวเลือกดีๆ หลายอย่างสำหรับผู้ที่กินมังสวิรัติแต่กินปลา",
+    "novaBatch": true
+  },
+  {
+    "word": "shellfish",
+    "partOfSpeech": "noun",
+    "translation": "สัตว์น้ำที่มีเปลือกแข็ง (เช่น กุ้ง ปู หอย)",
+    "definition": "sea creatures with shells, such as crabs, lobsters, and oysters",
+    "example": "He has a severe allergy to all kinds of shellfish.",
+    "exampleTranslation": "เขามีอาการแพ้สัตว์น้ำที่มีเปลือกแข็งทุกชนิดอย่างรุนแรง",
+    "phonetic": "/ˈʃɛlfɪʃ/",
+    "cefr": "B1",
+    "collocations": [
+      "shellfish allergy",
+      "fresh shellfish"
+    ],
+    "synonyms": [
+      "crustaceans",
+      "mollusks"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "สัตว์น้ำมีเปลือก",
+      "กุ้งหอยปูปลามีเปลือก",
+      "แพ้อาหารทะเล"
+    ],
+    "extraExample": "Please let the waiter know if you cannot eat shellfish.",
+    "extraExampleTranslation": "กรุณาแจ้งพนักงานเสิร์ฟหากคุณไม่สามารถรับประทานสัตว์น้ำที่มีเปลือกแข็งได้",
+    "novaBatch": true
+  },
+  {
+    "word": "celiac",
+    "partOfSpeech": "adjective",
+    "translation": "เกี่ยวกับโรคแพ้กลูเตน",
+    "definition": "relating to a disease that makes the body unable to process gluten",
+    "example": "She follows a strict diet because of her celiac condition.",
+    "exampleTranslation": "เธอควบคุมอาหารอย่างเข้มงวดเนื่องจากภาวะแพ้กลูเตนของเธอ",
+    "phonetic": "/ˈsiliˌæk/",
+    "cefr": "B1",
+    "collocations": [
+      "celiac disease",
+      "celiac-friendly"
+    ],
+    "synonyms": [
+      "gluten-sensitive",
+      "gluten-intolerant"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "โรคแพ้กลูเตน",
+      "ไวต่อกลูเตน",
+      "อาหารไร้กลูเตน"
+    ],
+    "extraExample": "This bakery specializes in celiac-friendly bread and desserts.",
+    "extraExampleTranslation": "ร้านเบเกอรี่นี้เชี่ยวชาญเรื่องขนมปังและของหวานที่เหมาะสำหรับผู้แพ้กลูเตน",
+    "novaBatch": true
+  },
+  {
+    "word": "preservative",
+    "partOfSpeech": "noun",
+    "translation": "สารกันบูด, วัตถุกันเสีย",
+    "definition": "a chemical substance used to prevent food from decaying",
+    "example": "I prefer buying snacks that contain no artificial preservatives.",
+    "exampleTranslation": "ฉันชอบซื้อขนมที่ไม่มีสารกันบูดสังเคราะห์",
+    "phonetic": "/prɪˈzɜrvətɪv/",
+    "cefr": "B1",
+    "collocations": [
+      "artificial preservative",
+      "without preservatives"
+    ],
+    "synonyms": [
+      "stabilizer",
+      "chemical additive"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "สารกันบูด",
+      "วัตถุกันเสีย",
+      "ถนอมอาหาร"
+    ],
+    "extraExample": "Salt has been used as a natural preservative for centuries.",
+    "extraExampleTranslation": "เกลือถูกใช้เป็นสารกันบูดตามธรรมชาติมานานหลายศตวรรษ",
+    "novaBatch": true
+  },
+  {
+    "word": "additive",
+    "partOfSpeech": "noun",
+    "translation": "สารปรุงแต่งอาหาร",
+    "definition": "a substance added to food to improve its taste, appearance, or freshness",
+    "example": "Always check the package to avoid unnecessary food additives.",
+    "exampleTranslation": "ควรตรวจสอบบรรจุภัณฑ์เสมอเพื่อหลีกเลี่ยงสารปรุงแต่งอาหารที่ไม่จำเป็น",
+    "phonetic": "/ˈædɪtɪv/",
+    "cefr": "B1",
+    "collocations": [
+      "food additive",
+      "color additive"
+    ],
+    "synonyms": [
+      "supplement",
+      "enhancer"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "สารปรุงแต่ง",
+      "สารเจือปน",
+      "ส่วนผสมเพิ่ม"
+    ],
+    "extraExample": "Some people get headaches from certain color additives.",
+    "extraExampleTranslation": "บางคนมีอาการปวดหัวจากสารปรุงแต่งสีบางชนิด",
+    "novaBatch": true
+  },
+  {
+    "word": "soy",
+    "partOfSpeech": "noun",
+    "translation": "ถั่วเหลือง",
+    "definition": "a protein-rich bean used to make tofu, sauce, and milk",
+    "example": "This stir-fry sauce is made with fermented soy.",
+    "exampleTranslation": "ซอสผัดนี้ทำจากถั่วเหลืองหมัก",
+    "phonetic": "/sɔɪ/",
+    "cefr": "B1",
+    "collocations": [
+      "soy sauce",
+      "soy milk"
+    ],
+    "synonyms": [
+      "soya",
+      "soybean"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ถั่วเหลือง",
+      "ซอสถั่วเหลือง",
+      "โปรตีนถั่วเหลือง"
+    ],
+    "extraExample": "Many vegetarian products use soy as their main protein.",
+    "extraExampleTranslation": "ผลิตภัณฑ์มังสวิรัติหลายชนิดใช้ถั่วเหลืองเป็นโปรตีนหลัก",
+    "novaBatch": true
+  },
+  {
+    "word": "digest",
+    "partOfSpeech": "verb",
+    "translation": "ย่อย (อาหาร)",
+    "definition": "to change food in your stomach into substances that your body can use",
+    "example": "Heavy fried foods are often difficult to digest late at night.",
+    "exampleTranslation": "อาหารทอดที่หนักท้องมักจะย่อยยากในช่วงดึก",
+    "phonetic": "/daɪˈdʒɛst/",
+    "cefr": "B1",
+    "collocations": [
+      "easy to digest",
+      "digest food"
+    ],
+    "synonyms": [
+      "process",
+      "absorb"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ย่อยอาหาร",
+      "ดูดซึม",
+      "ระบบย่อย"
+    ],
+    "extraExample": "Drinking warm tea can help your stomach digest a big meal.",
+    "extraExampleTranslation": "การดื่มชาอุ่นๆ สามารถช่วยให้กระเพาะอาหารย่อยมื้อใหญ่ได้ดีขึ้น",
+    "novaBatch": true
+  },
+  {
+    "word": "quadriceps",
+    "partOfSpeech": "noun",
+    "translation": "กล้ามเนื้อต้นขาด้านหน้า",
+    "definition": "the large muscle at the front of the thigh",
+    "example": "Stretch your quadriceps before going for a long run.",
+    "exampleTranslation": "ยืดกล้ามเนื้อต้นขาด้านหน้าก่อนออกไปวิ่งระยะไกล",
+    "phonetic": "/ˈkwɑːdrɪseps/",
+    "cefr": "B1",
+    "collocations": [
+      "quadriceps stretch",
+      "tight quadriceps"
+    ],
+    "synonyms": [
+      "thigh muscle",
+      "quads"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กล้ามเนื้อ",
+      "ต้นขา",
+      "ด้านหน้า"
+    ],
+    "extraExample": "Strong quadriceps help protect your knees during squats.",
+    "extraExampleTranslation": "กล้ามเนื้อต้นขาด้านหน้าที่แข็งแรงช่วยปกป้องเข่าของคุณระหว่างการสควอท",
+    "novaBatch": true
+  },
+  {
+    "word": "ligament",
+    "partOfSpeech": "noun",
+    "translation": "เอ็นยึดข้อ",
+    "definition": "a tough band of tissue that connects bones together",
+    "example": "He tore a ligament in his knee while playing basketball.",
+    "exampleTranslation": "เขาเอ็นยึดข้อเข่าฉีกขณะเล่นบาสเกตบอล",
+    "phonetic": "/ˈlɪɡəmənt/",
+    "cefr": "B1",
+    "collocations": [
+      "torn ligament",
+      "knee ligament"
+    ],
+    "synonyms": [
+      "connective tissue",
+      "joint band"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เอ็น",
+      "ยึดข้อ",
+      "เชื่อมต่อกระดูก"
+    ],
+    "extraExample": "Proper stretching keeps your ligaments healthy and flexible.",
+    "extraExampleTranslation": "การยืดเหยียดที่เหมาะสมช่วยให้เอ็นยึดข้อของคุณแข็งแรงและยืดหยุ่น",
+    "novaBatch": true
+  },
+  {
+    "word": "cartilage",
+    "partOfSpeech": "noun",
+    "translation": "กระดูกอ่อน",
+    "definition": "firm, flexible tissue that cushions joints",
+    "example": "Healthy cartilage prevents your bones from rubbing together.",
+    "exampleTranslation": "กระดูกอ่อนที่แข็งแรงช่วยป้องกันไม่ให้กระดูกเสียดสีกัน",
+    "phonetic": "/ˈkɑːrtɪlɪdʒ/",
+    "cefr": "B1",
+    "collocations": [
+      "knee cartilage",
+      "joint cartilage"
+    ],
+    "synonyms": [
+      "cushion tissue",
+      "gristle"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กระดูกอ่อน",
+      "รองรับ",
+      "ข้อต่อ"
+    ],
+    "extraExample": "Low-impact exercises are gentle on your knee cartilage.",
+    "extraExampleTranslation": "การออกกำลังกายแบบแรงกระแทกต่ำช่วยถนอมกระดูกอ่อนหัวเข่าของคุณ",
+    "novaBatch": true
+  },
+  {
+    "word": "vertebra",
+    "partOfSpeech": "noun",
+    "translation": "กระดูกสันหลังแต่ละข้อ",
+    "definition": "one of the small bones that form the backbone",
+    "example": "Each vertebra supports the weight of your upper body.",
+    "exampleTranslation": "กระดูกสันหลังแต่ละข้อช่วยรับน้ำหนักตัวส่วนบนของคุณ",
+    "phonetic": "/ˈvɜːrtɪbrə/",
+    "cefr": "B1",
+    "collocations": [
+      "cervical vertebra",
+      "lumbar vertebra"
+    ],
+    "synonyms": [
+      "spinal bone",
+      "backbone segment"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กระดูกสันหลัง",
+      "แต่ละข้อ",
+      "เรียงต่อกัน"
+    ],
+    "extraExample": "Gentle yoga twists can relieve pressure between each vertebra.",
+    "extraExampleTranslation": "การบิดตัวเบาๆ ในโยคะช่วยลดแรงกดระหว่างกระดูกสันหลังแต่ละข้อได้",
+    "novaBatch": true
+  },
+  {
+    "word": "pelvis",
+    "partOfSpeech": "noun",
+    "translation": "กระดูกเชิงกราน",
+    "definition": "the large bony frame near the base of the spine",
+    "example": "Keep your pelvis level when doing a side plank.",
+    "exampleTranslation": "รักษาระดับกระดูกเชิงกรานให้ตรงเมื่อทำท่าแพลงก์ด้านข้าง",
+    "phonetic": "/ˈpelvɪs/",
+    "cefr": "B1",
+    "collocations": [
+      "tilt the pelvis",
+      "pelvis alignment"
+    ],
+    "synonyms": [
+      "hip girdle",
+      "pelvic bone"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กระดูก",
+      "เชิงกราน",
+      "ช่วงสะโพก"
+    ],
+    "extraExample": "Tight hips can pull your pelvis out of alignment.",
+    "extraExampleTranslation": "สะโพกที่ตึงอาจดึงให้กระดูกเชิงกรานของคุณเสียสมดุลได้",
+    "novaBatch": true
+  },
+  {
+    "word": "abdomen",
+    "partOfSpeech": "noun",
+    "translation": "ช่องท้อง",
+    "definition": "the part of the body containing the stomach and digestive organs",
+    "example": "Engage your abdomen to keep your back stable.",
+    "exampleTranslation": "เกร็งกล้ามเนื้อช่องท้องเพื่อให้หลังของคุณมั่นคง",
+    "phonetic": "/ˈæbdəmən/",
+    "cefr": "B1",
+    "collocations": [
+      "lower abdomen",
+      "tighten the abdomen"
+    ],
+    "synonyms": [
+      "belly",
+      "midsection"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ช่องท้อง",
+      "หน้าท้อง",
+      "แกนกลางลำตัว"
+    ],
+    "extraExample": "Deep breathing exercises expand the lower abdomen.",
+    "extraExampleTranslation": "การฝึกหายใจลึกๆ ช่วยขยายช่องท้องส่วนล่าง",
+    "novaBatch": true
+  },
+  {
+    "word": "biceps",
+    "partOfSpeech": "noun",
+    "translation": "กล้ามเนื้อต้นแขนด้านหน้า",
+    "definition": "the large muscle on the front of the upper arm",
+    "example": "She lifted dumbbells to strengthen her biceps.",
+    "exampleTranslation": "เธอยกดัมเบลเพื่อเสริมสร้างกล้ามเนื้อต้นแขนด้านหน้า",
+    "phonetic": "/ˈbaɪseps/",
+    "cefr": "B1",
+    "collocations": [
+      "biceps curl",
+      "flexed biceps"
+    ],
+    "synonyms": [
+      "upper arm muscle",
+      "arm flexor"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กล้ามเนื้อ",
+      "ต้นแขน",
+      "ด้านหน้า"
+    ],
+    "extraExample": "Stretch your biceps by extending your arms behind you.",
+    "extraExampleTranslation": "ยืดกล้ามเนื้อต้นแขนด้านหน้าโดยการเหยียดแขนไปด้านหลัง",
+    "novaBatch": true
+  },
+  {
+    "word": "triceps",
+    "partOfSpeech": "noun",
+    "translation": "กล้ามเนื้อต้นแขนด้านหลัง",
+    "definition": "the muscle at the back of the upper arm",
+    "example": "Dips are a great exercise for toning your triceps.",
+    "exampleTranslation": "ท่าดิปส์เป็นการออกกำลังกายที่ดีสำหรับกระชับกล้ามเนื้อต้นแขนด้านหลัง",
+    "phonetic": "/ˈtraɪseps/",
+    "cefr": "B1",
+    "collocations": [
+      "triceps stretch",
+      "triceps dip"
+    ],
+    "synonyms": [
+      "back arm muscle",
+      "arm extensor"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กล้ามเนื้อ",
+      "ต้นแขน",
+      "ด้านหลัง"
+    ],
+    "extraExample": "Pull your elbow gently overhead to stretch your triceps.",
+    "extraExampleTranslation": "ดึงข้อศอกขึ้นเหนือศีรษะเบาๆ เพื่อยืดกล้ามเนื้อต้นแขนด้านหลัง",
+    "novaBatch": true
+  },
+  {
+    "word": "mobility",
+    "partOfSpeech": "noun",
+    "translation": "ความคล่องตัวในการเคลื่อนไหว",
+    "definition": "the ability to move joints freely and easily",
+    "example": "Daily stretching improves your shoulder mobility.",
+    "exampleTranslation": "การยืดเหยียดทุกวันช่วยเพิ่มความคล่องตัวของข้อไหล่",
+    "phonetic": "/moʊˈbɪləti/",
+    "cefr": "B1",
+    "collocations": [
+      "joint mobility",
+      "hip mobility"
+    ],
+    "synonyms": [
+      "range of motion",
+      "movement ease"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ความคล่องตัว",
+      "การเคลื่อนไหว",
+      "ข้อต่อ"
+    ],
+    "extraExample": "Good hip mobility makes deep squats much easier.",
+    "extraExampleTranslation": "ความคล่องตัวของสะโพกที่ดีช่วยให้ทำท่าสควอทลึกได้ง่ายขึ้นมาก",
+    "novaBatch": true
+  },
+  {
+    "word": "cooldown",
+    "partOfSpeech": "noun",
+    "translation": "การคลายกล้ามเนื้อหลังออกกำลังกาย",
+    "definition": "a period of gentle exercise and stretching after a workout",
+    "example": "Never skip your cooldown after an intense cardio session.",
+    "exampleTranslation": "อย่าข้ามการคลายกล้ามเนื้อหลังออกกำลังกายแบบคาร์ดิโอหนักๆ",
+    "phonetic": "/ˈkuːldaʊn/",
+    "cefr": "B1",
+    "collocations": [
+      "post-workout cooldown",
+      "stretch cooldown"
+    ],
+    "synonyms": [
+      "recovery phase",
+      "wind-down"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การคลาย",
+      "กล้ามเนื้อ",
+      "หลังออกกำลังกาย"
+    ],
+    "extraExample": "A ten-minute cooldown helps lower your heart rate safely.",
+    "extraExampleTranslation": "การคลายกล้ามเนื้อสิบนาทีช่วยลดอัตราการเต้นของหัวใจอย่างปลอดภัย",
+    "novaBatch": true
+  },
+  {
+    "word": "soreness",
+    "partOfSpeech": "noun",
+    "translation": "อาการปวดเมื่อยกล้ามเนื้อ",
+    "definition": "a dull pain in muscles after exercise",
+    "example": "Mild muscle soreness is normal after trying a new workout.",
+    "exampleTranslation": "อาการปวดเมื่อยกล้ามเนื้อเล็กน้อยเป็นเรื่องปกติหลังจากลองออกกำลังกายแบบใหม่",
+    "phonetic": "/ˈsɔːrnəs/",
+    "cefr": "B1",
+    "collocations": [
+      "muscle soreness",
+      "relieve soreness"
+    ],
+    "synonyms": [
+      "tenderness",
+      "stiffness"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "อาการปวดเมื่อย",
+      "กล้ามเนื้อ",
+      "หลังออกกำลังกาย"
+    ],
+    "extraExample": "Light walking and stretching can reduce soreness the next day.",
+    "extraExampleTranslation": "การเดินเบาๆ และการยืดเหยียดช่วยลดอาการปวดเมื่อยในวันถัดไปได้",
+    "novaBatch": true
+  },
+  {
+    "word": "courtyard",
+    "partOfSpeech": "noun",
+    "translation": "ลานกลางอาคาร",
+    "definition": "an open area surrounded by walls or apartment buildings",
+    "example": "The neighbors often chat in the courtyard after dinner.",
+    "exampleTranslation": "เพื่อนบ้านมักคุยกันที่ลานกลางอาคารหลังอาหารเย็น",
+    "phonetic": "/ˈkɔːrtjɑːrd/",
+    "cefr": "B1",
+    "collocations": [
+      "shared courtyard",
+      "inner courtyard"
+    ],
+    "synonyms": [
+      "patio",
+      "quad"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ลานกลาง",
+      "พื้นที่ส่วนกลาง",
+      "ลานอาคาร"
+    ],
+    "extraExample": "Kids are playing safely in the shared courtyard.",
+    "extraExampleTranslation": "เด็กๆ กำลังเล่นอย่างปลอดภัยในลานกลางอาคารส่วนกลาง",
+    "novaBatch": true
+  },
+  {
+    "word": "evict",
+    "partOfSpeech": "verb",
+    "translation": "ไล่ออกจากที่พัก",
+    "definition": "to legally force someone to leave a rented home",
+    "example": "The building manager can evict anyone who breaks the noise rules.",
+    "exampleTranslation": "ผู้จัดการอาคารสามารถไล่ใครก็ตามที่ฝ่าฝืนกฎเรื่องเสียงออกได้",
+    "phonetic": "/ɪˈvɪkt/",
+    "cefr": "B1",
+    "collocations": [
+      "evict a tenant",
+      "threaten to evict"
+    ],
+    "synonyms": [
+      "expel",
+      "remove"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ไล่ออก",
+      "บังคับย้าย",
+      "ขับไล่"
+    ],
+    "extraExample": "They were worried the owner would evict them for keeping a pet.",
+    "extraExampleTranslation": "พวกเขากังวลว่าเจ้าของจะไล่ออกเพราะเลี้ยงสัตว์",
+    "novaBatch": true
+  },
+  {
+    "word": "furnished",
+    "partOfSpeech": "adjective",
+    "translation": "มีเฟอร์นิเจอร์พร้อม",
+    "definition": "containing furniture such as a bed, table, and chairs",
+    "example": "I rented a furnished studio so I wouldn't have to buy a sofa.",
+    "exampleTranslation": "ฉันเช่าห้องสตูดิโอที่มีเฟอร์นิเจอร์พร้อมจะได้ไม่ต้องซื้อโซฟา",
+    "phonetic": "/ˈfɜːrnɪʃt/",
+    "cefr": "B1",
+    "collocations": [
+      "fully furnished",
+      "furnished apartment"
+    ],
+    "synonyms": [
+      "equipped",
+      "fitted"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "มีเฟอร์นิเจอร์",
+      "ตกแต่งพร้อม",
+      "พร้อมอยู่"
+    ],
+    "extraExample": "The apartment comes fully furnished with a fridge and a desk.",
+    "extraExampleTranslation": "อพาร์ตเมนต์นี้มีเฟอร์นิเจอร์ครบทั้งตู้เย็นและโต๊ะทำงาน",
+    "novaBatch": true
+  },
+  {
+    "word": "utility",
+    "partOfSpeech": "noun",
+    "translation": "สาธารณูปโภค",
+    "definition": "a public service like water, electricity, or gas",
+    "example": "Water is included, but you pay the electricity utility separately.",
+    "exampleTranslation": "ค่าน้ำรวมอยู่แล้ว แต่คุณต้องจ่ายค่าไฟฟ้าแยกต่างหาก",
+    "phonetic": "/juːˈtɪləti/",
+    "cefr": "B1",
+    "collocations": [
+      "utility bill",
+      "public utility"
+    ],
+    "synonyms": [
+      "service",
+      "facility"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "สาธารณูปโภค",
+      "ค่าน้ำค่าไฟ",
+      "บริการพื้นฐาน"
+    ],
+    "extraExample": "Our monthly utility bills went up during the hot summer.",
+    "extraExampleTranslation": "บิลค่าสาธารณูปโภครายเดือนของเราเพิ่มขึ้นในช่วงหน้าร้อน",
+    "novaBatch": true
+  },
+  {
+    "word": "lobby",
+    "partOfSpeech": "noun",
+    "translation": "โถงต้อนรับ",
+    "definition": "a large entrance area inside an apartment building",
+    "example": "I'll meet you in the lobby at seven o'clock.",
+    "exampleTranslation": "ฉันจะไปเจอคุณที่โถงต้อนรับตอนหนึ่งทุ่ม",
+    "phonetic": "/ˈlɑːbi/",
+    "cefr": "B1",
+    "collocations": [
+      "main lobby",
+      "building lobby"
+    ],
+    "synonyms": [
+      "foyer",
+      "entrance hall"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "โถงต้อนรับ",
+      "ล็อบบี้",
+      "โถงทางเข้า"
+    ],
+    "extraExample": "Packages are left with the guard in the main lobby.",
+    "extraExampleTranslation": "พัสดุจะถูกฝากไว้กับรปภ. ที่โถงต้อนรับหลัก",
+    "novaBatch": true
+  },
+  {
+    "word": "trustworthy",
+    "partOfSpeech": "adjective",
+    "translation": "น่าไว้วางใจ",
+    "definition": "honest and able to be trusted with secrets or responsibilities",
+    "example": "A trustworthy leader listens to feedback without getting angry.",
+    "exampleTranslation": "ผู้นำที่น่าไว้วางใจจะรับฟังความคิดเห็นโดยไม่โกรธ",
+    "phonetic": "/ˈtrʌstwɜːrði/",
+    "cefr": "B1",
+    "collocations": [
+      "trustworthy leader",
+      "prove trustworthy"
+    ],
+    "synonyms": [
+      "honest",
+      "reliable"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "น่าไว้วางใจ",
+      "ซื่อสัตย์",
+      "ไว้ใจได้"
+    ],
+    "extraExample": "You can share your ideas here because everyone is trustworthy.",
+    "extraExampleTranslation": "คุณสามารถแบ่งปันไอเดียได้ที่นี่เพราะทุกคนน่าไว้วางใจ",
+    "novaBatch": true
+  },
+  {
+    "word": "coordinate",
+    "partOfSpeech": "verb",
+    "translation": "ประสานงาน",
+    "definition": "to organize different people or activities so they work together effectively",
+    "example": "I will coordinate with the speakers to confirm their schedules.",
+    "exampleTranslation": "ฉันจะประสานงานกับวิทยากรเพื่อยืนยันตารางเวลาของพวกเขา",
+    "phonetic": "/koʊˈɔːrdɪneɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "coordinate with",
+      "coordinate efforts"
+    ],
+    "synonyms": [
+      "organize",
+      "align"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ประสานงาน",
+      "จัดระเบียบร่วมกัน",
+      "เชื่อมโยงการทำงาน"
+    ],
+    "extraExample": "It takes effort to coordinate a remote team across three time zones.",
+    "extraExampleTranslation": "ต้องใช้ความพยายามในการประสานงานทีมทางไกลข้ามสามเขตเวลา",
+    "novaBatch": true
+  },
+  {
+    "word": "dependable",
+    "partOfSpeech": "adjective",
+    "translation": "พึ่งพาได้",
+    "definition": "always doing what you promise to do",
+    "example": "When things get busy, you want a dependable partner beside you.",
+    "exampleTranslation": "เมื่อเรื่องต่างๆ ยุ่งเหยิง คุณย่อมต้องการคู่หูที่พึ่งพาได้อยู่เคียงข้าง",
+    "phonetic": "/dɪˈpɛndəbəl/",
+    "cefr": "B1",
+    "collocations": [
+      "dependable partner",
+      "dependable support"
+    ],
+    "synonyms": [
+      "reliable",
+      "steady"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "พึ่งพาได้",
+      "ไว้ใจได้",
+      "สม่ำเสมอ"
+    ],
+    "extraExample": "She has been a dependable member of our volunteer group for years.",
+    "extraExampleTranslation": "เธอเป็นสมาชิกที่พึ่งพาได้ของกลุ่มอาสาสมัครเรามาหลายปีแล้ว",
+    "novaBatch": true
+  },
+  {
+    "word": "loyalty",
+    "partOfSpeech": "noun",
+    "translation": "ความภักดี",
+    "definition": "a strong feeling of support and faithfulness toward a person or group",
+    "example": "Trust and loyalty are earned through consistent actions over time.",
+    "exampleTranslation": "ความไว้วางใจและความภักดีได้มาจากการกระทำที่สม่ำเสมอเมื่อเวลาผ่านไป",
+    "phonetic": "/ˈlɔɪəlti/",
+    "cefr": "B1",
+    "collocations": [
+      "build loyalty",
+      "team loyalty"
+    ],
+    "synonyms": [
+      "faithfulness",
+      "devotion"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ความภักดี",
+      "ความซื่อสัตย์",
+      "ความจงรักภักดี"
+    ],
+    "extraExample": "The team showed great loyalty by supporting each other during tough times.",
+    "extraExampleTranslation": "ทีมแสดงความภักดีอย่างมากด้วยการสนับสนุนกันในช่วงเวลาที่ยากลำบาก",
+    "novaBatch": true
+  },
+  {
+    "word": "cooperate",
+    "partOfSpeech": "verb",
+    "translation": "ให้ความร่วมมือ",
+    "definition": "to work together willingly to achieve a common result",
+    "example": "Both groups agreed to cooperate so the event would succeed.",
+    "exampleTranslation": "ทั้งสองกลุ่มตกลงที่จะให้ความร่วมมือเพื่อให้งานประสบความสำเร็จ",
+    "phonetic": "/koʊˈɑːpəreɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "cooperate fully",
+      "cooperate with"
+    ],
+    "synonyms": [
+      "collaborate",
+      "assist"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ให้ความร่วมมือ",
+      "ร่วมมือ",
+      "ช่วยกันทำ"
+    ],
+    "extraExample": "Thank you for your willingness to cooperate on this tight schedule.",
+    "extraExampleTranslation": "ขอบคุณที่เต็มใจให้ความร่วมมือภายใต้ตารางเวลาที่กระชั้นชิดนี้",
+    "novaBatch": true
+  },
+  {
+    "word": "breeze",
+    "partOfSpeech": "noun",
+    "translation": "สายลมอ่อนๆ",
+    "definition": "a light and pleasant wind",
+    "example": "A cool sea breeze made the warm afternoon feel comfortable.",
+    "exampleTranslation": "สายลมทะเลเย็นๆ ทำให้ช่วงบ่ายที่อบอุ่นรู้สึกสบายขึ้น",
+    "phonetic": "/briːz/",
+    "cefr": "B1",
+    "collocations": [
+      "cool breeze",
+      "gentle breeze"
+    ],
+    "synonyms": [
+      "light wind",
+      "zephyr"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "สายลม",
+      "ลมอ่อนๆ",
+      "พัดเบาๆ"
+    ],
+    "extraExample": "The leaves rustled gently in the evening breeze.",
+    "extraExampleTranslation": "ใบไม้ไหวเบาๆ ท่ามกลางสายลมอ่อนๆ ยามเย็น",
+    "novaBatch": true
+  },
+  {
+    "word": "chilly",
+    "partOfSpeech": "adjective",
+    "translation": "หนาวเย็น",
+    "definition": "unpleasantly cold, though not freezing",
+    "example": "It gets quite chilly in the evenings once autumn arrives.",
+    "exampleTranslation": "อากาศจะค่อนข้างหนาวเย็นในตอนเย็นเมื่อฤดูใบไม้ร่วงมาถึง",
+    "phonetic": "/ˈtʃɪli/",
+    "cefr": "B1",
+    "collocations": [
+      "chilly morning",
+      "chilly wind"
+    ],
+    "synonyms": [
+      "cool",
+      "brisk"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "หนาวเย็น",
+      "เย็นยะเยือก",
+      "อากาศเย็น"
+    ],
+    "extraExample": "Bring a light jacket because the morning air is still chilly.",
+    "extraExampleTranslation": "นำเสื้อแจ็คเก็ตบางๆ มาด้วย เพราะอากาศตอนเช้ายังหนาวเย็นอยู่",
+    "novaBatch": true
+  },
+  {
+    "word": "lightning",
+    "partOfSpeech": "noun",
+    "translation": "ฟ้าผ่า, ฟ้าแลบ",
+    "definition": "a bright flash of electricity in the sky during a storm",
+    "example": "Bright flashes of lightning lit up the dark night sky.",
+    "exampleTranslation": "แสงฟ้าแลบสว่างจ้าส่องสว่างทั่วท้องฟ้ายามค่ำคืนที่มืดมิด",
+    "phonetic": "/ˈlaɪtnɪŋ/",
+    "cefr": "B1",
+    "collocations": [
+      "flash of lightning",
+      "lightning strike"
+    ],
+    "synonyms": [
+      "bolt",
+      "discharge"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ฟ้าผ่า",
+      "ฟ้าแลบ",
+      "ประกายไฟ"
+    ],
+    "extraExample": "Stay indoors when you see lightning to stay safe.",
+    "extraExampleTranslation": "อยู่ในอาคารเมื่อคุณเห็นฟ้าผ่าเพื่อความปลอดภัย",
+    "novaBatch": true
+  },
+  {
+    "word": "foggy",
+    "partOfSpeech": "adjective",
+    "translation": "มีหมอกหนา",
+    "definition": "filled with thick mist that makes it difficult to see clearly",
+    "example": "Driving on the mountain road is dangerous on foggy mornings.",
+    "exampleTranslation": "การขับรถบนถนนบนภูเขาเป็นอันตรายในเช้าที่มีหมอกหนา",
+    "phonetic": "/ˈfɑːɡi/",
+    "cefr": "B1",
+    "collocations": [
+      "foggy morning",
+      "foggy conditions"
+    ],
+    "synonyms": [
+      "misty",
+      "hazy"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "มีหมอกหนา",
+      "มัว",
+      "มองไม่ชัด"
+    ],
+    "extraExample": "The harbor was so foggy that we could barely see the boats.",
+    "extraExampleTranslation": "ท่าเรือมีหมอกหนามากจนเราแทบมองไม่เห็นเรือเลย",
+    "novaBatch": true
+  },
+  {
+    "word": "downpour",
+    "partOfSpeech": "noun",
+    "translation": "ฝนตกหนักมาก",
+    "definition": "a sudden, very heavy fall of rain",
+    "example": "We got caught in a sudden downpour without an umbrella.",
+    "exampleTranslation": "เราติดอยู่ท่ามกลางฝนที่ตกลงมาอย่างหนักกะทันหันโดยไม่มีร่ม",
+    "phonetic": "/ˈdaʊnpɔːr/",
+    "cefr": "B1",
+    "collocations": [
+      "heavy downpour",
+      "sudden downpour"
+    ],
+    "synonyms": [
+      "cloudburst",
+      "deluge"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ฝนตกหนัก",
+      "ฝนเทลงมา",
+      "ห่าฝน"
+    ],
+    "extraExample": "The afternoon downpour quickly flooded the narrow streets.",
+    "extraExampleTranslation": "ฝนที่ตกลงมาอย่างหนักในช่วงบ่ายทำให้น้ำท่วมถนนแคบๆ อย่างรวดเร็ว",
+    "novaBatch": true
+  },
+  {
+    "word": "seasonal",
+    "partOfSpeech": "adjective",
+    "translation": "ตามฤดูกาล",
+    "definition": "happening or changing depending on the time of year",
+    "example": "Many birds begin their seasonal migration before winter starts.",
+    "exampleTranslation": "นกหลายชนิดเริ่มการอพยพตามฤดูกาลก่อนที่ฤดูหนาวจะเริ่มต้นขึ้น",
+    "phonetic": "/ˈsiːzənəl/",
+    "cefr": "B1",
+    "collocations": [
+      "seasonal changes",
+      "seasonal weather"
+    ],
+    "synonyms": [
+      "periodic",
+      "cyclic"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ตามฤดูกาล",
+      "ประจำฤดู",
+      "เปลี่ยนตามฤดู"
+    ],
+    "extraExample": "The market sells fresh seasonal fruits grown by local farmers.",
+    "extraExampleTranslation": "ตลาดขายผลไม้สดตามฤดูกาลที่ปลูกโดยเกษตรกรในท้องถิ่น",
+    "novaBatch": true
+  },
+  {
+    "word": "gust",
+    "partOfSpeech": "noun",
+    "translation": "ลมกระโชก",
+    "definition": "a sudden, strong rush of wind",
+    "example": "A strong gust of wind blew my hat right off my head.",
+    "exampleTranslation": "ลมกระโชกแรงพัดหมวกของฉันปลิวหลุดจากหัวไปเลย",
+    "phonetic": "/ɡʌst/",
+    "cefr": "B1",
+    "collocations": [
+      "strong gust",
+      "wind gust"
+    ],
+    "synonyms": [
+      "blast",
+      "squall"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ลมกระโชก",
+      "ลมพัดแรง",
+      "วูบ"
+    ],
+    "extraExample": "The weather warning mentioned wind gusts reaching seventy kilometers per hour.",
+    "extraExampleTranslation": "คำเตือนสภาพอากาศระบุถึงลมกระโชกที่อาจแรงถึงเจ็ดสิบกิโลเมตรต่อชั่วโมง",
+    "novaBatch": true
+  },
+  {
+    "word": "instructor",
+    "partOfSpeech": "noun",
+    "translation": "ผู้สอน อาจารย์",
+    "definition": "a person who teaches a practical skill or online course",
+    "example": "Our online instructor answers questions in the forum daily.",
+    "exampleTranslation": "ผู้สอนออนไลน์ของเราตอบคำถามในฟอรัมทุกวัน",
+    "phonetic": "/ɪnˈstrʌktər/",
+    "cefr": "B1",
+    "collocations": [
+      "course instructor",
+      "certified instructor"
+    ],
+    "synonyms": [
+      "teacher",
+      "trainer"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ผู้สอน",
+      "ตอบคำถาม",
+      "แบบฝึกหัด"
+    ],
+    "extraExample": "Ask the instructor if you need help with the exercises.",
+    "extraExampleTranslation": "ถามผู้สอนได้หากคุณต้องการความช่วยเหลือเกี่ยวกับแบบฝึกหัด",
+    "novaBatch": true
+  },
+  {
+    "word": "self-paced",
+    "partOfSpeech": "adjective",
+    "translation": "เรียนตามจังหวะของตนเอง",
+    "definition": "allowing learners to study at their own speed",
+    "example": "I prefer self-paced courses because I work full-time.",
+    "exampleTranslation": "ฉันชอบคอร์สที่เรียนตามจังหวะของตนเองเพราะฉันทำงานประจำ",
+    "phonetic": "/ˌselfˈpeɪst/",
+    "cefr": "B1",
+    "collocations": [
+      "self-paced learning",
+      "self-paced course"
+    ],
+    "synonyms": [
+      "flexible",
+      "independent"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เรียนตามจังหวะของตนเอง",
+      "ทำงานประจำ",
+      "ทบทวนได้ตลอด"
+    ],
+    "extraExample": "The self-paced format lets you pause and review anytime.",
+    "extraExampleTranslation": "รูปแบบการเรียนตามจังหวะของตนเองช่วยให้คุณหยุดและทบทวนได้ตลอดเวลา",
+    "novaBatch": true
+  },
+  {
+    "word": "proctor",
+    "partOfSpeech": "noun",
+    "translation": "ผู้คุมสอบ",
+    "definition": "a person or system that watches students during an exam",
+    "example": "An online proctor will verify your ID before the test starts.",
+    "exampleTranslation": "ผู้คุมสอบออนไลน์จะตรวจสอบบัตรประจำตัวของคุณก่อนเริ่มสอบ",
+    "phonetic": "/ˈprɑːktər/",
+    "cefr": "B1",
+    "collocations": [
+      "online proctor",
+      "exam proctor"
+    ],
+    "synonyms": [
+      "supervisor",
+      "invigilator"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ผู้คุมสอบ",
+      "ตรวจสอบบัตร",
+      "เปิดกล้องไว้"
+    ],
+    "extraExample": "The proctor reminded everyone to keep their cameras on.",
+    "extraExampleTranslation": "ผู้คุมสอบเตือนทุกคนให้เปิดกล้องไว้ตลอดเวลา",
+    "novaBatch": true
+  },
+  {
+    "word": "apology",
+    "partOfSpeech": "noun",
+    "translation": "คำขอโทษ",
+    "definition": "a statement saying you are sorry for doing something wrong",
+    "example": "The CEO issued a sincere apology to all affected customers.",
+    "exampleTranslation": "ซีอีโอออกคำขอโทษอย่างจริงใจต่อลูกค้าที่ได้รับผลกระทบทุกคน",
+    "phonetic": "/əˈpɒlədʒi/",
+    "cefr": "B1",
+    "collocations": [
+      "sincere apology",
+      "public apology"
+    ],
+    "synonyms": [
+      "regret",
+      "excuse"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "คำขอโทษ",
+      "การขออภัย",
+      "แสดงความเสียใจ"
+    ],
+    "extraExample": "We need to include a clear apology in the email update.",
+    "extraExampleTranslation": "เราต้องใส่คำขอโทษที่ชัดเจนไว้ในอีเมลอัปเดต",
+    "novaBatch": true
+  },
+  {
+    "word": "stakeholder",
+    "partOfSpeech": "noun",
+    "translation": "ผู้มีส่วนได้ส่วนเสีย",
+    "definition": "a person or group with an interest in a company or project",
+    "example": "Every key stakeholder received an update before the news broke.",
+    "exampleTranslation": "ผู้มีส่วนได้ส่วนเสียหลักทุกคนได้รับข้อมูลอัปเดตก่อนข่าวจะออก",
+    "phonetic": "/ˈsteɪkhoʊldər/",
+    "cefr": "B1",
+    "collocations": [
+      "key stakeholder",
+      "inform stakeholders"
+    ],
+    "synonyms": [
+      "investor",
+      "partner"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ผู้มีส่วนได้ส่วนเสีย",
+      "ผู้เกี่ยวข้อง",
+      "ผู้ถือหุ้นและคู่ค้า"
+    ],
+    "extraExample": "We must keep our stakeholders informed during a crisis.",
+    "extraExampleTranslation": "เราต้องแจ้งข้อมูลให้ผู้มีส่วนได้ส่วนเสียทราบอยู่เสมอในช่วงวิกฤต",
+    "novaBatch": true
+  },
+  {
+    "word": "misleading",
+    "partOfSpeech": "adjective",
+    "translation": "ที่ทำให้เข้าใจผิด",
+    "definition": "causing people to believe something that is not true",
+    "example": "We removed the misleading advertisement immediately.",
+    "exampleTranslation": "เรานำโฆษณาที่ทำให้เข้าใจผิดออกทันที",
+    "phonetic": "/ˌmɪsˈliːdɪŋ/",
+    "cefr": "B1",
+    "collocations": [
+      "misleading information",
+      "misleading claim"
+    ],
+    "synonyms": [
+      "deceptive",
+      "inaccurate"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ทำให้เข้าใจผิด",
+      "บิดเบือน",
+      "คลาดเคลื่อน"
+    ],
+    "extraExample": "The post contained misleading numbers about our sales.",
+    "extraExampleTranslation": "โพสต์นั้นมีตัวเลขที่ทำให้เข้าใจผิดเกี่ยวกับยอดขายของเรา",
+    "novaBatch": true
+  },
+  {
+    "word": "outage",
+    "partOfSpeech": "noun",
+    "translation": "การหยุดชะงักของระบบ",
+    "definition": "a period when a service or power supply stops working",
+    "example": "The server outage lasted for three hours last night.",
+    "exampleTranslation": "ระบบเซิร์ฟเวอร์ล่มเป็นเวลาสามชั่วโมงเมื่อคืนนี้",
+    "phonetic": "/ˈaʊtɪdʒ/",
+    "cefr": "B1",
+    "collocations": [
+      "server outage",
+      "power outage"
+    ],
+    "synonyms": [
+      "blackout",
+      "disruption"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ระบบล่ม",
+      "ไฟดับ",
+      "การหยุดชะงัก"
+    ],
+    "extraExample": "We sent an alert to users explaining the network outage.",
+    "extraExampleTranslation": "เราส่งแจ้งเตือนถึงผู้ใช้เพื่ออธิบายเรื่องระบบเครือข่ายขัดข้อง",
+    "novaBatch": true
+  },
+  {
+    "word": "compensate",
+    "partOfSpeech": "verb",
+    "translation": "ชดเชย",
+    "definition": "to pay or give something to make up for loss or trouble",
+    "example": "The airline offered vouchers to compensate passengers for the delay.",
+    "exampleTranslation": "สายการบินมอบบัตรกำนัลเพื่อชดเชยผู้โดยสารสำหรับความล่าช้า",
+    "phonetic": "/ˈkɒmpənseɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "compensate customers",
+      "compensate for loss"
+    ],
+    "synonyms": [
+      "repay",
+      "reimburse"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ชดเชย",
+      "จ่ายค่าเสียหาย",
+      "ทดแทน"
+    ],
+    "extraExample": "How will we compensate clients who lost access today?",
+    "extraExampleTranslation": "เราจะชดเชยลูกค้าที่เข้าใช้งานไม่ได้ในวันนี้อย่างไร",
+    "novaBatch": true
+  },
+  {
+    "word": "ancestry",
+    "partOfSpeech": "noun",
+    "translation": "เชื้อสาย บรรพบุรุษ",
+    "definition": "family or ethnic descent from earlier generations",
+    "example": "People gather at the festival to celebrate their shared ancestry.",
+    "exampleTranslation": "ผู้คนมารวมตัวกันที่งานเทศกาลเพื่อเฉลิมฉลองเชื้อสายร่วมกัน",
+    "phonetic": "/ˈæn.ses.tri/",
+    "cefr": "B1",
+    "collocations": [
+      "trace ancestry",
+      "shared ancestry"
+    ],
+    "synonyms": [
+      "lineage",
+      "descent"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "เชื้อสาย",
+      "บรรพบุรุษ",
+      "ต้นตระกูล"
+    ],
+    "extraExample": "She traced her ancestry back to a small coastal village.",
+    "extraExampleTranslation": "เธอสืบค้นเชื้อสายของตัวเองย้อนกลับไปถึงหมู่บ้านชายฝั่งเล็กๆ",
+    "novaBatch": true
+  },
+  {
+    "word": "artifact",
+    "partOfSpeech": "noun",
+    "translation": "โบราณวัตถุ สิ่งประดิษฐ์ทางวัฒนธรรม",
+    "definition": "an object made by humans, especially one of historical or cultural interest",
+    "example": "The museum displayed a rare artifact from the ancient kingdom.",
+    "exampleTranslation": "พิพิธภัณฑ์จัดแสดงโบราณวัตถุหายากจากอาณาจักรโบราณ",
+    "phonetic": "/ˈɑːr.t̬ə.fækt/",
+    "cefr": "B1",
+    "collocations": [
+      "ancient artifact",
+      "cultural artifact"
+    ],
+    "synonyms": [
+      "relic",
+      "antique"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "โบราณวัตถุ",
+      "สิ่งประดิษฐ์",
+      "วัตถุโบราณ"
+    ],
+    "extraExample": "Local divers found a ceramic artifact near the sunken ship.",
+    "extraExampleTranslation": "นักดำน้ำท้องถิ่นพบโบราณวัตถุเซรามิกใกล้เรือที่อับปาง",
+    "novaBatch": true
+  },
+  {
+    "word": "banquet",
+    "partOfSpeech": "noun",
+    "translation": "งานเลี้ยงฉลองใหญ่",
+    "definition": "a large formal meal for many people, often to celebrate a special event",
+    "example": "The harvest festival ended with a grand banquet in the town hall.",
+    "exampleTranslation": "เทศกาลเก็บเกี่ยวปิดท้ายด้วยงานเลี้ยงฉลองใหญ่ที่ศาลาว่าการเมือง",
+    "phonetic": "/ˈbæŋ.kwɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "grand banquet",
+      "host a banquet"
+    ],
+    "synonyms": [
+      "feast",
+      "dinner"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "งานเลี้ยง",
+      "งานเลี้ยงฉลอง",
+      "โต๊ะจีน"
+    ],
+    "extraExample": "Guests enjoyed traditional dishes during the royal banquet.",
+    "extraExampleTranslation": "แขกเหรื่อเพลิดเพลินกับอาหารพื้นเมืองระหว่างงานเลี้ยงหลวง",
+    "novaBatch": true
+  },
+  {
+    "word": "dialect",
+    "partOfSpeech": "noun",
+    "translation": "ภาษาถิ่น สำเนียงท้องถิ่น",
+    "definition": "a form of a language spoken in a particular region or by a specific group",
+    "example": "Folk songs at the festival are sung in the local dialect.",
+    "exampleTranslation": "เพลงพื้นบ้านในงานเทศกาลถูกขับร้องด้วยภาษาถิ่น",
+    "phonetic": "/ˈdaɪ.ə.lekt/",
+    "cefr": "B1",
+    "collocations": [
+      "local dialect",
+      "speak a dialect"
+    ],
+    "synonyms": [
+      "vernacular",
+      "accent"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ภาษาถิ่น",
+      "สำเนียงท้องถิ่น",
+      "ภาษาพื้นเมือง"
+    ],
+    "extraExample": "He can understand the northern dialect even though he grew up in the city.",
+    "extraExampleTranslation": "เขาเข้าใจภาษาถิ่นทางเหนือแม้จะเติบโตในเมือง",
+    "novaBatch": true
+  },
+  {
+    "word": "lantern",
+    "partOfSpeech": "noun",
+    "translation": "โคมไฟ",
+    "definition": "a lamp with a transparent case protecting the flame or bulb, often used in festivals",
+    "example": "Thousands of paper lanterns floated into the night sky.",
+    "exampleTranslation": "โคมกระดาษหลายพันดวงลอยขึ้นสู่ท้องฟ้ายามค่ำคืน",
+    "phonetic": "/ˈlæn.tərn/",
+    "cefr": "B1",
+    "collocations": [
+      "paper lantern",
+      "light a lantern"
+    ],
+    "synonyms": [
+      "lamp",
+      "light"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "โคมไฟ",
+      "โคม",
+      "โคมลอย"
+    ],
+    "extraExample": "Families hung red lanterns outside their doors for good luck.",
+    "extraExampleTranslation": "ครอบครัวต่างๆ แขวนโคมไฟสีแดงหน้าประตูเพื่อความเป็นสิริมงคล",
+    "novaBatch": true
+  },
+  {
+    "word": "monument",
+    "partOfSpeech": "noun",
+    "translation": "อนุสาวรีย์ อนุสรณ์สถาน",
+    "definition": "a statue, building, or structure built to remember a famous person or event",
+    "example": "Tourists visited the stone monument in the center of the old square.",
+    "exampleTranslation": "นักท่องเที่ยวเยี่ยมชมอนุสาวรีย์หินกลางจัตุรัสเก่า",
+    "phonetic": "/ˈmɑːn.jə.mənt/",
+    "cefr": "B1",
+    "collocations": [
+      "historic monument",
+      "build a monument"
+    ],
+    "synonyms": [
+      "memorial",
+      "statue"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "อนุสาวรีย์",
+      "อนุสรณ์สถาน",
+      "สิ่งก่อสร้างรำลึก"
+    ],
+    "extraExample": "The city restored the historic monument before the national holiday.",
+    "extraExampleTranslation": "เมืองได้บูรณะอนุสรณ์สถานทางประวัติศาสตร์ก่อนวันหยุดชาติ",
+    "novaBatch": true
+  },
+  {
+    "word": "parade",
+    "partOfSpeech": "noun",
+    "translation": "ขบวนพาเหรด ขบวนแห่",
+    "definition": "a public celebration where people march or ride in decorated vehicles along a street",
+    "example": "Crowds lined the streets to watch the colorful New Year parade.",
+    "exampleTranslation": "ฝูงชนยืนเรียงรายตามถนนเพื่อชมขบวนพาเหรดปีใหม่ที่สดใส",
+    "phonetic": "/pəˈreɪd/",
+    "cefr": "B1",
+    "collocations": [
+      "annual parade",
+      "watch a parade"
+    ],
+    "synonyms": [
+      "procession",
+      "march"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ขบวนพาเหรด",
+      "ขบวนแห่",
+      "การเดินขบวน"
+    ],
+    "extraExample": "The school band joined the annual cultural parade.",
+    "extraExampleTranslation": "วงดนตรีโรงเรียนเข้าร่วมขบวนแห่ทางวัฒนธรรมประจำปี",
+    "novaBatch": true
+  },
+  {
+    "word": "pilgrimage",
+    "partOfSpeech": "noun",
+    "translation": "การแสวงบุญ การเดินทางไปสักการะ",
+    "definition": "a journey to a sacred or culturally important place for religious or personal reasons",
+    "example": "Every spring, thousands make a pilgrimage to the mountain temple.",
+    "exampleTranslation": "ทุกฤดูใบไม้ผลิ ผู้คนหลายพันเดินทางไปแสวงบุญที่วัดบนภูเขา",
+    "phonetic": "/ˈpɪl.ɡrɪ.mɪdʒ/",
+    "cefr": "B1",
+    "collocations": [
+      "make a pilgrimage",
+      "annual pilgrimage"
+    ],
+    "synonyms": [
+      "journey",
+      "quest"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "การแสวงบุญ",
+      "การเดินทางสักการะ",
+      "ทริปแสวงบุญ"
+    ],
+    "extraExample": "Her grandfather completed his lifelong pilgrimage last autumn.",
+    "extraExampleTranslation": "คุณปู่ของเธอเดินทางแสวงบุญที่ตั้งใจไว้ตลอดชีวิตสำเร็จเมื่อฤดูใบไม้ร่วงปีที่แล้ว",
+    "novaBatch": true
+  },
+  {
+    "word": "relic",
+    "partOfSpeech": "noun",
+    "translation": "พระธาตุ วัตถุศักดิ์สิทธิ์หรือโบราณ",
+    "definition": "an object surviving from an earlier time, especially one of historical or religious value",
+    "example": "The temple keeps a sacred relic inside a golden shrine.",
+    "exampleTranslation": "วัดเก็บรักษาพระธาตุอันศักดิ์สิทธิ์ไว้ในมณฑปทองคำ",
+    "phonetic": "/ˈrel.ɪk/",
+    "cefr": "B1",
+    "collocations": [
+      "sacred relic",
+      "ancient relic"
+    ],
+    "synonyms": [
+      "artifact",
+      "heirloom"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "พระธาตุ",
+      "วัตถุโบราณ",
+      "ของเก่าแก่"
+    ],
+    "extraExample": "Archaeologists studied every relic found at the heritage site.",
+    "extraExampleTranslation": "นักโบราณคดีศึกษาวัตถุโบราณทุกชิ้นที่พบในแหล่งมรดกทางวัฒนธรรม",
+    "novaBatch": true
+  },
+  {
+    "word": "shrine",
+    "partOfSpeech": "noun",
+    "translation": "ศาลเจ้า สถานที่สักการะ",
+    "definition": "a place regarded as holy because of its associations with a divinity or a sacred person",
+    "example": "People left fresh flowers and incense at the roadside shrine.",
+    "exampleTranslation": "ผู้คนวางดอกไม้สดและธูปที่ศาลเจ้าริมทาง",
+    "phonetic": "/ʃraɪn/",
+    "cefr": "B1",
+    "collocations": [
+      "roadside shrine",
+      "visit a shrine"
+    ],
+    "synonyms": [
+      "temple",
+      "sanctuary"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ศาลเจ้า",
+      "สถานที่สักการะ",
+      "หอพระ"
+    ],
+    "extraExample": "The wooden shrine is over three hundred years old.",
+    "extraExampleTranslation": "ศาลเจ้าไม้แห่งนี้มีอายุมากกว่าสามร้อยปี",
+    "novaBatch": true
+  },
+  {
+    "word": "tapestry",
+    "partOfSpeech": "noun",
+    "translation": "ผ้าทอแขวนผนัง พรมทอเรื่องราว",
+    "definition": "a heavy handwoven textile with pictures or designs, often hung on a wall",
+    "example": "The palace wall was covered with a huge tapestry showing a historic battle.",
+    "exampleTranslation": "ผนังพระราชวังประดับด้วยผ้าทอขนาดใหญ่ที่แสดงภาพการรบทางประวัติศาสตร์",
+    "phonetic": "/ˈtæp.ə.stri/",
+    "cefr": "B1",
+    "collocations": [
+      "silk tapestry",
+      "woven tapestry"
+    ],
+    "synonyms": [
+      "hanging",
+      "textile"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ผ้าทอ",
+      "พรมทอ",
+      "ผ้าแขวนผนัง"
+    ],
+    "extraExample": "Weavers spent months creating the detailed silk tapestry.",
+    "extraExampleTranslation": "ช่างทอใช้เวลาหลายเดือนในการสร้างสรรค์ผ้าทอไหมที่มีรายละเอียดประณีต",
+    "novaBatch": true
+  },
+  {
+    "word": "double-check",
+    "partOfSpeech": "verb",
+    "translation": "ตรวจสอบซ้ำอีกครั้ง",
+    "definition": "to check something a second time to be completely sure",
+    "example": "Always double-check your passport before leaving for the airport.",
+    "exampleTranslation": "ตรวจสอบหนังสือเดินทางซ้ำอีกครั้งเสมอ ก่อนออกจากบ้านไปสนามบิน",
+    "phonetic": "/ˌdʌbəlˈtʃek/",
+    "cefr": "B1",
+    "collocations": [
+      "double-check facts",
+      "double-check the lock"
+    ],
+    "synonyms": [
+      "recheck",
+      "review"
+    ],
+    "topic": "actions",
+    "thTokens": [
+      "ตรวจ",
+      "สอบ",
+      "ซ้ำ"
+    ],
+    "extraExample": "I will double-check the numbers before sending the invoice.",
+    "extraExampleTranslation": "ฉันจะตรวจสอบตัวเลขซ้ำอีกครั้งก่อนส่งใบแจ้งหนี้",
+    "novaBatch": true
+  },
+  {
+    "word": "pardon",
+    "partOfSpeech": "noun",
+    "translation": "การอภัยโทษ คำขอโทษ",
+    "definition": "a polite way to ask someone to repeat something",
+    "example": "I beg your pardon, could you say that again?",
+    "exampleTranslation": "ขอโทษนะครับ ช่วยพูดอีกครั้งได้ไหมครับ",
+    "phonetic": "/ˈpɑːrdən/",
+    "cefr": "B1",
+    "collocations": [
+      "beg your pardon",
+      "ask for pardon"
+    ],
+    "synonyms": [
+      "forgiveness",
+      "excuse"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ขอโทษนะครับ",
+      "ช่วยพูดอีกครั้ง",
+      "ได้ไหมครับ"
+    ],
+    "extraExample": "She asked for his pardon after the rude remark.",
+    "extraExampleTranslation": "เธอขออภัยจากเขาหลังจากพูดจาไม่สุภาพ",
+    "novaBatch": true
+  },
+  {
+    "word": "politely",
+    "partOfSpeech": "adverb",
+    "translation": "อย่างสุภาพ",
+    "definition": "in a respectful and well-mannered way",
+    "example": "He politely asked the guests to take their seats.",
+    "exampleTranslation": "เขาเชิญแขกให้นั่งลงอย่างสุภาพ",
+    "phonetic": "/pəˈlaɪtli/",
+    "cefr": "B1",
+    "collocations": [
+      "ask politely",
+      "politely decline"
+    ],
+    "synonyms": [
+      "courteously",
+      "respectfully"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "เขาเชิญแขก",
+      "ให้นั่งลง",
+      "อย่างสุภาพ"
+    ],
+    "extraExample": "She politely declined the invitation to dinner.",
+    "extraExampleTranslation": "เธอปฏิเสธคำเชิญไปทานอาหารเย็นอย่างสุภาพ",
+    "novaBatch": true
+  },
+  {
+    "word": "peanut",
+    "partOfSpeech": "noun",
+    "translation": "ถั่วลิสง",
+    "definition": "a small round nut that grows underground",
+    "example": "He has a severe peanut allergy and avoids Asian sauces.",
+    "exampleTranslation": "เขาแพ้ถั่วลิสงอย่างรุนแรงและหลีกเลี่ยงซอสเอเชีย",
+    "phonetic": "/ˈpiː.nʌt/",
+    "cefr": "B1",
+    "collocations": [
+      "peanut butter",
+      "peanut allergy"
+    ],
+    "synonyms": [
+      "groundnut",
+      "nut"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ถั่วลิสง",
+      "เนยถั่ว",
+      "แพ้ถั่วลิสง"
+    ],
+    "extraExample": "Please check if the cookies contain any peanut oil.",
+    "extraExampleTranslation": "โปรดตรวจสอบว่าคุกกี้มีน้ำมันถั่วลิสงผสมอยู่หรือไม่",
+    "novaBatch": true
+  },
+  {
+    "word": "sesame",
+    "partOfSpeech": "noun",
+    "translation": "งา",
+    "definition": "a tiny flat seed used in cooking and baking",
+    "example": "The bread is topped with toasted sesame seeds.",
+    "exampleTranslation": "ขนมปังโรยหน้าด้วยเมล็ดงาคั่ว",
+    "phonetic": "/ˈses.ə.mi/",
+    "cefr": "B1",
+    "collocations": [
+      "sesame seed",
+      "sesame oil"
+    ],
+    "synonyms": [
+      "seed",
+      "oilseed"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "งา",
+      "เมล็ดงา",
+      "น้ำมันงา"
+    ],
+    "extraExample": "Some people are allergic to sesame oil in dressings.",
+    "extraExampleTranslation": "บางคนแพ้น้ำมันงาในน้ำสลัด",
+    "novaBatch": true
+  },
+  {
+    "word": "wheat",
+    "partOfSpeech": "noun",
+    "translation": "ข้าวสาลี",
+    "definition": "a grain used to make bread and pasta",
+    "example": "People with wheat sensitivity often choose rice noodles.",
+    "exampleTranslation": "ผู้ที่ไวต่อข้าวสาลีมักเลือกกินเส้นก๋วยเตี๋ยวจากข้าว",
+    "phonetic": "/wiːt/",
+    "cefr": "B1",
+    "collocations": [
+      "whole wheat",
+      "wheat bread"
+    ],
+    "synonyms": [
+      "grain",
+      "cereal"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ข้าวสาลี",
+      "โฮลวีต",
+      "ธัญพืช"
+    ],
+    "extraExample": "This whole wheat bread is rich in fiber.",
+    "extraExampleTranslation": "ขนมปังโฮลวีตนี้มีใยอาหารสูง",
+    "novaBatch": true
+  },
+  {
+    "word": "oatmeal",
+    "partOfSpeech": "noun",
+    "translation": "ข้าวโอ๊ตต้ม",
+    "definition": "a warm breakfast food made from oats and water or milk",
+    "example": "I eat oatmeal with fresh berries every morning.",
+    "exampleTranslation": "ฉันกินข้าวโอ๊ตต้มกับเบอร์รีสดทุกเช้า",
+    "phonetic": "/ˈoʊt.miːl/",
+    "cefr": "B1",
+    "collocations": [
+      "hot oatmeal",
+      "oatmeal bowl"
+    ],
+    "synonyms": [
+      "porridge",
+      "oats"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ข้าวโอ๊ตต้ม",
+      "โจ๊กข้าวโอ๊ต",
+      "อาหารเช้า"
+    ],
+    "extraExample": "Oatmeal is a healthy choice for a dairy-free breakfast.",
+    "extraExampleTranslation": "ข้าวโอ๊ตต้มเป็นตัวเลือกที่ดีต่อสุขภาพสำหรับมื้อเช้าที่ไม่มีนม",
+    "novaBatch": true
+  },
+  {
+    "word": "tofu",
+    "partOfSpeech": "noun",
+    "translation": "เต้าหู้",
+    "definition": "a soft white food made from soybeans",
+    "example": "We grilled the tofu cubes with garlic and herbs.",
+    "exampleTranslation": "เราย่างเต้าหู้หั่นเต๋ากับกระเทียมและสมุนไพร",
+    "phonetic": "/ˈtoʊ.fuː/",
+    "cefr": "B1",
+    "collocations": [
+      "fried tofu",
+      "silken tofu"
+    ],
+    "synonyms": [
+      "bean curd",
+      "soy curd"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เต้าหู้",
+      "เต้าหู้ทอด",
+      "โปรตีนจากพืช"
+    ],
+    "extraExample": "Tofu is a popular protein for people who skip meat.",
+    "extraExampleTranslation": "เต้าหู้เป็นโปรตีนยอดนิยมสำหรับคนที่ไม่กินเนื้อสัตว์",
+    "novaBatch": true
+  },
+  {
+    "word": "almond",
+    "partOfSpeech": "noun",
+    "translation": "อัลมอนด์",
+    "definition": "an oval nut with a sweet, mild flavor",
+    "example": "She drinks almond milk in her iced coffee.",
+    "exampleTranslation": "เธอดื่มนมอัลมอนด์ในกาแฟเย็นของเธอ",
+    "phonetic": "/ˈɑːl.mənd/",
+    "cefr": "B1",
+    "collocations": [
+      "almond milk",
+      "roasted almond"
+    ],
+    "synonyms": [
+      "nut",
+      "tree nut"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "อัลมอนด์",
+      "นมอัลมอนด์",
+      "ถั่วอัลมอนด์"
+    ],
+    "extraExample": "Sliced almonds add nice texture to the salad.",
+    "extraExampleTranslation": "อัลมอนด์สไลด์ช่วยเพิ่มเนื้อสัมผัสที่ดีให้กับสลัด",
+    "novaBatch": true
+  },
+  {
+    "word": "sugar-free",
+    "partOfSpeech": "adjective",
+    "translation": "ปราศจากน้ำตาล",
+    "definition": "containing no added sugar",
+    "example": "She chose a sugar-free yogurt for her afternoon snack.",
+    "exampleTranslation": "เธอเลือกโยเกิร์ตปราศจากน้ำตาลสำหรับของว่างยามบ่าย",
+    "phonetic": "/ˌʃʊɡ.ərˈfriː/",
+    "cefr": "B1",
+    "collocations": [
+      "sugar-free drink",
+      "sugar-free dessert"
+    ],
+    "synonyms": [
+      "unsweetened",
+      "no-sugar"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ปราศจากน้ำตาล",
+      "ไม่มีน้ำตาล",
+      "ไร้น้ำตาล"
+    ],
+    "extraExample": "This bakery makes sugar-free muffins for diabetic guests.",
+    "extraExampleTranslation": "ร้านเบเกอรีนี้ทำมัฟฟินปราศจากน้ำตาลสำหรับลูกค้าเบาหวาน",
+    "novaBatch": true
+  },
+  {
+    "word": "bleed",
+    "partOfSpeech": "verb",
+    "translation": "เลือดออก",
+    "definition": "to lose blood from the body because of an injury",
+    "example": "Press a clean cloth firmly on the cut if it starts to bleed.",
+    "exampleTranslation": "กดผ้าสะอาดลงบนแผลให้แน่นหากแผลเริ่มเลือดออก",
+    "phonetic": "/bliːd/",
+    "cefr": "B1",
+    "collocations": [
+      "bleed heavily",
+      "stop bleeding"
+    ],
+    "synonyms": [
+      "hemorrhage",
+      "ooze"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กดผ้าสะอาด",
+      "ลงบนแผลให้แน่น",
+      "หากแผลเริ่ม",
+      "เลือดออก"
+    ],
+    "extraExample": "My nose used to bleed often during dry winter mornings.",
+    "extraExampleTranslation": "จมูกของฉันเคยเลือดออกบ่อยในช่วงเช้าฤดูหนาวที่อากาศแห้ง",
+    "novaBatch": true
+  },
+  {
+    "word": "dizzy",
+    "partOfSpeech": "adjective",
+    "translation": "เวียนหัว",
+    "definition": "feeling as if everything is spinning and you might lose balance",
+    "example": "Standing up too quickly from the sofa made him feel dizzy.",
+    "exampleTranslation": "การลุกขึ้นจากโซฟาเร็วเกินไปทำให้เขารู้สึกเวียนหัว",
+    "phonetic": "/ˈdɪzi/",
+    "cefr": "B1",
+    "collocations": [
+      "feel dizzy",
+      "get dizzy"
+    ],
+    "synonyms": [
+      "lightheaded",
+      "woozy"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การลุกขึ้น",
+      "จากโซฟาเร็วเกินไป",
+      "ทำให้เขารู้สึก",
+      "เวียนหัว"
+    ],
+    "extraExample": "She felt dizzy after spending three hours in the hot sun.",
+    "extraExampleTranslation": "เธอรู้สึกเวียนหัวหลังจากอยู่กลางแดดร้อนเป็นเวลาสามชั่วโมง",
+    "novaBatch": true
+  },
+  {
+    "word": "sublet",
+    "partOfSpeech": "verb",
+    "translation": "ให้เช่าช่วง",
+    "definition": "to rent out an apartment or room that you are already renting from someone else",
+    "example": "I plan to sublet my apartment while I am away for the summer.",
+    "exampleTranslation": "ฉันวางแผนจะให้เช่าช่วงอพาร์ตเมนต์ของฉันในช่วงที่ไม่อยู่ฤดูร้อนนี้",
+    "phonetic": "/ˈsʌb.lɛt/",
+    "cefr": "B1",
+    "collocations": [
+      "sublet an apartment",
+      "sublet a room"
+    ],
+    "synonyms": [
+      "rent out",
+      "lease out"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ให้เช่าช่วง",
+      "ห้องเช่า",
+      "ขออนุญาต"
+    ],
+    "extraExample": "Make sure you ask the building manager before you sublet your unit.",
+    "extraExampleTranslation": "อย่าลืมขออนุญาตผู้จัดการอาคารก่อนที่จะให้เช่าช่วงห้องของคุณ",
+    "novaBatch": true
+  },
+  {
+    "word": "radiator",
+    "partOfSpeech": "noun",
+    "translation": "เครื่องทำความร้อน",
+    "definition": "a metal device in a room that heats up to keep the apartment warm",
+    "example": "The radiator in the living room makes a loud banging noise at night.",
+    "exampleTranslation": "เครื่องทำความร้อนในห้องนั่งเล่นส่งเสียงดังปังๆ ในตอนกลางคืน",
+    "phonetic": "/ˈreɪ.di.eɪ.t̬ɚ/",
+    "cefr": "B1",
+    "collocations": [
+      "turn on the radiator",
+      "noisy radiator"
+    ],
+    "synonyms": [
+      "heater",
+      "warmer"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "เครื่องทำความร้อน",
+      "ในห้อง",
+      "ส่งเสียงดัง"
+    ],
+    "extraExample": "Please do not put wet towels directly on the electric radiator.",
+    "extraExampleTranslation": "กรุณาอย่าวางผ้าเช็ดตัวเปียกบนเครื่องทำความร้อนไฟฟ้าโดยตรง",
+    "novaBatch": true
+  },
+  {
+    "word": "laundromat",
+    "partOfSpeech": "noun",
+    "translation": "ร้านซักรีดหยอดเหรียญ",
+    "definition": "a place with coin-operated washing machines and dryers for public use",
+    "example": "There is a 24-hour laundromat right across from our apartment building.",
+    "exampleTranslation": "มีร้านซักรีดหยอดเหรียญที่เปิด 24 ชั่วโมงอยู่ตรงข้ามตึกอพาร์ตเมนต์ของเราเลย",
+    "phonetic": "/ˈlɑːn.drə.mæt/",
+    "cefr": "B1",
+    "collocations": [
+      "local laundromat",
+      "go to the laundromat"
+    ],
+    "synonyms": [
+      "launderette",
+      "washhouse"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ร้านซักรีด",
+      "หยอดเหรียญ",
+      "เครื่องซักผ้า"
+    ],
+    "extraExample": "Since my unit has no washer, I walk to the laundromat every Sunday.",
+    "extraExampleTranslation": "เนื่องจากห้องของฉันไม่มีเครื่องซักผ้า ฉันจึงเดินไปร้านซักรีดหยอดเหรียญทุกวันอาทิตย์",
+    "novaBatch": true
+  },
+  {
+    "word": "chute",
+    "partOfSpeech": "noun",
+    "translation": "ปล่องทิ้งขยะ",
+    "definition": "a narrow vertical passage in an apartment building for dropping trash",
+    "example": "You can drop your tied trash bags down the garbage chute on each floor.",
+    "exampleTranslation": "คุณสามารถทิ้งถุงขยะที่มัดปากแล้วลงในปล่องทิ้งขยะในแต่ละชั้นได้",
+    "phonetic": "/ʃuːt/",
+    "cefr": "B1",
+    "collocations": [
+      "garbage chute",
+      "trash chute"
+    ],
+    "synonyms": [
+      "shaft",
+      "duct"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ปล่องทิ้งขยะ",
+      "แต่ละชั้น",
+      "ถุงขยะ"
+    ],
+    "extraExample": "Someone blocked the chute with a large cardboard box yesterday.",
+    "extraExampleTranslation": "เมื่อวานมีคนทำปล่องทิ้งขยะตันด้วยกล่องกระดาษใบใหญ่",
+    "novaBatch": true
+  },
+  {
+    "word": "doorman",
+    "partOfSpeech": "noun",
+    "translation": "พนักงานเปิดประตูและดูแลหน้าตึก",
+    "definition": "a person employed at the entrance of an apartment building to greet residents and check visitors",
+    "example": "The doorman always holds the door open when I carry heavy groceries.",
+    "exampleTranslation": "พนักงานหน้าตึกมักจะเปิดประตูค้างไว้ให้เสมอเวลาฉันถือของชำหนักๆ",
+    "phonetic": "/ˈdɔːr.mæn/",
+    "cefr": "B1",
+    "collocations": [
+      "friendly doorman",
+      "night doorman"
+    ],
+    "synonyms": [
+      "concierge",
+      "attendant"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "พนักงานหน้าตึก",
+      "เปิดประตู",
+      "รับฝากของ"
+    ],
+    "extraExample": "You should leave your spare key with the doorman for the plumber.",
+    "extraExampleTranslation": "คุณควรฝากกุญแจสำรองไว้กับพนักงานหน้าตึกเพื่อให้ช่างประปา",
+    "novaBatch": true
+  },
+  {
+    "word": "rooftop",
+    "partOfSpeech": "noun",
+    "translation": "ดาดฟ้า",
+    "definition": "the flat top surface of a building, often used as a shared outdoor space",
+    "example": "The neighbors often gather on the rooftop to watch the sunset.",
+    "exampleTranslation": "เพื่อนบ้านมักจะมารวมตัวกันบนดาดฟ้าเพื่อดูพระอาทิตย์ตก",
+    "phonetic": "/ˈruːf.tɑːp/",
+    "cefr": "B1",
+    "collocations": [
+      "rooftop garden",
+      "rooftop access"
+    ],
+    "synonyms": [
+      "roof",
+      "terrace"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ดาดฟ้า",
+      "พื้นที่ส่วนกลาง",
+      "ชมวิว"
+    ],
+    "extraExample": "Our building has a small rooftop garden with benches and string lights.",
+    "extraExampleTranslation": "ตึกของเรามีสวนเล็กๆ บนดาดฟ้าพร้อมม้านั่งและไฟประดับ",
+    "novaBatch": true
+  },
+  {
+    "word": "patio",
+    "partOfSpeech": "noun",
+    "translation": "ลานระเบียงชั้นล่าง",
+    "definition": "a paved outdoor area next to a ground-floor apartment",
+    "example": "My neighbor grows fresh herbs in pots on her ground-floor patio.",
+    "exampleTranslation": "เพื่อนบ้านของฉันปลูกสมุนไพรสดในกระถางบนลานระเบียงชั้นล่างของเธอ",
+    "phonetic": "/ˈpæt̬.i.oʊ/",
+    "cefr": "B1",
+    "collocations": [
+      "private patio",
+      "patio furniture"
+    ],
+    "synonyms": [
+      "deck",
+      "veranda"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ลานระเบียง",
+      "ชั้นล่าง",
+      "พื้นที่นั่งเล่น"
+    ],
+    "extraExample": "We invited the people next door for coffee on our patio.",
+    "extraExampleTranslation": "เราชวนคนข้างห้องมาดื่มกาแฟที่ลานระเบียงของเรา",
+    "novaBatch": true
+  },
+  {
+    "word": "notify",
+    "partOfSpeech": "verb",
+    "translation": "แจ้งให้ทราบ",
+    "definition": "to officially tell someone about something, such as a repair or rule",
+    "example": "Please notify your neighbors before having a loud party on the weekend.",
+    "exampleTranslation": "กรุณาแจ้งให้เพื่อนบ้านทราบก่อนจัดปาร์ตี้เสียงดังในวันสุดสัปดาห์",
+    "phonetic": "/ˈnoʊ.t̬ə.faɪ/",
+    "cefr": "B1",
+    "collocations": [
+      "notify residents",
+      "notify management"
+    ],
+    "synonyms": [
+      "inform",
+      "alert"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "แจ้งให้ทราบ",
+      "ประกาศ",
+      "ผู้พักอาศัย"
+    ],
+    "extraExample": "Management will notify all residents when the water is turned off for repairs.",
+    "extraExampleTranslation": "ฝ่ายบริหารจะแจ้งให้ผู้พักอาศัยทุกคนทราบเมื่อปิดน้ำเพื่อซ่อมแซม",
+    "novaBatch": true
+  },
+  {
+    "word": "janitor",
+    "partOfSpeech": "noun",
+    "translation": "ภารโรงหรือผู้ดูแลความสะอาดตึก",
+    "definition": "a person whose job is to clean and take care of a building",
+    "example": "The janitor mopped the wet stairs right after the rainstorm.",
+    "exampleTranslation": "ภารโรงถูบันไดที่เปียกทันทีหลังจากพายุฝนสงบ",
+    "phonetic": "/ˈdʒæn.ɪ.t̬ɚ/",
+    "cefr": "B1",
+    "collocations": [
+      "building janitor",
+      "call the janitor"
+    ],
+    "synonyms": [
+      "custodian",
+      "caretaker"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ภารโรง",
+      "ดูแลความสะอาด",
+      "ซ่อมบำรุง"
+    ],
+    "extraExample": "If a light bulb burns out in the corridor, tell the janitor.",
+    "extraExampleTranslation": "หากหลอดไฟในทางเดินขาด ให้บอกภารโรง",
     "novaBatch": true
   }
 ];
