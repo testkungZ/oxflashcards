@@ -4599,12 +4599,12 @@ document.addEventListener('DOMContentLoaded', () => {
         speakResetTimer = setTimeout(() => clearSpeakingState(), timeoutMs);
     }
 
-    function speakViaWebSpeech(text, btn, rateOverride = null) {
+    function speakViaWebSpeech(text, btn, rateOverride = null, langOverride = null) {
         if (!window.speechSynthesis) {
             clearSpeakingState();
             return;
         }
-        const langTag = preferredAccent === 'UK' ? 'en-GB' : 'en-US';
+        const langTag = langOverride || (preferredAccent === 'UK' ? 'en-GB' : 'en-US');
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = langTag;
         const voicesList = (typeof availableVoices !== 'undefined' && Array.isArray(availableVoices) && availableVoices.length)
@@ -4691,6 +4691,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const clean = String(text).trim();
         if (!clean) return;
         const rateOverride = opts && typeof opts.rate === 'number' ? opts.rate : null;
+        const langOverride = opts && typeof opts.lang === 'string' ? opts.lang : null;
         try {
             if (window.speechSynthesis) {
                 window.speechSynthesis.cancel();
@@ -4700,12 +4701,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = targetBtn || (btnQuizSpeak && btnQuizSpeak.offsetParent !== null ? btnQuizSpeak : (btnSpeak && btnSpeak.offsetParent !== null ? btnSpeak : null));
         if (btn) setSpeakingState(btn, clean.includes(' ') ? 4200 : 2800);
 
-        if (isManual && !clean.includes(' ') && navigator.onLine !== false) {
+        if (isManual && !clean.includes(' ') && !langOverride && navigator.onLine !== false) {
             tryPlayDictionaryMp3(clean, btn, rateOverride).then(played => {
-                if (!played) speakViaWebSpeech(clean, btn, rateOverride);
-            }).catch(() => speakViaWebSpeech(clean, btn, rateOverride));
+                if (!played) speakViaWebSpeech(clean, btn, rateOverride, langOverride);
+            }).catch(() => speakViaWebSpeech(clean, btn, rateOverride, langOverride));
         } else {
-            speakViaWebSpeech(clean, btn, rateOverride);
+            speakViaWebSpeech(clean, btn, rateOverride, langOverride);
         }
     }
     /** @type {any} */ (window).speakWordOverride = speakWordOverride;
@@ -6983,6 +6984,8 @@ document.addEventListener('DOMContentLoaded', () => {
             claimedChests: [],
             /** @type {string[]} */
             unlockedUnits: [],
+            /** @type {Record<string, number>} */
+            stageReplays: {},
             dailyQuests: {
                 date: getTodayDateString(),
                 xpToday: 0,
@@ -7024,6 +7027,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Array.isArray(raw.unlockedUnits)) {
             base.unlockedUnits = Array.from(new Set(raw.unlockedUnits.filter(x => typeof x === 'string')));
         }
+        if (raw.stageReplays && typeof raw.stageReplays === 'object') {
+            Object.entries(raw.stageReplays).forEach(([sid, cnt]) => {
+                const n = Number(cnt);
+                if (sid && Number.isFinite(n) && n > 0) base.stageReplays[sid] = Math.round(n);
+            });
+        }
         const today = getTodayDateString();
         if (raw.dailyQuests && typeof raw.dailyQuests === 'object' && raw.dailyQuests.date === today) {
             base.dailyQuests = {
@@ -7040,6 +7049,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let learnState = normalizeLearnState(storage.get(LEARN_STORAGE_KEY, null));
+
+    /** Session anti-repeat counters & recently shown history per stageId */
+    /** @type {Record<string, number>} */
+    const sessionStageReplayCounter = {};
+    /** @type {Record<string, string[]>} */
+    const recentStageDialogueKeys = {};
+    /** @type {Record<string, number>} */
+    const stageInsightRotation = {};
 
     function ensureTodayQuests() {
         const today = getTodayDateString();
@@ -7395,12 +7412,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return `<svg class="path-node-ring" viewBox="0 0 96 96" aria-hidden="true">${segs.join('')}</svg>`;
     }
 
-    function buildLearnPathSignature(sec, units, knownCnt) {
+    function buildLearnPathSignature(sec, units, knownCnt, revCnt = 0) {
         const doneSummary = Object.entries(learnState.completedStages)
             .sort(([a], [b]) => a.localeCompare(b))
             .map(([k, v]) => `${k}:${getStageDoneRounds(k)}:${v.legendary ? 1 : 0}`)
             .join(',');
-        return `${sec}|u:${units.length}|k:${knownCnt}|c:${learnState.claimedChests.join(',')}|ul:${learnState.unlockedUnits.join(',')}|d:${doneSummary}`;
+        return `${sec}|u:${units.length}|k:${knownCnt}|r:${revCnt}|c:${learnState.claimedChests.join(',')}|ul:${learnState.unlockedUnits.join(',')}|d:${doneSummary}`;
     }
 
     function renderLearnPath(force = false) {
@@ -7415,24 +7432,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const units = OxCurriculum.sections[sec] || [];
         let secWordsTotal = 0;
         let secKnownCount = 0;
+        let secReviewCount = 0;
         let secStagesDone = 0;
         let currentNodeFound = false;
 
         units.forEach(u => {
             secWordsTotal += u.wordIndices.length;
             u.wordIndices.forEach(idx => {
-                if (wordStatus[keyOf(wordsData[idx])] === 'known') secKnownCount++;
+                const st = wordStatus[keyOf(wordsData[idx])];
+                if (st === 'known') secKnownCount++;
+                else if (st === 'review') secReviewCount++;
             });
             u.nodes.forEach(n => {
                 if (n.kind === 'stage' && isStagePassedFull(n.id)) secStagesDone++;
             });
         });
 
+        const totalReviewCount = Object.values(wordStatus).filter(v => v === 'review').length;
+        const secPct = secWordsTotal > 0 ? Math.min(100, Math.round((secKnownCount / secWordsTotal) * 100)) : 0;
+
         if (learnOverallLabel) {
             learnOverallLabel.textContent = `ผ่านแล้ว ${secStagesDone} ด่าน · ระดับ ${sec} (จำได้ ${secKnownCount.toLocaleString()}/${secWordsTotal.toLocaleString()} คำ)`;
         }
+        const secProgFill = $('learn-section-progress-fill');
+        if (secProgFill) secProgFill.style.width = `${secPct}%`;
+        const weakCntEl = $('learn-weak-count');
+        if (weakCntEl) weakCntEl.textContent = String(totalReviewCount);
+        const weakBtnEl = $('btn-learn-weak-drill');
+        if (weakBtnEl) weakBtnEl.classList.toggle('has-items', totalReviewCount > 0);
 
-        const sig = buildLearnPathSignature(sec, units, secKnownCount);
+        const jumpSelect = /** @type {HTMLSelectElement|null} */ ($('learn-unit-jump-select'));
+        if (jumpSelect) {
+            const optsHtml = ['<option value="">📍 ข้ามไปยังหน่วย (' + units.length + ' หน่วย)...</option>']
+                .concat(units.map(u => {
+                    const uk = u.wordIndices.filter(idx => wordStatus[keyOf(wordsData[idx])] === 'known').length;
+                    const lockIcon = isUnitUnlocked(u) ? '' : '🔒 ';
+                    return `<option value="${escapeHtml(u.id)}">${lockIcon}หน่วย ${u.unitNumber} · ${escapeHtml(u.title)} (${uk}/${u.wordIndices.length})</option>`;
+                }));
+            jumpSelect.innerHTML = optsHtml.join('');
+        }
+
+        const sig = buildLearnPathSignature(sec, units, secKnownCount, secReviewCount);
         if (!force && sig === lastRenderedPathSig && learnUnitsContainer.children.length > 0) {
             return false;
         }
@@ -7496,6 +7536,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const jumpBtn = !unlocked
                 ? `<button type="button" class="btn-unit-jump" data-jump-unit="${escapeHtml(unit.id)}">ข้ามหน่วย</button>`
                 : '';
+            const unitKnown = unit.wordIndices.filter(idx => wordStatus[keyOf(wordsData[idx])] === 'known').length;
+            const unitPct = unit.wordIndices.length > 0 ? Math.min(100, Math.round((unitKnown / unit.wordIndices.length) * 100)) : 0;
 
             return `
         <article class="unit-block" data-unit-id="${escapeHtml(unit.id)}">
@@ -7503,6 +7545,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="unit-banner-info">
               <span class="unit-banner-eyebrow">ส่วนที่ ${secNum}, หน่วยที่ ${unit.unitNumber}</span>
               <h3 class="unit-banner-title">${escapeHtml(unit.title)}</h3>
+              <div class="unit-banner-progress" aria-label="ความคืบหน้าในหน่วยนี้">
+                <span class="unit-banner-progress-track"><span class="unit-banner-progress-fill" style="width:${unitPct}%"></span></span>
+                <span class="unit-banner-progress-label">จำได้ ${unitKnown}/${unit.wordIndices.length} คำ · ${unitPct}%</span>
+              </div>
             </div>
             <div class="unit-banner-actions">
               ${jumpBtn}
@@ -7527,16 +7573,54 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
+    let activeGuidebookUnitId = null;
+
     function openUnitGuidebook(unitId) {
         const unit = OxCurriculum.unitById.get(unitId);
         if (!unit || !guidebookModal) return;
+        activeGuidebookUnitId = unitId;
         const gbTitle = $('gb-title');
         const gbSub = $('gb-subtitle');
         const gbTip = $('gb-tip');
         const gbList = $('gb-word-list');
+        const gbMasteryText = $('gb-mastery-text');
+        const gbMasteryFill = $('gb-mastery-fill');
+        const gbGrammarNotes = $('gb-grammar-notes');
+
+        const knownCount = unit.wordIndices.filter(idx => wordStatus[keyOf(wordsData[idx])] === 'known').length;
+        const pct = unit.wordIndices.length > 0 ? Math.min(100, Math.round((knownCount / unit.wordIndices.length) * 100)) : 0;
+
         if (gbSub) gbSub.textContent = `CEFR ${unit.cefr} · หน่วยที่ ${unit.unitNumber} · ${unit.wordIndices.length} คำ`;
         if (gbTitle) gbTitle.textContent = unit.title;
+        if (gbMasteryText) gbMasteryText.textContent = `จำได้ ${knownCount}/${unit.wordIndices.length} คำในหน่วยนี้ (${pct}%)`;
+        if (gbMasteryFill) gbMasteryFill.style.width = `${pct}%`;
         if (gbTip) gbTip.textContent = unit.tip;
+
+        if (gbGrammarNotes) {
+            const notes = [];
+            for (const idx of unit.wordIndices) {
+                if (notes.length >= 3) break;
+                const w = wordsData[idx];
+                if (!w) continue;
+                const detail = w.usageTip || w.grammarPattern || w.rootBreakdown;
+                if (detail) {
+                    notes.push({
+                        word: w.word,
+                        pattern: w.grammarPattern || w.register || w.partOfSpeech || '',
+                        detail
+                    });
+                }
+            }
+            if (notes.length > 0) {
+                gbGrammarNotes.innerHTML = `<div class="gb-notes-heading">💡 รูปแบบไวยากรณ์ & เคล็ดลับเด่นในหน่วยนี้</div>` +
+                    notes.map(n => `<div class="gb-note-item"><strong>${escapeHtml(n.word)}</strong>${n.pattern ? ` <span class="gb-note-badge">${escapeHtml(n.pattern)}</span>` : ''}<p>${escapeHtml(n.detail)}</p></div>`).join('');
+                gbGrammarNotes.hidden = false;
+            } else {
+                gbGrammarNotes.innerHTML = '';
+                gbGrammarNotes.hidden = true;
+            }
+        }
+
         if (gbList) {
             gbList.innerHTML = unit.wordIndices
                 .map(idx => wordListItem(keyOf(wordsData[idx]), wordStatus[keyOf(wordsData[idx])] || 'unseen'))
@@ -7588,9 +7672,49 @@ document.addEventListener('DOMContentLoaded', () => {
     wireWordListEvents($('dict-word-list'));
 
     $('btn-gb-close')?.addEventListener('click', closeGuidebook);
+    $('btn-gb-practice-unit')?.addEventListener('click', () => {
+        const unit = activeGuidebookUnitId ? OxCurriculum.unitById.get(activeGuidebookUnitId) : null;
+        closeGuidebook();
+        if (unit && typeof startVirtualLearnPractice === 'function') {
+            startVirtualLearnPractice({
+                id: `__unit_practice_${unit.id}`,
+                title: unit.title,
+                label: `ฝึกทบทวนหน่วยที่ ${unit.unitNumber}`,
+                wordIndices: unit.wordIndices,
+                unit
+            });
+        }
+    });
     guidebookModal?.addEventListener('click', (e) => { if (e.target === guidebookModal) closeGuidebook(); });
     $('btn-chest-claim')?.addEventListener('click', claimChestReward);
     chestModal?.addEventListener('click', (e) => { if (e.target === chestModal) claimChestReward(); });
+
+    $('learn-unit-jump-select')?.addEventListener('change', (e) => {
+        const sel = e.currentTarget;
+        if (!(sel instanceof HTMLSelectElement) || !sel.value) return;
+        closeNodePopover();
+        const targetId = sel.value;
+        learnUnitsContainer?.querySelectorAll('.unit-block.ox-reveal-pending').forEach(u => {
+            u.classList.remove('ox-reveal-pending');
+            u.classList.add('ox-revealed');
+        });
+        const unitEl = learnUnitsContainer?.querySelector(`.unit-block[data-unit-id="${CSS.escape(targetId)}"]`);
+        if (unitEl) {
+            unitEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            SoundFX.nav();
+        }
+        sel.value = '';
+    });
+
+    $('btn-learn-weak-drill')?.addEventListener('click', () => {
+        closeNodePopover();
+        if (typeof startSmartLearnDrill === 'function') startSmartLearnDrill('weak');
+    });
+
+    $('btn-learn-quick-review')?.addEventListener('click', () => {
+        closeNodePopover();
+        if (typeof startSmartLearnDrill === 'function') startSmartLearnDrill('quick');
+    });
 
     learnSectionTabs?.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
@@ -7772,7 +7896,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         learnNodePopover.className = `learn-node-popover palette-${unit.palette}${unlocked ? '' : ' is-locked-pop'}`;
         if (nodePopTitle) nodePopTitle.textContent = stage.label;
-        if (nodePopMeta) nodePopMeta.hidden = true;
+        if (nodePopMeta) {
+            const previewPool = (stage.wordIndices && stage.wordIndices.length > 0 ? stage.wordIndices : unit.wordIndices) || [];
+            const previewSlice = previewPool.slice(0, 4);
+            const extraCnt = Math.max(0, previewPool.length - previewSlice.length);
+            if (previewSlice.length > 0) {
+                const chipsHtml = previewSlice.map(idx => {
+                    const pw = wordsData[idx];
+                    if (!pw) return '';
+                    const shortTh = String(pw.translation || '').split(/[,;\/]/)[0].trim();
+                    return `<button type="button" class="node-pop-chip" data-pop-speak="${escapeHtml(pw.word)}" title="แตะเพื่อฟังเสียง">${escapeHtml(pw.word)} · ${escapeHtml(shortTh)}</button>`;
+                }).join('');
+                nodePopMeta.innerHTML = chipsHtml + (extraCnt > 0 ? `<span class="node-pop-chip is-count">+${extraCnt} คำ</span>` : '');
+                nodePopMeta.hidden = false;
+            } else {
+                nodePopMeta.innerHTML = '';
+                nodePopMeta.hidden = true;
+            }
+        }
 
         if (!unlocked) {
             if (nodePopBadge) nodePopBadge.hidden = true;
@@ -7848,6 +7989,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     btnNodePopClose?.addEventListener('click', () => closeNodePopover(true));
+    nodePopMeta?.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
+        const chip = e.target.closest('[data-pop-speak]');
+        if (chip instanceof HTMLElement && chip.dataset.popSpeak) {
+            e.stopPropagation();
+            speakWordOverride(chip.dataset.popSpeak, true, chip);
+        }
+    });
     document.addEventListener('click', (e) => {
         if (!learnNodePopover || learnNodePopover.hidden || !(e.target instanceof Element)) return;
         if (e.target.closest('#learn-node-popover') || e.target.closest('[data-stage-id]')) return;
@@ -7875,12 +8024,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
-    // 1. Cast SVG Characters (4 Vector Mascots x 3 Moods: calm | happy | retry)
+    // 1. Cast SVG Characters (Full-Figure Expressive Vector Mascots x 3 Moods: calm | happy | retry)
     const OX_CAST_PALETTES = [
-        { name: 'OxOwl', skin: '#22c55e', accent: '#16a34a', shirt: '#38bdf8', hair: '#15803d', isOwl: true },
-        { name: 'Lin', skin: '#fde68a', accent: '#f59e0b', shirt: '#fb923c', hair: '#1e293b', isOwl: false },
-        { name: 'Teo', skin: '#fdba74', accent: '#ea580c', shirt: '#6366f1', hair: '#312e81', glasses: true },
-        { name: 'Maya', skin: '#fcd34d', accent: '#d97706', shirt: '#ec4899', hair: '#7c2d12', isOwl: false }
+        { name: 'OxOwl', skin: '#22c55e', accent: '#16a34a', shirt: '#38bdf8', pants: '#0369a1', shoes: '#1e293b', isOwl: true },
+        { name: 'Lin', skin: '#fde68a', accent: '#f59e0b', shirt: '#ff4b4b', pants: '#dc2626', shoes: '#f8fafc', headband: '#facc15', isOwl: false },
+        { name: 'Teo', skin: '#fdba74', accent: '#ea580c', shirt: '#6366f1', pants: '#312e81', shoes: '#f1f5f9', glasses: true, collar: '#e0e7ff' },
+        { name: 'Vikram', skin: '#f5c28b', accent: '#0ea5e9', shirt: '#ec4899', pants: '#0284c7', shoes: '#475569', turban: '#0ea5e9', beard: '#1e293b' },
+        { name: 'Lucy', skin: '#fed7aa', accent: '#d97706', shirt: '#fbbf24', pants: '#d97706', shoes: '#78350f', buns: '#1e293b' }
     ];
 
     function renderCastAvatar(castIdx = 0, mood = 'calm', reactText = '') {
@@ -7892,84 +8042,148 @@ document.addEventListener('DOMContentLoaded', () => {
             : '';
         const sparklesSvg = isHappy
             ? `<g class="ox-cast-sparkles">
-        <path d="M13 20l2-5 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#facc15"/>
-        <path d="M77 18l1.6-4 1.6 4 4 1.6-4 1.6-1.6 4-1.6-4-4-1.6 4-1.6Z" fill="#4ade80"/>
-        <circle cx="81" cy="48" r="2.6" fill="#38bdf8"/>
-        <circle cx="11" cy="52" r="2.3" fill="#fb923c"/>
+        <path d="M12 20l2-5 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#facc15"/>
+        <path d="M90 18l1.6-4 1.6 4 4 1.6-4 1.6-1.6 4-1.6-4-4-1.6 4-1.6Z" fill="#58cc02"/>
+        <circle cx="94" cy="54" r="2.8" fill="#1cb0f6"/>
+        <circle cx="10" cy="60" r="2.5" fill="#fb923c"/>
        </g>`
             : '';
 
         if (p.isOwl) {
             const eyesSvg = isHappy
                 ? `<g>
-          <circle cx="36" cy="44" r="9.5" fill="#fff"/>
-          <circle cx="56" cy="44" r="9.5" fill="#fff"/>
-          <path d="M31 45c2.5-4.5 7.5-4.5 10 0" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none"/>
-          <path d="M51 45c2.5-4.5 7.5-4.5 10 0" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <circle cx="43" cy="48" r="10.5" fill="#fff"/>
+          <circle cx="67" cy="48" r="10.5" fill="#fff"/>
+          <path d="M37 49c3-5 9-5 12 0" stroke="#0f172a" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+          <path d="M61 49c3-5 9-5 12 0" stroke="#0f172a" stroke-width="3.2" stroke-linecap="round" fill="none"/>
          </g>`
                 : `<g class="ox-eyes">
-          <circle cx="36" cy="45" r="9.5" fill="#fff"/>
-          <circle cx="56" cy="45" r="9.5" fill="#fff"/>
-          <circle cx="37" cy="45" r="4.2" fill="#0f172a"/>
-          <circle cx="55" cy="45" r="4.2" fill="#0f172a"/>
-          <circle cx="38.5" cy="43.5" r="1.4" fill="#fff"/>
-          <circle cx="56.5" cy="43.5" r="1.4" fill="#fff"/>
-          ${isRetry ? '<path d="M29 36l12 3M63 36l-12 3" stroke="#15803d" stroke-width="2.3" stroke-linecap="round"/>' : ''}
+          <circle cx="43" cy="49" r="10.5" fill="#fff"/>
+          <circle cx="67" cy="49" r="10.5" fill="#fff"/>
+          <circle cx="44" cy="49" r="4.6" fill="#0f172a"/>
+          <circle cx="66" cy="49" r="4.6" fill="#0f172a"/>
+          <circle cx="45.8" cy="47.2" r="1.6" fill="#fff"/>
+          <circle cx="67.8" cy="47.2" r="1.6" fill="#fff"/>
+          ${isRetry ? '<path d="M35 39l13 3M75 39l-13 3" stroke="#15803d" stroke-width="2.5" stroke-linecap="round"/>' : ''}
          </g>`;
             const beakMouth = isHappy
-                ? '<path d="M39 52c4 6 10 6 14 0Z" fill="#f59e0b" stroke="#d97706" stroke-width="1.6" stroke-linejoin="round"/>'
+                ? '<path d="M47 57c5 7 11 7 16 0Z" fill="#f59e0b" stroke="#d97706" stroke-width="1.8" stroke-linejoin="round"/>'
                 : isRetry
-                    ? '<path d="M41 56c3-2 7-2 10 0" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" fill="none"/>'
-                    : '<path d="M42 54h8l-4 5-4-5Z" fill="#f59e0b"/>';
-            return `${badgeHtml}<svg class="ox-mascot-svg" width="72" height="80" viewBox="0 0 92 92" fill="none" aria-hidden="true">
+                    ? '<path d="M49 62c4-2.5 8-2.5 12 0" stroke="#d97706" stroke-width="2.4" stroke-linecap="round" fill="none"/>'
+                    : '<path d="M50 58h10l-5 6-5-6Z" fill="#f59e0b"/>';
+            return `${badgeHtml}<svg class="ox-mascot-svg" width="94" height="108" viewBox="0 0 110 124" fill="none" aria-hidden="true">
         ${sparklesSvg}
-        <ellipse cx="46" cy="83" rx="24" ry="5" fill="rgba(15,23,42,0.12)"/>
+        <ellipse cx="55" cy="115" rx="28" ry="6" fill="rgba(15,23,42,0.12)"/>
         <g class="ox-body-float">
-          <g class="ox-wing-l"><path d="M22 45c-7 4-8 16-1 20 3.5 1.8 6-3 5-10Z" fill="${p.accent}"/></g>
-          <g class="ox-wing-r"><path d="M70 45c7 4 8 16 1 20-3.5 1.8-6-3-5-10Z" fill="${p.accent}"/></g>
-          <rect x="22" y="24" width="48" height="52" rx="24" fill="${p.skin}"/>
-          <path d="M29 26c0-10 34-10 34 0" fill="${p.accent}"/>
+          <rect x="40" y="96" width="10" height="15" rx="5" fill="#f59e0b"/>
+          <rect x="60" y="96" width="10" height="15" rx="5" fill="#f59e0b"/>
+          <g class="ox-wing-l"><path d="M26 55c-11 6-12 24-2 29 5 2.5 8-4 7-15Z" fill="${p.accent}"/></g>
+          <g class="ox-wing-r"><path d="M84 55c11 6 12 24 2 29-5 2.5-8-4-7-15Z" fill="${p.accent}"/></g>
+          <rect x="26" y="25" width="58" height="76" rx="29" fill="${p.skin}"/>
+          <ellipse cx="55" cy="79" rx="18" ry="15" fill="rgba(255,255,255,0.22)"/>
+          <path d="M33 27c0-12 44-12 44 0" fill="${p.accent}"/>
           ${eyesSvg}
-          ${isHappy ? '<circle cx="28" cy="52" r="3.4" fill="#fda4af" opacity="0.85"/><circle cx="64" cy="52" r="3.4" fill="#fda4af" opacity="0.85"/>' : ''}
+          ${isHappy ? '<circle cx="33" cy="57" r="4" fill="#fda4af" opacity="0.88"/><circle cx="77" cy="57" r="4" fill="#fda4af" opacity="0.88"/>' : ''}
           ${beakMouth}
-          <rect x="26" y="63" width="40" height="11" rx="4" fill="${p.shirt}"/>
         </g>
       </svg>`;
         }
 
         const humanEyes = isHappy
-            ? `<path d="M32 42c2.5-4 7.5-4 10 0" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-       <path d="M50 42c2.5-4 7.5-4 10 0" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round" fill="none"/>`
+            ? `<path d="M38 47c3-5 8-5 11 0" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none"/>
+       <path d="M61 47c3-5 8-5 11 0" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none"/>`
             : `<g class="ox-eyes">
-        <circle cx="37" cy="41" r="3.1" fill="#0f172a"/>
-        <circle cx="55" cy="41" r="3.1" fill="#0f172a"/>
-        <circle cx="38" cy="39.8" r="1.1" fill="#fff"/>
-        <circle cx="56" cy="39.8" r="1.1" fill="#fff"/>
-        ${isRetry ? '<path d="M32 35l9 2M60 35l-9 2" stroke="#7c2d12" stroke-width="2" stroke-linecap="round"/>' : ''}
+        <circle cx="44" cy="46" r="3.5" fill="#0f172a"/>
+        <circle cx="66" cy="46" r="3.5" fill="#0f172a"/>
+        <circle cx="45.2" cy="44.8" r="1.2" fill="#fff"/>
+        <circle cx="67.2" cy="44.8" r="1.2" fill="#fff"/>
+        ${isRetry ? '<path d="M38 39l10 2.5M72 39l-10 2.5" stroke="#7c2d12" stroke-width="2.2" stroke-linecap="round"/>' : ''}
        </g>`;
         const mouthSvg = isHappy
-            ? '<path d="M37 51c4.5 7 13.5 7 18 0Z" fill="#e11d48" stroke="#9f1239" stroke-width="1.6" stroke-linejoin="round"/>'
+            ? '<path d="M44 58c6 8 16 8 22 0Z" fill="#e11d48" stroke="#9f1239" stroke-width="1.8" stroke-linejoin="round"/>'
             : isRetry
-                ? '<path d="M40 55c3-2 9-2 12 0" stroke="#7c2d12" stroke-width="2.2" stroke-linecap="round" fill="none"/>'
-                : '<path d="M40 53c4 3 8 3 12 0" stroke="#7c2d12" stroke-width="2.2" stroke-linecap="round" fill="none"/>';
-        const glassesSvg = p.glasses
-            ? '<rect x="30" y="37" width="12" height="9" rx="3" stroke="#0f172a" stroke-width="2" fill="rgba(255,255,255,0.22)"/><rect x="50" y="37" width="12" height="9" rx="3" stroke="#0f172a" stroke-width="2" fill="rgba(255,255,255,0.22)"/><line x1="42" y1="41" x2="50" y2="41" stroke="#0f172a" stroke-width="2"/>'
+                ? '<path d="M47 63c4-3 12-3 16 0" stroke="#7c2d12" stroke-width="2.4" stroke-linecap="round" fill="none"/>'
+                : '<path d="M48 60c5 3.5 9 3.5 14 0" stroke="#7c2d12" stroke-width="2.4" stroke-linecap="round" fill="none"/>';
+        const headwear = p.turban
+            ? `<ellipse cx="55" cy="24" rx="22" ry="13" fill="${p.turban}"/><circle cx="55" cy="18" r="4.5" fill="#38bdf8"/>`
+            : p.headband
+                ? `<path d="M34 33c0-13 9-19 21-19s21 6 21 19Z" fill="#facc15"/><rect x="33" y="29" width="44" height="7" rx="3.5" fill="${p.headband}"/>`
+                : p.buns
+                    ? `<circle cx="55" cy="15" r="9" fill="${p.buns}"/><path d="M34 38c0-13 9-20 21-20s21 7 21 20c-5-5-12-7-21-7s-16 2-21 7Z" fill="${p.buns}"/>`
+                    : `<path d="M34 38c0-13 9-20 21-20s21 7 21 20c-5-5-12-7-21-7s-16 2-21 7Z" fill="${p.hair || '#1e293b'}"/>`;
+        const beardSvg = p.beard
+            ? `<path d="M35 53c0 17 9 27 20 27s20-10 20-27c-5 5-12 8-20 8s-15-3-20-8Z" fill="${p.beard}"/>`
             : '';
-        return `${badgeHtml}<svg class="ox-mascot-svg" width="72" height="80" viewBox="0 0 92 92" fill="none" aria-hidden="true">
+        const glassesSvg = p.glasses
+            ? `<rect x="35" y="40" width="16" height="12" rx="4" stroke="#0f172a" stroke-width="2.3" fill="rgba(255,255,255,0.28)"/>
+         <rect x="59" y="40" width="16" height="12" rx="4" stroke="#0f172a" stroke-width="2.3" fill="rgba(255,255,255,0.28)"/>
+         <line x1="51" y1="45" x2="59" y2="45" stroke="#0f172a" stroke-width="2.3"/>`
+            : '';
+        const armsSvg = isHappy
+            ? `<g class="ox-wing-l"><rect x="14" y="46" width="13" height="28" rx="6.5" transform="rotate(-28 20 60)" fill="${p.shirt}"/></g>
+         <g class="ox-wing-r"><rect x="83" y="46" width="13" height="28" rx="6.5" transform="rotate(28 89 60)" fill="${p.shirt}"/></g>`
+            : `<g class="ox-wing-l"><rect x="19" y="70" width="13" height="24" rx="6.5" fill="${p.shirt}"/></g>
+         <g class="ox-wing-r"><rect x="78" y="70" width="13" height="24" rx="6.5" fill="${p.shirt}"/></g>`;
+
+        return `${badgeHtml}<svg class="ox-mascot-svg" width="94" height="108" viewBox="0 0 110 124" fill="none" aria-hidden="true">
       ${sparklesSvg}
-      <ellipse cx="46" cy="83" rx="23" ry="5" fill="rgba(15,23,42,0.12)"/>
+      <ellipse cx="55" cy="115" rx="28" ry="6" fill="rgba(15,23,42,0.12)"/>
       <g class="ox-body-float">
-        <g class="ox-wing-l"><rect x="15" y="56" width="11" height="16" rx="5.5" fill="${p.shirt}"/></g>
-        <g class="ox-wing-r"><rect x="66" y="56" width="11" height="16" rx="5.5" fill="${p.shirt}"/></g>
-        <path d="M24 78c0-13 9-20 22-20s22 7 22 20" fill="${p.shirt}"/>
-        <rect x="27" y="21" width="38" height="39" rx="18" fill="${p.skin}"/>
-        <path d="M27 33c0-11 8-17 19-17s19 6 19 17c-4-4-11-6-19-6s-15 2-19 6Z" fill="${p.hair}"/>
+        <rect x="37" y="96" width="13" height="17" rx="5" fill="${p.pants || '#334155'}"/>
+        <rect x="60" y="96" width="13" height="17" rx="5" fill="${p.pants || '#334155'}"/>
+        <rect x="34" y="109" width="17" height="7" rx="3.5" fill="${p.shoes || '#1e293b'}"/>
+        <rect x="59" y="109" width="17" height="7" rx="3.5" fill="${p.shoes || '#1e293b'}"/>
+        ${armsSvg}
+        <rect x="29" y="64" width="52" height="36" rx="18" fill="${p.shirt}"/>
+        ${p.collar ? `<path d="M44 65l11 10 11-10" stroke="${p.collar}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>` : ''}
+        <rect x="33" y="21" width="44" height="46" rx="21" fill="${p.skin}"/>
+        ${headwear}
         ${humanEyes}
         ${glassesSvg}
-        ${isHappy ? '<circle cx="31" cy="49" r="3" fill="#fda4af" opacity="0.85"/><circle cx="61" cy="49" r="3" fill="#fda4af" opacity="0.85"/>' : ''}
+        ${isHappy ? '<circle cx="38" cy="54" r="3.6" fill="#fda4af" opacity="0.88"/><circle cx="72" cy="54" r="3.6" fill="#fda4af" opacity="0.88"/>' : ''}
+        ${beardSvg}
         ${mouthSvg}
       </g>
     </svg>`;
+    }
+
+    function renderClozeSceneSvg(wordObj) {
+        const text = `${wordObj?.word || ''} ${wordObj?.example || ''}`.toLowerCase();
+        const topic = wordObj?.topic || '';
+        // Water / bottle / drink illustration inspired by Screenshot 6
+        if (/\b(water|bottle|drink|juice|milk|coffee|tea|cup)\b/.test(text) || topic === 'food') {
+            return `<svg class="ox-cloze-scene-svg" width="84" height="96" viewBox="0 0 96 108" fill="none" aria-hidden="true">
+                <ellipse cx="48" cy="100" rx="28" ry="5" fill="rgba(15,23,42,0.1)"/>
+                <rect x="37" y="10" width="22" height="9" rx="3" fill="#0284c7"/>
+                <path d="M35 20h26l6 14v56a10 10 0 0 1-10 10H39a10 10 0 0 1-10-10V34l6-14Z" fill="#bae6fd"/>
+                <path d="M29 48h38v40a10 10 0 0 1-10 10H39a10 10 0 0 1-10-10V48Z" fill="#38bdf8"/>
+                <rect x="29" y="54" width="38" height="18" fill="#0ea5e9" opacity="0.82"/>
+                <rect x="34" y="34" width="6" height="48" rx="3" fill="rgba(255,255,255,0.45)"/>
+            </svg>`;
+        }
+        if (topic === 'travel' || /\b(car|bus|train|ticket|road|trip|plane|taxi|station)\b/.test(text)) {
+            return `<svg class="ox-cloze-scene-svg" width="84" height="96" viewBox="0 0 96 108" fill="none" aria-hidden="true">
+                <ellipse cx="48" cy="96" rx="32" ry="5" fill="rgba(15,23,42,0.1)"/>
+                <rect x="16" y="42" width="64" height="36" rx="12" fill="#38bdf8"/>
+                <rect x="22" y="28" width="52" height="22" rx="9" fill="#0ea5e9"/>
+                <rect x="27" y="33" width="42" height="13" rx="5" fill="#e0f2fe"/>
+                <circle cx="30" cy="80" r="9" fill="#1e293b"/><circle cx="30" cy="80" r="4" fill="#cbd5e1"/>
+                <circle cx="66" cy="80" r="9" fill="#1e293b"/><circle cx="66" cy="80" r="4" fill="#cbd5e1"/>
+                <rect x="22" y="58" width="12" height="7" rx="3.5" fill="#fef08a"/>
+                <rect x="62" y="58" width="12" height="7" rx="3.5" fill="#fef08a"/>
+            </svg>`;
+        }
+        if (topic === 'work' || topic === 'education' || /\b(book|study|read|school|office|work|learn|class|paper)\b/.test(text)) {
+            return `<svg class="ox-cloze-scene-svg" width="84" height="96" viewBox="0 0 96 108" fill="none" aria-hidden="true">
+                <ellipse cx="48" cy="96" rx="30" ry="5" fill="rgba(15,23,42,0.1)"/>
+                <rect x="20" y="28" width="56" height="58" rx="9" fill="#6366f1"/>
+                <rect x="26" y="33" width="44" height="48" rx="6" fill="#eef2ff"/>
+                <line x1="34" y1="46" x2="62" y2="46" stroke="#818cf8" stroke-width="4" stroke-linecap="round"/>
+                <line x1="34" y1="58" x2="58" y2="58" stroke="#a5b4fc" stroke-width="4" stroke-linecap="round"/>
+                <line x1="34" y1="70" x2="50" y2="70" stroke="#c7d2fe" stroke-width="4" stroke-linecap="round"/>
+            </svg>`;
+        }
+        return renderCastAvatar(Math.abs((wordObj?.word || '').charCodeAt(0) || 0), 'calm');
     }
 
     // 2. Dotted Word Hints Lookup (OxWordHint)
@@ -8125,87 +8339,184 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Curated Real-Life Dialogues across all 12 topics (Dialogue Completion Mode)
+    // 3. Curated Real-Life Dialogues across all 12 topics (Dialogue Completion Mode — 12x12 = 144 dialogues)
     const OX_DIALOGUES_BY_TOPIC = {
         basics: [
-            { promptEn: 'Nice to meet you!', promptTh: 'ยินดีที่ได้รู้จักนะ!', answerEn: 'Nice to meet you too.', answerTh: 'ยินดีที่ได้รู้จักเช่นกัน', distractors: ['See you tomorrow morning.', 'It is on the table.'] },
-            { promptEn: 'What time is it now?', promptTh: 'ตอนนี้กี่โมงแล้ว?', answerEn: 'It is half past eight.', answerTh: 'ตอนนี้แปดโมงครึ่งแล้ว', distractors: ['I live near the school.', 'Yes, she is my sister.'] },
-            { promptEn: 'Can you help me please?', promptTh: 'ช่วยฉันหน่อยได้ไหม?', answerEn: 'Of course, no problem!', answerTh: 'ได้เลย ไม่มีปัญหา!', distractors: ['I had breakfast already.', 'The train arrived early.'] },
-            { promptEn: 'Are you ready to go?', promptTh: 'คุณพร้อมจะไปหรือยัง?', answerEn: 'Yes, let us start now.', answerTh: 'พร้อมแล้ว เริ่มกันเลย', distractors: ['No, it is too salty.', 'That coat is very warm.'] }
+            { promptEn: 'Nice to meet you!', promptTh: 'ยินดีที่ได้รู้จักนะ!', answerEn: 'Nice to meet you too.', answerTh: 'ยินดีที่ได้รู้จักเช่นกัน', distractors: ['See you tomorrow morning.', 'It is on the table.', 'My bag is very heavy.', 'Please close the door.'] },
+            { promptEn: 'What time is it now?', promptTh: 'ตอนนี้กี่โมงแล้ว?', answerEn: 'It is half past eight.', answerTh: 'ตอนนี้แปดโมงครึ่งแล้ว', distractors: ['I live near the school.', 'Yes, she is my sister.', 'The soup is quite hot.', 'We took the blue bus.'] },
+            { promptEn: 'Can you help me please?', promptTh: 'ช่วยฉันหน่อยได้ไหม?', answerEn: 'Of course, no problem!', answerTh: 'ได้เลย ไม่มีปัญหา!', distractors: ['I had breakfast already.', 'The train arrived early.', 'Her coat is dark green.', 'We live on Fifth Street.'] },
+            { promptEn: 'Are you ready to go?', promptTh: 'คุณพร้อมจะไปหรือยัง?', answerEn: 'Yes, let us start now.', answerTh: 'พร้อมแล้ว เริ่มกันเลย', distractors: ['No, it is too salty.', 'That coat is very warm.', 'My phone is out of battery.', 'He teaches basic math.'] },
+            { promptEn: 'How are you doing today?', promptTh: 'วันนี้คุณเป็นอย่างไรบ้าง?', answerEn: 'Very well, thank you!', answerTh: 'สบายดีมาก ขอบคุณนะ!', distractors: ['It costs fifty baht.', 'Under the wooden chair.', 'Usually at seven thirty.', 'Yesterday was quite rainy.'] },
+            { promptEn: 'Excuse me, what is your name?', promptTh: 'ขอโทษนะครับ คุณชื่ออะไร?', answerEn: 'My name is Anan.', answerTh: 'ฉันชื่ออนันต์ครับ', distractors: ['I came here by train.', 'Ten minutes ago, maybe.', 'This pen is black ink.', 'Yes, I like cold juice.'] },
+            { promptEn: 'Do you speak English?', promptTh: 'คุณพูดภาษาอังกฤษได้ไหม?', answerEn: 'Yes, a little bit.', answerTh: 'ได้ครับ/ค่ะ นิดหน่อย', distractors: ['Tomorrow morning at nine.', 'Put it beside the lamp.', 'Two tickets for the show.', 'The store opens soon.'] },
+            { promptEn: 'Where are you from?', promptTh: 'คุณมาจากที่ไหน?', answerEn: 'I am from Chiang Mai.', answerTh: 'ฉันมาจากเชียงใหม่', distractors: ['Because I woke up late.', 'Five apples in a bag.', 'She likes playing chess.', 'Turn right after the bridge.'] },
+            { promptEn: 'Could you repeat that slowly?', promptTh: 'ช่วยพูดซ้ำช้าๆ อีกครั้งได้ไหม?', answerEn: 'Sure, listen carefully.', answerTh: 'ได้เลย ตั้งใจฟังนะ', distractors: ['Breakfast was delicious.', 'I bought it last Friday.', 'Her office is upstairs.', 'Wait by the main gate.'] },
+            { promptEn: 'Thank you very much!', promptTh: 'ขอบคุณมากเลยนะ!', answerEn: 'You are most welcome.', answerTh: 'ด้วยความยินดีอย่างยิ่ง', distractors: ['That will be twelve dollars.', 'Yes, inside the drawer.', 'Wait until next Tuesday.', 'He walks every morning.'] },
+            { promptEn: 'How old is your little cat?', promptTh: 'ลูกแมวของคุณอายุเท่าไหร่แล้ว?', answerEn: 'She is two years old.', answerTh: 'เธออายุสองขวบแล้ว', distractors: ['Yes, we studied English.', 'On top of the bookshelf.', 'Please wait a moment.', 'The weather looks clear.'] },
+            { promptEn: 'Have a great weekend!', promptTh: 'ขอให้สนุกกับวันหยุดสุดสัปดาห์นะ!', answerEn: 'Thanks, same to you!', answerTh: 'ขอบคุณ เช่นกันนะ!', distractors: ['Open page twenty-four.', 'It weighs three kilos.', 'I drank iced coffee.', 'Call me at the station.'] }
         ],
         food: [
-            { promptEn: 'Tea or coffee?', promptTh: 'รับชาหรือกาแฟดี?', answerEn: 'Tea, please.', answerTh: 'ขอชา ได้โปรด', distractors: ['Yes, I am tired.', 'Welcome to my home.'] },
-            { promptEn: 'How does the soup taste?', promptTh: 'ซุปรสชาติเป็นอย่างไรบ้าง?', answerEn: 'It is delicious and warm.', answerTh: 'อร่อยและอุ่นกำลังดี', distractors: ['I bought a new ticket.', 'Please open the window.'] },
-            { promptEn: 'Would you like more water?', promptTh: 'รับน้ำเพิ่มอีกไหม?', answerEn: 'No thanks, I am full.', answerTh: 'ไม่เป็นไร ขอบคุณ ฉันอิ่มแล้ว', distractors: ['He arrived at the office.', 'Turn left at the corner.'] },
-            { promptEn: 'What do you eat for breakfast?', promptTh: 'มื้อเช้าคุณกินอะไร?', answerEn: 'Usually bread and eggs.', answerTh: 'ปกติกินขนมปังกับไข่', distractors: ['It costs twenty dollars.', 'She speaks two languages.'] }
+            { promptEn: 'Tea or coffee?', promptTh: 'รับชาหรือกาแฟดี?', answerEn: 'Tea, please.', answerTh: 'ขอชา ได้โปรด', distractors: ['Yes, I am tired.', 'Welcome to my home.', 'Turn off the light.', 'He works downtown.'] },
+            { promptEn: 'How does the soup taste?', promptTh: 'ซุปรสชาติเป็นอย่างไรบ้าง?', answerEn: 'It is delicious and warm.', answerTh: 'อร่อยและอุ่นกำลังดี', distractors: ['I bought a new ticket.', 'Please open the window.', 'Her desk is very clean.', 'We met at the park.'] },
+            { promptEn: 'Would you like more water?', promptTh: 'รับน้ำเพิ่มอีกไหม?', answerEn: 'No thanks, I am full.', answerTh: 'ไม่เป็นไร ขอบคุณ ฉันอิ่มแล้ว', distractors: ['He arrived at the office.', 'Turn left at the corner.', 'She wrote a short note.', 'The movie starts at eight.'] },
+            { promptEn: 'What do you eat for breakfast?', promptTh: 'มื้อเช้าคุณกินอะไร?', answerEn: 'Usually bread and eggs.', answerTh: 'ปกติกินขนมปังกับไข่', distractors: ['It costs twenty dollars.', 'She speaks two languages.', 'I lost my umbrella.', 'Tomorrow will be cloudy.'] },
+            { promptEn: 'Are you ready to order?', promptTh: 'คุณพร้อมสั่งอาหารหรือยัง?', answerEn: 'Yes, fried rice please.', answerTh: 'พร้อมแล้ว ขอข้าวผัดจานหนึ่ง', distractors: ['It takes thirty minutes.', 'Wait at platform four.', 'The library is closed.', 'My shoes are wet.'] },
+            { promptEn: 'Is this dish spicy?', promptTh: 'อาหารจานนี้เผ็ดไหม?', answerEn: 'Only a little bit.', answerTh: 'เผ็ดแค่นิดเดียวเอง', distractors: ['He drives a white van.', 'Behind the blue building.', 'Three days every month.', 'Yes, I passed the test.'] },
+            { promptEn: 'Can I have the bill please?', promptTh: 'ขอเก็บเงินหน่อยได้ไหมครับ?', answerEn: 'Sure, coming right up.', answerTh: 'ได้เลย สักครู่นะครับ', distractors: ['She plays the piano.', 'Put your coat over there.', 'Our train left early.', 'Winter feels very cold.'] },
+            { promptEn: 'Do we have fresh milk left?', promptTh: 'เรายังเหลือนมสดอยู่ไหม?', answerEn: 'Yes, one bottle in the fridge.', answerTh: 'เหลืออยู่หนึ่งขวดในตู้เย็น', distractors: ['I finished my homework.', 'Walk straight two blocks.', 'They invited every neighbor.', 'Look at that tall tree.'] },
+            { promptEn: 'What fruit is in season now?', promptTh: 'ตอนนี้มีผลไม้อะไรตามฤดูกาลบ้าง?', answerEn: 'Sweet mangoes are everywhere.', answerTh: 'มะม่วงหวานมีขายเต็มไปหมดเลย', distractors: ['The meeting ended early.', 'Wash your hands first.', 'He fixed the broken chair.', 'Keep the receipt safe.'] },
+            { promptEn: 'Would you care for dessert?', promptTh: 'รับของหวานสักหน่อยไหม?', answerEn: 'A small scoop of ice cream.', answerTh: 'ขอไอศกรีมลูกเล็กๆ สักลูก', distractors: ['Turn down the radio.', 'Tomorrow is Monday.', 'She wears warm gloves.', 'Lock the back gate.'] },
+            { promptEn: 'Where did you learn to cook?', promptTh: 'คุณเรียนทำอาหารมาจากไหน?', answerEn: 'My grandmother taught me.', answerTh: 'คุณยายเป็นคนสอนฉันเอง', distractors: ['Fifty baht per kilo.', 'On the top shelf.', 'Wait until five o’clock.', 'That street is quiet.'] },
+            { promptEn: 'Does this cake contain nuts?', promptTh: 'เค้กชิ้นนี้มีถั่วผสมไหม?', answerEn: 'No, it is completely nut-free.', answerTh: 'ไม่มีเลย ไม่มีถั่วแน่นอน', distractors: ['He lives with two cousins.', 'Bring a jacket tonight.', 'The exam was pretty fair.', 'Please sign at the bottom.'] }
         ],
         body: [
-            { promptEn: 'What is wrong today?', promptTh: 'วันนี้เป็นอะไรไปหรือเปล่า?', answerEn: 'I have a slight headache.', answerTh: 'ฉันปวดหัวนิดหน่อย', distractors: ['The museum closes at five.', 'This soup tastes sweet.'] },
-            { promptEn: 'Did you sleep well last night?', promptTh: 'เมื่อคืนหลับสบายไหม?', answerEn: 'Yes, I feel much better.', answerTh: 'ใช่ ฉันรู้สึกดีขึ้นมากแล้ว', distractors: ['We ordered some fruit.', 'The desk is next to the door.'] },
-            { promptEn: 'Should we call a doctor?', promptTh: 'เราควรโทรหาหมอไหม?', answerEn: 'Yes, please call the clinic.', answerTh: 'ดีเลย ช่วยโทรหาคลินิกที', distractors: ['No, the bag is blue.', 'I read that book yesterday.'] },
-            { promptEn: 'How often do you exercise?', promptTh: 'คุณออกกำลังกายบ่อยแค่ไหน?', answerEn: 'Three times every week.', answerTh: 'สัปดาห์ละสามครั้ง', distractors: ['Because the weather is cold.', 'On the second floor.'] }
+            { promptEn: 'What is wrong today?', promptTh: 'วันนี้เป็นอะไรไปหรือเปล่า?', answerEn: 'I have a slight headache.', answerTh: 'ฉันปวดหัวนิดหน่อย', distractors: ['The museum closes at five.', 'This soup tastes sweet.', 'Put it inside the box.', 'Our flight is delayed.'] },
+            { promptEn: 'Did you sleep well last night?', promptTh: 'เมื่อคืนหลับสบายไหม?', answerEn: 'Yes, I feel much better.', answerTh: 'ใช่ ฉันรู้สึกดีขึ้นมากแล้ว', distractors: ['We ordered some fruit.', 'The desk is next to the door.', 'Buy two stamps please.', 'Her scarf is purple.'] },
+            { promptEn: 'Should we call a doctor?', promptTh: 'เราควรโทรหาหมอไหม?', answerEn: 'Yes, please call the clinic.', answerTh: 'ดีเลย ช่วยโทรหาคลินิกที', distractors: ['No, the bag is blue.', 'I read that book yesterday.', 'Dinner is on the stove.', 'They painted the fence.'] },
+            { promptEn: 'How often do you exercise?', promptTh: 'คุณออกกำลังกายบ่อยแค่ไหน?', answerEn: 'Three times every week.', answerTh: 'สัปดาห์ละสามครั้ง', distractors: ['Because the weather is cold.', 'On the second floor.', 'Yes, chocolate flavor please.', 'Write with a dark pen.'] },
+            { promptEn: 'Does your ankle still hurt?', promptTh: 'ข้อเท้าของคุณยังเจ็บอยู่ไหม?', answerEn: 'Only when I walk fast.', answerTh: 'เจ็บเฉพาะตอนเดินเร็วๆ น่ะ', distractors: ['At the corner bakery.', 'We watched a comedy film.', 'Her notebook is yellow.', 'Open the kitchen curtain.'] },
+            { promptEn: 'Did you take your medicine?', promptTh: 'คุณกินยาแล้วหรือยัง?', answerEn: 'Yes, right after breakfast.', answerTh: 'กินแล้ว หลังอาหารเช้าพอดี', distractors: ['The park has green benches.', 'Four tickets for Saturday.', 'She knows three songs.', 'Clean water flows cleanly.'] },
+            { promptEn: 'Why are you drinking warm tea?', promptTh: 'ทำไมคุณถึงดื่มชาร้อนล่ะ?', answerEn: 'It helps soothe my throat.', answerTh: 'มันช่วยให้ชุ่มคอน่ะ', distractors: ['Next to the post office.', 'Because the bus broke down.', 'Two pencils and a ruler.', 'My keys fell outside.'] },
+            { promptEn: 'When is your dental checkup?', promptTh: 'นัดตรวจฟันของคุณเมื่อไหร่?', answerEn: 'Next Wednesday afternoon.', answerTh: 'บ่ายวันพุธหน้า', distractors: ['Behind the glass jar.', 'It tastes too sour.', 'Yes, ten kilograms total.', 'Close the front window.'] },
+            { promptEn: 'Remember to stretch before running.', promptTh: 'อย่าลืมยืดเส้นยืดสายก่อนวิ่งนะ', answerEn: 'Good idea, I will warm up.', answerTh: 'ไอเดียดี เดี๋ยวฉันวอร์มร่างกายก่อน', distractors: ['Turn off the bedroom lamp.', 'These apples cost forty baht.', 'Our teacher checked the quiz.', 'The hotel lobby is quiet.'] },
+            { promptEn: 'Do your eyes feel tired?', promptTh: 'รู้สึกตาล้าบ้างไหม?', answerEn: 'Yes, I stared at screens all day.', answerTh: 'ใช่ ฉันจ้องหน้าจอมาทั้งวันเลย', distractors: ['No, it rains in July.', 'Bake the bread for ten minutes.', 'My cousin lives nearby.', 'Take the elevator upstairs.'] },
+            { promptEn: 'How much water should I drink?', promptTh: 'ฉันควรดื่มน้ำมากแค่ไหน?', answerEn: 'About eight glasses daily.', answerTh: 'ประมาณวันละแปดแก้ว', distractors: ['With my best friend.', 'Around the city square.', 'Because the shop closed.', 'That sweater fits nicely.'] },
+            { promptEn: 'Have you rested enough today?', promptTh: 'วันนี้คุณพักผ่อนเพียงพอหรือยัง?', answerEn: 'Almost, I will sleep early tonight.', answerTh: 'เกือบพอแล้ว คืนนี้จะรีบนอน', distractors: ['The train reached London.', 'Put extra ice inside.', 'She drew a small bird.', 'This dictionary is thick.'] }
         ],
         home: [
-            { promptEn: 'Where should I put my bag?', promptTh: 'ฉันควรวางกระเป๋าไว้ตรงไหนดี?', answerEn: 'Put it beside the sofa.', answerTh: 'วางไว้ข้างโซฟาได้เลย', distractors: ['We visited the zoo.', 'I am studying history.'] },
-            { promptEn: 'Is the front door locked?', promptTh: 'ล็อคประตูหน้าหรือยัง?', answerEn: 'Yes, I checked it twice.', answerTh: 'ล็อคแล้ว ฉันตรวจดูสองรอบแล้ว', distractors: ['She plays tennis well.', 'That apple is fresh.'] },
-            { promptEn: 'Could you turn on the light?', promptTh: 'ช่วยเปิดไฟหน่อยได้ไหม?', answerEn: 'Sure, it was getting dark.', answerTh: 'ได้เลย กำลังมืดพอดี', distractors: ['I ate lunch with Tom.', 'Our flight leaves soon.'] },
-            { promptEn: 'Whose keys are on the table?', promptTh: 'กุญแจบนโต๊ะของใครน่ะ?', answerEn: 'Oh, those are mine!', answerTh: 'อ๋อ ของฉันเอง!', distractors: ['Tomorrow will be sunny.', 'He wrote a long letter.'] }
+            { promptEn: 'Where should I put my bag?', promptTh: 'ฉันควรวางกระเป๋าไว้ตรงไหนดี?', answerEn: 'Put it beside the sofa.', answerTh: 'วางไว้ข้างโซฟาได้เลย', distractors: ['We visited the zoo.', 'I am studying history.', 'Yes, add some pepper.', 'She runs every morning.'] },
+            { promptEn: 'Is the front door locked?', promptTh: 'ล็อคประตูหน้าหรือยัง?', answerEn: 'Yes, I checked it twice.', answerTh: 'ล็อคแล้ว ฉันตรวจดูสองรอบแล้ว', distractors: ['She plays tennis well.', 'That apple is fresh.', 'Two miles down the road.', 'He speaks three languages.'] },
+            { promptEn: 'Could you turn on the light?', promptTh: 'ช่วยเปิดไฟหน่อยได้ไหม?', answerEn: 'Sure, it was getting dark.', answerTh: 'ได้เลย กำลังมืดพอดี', distractors: ['I ate lunch with Tom.', 'Our flight leaves soon.', 'She bought a silver watch.', 'It snowed in December.'] },
+            { promptEn: 'Whose keys are on the table?', promptTh: 'กุญแจบนโต๊ะของใครน่ะ?', answerEn: 'Oh, those are mine!', answerTh: 'อ๋อ ของฉันเอง!', distractors: ['Tomorrow will be sunny.', 'He wrote a long letter.', 'Five dollars each.', 'We went by subway.'] },
+            { promptEn: 'Where do we keep clean towels?', promptTh: 'เราเก็บผ้าเช็ดตัวสะอาดไว้ที่ไหน?', answerEn: 'In the top bathroom drawer.', answerTh: 'ในลิ้นชักบนในห้องน้ำ', distractors: ['Because the exam started.', 'No, thank you anyway.', 'Warm bread smells wonderful.', 'He caught the morning bus.'] },
+            { promptEn: 'Can someone water the balcony plants?', promptTh: 'มีใครช่วยรดน้ำต้นไม้ที่ระเบียงได้ไหม?', answerEn: 'I already watered them this morning.', answerTh: 'ฉันรดให้ไปแล้วเมื่อเช้านี้', distractors: ['The station is across the street.', 'Wear a helmet while cycling.', 'My laptop needs charging.', 'Order two cups of tea.'] },
+            { promptEn: 'Did you hear the doorbell ring?', promptTh: 'ได้ยินเสียงกริ่งหน้าบ้านไหม?', answerEn: 'Yes, a delivery just arrived.', answerTh: 'ได้ยิน พัสดุเพิ่งมาส่งพอดี', distractors: ['Green vegetables are healthy.', 'Keep your voice down please.', 'This math rule helps.', 'Next Friday looks bright.'] },
+            { promptEn: 'How bright is the living room?', promptTh: 'ห้องนั่งเล่นสว่างแค่ไหน?', answerEn: 'Lots of sunlight pours in.', answerTh: 'แสงแดดส่องเข้ามาเต็มที่เลย', distractors: ['Yes, I baked cookies.', 'Wait by platform two.', 'She hurt her left wrist.', 'Write your address clearly.'] },
+            { promptEn: 'Which shelf holds the cookbooks?', promptTh: 'ชั้นไหนวางหนังสือทำอาหารไว้?', answerEn: 'The wooden one near the kitchen.', answerTh: 'ชั้นไม้ตรงใกล้ๆ ห้องครัว', distractors: ['Tomorrow at noon sharp.', 'I drank cold orange juice.', 'They cheered for the team.', 'Pay at the counter.'] },
+            { promptEn: 'Should we open the bedroom window?', promptTh: 'เราเปิดหน้าต่างห้องนอนดีไหม?', answerEn: 'Yes, let some fresh air in.', answerTh: 'เปิดเลย ให้ลมเย็นๆ เข้ามาหน่อย', distractors: ['No, the test is Friday.', 'Mix eggs and flour together.', 'He bought a train pass.', 'Follow the nurse inside.'] },
+            { promptEn: 'Who swept the floor so cleanly?', promptTh: 'ใครกวาดพื้นซะสะอาดเอี่ยมเลย?', answerEn: 'My sister cleaned it earlier.', answerTh: 'น้องสาวฉันทำความสะอาดไว้เมื่อกี้', distractors: ['Take the first left turn.', 'Ten percent discount today.', 'The river looks peaceful.', 'Bring a notebook to class.'] },
+            { promptEn: 'Does this lamp need a new bulb?', promptTh: 'โคมไฟนี้ต้องเปลี่ยนหลอดไฟใหม่ไหม?', answerEn: 'Yes, it stopped shining yesterday.', answerTh: 'ต้องเปลี่ยน มันดับไปตั้งแต่เมื่อวาน', distractors: ['At the corner grocery store.', 'She passed the driving test.', 'Boil the water first.', 'Our neighbors are friendly.'] }
         ],
         people: [
-            { promptEn: 'Who is that standing by the gate?', promptTh: 'คนที่ยืนตรงประตูรั้วนั่นใครน่ะ?', answerEn: 'That is our new neighbor.', answerTh: 'นั่นเพื่อนบ้านคนใหม่ของเรา', distractors: ['The kitchen is very clean.', 'We need two bottles of milk.'] },
-            { promptEn: 'How many siblings do you have?', promptTh: 'คุณมีพี่น้องกี่คน?', answerEn: 'I have one younger brother.', answerTh: 'ฉันมีน้องชายหนึ่งคน', distractors: ['At seven in the evening.', 'It is very windy outside.'] },
-            { promptEn: 'Does your friend live nearby?', promptTh: 'เพื่อนของคุณอาศัยอยู่แถวนี้ไหม?', answerEn: 'Yes, just five minutes away.', answerTh: 'ใช่ ห่างออกไปแค่ห้านาทีเอง', distractors: ['I like sweet oranges.', 'The report is finished.'] },
-            { promptEn: 'Can I introduce you to Lisa?', promptTh: 'ขอแนะนำให้รู้จักกับลิซ่าหน่อยนะ?', answerEn: 'Sure, happy to meet her!', answerTh: 'ได้เลย ยินดีที่จะได้รู้จัก!', distractors: ['Please bring your umbrella.', 'The meeting starts at noon.'] }
+            { promptEn: 'Who is that standing by the gate?', promptTh: 'คนที่ยืนตรงประตูรั้วนั่นใครน่ะ?', answerEn: 'That is our new neighbor.', answerTh: 'นั่นเพื่อนบ้านคนใหม่ของเรา', distractors: ['The kitchen is very clean.', 'We need two bottles of milk.', 'Open the window slightly.', 'I missed the early bus.'] },
+            { promptEn: 'How many siblings do you have?', promptTh: 'คุณมีพี่น้องกี่คน?', answerEn: 'I have one younger brother.', answerTh: 'ฉันมีน้องชายหนึ่งคน', distractors: ['At seven in the evening.', 'It is very windy outside.', 'Bake for twenty minutes.', 'The blue pen works well.'] },
+            { promptEn: 'Does your friend live nearby?', promptTh: 'เพื่อนของคุณอาศัยอยู่แถวนี้ไหม?', answerEn: 'Yes, just five minutes away.', answerTh: 'ใช่ ห่างออกไปแค่ห้านาทีเอง', distractors: ['I like sweet oranges.', 'The report is finished.', 'Wear warm boots outside.', 'Turn off the stove.'] },
+            { promptEn: 'Can I introduce you to Lisa?', promptTh: 'ขอแนะนำให้รู้จักกับลิซ่าหน่อยนะ?', answerEn: 'Sure, happy to meet her!', answerTh: 'ได้เลย ยินดีที่จะได้รู้จัก!', distractors: ['Please bring your umbrella.', 'The meeting starts at noon.', 'Wash the apples first.', 'Two tickets to Bangkok.'] },
+            { promptEn: 'What does your uncle do?', promptTh: 'คุณลุงของคุณทำงานอะไร?', answerEn: 'He builds wooden furniture.', answerTh: 'ท่านทำเฟอร์นิเจอร์ไม้น่ะ', distractors: ['Under the big oak tree.', 'Yes, without ice please.', 'Ten minutes by bicycle.', 'The exam starts tomorrow.'] },
+            { promptEn: 'Do you resemble your mother?', promptTh: 'คุณหน้าเหมือนคุณแม่ไหม?', answerEn: 'Everyone says we share the same smile.', answerTh: 'ทุกคนบอกว่าเรายิ้มเหมือนกันเลย', distractors: ['Because the road was wet.', 'Put the cups in the sink.', 'Thirty baht a bowl.', 'Please sign this receipt.'] },
+            { promptEn: 'Who invited everyone to dinner?', promptTh: 'ใครเป็นคนชวนทุกคนมาทานข้าวเย็น?', answerEn: 'Aunt May planned the whole party.', answerTh: 'ป้าเมย์เป็นคนวางแผนจัดงานทั้งหมดเลย', distractors: ['The sky turned bright orange.', 'Cross at the zebra crossing.', 'I forgot my library card.', 'Take this pill after meals.'] },
+            { promptEn: 'Is Sarah still studying abroad?', promptTh: 'ซาร่ายังเรียนต่อที่ต่างประเทศอยู่ไหม?', answerEn: 'Yes, she comes home next summer.', answerTh: 'ใช่ เธอจะกลับบ้านช่วงหน้าร้อนหน้า', distractors: ['Add a pinch of salt.', 'The lamp is next to the bed.', 'Look at those dark clouds.', 'My phone slipped outside.'] },
+            { promptEn: 'Did your parents enjoy the trip?', promptTh: 'คุณพ่อคุณแม่ชอบทริปนี้ไหม?', answerEn: 'They loved the peaceful beach.', answerTh: 'ท่านชอบชายหาดที่เงียบสงบมาก', distractors: ['Open page twelve now.', 'Wait until the light turns green.', 'Keep the milk refrigerated.', 'My ankle feels better.'] },
+            { promptEn: 'How long have you known Ken?', promptTh: 'คุณรู้จักเคนมานานแค่ไหนแล้ว?', answerEn: 'Since we were in high school.', answerTh: 'ตั้งแต่สมัยเรียนมัธยมปลายแล้ว', distractors: ['At the hospital pharmacy.', 'Slice the bread thinly.', 'Yes, a round-trip ticket.', 'Turn the heater down.'] },
+            { promptEn: 'Are the children already asleep?', promptTh: 'เด็กๆ นอนหลับกันหมดหรือยัง?', answerEn: 'Yes, right after their bedtime story.', answerTh: 'หลับแล้ว ทันทีที่ฟังนิทานก่อนนอนจบ', distractors: ['No, the market opens early.', 'Bring two extra chairs.', 'The project passed review.', 'Wear sunglasses outside.'] },
+            { promptEn: 'Who can help carry these boxes?', promptTh: 'ใครช่วยยกกล่องพวกนี้ได้บ้าง?', answerEn: 'Tom and I will grab them.', answerTh: 'เดี๋ยวทอมกับฉันช่วยยกให้เอง', distractors: ['This curry is mild.', 'Winter begins in December.', 'Check your passport date.', 'Write the date on top.'] }
         ],
         travel: [
-            { promptEn: 'Where is the emergency exit?', promptTh: 'ทางออกฉุกเฉินอยู่ที่ไหน?', answerEn: 'Down the hall on the left.', answerTh: 'เดินตรงไปแล้วเลี้ยวซ้าย', distractors: ['Yes, I enjoy music.', 'Coffee without sugar, please.'] },
-            { promptEn: 'Does this bus go downtown?', promptTh: 'รถบัสคันนี้ไปใจกลางเมืองไหม?', answerEn: 'Yes, get off at the third stop.', answerTh: 'ใช่ ลงที่ป้ายที่สามนะ', distractors: ['My brother works at home.', 'She is feeling very happy.'] },
-            { promptEn: 'How long is the train ride?', promptTh: 'นั่งรถไฟนานแค่ไหน?', answerEn: 'About forty minutes total.', answerTh: 'รวมทั้งหมดประมาณสี่สิบนาที', distractors: ['He wears a warm jacket.', 'They planted many flowers.'] },
-            { promptEn: 'Do you have your passport ready?', promptTh: 'เตรียมพาสปอร์ตพร้อมหรือยัง?', answerEn: 'Yes, it is right in my hand.', answerTh: 'พร้อมแล้ว อยู่ในมือเลย', distractors: ['This room has two beds.', 'I failed the math quiz.'] }
+            { promptEn: 'Where is the emergency exit?', promptTh: 'ทางออกฉุกเฉินอยู่ที่ไหน?', answerEn: 'Down the hall on the left.', answerTh: 'เดินตรงไปแล้วเลี้ยวซ้าย', distractors: ['Yes, I enjoy music.', 'Coffee without sugar, please.', 'My cousin cooks dinner.', 'The essay needs editing.'] },
+            { promptEn: 'Does this bus go downtown?', promptTh: 'รถบัสคันนี้ไปใจกลางเมืองไหม?', answerEn: 'Yes, get off at the third stop.', answerTh: 'ใช่ ลงที่ป้ายที่สามนะ', distractors: ['My brother works at home.', 'She is feeling very happy.', 'Boil the noodles gently.', 'Lock the garden gate.'] },
+            { promptEn: 'How long is the train ride?', promptTh: 'นั่งรถไฟนานแค่ไหน?', answerEn: 'About forty minutes total.', answerTh: 'รวมทั้งหมดประมาณสี่สิบนาที', distractors: ['He wears a warm jacket.', 'They planted many flowers.', 'Yes, stir with a spoon.', 'My knee hurts slightly.'] },
+            { promptEn: 'Do you have your passport ready?', promptTh: 'เตรียมพาสปอร์ตพร้อมหรือยัง?', answerEn: 'Yes, it is right in my hand.', answerTh: 'พร้อมแล้ว อยู่ในมือเลย', distractors: ['This room has two beds.', 'I failed the math quiz.', 'Clean the dining table.', 'Add ice to the glass.'] },
+            { promptEn: 'Which gate does our flight leave from?', promptTh: 'เที่ยวบินของเราขึ้นเครื่องที่ประตูไหน?', answerEn: 'Gate twelve on the upper level.', answerTh: 'ประตูสิบสองที่ชั้นบนครับ', distractors: ['Yes, two fried eggs please.', 'She finished painting today.', 'Put socks in the drawer.', 'The doctor arrived early.'] },
+            { promptEn: 'How far is the museum from here?', promptTh: 'พิพิธภัณฑ์อยู่ไกลจากที่นี่ไหม?', answerEn: 'Just a ten-minute walk.', answerTh: 'เดินไปแค่สิบนาทีเอง', distractors: ['Three spoons of sugar.', 'My aunt teaches art.', 'Open the textbook first.', 'Keep warm under a blanket.'] },
+            { promptEn: 'Can I book a window seat?', promptTh: 'ขอจองที่นั่งริมหน้าต่างได้ไหม?', answerEn: 'Sure, seat 14A is still open.', answerTh: 'ได้เลย ที่นั่ง 14A ยังว่างอยู่', distractors: ['Wash your face with water.', 'He swept the living room.', 'Today feels very humid.', 'We passed the science test.'] },
+            { promptEn: 'Where can I buy a subway card?', promptTh: 'ซื้อบัตรรถไฟใต้ดินได้ที่ไหน?', answerEn: 'At the ticket machine over there.', answerTh: 'ที่ตู้ขายตั๋วตรงนั้นเลย', distractors: ['No, the lemon tastes sour.', 'Her uncle grows roses.', 'Call the clinic tomorrow.', 'Send the file before noon.'] },
+            { promptEn: 'Did the taxi arrive on time?', promptTh: 'แท็กซี่มาถึงตรงเวลาไหม?', answerEn: 'Yes, five minutes early.', answerTh: 'ตรงเวลา แถมมาก่อนห้านาทีด้วย', distractors: ['It weighs two kilograms.', 'Mix milk with cereal.', 'My sister plays violin.', 'The library stays quiet.'] },
+            { promptEn: 'Is breakfast included at the hotel?', promptTh: 'ที่โรงแรมรวมอาหารเช้าด้วยไหม?', answerEn: 'Yes, served from six to ten.', answerTh: 'รวมครับ เสิร์ฟตั้งแต่หกโมงถึงสิบโมง', distractors: ['Turn off the bedroom fan.', 'Look at the bright moon.', 'She hurt her shoulder.', 'The manager checked the plan.'] },
+            { promptEn: 'Should we carry cash or a card?', promptTh: 'เราควรพกเงินสดหรือบัตรดี?', answerEn: 'Bring both, just in case.', answerTh: 'พกไว้ทั้งสองอย่างเลย เผื่อไว้', distractors: ['Behind the science lab.', 'Yes, she is my cousin.', 'This blanket feels soft.', 'Water boils at one hundred.'] },
+            { promptEn: 'Have you packed your suitcase yet?', promptTh: 'จัดกระเป๋าเดินทางเสร็จหรือยัง?', answerEn: 'Almost, just adding my charger.', answerTh: 'เกือบเสร็จแล้ว เหลือใส่สายชาร์จ', distractors: ['The river flows south.', 'Two slices of toasted bread.', 'Everyone cheered loudly.', 'Brush teeth twice daily.'] }
         ],
         nature: [
-            { promptEn: 'Should I take an umbrella today?', promptTh: 'วันนี้ฉันควรพกร่มไปด้วยไหม?', answerEn: 'Yes, it might rain later.', answerTh: 'ควรนะ เดี๋ยวฝนอาจจะตก', distractors: ['The ticket costs ten dollars.', 'Turn off the computer first.'] },
-            { promptEn: 'How is the weather outside?', promptTh: 'ข้างนอกอากาศเป็นยังไงบ้าง?', answerEn: 'Cool and sunny with a light breeze.', answerTh: 'เย็นสบาย แดดออก และมีลมอ่อนๆ', distractors: ['She signed the contract.', 'I lost my house key.'] },
-            { promptEn: 'Did you enjoy the mountain hike?', promptTh: 'เดินป่าขึ้นเขาสนุกไหม?', answerEn: 'Yes, the view was amazing!', answerTh: 'สนุกมาก วิวสวยสุดๆ เลย!', distractors: ['We need to pay the bill.', 'The glass broke yesterday.'] },
-            { promptEn: 'Why are the plants growing fast?', promptTh: 'ทำไมต้นไม้โตเร็วจัง?', answerEn: 'Because they get plenty of sun.', answerTh: 'เพราะพวกมันได้รับแสงแดดเต็มที่', distractors: ['Please pass me the salt.', 'He arrived at the station.'] }
+            { promptEn: 'Should I take an umbrella today?', promptTh: 'วันนี้ฉันควรพกร่มไปด้วยไหม?', answerEn: 'Yes, it might rain later.', answerTh: 'ควรนะ เดี๋ยวฝนอาจจะตก', distractors: ['The ticket costs ten dollars.', 'Turn off the computer first.', 'Bake the pie slowly.', 'He sits beside his friend.'] },
+            { promptEn: 'How is the weather outside?', promptTh: 'ข้างนอกอากาศเป็นยังไงบ้าง?', answerEn: 'Cool and sunny with a light breeze.', answerTh: 'เย็นสบาย แดดออก และมีลมอ่อนๆ', distractors: ['She signed the contract.', 'I lost my house key.', 'Pass me the soy sauce.', 'My cousin graduated yesterday.'] },
+            { promptEn: 'Did you enjoy the mountain hike?', promptTh: 'เดินป่าขึ้นเขาสนุกไหม?', answerEn: 'Yes, the view was amazing!', answerTh: 'สนุกมาก วิวสวยสุดๆ เลย!', distractors: ['We need to pay the bill.', 'The glass broke yesterday.', 'Write your name at the top.', 'The dentist checked my tooth.'] },
+            { promptEn: 'Why are the plants growing fast?', promptTh: 'ทำไมต้นไม้โตเร็วจัง?', answerEn: 'Because they get plenty of sun.', answerTh: 'เพราะพวกมันได้รับแสงแดดเต็มที่', distractors: ['Please pass me the salt.', 'He arrived at the station.', 'Wear clean shoes indoors.', 'The office opens at nine.'] },
+            { promptEn: 'Look! A rainbow appeared over the lake.', promptTh: 'ดูสิ! มีรุ้งกินน้ำขึ้นเหนือทะเลสาบด้วย', answerEn: 'Wow, the colors look so clear!', answerTh: 'ว้าว สีสันชัดมากเลย!', distractors: ['Take two pills with water.', 'Lock the kitchen door.', 'Our team finished the slide.', 'Turn left at the bank.'] },
+            { promptEn: 'What season brings colorful leaves?', promptTh: 'ฤดูไหนที่ใบไม้เปลี่ยนสีสวยๆ?', answerEn: 'Autumn makes the forest golden.', answerTh: 'ฤดูใบไม้ร่วงทำให้ป่าเป็นสีทองเลย', distractors: ['Coffee with less ice please.', 'Yes, her brother is a chef.', 'Pack three pairs of socks.', 'Study unit four tonight.'] },
+            { promptEn: 'Is the sea calm enough for swimming?', promptTh: 'วันนี้ทะเลสงบพอจะว่ายน้ำได้ไหม?', answerEn: 'Yes, the waves look very gentle.', answerTh: 'ได้นะ คลื่นดูเบาและสงบดี', distractors: ['No, the printer is busy.', 'Bring a fork and spoon.', 'She lives on the top floor.', 'The homework takes ten minutes.'] },
+            { promptEn: 'Did frost cover the grass this morning?', promptTh: 'เมื่อเช้ามีน้ำค้างแข็งเกาะบนหญ้าไหม?', answerEn: 'Yes, everything sparkled white.', answerTh: 'มีสิ ทุกอย่างขาวระยิบระยับเลย', distractors: ['Send me a voice message.', 'Put the bowls on the counter.', 'That train stops at York.', 'He recovered after resting.'] },
+            { promptEn: 'Why is the sky glowing red?', promptTh: 'ทำไมท้องฟ้าเป็นสีแดงเรื่อๆ ล่ะ?', answerEn: 'The sun is setting behind the hills.', answerTh: 'พระอาทิตย์กำลังจะตกหลังเนินเขาน่ะ', distractors: ['Buy tickets at window three.', 'Mix honey into warm milk.', 'She typed the report quickly.', 'Open the study guide now.'] },
+            { promptEn: 'Can we camp beside that river?', promptTh: 'เราตั้งแคมป์ริมแม่น้ำตรงนั้นได้ไหม?', answerEn: 'Sure, the ground is flat and dry.', answerTh: 'ได้เลย พื้นเรียบและแห้งดี', distractors: ['Yes, I prefer math class.', 'Wash vegetables before cooking.', 'His uncle lives in Osaka.', 'Please fasten your seat belt.'] },
+            { promptEn: 'Are strong winds expected tonight?', promptTh: 'คืนนี้คาดว่าจะมีลมแรงไหม?', answerEn: 'Yes, a storm is moving north.', answerTh: 'มีนะ พายุกำลังเคลื่อนไปทางเหนือ', distractors: ['Two bottles of sparkling water.', 'Her desk faces the door.', 'Wait ten minutes for boarding.', 'Everyone praised his speech.'] },
+            { promptEn: 'When do cherry trees bloom here?', promptTh: 'ที่นี่ต้นซากุระบานช่วงไหน?', answerEn: 'Usually early every spring.', answerTh: 'ปกติช่วงต้นฤดูใบไม้ผลิของทุกปี', distractors: ['In the hall closet.', 'He ordered grilled salmon.', 'Review chapter five again.', 'Use this bandage carefully.'] }
         ],
         feelings: [
-            { promptEn: 'You look excited today!', promptTh: 'วันนี้คุณดูตื่นเต้นจังเลย!', answerEn: 'I finally passed my exam!', answerTh: 'ในที่สุดฉันก็สอบผ่านแล้ว!', distractors: ['Put the dishes in the sink.', 'The airport is two miles away.'] },
-            { promptEn: 'Are you nervous about the speech?', promptTh: 'คุณกังวลเรื่องการพูดสุนทรพจน์ไหม?', answerEn: 'A little, but I practiced a lot.', answerTh: 'นิดหน่อย แต่ฉันซ้อมมาเยอะแล้ว', distractors: ['There are twenty chairs here.', 'We ate rice and fish.'] },
-            { promptEn: 'Why does Mark seem upset?', promptTh: 'ทำไมมาร์คดูอารมณ์ไม่ดีเลย?', answerEn: 'He missed the last train home.', answerTh: 'เขาตกรถไฟขบวนสุดท้ายกลับบ้าน', distractors: ['The library opens at nine.', 'It tastes very fresh.'] },
-            { promptEn: 'Thank you for cheering me up!', promptTh: 'ขอบคุณที่ช่วยให้กำลังใจนะ!', answerEn: 'Anytime, I am glad you smiled.', answerTh: 'ยินดีเสมอ ดีใจที่เห็นคุณยิ้มได้', distractors: ['Wait at the yellow line.', 'Our street is very quiet.'] }
+            { promptEn: 'You look excited today!', promptTh: 'วันนี้คุณดูตื่นเต้นจังเลย!', answerEn: 'I finally passed my exam!', answerTh: 'ในที่สุดฉันก็สอบผ่านแล้ว!', distractors: ['Put the dishes in the sink.', 'The airport is two miles away.', 'Boil rice for fifteen minutes.', 'Turn off the porch light.'] },
+            { promptEn: 'Are you nervous about the speech?', promptTh: 'คุณกังวลเรื่องการพูดสุนทรพจน์ไหม?', answerEn: 'A little, but I practiced a lot.', answerTh: 'นิดหน่อย แต่ฉันซ้อมมาเยอะแล้ว', distractors: ['There are twenty chairs here.', 'We ate rice and fish.', 'Park near the side gate.', 'Keep milk in the fridge.'] },
+            { promptEn: 'Why does Mark seem upset?', promptTh: 'ทำไมมาร์คดูอารมณ์ไม่ดีเลย?', answerEn: 'He missed the last train home.', answerTh: 'เขาตกรถไฟขบวนสุดท้ายกลับบ้าน', distractors: ['The library opens at nine.', 'It tastes very fresh.', 'Two blankets on the sofa.', 'Add garlic and onions.'] },
+            { promptEn: 'Thank you for cheering me up!', promptTh: 'ขอบคุณที่ช่วยให้กำลังใจนะ!', answerEn: 'Anytime, I am glad you smiled.', answerTh: 'ยินดีเสมอ ดีใจที่เห็นคุณยิ้มได้', distractors: ['Wait at the yellow line.', 'Our street is very quiet.', 'She typed twelve pages.', 'Buy fresh bread outside.'] },
+            { promptEn: 'How did you feel after winning?', promptTh: 'ตอนชนะการแข่งขันรู้สึกยังไงบ้าง?', answerEn: 'I felt proud and relieved.', answerTh: 'ฉันรู้สึกภูมิใจและโล่งใจมาก', distractors: ['Down the stairs on the right.', 'Yes, a medium iced latte.', 'Tomorrow is rainy weather.', 'Use a clean spoon first.'] },
+            { promptEn: 'Why are you smiling at your phone?', promptTh: 'ยิ้มให้กับหน้าจอมือถือเรื่องอะไรน่ะ?', answerEn: 'My sister sent a funny video.', answerTh: 'น้องสาวส่งคลิปตลกมาให้น่ะ', distractors: ['The bank closes at four.', 'We need three fresh lemons.', 'Check your luggage weight.', 'Put pillows on the bed.'] },
+            { promptEn: 'Are you worried about tomorrow’s interview?', promptTh: 'กังวลเรื่องสัมภาษณ์งานพรุ่งนี้ไหม?', answerEn: 'Surprisingly calm, actually.', answerTh: 'จริงๆ แล้วกลับรู้สึกนิ่งกว่าที่คิดนะ', distractors: ['In the second aisle.', 'Ten minutes by ferry.', 'Heat butter in a pan.', 'That maple leaf is red.'] },
+            { promptEn: 'Did that surprise party shock you?', promptTh: 'ปาร์ตี้เซอร์ไพรส์ทำเอาตกใจเลยไหม?', answerEn: 'Completely! I had zero clue.', answerTh: 'ตกใจสุดๆ ไม่ระแคะระคายเลย', distractors: ['Walk past the post office.', 'She studies world history.', 'Drink plenty of fluids.', 'The curtain is light gray.'] },
+            { promptEn: 'What helps you relax after work?', promptTh: 'หลังเลิกงานทำอะไรถึงช่วยให้ผ่อนคลาย?', answerEn: 'Listening to soft jazz music.', answerTh: 'ฟังเพลงแจ๊สเบาๆ น่ะ', distractors: ['Two stamps for a postcard.', 'Because it snowed heavily.', 'Pass the pepper shaker.', 'Vote at the town hall.'] },
+            { promptEn: 'You sound very confident now.', promptTh: 'ตอนนี้เสียงคุณฟังดูมั่นใจมากเลยนะ', answerEn: 'Preparing well really helped.', answerTh: 'การเตรียมตัวมาดีช่วยได้มากเลย', distractors: ['Put your shoes by the mat.', 'Three kilometers ahead.', 'That mango is still green.', 'Take medicine twice daily.'] },
+            { promptEn: 'Why did everyone go quiet suddenly?', promptTh: 'ทำไมจู่ๆ ทุกคนเงียบไปหมดเลย?', answerEn: 'They felt touched by the story.', answerTh: 'ทุกคนซาบซึ้งกับเรื่องเล่าน่ะ', distractors: ['Buy fruit at the corner.', 'Our train arrives at six.', 'Close the front blinds.', 'Send that email right now.'] },
+            { promptEn: 'Are you disappointed the picnic moved indoors?', promptTh: 'ผิดหวังไหมที่ต้องย้ายปิกนิกมาจัดในร่ม?', answerEn: 'Not really, we still have fun.', answerTh: 'ไม่นะ เรายังสนุกกันเหมือนเดิม', distractors: ['Turn left after the bridge.', 'Read paragraph three carefully.', 'Wash your hands with soap.', 'The manager praised our work.'] }
         ],
         education: [
-            { promptEn: 'Did you finish the homework?', promptTh: 'ทำการบ้านเสร็จหรือยัง?', answerEn: 'Almost done, just one page left.', answerTh: 'เกือบเสร็จแล้ว เหลืออีกแค่หน้าเดียว', distractors: ['The river flows to the sea.', 'Please slice the bread.'] },
-            { promptEn: 'Which subject do you enjoy most?', promptTh: 'คุณชอบเรียนวิชาไหนมากที่สุด?', answerEn: 'Science, because I love experiments.', answerTh: 'วิทยาศาสตร์ เพราะฉันชอบทำการทดลอง', distractors: ['The hotel room was cozy.', 'Wear your coat outside.'] },
-            { promptEn: 'Where can I borrow a dictionary?', promptTh: 'ฉันยืมพจนานุกรมได้ที่ไหน?', answerEn: 'Ask the librarian upstairs.', answerTh: 'ลองถามบรรณารักษ์ที่ชั้นบนดูสิ', distractors: ['Dinner will be ready at six.', 'He runs faster than me.'] },
-            { promptEn: 'When does the next semester start?', promptTh: 'เทอมหน้าเปิดเรียนเมื่อไหร่?', answerEn: 'On the first Monday of next month.', answerTh: 'วันจันทร์แรกของเดือนหน้า', distractors: ['We bought fresh vegetables.', 'Keep your voice low please.'] }
+            { promptEn: 'Did you finish the homework?', promptTh: 'ทำการบ้านเสร็จหรือยัง?', answerEn: 'Almost done, just one page left.', answerTh: 'เกือบเสร็จแล้ว เหลืออีกแค่หน้าเดียว', distractors: ['The river flows to the sea.', 'Please slice the bread.', 'Lock the front door.', 'Her cough is gone.'] },
+            { promptEn: 'Which subject do you enjoy most?', promptTh: 'คุณชอบเรียนวิชาไหนมากที่สุด?', answerEn: 'Science, because I love experiments.', answerTh: 'วิทยาศาสตร์ เพราะฉันชอบทำการทดลอง', distractors: ['The hotel room was cozy.', 'Wear your coat outside.', 'Slice two ripe tomatoes.', 'My uncle drives trucks.'] },
+            { promptEn: 'Where can I borrow a dictionary?', promptTh: 'ฉันยืมพจนานุกรมได้ที่ไหน?', answerEn: 'Ask the librarian upstairs.', answerTh: 'ลองถามบรรณารักษ์ที่ชั้นบนดูสิ', distractors: ['Dinner will be ready at six.', 'He runs faster than me.', 'Warm rain fell lightly.', 'Check in at counter B.'] },
+            { promptEn: 'When does the next semester start?', promptTh: 'เทอมหน้าเปิดเรียนเมื่อไหร่?', answerEn: 'On the first Monday of next month.', answerTh: 'วันจันทร์แรกของเดือนหน้า', distractors: ['We bought fresh vegetables.', 'Keep your voice low please.', 'Sweep under the sofa.', 'Yes, a green tea please.'] },
+            { promptEn: 'How did you prepare for the quiz?', promptTh: 'คุณเตรียมตัวสอบย่อยยังไงบ้าง?', answerEn: 'I reviewed flashcards every evening.', answerTh: 'ฉันทบทวนแฟลชการ์ดทุกเย็นเลย', distractors: ['Across from the ferry pier.', 'Add a little olive oil.', 'The wind blew hard.', 'Take rest for two days.'] },
+            { promptEn: 'Could you explain this grammar rule?', promptTh: 'ช่วยอธิบายหลักไวยากรณ์ข้อนี้ได้ไหม?', answerEn: 'Sure, let us check two examples.', answerTh: 'ได้เลย มาดูตัวอย่างสักสองข้อกัน', distractors: ['Boil eggs for eight minutes.', 'Turn off the hallway light.', 'Her sister works downtown.', 'Pack warm woolen socks.'] },
+            { promptEn: 'Who leads the study group tonight?', promptTh: 'คืนนี้ใครเป็นคนนำกลุ่มติว?', answerEn: 'Nadia will guide our practice.', answerTh: 'นาเดียจะช่วยนำฝึกซ้อมวันนี้', distractors: ['At the fruit market.', 'Yes, I feel much calmer.', 'Fasten your seat belt.', 'My garden needs water.'] },
+            { promptEn: 'Did our class visit the museum?', promptTh: 'ห้องเราไปทัศนศึกษาที่พิพิธภัณฑ์ไหม?', answerEn: 'Yes, we sketched ancient tools.', answerTh: 'ไปสิ เราได้สเก็ตช์ภาพเครื่องมือโบราณด้วย', distractors: ['Order two bowls of soup.', 'Put plates in the cupboard.', 'His shoulder hurts today.', 'The mayor opened the bridge.'] },
+            { promptEn: 'What score do we need to pass?', promptTh: 'ต้องได้กี่คะแนนถึงจะสอบผ่าน?', answerEn: 'At least seventy percent overall.', answerTh: 'อย่างน้อยเจ็ดสิบเปอร์เซ็นต์ขึ้นไป', distractors: ['Near the bus terminal.', 'Because lightning struck close.', 'Bake until golden brown.', 'Keep keys on the hook.'] },
+            { promptEn: 'Are laptops allowed during lectures?', promptTh: 'เอาโน้ตบุ๊กเข้าห้องเลกเชอร์ได้ไหม?', answerEn: 'Yes, for taking typed notes.', answerTh: 'ได้ครับ เอาไว้จดบันทึกบทเรียน', distractors: ['No, the beach is rocky.', 'Two spoonfuls of honey.', 'Call the clinic first.', 'He fixed the wooden chair.'] },
+            { promptEn: 'Why are students clapping in the hall?', promptTh: 'ทำไมนักเรียนปรบมือกันในหอประชุมล่ะ?', answerEn: 'Our school won the debate cup!', answerTh: 'โรงเรียนเราชนะถ้วยโต้วาทีน่ะสิ!', distractors: ['Store bread in a cool spot.', 'Her ankle swelled slightly.', 'Board at platform six.', 'Wait until the rain stops.'] },
+            { promptEn: 'Can I hand in the essay tomorrow?', promptTh: 'ฉันส่งเรียงความพรุ่งนี้ได้ไหม?', answerEn: 'Yes, before four in the afternoon.', answerTh: 'ได้ ก่อนสี่โมงเย็นพรุ่งนี้นะ', distractors: ['The tea tastes bitter.', 'Turn the bedroom fan off.', 'Walk straight past the park.', 'We planted mango trees.'] }
         ],
         work: [
-            { promptEn: 'When is the project deadline?', promptTh: 'กำหนดส่งโปรเจกต์คือวันไหน?', answerEn: 'This Friday before five.', answerTh: 'วันศุกร์นี้ก่อนห้าโมงเย็น', distractors: ['I spilled coffee on my shirt.', 'The garden smells lovely.'] },
-            { promptEn: 'Who will lead today’s meeting?', promptTh: 'ใครจะเป็นคนนำการประชุมวันนี้?', answerEn: 'Our new team manager.', answerTh: 'ผู้จัดการทีมคนใหม่ของเรา', distractors: ['Two cups of green tea.', 'It snowed heavily last week.'] },
-            { promptEn: 'Can you send me that file?', promptTh: 'ช่วยส่งไฟล์นั้นให้ฉันหน่อยได้ไหม?', answerEn: 'Sure, I will email it right away.', answerTh: 'ได้เลย ฉันจะส่งอีเมลให้ทันที', distractors: ['The movie starts in ten minutes.', 'My cousin moved to Tokyo.'] },
-            { promptEn: 'Did the client approve our design?', promptTh: 'ลูกค้าอนุมัติแบบของเราหรือยัง?', answerEn: 'Yes, they loved the clean layout.', answerTh: 'อนุมัติแล้ว พวกเขาชอบเลย์เอาต์มาก', distractors: ['Turn off the bedroom lamp.', 'She prefers cold water.'] }
+            { promptEn: 'When is the project deadline?', promptTh: 'กำหนดส่งโปรเจกต์คือวันไหน?', answerEn: 'This Friday before five.', answerTh: 'วันศุกร์นี้ก่อนห้าโมงเย็น', distractors: ['I spilled coffee on my shirt.', 'The garden smells lovely.', 'Boil pasta ten minutes.', 'My knee feels sore.'] },
+            { promptEn: 'Who will lead today’s meeting?', promptTh: 'ใครจะเป็นคนนำการประชุมวันนี้?', answerEn: 'Our new team manager.', answerTh: 'ผู้จัดการทีมคนใหม่ของเรา', distractors: ['Two cups of green tea.', 'It snowed heavily last week.', 'Pack an extra jacket.', 'Look at the bright stars.'] },
+            { promptEn: 'Can you send me that file?', promptTh: 'ช่วยส่งไฟล์นั้นให้ฉันหน่อยได้ไหม?', answerEn: 'Sure, I will email it right away.', answerTh: 'ได้เลย ฉันจะส่งอีเมลให้ทันที', distractors: ['The movie starts in ten minutes.', 'My cousin moved to Tokyo.', 'Put cushions on the chair.', 'Slice the watermelon now.'] },
+            { promptEn: 'Did the client approve our design?', promptTh: 'ลูกค้าอนุมัติแบบของเราหรือยัง?', answerEn: 'Yes, they loved the clean layout.', answerTh: 'อนุมัติแล้ว พวกเขาชอบเลย์เอาต์มาก', distractors: ['Turn off the bedroom lamp.', 'She prefers cold water.', 'Walk across the footbridge.', 'I forgot my dictionary.'] },
+            { promptEn: 'Where is the conference room?', promptTh: 'ห้องประชุมอยู่ที่ไหนครับ?', answerEn: 'Third floor, right beside reception.', answerTh: 'ชั้นสาม อยู่ข้างๆ เคาน์เตอร์ต้อนรับ', distractors: ['Add pepper to the eggs.', 'He reads novels every night.', 'My throat feels dry.', 'The clouds look heavy.'] },
+            { promptEn: 'Are you working overtime tonight?', promptTh: 'คืนนี้คุณทำโอทีหรือเปล่า?', answerEn: 'Only thirty minutes to finish slides.', answerTh: 'แค่สามสิบนาทีเพื่อทำสไลด์ให้จบ', distractors: ['Yes, sweet pineapples please.', 'Lock the balcony door.', 'We hiked up the hill.', 'Bring two erasers to class.'] },
+            { promptEn: 'How did the job interview go?', promptTh: 'สัมภาษณ์งานเป็นยังไงบ้าง?', answerEn: 'Great! They invited me back Monday.', answerTh: 'ดีมาก! เขานัดฉันกลับไปวันจันทร์นี้', distractors: ['Keep soap beside the sink.', 'Two blocks past the hotel.', 'That lemon cake is moist.', 'She felt sleepy early.'] },
+            { promptEn: 'Should we reschedule the call?', promptTh: 'เราควรเลื่อนเวลาโทรประชุมไหม?', answerEn: 'Yes, let us meet at two instead.', answerTh: 'เลื่อนเถอะ เจอกันตอนบ่ายสองแทน', distractors: ['No, the bus uses this lane.', 'Wash your hands thoroughly.', 'They planted green beans.', 'My homework sits upstairs.'] },
+            { promptEn: 'Who checks the budget sheet?', promptTh: 'ใครเป็นคนตรวจเอกสารงบประมาณ?', answerEn: 'Dan reviews every number weekly.', answerTh: 'แดนตรวจตัวเลขทั้งหมดทุกสัปดาห์', distractors: ['Beside the bakery shop.', 'It rained for two hours.', 'Buy fresh fish tomorrow.', 'Put ice cubes inside.'] },
+            { promptEn: 'Have you backed up the database?', promptTh: 'สำรองข้อมูลฐานข้อมูลแล้วหรือยัง?', answerEn: 'Yes, it saved safely this morning.', answerTh: 'ทำแล้ว บันทึกเรียบร้อยตั้งแต่เมื่อเช้า', distractors: ['She plays tennis daily.', 'My brother loves soup.', 'Walk carefully on ice.', 'Read unit seven tonight.'] },
+            { promptEn: 'What does this startup specialize in?', promptTh: 'สตาร์ทอัพนี้เชี่ยวชาญด้านไหน?', answerEn: 'Smart tools for small shops.', answerTh: 'เครื่องมืออัจฉริยะสำหรับร้านค้าขนาดเล็ก', distractors: ['Three glasses of cold water.', 'Clean the kitchen sink.', 'Our flight boards soon.', 'I passed the physics quiz.'] },
+            { promptEn: 'When can I take a lunch break?', promptTh: 'ฉันไปพักทานมื้อเที่ยงได้ตอนไหน?', answerEn: 'Right after this quick call ends.', answerTh: 'ทันทีที่สายด่วนนี้คุยจบเลย', distractors: ['Under the living room rug.', 'Summer mornings feel bright.', 'She wears a wool scarf.', 'Vote before five today.'] }
         ],
         society: [
-            { promptEn: 'Where can citizens vote today?', promptTh: 'ประชาชนไปใช้สิทธิเลือกตั้งได้ที่ไหนวันนี้?', answerEn: 'At the local community center.', answerTh: 'ที่ศูนย์ชุมชนประจำท้องถิ่น', distractors: ['Add a little sugar to taste.', 'His cat sleeps under the chair.'] },
-            { promptEn: 'Why did the city pass that law?', promptTh: 'ทำไมเมืองถึงออกกฎหมายนั้นขึ้นมา?', answerEn: 'To protect public safety on roads.', answerTh: 'เพื่อคุ้มครองความปลอดภัยบนท้องถนน', distractors: ['I need a pencil and eraser.', 'We watched a comedy film.'] },
-            { promptEn: 'Have you read today’s news?', promptTh: 'ได้อ่านข่าววันนี้หรือยัง?', answerEn: 'Yes, fuel prices dropped slightly.', answerTh: 'อ่านแล้ว ราคาน้ำมันลดลงนิดหน่อย', distractors: ['Clean your room before noon.', 'My friend cooks well.'] },
-            { promptEn: 'How does the club help locals?', promptTh: 'ชมรมนี้ช่วยเหลือคนในพื้นที่อย่างไร?', answerEn: 'We organize weekend food drives.', answerTh: 'เราจัดกิจกรรมบริจาคอาหารสุดสัปดาห์', distractors: ['Her suitcase is very heavy.', 'Do not forget your hat.'] }
+            { promptEn: 'Where can citizens vote today?', promptTh: 'ประชาชนไปใช้สิทธิเลือกตั้งได้ที่ไหนวันนี้?', answerEn: 'At the local community center.', answerTh: 'ที่ศูนย์ชุมชนประจำท้องถิ่น', distractors: ['Add a little sugar to taste.', 'His cat sleeps under the chair.', 'Check in at counter five.', 'My elbow feels sore.'] },
+            { promptEn: 'Why did the city pass that law?', promptTh: 'ทำไมเมืองถึงออกกฎหมายนั้นขึ้นมา?', answerEn: 'To protect public safety on roads.', answerTh: 'เพื่อคุ้มครองความปลอดภัยบนท้องถนน', distractors: ['I need a pencil and eraser.', 'We watched a comedy film.', 'Brew tea for three minutes.', 'Open the balcony door.'] },
+            { promptEn: 'Have you read today’s news?', promptTh: 'ได้อ่านข่าววันนี้หรือยัง?', answerEn: 'Yes, fuel prices dropped slightly.', answerTh: 'อ่านแล้ว ราคาน้ำมันลดลงนิดหน่อย', distractors: ['Clean your room before noon.', 'My friend cooks well.', 'Wash rice twice first.', 'Pack your toothbrush too.'] },
+            { promptEn: 'How does the club help locals?', promptTh: 'ชมรมนี้ช่วยเหลือคนในพื้นที่อย่างไร?', answerEn: 'We organize weekend food drives.', answerTh: 'เราจัดกิจกรรมบริจาคอาหารสุดสัปดาห์', distractors: ['Her suitcase is very heavy.', 'Do not forget your hat.', 'Write clearly on paper.', 'This blanket is soft.'] },
+            { promptEn: 'Who collects the neighborhood recycling?', promptTh: 'ใครเป็นคนมาเก็บขยะรีไซเคิลในชุมชน?', answerEn: 'City trucks come every Tuesday.', answerTh: 'รถเทศบาลมาเก็บทุกวันอังคาร', distractors: ['Two slices of cheddar cheese.', 'She finished her biology test.', 'Walk along the pier.', 'Send the spreadsheet now.'] },
+            { promptEn: 'Why is Main Street closed today?', promptTh: 'ทำไมถนนเมนวันนี้ถึงปิดจราจรล่ะ?', answerEn: 'There is a charity marathon event.', answerTh: 'มีงานวิ่งมาราธอนการกุศลน่ะ', distractors: ['Turn on the rice cooker.', 'I drank iced lemon tea.', 'My cousin studied law.', 'The pillow feels flat.'] },
+            { promptEn: 'Did volunteers clean the beach?', promptTh: 'อาสาสมัครไปช่วยทำความสะอาดชายหาดกันไหม?', answerEn: 'Yes, fifty people joined together!', answerTh: 'ไปสิ มีตั้งห้าสิบคนมาร่วมด้วยช่วยกัน!', distractors: ['At the corner drugstore.', 'Heat olive oil gently.', 'Board the train carefully.', 'He typed the report fast.'] },
+            { promptEn: 'Where should we report broken streetlamps?', promptTh: 'ไฟถนนเสียต้องแจ้งที่ไหน?', answerEn: 'Use the city hall hotline app.', answerTh: 'แจ้งผ่านแอปสายด่วนศาลาว่าการได้เลย', distractors: ['Yes, milk and two eggs.', 'Her skirt is navy blue.', 'Take cough syrup tonight.', 'Practice spelling five words.'] },
+            { promptEn: 'Will the new clinic accept health cards?', promptTh: 'คลินิกใหม่จะรับบัตรประกันสุขภาพไหม?', answerEn: 'Yes, starting next Monday morning.', answerTh: 'รับครับ เริ่มตั้งแต่เช้าวันจันทร์หน้า', distractors: ['No, the soup needs salt.', 'Under the study desk.', 'Snow melted quickly.', 'We packed light luggage.'] },
+            { promptEn: 'What does the museum festival celebrate?', promptTh: 'เทศกาลที่พิพิธภัณฑ์จัดฉลองเนื่องในโอกาสอะไร?', answerEn: 'Local music and traditional crafts.', answerTh: 'ดนตรีท้องถิ่นและงานหัตถกรรมพื้นบ้าน', distractors: ['Two kilometers south.', 'Put butter on warm toast.', 'Our client loved it.', 'Brush gently before bed.'] },
+            { promptEn: 'How can residents save clean water?', promptTh: 'ชาวบ้านจะช่วยกันประหยัดน้ำสะอาดได้ยังไงบ้าง?', answerEn: 'Fix dripping taps right away.', answerTh: 'รีบซ่อมก๊อกน้ำที่หยดรั่วทันที', distractors: ['With my younger sister.', 'The quiz starts at eight.', 'Pack two clean shirts.', 'Check gate number nine.'] },
+            { promptEn: 'Did the library add free weekend classes?', promptTh: 'ห้องสมุดเพิ่มคลาสเรียนฟรีวันหยุดหรือเปล่า?', answerEn: 'Yes, coding and reading clubs!', answerTh: 'เพิ่มสิ ทั้งชมรมเขียนโค้ดและชมรมอ่านหนังสือ!', distractors: ['The sauce tastes rich.', 'Wait behind the red car.', 'My fever dropped fast.', 'She closed the curtain.'] }
         ],
         actions: [
-            { promptEn: 'Could you hold the door for me?', promptTh: 'ช่วยจับประตูค้างไว้ให้หน่อยได้ไหม?', answerEn: 'Sure, take your time walking in.', answerTh: 'ได้เลย ค่อยๆ เดินเข้ามานะ', distractors: ['Breakfast starts at seven.', 'Winter is my favorite season.'] },
-            { promptEn: 'Wait! Did you drop your wallet?', promptTh: 'เดี๋ยว! คุณทำกระเป๋าสตางค์ตกหรือเปล่า?', answerEn: 'Oh thank you for picking it up!', answerTh: 'โอ้ ขอบคุณที่ช่วยเก็บให้นะ!', distractors: ['The chemistry test was easy.', 'Milk goes in the fridge.'] },
-            { promptEn: 'Can we fix this broken chair?', promptTh: 'เราซ่อมเก้าอี้ที่พังตัวนี้ได้ไหม?', answerEn: 'Let us tighten the loose screws.', answerTh: 'มาช่วยกันขันน็อตที่หลวมดูเถอะ', distractors: ['She won the art prize.', 'Our flight landed safely.'] },
-            { promptEn: 'Should we follow the sign ahead?', promptTh: 'เราควรเดินตามป้ายข้างหน้าไหม?', answerEn: 'Yes, it leads straight to the park.', answerTh: 'ใช่ มันตรงไปถึงสวนสาธารณะเลย', distractors: ['He writes short stories.', 'The lemon juice is sour.'] }
+            { promptEn: 'Could you hold the door for me?', promptTh: 'ช่วยจับประตูค้างไว้ให้หน่อยได้ไหม?', answerEn: 'Sure, take your time walking in.', answerTh: 'ได้เลย ค่อยๆ เดินเข้ามานะ', distractors: ['Breakfast starts at seven.', 'Winter is my favorite season.', 'Her notebook is green.', 'Take two pills daily.'] },
+            { promptEn: 'Wait! Did you drop your wallet?', promptTh: 'เดี๋ยว! คุณทำกระเป๋าสตางค์ตกหรือเปล่า?', answerEn: 'Oh thank you for picking it up!', answerTh: 'โอ้ ขอบคุณที่ช่วยเก็บให้นะ!', distractors: ['The chemistry test was easy.', 'Milk goes in the fridge.', 'Our meeting starts soon.', 'Fresh mangoes taste sweet.'] },
+            { promptEn: 'Can we fix this broken chair?', promptTh: 'เราซ่อมเก้าอี้ที่พังตัวนี้ได้ไหม?', answerEn: 'Let us tighten the loose screws.', answerTh: 'มาช่วยกันขันน็อตที่หลวมดูเถอะ', distractors: ['She won the art prize.', 'Our flight landed safely.', 'Soup warms you quickly.', 'Check the city news.'] },
+            { promptEn: 'Should we follow the sign ahead?', promptTh: 'เราควรเดินตามป้ายข้างหน้าไหม?', answerEn: 'Yes, it leads straight to the park.', answerTh: 'ใช่ มันตรงไปถึงสวนสาธารณะเลย', distractors: ['He writes short stories.', 'The lemon juice is sour.', 'Lock the side window.', 'My cousin feels proud.'] },
+            { promptEn: 'Please stir the soup slowly.', promptTh: 'ช่วยคนซุปช้าๆ หน่อยนะ', answerEn: 'Got it, so it will not burn.', answerTh: 'ได้เลย จะได้ไม่ไหม้ก้นหม้อ', distractors: ['Three stations away.', 'Her brother teaches math.', 'Vote before five o’clock.', 'Pack a lighter coat.'] },
+            { promptEn: 'Can you lift this heavy box with me?', promptTh: 'ช่วยฉันยกกล่องหนักใบนี้หน่อยได้ไหม?', answerEn: 'Sure, bend your knees and count three.', answerTh: 'ได้เลย งอเข่าแล้วนับสามพร้อมกันนะ', distractors: ['The rainbow faded slowly.', 'Two cups of black coffee.', 'Send the invoice Monday.', 'Brush twice every day.'] },
+            { promptEn: 'Did you remember to water the garden?', promptTh: 'จำได้ไหมว่ารดน้ำสวนหรือยัง?', answerEn: 'Yes, I watered all the flowers.', answerTh: 'จำได้ รดดอกไม้ทุกต้นเรียบร้อยแล้ว', distractors: ['Gate six boards soon.', 'She typed twelve lines.', 'That medicine tastes sweet.', 'Put books on the desk.'] },
+            { promptEn: 'Why are you folding all those shirts?', promptTh: 'ทำไมกำลังพับเสื้อเชิ้ตพวกนั้นอยู่ล่ะ?', answerEn: 'To organize the closet neatly.', answerTh: 'จะได้จัดตู้เสื้อผ้าให้เรียบร้อยไง', distractors: ['Because the bus ran late.', 'At the corner market.', 'Mix flour with water.', 'Read chapter six today.'] },
+            { promptEn: 'Could you push that heavy cart?', promptTh: 'ช่วยเข็นรถเข็นหนักคันนั้นหน่อยได้ไหม?', answerEn: 'No problem, watch your feet!', answerTh: 'ไม่มีปัญหา ระวังเท้าด้วยนะ!', distractors: ['The library closed early.', 'Her smile looked warm.', 'Boil carrots ten minutes.', 'Check today’s weather.'] },
+            { promptEn: 'Let us cross the street carefully.', promptTh: 'มาข้ามถนนกันอย่างระมัดระวังเถอะ', answerEn: 'Right, look both ways first.', answerTh: 'จริง มองซ้ายมองขวาก่อนเลย', distractors: ['Two slices of warm pie.', 'My laptop updated overnight.', 'Open the study notes.', 'His aunt lives downtown.'] },
+            { promptEn: 'Will you tape these torn pages?', promptTh: 'ช่วยเอาเทปติดหน้าที่ขาดพวกนี้ให้หน่อยได้ไหม?', answerEn: 'Sure, pass me the clear tape.', answerTh: 'ได้เลย ส่งเทปใสมาให้หน่อยสิ', distractors: ['Snow fell until dawn.', 'Order iced green tea.', 'She felt calm today.', 'Start the meeting now.'] },
+            { promptEn: 'Did someone lock the garden shed?', promptTh: 'มีคนล็อคห้องเก็บของในสวนหรือยัง?', answerEn: 'Yes, I clicked the padlock shut.', answerTh: 'ล็อคแล้ว ฉันกดแม่กุญแจปิดสนิทเลย', distractors: ['Five apples per basket.', 'He won the chess match.', 'Drink warm soup tonight.', 'Turn left near the bank.'] }
         ]
     };
 
-    // 4. Smart Cloze Surface Matcher & Tokenization Helpers
-    function findClozeMatch(wordObj) {
-        if (!wordObj || !wordObj.example || !wordObj.word) return null;
-        const ex = wordObj.example;
-        if (wordObj.clozeTarget) {
+    // 4. Smart Cloze Surface Matcher, Dual-Example & Collocation Rotation Helpers
+    function findClozeMatch(wordObj, customExample = '') {
+        if (!wordObj || !wordObj.word) return null;
+        const ex = String(customExample || wordObj.example || '');
+        if (!ex) return null;
+        if (!customExample && wordObj.clozeTarget) {
             const rxExact = new RegExp(`\\b(${escapeRegExpStr(wordObj.clozeTarget)})\\b`, 'i');
             const m = ex.match(rxExact);
             if (m) return { surface: m[1], masked: ex.replace(rxExact, '______') };
@@ -8215,6 +8526,133 @@ document.addEventListener('DOMContentLoaded', () => {
         const m = ex.match(rx);
         if (m) return { surface: m[1], masked: ex.replace(rx, '______') };
         return null;
+    }
+
+    function pickWordSentenceVariant(wordObj, variantSalt = 0) {
+        if (!wordObj) return { en: '', th: '', source: 'example', tag: '' };
+        const variants = [];
+        if (wordObj.example) {
+            variants.push({
+                en: String(wordObj.example),
+                th: String(wordObj.exampleTranslation || wordObj.translation || ''),
+                source: 'example',
+                tag: ''
+            });
+        }
+        if (wordObj.extraExample && wordObj.extraExampleTranslation) {
+            variants.push({
+                en: String(wordObj.extraExample),
+                th: String(wordObj.extraExampleTranslation),
+                source: 'extraExample',
+                tag: 'ประโยคตัวอย่างเสริม'
+            });
+        }
+        if (variants.length === 0) return { en: '', th: '', source: 'example', tag: '' };
+        return variants[Math.abs(variantSalt) % variants.length];
+    }
+
+    function findBestClozeVariant(wordObj, variantSalt = 0) {
+        if (!wordObj || !wordObj.word) return null;
+        const candidates = [];
+        const ex1 = findClozeMatch(wordObj, wordObj.example);
+        if (ex1) {
+            candidates.push({
+                ...ex1,
+                source: 'example',
+                thText: String(wordObj.exampleTranslation || wordObj.translation || ''),
+                tag: ''
+            });
+        }
+        if (wordObj.extraExample) {
+            const ex2 = findClozeMatch(wordObj, wordObj.extraExample);
+            if (ex2) {
+                candidates.push({
+                    ...ex2,
+                    source: 'extraExample',
+                    thText: String(wordObj.extraExampleTranslation || wordObj.translation || ''),
+                    tag: 'ประโยคตัวอย่างเสริม'
+                });
+            }
+        }
+        if (Array.isArray(wordObj.collocations)) {
+            const wLow = wordObj.word.trim().toLowerCase();
+            wordObj.collocations.forEach((rawCol) => {
+                const col = String(rawCol || '').trim();
+                const words = col.split(/\s+/).filter(Boolean);
+                if (words.length < 2 || words.length > 5) return;
+                const match = findClozeMatch(wordObj, col);
+                if (match && match.surface.toLowerCase() === wLow) {
+                    candidates.push({
+                        ...match,
+                        source: 'collocation',
+                        thText: `วลีใช้คู่กันของ "${wordObj.translation}"${wordObj.grammarPattern ? ` · ${wordObj.grammarPattern}` : ''}`,
+                        tag: 'เติมคำในวลีคู่กัน (Collocation)',
+                        rawColloc: col
+                    });
+                }
+            });
+        }
+        if (candidates.length === 0) return null;
+        return candidates[Math.abs(variantSalt) % candidates.length];
+    }
+
+    function getCleanRelatedWords(rawList, baseWord) {
+        const baseLow = String(baseWord || '').trim().toLowerCase();
+        const bannedRe = /^(apr|mon|tue|wed|thu|fri|sat|sun|jan|feb|mar|aug|sep|oct|nov|dec|arsenic|etc)$/i;
+        if (!Array.isArray(rawList)) return [];
+        return rawList
+            .map(x => String(x || '').trim())
+            .filter(s => s.length >= 3 && s.length <= 24 && s.toLowerCase() !== baseLow && !bannedRe.test(s) && !s.includes('_'));
+    }
+
+    function pickChoiceBubbleVariant(w, salt = 0, difficultyTier = 1) {
+        const thShort = String(w?.translation || '').split(/[,;/]/)[0].trim();
+        /** @type {Array<{ quizAngle: string, direction: string, angleMeta?: string, angleMasked?: string, angleThClue?: string }>} */
+        const angles = [
+            { quizAngle: 'en_to_th', direction: 'en_to_th' },
+            { quizAngle: 'th_to_en', direction: 'th_to_en' }
+        ];
+        if (w?.definition && String(w.definition).trim().length >= 10) {
+            let defTxt = String(w.definition).trim();
+            if (w.word && w.word.length >= 3) {
+                defTxt = defTxt.replace(new RegExp(`\\b${escapeRegExpStr(w.word.trim())}\\w*`, 'gi'), '______');
+            }
+            if (defTxt.length > 135) defTxt = defTxt.slice(0, 132).trim() + '...';
+            angles.push({ quizAngle: 'def_to_en', direction: 'th_to_en', angleMeta: defTxt, angleThClue: thShort });
+        }
+        const cleanSyns = getCleanRelatedWords(w?.synonyms, w?.word).slice(0, 2);
+        if (cleanSyns.length > 0) {
+            const synWord = cleanSyns[Math.abs(salt) % cleanSyns.length];
+            angles.push({ quizAngle: 'syn_to_en', direction: 'th_to_en', angleMeta: synWord, angleThClue: thShort });
+        }
+        const cleanAnts = getCleanRelatedWords(w?.antonyms, w?.word).slice(0, 2);
+        if (cleanAnts.length > 0) {
+            const antWord = cleanAnts[Math.abs(salt) % cleanAnts.length];
+            angles.push({ quizAngle: 'ant_to_en', direction: 'th_to_en', angleMeta: antWord, angleThClue: thShort });
+        }
+        if (Array.isArray(w?.collocations)) {
+            const colVars = [];
+            const wLow = String(w.word || '').trim().toLowerCase();
+            w.collocations.forEach((rawCol) => {
+                const col = String(rawCol || '').trim();
+                const words = col.split(/\s+/).filter(Boolean);
+                if (words.length < 2 || words.length > 5) return;
+                const m = findClozeMatch(w, col);
+                if (m && m.surface.toLowerCase() === wLow) {
+                    colVars.push({ raw: col, masked: m.masked });
+                }
+            });
+            if (colVars.length > 0) {
+                const pickedCol = colVars[Math.abs(salt) % colVars.length];
+                angles.push({ quizAngle: 'colloc_to_en', direction: 'th_to_en', angleMeta: pickedCol.raw, angleMasked: pickedCol.masked, angleThClue: thShort });
+            }
+        }
+        // On fresh Tier 1 first question, alternate base recognition and definition/collocation; on higher tiers/replays, rotate all rich angles
+        if (difficultyTier === 1 && salt < 18 && angles.length > 2) {
+            const tier1Pool = angles.filter(a => a.quizAngle === 'en_to_th' || a.quizAngle === 'th_to_en' || a.quizAngle === 'def_to_en' || a.quizAngle === 'colloc_to_en');
+            return tier1Pool[Math.abs(salt) % tier1Pool.length];
+        }
+        return angles[Math.abs(salt) % angles.length];
     }
 
     function buildClozeSentence(wordObj) {
@@ -8230,17 +8668,20 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter(Boolean);
     }
 
-    function getThaiSentenceTokens(wordObj) {
-        if (wordObj && Array.isArray(wordObj.thTokens) && wordObj.thTokens.length > 0) {
+    function getThaiSentenceTokens(wordObj, customThText = '') {
+        const usePrimary = !customThText || customThText === wordObj?.exampleTranslation;
+        if (usePrimary && wordObj && Array.isArray(wordObj.thTokens) && wordObj.thTokens.length >= 2) {
             return [...wordObj.thTokens];
         }
-        const raw = String(wordObj?.exampleTranslation || '').replace(/[?!.,;:"“”()]/g, '').trim();
+        const raw = String(customThText || wordObj?.exampleTranslation || '').replace(/[?!.,;:"“”()]/g, '').trim();
         if (!raw) return [];
         if (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') {
             const seg = new Intl.Segmenter('th', { granularity: 'word' });
-            return Array.from(seg.segment(raw)).filter(s => s.isWordLike).map(s => s.segment.trim()).filter(Boolean);
+            const toks = Array.from(seg.segment(raw)).filter(s => s.isWordLike).map(s => s.segment.trim()).filter(Boolean);
+            if (toks.length >= 2) return toks;
         }
-        return raw.split(/\s+/).filter(Boolean);
+        const splitToks = raw.split(/\s+/).filter(Boolean);
+        return splitToks.length >= 2 ? splitToks : (Array.isArray(wordObj?.thTokens) ? [...wordObj.thTokens] : splitToks);
     }
 
     function pickDistractorIndices(targetIdx, candidatePool, count = 3, salt = 0) {
@@ -8276,13 +8717,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return chosen.slice(0, count);
     }
 
-    function pickBankDistractorTokens(answerTokens, targetIdx, unitPool, isThai, count = 2) {
+    function pickBankDistractorTokens(answerTokens, targetIdx, unitPool, isThai, count = 2, salt = 0) {
         const usedLower = new Set(answerTokens.map(t => t.toLowerCase()));
         const dist = [];
         const pool = unitPool && unitPool.length >= 4 ? unitPool : [targetIdx];
 
         for (let step = 0; step < pool.length * 2 && dist.length < count; step++) {
-            const cIdx = pool[(targetIdx + step * 3 + 1) % pool.length];
+            const cIdx = pool[(targetIdx + salt + step * 3 + 1) % pool.length];
             if (cIdx === targetIdx) continue;
             const cw = wordsData[cIdx];
             const candidates = isThai
@@ -8367,8 +8808,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 6. Step Builder with Pedagogical Scaffolding Progression
-  function createWordBankData(answerTokens, targetIdx, unitPool, isThai) {
-    const distTokens = pickBankDistractorTokens(answerTokens, targetIdx, unitPool, isThai, answerTokens.length <= 3 ? 2 : 3);
+  function createWordBankData(answerTokens, targetIdx, unitPool, isThai, salt = 0) {
+    const distTokens = pickBankDistractorTokens(answerTokens, targetIdx, unitPool, isThai, answerTokens.length <= 3 ? 2 : 3, salt);
     const rawList = [...answerTokens, ...distTokens].map((text, idx) => ({ id: idx, text }));
     return {
       answerTokens,
@@ -8376,19 +8817,34 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  function buildListeningStepData(wordIdx, distractorPool) {
+  function buildListeningStepData(wordIdx, distractorPool, salt = 0) {
     const w = wordsData[wordIdx];
-    const phraseCandidate = Array.isArray(w.collocations) && w.collocations.length
-      ? w.collocations[0]
-      : tokenizeEnglishSentence(w.example).slice(0, 5).join(' ');
-    const cleanTokens = tokenizeEnglishSentence(phraseCandidate).slice(0, 6);
-    const tokens = cleanTokens.length >= 2 ? cleanTokens : [w.word];
-    const wb = createWordBankData(tokens, wordIdx, distractorPool, false);
+    const phraseCandidates = [];
+    if (Array.isArray(w.collocations)) {
+      w.collocations.forEach(c => {
+        const toks = tokenizeEnglishSentence(c).slice(0, 6);
+        if (toks.length >= 2) phraseCandidates.push({ tokens: toks, note: `${w.translation} (วลีคู่กัน)` });
+      });
+    }
+    if (w.example) {
+      const exToks = tokenizeEnglishSentence(w.example).slice(0, 6);
+      if (exToks.length >= 2) phraseCandidates.push({ tokens: exToks, note: w.exampleTranslation || w.translation });
+    }
+    if (w.extraExample) {
+      const ex2Toks = tokenizeEnglishSentence(w.extraExample).slice(0, 6);
+      if (ex2Toks.length >= 2) phraseCandidates.push({ tokens: ex2Toks, note: w.extraExampleTranslation || w.translation });
+    }
+    if (phraseCandidates.length === 0) {
+      phraseCandidates.push({ tokens: [w.word], note: w.translation });
+    }
+    const chosenCand = phraseCandidates[Math.abs(salt) % phraseCandidates.length];
+    const tokens = chosenCand.tokens;
+    const wb = createWordBankData(tokens, wordIdx, distractorPool, false, salt);
     return {
       type: 'listening_word_bank',
       wordIdx,
       audioText: tokens.join(' '),
-      translationNote: w.translation,
+      translationNote: chosenCand.note || w.translation,
       answerTokens: wb.answerTokens,
       bankItems: wb.bankItems,
       expectedVariants: [tokens.join(' ')],
@@ -8399,28 +8855,60 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  function selectStageWordPool(stage, unit, limit = 10, roundNum = 1, totalRounds = 4) {
+  function oxGcd(a, b) {
+    let x = Math.abs(a), y = Math.abs(b);
+    while (y) { const t = x % y; x = y; y = t; }
+    return x || 1;
+  }
+
+  function selectStageWordPool(stage, unit, limit = 10, roundNum = 1, totalRounds = 4, replaySalt = 0) {
     const qLimit = Math.min(limit, Math.max(7, 6 + roundNum));
     if (!stage.isBoss && stage.nodeType !== 'review') {
       const src = stage.wordIndices || [];
       if (src.length <= 1) return [...src];
-      const targetLen = Math.min(qLimit, src.length);
-      const shift = Math.floor(((roundNum - 1) * src.length) / Math.max(1, totalRounds));
-      const stride = (roundNum % 2 === 0 && src.length >= 5) ? 2 : 1;
+      const n = src.length;
+      const coprimes = [1, 2, 3, 5, 7].filter(s => s < n && oxGcd(s, n) === 1);
+      if (coprimes.length === 0) coprimes.push(1);
+      const shift = Math.floor(((roundNum - 1) * n) / Math.max(1, totalRounds)) + replaySalt * 3;
+      const stride = (replaySalt > 0 || roundNum % 2 === 0)
+        ? coprimes[(roundNum + replaySalt) % coprimes.length]
+        : 1;
+      const targetLen = Math.min(qLimit, n);
       const picked = [];
       const seen = new Set();
-      for (let i = 0; i < src.length && picked.length < targetLen; i++) {
-        const idx = src[(shift + i * stride) % src.length];
+      for (let i = 0; i < n && picked.length < targetLen; i++) {
+        const idx = src[(shift + i * stride) % n];
         if (!seen.has(idx)) { seen.add(idx); picked.push(idx); }
       }
-      for (let i = 0; i < src.length && picked.length < targetLen; i++) {
-        const idx = src[(shift + i) % src.length];
+      for (let i = 0; i < n && picked.length < targetLen; i++) {
+        const idx = src[(shift + i) % n];
         if (!seen.has(idx)) { seen.add(idx); picked.push(idx); }
+      }
+
+      // On replay (Practice / Legendary / Repeating rounds), mix in 1-2 rotating reinforcement words from the same unit
+      const unitPool = Array.isArray(unit?.wordIndices) ? unit.wordIndices : [];
+      if (replaySalt > 0 && unitPool.length > n) {
+        const siblingPool = unitPool.filter(idx => !seen.has(idx));
+        if (siblingPool.length > 0) {
+          siblingPool.sort((a, b) => {
+            const sa = wordStatus[keyOf(wordsData[a])] === 'review' ? 0 : 1;
+            const sb = wordStatus[keyOf(wordsData[b])] === 'review' ? 0 : 1;
+            return sa - sb;
+          });
+          const desiredCompanions = Math.min(2, siblingPool.length);
+          const coreKeep = Math.min(picked.length, Math.max(6, qLimit - desiredCompanions));
+          const mixed = picked.slice(0, coreKeep);
+          for (let c = 0; c < siblingPool.length && mixed.length < qLimit && (mixed.length - coreKeep) < desiredCompanions; c++) {
+            const candIdx = siblingPool[(replaySalt * 5 + roundNum * 2 + c * 3) % siblingPool.length];
+            if (!mixed.includes(candIdx)) mixed.push(candIdx);
+          }
+          return mixed;
+        }
       }
       return picked;
     }
     if (stage.isBoss) {
-      // Stratified sampling rotated by roundNum so each round challenges different words
+      // Stratified sampling rotated by roundNum + replaySalt so each round/replay challenges different words
       const chunkStages = (unit.nodes || []).filter(n => n.kind === 'stage' && !n.isBoss && n.nodeType !== 'review' && Array.isArray(n.wordIndices) && n.wordIndices.length > 0);
       if (chunkStages.length > 1) {
         const picked = [];
@@ -8433,11 +8921,11 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           return sorted;
         });
-        let round = Math.max(0, roundNum - 1);
+        let round = Math.max(0, roundNum - 1) + replaySalt;
         let guard = 0;
         while (picked.length < qLimit && guard++ < 40) {
           for (let b = 0; b < buckets.length && picked.length < qLimit; b++) {
-            const bucket = buckets[(b + roundNum - 1) % buckets.length];
+            const bucket = buckets[(b + roundNum - 1 + replaySalt) % buckets.length];
             const idx = bucket[round % bucket.length];
             if (!seen.has(idx)) {
               seen.add(idx);
@@ -8449,7 +8937,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (picked.length > 0) return picked;
       }
     }
-    // Review or single-chunk fallback: prioritize 'review' -> low mastery/wrong -> unseen -> evenly distributed & rotated by roundNum
+    // Review or single-chunk fallback: prioritize 'review' -> low mastery/wrong -> unseen -> evenly distributed & rotated by roundNum + replaySalt
     const total = unit.wordIndices.length;
     const ranked = unit.wordIndices.map((idx, pos) => {
       const k = keyOf(wordsData[idx]);
@@ -8459,46 +8947,127 @@ document.addEventListener('DOMContentLoaded', () => {
       if (st === 'review') prio = 0;
       else if (m && (m.wrong || 0) > (m.right || 0)) prio = 1;
       else if (st === 'known') prio = 3;
-      const spreadRank = ((pos * 7 + unit.unitNumber * 3 + (roundNum - 1) * 5) % Math.max(1, total));
+      const spreadRank = ((pos * 7 + unit.unitNumber * 3 + (roundNum - 1) * 5 + replaySalt * 11) % Math.max(1, total));
       return { idx, prio, spreadRank };
     });
     ranked.sort((a, b) => (a.prio - b.prio) || (a.spreadRank - b.spreadRank));
     return ranked.slice(0, qLimit).map(x => x.idx);
   }
 
-  function pickDialogueForStep(w, unit, pos, stageOffset, usedDialogues) {
+  /**
+   * Pick a varied, non-repeating dialogue for a step using stage history, replaySalt, and optional concise vocab micro-dialogues.
+   * @param {VocabWord} w
+   * @param {any} unit
+   * @param {number} pos
+   * @param {number} stageOffset
+   * @param {Set<string>} usedDialogues
+   * @param {string} [stageId]
+   * @param {number} [replaySalt]
+   * @param {number[]} [pool]
+   */
+  function pickDialogueForStep(w, unit, pos, stageOffset, usedDialogues, stageId, replaySalt, pool) {
     const topicList = OX_DIALOGUES_BY_TOPIC[unit.topicId] || OX_DIALOGUES_BY_TOPIC.basics;
+    const salt = replaySalt || 0;
+    const recentList = stageId && Array.isArray(recentStageDialogueKeys[stageId]) ? recentStageDialogueKeys[stageId] : [];
+    const recentSet = new Set(recentList);
+    const isFreshCurated = (d) => d && !usedDialogues.has(d.promptEn) && !recentSet.has(d.promptEn);
+    const isUnusedCurated = (d) => d && !usedDialogues.has(d.promptEn);
+    const recordChoice = (dlg, matchesStepWord) => {
+      if (stageId && dlg && dlg.promptEn) {
+        const prev = recentStageDialogueKeys[stageId] || [];
+        recentStageDialogueKeys[stageId] = [...prev.filter(k => k !== dlg.promptEn), dlg.promptEn].slice(-12);
+      }
+      return { dlg, matchesStepWord };
+    };
+
+    const buildMicroDialogue = () => {
+      if (!w || !w.word) return null;
+      const wordStr = String(w.word).trim();
+      const targetRe = new RegExp(`\\b${escapeRegExpStr(wordStr)}\\b`, 'i');
+      const useExtra = (salt % 2 === 1) && w.extraExample && w.extraExampleTranslation;
+      const ansEn = String(useExtra ? w.extraExample : (w.example || '')).trim();
+      const ansTh = String(useExtra ? w.extraExampleTranslation : (w.exampleTranslation || '')).trim();
+      if (!ansEn || !ansTh || ansEn.length < 12 || ansEn.length > 62) return null;
+      const promptEn = `Can you use "${wordStr}" in a natural sentence?`;
+      if (usedDialogues.has(promptEn) || recentSet.has(promptEn)) return null;
+      const shortMeaning = String(w.meaning || '').split(/[;,]/)[0].trim();
+      const promptTh = shortMeaning
+        ? `ลองใช้คำว่า "${wordStr}" (${shortMeaning}) แต่งประโยคดูสิ`
+        : `ลองใช้คำว่า "${wordStr}" แต่งประโยคดูสิ`;
+
+      const candPool = Array.isArray(pool) && pool.length > 3 ? pool : [];
+      /** @type {string[]} */
+      const sibDists = [];
+      const nPool = candPool.length;
+      const startOff = (pos + salt * 3) % (nPool || 1);
+      for (let i = 0; i < nPool; i++) {
+        const cIdx = candPool[(startOff + i) % nPool];
+        const ow = typeof VOCAB !== 'undefined' ? VOCAB[cIdx] : null;
+        if (!ow || !ow.word || String(ow.word).trim().toLowerCase() === wordStr.toLowerCase()) continue;
+        const ex = String((salt % 3 === 1 && ow.extraExample) ? ow.extraExample : (ow.example || '')).trim();
+        if (!ex || ex.length < 12 || ex.length > 62 || ex === ansEn || targetRe.test(ex) || sibDists.includes(ex)) continue;
+        sibDists.push(ex);
+        if (sibDists.length >= 5) break;
+      }
+      if (sibDists.length < 3) return null;
+      return { promptEn, promptTh, answerEn: ansEn, answerTh: ansTh, distractors: sibDists };
+    };
+
     const targetWord = String(w?.word || '').trim().toLowerCase();
-    // Step 1: Try matching an unused dialogue in the current topic that naturally uses targetWord
-    if (targetWord) {
-      const matchedTopic = topicList.find(d => !usedDialogues.has(d) && new RegExp(`\\b${escapeRegExpStr(targetWord)}\\b`, 'i').test(`${d.promptEn} ${d.answerEn}`));
-      if (matchedTopic) return { dlg: matchedTopic, linkedWordIdx: null, matchesStepWord: true };
-      // Step 2: Or try across any topic for an authentic targetWord match
-      for (const list of Object.values(OX_DIALOGUES_BY_TOPIC)) {
-        const matchedAny = list.find(d => !usedDialogues.has(d) && new RegExp(`\\b${escapeRegExpStr(targetWord)}\\b`, 'i').test(`${d.promptEn} ${d.answerEn}`));
-        if (matchedAny) return { dlg: matchedAny, linkedWordIdx: null, matchesStepWord: true };
+    const targetRe = targetWord ? new RegExp(`\\b${escapeRegExpStr(targetWord)}\\b`, 'i') : null;
+    const topicRotated = [];
+    for (let k = 0; k < topicList.length; k++) {
+      topicRotated.push(topicList[((unit.unitNumber || 1) + stageOffset + salt * 3 + pos + k) % topicList.length]);
+    }
+
+    // Step 1: Prefer an unseen + non-recent curated dialogue in this topic matching targetWord
+    if (targetRe) {
+      const freshTopicMatch = topicRotated.find(d => isFreshCurated(d) && targetRe.test(`${d.promptEn} ${d.answerEn}`));
+      if (freshTopicMatch) return recordChoice(freshTopicMatch, true);
+
+      // Step 2: Check across all topics for a fresh non-recent dialogue using targetWord
+      const allLists = Object.values(OX_DIALOGUES_BY_TOPIC);
+      for (let li = 0; li < allLists.length; li++) {
+        const list = allLists[(li + salt) % allLists.length];
+        for (let di = 0; di < list.length; di++) {
+          const cand = list[(di + salt + pos) % list.length];
+          if (isFreshCurated(cand) && targetRe.test(`${cand.promptEn} ${cand.answerEn}`)) {
+            return recordChoice(cand, true);
+          }
+        }
       }
     }
-    // Step 3: Fallback to an unused topic dialogue cleanly flagged as topic-level dialogue practice
-    const rotated = [];
-    for (let k = 0; k < topicList.length; k++) {
-      const cand = topicList[((unit.unitNumber || 1) + stageOffset + pos + k) % topicList.length];
-      rotated.push(cand);
+
+    // Step 3: On replays, periodically surface a concise vocabulary micro-dialogue directly practicing targetWord
+    if (salt > 0 && (salt + pos) % 2 === 1) {
+      const micro = buildMicroDialogue();
+      if (micro) return recordChoice(micro, true);
     }
-    const unused = rotated.find(d => !usedDialogues.has(d)) || rotated[0];
-    return { dlg: unused, matchesStepWord: false };
+
+    // Step 4: Prefer an unseen + non-recent curated topic dialogue rotated by replaySalt
+    const freshTopic = topicRotated.find(isFreshCurated);
+    if (freshTopic) return recordChoice(freshTopic, false);
+
+    // Step 5: Try synthesized micro-dialogue if recent curated dialogues were already seen
+    const microFallback = buildMicroDialogue();
+    if (microFallback) return recordChoice(microFallback, true);
+
+    // Step 6: Any unused curated dialogue in topic (wrapping history cleanly)
+    const unused = topicRotated.find(isUnusedCurated) || topicRotated[0];
+    return recordChoice(unused, false);
   }
 
   function buildLessonSteps(stage, unit, roundOpts = {}) {
     const totalRounds = getStageTotalRounds(stage);
     const roundNum = Math.min(totalRounds, Math.max(1, Number(roundOpts.roundNum) || 1));
+    const replaySalt = Math.max(0, Number(roundOpts.replaySalt) || 0);
     const diffRatio = totalRounds <= 1 ? 1 : (roundNum - 1) / (totalRounds - 1);
     const difficultyTier = diffRatio >= 0.75 ? 3 : (diffRatio >= 0.3 ? 2 : 1);
-    const pool = selectStageWordPool(stage, unit, 10, roundNum, totalRounds);
+    const pool = selectStageWordPool(stage, unit, 10, roundNum, totalRounds, replaySalt);
 
     const steps = [];
-    // Show intro cards only on Round 1 of lesson stages so subsequent rounds focus on recall
-    const introCandidates = (stage.nodeType === 'lesson' && roundNum === 1)
+    // Show intro cards only on Round 1 of fresh normal lesson stages (not replays) so replays stay snappy
+    const introCandidates = (stage.nodeType === 'lesson' && roundNum === 1 && replaySalt === 0)
       ? pool.filter(idx => !wordStatus[keyOf(wordsData[idx])]).slice(0, 2)
       : [];
     introCandidates.forEach(idx => {
@@ -8508,19 +9077,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const distractorPool = unit.wordIndices.length >= 8 ? unit.wordIndices : pool;
     const listeningMutedNow = !listeningEnabled || Date.now() < lessonListeningMutedUntil;
     const topicDialogues = OX_DIALOGUES_BY_TOPIC[unit.topicId] || OX_DIALOGUES_BY_TOPIC.basics;
-    const stageOffset = Math.max(0, (unit.nodes || []).indexOf(stage)) + (roundNum - 1) * 5;
+    const stageOffset = Math.max(0, (unit.nodes || []).indexOf(stage)) + (roundNum - 1) * 5 + replaySalt * 3;
     const usedDialogues = new Set();
+
+    const CORE_8_MODES = ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'spelling_context', 'pair_match'];
+    const REPLAY_STRIDES = [1, 3, 5, 7];
 
     const TIER_SEQS = {
       lesson: [
-        ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'spelling_context', 'choice_bubble_match', 'sentence_cloze_inline', 'order_en_to_th'],
-        ['dialogue_complete', 'listening_word_bank', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'choice_bubble_match', 'sentence_cloze_inline', 'order_th_to_en', 'spelling_context', 'order_th_to_en'],
-        ['sentence_cloze_inline', 'order_th_to_en', 'listening_word_bank', 'dialogue_complete', 'spelling_context', 'order_th_to_en', 'sentence_cloze_inline', 'spelling_context', 'order_en_to_th', 'spelling_context']
+        ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'spelling_context', 'pair_match', 'sentence_cloze_inline', 'order_en_to_th'],
+        ['dialogue_complete', 'listening_word_bank', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'pair_match', 'sentence_cloze_inline', 'order_th_to_en', 'spelling_context', 'choice_bubble_match'],
+        ['sentence_cloze_inline', 'order_th_to_en', 'listening_word_bank', 'dialogue_complete', 'spelling_context', 'order_th_to_en', 'pair_match', 'sentence_cloze_inline', 'order_en_to_th', 'spelling_context']
       ],
       review: [
-        ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'spelling_context'],
-        ['dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'listening_word_bank', 'spelling_context'],
-        ['sentence_cloze_inline', 'order_th_to_en', 'spelling_context', 'listening_word_bank', 'dialogue_complete', 'spelling_context']
+        ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'pair_match', 'spelling_context'],
+        ['dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'pair_match', 'spelling_context'],
+        ['sentence_cloze_inline', 'order_th_to_en', 'spelling_context', 'listening_word_bank', 'pair_match', 'spelling_context']
       ],
       boss: [
         ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en'],
@@ -8530,49 +9102,91 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const totalQ = pool.length;
-    pool.forEach((idx, pos) => {
+    /** @type {string[]} */
+    const plannedModes = pool.map((idx, pos) => {
       const w = wordsData[idx];
       const tierIdx = difficultyTier - 1;
-      const distSalt = roundNum * 17 + pos;
-
-      // Escalating Difficulty per Round: Tier 1 (Recognition) -> Tier 2 (Guided Production) -> Tier 3 (Typed Recall)
-      let desired = 'choice_bubble_match';
+      let m = 'choice_bubble_match';
       if (stage.nodeType === 'audio') {
         if (listeningMutedNow) {
-          desired = difficultyTier >= 3 ? (pos % 2 === 0 ? 'spelling_context' : 'order_th_to_en') : (pos % 2 === 0 ? 'sentence_cloze_inline' : 'order_en_to_th');
+          m = difficultyTier >= 3 ? (pos % 2 === 0 ? 'spelling_context' : 'order_th_to_en') : (pos % 2 === 0 ? 'sentence_cloze_inline' : 'order_en_to_th');
         } else if (difficultyTier === 1) {
-          desired = pos % 4 === 3 ? 'choice_bubble_match' : 'listening_word_bank';
+          m = pos % 4 === 3 ? 'choice_bubble_match' : 'listening_word_bank';
         } else if (difficultyTier === 2) {
-          desired = pos % 3 === 2 ? 'order_th_to_en' : 'listening_word_bank';
+          m = (pos + replaySalt) % 3 === 2 ? 'order_th_to_en' : 'listening_word_bank';
         } else {
-          desired = pos % 3 === 2 ? 'spelling_context' : (pos % 3 === 1 ? 'sentence_cloze_inline' : 'listening_word_bank');
+          m = (pos + replaySalt) % 3 === 2 ? 'spelling_context' : ((pos + replaySalt) % 3 === 1 ? 'sentence_cloze_inline' : 'listening_word_bank');
+        }
+      } else if (stage.nodeType === 'lesson' && replaySalt > 0 && totalQ >= 8) {
+        if (pos < 8) {
+          const modeStride = REPLAY_STRIDES[replaySalt % REPLAY_STRIDES.length];
+          m = CORE_8_MODES[(pos * modeStride + replaySalt + roundNum) % 8];
+        } else {
+          const extraSeq = TIER_SEQS.lesson[tierIdx] || TIER_SEQS.lesson[0];
+          m = extraSeq[(pos + replaySalt + roundNum) % extraSeq.length];
         }
       } else {
         const seqTable = TIER_SEQS[stage.nodeType] || TIER_SEQS.lesson;
         const seq = seqTable[tierIdx] || seqTable[0];
-        desired = seq[(pos + (difficultyTier > 1 ? roundNum - 1 : 0)) % seq.length];
-        if (difficultyTier === 1 && pos === totalQ - 1 && !w.word.includes(' ') && w.word.length <= 10) {
-          desired = 'spelling_context';
+        m = seq[(pos + (difficultyTier > 1 ? roundNum - 1 : 0) + replaySalt) % seq.length];
+        if (difficultyTier === 1 && pos === totalQ - 1 && m !== 'pair_match' && !w.word.includes(' ') && w.word.length <= 10) {
+          m = 'spelling_context';
         }
       }
-
-      if (desired === 'listening_word_bank' && listeningMutedNow) {
-        desired = difficultyTier >= 3 ? 'order_th_to_en' : 'sentence_cloze_inline';
+      if (m === 'listening_word_bank' && listeningMutedNow) {
+        m = difficultyTier >= 3 ? 'order_th_to_en' : 'sentence_cloze_inline';
       }
+      return m;
+    });
+
+    // Repair any mode slot whose word isn't eligible (e.g., single-token Thai or hyphen/long spelling) by swapping with an eligible slot
+    const isWordEligibleForMode = (w, modeName, salt) => {
+      if (!w) return false;
+      if (modeName === 'order_en_to_th') return getThaiSentenceTokens(w, pickWordSentenceVariant(w, salt).th).length >= 2;
+      if (modeName === 'order_th_to_en') return tokenizeEnglishSentence(pickWordSentenceVariant(w, salt + 1).en).length >= 2;
+      if (modeName === 'sentence_cloze_inline') return Boolean(findBestClozeVariant(w, salt));
+      if (modeName === 'spelling_context') return !w.word.includes(' ') && w.word.length <= 13;
+      return true;
+    };
+    for (let p = 0; p < plannedModes.length; p++) {
+      const m = plannedModes[p];
+      const distSaltP = roundNum * 17 + p + replaySalt * 13;
+      if (!isWordEligibleForMode(wordsData[pool[p]], m, distSaltP)) {
+        for (let q = 0; q < plannedModes.length; q++) {
+          if (q === p) continue;
+          const altMode = plannedModes[q];
+          const distSaltQ = roundNum * 17 + q + replaySalt * 13;
+          if (isWordEligibleForMode(wordsData[pool[q]], m, distSaltQ) && isWordEligibleForMode(wordsData[pool[p]], altMode, distSaltP)) {
+            plannedModes[p] = altMode;
+            plannedModes[q] = m;
+            break;
+          }
+        }
+      }
+    }
+
+    pool.forEach((idx, pos) => {
+      const w = wordsData[idx];
+      const distSalt = roundNum * 17 + pos + replaySalt * 13;
+      let desired = plannedModes[pos] || 'choice_bubble_match';
+
       if (desired === 'spelling_context' && (w.word.includes(' ') || w.word.length > 13)) {
         desired = 'order_th_to_en';
       }
 
       if (desired === 'listening_word_bank') {
-        steps.push({ ...buildListeningStepData(idx, distractorPool), castIdx: pos });
+        steps.push({ ...buildListeningStepData(idx, distractorPool, distSalt), castIdx: pos });
         return;
       }
 
       if (desired === 'dialogue_complete' && topicDialogues.length > 0 && usedDialogues.size < topicDialogues.length) {
-        const picked = pickDialogueForStep(w, unit, pos, stageOffset, usedDialogues);
+        const picked = pickDialogueForStep(w, unit, pos, stageOffset, usedDialogues, stage.id, replaySalt, pool);
         const dlg = picked.dlg;
-        usedDialogues.add(dlg);
-        const rawOpts = [dlg.answerEn, ...dlg.distractors.slice(0, 2)];
+        if (dlg && dlg.promptEn) usedDialogues.add(dlg.promptEn);
+        const allDists = Array.isArray(dlg.distractors) ? dlg.distractors.filter(Boolean) : [];
+        const distShift = allDists.length ? ((replaySalt * 2 + pos + stageOffset) % allDists.length) : 0;
+        const rotatedDists = allDists.length ? allDists.slice(distShift).concat(allDists.slice(0, distShift)) : [];
+        const rawOpts = [dlg.answerEn, ...shuffle(rotatedDists).slice(0, 2)];
         const order = shuffle(rawOpts.map((txt, oi) => ({ txt, isCorrect: oi === 0 })));
         const correctChoiceIdx = order.findIndex(o => o.isCorrect);
         steps.push({
@@ -8590,17 +9204,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (desired === 'order_en_to_th') {
-        const thToks = getThaiSentenceTokens(w);
-        if (thToks.length >= 2) {
-          const wb = createWordBankData(thToks, idx, distractorPool, true);
+        const sentVar = pickWordSentenceVariant(w, distSalt);
+        const thToks = getThaiSentenceTokens(w, sentVar.th);
+        if (thToks.length >= 2 && sentVar.en) {
+          const wb = createWordBankData(thToks, idx, distractorPool, true, distSalt);
           steps.push({
             type: 'order_en_to_th',
             wordIdx: idx,
-            promptEn: w.example,
-            answerTh: w.exampleTranslation,
+            promptEn: sentVar.en,
+            answerTh: sentVar.th,
+            sentenceSource: sentVar.source,
             answerTokens: wb.answerTokens,
             bankItems: wb.bankItems,
-            expectedVariants: [w.exampleTranslation, thToks.join('')],
+            expectedVariants: [sentVar.th, thToks.join('')],
             chosenIds: [],
             keyboardVal: '',
             _useKeyboard: false,
@@ -8613,17 +9229,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (desired === 'order_th_to_en') {
-        const enToks = tokenizeEnglishSentence(w.example);
-        if (enToks.length >= 2) {
-          const wb = createWordBankData(enToks, idx, distractorPool, false);
+        const sentVar = pickWordSentenceVariant(w, distSalt + 1);
+        const enToks = tokenizeEnglishSentence(sentVar.en);
+        if (enToks.length >= 2 && sentVar.th) {
+          const wb = createWordBankData(enToks, idx, distractorPool, false, distSalt);
           steps.push({
             type: 'order_th_to_en',
             wordIdx: idx,
-            promptTh: w.exampleTranslation,
-            answerEn: w.example,
+            promptTh: sentVar.th,
+            answerEn: sentVar.en,
+            sentenceSource: sentVar.source,
             answerTokens: wb.answerTokens,
             bankItems: wb.bankItems,
-            expectedVariants: [w.example, enToks.join(' ')],
+            expectedVariants: [sentVar.en, enToks.join(' ')],
             chosenIds: [],
             keyboardVal: '',
             _useKeyboard: false,
@@ -8636,7 +9254,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (desired === 'sentence_cloze_inline') {
-        const cloze = findClozeMatch(w);
+        const cloze = findBestClozeVariant(w, distSalt);
         if (cloze) {
           const isBaseForm = cloze.surface.toLowerCase() === w.word.toLowerCase();
           const forceTyped = difficultyTier >= 3 && (pos % 2 === 0 || !isBaseForm);
@@ -8647,6 +9265,9 @@ document.addEventListener('DOMContentLoaded', () => {
               wordIdx: idx,
               maskedSentence: cloze.masked,
               targetSurface: cloze.surface,
+              subTranslation: cloze.thText,
+              clozeContextTag: cloze.tag,
+              clozeSource: cloze.source,
               options: shuffle([idx, ...dist]),
               selectedChoice: null,
               keyboardVal: '',
@@ -8661,6 +9282,9 @@ document.addEventListener('DOMContentLoaded', () => {
             wordIdx: idx,
             maskedSentence: cloze.masked,
             targetSurface: cloze.surface,
+            subTranslation: cloze.thText,
+            clozeContextTag: cloze.tag,
+            clozeSource: cloze.source,
             options: null,
             selectedChoice: null,
             keyboardVal: '',
@@ -8674,12 +9298,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (desired === 'spelling_context') {
-        const cloze = findClozeMatch(w);
+        const cloze = findBestClozeVariant(w, distSalt + 1);
         steps.push({
           type: 'spelling_context',
           wordIdx: idx,
           maskedSentence: cloze ? cloze.masked : null,
           targetSurface: cloze ? cloze.surface : w.word,
+          subTranslation: cloze ? cloze.thText : (w.exampleTranslation || ''),
+          clozeContextTag: cloze ? cloze.tag : '',
           keyboardVal: '',
           castIdx: pos,
           requeued: false
@@ -8687,13 +9313,93 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Default / choice_bubble_match (EN->TH or TH->EN alternating; 3 options at tier 1, 4 at tier 2+)
+      if (desired === 'pair_match') {
+        const pairIndices = [idx];
+        const usedEn = new Set([String(w.word || '').toLowerCase()]);
+        const usedTh = new Set([String(w.translation || '').split(/[,;\/]/)[0].trim().toLowerCase()]);
+        const candidates = shuffle([...pool, ...distractorPool]);
+        for (const cIdx of candidates) {
+          if (pairIndices.length >= 4) break;
+          const cw = wordsData[cIdx];
+          if (!cw) continue;
+          const enLow = String(cw.word || '').toLowerCase();
+          const thShort = String(cw.translation || '').split(/[,;\/]/)[0].trim();
+          const thLow = thShort.toLowerCase();
+          if (!enLow || !thLow || usedEn.has(enLow) || usedTh.has(thLow)) continue;
+          usedEn.add(enLow);
+          usedTh.add(thLow);
+          pairIndices.push(cIdx);
+        }
+        if (pairIndices.length >= 3) {
+          const pairVariantRoll = (roundNum + replaySalt + pos) % 3;
+          let pairMode = 'word_th';
+          if ((replaySalt > 0 || difficultyTier >= 2) && pairVariantRoll === 1) pairMode = 'colloc_match';
+          else if ((replaySalt > 0 || difficultyTier >= 2) && pairVariantRoll === 2) pairMode = 'syn_match';
+
+          const pairs = pairIndices.map((pIdx, pi) => {
+            const pw = wordsData[pIdx];
+            const thShort = String(pw.translation || '').split(/[,;\/]/)[0].trim() || pw.translation;
+            let rightLabel = thShort;
+            if (pairMode === 'colloc_match' && Array.isArray(pw.collocations) && pw.collocations.length > 0) {
+              const rawCol = pw.collocations[(replaySalt + pi) % pw.collocations.length];
+              const m = findClozeMatch(pw, rawCol);
+              rightLabel = m ? `${m.masked} (${thShort})` : `${rawCol} · ${thShort}`;
+            } else if (pairMode === 'syn_match') {
+              const pSyns = getCleanRelatedWords(pw.synonyms, pw.word);
+              if (pSyns.length > 0) rightLabel = `≈ ${pSyns[0]} · ${thShort}`;
+            }
+            return {
+              id: `pm_${pos}_${pi}_${pIdx}`,
+              wordIdx: pIdx,
+              en: pw.word,
+              th: rightLabel,
+              posLabel: pw.partOfSpeech || '',
+              phonetic: pw.phonetic || ''
+            };
+          });
+          const pairModeTag = pairMode === 'colloc_match'
+            ? 'จับคู่คำศัพท์ & วลีคู่กัน'
+            : (pairMode === 'syn_match' ? 'จับคู่คำศัพท์ & คำใกล้เคียง' : 'จับคู่คำศัพท์ & ความหมาย');
+          const pairModeHeading = pairMode === 'colloc_match'
+            ? 'แตะจับคู่คำศัพท์กับวลีที่ใช้คู่กันให้ถูกต้อง'
+            : (pairMode === 'syn_match' ? 'แตะจับคู่คำศัพท์กับคำใกล้เคียงและความหมาย' : 'แตะจับคู่คำศัพท์กับความหมายที่ตรงกัน');
+          steps.push({
+            type: 'pair_match',
+            pairMode,
+            pairModeTag,
+            pairModeHeading,
+            wordIdx: idx,
+            pairs,
+            leftIds: shuffle(pairs.map(p => p.id)),
+            rightIds: shuffle(pairs.map(p => p.id)),
+            matchedIds: [],
+            selectedLeftId: null,
+            selectedRightId: null,
+            mistakesCount: 0,
+            castIdx: pos,
+            requeued: false
+          });
+          return;
+        }
+        desired = 'choice_bubble_match';
+      }
+
+      // Default / choice_bubble_match (6 rotating question angles: EN->TH, TH->EN, Definition, Synonym, Antonym, Collocation)
       const distCount = difficultyTier === 1 ? 2 : 3;
-      const dist = pickDistractorIndices(idx, distractorPool, distCount, distSalt);
-      const dirSwap = (pos + roundNum) % 2 === 1;
+      const angleObj = pickChoiceBubbleVariant(w, distSalt + pos, difficultyTier);
+      let dist = pickDistractorIndices(idx, distractorPool, distCount + 2, distSalt);
+      if ((angleObj.quizAngle === 'syn_to_en' || angleObj.quizAngle === 'ant_to_en') && angleObj.angleMeta) {
+        const metaLow = angleObj.angleMeta.toLowerCase();
+        dist = dist.filter(dIdx => String(wordsData[dIdx]?.word || '').trim().toLowerCase() !== metaLow);
+      }
+      dist = dist.slice(0, distCount);
       steps.push({
         type: 'choice_bubble_match',
-        direction: dirSwap ? 'th_to_en' : 'en_to_th',
+        direction: angleObj.direction,
+        quizAngle: angleObj.quizAngle,
+        angleMeta: angleObj.angleMeta || '',
+        angleMasked: angleObj.angleMasked || '',
+        angleThClue: angleObj.angleThClue || '',
         wordIdx: idx,
         options: shuffle([idx, ...dist]),
         selectedChoice: null,
@@ -8725,27 +9431,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function startLessonByStageId(stageId, opts = {}) {
-    const stage = OxCurriculum.stageById.get(stageId);
+    const stage = opts.virtualStage || OxCurriculum.stageById.get(stageId);
     if (!stage) return;
-    const unit = OxCurriculum.unitById.get(stage.unitId);
+    const unit = opts.virtualUnit || OxCurriculum.unitById.get(stage.unitId);
     if (!unit) return;
     const mode = opts.mode === 'legendary' ? 'legendary' : (opts.mode === 'practice' ? 'practice' : 'normal');
-    const totalRounds = getStageTotalRounds(stage);
-    const doneRounds = getStageDoneRounds(stageId);
-    const roundNum = typeof opts.roundNum === 'number'
-      ? Math.min(totalRounds, Math.max(1, opts.roundNum))
-      : (mode === 'legendary' || mode === 'practice' || opts.isJumpTestForUnitId ? totalRounds : Math.min(totalRounds, doneRounds + 1));
+    const totalRounds = stage.isVirtual ? 1 : getStageTotalRounds(stage);
+    const doneRounds = stage.isVirtual ? 0 : getStageDoneRounds(stageId);
+    const roundNum = stage.isVirtual
+      ? 1
+      : (typeof opts.roundNum === 'number'
+        ? Math.min(totalRounds, Math.max(1, opts.roundNum))
+        : (mode === 'legendary' || mode === 'practice' || opts.isJumpTestForUnitId ? totalRounds : Math.min(totalRounds, doneRounds + 1)));
 
-    const steps = buildLessonSteps(stage, unit, { roundNum });
+    const prevPlayCount = Number(sessionStageReplayCounter[stageId] || 0);
+    sessionStageReplayCounter[stageId] = prevPlayCount + 1;
+    if (!stage.isVirtual && learnState.stageReplays) {
+      learnState.stageReplays[stageId] = (learnState.stageReplays[stageId] || 0) + 1;
+      saveLearnState(false);
+    }
+    const modeSalt = mode === 'legendary' ? 5 : (mode === 'practice' ? 3 : 0);
+    const replaySalt = prevPlayCount * 2 + modeSalt;
+
+    const steps = buildLessonSteps(stage, unit, { roundNum, replaySalt });
     const uniqueQuestionCount = steps.filter(s => !s.isIntro).length || 1;
     const diffRatio = totalRounds <= 1 ? 1 : (roundNum - 1) / (totalRounds - 1);
-    const difficultyTier = diffRatio >= 0.75 ? 3 : (diffRatio >= 0.3 ? 2 : 1);
+    const difficultyTier = stage.isVirtual ? 2 : (diffRatio >= 0.75 ? 3 : (diffRatio >= 0.3 ? 2 : 1));
 
     activeLesson = {
       stage,
       unit,
       mode,
       roundNum,
+      replaySalt,
       totalRounds,
       difficultyTier,
       isJumpTestForUnitId: opts.isJumpTestForUnitId || null,
@@ -8754,6 +9472,7 @@ document.addEventListener('DOMContentLoaded', () => {
       uniqueTotal: uniqueQuestionCount,
       answeredUnique: 0,
       firstTryCorrect: 0,
+      wordOutcomes: {},
       combo: 0,
       maxCombo: 0,
       awaitingNext: false,
@@ -8762,7 +9481,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const stagePill = $('lesson-stage-pill');
     if (stagePill) {
-      const modeTag = mode === 'legendary' ? ' · 👑 ตำนาน' : (mode === 'practice' ? ' · ทบทวน' : ` · บทที่ ${roundNum}/${totalRounds}`);
+      const modeTag = stage.isVirtual
+        ? ' · 🎯 ฝึกเฉพาะจุด'
+        : (mode === 'legendary' ? ' · 👑 ตำนาน' : (mode === 'practice' ? ' · ทบทวน' : ` · บทที่ ${roundNum}/${totalRounds}`));
       stagePill.textContent = `${unit.title} · ${stage.label}${modeTag}`;
     }
     const fbBar = $('lesson-feedback-bar');
@@ -8774,6 +9495,74 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCurrentLessonStep();
   }
 
+  function startVirtualLearnPractice({ id, title, label, wordIndices, unit }) {
+    const cleanIndices = Array.from(new Set(wordIndices || [])).filter(idx => Number.isInteger(idx) && wordsData[idx]).slice(0, 12);
+    if (cleanIndices.length === 0) {
+      showToast('ยังไม่มีคำศัพท์ในชุดฝึกนี้');
+      return;
+    }
+    const baseUnit = unit || (OxCurriculum.sections[learnState.activeSection || 'A1'] || [])[0];
+    const virtualUnit = {
+      id: baseUnit ? baseUnit.id : '__virtual_unit',
+      cefr: baseUnit ? baseUnit.cefr : (learnState.activeSection || 'A1'),
+      topicId: baseUnit ? baseUnit.topicId : 'basics',
+      unitNumber: baseUnit ? baseUnit.unitNumber : 1,
+      title: title || (baseUnit ? baseUnit.title : 'ชุดฝึกพิเศษ'),
+      palette: baseUnit ? baseUnit.palette : 'emerald',
+      wordIndices: cleanIndices.length >= 4 ? cleanIndices : (baseUnit ? baseUnit.wordIndices : cleanIndices),
+      nodes: []
+    };
+    const virtualStage = {
+      id: id || `__virtual_${Date.now()}`,
+      unitId: virtualUnit.id,
+      label: label || 'ฝึกเฉพาะจุด',
+      nodeType: 'lesson',
+      isBoss: false,
+      isVirtual: true,
+      wordIndices: cleanIndices
+    };
+    startLessonByStageId(virtualStage.id, { mode: 'practice', virtualStage, virtualUnit });
+  }
+
+  function startSmartLearnDrill(kind = 'weak') {
+    const sec = learnState.activeSection || 'A1';
+    const secUnits = OxCurriculum.sections[sec] || [];
+    const secPool = secUnits.flatMap(u => u.wordIndices);
+    if (kind === 'weak') {
+      const reviewIndices = [];
+      for (let i = 0; i < totalWords; i++) {
+        if (keyToIndex.get(keyOf(wordsData[i])) !== i) continue;
+        if (wordStatus[keyOf(wordsData[i])] === 'review') reviewIndices.push(i);
+      }
+      if (reviewIndices.length > 0) {
+        const prioritized = shuffle(reviewIndices).slice(0, 10);
+        const anchorWord = wordsData[prioritized[0]];
+        const topicMeta = (anchorWord && TOPIC_META[anchorWord.topic]) || TOPIC_META.basics;
+        const unit = secUnits[0] || OxCurriculum.unitById.values().next().value;
+        startVirtualLearnPractice({
+          id: `__weak_drill_${Date.now()}`,
+          title: `คลังคำที่ต้องทบทวน (${prioritized.length} คำ)`,
+          label: `🎯 ฝึกคำอ่อน · ${topicMeta.label || sec}`,
+          wordIndices: prioritized,
+          unit
+        });
+        return;
+      }
+      showToast('เยี่ยม! ยังไม่มีคำติดทบทวน · เริ่มชุดฝึกด่วนระดับ ' + sec + ' ให้แทน');
+    }
+    const knownInSec = secPool.filter(idx => wordStatus[keyOf(wordsData[idx])] === 'known');
+    const sourcePool = knownInSec.length >= 6 ? knownInSec : secPool;
+    const picked = shuffle([...sourcePool]).slice(0, 10);
+    const unit = secUnits[0];
+    startVirtualLearnPractice({
+      id: `__quick_review_${sec}_${Date.now()}`,
+      title: `ทบทวนด่วน CEFR ${sec}`,
+      label: `⚡ ทบทวน ${picked.length} คำ`,
+      wordIndices: picked,
+      unit
+    });
+  }
+
   function syncLessonCheckButton() {
     const checkBtn = /** @type {HTMLButtonElement|null} */ ($('btn-lesson-check'));
     if (!activeLesson || !checkBtn) return;
@@ -8783,6 +9572,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let ready = false;
     if (step.type === 'choice_bubble_match' || step.type === 'dialogue_complete') {
       ready = step.selectedChoice !== null && step.selectedChoice !== undefined;
+    } else if (step.type === 'pair_match') {
+      ready = Array.isArray(step.matchedIds) && Array.isArray(step.pairs) && step.matchedIds.length >= step.pairs.length;
     } else if (step.type === 'sentence_cloze_inline') {
       ready = step._useKeyboard ? Boolean(String(step.keyboardVal || '').trim()) : (step.selectedChoice !== null && step.selectedChoice !== undefined);
     } else if (step.type === 'spelling_context') {
@@ -8796,12 +9587,22 @@ document.addEventListener('DOMContentLoaded', () => {
   function setupFooterDockForStep(step) {
     const actBar = $('lesson-action-bar');
     const fbBar = $('lesson-feedback-bar');
+    const fbInsight = $('lesson-feedback-insight');
+    const rateChips = $('lesson-rate-chips');
     const skipBtn = $('btn-lesson-skip');
     const modeBtn = $('btn-lesson-mode-toggle');
     const modeLabel = $('lesson-mode-toggle-label');
     const fbSpkBtn = $('btn-lesson-feedback-speak');
 
     if (fbBar) fbBar.hidden = true;
+    if (fbInsight) {
+      fbInsight.hidden = true;
+      fbInsight.textContent = '';
+    }
+    if (rateChips) {
+      rateChips.hidden = true;
+      rateChips.querySelectorAll('.lesson-rate-chip').forEach(c => c.classList.remove('is-chosen'));
+    }
     if (fbSpkBtn) fbSpkBtn.hidden = true;
 
     if (!step || step.isIntro) {
@@ -8956,14 +9757,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const pct = Math.min(100, Math.round((activeLesson.index / Math.max(1, activeLesson.queue.length)) * 100));
-    if (fill) fill.style.width = `${pct}%`;
+    if (fill) {
+      fill.style.width = `${pct}%`;
+      if (pct > 0) OxMotion.pulseClass(fill, 'is-advancing', 540);
+    }
     const acc = activeLesson.answeredUnique > 0
       ? Math.round((activeLesson.firstTryCorrect / activeLesson.answeredUnique) * 100)
       : 100;
     updateLessonAccuracyPill(accPill, acc);
     if (comboPill) {
       comboPill.hidden = activeLesson.combo < 2;
-      comboPill.textContent = `🔥 x${activeLesson.combo}`;
+      comboPill.textContent = `🔥 ${activeLesson.combo} ข้อรวด!`;
       if (activeLesson.combo >= 2) OxMotion.pulseClass(comboPill, 'is-combo-pop');
     }
     OxMotion.pulseClass(body, 'is-step-entering');
@@ -8974,17 +9778,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const retryTag = step.requeued ? ' · ทบทวนอีกครั้ง' : '';
     setupFooterDockForStep(step);
 
+    // Shared non-penalty grammar / root / usage tip drawer inside question cards
+    const buildCoachHelperHtml = (wordObj) => {
+      if (!wordObj) return '';
+      const bits = [];
+      if (wordObj.grammarPattern) bits.push(`<span class="lesson-coach-chip">📐 ${escapeHtml(wordObj.grammarPattern)}</span>`);
+      if (wordObj.register) bits.push(`<span class="lesson-coach-chip">🏷️ ${escapeHtml(wordObj.register)}</span>`);
+      if (wordObj.rootBreakdown) bits.push(`<div><strong>รากศัพท์:</strong> ${escapeHtml(wordObj.rootBreakdown)}</div>`);
+      if (wordObj.usageTip) bits.push(`<div><strong>เคล็ดลับ:</strong> ${escapeHtml(wordObj.usageTip)}</div>`);
+      if (bits.length === 0) return '';
+      return `
+        <div class="lesson-coach-wrap">
+          <button type="button" class="lesson-coach-toggle" aria-expanded="false">💡 ดูไวยากรณ์ & เคล็ดลับ</button>
+          <div class="lesson-coach-drawer" hidden>${bits.join('')}</div>
+        </div>`;
+    };
+    const wireCoachHelper = (rootEl) => {
+      const btn = rootEl.querySelector('.lesson-coach-toggle');
+      const drawer = rootEl.querySelector('.lesson-coach-drawer');
+      if (btn && drawer instanceof HTMLElement) {
+        btn.addEventListener('click', () => {
+          const open = drawer.hidden;
+          drawer.hidden = !open;
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          SoundFX.tick();
+        });
+      }
+    };
+
     // --- INTRO CARD ---
     if (step.type === 'intro') {
+      const metaBadges = [
+        w.syllables ? `<span class="lesson-intro-pill is-syll">${escapeHtml(w.syllables)}</span>` : '',
+        w.register ? `<span class="lesson-intro-pill">${escapeHtml(w.register)}</span>` : '',
+        w.grammarPattern ? `<span class="lesson-intro-pill is-grammar">${escapeHtml(w.grammarPattern)}</span>` : ''
+      ].filter(Boolean).join('');
+
+      const insightRows = [
+        w.rootBreakdown ? `<div class="lesson-insight-row"><span class="lesson-insight-k">🧩 รากศัพท์</span><span>${escapeHtml(w.rootBreakdown)}</span></div>` : '',
+        w.usageTip ? `<div class="lesson-insight-row"><span class="lesson-insight-k">💡 วิธีใช้จริง</span><span>${escapeHtml(w.usageTip)}</span></div>` : '',
+        (Array.isArray(w.collocations) && w.collocations.length > 0)
+          ? `<div class="lesson-insight-row"><span class="lesson-insight-k">🔗 คำที่ใช้คู่กัน</span><span>${w.collocations.slice(0, 3).map(c => `<code>${escapeHtml(c)}</code>`).join(' · ')}</span></div>`
+          : ''
+      ].filter(Boolean).join('');
+
+      const phoneticParts = [
+        w.phonetic ? `US ${escapeHtml(w.phonetic)}` : '',
+        w.phoneticUK ? `UK ${escapeHtml(w.phoneticUK)}` : '',
+        w.partOfSpeech ? escapeHtml(w.partOfSpeech) : ''
+      ].filter(Boolean).join(' · ');
+
       body.innerHTML = `
                 <span class="lesson-prompt-tag">คำใหม่น่าจดจำ · ${escapeHtml(w.cefr || 'A1')}</span>
                 <div class="lesson-intro-card">
-                    <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
                         <div>
                             <h2 class="lesson-question-word">${escapeHtml(w.word)}</h2>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-top:4px;">${escapeHtml(w.phonetic || '')} · ${escapeHtml(w.partOfSpeech || '')}</div>
+                            <div style="color:var(--text-muted); font-size:0.9rem; margin-top:4px;">${phoneticParts}</div>
+                            ${metaBadges ? `<div class="lesson-intro-badges">${metaBadges}</div>` : ''}
                         </div>
                         <div class="lesson-audio-tools">
+                            <button type="button" class="glass-btn-icon small lesson-speak-uk-btn" title="ฟังสำเนียงอังกฤษ (UK)" aria-label="ฟังสำเนียง UK">UK</button>
                             <button type="button" class="glass-btn-icon small lesson-speak-slow-btn" title="ฟังช้า (0.62x)" aria-label="ฟังเสียงช้า">🐢</button>
                             <button type="button" class="glass-btn-icon speak-btn lesson-speak-btn" aria-label="ฟังเสียงอ่าน">
                                 ${ICON_SVG.volume || '🔊'}
@@ -8994,11 +9848,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 style="margin:4px 0 0; font-size:1.3rem; color:var(--primary);">${escapeHtml(w.translation)}</h3>
                     <p class="lesson-question-sub">${escapeHtml(w.definition || '')}</p>
                     ${w.example ? `<div class="example-box"><i>"${renderHintableSentenceHtml(w.example)}"</i>${w.exampleTranslation ? `<div style="margin-top:6px; font-size:0.86rem; color:var(--text-muted);">${escapeHtml(w.exampleTranslation)}</div>` : ''}</div>` : ''}
+                    ${insightRows ? `<div class="lesson-intro-insights">${insightRows}</div>` : ''}
                 </div>
                 <button type="button" class="btn btn-primary glass-btn btn-full lesson-intro-next-btn">เข้าใจแล้ว · ลุยต่อ →</button>
             `;
       const introSpkBtn = body.querySelector('.lesson-speak-btn');
       introSpkBtn?.addEventListener('click', (e) => speakWordOverride(w.word, true, e.currentTarget));
+      body.querySelector('.lesson-speak-uk-btn')?.addEventListener('click', (e) => speakWordOverride(w.word, true, e.currentTarget, { lang: 'en-GB' }));
       body.querySelector('.lesson-speak-slow-btn')?.addEventListener('click', (e) => speakWordOverride(w.example || w.word, true, e.currentTarget, { rate: 0.62 }));
       body.querySelector('.lesson-intro-next-btn')?.addEventListener('click', () => {
         SoundFX.tick();
@@ -9010,13 +9866,101 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // --- INTERACTIVE PAIR MATCH ---
+    if (step.type === 'pair_match') {
+      const byId = new Map(step.pairs.map(p => [p.id, p]));
+      const leftHtml = step.leftIds.map(id => {
+        const p = byId.get(id);
+        const isMatched = step.matchedIds.includes(id);
+        const isSelected = step.selectedLeftId === id;
+        return `<button type="button" class="lesson-pair-tile is-left${isMatched ? ' is-matched' : ''}${isSelected ? ' is-selected' : ''}" data-side="left" data-pair-id="${escapeHtml(id)}"${isMatched ? ' disabled' : ''}>
+          <strong>${escapeHtml(p?.en || '')}</strong>
+          ${p?.posLabel ? `<small>${escapeHtml(p.posLabel)}</small>` : ''}
+        </button>`;
+      }).join('');
+      const rightHtml = step.rightIds.map(id => {
+        const p = byId.get(id);
+        const isMatched = step.matchedIds.includes(id);
+        const isSelected = step.selectedRightId === id;
+        return `<button type="button" class="lesson-pair-tile is-right${isMatched ? ' is-matched' : ''}${isSelected ? ' is-selected' : ''}" data-side="right" data-pair-id="${escapeHtml(id)}"${isMatched ? ' disabled' : ''}>
+          <span>${escapeHtml(p?.th || '')}</span>
+        </button>`;
+      }).join('');
+
+      const pmTagBase = step.pairModeTag || 'จับคู่คำศัพท์ & ความหมาย';
+      const pmHead = step.pairModeHeading || 'แตะจับคู่คำศัพท์กับความหมายที่ตรงกัน';
+      body.innerHTML = `
+                <span class="lesson-prompt-tag">${escapeHtml(pmTagBase)} (${step.matchedIds.length}/${step.pairs.length})${retryTag}</span>
+                <h2 class="lesson-prompt-heading">${escapeHtml(pmHead)}</h2>
+                <div class="lesson-pair-grid" id="lesson-pair-grid">
+                    <div class="lesson-pair-col">${leftHtml}</div>
+                    <div class="lesson-pair-col">${rightHtml}</div>
+                </div>
+            `;
+
+      const tryResolvePair = () => {
+        if (!step.selectedLeftId || !step.selectedRightId) return;
+        const leftId = step.selectedLeftId;
+        const rightId = step.selectedRightId;
+        const leftBtn = body.querySelector(`.lesson-pair-tile.is-left[data-pair-id="${CSS.escape(leftId)}"]`);
+        const rightBtn = body.querySelector(`.lesson-pair-tile.is-right[data-pair-id="${CSS.escape(rightId)}"]`);
+
+        if (leftId === rightId) {
+          step.matchedIds.push(leftId);
+          step.selectedLeftId = null;
+          step.selectedRightId = null;
+          SoundFX.known(Math.min(5, step.matchedIds.length));
+          const matchedPair = byId.get(leftId);
+          if (matchedPair) speakWordOverride(matchedPair.en, false);
+          if (leftBtn) { leftBtn.classList.remove('is-selected'); leftBtn.classList.add('is-matched'); /** @type {HTMLButtonElement} */ (leftBtn).disabled = true; }
+          if (rightBtn) { rightBtn.classList.remove('is-selected'); rightBtn.classList.add('is-matched'); /** @type {HTMLButtonElement} */ (rightBtn).disabled = true; }
+          const tag = body.querySelector('.lesson-prompt-tag');
+          if (tag) tag.textContent = `${pmTagBase} (${step.matchedIds.length}/${step.pairs.length})${retryTag}`;
+          syncLessonCheckButton();
+        } else {
+          step.mistakesCount = (step.mistakesCount || 0) + 1;
+          step.selectedLeftId = null;
+          step.selectedRightId = null;
+          SoundFX.review();
+          [leftBtn, rightBtn].forEach(el => {
+            if (!el) return;
+            el.classList.remove('is-selected');
+            el.classList.add('is-mismatch');
+            setTimeout(() => el.classList.remove('is-mismatch'), 380);
+          });
+        }
+      };
+
+      body.querySelectorAll('.lesson-pair-tile').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (activeLesson.awaitingNext || !(btn instanceof HTMLElement)) return;
+          const side = btn.dataset.side;
+          const pid = btn.dataset.pairId;
+          if (!pid || step.matchedIds.includes(pid)) return;
+          if (side === 'left') {
+            step.selectedLeftId = step.selectedLeftId === pid ? null : pid;
+            const pair = byId.get(pid);
+            if (step.selectedLeftId && pair) speakWordOverride(pair.en, false);
+            body.querySelectorAll('.lesson-pair-tile.is-left').forEach(b => b.classList.toggle('is-selected', b instanceof HTMLElement && b.dataset.pairId === step.selectedLeftId));
+          } else {
+            step.selectedRightId = step.selectedRightId === pid ? null : pid;
+            body.querySelectorAll('.lesson-pair-tile.is-right').forEach(b => b.classList.toggle('is-selected', b instanceof HTMLElement && b.dataset.pairId === step.selectedRightId));
+          }
+          SoundFX.tick();
+          tryResolvePair();
+        });
+      });
+      syncLessonCheckButton();
+      return;
+    }
+
     // --- SPELLING CONTEXT ---
     if (step.type === 'spelling_context') {
       const sentenceHtml = step.maskedSentence
         ? `<div class="lesson-cloze-sentence" style="font-size:1.08rem; margin-top:4px;">${renderHintableSentenceHtml(step.maskedSentence, true)}</div>`
         : '';
       body.innerHTML = `
-                <span class="lesson-prompt-tag">พิมพ์คำภาษาอังกฤษให้ถูกต้อง${retryTag}</span>
+                <span class="lesson-prompt-tag">พิมพ์คำภาษาอังกฤษให้ถูกต้อง${step.clozeContextTag ? ` · ${escapeHtml(step.clozeContextTag)}` : ''}${retryTag}</span>
                 <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
                     <h2 class="lesson-prompt-heading" style="font-size:1.55rem;">${escapeHtml(w.translation)}</h2>
                     <button type="button" class="glass-btn-icon small speak-btn lesson-speak-btn" aria-label="ฟังคำใบ้เสียง">🔊</button>
@@ -9027,7 +9971,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <input type="text" class="lesson-spelling-input" placeholder="พิมพ์คำศัพท์..." autocomplete="off" autocapitalize="none" spellcheck="false">
                 </div>
                 <div style="font-size:0.82rem; color:var(--text-muted);">คำใบ้: ขึ้นต้นด้วย "${escapeHtml(step.targetSurface.charAt(0).toUpperCase())}" · ยาว ${step.targetSurface.length} ตัวอักษร</div>
+                ${buildCoachHelperHtml(w)}
             `;
+      wireCoachHelper(body);
       const inp = /** @type {HTMLInputElement|null} */ (body.querySelector('.lesson-spelling-input'));
       const slotEl = body.querySelector('[data-cloze-slot]');
       if (inp) {
@@ -9075,7 +10021,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h2 class="lesson-prompt-heading">เติมบทสนทนาให้สมบูรณ์</h2>
                 <div class="lesson-dialogue-scene">
                     <div class="lesson-cast-row">
-                        <div class="lesson-cast-avatar" data-cast-idx="${Number(step.castIdx || 0)}">${renderCastAvatar(step.castIdx, 'calm')}</div>
+                        <button type="button" class="lesson-cast-avatar" data-cast-idx="${Number(step.castIdx || 0)}" title="แตะเพื่อรับกำลังใจ">${renderCastAvatar(step.castIdx, 'calm')}</button>
                         <div class="lesson-speech-bubble">
                             <div class="lesson-audio-tools">
                                 <button type="button" class="glass-btn-icon small speak-btn lesson-speak-btn" aria-label="ฟังประโยค">🔊</button>
@@ -9085,7 +10031,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <div class="lesson-cast-row is-right">
-                        <div class="lesson-cast-avatar" data-cast-idx="${Number(step.castIdx || 0) + 1}">${renderCastAvatar((step.castIdx || 0) + 1, 'calm')}</div>
+                        <button type="button" class="lesson-cast-avatar" data-cast-idx="${Number(step.castIdx || 0) + 1}" title="แตะเพื่อรับกำลังใจ">${renderCastAvatar((step.castIdx || 0) + 1, 'calm')}</button>
                         <div class="lesson-speech-bubble lesson-dialogue-reply-bubble${step.selectedChoice !== null ? ' is-filled' : ''}" data-reply-preview>
                             <span>${escapeHtml(previewText)}</span>
                         </div>
@@ -9106,10 +10052,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const chosen = Number(btn.dataset.choiceIdx);
           step.selectedChoice = chosen;
           body.querySelectorAll('.lesson-opt-btn').forEach(b => b.classList.toggle('is-selected', b instanceof HTMLElement && Number(b.dataset.choiceIdx) === chosen));
-          if (replyBubble) {
-            replyBubble.textContent = step.choiceTexts[chosen];
+          if (replyBubble instanceof HTMLElement) {
+            const spanEl = replyBubble.querySelector('span');
+            if (spanEl) spanEl.textContent = step.choiceTexts[chosen];
+            else replyBubble.textContent = step.choiceTexts[chosen];
             replyBubble.classList.add('is-filled');
+            OxMotion.springPop(replyBubble);
           }
+          OxMotion.springPop(btn);
           SoundFX.tick();
           syncLessonCheckButton();
         });
@@ -9117,11 +10067,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // --- SENTENCE CLOZE INLINE ---
+    // --- SENTENCE CLOZE INLINE (Screenshot 6 Visual Cloze Pill Strip) ---
     if (step.type === 'sentence_cloze_inline') {
       const optsHtml = Array.isArray(step.options) ? step.options.map((optIdx, n) => `
-                <button type="button" class="lesson-opt-btn${step.selectedChoice === optIdx ? ' is-selected' : ''}" data-opt-idx="${optIdx}" data-opt-pos="${n + 1}">
-                    <span class="lesson-opt-num">${n + 1}</span>
+                <button type="button" class="lesson-opt-btn lesson-cloze-pill${step.selectedChoice === optIdx ? ' is-selected' : ''}" data-opt-idx="${optIdx}" data-opt-pos="${n + 1}">
                     <span>${escapeHtml(wordsData[optIdx].word)}</span>
                 </button>`).join('') : '';
 
@@ -9130,17 +10079,22 @@ document.addEventListener('DOMContentLoaded', () => {
         : (step._useKeyboard && step.keyboardVal.trim() ? step.keyboardVal.trim() : '');
 
       body.innerHTML = `
-                <span class="lesson-prompt-tag">เติมคำในประโยคให้ถูกต้อง${retryTag}</span>
-                <h2 class="lesson-prompt-heading">เลือกคำเติมลงในช่องว่าง</h2>
-                <div class="lesson-cloze-card">
-                    <div class="lesson-cloze-sentence">${renderHintableSentenceHtml(step.maskedSentence, true)}</div>
-                    <p class="lesson-question-sub">ความหมาย: ${escapeHtml(w.exampleTranslation || w.translation)}</p>
+                ${step.clozeContextTag ? `<span class="lesson-prompt-tag">${escapeHtml(step.clozeContextTag)}${retryTag}</span>` : (retryTag ? `<span class="lesson-prompt-tag">ทบทวนอีกครั้ง</span>` : '')}
+                <h2 class="lesson-prompt-heading">เติมในช่องว่าง</h2>
+                <div class="lesson-cloze-scene">
+                    <div class="lesson-cloze-illustration">${renderClozeSceneSvg(w)}</div>
+                    <div class="lesson-cloze-text-wrap">
+                        <div class="lesson-cloze-sentence">${renderHintableSentenceHtml(step.maskedSentence, true)}</div>
+                        <p class="lesson-question-sub">${escapeHtml(step.subTranslation || w.exampleTranslation || w.translation)}</p>
+                    </div>
                 </div>
                 ${step._useKeyboard ? `
                     <div class="lesson-spelling-row">
                         <input type="text" class="lesson-spelling-input" placeholder="พิมพ์คำที่หายไป (${escapeHtml(step.targetSurface.charAt(0).toUpperCase())}..., ${step.targetSurface.length} ตัวอักษร)..." autocomplete="off" autocapitalize="none" spellcheck="false">
-                    </div>` : `<div class="lesson-options-grid" id="lesson-options-grid">${optsHtml}</div>`}
+                    </div>` : `<div class="lesson-options-grid is-cloze-pills" id="lesson-options-grid">${optsHtml}</div>`}
+                ${buildCoachHelperHtml(w)}
             `;
+      wireCoachHelper(body);
       const slotEl = body.querySelector('[data-cloze-slot]');
       if (slotEl && selectedWordText) {
         slotEl.textContent = selectedWordText;
@@ -9178,10 +10132,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const optIdx = Number(btn.dataset.optIdx);
             step.selectedChoice = optIdx;
             body.querySelectorAll('.lesson-opt-btn').forEach(b => b.classList.toggle('is-selected', b instanceof HTMLElement && Number(b.dataset.optIdx) === optIdx));
-            if (slotEl && wordsData[optIdx]) {
+            if (slotEl instanceof HTMLElement && wordsData[optIdx]) {
               slotEl.textContent = wordsData[optIdx].word;
               slotEl.classList.add('is-filled');
+              OxMotion.springPop(slotEl);
             }
+            OxMotion.springPop(btn);
             SoundFX.tick();
             syncLessonCheckButton();
           });
@@ -9226,10 +10182,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `<div class="lesson-audio-tools"><button type="button" class="glass-btn-icon small speak-btn lesson-speak-btn" aria-label="ฟังเสียงประโยค">🔊</button><button type="button" class="glass-btn-icon small lesson-speak-slow-btn" title="ฟังช้า (0.62x)" aria-label="ฟังเสียงช้า">🐢</button></div><span>${renderHintableSentenceHtml(step.promptEn)}</span>`
         : `<span>${escapeHtml(step.promptTh)}</span>`;
       body.innerHTML = `
-                <span class="lesson-prompt-tag">แปลและเรียงประโยค${retryTag}</span>
+                ${retryTag ? `<span class="lesson-prompt-tag">ทบทวนอีกครั้ง</span>` : ''}
                 <h2 class="lesson-prompt-heading">${isThaiTarget ? 'เขียนเป็นภาษาไทย' : 'เรียงเป็นประโยคภาษาอังกฤษ'}</h2>
                 <div class="lesson-cast-row">
-                    <div class="lesson-cast-avatar" data-cast-idx="${Number(step.castIdx || 0)}">${renderCastAvatar(step.castIdx, 'calm')}</div>
+                    <button type="button" class="lesson-cast-avatar" data-cast-idx="${Number(step.castIdx || 0)}" title="แตะเพื่อรับกำลังใจ">${renderCastAvatar(step.castIdx, 'calm')}</button>
                     <div class="lesson-speech-bubble">${bubbleHtml}</div>
                 </div>
                 ${step._useKeyboard ? `
@@ -9250,16 +10206,46 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // --- BUBBLE VOCAB SELECTION (Screenshot 1) ---
-    const isThToEn = step.direction === 'th_to_en';
-    const promptHeading = isThToEn ? 'เลือกคำศัพท์ภาษาอังกฤษที่ถูกต้อง' : 'เลือกความหมายที่ถูกต้อง';
-    const bubbleText = isThToEn
-      ? `<span>${escapeHtml(w.translation)}</span>`
-      : `<button type="button" class="glass-btn-icon small speak-btn lesson-speak-btn" aria-label="ฟังเสียงอ่าน">🔊</button><span>${escapeHtml(w.word)} <small style="color:var(--text-muted); font-weight:600;">${escapeHtml(w.phonetic || '')}</small></span>`;
+    // --- BUBBLE VOCAB SELECTION (Multi-Angle: EN->TH, TH->EN, Definition, Synonym, Antonym, Collocation) ---
+    const angle = step.quizAngle || step.direction || 'en_to_th';
+    const isEnOptions = angle !== 'en_to_th';
+    let promptTag = retryTag ? 'ทบทวนอีกครั้ง' : '';
+    let promptHeading = isEnOptions ? 'เลือกคำศัพท์ภาษาอังกฤษที่ถูกต้อง' : 'เลือกความหมายที่ถูกต้อง';
+    let bubbleClass = 'lesson-speech-bubble';
+    let bubbleText = '';
+
+    if (angle === 'def_to_en') {
+      promptTag = `ทายคำจากคำนิยาม (Definition)${retryTag}`;
+      promptHeading = 'เลือกคำศัพท์ที่ตรงกับคำนิยามนี้';
+      bubbleClass += ' is-angle-card';
+      const clueHtml = activeLesson.difficultyTier <= 1 && step.angleThClue
+        ? `<span class="lesson-angle-clue">ใบ้ความหมาย: ${escapeHtml(step.angleThClue)}</span>`
+        : '';
+      bubbleText = `<div class="lesson-angle-meta"><span class="lesson-angle-pill">📖 ${escapeHtml(w.partOfSpeech || 'Definition')}</span>${clueHtml}</div><span class="lesson-angle-headline">"${escapeHtml(step.angleMeta || w.definition || '')}"</span>`;
+    } else if (angle === 'syn_to_en') {
+      promptTag = `คำที่มีความหมายใกล้เคียง (Synonym)${retryTag}`;
+      promptHeading = 'เลือกคำศัพท์ที่มีความหมายใกล้เคียงกัน';
+      bubbleClass += ' is-angle-card';
+      bubbleText = `<div class="lesson-angle-meta"><span class="lesson-angle-pill is-syn">≈ Synonym</span>${step.angleThClue ? `<span class="lesson-angle-clue">${escapeHtml(w.partOfSpeech || '')} · แนวความหมาย "${escapeHtml(step.angleThClue)}"</span>` : ''}</div><span class="lesson-angle-headline">≈ ${escapeHtml(step.angleMeta || '')}</span>`;
+    } else if (angle === 'ant_to_en') {
+      promptTag = `คำที่มีความหมายตรงข้าม (Antonym)${retryTag}`;
+      promptHeading = 'เลือกคำศัพท์ที่มีความหมายตรงข้าม';
+      bubbleClass += ' is-angle-card';
+      bubbleText = `<div class="lesson-angle-meta"><span class="lesson-angle-pill is-ant">↔ Antonym</span><span class="lesson-angle-clue">${escapeHtml(w.partOfSpeech || '')}</span></div><span class="lesson-angle-headline">ตรงข้ามกับ "${escapeHtml(step.angleMeta || '')}"</span>`;
+    } else if (angle === 'colloc_to_en') {
+      promptTag = `เติมวลีที่ใช้คู่กัน (Collocation)${retryTag}`;
+      promptHeading = 'เลือกคำศัพท์ที่เติมในวลีนี้ได้ถูกต้อง';
+      bubbleClass += ' is-angle-card';
+      bubbleText = `<div class="lesson-angle-meta"><span class="lesson-angle-pill is-colloc">🔗 Collocation</span>${step.angleThClue ? `<span class="lesson-angle-clue">หมายถึง: ${escapeHtml(step.angleThClue)}</span>` : ''}</div><span class="lesson-angle-headline">"${escapeHtml(step.angleMasked || '______')}"</span>`;
+    } else if (angle === 'th_to_en') {
+      bubbleText = `<span>${escapeHtml(w.translation)}</span>`;
+    } else {
+      bubbleText = `<button type="button" class="glass-btn-icon small speak-btn lesson-speak-btn" aria-label="ฟังเสียงอ่าน">🔊</button><span>${escapeHtml(w.word)} <small style="color:var(--text-muted); font-weight:600;">${escapeHtml(w.phonetic || '')}</small></span>`;
+    }
 
     const optsHtml = (step.options || []).map((optIdx, n) => {
       const ow = wordsData[optIdx];
-      const label = isThToEn ? ow.word : ow.translation;
+      const label = isEnOptions ? ow.word : ow.translation;
       return `
                 <button type="button" class="lesson-opt-btn${step.selectedChoice === optIdx ? ' is-selected' : ''}" data-opt-idx="${optIdx}" data-opt-pos="${n + 1}">
                     <span class="lesson-opt-num">${n + 1}</span>
@@ -9268,14 +10254,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
 
     body.innerHTML = `
-            <span class="lesson-prompt-tag">เลือกคำศัพท์ · ${escapeHtml(w.partOfSpeech || '')}${retryTag}</span>
+            ${promptTag ? `<span class="lesson-prompt-tag">${escapeHtml(promptTag)}</span>` : ''}
             <h2 class="lesson-prompt-heading">${promptHeading}</h2>
             <div class="lesson-cast-row">
-                <div class="lesson-cast-avatar" data-cast-idx="${Number(step.castIdx || 0)}">${renderCastAvatar(step.castIdx, 'calm')}</div>
-                <div class="lesson-speech-bubble">${bubbleText}</div>
+                <button type="button" class="lesson-cast-avatar" data-cast-idx="${Number(step.castIdx || 0)}" title="แตะเพื่อรับกำลังใจ">${renderCastAvatar(step.castIdx, 'calm')}</button>
+                <div class="${bubbleClass}">${bubbleText}</div>
             </div>
             <div class="lesson-options-grid is-vertical" id="lesson-options-grid">${optsHtml}</div>
+            ${buildCoachHelperHtml(w)}
         `;
+    wireCoachHelper(body);
     const spk = body.querySelector('.lesson-speak-btn');
     if (spk) {
       spk.addEventListener('click', () => speakWordOverride(w.word, true, spk));
@@ -9287,6 +10275,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const chosenIdx = Number(btn.dataset.optIdx);
         step.selectedChoice = chosenIdx;
         body.querySelectorAll('.lesson-opt-btn').forEach(b => b.classList.toggle('is-selected', b instanceof HTMLElement && Number(b.dataset.optIdx) === chosenIdx));
+        OxMotion.springPop(btn);
         SoundFX.tick();
         syncLessonCheckButton();
       });
@@ -9297,6 +10286,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!activeLesson) return null;
     const step = activeLesson.queue[activeLesson.index];
     const w = wordsData[step.wordIdx];
+
+    if (step.type === 'pair_match') {
+      const ok = !isSkip && Array.isArray(step.matchedIds) && step.matchedIds.length >= step.pairs.length;
+      const summaryLine = step.pairs.map(p => `${p.en} (${p.th})`).join(' · ');
+      return {
+        isCorrect: ok,
+        nearMiss: ok && Number(step.mistakesCount || 0) > 2,
+        correctDisplay: `${step.pairs.length}/${step.pairs.length} คู่`,
+        feedbackDetail: summaryLine,
+        speakText: w.word,
+        wordObj: w
+      };
+    }
 
     if (step.type === 'dialogue_complete') {
       const dlg = step.dialogue;
@@ -9315,12 +10317,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const ok = !isSkip && step.selectedChoice === step.wordIdx;
       const wrongOpt = !ok && !isSkip && step.selectedChoice !== null ? wordsData[step.selectedChoice] : null;
       const wrongNote = wrongOpt ? ` (ที่คุณเลือก: "${wrongOpt.word}" = ${wrongOpt.translation})` : '';
+      const qAngle = step.quizAngle || step.direction || 'en_to_th';
+      let baseDetail = w.example ? `${w.example} — ${w.exampleTranslation || ''}` : `${w.word} · ${w.translation}`;
+      if (qAngle === 'syn_to_en' && step.angleMeta) {
+        baseDetail = `${w.word} (${w.translation}) ≈ ความหมายใกล้เคียงกับ "${step.angleMeta}"`;
+      } else if (qAngle === 'ant_to_en' && step.angleMeta) {
+        baseDetail = `${w.word} (${w.translation}) ↔ ตรงข้ามกับ "${step.angleMeta}"`;
+      } else if (qAngle === 'colloc_to_en' && step.angleMeta) {
+        baseDetail = `วลีที่ใช้คู่กัน: "${step.angleMeta}" — ${w.word} (${w.translation})`;
+      } else if (qAngle === 'def_to_en' && w.definition) {
+        baseDetail = `${w.word} (${w.translation}) — นิยาม: ${w.definition}`;
+      }
       return {
         isCorrect: ok,
         nearMiss: false,
         correctDisplay: `${w.word} (${w.translation})`,
-        feedbackDetail: (w.example ? `${w.example} — ${w.exampleTranslation || ''}` : `${w.word} · ${w.translation}`) + wrongNote,
-        speakText: w.example || w.word,
+        feedbackDetail: baseDetail + wrongNote,
+        speakText: qAngle === 'colloc_to_en' && step.angleMeta ? step.angleMeta : (w.example || w.word),
         wordObj: w
       };
     }
@@ -9336,7 +10349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isCorrect: grade.ok,
         nearMiss: grade.nearMiss,
         correctDisplay: step.targetSurface,
-        feedbackDetail: `${fullSentence} (${w.exampleTranslation || w.translation})${wrongNote}`,
+        feedbackDetail: `${fullSentence} (${step.subTranslation || w.exampleTranslation || w.translation})${wrongNote}`,
         speakText: fullSentence,
         wordObj: w
       };
@@ -9349,7 +10362,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isCorrect: res.ok,
         nearMiss: res.nearMiss,
         correctDisplay: step.targetSurface,
-        feedbackDetail: `${w.word} (${w.translation}) · ${w.exampleTranslation || ''}`,
+        feedbackDetail: `${w.word} (${w.translation}) · ${step.subTranslation || w.exampleTranslation || ''}`,
         speakText: fullSentence,
         wordObj: w
       };
@@ -9367,8 +10380,8 @@ document.addEventListener('DOMContentLoaded', () => {
         nearMiss: res.nearMiss,
         correctDisplay: fullCorrect,
         feedbackDetail: isThai
-          ? `${step.promptEn} = ${w.exampleTranslation}`
-          : `${fullCorrect} (${step.type === 'listening_word_bank' ? step.translationNote : w.exampleTranslation})`,
+          ? `${step.promptEn} = ${step.answerTh || w.exampleTranslation}`
+          : `${fullCorrect} (${step.type === 'listening_word_bank' ? step.translationNote : (step.promptTh || w.exampleTranslation)})`,
         speakText: isThai ? step.promptEn : fullCorrect,
         wordObj: w
       };
@@ -9403,7 +10416,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (comboPillEl) {
       comboPillEl.hidden = nextCombo < 2;
       if (nextCombo >= 2) {
-        comboPillEl.textContent = `🔥 x${nextCombo}`;
+        comboPillEl.textContent = `🔥 ${nextCombo} ข้อรวด!`;
         OxMotion.pulseClass(comboPillEl, 'is-combo-pop');
       }
     }
@@ -9536,6 +10549,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!step.requeued) {
       activeLesson.answeredUnique++;
       if (evalRes.isCorrect) activeLesson.firstTryCorrect++;
+      if (activeLesson.wordOutcomes && activeLesson.wordOutcomes[step.wordIdx] !== 'wrong') {
+        activeLesson.wordOutcomes[step.wordIdx] = evalRes.isCorrect ? 'known' : 'wrong';
+      }
     }
 
     const outcomeOpts = {
@@ -9547,6 +10563,12 @@ document.addEventListener('DOMContentLoaded', () => {
       activeLesson.maxCombo = Math.max(activeLesson.maxCombo, activeLesson.combo);
       SoundFX.known(activeLesson.combo);
       recordLessonWordOutcome(step.wordIdx, true, outcomeOpts);
+      const fillNow = $('lesson-progress-fill');
+      if (fillNow) {
+        const pctNow = Math.min(100, Math.round(((activeLesson.index + 1) / Math.max(1, activeLesson.queue.length)) * 100));
+        fillNow.style.width = `${pctNow}%`;
+        OxMotion.pulseClass(fillNow, 'is-advancing', 540);
+      }
     } else {
       activeLesson.combo = 0;
       if (isSkip) SoundFX.skip();
@@ -9559,12 +10581,19 @@ document.addEventListener('DOMContentLoaded', () => {
           chosenIds: [],
           selectedChoice: null,
           keyboardVal: '',
+          matchedIds: step.type === 'pair_match' ? [] : undefined,
+          selectedLeftId: null,
+          selectedRightId: null,
+          mistakesCount: 0,
           _useKeyboard: step.type === 'sentence_cloze_inline' && !Array.isArray(step.options),
           _rerenderBank: undefined,
           requeued: true
         };
         if (retryStep.type === 'choice_bubble_match' || retryStep.type === 'sentence_cloze_inline') {
           // keep valid options array; just reset selection
+        } else if (retryStep.type === 'pair_match' && Array.isArray(step.pairs)) {
+          retryStep.leftIds = shuffle(step.pairs.map(p => p.id));
+          retryStep.rightIds = shuffle(step.pairs.map(p => p.id));
         } else if (retryStep.bankItems) {
           retryStep.bankItems = shuffle([...retryStep.bankItems]);
         }
@@ -9577,21 +10606,64 @@ document.addEventListener('DOMContentLoaded', () => {
     const fbIcon = $('lesson-feedback-icon');
     const fbTitle = $('lesson-feedback-title');
     const fbDetail = $('lesson-feedback-detail');
+    const fbInsight = $('lesson-feedback-insight');
+    const rateChips = $('lesson-rate-chips');
     const fbSpkBtn = $('btn-lesson-feedback-speak');
 
     if (actBar) actBar.hidden = true;
     if (fbBar && fbIcon && fbTitle && fbDetail) {
       fbBar.classList.toggle('is-correct', evalRes.isCorrect);
       fbBar.classList.toggle('is-wrong', !evalRes.isCorrect);
-      fbIcon.textContent = evalRes.isCorrect ? '✓' : '↻';
+      fbIcon.innerHTML = evalRes.isCorrect
+        ? '<svg class="fb-svg-check" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path class="fb-check-path" d="M5 13l4 4L19 7"/></svg>'
+        : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>';
+      const cheersHeadlines = ['เยี่ยม!', 'ดีมาก!', 'เป๊ะเลย!', 'สุดยอด!'];
       if (evalRes.isCorrect) {
-        fbTitle.textContent = evalRes.nearMiss ? `ถูกต้อง! (ระวังตัวสะกด: ${evalRes.correctDisplay})` : 'ยอดเยี่ยม! ถูกต้อง';
+        fbTitle.textContent = evalRes.nearMiss ? `ถูกต้อง! (ระวังตัวสะกด: ${evalRes.correctDisplay})` : cheersHeadlines[activeLesson.index % cheersHeadlines.length];
       } else {
         fbTitle.textContent = `${isSkip ? 'ข้ามข้อนี้ · ' : ''}คำตอบที่ถูก: ${evalRes.correctDisplay}`;
       }
       fbDetail.textContent = evalRes.isCorrect
         ? evalRes.feedbackDetail
         : `${evalRes.feedbackDetail} · จะวนกลับมาให้ทบทวนตอนท้ายด่าน`;
+      if (fbInsight) {
+        const wo = evalRes.wordObj;
+        const insightCandidates = [];
+        if (wo?.grammarPattern || wo?.usageTip) {
+          const gParts = [];
+          if (wo.grammarPattern) gParts.push(`[${wo.grammarPattern}]`);
+          if (wo.usageTip) gParts.push(wo.usageTip);
+          insightCandidates.push(gParts.join(' '));
+        }
+        if (Array.isArray(wo?.collocations) && wo.collocations.length > 0) {
+          insightCandidates.push(`วลีที่ใช้คู่กัน: ${wo.collocations.slice(0, 3).join(' · ')}`);
+        }
+        const relSyns = getCleanRelatedWords(wo?.synonyms, wo?.word).slice(0, 3);
+        const relAnts = getCleanRelatedWords(wo?.antonyms, wo?.word).slice(0, 2);
+        if (relSyns.length > 0 || relAnts.length > 0) {
+          const relBits = [];
+          if (relSyns.length > 0) relBits.push(`คำใกล้เคียง: ${relSyns.join(', ')}`);
+          if (relAnts.length > 0) relBits.push(`ตรงข้าม: ${relAnts.join(', ')}`);
+          insightCandidates.push(relBits.join(' · '));
+        }
+        if (wo?.rootBreakdown) {
+          insightCandidates.push(`รากศัพท์: ${wo.rootBreakdown}`);
+        }
+        if (wo?.extraExample) {
+          insightCandidates.push(`ตัวอย่างเสริม: "${wo.extraExample}"${wo.extraExampleTranslation ? ` (${wo.extraExampleTranslation})` : ''}`);
+        }
+        const insightMsg = insightCandidates.length > 0
+          ? insightCandidates[(activeLesson.index + (activeLesson.replaySalt || 0) + (activeLesson.roundNum || 1)) % insightCandidates.length]
+          : '';
+        if (insightMsg) {
+          fbInsight.textContent = `💡 ${insightMsg}`;
+          fbInsight.hidden = false;
+        } else {
+          fbInsight.textContent = '';
+          fbInsight.hidden = true;
+        }
+      }
+      if (rateChips) rateChips.hidden = false;
       fbBar.hidden = false;
     }
     if (fbSpkBtn) {
@@ -9637,14 +10709,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fbBar) fbBar.hidden = true;
     if (actBar) actBar.hidden = true;
 
+    const isVirtual = Boolean(stage.isVirtual);
     const acc = Math.round((activeLesson.firstTryCorrect / Math.max(1, activeLesson.uniqueTotal)) * 100);
-    const bossFailed = !!(stage.isBoss && acc < 70);
-    const legendaryFailed = lessonMode === 'legendary' && acc < 85;
+    const bossFailed = !!(!isVirtual && stage.isBoss && acc < 70);
+    const legendaryFailed = !isVirtual && lessonMode === 'legendary' && acc < 85;
     const stagePassed = !bossFailed && !legendaryFailed;
     const stars = acc >= 90 ? 3 : acc >= 70 ? 2 : 1;
 
     let earnedXp;
-    if (lessonMode === 'legendary') {
+    if (isVirtual) {
+      earnedXp = stars >= 3 ? 12 : 8;
+    } else if (lessonMode === 'legendary') {
       earnedXp = legendaryFailed ? 10 : 40 + (acc === 100 ? 5 : 0);
     } else if (lessonMode === 'practice') {
       earnedXp = stars >= 3 ? 8 : 5;
@@ -9654,16 +10729,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ensureTodayQuests();
     const prevStreakVal = typeof computeStreak === 'function' ? computeStreak() : 0;
-    const unitStageIds = (unit.nodes || []).filter(n => n.kind === 'stage').map(n => n.id);
+    const unitStageIds = isVirtual ? [] : (unit.nodes || []).filter(n => n.kind === 'stage').map(n => n.id);
     const unitWasComplete = unitStageIds.length > 0 && unitStageIds.every(id => isStagePassedFull(id));
     const totalRounds = activeLesson.totalRounds || getStageTotalRounds(stage);
     const roundNum = activeLesson.roundNum || 1;
-    const prevDone = getStageDoneRounds(stage.id);
+    const prevDone = isVirtual ? 0 : getStageDoneRounds(stage.id);
     let newDone = prevDone;
     learnState.xp += earnedXp;
     learnState.dailyQuests.xpToday += earnedXp;
 
-    if (stagePassed) {
+    if (stagePassed && !isVirtual) {
       newDone = lessonMode === 'normal' ? Math.min(totalRounds, prevDone + 1) : Math.max(prevDone, totalRounds);
       if (newDone >= totalRounds) learnState.dailyQuests.stagesToday += 1;
       if (acc >= 80) learnState.dailyQuests.perfectToday += 1;
@@ -9685,6 +10760,10 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (nextStreakVal > prevStreakVal) SoundFX.streak();
       else SoundFX.victory();
       OxConfetti.launch((acc >= 90 || lessonMode === 'legendary') ? 'perfect' : 'good');
+    } else if (stagePassed && isVirtual) {
+      if (acc >= 80) learnState.dailyQuests.perfectToday += 1;
+      SoundFX.victory();
+      OxConfetti.launch(acc >= 90 ? 'perfect' : 'good');
     } else {
       SoundFX.review();
     }
@@ -9693,21 +10772,22 @@ document.addEventListener('DOMContentLoaded', () => {
     trackGAEvent('learn_lesson_complete', {
       unit_id: stage.unitId || '',
       stage_id: stage.id || '',
-      mode: lessonMode,
+      mode: isVirtual ? 'virtual_drill' : lessonMode,
       passed: stagePassed,
       accuracy: acc,
       xp_earned: earnedXp
     });
     refreshShellTelemetry();
-    if (stagePassed) {
+    if (stagePassed && !isVirtual) {
       pendingScrollToCurrentLearn = true;
     }
     renderLearnPath(true);
 
     if (body) {
-      const hasNextRound = stagePassed && lessonMode === 'normal' && newDone < totalRounds;
+      const hasNextRound = !isVirtual && stagePassed && lessonMode === 'normal' && newDone < totalRounds;
       let summaryTitle = hasNextRound ? `ผ่านบทที่ ${newDone}/${totalRounds} แล้ว!` : 'ผ่านด่านครบ 100%!';
-      if (bossFailed) summaryTitle = 'เกือบผ่านแล้ว! ลองอีกครั้งนะ';
+      if (isVirtual) summaryTitle = 'ฝึกเฉพาะจุดสำเร็จ! ความจำแม่นขึ้นแล้ว';
+      else if (bossFailed) summaryTitle = 'เกือบผ่านแล้ว! ลองอีกครั้งนะ';
       else if (legendaryFailed) summaryTitle = 'เกือบถึงระดับตำนาน! (ต้องแม่น ≥ 85%)';
       else if (lessonMode === 'legendary') summaryTitle = '👑 พิชิตระดับตำนานสำเร็จ!';
       else if (lessonMode === 'practice') summaryTitle = 'ทบทวนสำเร็จ! ความจำแม่นขึ้นแล้ว';
@@ -9717,11 +10797,40 @@ document.addEventListener('DOMContentLoaded', () => {
         ? Array.from({ length: 3 }, (_, idx) => `<span class="lesson-star-pop">${idx < stars ? '⭐' : '☆'}</span>`).join('')
         : '<span class="lesson-star-pop">💪</span>';
       const mascotHtml = `<div class="lesson-complete-mascot lesson-cast-avatar ${stagePassed ? 'mood-happy' : 'mood-retry'}">${renderCastAvatar(0, stagePassed ? 'happy' : 'retry', stagePassed ? (lessonMode === 'legendary' ? 'ระดับตำนาน! 👑' : 'สุดยอดเลย! 🎉') : 'ลองใหม่ได้เสมอ!')}</div>`;
-      const subText = hasNextRound
-        ? `${escapeHtml(unit.title)} · ${escapeHtml(stage.label)} (บทถัดไปท้าทายขึ้น)`
-        : `${escapeHtml(unit.title)} · ${escapeHtml(stage.label)} · บทที่ ${roundNum}/${totalRounds}`;
+      const subText = isVirtual
+        ? `${escapeHtml(unit.title)} · ${escapeHtml(stage.label)}`
+        : (hasNextRound
+          ? `${escapeHtml(unit.title)} · ${escapeHtml(stage.label)} (บทถัดไปท้าทายขึ้น)`
+          : `${escapeHtml(unit.title)} · ${escapeHtml(stage.label)} · บทที่ ${roundNum}/${totalRounds}`);
+
+      const outcomeEntries = Object.entries(activeLesson.wordOutcomes || {}).map(([wIdxStr, res]) => ({
+        wordIdx: Number(wIdxStr),
+        word: wordsData[Number(wIdxStr)],
+        isCorrect: res === 'known'
+      })).filter(o => o.word);
+      const mistakeIndices = outcomeEntries.filter(o => !o.isCorrect).map(o => o.wordIdx);
+      const wordsSummaryHtml = outcomeEntries.length > 0 ? `
+                    <div class="lesson-complete-words">
+                        <div class="lesson-complete-words-head">คำศัพท์ที่ฝึกในรอบนี้ (${outcomeEntries.length} คำ)</div>
+                        <div class="lesson-complete-words-list">
+                            ${outcomeEntries.slice(0, 8).map(o => `
+                                <div class="lesson-complete-word-row ${o.isCorrect ? 'is-ok' : 'is-miss'}">
+                                    <span class="lesson-cw-badge">${o.isCorrect ? '✓' : '↻'}</span>
+                                    <div class="lesson-cw-main">
+                                        <strong>${escapeHtml(o.word.word)}</strong>
+                                        <span>${escapeHtml(String(o.word.translation || '').split(/[,;\/]/)[0].trim())}</span>
+                                        ${!o.isCorrect && (o.word.usageTip || o.word.grammarPattern) ? `<small>💡 ${escapeHtml(o.word.usageTip || o.word.grammarPattern)}</small>` : ''}
+                                    </div>
+                                    <button type="button" class="glass-btn-icon small lesson-cw-speak" data-cw-speak="${escapeHtml(o.word.word)}" aria-label="ฟังเสียง ${escapeHtml(o.word.word)}">🔊</button>
+                                </div>`).join('')}
+                        </div>
+                    </div>` : '';
+
       const nextRoundBtnHtml = hasNextRound
         ? `<button type="button" class="btn btn-primary glass-btn btn-full lesson-next-round-btn">เล่นบทที่ ${newDone + 1}/${totalRounds} ต่อ →</button>`
+        : '';
+      const retryMistakesBtnHtml = mistakeIndices.length > 0
+        ? `<button type="button" class="btn glass-btn btn-full lesson-retry-mistakes-btn">🎯 ทบทวนเฉพาะคำที่พลาด (${mistakeIndices.length} คำ)</button>`
         : '';
       const doneBtnClass = hasNextRound ? 'btn glass-btn btn-full lesson-done-btn' : 'btn btn-primary glass-btn btn-full lesson-done-btn';
 
@@ -9745,12 +10854,29 @@ document.addEventListener('DOMContentLoaded', () => {
                             <small>คอมโบสูงสุด</small>
                         </div>
                     </div>
+                    ${wordsSummaryHtml}
                     <div class="lesson-complete-actions">
                         ${nextRoundBtnHtml}
+                        ${retryMistakesBtnHtml}
                         <button type="button" class="${doneBtnClass}">กลับสู่เส้นทางเรียนรู้</button>
                     </div>
                 </div>`;
       OxMotion.pulseClass(body, 'is-step-entering');
+      body.querySelectorAll('[data-cw-speak]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const wTxt = btn instanceof HTMLElement ? btn.dataset.cwSpeak : '';
+          if (wTxt) speakWordOverride(wTxt, true, e.currentTarget);
+        });
+      });
+      body.querySelector('.lesson-retry-mistakes-btn')?.addEventListener('click', () => {
+        startVirtualLearnPractice({
+          id: `__retry_mistakes_${Date.now()}`,
+          title: unit.title,
+          label: `ทบทวนคำที่พลาด (${mistakeIndices.length} คำ)`,
+          wordIndices: mistakeIndices,
+          unit
+        });
+      });
       body.querySelector('.lesson-next-round-btn')?.addEventListener('click', () => {
         startLessonByStageId(stage.id, { mode: 'normal', roundNum: newDone + 1 });
       });
@@ -9779,6 +10905,47 @@ document.addEventListener('DOMContentLoaded', () => {
       SoundFX.next();
     }
     renderCurrentLessonStep();
+  });
+
+  // Tap-to-React Character mascot & cast encouragement quips inside stage
+  const LESSON_CAST_QUIPS = ['สู้ๆ นะ! ✨', 'คุณทำได้! 💪', 'ลองออกเสียงดูสิ 🗣️', 'เก่งขึ้นทุกวัน! 🌟', 'ลุยต่อเลย! 🚀'];
+  let lessonCastQuipPtr = 0;
+  $('lesson-stage-body')?.addEventListener('click', (e) => {
+    if (!activeLesson) return;
+    const av = e.target instanceof Element ? e.target.closest('.lesson-cast-avatar') : null;
+    if (!(av instanceof HTMLElement)) return;
+    const cIdx = Number(av.dataset.castIdx || 0);
+    const mood = av.classList.contains('mood-happy') ? 'happy' : (av.classList.contains('mood-retry') ? 'retry' : 'calm');
+    const quip = LESSON_CAST_QUIPS[lessonCastQuipPtr++ % LESSON_CAST_QUIPS.length];
+    av.innerHTML = renderCastAvatar(cIdx, mood, quip);
+    SoundFX.mascot();
+    OxMotion.springPop(av);
+  });
+
+  // Interactive self-rating chips in feedback dock (Easy / Hard / Review)
+  $('lesson-rate-chips')?.addEventListener('click', (e) => {
+    const chipsWrap = $('lesson-rate-chips');
+    const chip = e.target instanceof Element ? e.target.closest('.lesson-rate-chip') : null;
+    if (!(chip instanceof HTMLElement) || !chipsWrap || !activeLesson) return;
+    const rate = chip.dataset.rate;
+    if (!rate) return;
+
+    chipsWrap.querySelectorAll('.lesson-rate-chip').forEach(btn => btn.classList.toggle('is-chosen', btn === chip));
+    SoundFX.tick();
+    OxMotion.springPop(chip);
+
+    const step = activeLesson.queue[activeLesson.index];
+    const w = step ? wordsData[step.wordIdx] : null;
+    const key = w ? keyOf(w) : null;
+    if (key) {
+      const nextStatus = rate === 'easy' ? 'known' : 'review';
+      wordStatus[key] = nextStatus;
+      storage.set(STORAGE.status, wordStatus);
+      recordWordMastery(key, nextStatus);
+    }
+    if (rate === 'hard') showToast('📌 ปักหมุดคำนี้เป็น "ยาก" เพื่อทบทวนบ่อยขึ้น');
+    else if (rate === 'review') showToast('🔁 เพิ่มคำนี้ลงคลังเน้นทบทวนแล้ว');
+    else if (rate === 'easy') showToast('⚡ บันทึกแล้วว่าคำนี้ง่ายสำหรับคุณ');
   });
 
   const lessonExitModal = $('lesson-exit-modal');
@@ -11257,7 +12424,8 @@ document.addEventListener('DOMContentLoaded', () => {
     getCurriculumStats: () => OxCurriculum.getStats(),
     getCurriculumSections: () => OxCurriculum.sections,
     getLearnState: () => JSON.parse(JSON.stringify(learnState)),
-    startLessonStage: (stageId) => startLessonByStageId(stageId),
+    startLessonStage: (stageId, opts) => startLessonByStageId(stageId, opts),
+    getDialoguePoolStats: () => Object.fromEntries(Object.entries(OX_DIALOGUES_BY_TOPIC).map(([k, v]) => [k, v.length])),
     getActiveLesson: () => activeLesson ? { ...activeLesson, queueLen: activeLesson.queue.length } : null,
     isAnimating: () => isAnimating,
     currentScreen: () => currentScreen,

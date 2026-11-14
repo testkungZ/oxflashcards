@@ -180,8 +180,20 @@
                         <button type="button" class="section-pill" data-section="B2">ส่วนที่ 4 · B2</button>
                     </div>
                     <div class="learn-header-meta">
-                        <span class="learn-overall-label" id="learn-overall-label">ผ่านแล้ว 0 ด่าน · A1 (0/862 คำ)</span>
+                        <span class="learn-overall-label" id="learn-overall-label">ผ่านแล้ว 0 ด่าน · A1 (0/864 คำ)</span>
                         <button type="button" class="btn-jump-current" id="btn-learn-jump-current" title="เลื่อนไปยังด่านล่าสุด">ไปยังด่านล่าสุด</button>
+                    </div>
+                    <div class="learn-section-progress" aria-label="ความคืบหน้าคำศัพท์ในระดับ CEFR นี้">
+                        <div class="learn-section-progress-fill" id="learn-section-progress-fill" style="width: 0%;"></div>
+                    </div>
+                    <div class="learn-quick-tools" id="learn-quick-tools">
+                        <select id="learn-unit-jump-select" class="learn-unit-jump-select" aria-label="ข้ามไปยังหน่วยที่ต้องการ">
+                            <option value="">📍 ข้ามไปยังหน่วย...</option>
+                        </select>
+                        <div class="learn-quick-actions">
+                            <button type="button" class="learn-quick-btn is-weak" id="btn-learn-weak-drill" title="ฝึกคำศัพท์ที่กดผิดหรืออยู่ในรายการทบทวน">🎯 ฝึกคำอ่อน (<span id="learn-weak-count">0</span>)</button>
+                            <button type="button" class="learn-quick-btn is-review" id="btn-learn-quick-review" title="ฝึกทบทวนด่วนจากคำศัพท์ในระดับนี้">⚡ ทบทวนด่วน</button>
+                        </div>
                     </div>
                     <button type="button" class="learn-active-unit-pill" id="learn-active-unit-pill" hidden title="เลื่อนขึ้นไปยังหัวหน่วยนี้">
                         <span class="active-unit-dot" aria-hidden="true"></span>
@@ -207,13 +219,15 @@
             <section id="lesson-screen" class="screen focus-screen" aria-label="กำลังเรียนด่าน">
                 <div class="lesson-shell">
                     <header class="lesson-top-bar">
-                        <button type="button" id="btn-lesson-exit" class="glass-btn-icon small" title="ออกจากด่าน" aria-label="ออกจากด่าน">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                        <button type="button" id="btn-lesson-exit" class="lesson-exit-x-btn" title="ออกจากด่าน" aria-label="ออกจากด่าน">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                         </button>
-                        <div class="lesson-progress-track" aria-label="ความคืบหน้าด่าน">
-                            <div class="lesson-progress-fill" id="lesson-progress-fill" style="width: 0%;"></div>
+                        <div class="lesson-progress-wrap">
+                            <span class="lesson-combo-pill" id="lesson-combo-pill" hidden>🔥 2 ข้อรวด!</span>
+                            <div class="lesson-progress-track" aria-label="ความคืบหน้าด่าน">
+                                <div class="lesson-progress-fill" id="lesson-progress-fill" style="width: 0%;"></div>
+                            </div>
                         </div>
-                        <span class="lesson-combo-pill" id="lesson-combo-pill" hidden>🔥 x2</span>
                         <span class="lesson-acc-pill" id="lesson-acc-pill" title="ความแม่นยำปัจจุบัน">100%</span>
                     </header>
 
@@ -221,31 +235,41 @@
                         <span class="lesson-stage-pill" id="lesson-stage-pill">หน่วยที่ 1 · ด่าน 1</span>
                     </div>
 
-                    <div class="lesson-stage-body glass-panel" id="lesson-stage-body"></div>
+                    <div class="lesson-stage-body" id="lesson-stage-body"></div>
 
                     <div class="lesson-dock-wrap" id="lesson-dock-wrap">
                         <div class="lesson-action-bar" id="lesson-action-bar" hidden>
-                            <button type="button" id="btn-lesson-skip" class="btn glass-btn lesson-skip-btn">ข้าม</button>
-                            <button type="button" id="btn-lesson-mode-toggle" class="btn glass-btn lesson-mode-btn" hidden>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/></svg>
-                                <span id="lesson-mode-toggle-label">ใช้แป้นพิมพ์</span>
-                            </button>
-                            <button type="button" id="btn-lesson-check" class="btn btn-primary glass-btn lesson-check-btn" disabled>ตรวจ</button>
+                            <div class="lesson-dock-inner lesson-action-inner">
+                                <button type="button" id="btn-lesson-skip" class="btn-duo-flat lesson-skip-btn">ข้าม</button>
+                                <button type="button" id="btn-lesson-mode-toggle" class="btn-duo-flat lesson-mode-btn" hidden>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/></svg>
+                                    <span id="lesson-mode-toggle-label">ใช้แป้นพิมพ์</span>
+                                </button>
+                                <button type="button" id="btn-lesson-check" class="btn-duo-primary lesson-check-btn" disabled>ตรวจ</button>
+                            </div>
                         </div>
 
                         <div class="lesson-feedback-bar" id="lesson-feedback-bar" hidden>
-                            <div class="lesson-feedback-content">
-                                <div class="lesson-feedback-icon" id="lesson-feedback-icon" aria-hidden="true">✓</div>
-                                <div class="lesson-feedback-text">
-                                    <strong id="lesson-feedback-title">ยอดเยี่ยม!</strong>
-                                    <p id="lesson-feedback-detail"></p>
+                            <div class="lesson-dock-inner lesson-feedback-inner">
+                                <div class="lesson-feedback-content">
+                                    <div class="lesson-feedback-icon" id="lesson-feedback-icon" aria-hidden="true">✓</div>
+                                    <div class="lesson-feedback-text">
+                                        <strong id="lesson-feedback-title">ยอดเยี่ยม!</strong>
+                                        <p id="lesson-feedback-detail"></p>
+                                        <div class="lesson-feedback-insight" id="lesson-feedback-insight" hidden></div>
+                                        <div class="lesson-rate-chips" id="lesson-rate-chips" hidden>
+                                            <button type="button" class="lesson-rate-chip" data-rate="easy">⚡ ง่ายเกินไป</button>
+                                            <button type="button" class="lesson-rate-chip" data-rate="hard">⛰️ ยากเกินไป</button>
+                                            <button type="button" class="lesson-rate-chip" data-rate="review">🔁 เน้นทบทวนคำนี้</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="lesson-feedback-actions">
-                                <button type="button" id="btn-lesson-feedback-speak" class="glass-btn-icon small speak-btn" title="ฟังประโยคเต็ม" aria-label="ฟังประโยคเต็ม" hidden>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-                                </button>
-                                <button type="button" id="btn-lesson-continue" class="btn btn-primary glass-btn">ไปต่อ →</button>
+                                <div class="lesson-feedback-actions">
+                                    <button type="button" id="btn-lesson-feedback-speak" class="glass-btn-icon small speak-btn" title="ฟังประโยคเต็ม" aria-label="ฟังประโยคเต็ม" hidden>
+                                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                                    </button>
+                                    <button type="button" id="btn-lesson-continue" class="btn-duo-primary lesson-continue-btn">ไปต่อ</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1884,9 +1908,17 @@
                     <span class="hub-page-eyebrow" id="gb-subtitle">คู่มือคำศัพท์</span>
                     <h3 id="gb-title">หน่วยที่ 1</h3>
                 </div>
-                <button type="button" id="btn-gb-close" class="glass-btn-icon small" aria-label="ปิดคู่มือ">✕</button>
+                <div class="gb-header-actions">
+                    <button type="button" id="btn-gb-practice-unit" class="gb-practice-btn">▶ ฝึกหน่วยนี้</button>
+                    <button type="button" id="btn-gb-close" class="glass-btn-icon small" aria-label="ปิดคู่มือ">✕</button>
+                </div>
+            </div>
+            <div class="gb-mastery-row" id="gb-mastery-row">
+                <span id="gb-mastery-text">จำได้ 0/0 คำในหน่วยนี้</span>
+                <div class="gb-mastery-track"><div class="gb-mastery-fill" id="gb-mastery-fill" style="width:0%"></div></div>
             </div>
             <p class="gb-tip" id="gb-tip"></p>
+            <div class="gb-grammar-notes" id="gb-grammar-notes" hidden></div>
             <ul class="word-list gb-word-list" id="gb-word-list"></ul>
         </div>
     </div>
