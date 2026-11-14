@@ -25,7 +25,9 @@ const wordsData = [
     ],
     "usageTip": "almost = เกือบจะ (ใช้หน้า กริยา/Adj/Adv เช่น almost finished); ต่างจาก most (ส่วนใหญ่)",
     "phoneticUK": "/ˈɔːlmˌəʊst/",
-    "syllables": "al·most"
+    "syllables": "al·most",
+    "extraExample": "I almost forgot to bring my passport to the airport.",
+    "extraExampleTranslation": "ฉันเกือบลืมเอาหนังสือเดินทางไปสนามบินแล้ว"
   },
   {
     "word": "alone",
@@ -53,7 +55,10 @@ const wordsData = [
       "คนเดียว"
     ],
     "phoneticUK": "/əlˈəʊn/",
-    "syllables": "a·lone"
+    "syllables": "a·lone",
+    "extraExample": "She prefers to study alone in a quiet corner of the library.",
+    "extraExampleTranslation": "เธอชอบอ่านหนังสือคนเดียวในมุมเงียบๆ ของห้องสมุด",
+    "usageTip": "ใช้เป็นคำวิเศษณ์วางหลังคำกริยาเพื่อบอกว่าทำสิ่งใดตามลำพัง (live alone, work alone) ต่างจาก lonely ที่แปลว่าเหงาหรืออ้างว้าง"
   },
   {
     "word": "along",
@@ -80,7 +85,10 @@ const wordsData = [
       "ตาม",
       "ชายหาด"
     ],
-    "syllables": "a·long"
+    "syllables": "a·long",
+    "extraExample": "We walked along the river to enjoy the cool evening breeze.",
+    "extraExampleTranslation": "พวกเราเดินเลียบแม่น้ำเพื่อรับลมเย็นๆ ยามเย็น",
+    "usageTip": "เมื่อเป็นคำบุพบทจะตามด้วยคำนามเพื่อบอกทิศทาง 'ไปตาม/เลียบตามแนว' ของสิ่งที่เป็นเส้นหรือทางยาว เช่น ถนน ชายหาด แม่น้ำ"
   },
   {
     "word": "alongside",
@@ -106,7 +114,10 @@ const wordsData = [
       "จอด",
       "เทียบท่า"
     ],
-    "syllables": "a·long·side"
+    "syllables": "a·long·side",
+    "extraExample": "A stray dog trotted alongside as I rode my bicycle home.",
+    "extraExampleTranslation": "มีสุนัขจรจัดตัวหนึ่งวิ่งเหยาะๆ อยู่ข้างๆ ตอนฉันปั่นจักรยานกลับบ้าน",
+    "usageTip": "ใช้เป็นคำวิเศษณ์ได้โดยไม่ต้องมีคำนามตามหลัง มีความหมายว่า 'อยู่ข้างๆ กัน/เคียงข้างกัน' ในขณะที่กำลังทำสิ่งใดสิ่งหนึ่ง"
   },
   {
     "word": "aloud",
@@ -133,7 +144,10 @@ const wordsData = [
       "ออกมา",
       "ดังๆ"
     ],
-    "syllables": "a·loud"
+    "syllables": "a·loud",
+    "extraExample": "The teacher asked him to read the poem aloud to the class.",
+    "extraExampleTranslation": "คุณครูขอให้เขาอ่านบทกวีออกเสียงดังๆ ให้เพื่อนในห้องฟัง",
+    "usageTip": "หมายถึงการเปล่งเสียงออกมาให้คนอื่นได้ยิน (ตรงข้ามกับอ่านในใจหรือคิดในใจ) ไม่ได้แปลว่าเสียงดังหนวกหูเหมือน loud"
   },
   {
     "word": "alphabet",
@@ -164,7 +178,10 @@ const wordsData = [
       "ใน",
       "ภาษาอังกฤษ"
     ],
-    "syllables": "al·pha·bet"
+    "syllables": "al·pha·bet",
+    "extraExample": "Children usually learn the English alphabet by singing a song.",
+    "extraExampleTranslation": "เด็กๆ มักจะเรียนรู้ชุดตัวอักษรภาษาอังกฤษผ่านการร้องเพลง",
+    "usageTip": "ใช้หมายถึง 'ชุดตัวอักษรทั้งหมด' ของภาษาหนึ่ง (เช่น A-Z) มักใช้เป็นเอกพจน์ว่า the alphabet ส่วนตัวอักษรแต่ละตัวเรียกว่า letter"
   },
   {
     "word": "alphabetical",
@@ -193,7 +210,10 @@ const wordsData = [
     "synonyms": [
       "alphabetic"
     ],
-    "syllables": "al·pha·be·ti·cal"
+    "syllables": "al·pha·be·ti·cal",
+    "extraExample": "The teacher arranged all the students' names in alphabetical order on the list.",
+    "extraExampleTranslation": "คุณครูจัดเรียงรายชื่อนักเรียนทั้งหมดตามลำดับตัวอักษรในรายการ",
+    "usageTip": "เป็นคำคุณศัพท์ (adj.) นิยมใช้คู่กับ order หรือ list (in alphabetical order = เรียงตามลำดับตัวอักษร A-Z)"
   },
   {
     "word": "already",
@@ -222,7 +242,9 @@ const wordsData = [
       "not yet"
     ],
     "usageTip": "already (แล้ว) มักใช้ในประโยคบอกเล่า/คำถามเชิงประหลาดใจ; ประโยคปฏิเสธใช้ yet แทน",
-    "syllables": "al·rea·dy"
+    "syllables": "al·rea·dy",
+    "extraExample": "I have already finished packing my suitcase for tomorrow's trip.",
+    "extraExampleTranslation": "ฉันจัดกระเป๋าเดินทางสำหรับทริปพรุ่งนี้เสร็จเรียบร้อยแล้ว"
   },
   {
     "word": "also",
@@ -252,7 +274,10 @@ const wordsData = [
       "เหมือนกัน"
     ],
     "phoneticUK": "/ˈɔːlsəʊ/",
-    "syllables": "al·so"
+    "syllables": "al·so",
+    "extraExample": "She speaks fluent Japanese and she also understands a little Korean.",
+    "extraExampleTranslation": "เธอพูดภาษาญี่ปุ่นได้คล่อง และเธอยังเข้าใจภาษาเกาหลีอยู่บ้างอีกด้วย",
+    "usageTip": "มักวางไว้หน้ากริยาแท้ หรือหลัง V. to be (is/am/are) แต่ถ้าอยากวางท้ายประโยคในภาษาพูดนิยมใช้ too หรือ as well แทน"
   },
   {
     "word": "alter",
@@ -283,7 +308,10 @@ const wordsData = [
       "ได้"
     ],
     "phoneticUK": "/ˈɔːltə(r)/",
-    "syllables": "al·ter"
+    "syllables": "al·ter",
+    "extraExample": "We had to alter our travel plans because of the sudden storm.",
+    "extraExampleTranslation": "พวกเราต้องปรับเปลี่ยนแผนการเดินทางเนื่องจากพายุที่เกิดขึ้นกะทันหัน",
+    "usageTip": "แปลว่าปรับเปลี่ยนเล็กน้อยหรือแก้ไขบางส่วนโดยไม่ได้เปลี่ยนเป็นคนละอย่าง มักใช้กับแผนการ นิสัย หรือแก้ทรงเสื้อผ้า"
   },
   {
     "word": "alternative",
@@ -311,7 +339,10 @@ const wordsData = [
       "อื่น"
     ],
     "phoneticUK": "/ɔːltˈɜːnətɪv/",
-    "syllables": "al·ter·na·tive"
+    "syllables": "al·ter·na·tive",
+    "extraExample": "Since the main road is closed, we need to find a safe alternative for getting home.",
+    "extraExampleTranslation": "เนื่องจากถนนสายหลักปิด เราจึงต้องหาทางเลือกที่ปลอดภัยในการกลับบ้าน",
+    "usageTip": "เป็นคำนามนับได้ (an alternative to...) แปลว่าอีกหนึ่งทางเลือกที่มีให้เลือกแทนของเดิม และยังใช้เป็นคำคุณศัพท์นำหน้าคำนามได้ด้วย"
   },
   {
     "word": "although",
@@ -344,7 +375,9 @@ const wordsData = [
     "usageTip": "ห้ามใช้ although คู่กับ but ในประโยคเดียวกัน (เช่น Although it rained, we went out.)",
     "phoneticUK": "/ˌɔːlðˈəʊ/",
     "syllables": "al·though",
-    "grammarPattern": "Although + ประโยค (S + V) — ห้ามใส่ but คู่ในประโยคเดียว"
+    "grammarPattern": "Although + ประโยค (S + V) — ห้ามใส่ but คู่ในประโยคเดียว",
+    "extraExample": "He went for a morning run although the weather was freezing cold.",
+    "extraExampleTranslation": "เขาออกไปวิ่งตอนเช้าถึงแม้ว่าอากาศจะหนาวจัดก็ตาม"
   },
   {
     "word": "altogether",
@@ -372,7 +405,10 @@ const wordsData = [
       "บาท"
     ],
     "phoneticUK": "/ˌɔːltəɡˈeðə(r)/",
-    "syllables": "al·to·ge·ther"
+    "syllables": "al·to·ge·ther",
+    "extraExample": "The dinner bill came to twelve hundred baht altogether, including service charge.",
+    "extraExampleTranslation": "บิลค่าอาหารเย็นรวมทั้งหมดอยู่ที่หนึ่งพันสองร้อยบาท รวมค่าบริการแล้ว",
+    "usageTip": "เขียนติดกันคำเดียวแปลว่า โดยรวมทั้งหมด หรือ โดยสิ้นเชิง ระวังสับสนกับ all together ที่แปลว่า พร้อมกันทุกคน/ทุกสิ่ง"
   },
   {
     "word": "always",
@@ -402,7 +438,10 @@ const wordsData = [
     "antonyms": [
       "never"
     ],
-    "syllables": "al·ways"
+    "syllables": "al·ways",
+    "extraExample": "My grandmother always drinks a cup of warm tea before going to bed.",
+    "extraExampleTranslation": "คุณยายของฉันดื่มชาร้อนหนึ่งถ้วยก่อนเข้านอนเป็นประจำ",
+    "usageTip": "วางไว้หน้ากริยาแท้หรือหลัง V. to be เช่นเดียวกับกริยาวิเศษณ์บอกความถี่อื่นๆ และใช้กับ Present Simple เพื่อบอกกิจวัตร"
   },
   {
     "word": "amaze",
@@ -436,7 +475,10 @@ const wordsData = [
       "amazed",
       "amazing"
     ],
-    "syllables": "a·maze"
+    "syllables": "a·maze",
+    "extraExample": "The magician's clever card tricks never fail to amaze the audience.",
+    "extraExampleTranslation": "กลไพ่ที่ชาญฉลาดของนักมายากลไม่เคยพลาดที่จะทำให้ผู้ชมประหลาดใจ",
+    "usageTip": "ทำหน้าที่เป็นคำกริยา (verb) แปลว่า ทำให้ใครสักคนรู้สึกทึ่งหรือประหลาดใจ จึงมักมีกรรมมารับท้ายคำเสมอ เช่น amaze me / amaze everyone"
   },
   {
     "word": "amazed",
@@ -468,7 +510,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "amaze"
-    ]
+    ],
+    "extraExample": "Everyone was amazed at how quickly the little boy learned to play the piano.",
+    "extraExampleTranslation": "ทุกคนต่างรู้สึกทึ่งที่เด็กชายตัวน้อยเรียนรู้การเล่นเปียโนได้อย่างรวดเร็ว",
+    "usageTip": "ลงท้ายด้วย -ed ใช้บอกความรู้สึกของคน (รู้สึกทึ่ง/ประหลาดใจ) มักใช้ในรูป be amazed at/by ต่างจาก amazing ที่ใช้อธิบายสิ่งที่น่าทึ่ง"
   },
   {
     "word": "amazing",
@@ -500,7 +545,10 @@ const wordsData = [
     "wordFamily": [
       "amaze"
     ],
-    "syllables": "a·ma·zing"
+    "syllables": "a·ma·zing",
+    "extraExample": "The view from the mountain top was truly amazing.",
+    "extraExampleTranslation": "วิวจากยอดเขานั้นน่าทึ่งและสวยงามมากจริงๆ",
+    "usageTip": "ใช้ขยายคำนามหรือตามหลัง V. to be (เช่น It's amazing!) เพื่อชมว่าน่าทึ่งหรือยอดเยี่ยมมาก ระวังอย่าสับสนกับ amazed ที่แปลว่า รู้สึกทึ่ง"
   },
   {
     "word": "ambition",
@@ -533,7 +581,10 @@ const wordsData = [
     "syllables": "am·bi·tion",
     "wordFamily": [
       "ambitious"
-    ]
+    ],
+    "extraExample": "Her main ambition is to open her own bakery someday.",
+    "extraExampleTranslation": "ความมุ่งมั่นตั้งใจหลักของเธอคือการเปิดร้านเบเกอรี่เป็นของตัวเองสักวันหนึ่ง",
+    "usageTip": "เป็นคำนาม ใช้ได้ทั้งแบบนับได้และนับไม่ได้ (เช่น have an ambition to... หรือ full of ambition) มักใช้ในความหมายเชิงบวกเรื่องเป้าหมายชีวิตหรือหน้าที่การงาน"
   },
   {
     "word": "ambulance",
@@ -553,7 +604,10 @@ const wordsData = [
       "เรียก",
       "รถพยาบาล"
     ],
-    "syllables": "am·bu·lance"
+    "syllables": "am·bu·lance",
+    "extraExample": "Someone called an ambulance right after the accident happened.",
+    "extraExampleTranslation": "มีคนโทรเรียกรถพยาบาลทันทีหลังจากเกิดอุบัติเหตุ",
+    "usageTip": "มักใช้คู่กับกริยา call (โทรเรียก) หรือ take someone to the hospital by ambulance (นำส่งโรงพยาบาลด้วยรถพยาบาล)"
   },
   {
     "word": "among",
@@ -581,7 +635,9 @@ const wordsData = [
       "เพื่อนๆ"
     ],
     "usageTip": "ใช้ among เมื่อกล่าวถึง 3 สิ่ง/คนขึ้นไป; ถ้ามีเพียง 2 สิ่งใช้ between",
-    "syllables": "a·mong"
+    "syllables": "a·mong",
+    "extraExample": "She found her lost earring hidden among the fallen leaves.",
+    "extraExampleTranslation": "เธอเจอต่างหูที่ทำหายซ่อนอยู่ท่ามกลางใบไม้ที่ร่วงหล่น"
   },
   {
     "word": "amount",
@@ -608,7 +664,9 @@ const wordsData = [
       "เท่าไหร่"
     ],
     "syllables": "a·mount",
-    "usageTip": "amount of + คำนามนับไม่ได้ (a large amount of water); นามนับได้พหูพจน์ใช้ number of"
+    "usageTip": "amount of + คำนามนับไม่ได้ (a large amount of water); นามนับได้พหูพจน์ใช้ number of",
+    "extraExample": "You only need a small amount of oil to fry the eggs.",
+    "extraExampleTranslation": "คุณใช้น้ำมันเพียงเล็กน้อยเท่านั้นในการทอดไข่"
   },
   {
     "word": "amuse",
@@ -644,7 +702,10 @@ const wordsData = [
     "forms": [
       "V2/V3: amused",
       "V-ing: amusing"
-    ]
+    ],
+    "extraExample": "He told funny stories to amuse the children on the long drive.",
+    "extraExampleTranslation": "เขาเล่าเรื่องตลกเพื่อให้เด็กๆ สนุกสนานเพลิดเพลินระหว่างนั่งรถทางไกล",
+    "usageTip": "เป็นสกรรมกริยา ต้องมีกรรมมารองรับเสมอ (amuse + คน) แปลว่า ทำให้คนอื่นขบขันหรือเพลิดเพลิน"
   },
   {
     "word": "amused",
@@ -676,7 +737,10 @@ const wordsData = [
     ],
     "wordFamily": [
       "amuse"
-    ]
+    ],
+    "extraExample": "The teacher looked amused by the student's clever excuse.",
+    "extraExampleTranslation": "คุณครูดูขบขันกับข้ออ้างที่ฉลาดแกมโกงของนักเรียน",
+    "usageTip": "ลงท้ายด้วย -ed ใช้บอกความรู้สึกของคน (รู้สึกขำ/รู้สึกเพลิดเพลิน) มักตามด้วยบุพบท by หรือ at (เช่น be amused by...)"
   },
   {
     "word": "amusing",
@@ -708,7 +772,10 @@ const wordsData = [
     "wordFamily": [
       "amuse"
     ],
-    "syllables": "a·mu·sing"
+    "syllables": "a·mu·sing",
+    "extraExample": "We watched an amusing video about a cat playing the piano.",
+    "extraExampleTranslation": "พวกเราดูวิดีโอตลกๆ ที่น่าขบขันเกี่ยวกับแมวกำลังเล่นเปียโน",
+    "usageTip": "ลงท้ายด้วย -ing ใช้บรรยายลักษณะของสิ่งของ เรื่องราว หรือสถานการณ์ว่าเป็นสิ่งที่ชวนขำหรือน่าเพลิดเพลิน (เช่น an amusing story)"
   },
   {
     "word": "analyse",
@@ -741,7 +808,10 @@ const wordsData = [
     "forms": [
       "V2/V3: analysed",
       "V-ing: analysing"
-    ]
+    ],
+    "extraExample": "Researchers need several weeks to analyse the survey data.",
+    "extraExampleTranslation": "นักวิจัยต้องใช้เวลาหลายสัปดาห์ในการวิเคราะห์ข้อมูลแบบสำรวจ",
+    "usageTip": "analyse เป็นการสะกดแบบอังกฤษ (British English) ส่วนแบบอเมริกันจะสะกดว่า analyze ความหมายและการใช้งานเหมือนกัน"
   },
   {
     "word": "analysis",
@@ -778,7 +848,10 @@ const wordsData = [
     "syllables": "a·na·ly·sis",
     "wordFamily": [
       "analytical"
-    ]
+    ],
+    "extraExample": "The report includes a detailed analysis of customer feedback.",
+    "extraExampleTranslation": "รายงานฉบับนี้มีการวิเคราะห์ความคิดเห็นของลูกค้าอย่างละเอียด",
+    "usageTip": "เป็นคำนามของ analyse ออกเสียงเน้นพยางค์ที่สอง (อะ-แน-ละ-ซิส) และรูปพหูพจน์เปลี่ยนเป็น analyses"
   },
   {
     "word": "ancient",
@@ -808,7 +881,10 @@ const wordsData = [
     "antonyms": [
       "modern"
     ],
-    "syllables": "an·cient"
+    "syllables": "an·cient",
+    "extraExample": "We visited an ancient temple during our trip.",
+    "extraExampleTranslation": "เราได้ไปเยี่ยมชมวัดโบราณแห่งหนึ่งระหว่างการเดินทาง",
+    "usageTip": "ใช้ขยายคำนามเพื่อบอกความเก่าแก่ระดับประวัติศาสตร์ (เช่น เมืองโบราณ อารยธรรมโบราณ) ต่างจาก old ที่ใช้ได้ทั่วไป"
   },
   {
     "word": "and",
@@ -833,7 +909,10 @@ const wordsData = [
       "แอปเปิ้ล",
       "และ",
       "กล้วย"
-    ]
+    ],
+    "extraExample": "Please bring your passport and boarding pass to the gate.",
+    "extraExampleTranslation": "กรุณานำหนังสือเดินทางและบัตรขึ้นเครื่องมาที่ประตูทางออกขึ้นเครื่อง",
+    "usageTip": "ใช้เชื่อมคำ วลี หรือประโยคที่คล้อยตามกัน หากมีหลายรายการในภาษาอังกฤษให้ใช้ลูกน้ำคั่น แล้วใส่ and หน้าคำสุดท้าย"
   },
   {
     "word": "anger",
@@ -869,7 +948,10 @@ const wordsData = [
     "forms": [
       "[U] ไม่มีรูปพหูพจน์"
     ],
-    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)"
+    "grammarPattern": "[U] นามนับไม่ได้ (ไม่เติม -s และใช้กริยาเอกพจน์)",
+    "extraExample": "Take a deep breath to control your anger.",
+    "extraExampleTranslation": "หายใจเข้าลึกๆ เพื่อควบคุมความโกรธของคุณ",
+    "usageTip": "เป็นคำนาม (ความโกรธ) มักใช้คู่กับกริยาอย่าง control, express หรือ feel ไม่นิยมเติม s"
   },
   {
     "word": "angle",
@@ -895,7 +977,10 @@ const wordsData = [
       "90",
       "องศา"
     ],
-    "syllables": "an·gle"
+    "syllables": "an·gle",
+    "extraExample": "Look at the problem from a different angle.",
+    "extraExampleTranslation": "ลองมองปัญหาจากมุมที่แตกต่างออกไปดูสิ",
+    "usageTip": "ใช้ได้ทั้งมุมทางเรขาคณิต มุมกล้อง และความหมายเชิงเปรียบเทียบว่า 'แง่มุม' หรือ 'มุมมอง'"
   },
   {
     "word": "angry",
@@ -931,7 +1016,10 @@ const wordsData = [
       "ขั้นกว่า: angrier",
       "ขั้นสุด: angriest"
     ],
-    "grammarPattern": "angry with/at + คน / angry about + เรื่อง"
+    "grammarPattern": "angry with/at + คน / angry about + เรื่อง",
+    "extraExample": "She felt angry when the train arrived late.",
+    "extraExampleTranslation": "เธอรู้สึกโกรธเมื่อรถไฟมาถึงช้า",
+    "usageTip": "เป็นคำคุณศัพท์ ใช้ตามหลัง verb to be หรือ linking verb เช่น feel/get และใช้คู่กับ with/at เมื่อระบุว่าโกรธใครหรือเรื่องอะไร (angry with someone)"
   },
   {
     "word": "animal",
@@ -959,7 +1047,10 @@ const wordsData = [
       "ที่",
       "เป็นมิตร"
     ],
-    "syllables": "a·ni·mal"
+    "syllables": "a·ni·mal",
+    "extraExample": "The elephant is a very intelligent animal.",
+    "extraExampleTranslation": "ช้างเป็นสัตว์ที่ฉลาดมาก",
+    "usageTip": "เป็นคำนามนับได้ อย่าลืมใส่ a/an (an animal) เมื่อพูดถึงสัตว์หนึ่งตัว หรือเติม s (animals) เมื่อพูดถึงสัตว์ทั่วไป"
   },
   {
     "word": "ankle",
@@ -984,7 +1075,10 @@ const wordsData = [
       "ข้อเท้า",
       "แพลง"
     ],
-    "syllables": "an·kle"
+    "syllables": "an·kle",
+    "extraExample": "He twisted his ankle while jogging in the park.",
+    "extraExampleTranslation": "เขาข้อเท้าแพลงขณะวิ่งจ็อกกิ้งในสวนสาธารณะ",
+    "usageTip": "มักพบบ่อยในสถานการณ์บาดเจ็บ เช่น sprain/twist an ankle (ข้อเท้าแพลง) ระวังสับสนกับการสะกดคำว่า uncle (ลุง/อา)"
   },
   {
     "word": "anniversary",
@@ -1018,7 +1112,10 @@ const wordsData = [
     "forms": [
       "พหูพจน์: anniversaries"
     ],
-    "rootBreakdown": "ann (ปี) + vers (หมุนเวียนครบ) → วันครบรอบปี"
+    "rootBreakdown": "ann (ปี) + vers (หมุนเวียนครบ) → วันครบรอบปี",
+    "extraExample": "They celebrated their fifth wedding anniversary in Chiang Mai.",
+    "extraExampleTranslation": "พวกเขาฉลองวันครบรอบแต่งงานปีที่ห้าที่เชียงใหม่",
+    "usageTip": "ใช้บอกวันครบรอบเหตุการณ์สำคัญ เช่น วันครบรอบแต่งงานหรือก่อตั้งบริษัท หากเป็นวันเกิดให้ใช้ birthday แทน"
   },
   {
     "word": "announce",
@@ -1052,7 +1149,10 @@ const wordsData = [
     "forms": [
       "V2/V3: announced",
       "V-ing: announcing"
-    ]
+    ],
+    "extraExample": "The airline will announce the boarding time shortly.",
+    "extraExampleTranslation": "สายการบินจะประกาศเวลาขึ้นเครื่องในอีกสักครู่",
+    "usageTip": "แปลว่าประกาศอย่างเป็นทางการ มักตามด้วยสิ่งที่ประกาศโดยตรง (announce + กรรม) ไม่ต้องใส่ to หน้าสิ่งที่ประกาศ"
   },
   {
     "word": "annoy",
@@ -1083,7 +1183,10 @@ const wordsData = [
       "ฉัน",
       "รำคาญ"
     ],
-    "syllables": "an·noy"
+    "syllables": "an·noy",
+    "extraExample": "Loud noises often annoy people trying to study.",
+    "extraExampleTranslation": "เสียงดังมักทำให้คนที่กำลังพยายามอ่านหนังสือรำคาญ",
+    "usageTip": "ใช้เป็นคำกริยา แปลว่าทำให้รำคาญ (สิ่งที่กวนใจ + annoy + คนที่รำคาญ) หากต้องการบอกว่า 'รู้สึกรำคาญ' ให้ใช้รูป annoyed แทน"
   },
   {
     "word": "annoyed",
@@ -111019,5 +111122,528 @@ const wordsData = [
     "antonyms": [
       "novel"
     ]
+  },
+  {
+    "word": "banana",
+    "partOfSpeech": "noun",
+    "translation": "กล้วย",
+    "definition": "a long curved fruit with yellow skin and soft sweet flesh",
+    "example": "I like to eat a banana with my breakfast.",
+    "exampleTranslation": "ฉันชอบกินกล้วยกับอาหารเช้า",
+    "phonetic": "/bəˈnæn.ə/",
+    "cefr": "A1",
+    "collocations": [
+      "yellow banana",
+      "banana bread"
+    ],
+    "synonyms": [
+      "plantain",
+      "fruit"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ฉันชอบ",
+      "กินกล้วย",
+      "กับอาหารเช้า"
+    ],
+    "extraExample": "Monkeys love eating a fresh banana.",
+    "extraExampleTranslation": "ลิงชอบกินกล้วยสดๆ",
+    "novaBatch": true
+  },
+  {
+    "word": "checklist",
+    "partOfSpeech": "noun",
+    "translation": "รายการตรวจสอบ",
+    "definition": "a list of items or tasks to inspect or complete one by one",
+    "example": "Always go through the travel checklist before leaving for the airport.",
+    "exampleTranslation": "ตรวจเช็กรายการตรวจสอบก่อนออกเดินทางไปสนามบินเสมอ",
+    "phonetic": "/ˈtʃeklɪst/",
+    "cefr": "B1",
+    "collocations": [
+      "travel checklist",
+      "daily checklist",
+      "go through a checklist"
+    ],
+    "synonyms": [
+      "to-do list",
+      "inventory",
+      "schedule"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ตรวจเช็ก",
+      "รายการตรวจสอบ",
+      "ก่อนออกเดินทาง",
+      "ไปสนามบินเสมอ"
+    ],
+    "extraExample": "She ticked every box on her study checklist before the exam.",
+    "extraExampleTranslation": "เธอติ๊กครบทุกข้อในรายการทบทวนบทเรียนก่อนเข้าสอบ",
+    "usageTip": "check (ตรวจ) + list (รายการ) มักใช้กับ verb 'go through', 'tick off' หรือ 'complete'",
+    "grammarPattern": "tick off / complete a checklist",
+    "phoneticUK": "/ˈtʃeklɪst/",
+    "syllables": "check·list",
+    "antonyms": [
+      "guesswork"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "earbuds",
+    "partOfSpeech": "noun",
+    "translation": "หูฟังไร้สายขนาดเล็ก",
+    "definition": "very small headphones that fit directly inside your ears",
+    "example": "I put on my earbuds to listen to English podcasts on the train.",
+    "exampleTranslation": "ฉันใส่หูฟังไร้สายเพื่อฟังพอดแคสต์ภาษาอังกฤษบนรถไฟ",
+    "phonetic": "/ˈɪrbʌdz/",
+    "cefr": "A2",
+    "collocations": [
+      "wireless earbuds",
+      "noise-canceling earbuds",
+      "put on earbuds"
+    ],
+    "synonyms": [
+      "earphones",
+      "in-ear headphones"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ฉัน",
+      "ใส่หูฟังไร้สาย",
+      "เพื่อฟังพอดแคสต์ภาษาอังกฤษ",
+      "บนรถไฟ"
+    ],
+    "extraExample": "Please recharge your earbuds before going to the gym.",
+    "extraExampleTranslation": "อย่าลืมชาร์จหูฟังไร้สายให้เต็มก่อนไปฟิตเนสนะ",
+    "usageTip": "นิยมใช้เป็นรูปพหูพจน์ 'earbuds' เสมอเพราะมี 2 ข้างซ้าย-ขวา",
+    "grammarPattern": "put on / wear earbuds",
+    "phoneticUK": "/ˈɪəbʌdz/",
+    "syllables": "ear·buds",
+    "antonyms": [
+      "loudspeaker"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "flashcard",
+    "partOfSpeech": "noun",
+    "translation": "บัตรคำศัพท์",
+    "definition": "a card bearing words, numbers, or pictures used for quick memory practice",
+    "example": "Reviewing ten flashcards every morning helps you remember new English words.",
+    "exampleTranslation": "การทบทวนบัตรคำศัพท์วันละสิบใบทุกเช้าช่วยให้จำคำศัพท์อังกฤษใหม่ๆ ได้ดี",
+    "phonetic": "/ˈflæʃkɑːrd/",
+    "cefr": "A1",
+    "collocations": [
+      "digital flashcard",
+      "flashcard deck",
+      "review flashcards"
+    ],
+    "synonyms": [
+      "memory card",
+      "study card"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "การทบทวนบัตรคำศัพท์",
+      "วันละสิบใบทุกเช้า",
+      "ช่วยให้จำคำศัพท์ใหม่ๆ ได้ดี"
+    ],
+    "extraExample": "This smart flashcard app tracks which vocabulary words you find difficult.",
+    "extraExampleTranslation": "แอปบัตรคำศัพท์อัจฉริยะนี้ติดตามว่าคำไหนที่คุณยังจำไม่คล่อง",
+    "usageTip": "flash (รวดเร็ว) + card (บัตร) — นามนับได้ ใช้กับ verb 'review' หรือ 'flip'",
+    "grammarPattern": "review / flip a flashcard",
+    "phoneticUK": "/ˈflæʃkɑːd/",
+    "syllables": "flash·card",
+    "antonyms": [
+      "textbook chapter"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "subtitles",
+    "partOfSpeech": "noun",
+    "translation": "คำบรรยายใต้ภาพ",
+    "definition": "words shown at the bottom of a video screen translating or showing speech",
+    "example": "Watching English movies with subtitles improves your listening speed.",
+    "exampleTranslation": "การดูหนังภาษาอังกฤษพร้อมคำบรรยายใต้ภาพช่วยพัฒนาความเร็วในการฟัง",
+    "phonetic": "/ˈsʌbtaɪtlz/",
+    "cefr": "B1",
+    "collocations": [
+      "English subtitles",
+      "turn on subtitles",
+      "read subtitles"
+    ],
+    "synonyms": [
+      "captions",
+      "closed captions"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "การดูหนังภาษาอังกฤษ",
+      "พร้อมคำบรรยายใต้ภาพ",
+      "ช่วยพัฒนาความเร็วในการฟัง"
+    ],
+    "extraExample": "Try turning off the subtitles once you understand the main story.",
+    "extraExampleTranslation": "ลองปิดคำบรรยายใต้ภาพดูเมื่อคุณเริ่มเข้าใจเนื้อเรื่องหลักแล้ว",
+    "usageTip": "เวลาหมายถึงซับไตเติลในหนังหรือคลิป มักใช้รูปพหูพจน์ 'subtitles' (turn on/off subtitles)",
+    "grammarPattern": "with / without subtitles",
+    "phoneticUK": "/ˈsʌbtaɪtlz/",
+    "syllables": "sub·ti·tles",
+    "antonyms": [
+      "voiceover"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "hydration",
+    "partOfSpeech": "noun",
+    "translation": "ภาวะสมดุลน้ำในร่างกาย",
+    "definition": "the process of giving your body enough water to stay healthy",
+    "example": "Proper hydration keeps your brain sharp during long afternoon classes.",
+    "exampleTranslation": "ภาวะสมดุลน้ำที่เพียงพอช่วยให้สมองปลอดโปร่งระหว่างเรียนช่วงบ่าย",
+    "phonetic": "/haɪˈdreɪʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "daily hydration",
+      "maintain hydration",
+      "hydration level"
+    ],
+    "synonyms": [
+      "fluid intake",
+      "moisture"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ภาวะสมดุลน้ำที่เพียงพอ",
+      "ช่วยให้สมองปลอดโปร่ง",
+      "ระหว่างเรียนช่วงบ่าย"
+    ],
+    "extraExample": "Carry a reusable bottle to maintain good hydration all day long.",
+    "extraExampleTranslation": "พกขวดน้ำติดตัวไว้เพื่อรักษาความชุ่มชื้นและสมดุลน้ำตลอดวัน",
+    "usageTip": "รากศัพท์ hydr- แปลว่า น้ำ ส่วนคำตรงข้ามคือ dehydration (ภาวะขาดน้ำ)",
+    "grammarPattern": "maintain / proper hydration",
+    "phoneticUK": "/haɪˈdreɪʃən/",
+    "syllables": "hy·dra·tion",
+    "antonyms": [
+      "dehydration"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "takeout",
+    "partOfSpeech": "noun",
+    "translation": "อาหารสั่งกลับบ้าน",
+    "definition": "prepared food bought at a restaurant to be eaten somewhere else",
+    "example": "We were too tired to cook, so we ordered Thai takeout for dinner.",
+    "exampleTranslation": "พวกเราเหนื่อยเกินกว่าจะทำอาหาร เลยสั่งอาหารไทยกลับมากินมื้อเย็น",
+    "phonetic": "/ˈteɪkaʊt/",
+    "cefr": "A2",
+    "collocations": [
+      "order takeout",
+      "takeout food",
+      "takeout container"
+    ],
+    "synonyms": [
+      "takeaway",
+      "carryout"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "พวกเราเหนื่อยเกินกว่าจะทำอาหาร",
+      "เลยสั่งอาหารไทยกลับบ้าน",
+      "สำหรับมื้อเย็น"
+    ],
+    "extraExample": "Most cafes near the office offer quick takeout coffee every morning.",
+    "extraExampleTranslation": "ร้านกาแฟส่วนใหญ่แถวออฟฟิศมีบริการกาแฟสั่งกลับบ้านอย่างรวดเร็วทุกเช้า",
+    "usageTip": "แบบอเมริกันใช้ takeout ส่วนแบบอังกฤษนิยมใช้ takeaway ความหมายเดียวกัน",
+    "grammarPattern": "order / get takeout",
+    "phoneticUK": "/ˈteɪkaʊt/",
+    "syllables": "take·out",
+    "antonyms": [
+      "dine-in"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "leftovers",
+    "partOfSpeech": "noun",
+    "translation": "อาหารที่เหลือจากการกิน",
+    "definition": "food remaining after a meal that can be saved and eaten later",
+    "example": "Don't throw away the leftovers; put them in the fridge for lunch.",
+    "exampleTranslation": "อย่าทิ้งอาหารที่เหลือ เก็บใส่ตู้เย็นไว้กินมื้อกลางวันได้เลย",
+    "phonetic": "/ˈleftoʊvərz/",
+    "cefr": "B1",
+    "collocations": [
+      "heat up leftovers",
+      "store leftovers",
+      "dinner leftovers"
+    ],
+    "synonyms": [
+      "remaining food",
+      "scraps"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "อย่าทิ้งอาหารที่เหลือ",
+      "เก็บใส่ตู้เย็นไว้",
+      "สำหรับมื้อกลางวัน"
+    ],
+    "extraExample": "Heating up yesterday's leftovers saved me thirty minutes tonight.",
+    "extraExampleTranslation": "การอุ่นอาหารที่เหลือจากเมื่อวานช่วยประหยัดเวลาฉันไปได้ตั้งสามสิบนาทีคืนนี้",
+    "usageTip": "เวลาหมายถึงอาหารเหลือ ใช้เป็นรูปพหูพจน์ 'leftovers' คู่กับกริยาพหูพจน์",
+    "grammarPattern": "save / heat up leftovers",
+    "phoneticUK": "/ˈleftəʊvəz/",
+    "syllables": "left·o·vers",
+    "antonyms": [
+      "fresh meal"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "boarding pass",
+    "partOfSpeech": "noun",
+    "translation": "บัตรขึ้นเครื่องบิน",
+    "definition": "a paper or mobile ticket that allows you to get onto an airplane",
+    "example": "Show your passport and boarding pass at the departure gate.",
+    "exampleTranslation": "แสดงหนังสือเดินทางและบัตรขึ้นเครื่องบินที่ประตูทางออกขึ้นเครื่อง",
+    "phonetic": "/ˈbɔːrdɪŋ pæs/",
+    "cefr": "A2",
+    "collocations": [
+      "mobile boarding pass",
+      "print a boarding pass",
+      "scan a boarding pass"
+    ],
+    "synonyms": [
+      "flight pass",
+      "e-ticket"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "แสดงหนังสือเดินทาง",
+      "และบัตรขึ้นเครื่องบิน",
+      "ที่ประตูทางออกขึ้นเครื่อง"
+    ],
+    "extraExample": "You can download your mobile boarding pass right after online check-in.",
+    "extraExampleTranslation": "คุณสามารถดาวน์โหลดบัตรขึ้นเครื่องบินบนมือถือได้ทันทีหลังเช็กอินออนไลน์",
+    "usageTip": "board = ขึ้นยานพาหนะ (เครื่องบิน/เรือ) + pass = บัตรผ่าน",
+    "grammarPattern": "show / scan a boarding pass",
+    "phoneticUK": "/ˈbɔːdɪŋ pɑːs/",
+    "syllables": "board·ing pass",
+    "antonyms": [
+      "arrival card"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "carpool",
+    "partOfSpeech": "verb",
+    "translation": "นั่งรถร่วมคันไปทางเดียวกัน",
+    "definition": "to share rides in one car with other people traveling to work or school",
+    "example": "Four coworkers carpool every weekday to cut fuel costs in half.",
+    "exampleTranslation": "เพื่อนร่วมงานสี่คนนั่งรถร่วมคันไปทำงานทุกวันธรรมดาเพื่อลดค่าน้ำมันลงครึ่งหนึ่ง",
+    "phonetic": "/ˈkɑːrpuːl/",
+    "cefr": "B1",
+    "collocations": [
+      "carpool lane",
+      "carpool to work",
+      "join a carpool"
+    ],
+    "synonyms": [
+      "rideshare",
+      "share a ride"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "เพื่อนร่วมงานสี่คน",
+      "นั่งรถร่วมคันทุกวันธรรมดา",
+      "เพื่อลดค่าน้ำมันลงครึ่งหนึ่ง"
+    ],
+    "extraExample": "Carpooling also helps reduce heavy morning traffic across the city.",
+    "extraExampleTranslation": "การเดินทางร่วมคันยังช่วยลดปัญหารถติดหนักช่วงเช้าทั่วเมืองได้ด้วย",
+    "usageTip": "เป็นได้ทั้ง Verb (carpool with friends) และ Noun (carpool lane = เลนรถที่มีผู้โดยสารหลายคน)",
+    "grammarPattern": "carpool with + person / to + place",
+    "phoneticUK": "/ˈkɑːpuːl/",
+    "syllables": "car·pool",
+    "antonyms": [
+      "drive alone"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "freelancer",
+    "partOfSpeech": "noun",
+    "translation": "ผู้ทำงานอิสระ (ฟรีแลนซ์)",
+    "definition": "a person who works independently for different clients rather than one company",
+    "example": "As a designer freelancer, she manages her own clients and schedule.",
+    "exampleTranslation": "ในฐานะนักออกแบบอิสระ เธอดูแลลูกค้าและจัดตารางเวลาของตัวเองทั้งหมด",
+    "phonetic": "/ˈfriːlænsər/",
+    "cefr": "B1",
+    "collocations": [
+      "full-time freelancer",
+      "hire a freelancer",
+      "freelancer invoice"
+    ],
+    "synonyms": [
+      "independent contractor",
+      "self-employed worker"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ในฐานะนักออกแบบอิสระ",
+      "เธอดูแลลูกค้า",
+      "และตารางเวลาของตัวเอง"
+    ],
+    "extraExample": "Many skilled freelancers work remotely from quiet neighborhood cafes.",
+    "extraExampleTranslation": "ฟรีแลนซ์ฝีมือดีหลายคนทำงานทางไกลจากร้านกาแฟบรรยากาศสงบใกล้บ้าน",
+    "usageTip": "freelancer ใช้เรียกตัว 'คน', ส่วน freelance ใช้ขยายคำนาม เช่น freelance writer หรือทำหน้าที่ Verb",
+    "grammarPattern": "work as a freelancer",
+    "phoneticUK": "/ˈfriːlɑːnsə/",
+    "syllables": "free·lan·cer",
+    "antonyms": [
+      "full-time employee"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "mindfulness",
+    "partOfSpeech": "noun",
+    "translation": "การเจริญสติอยู่กับปัจจุบัน",
+    "definition": "the calm mental state of focusing gently on the present moment",
+    "example": "Ten minutes of daily mindfulness lowers stress before important meetings.",
+    "exampleTranslation": "การฝึกสติอยู่กับปัจจุบันวันละสิบนาทีช่วยลดความเครียดก่อนประชุมสำคัญ",
+    "phonetic": "/ˈmaɪndfʊlnəs/",
+    "cefr": "B2",
+    "collocations": [
+      "practice mindfulness",
+      "mindfulness meditation",
+      "daily mindfulness"
+    ],
+    "synonyms": [
+      "awareness",
+      "calm focus",
+      "presence"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "การฝึกสติวันละสิบนาที",
+      "ช่วยลดความเครียด",
+      "ก่อนประชุมสำคัญ"
+    ],
+    "extraExample": "Breathing exercises are a simple way to practice mindfulness anywhere.",
+    "extraExampleTranslation": "การฝึกกำหนดลมหายใจเป็นวิธีง่ายๆ ในการฝึกสติได้ทุกที่",
+    "usageTip": "mind (จิตใจ) + -ful (เปี่ยมด้วย) + -ness (คำนามแสดงสภาวะ)",
+    "grammarPattern": "practice mindfulness / mindfulness of + N",
+    "phoneticUK": "/ˈmaɪndfʊlnəs/",
+    "syllables": "mind·ful·ness",
+    "antonyms": [
+      "distraction"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "tutorial",
+    "partOfSpeech": "noun",
+    "translation": "บทเรียนสอนวิธีใช้งานทีละขั้น",
+    "definition": "a short step-by-step guide or video showing how to do or use something",
+    "example": "She followed an online video tutorial to bake her first sourdough loaf.",
+    "exampleTranslation": "เธอทำตามคลิปสอนวิธีทำทีละขั้นออนไลน์เพื่ออบขนมปังซาวโดวจ์ก้อนแรก",
+    "phonetic": "/tuːˈtɔːriəl/",
+    "cefr": "B1",
+    "collocations": [
+      "video tutorial",
+      "step-by-step tutorial",
+      "follow a tutorial"
+    ],
+    "synonyms": [
+      "guide",
+      "walkthrough",
+      "lesson"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เธอทำตามคลิปสอนทีละขั้นออนไลน์",
+      "เพื่ออบขนมปัง",
+      "ก้อนแรกของเธอ"
+    ],
+    "extraExample": "Built-in tutorials help new players learn the game controls in two minutes.",
+    "extraExampleTranslation": "บทแนะนำในตัวช่วยให้ผู้เล่นใหม่เรียนรู้ปุ่มบังคับเกมได้ในสองนาที",
+    "usageTip": "follow a tutorial = ทำตามบทสอน; watch a tutorial = ดูคลิปสอน",
+    "grammarPattern": "follow / watch a tutorial on + topic",
+    "phoneticUK": "/tjuːˈtɔːriəl/",
+    "syllables": "tu·to·ri·al",
+    "antonyms": [
+      "advanced exam"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "smartwatch",
+    "partOfSpeech": "noun",
+    "translation": "นาฬิกาอัจฉริยะ",
+    "definition": "a digital wristwatch that connects to a phone and tracks fitness or alerts",
+    "example": "Her smartwatch vibrated gently when she reached ten thousand steps today.",
+    "exampleTranslation": "นาฬิกาอัจฉริยะของเธอสั่นเบาๆ เมื่อเดินครบหนึ่งหมื่นก้าววันนี้",
+    "phonetic": "/ˈsmɑːrtwɑːtʃ/",
+    "cefr": "A2",
+    "collocations": [
+      "wear a smartwatch",
+      "smartwatch strap",
+      "fitness smartwatch"
+    ],
+    "synonyms": [
+      "fitness tracker",
+      "wearable device"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "นาฬิกาอัจฉริยะของเธอ",
+      "สั่นเบาๆ",
+      "เมื่อเดินครบหนึ่งหมื่นก้าววันนี้"
+    ],
+    "extraExample": "You can check incoming messages on your smartwatch without unlocking your phone.",
+    "extraExampleTranslation": "คุณเช็กข้อความเข้าบนนาฬิกาอัจฉริยะได้โดยไม่ต้องหยิบมือถือมาปลดล็อก",
+    "usageTip": "เขียนติดกันเป็น smartwatch คำเดียว รูปพหูพจน์เติม -es เป็น smartwatches",
+    "grammarPattern": "check / wear a smartwatch",
+    "phoneticUK": "/ˈsmɑːtwɒtʃ/",
+    "syllables": "smart·watch",
+    "antonyms": [
+      "analog clock"
+    ],
+    "novaBatch": true
+  },
+  {
+    "word": "sidewalk",
+    "partOfSpeech": "noun",
+    "translation": "ทางเท้าริมถนน",
+    "definition": "a paved path beside a street where people can walk safely",
+    "example": "Please walk on the sidewalk instead of stepping onto the busy road.",
+    "exampleTranslation": "กรุณาเดินบนทางเท้าริมถนนแทนการลงไปบนถนนที่รถพลุกพล่าน",
+    "phonetic": "/ˈsaɪdwɔːk/",
+    "cefr": "A2",
+    "collocations": [
+      "on the sidewalk",
+      "sidewalk cafe",
+      "narrow sidewalk"
+    ],
+    "synonyms": [
+      "pavement",
+      "footpath",
+      "walkway"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "กรุณาเดินบนทางเท้า",
+      "แทนการลงไปเดิน",
+      "บนถนนที่รถพลุกพล่าน"
+    ],
+    "extraExample": "Wide shady sidewalks encourage neighbors to walk to the market.",
+    "extraExampleTranslation": "ทางเท้าที่กว้างและร่มรื่นช่วยให้เพื่อนบ้านอยากเดินไปตลาดมากขึ้น",
+    "usageTip": "US ใช้ sidewalk ส่วน UK ใช้คำว่า pavement แปลว่าทางเท้าเหมือนกัน",
+    "grammarPattern": "walk on the sidewalk",
+    "phoneticUK": "/ˈsaɪdwɔːk/",
+    "syllables": "side·walk",
+    "antonyms": [
+      "highway lane"
+    ],
+    "novaBatch": true
   }
 ];

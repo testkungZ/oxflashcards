@@ -8437,7 +8437,10 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: 'Could you repeat that slowly?', promptTh: 'ช่วยพูดซ้ำช้าๆ อีกครั้งได้ไหม?', answerEn: 'Sure, listen carefully.', answerTh: 'ได้เลย ตั้งใจฟังนะ', distractors: ['Breakfast was delicious.', 'I bought it last Friday.', 'Her office is upstairs.', 'Wait by the main gate.'] },
             { promptEn: 'Thank you very much!', promptTh: 'ขอบคุณมากเลยนะ!', answerEn: 'You are most welcome.', answerTh: 'ด้วยความยินดีอย่างยิ่ง', distractors: ['That will be twelve dollars.', 'Yes, inside the drawer.', 'Wait until next Tuesday.', 'He walks every morning.'] },
             { promptEn: 'How old is your little cat?', promptTh: 'ลูกแมวของคุณอายุเท่าไหร่แล้ว?', answerEn: 'She is two years old.', answerTh: 'เธออายุสองขวบแล้ว', distractors: ['Yes, we studied English.', 'On top of the bookshelf.', 'Please wait a moment.', 'The weather looks clear.'] },
-            { promptEn: 'Have a great weekend!', promptTh: 'ขอให้สนุกกับวันหยุดสุดสัปดาห์นะ!', answerEn: 'Thanks, same to you!', answerTh: 'ขอบคุณ เช่นกันนะ!', distractors: ['Open page twenty-four.', 'It weighs three kilos.', 'I drank iced coffee.', 'Call me at the station.'] }
+            { promptEn: 'Have a great weekend!', promptTh: 'ขอให้สนุกกับวันหยุดสุดสัปดาห์นะ!', answerEn: 'Thanks, same to you!', answerTh: 'ขอบคุณ เช่นกันนะ!', distractors: ['Open page twenty-four.', 'It weighs three kilos.', 'I drank iced coffee.', 'Call me at the station.'] },
+            { promptEn: "Could you speak a little slower, please?", promptTh: "ช่วยพูดช้าลงอีกนิดได้ไหมครับ/คะ?", answerEn: "Sure, no problem. Is this pace better?", answerTh: "ได้เลยครับ ไม่มีปัญหา จังหวะนี้ดีขึ้นไหมครับ?", distractors: ["I left my umbrella on the bus.", "The meeting room is on the third floor.", "I usually drink coffee without sugar.", "My phone battery is almost dead."] },
+            { promptEn: "Could you speak a bit more slowly, please?", promptTh: "คุณช่วยพูดช้าลงอีกนิดได้ไหมครับ/คะ", answerEn: "Of course, sorry about that.", answerTh: "ได้เลยครับ/ค่ะ ขอโทษด้วยนะ", distractors: ["It starts at nine o'clock.", "I left my bag on the bus.", "The weather is quite warm today.", "No thanks, I already had lunch."] },
+            { promptEn: "Could you speak a little more slowly, please?", promptTh: "รบกวนพูดช้าลงอีกนิดได้ไหมครับ/คะ", answerEn: "Sure, I will speak more slowly for you.", answerTh: "ได้เลยครับ/ค่ะ เดี๋ยวฉันจะพูดให้ช้าลงนะ", distractors: ["The library closes at eight tonight.", "I forgot to bring my umbrella.", "This coffee tastes very sweet.", "My brother lives near the beach."] }
         ],
         food: [
             { promptEn: 'Tea or coffee?', promptTh: 'รับชาหรือกาแฟดี?', answerEn: 'Tea, please.', answerTh: 'ขอชา ได้โปรด', distractors: ['Yes, I am tired.', 'Welcome to my home.', 'Turn off the light.', 'He works downtown.'] },
@@ -8451,7 +8454,11 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: 'What fruit is in season now?', promptTh: 'ตอนนี้มีผลไม้อะไรตามฤดูกาลบ้าง?', answerEn: 'Sweet mangoes are everywhere.', answerTh: 'มะม่วงหวานมีขายเต็มไปหมดเลย', distractors: ['The meeting ended early.', 'Wash your hands first.', 'He fixed the broken chair.', 'Keep the receipt safe.'] },
             { promptEn: 'Would you care for dessert?', promptTh: 'รับของหวานสักหน่อยไหม?', answerEn: 'A small scoop of ice cream.', answerTh: 'ขอไอศกรีมลูกเล็กๆ สักลูก', distractors: ['Turn down the radio.', 'Tomorrow is Monday.', 'She wears warm gloves.', 'Lock the back gate.'] },
             { promptEn: 'Where did you learn to cook?', promptTh: 'คุณเรียนทำอาหารมาจากไหน?', answerEn: 'My grandmother taught me.', answerTh: 'คุณยายเป็นคนสอนฉันเอง', distractors: ['Fifty baht per kilo.', 'On the top shelf.', 'Wait until five o’clock.', 'That street is quiet.'] },
-            { promptEn: 'Does this cake contain nuts?', promptTh: 'เค้กชิ้นนี้มีถั่วผสมไหม?', answerEn: 'No, it is completely nut-free.', answerTh: 'ไม่มีเลย ไม่มีถั่วแน่นอน', distractors: ['He lives with two cousins.', 'Bring a jacket tonight.', 'The exam was pretty fair.', 'Please sign at the bottom.'] }
+            { promptEn: 'Does this cake contain nuts?', promptTh: 'เค้กชิ้นนี้มีถั่วผสมไหม?', answerEn: 'No, it is completely nut-free.', answerTh: 'ไม่มีเลย ไม่มีถั่วแน่นอน', distractors: ['He lives with two cousins.', 'Bring a jacket tonight.', 'The exam was pretty fair.', 'Please sign at the bottom.'] },
+            { promptEn: "Can we get the bill when you have a moment?", promptTh: "ขอเช็กบิลหน่อยได้ไหมครับ/คะเมื่อสะดวก?", answerEn: "Of course, I will bring it right over.", answerTh: "ได้ครับ/ค่ะ เดี๋ยวจะรีบนำมาให้ทันทีเลย", distractors: ["The library closes at six o'clock.", "Take the first turn on your left.", "I forgot to charge my laptop last night.", "It looks like it might rain this afternoon."] },
+            { promptEn: "Would you like your coffee hot or iced?", promptTh: "คุณอยากรับกาแฟแบบร้อนหรือแบบเย็นดีครับ/คะ", answerEn: "Iced, please, with less sugar.", answerTh: "ขอเป็นแบบเย็น หวานน้อยครับ/ค่ะ", distractors: ["I usually wake up at six.", "The pharmacy is across the street.", "Yes, I have a reservation.", "She works at a design studio."] },
+            { promptEn: "Could I get the bill, please?", promptTh: "ขอเช็กบิลหน่อยครับ/ค่ะ", answerEn: "Sure, I'll bring it right over.", answerTh: "ได้เลยครับ/ค่ะ เดี๋ยวฉันนำมาให้สักครู่นะคะ", distractors: ["The train leaves from platform three.", "I forgot to charge my phone last night.", "It looks like it might rain this afternoon.", "My sister is studying medicine in Bangkok."] },
+            { promptEn: "Would you like your iced tea less sweet?", promptTh: "รับชาเย็นแบบหวานน้อยไหมครับ/คะ", answerEn: "Yes, half sweet would be perfect, thank you.", answerTh: "ใช่ค่ะ ขอหวานครึ่งหนึ่งกำลังดีเลย ขอบคุณค่ะ", distractors: ["The bus stop is across the street.", "I usually wake up at six.", "She bought a new blue jacket.", "We need to clean the living room."] }
         ],
         body: [
             { promptEn: 'What is wrong today?', promptTh: 'วันนี้เป็นอะไรไปหรือเปล่า?', answerEn: 'I have a slight headache.', answerTh: 'ฉันปวดหัวนิดหน่อย', distractors: ['The museum closes at five.', 'This soup tastes sweet.', 'Put it inside the box.', 'Our flight is delayed.'] },
@@ -8465,7 +8472,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: 'Remember to stretch before running.', promptTh: 'อย่าลืมยืดเส้นยืดสายก่อนวิ่งนะ', answerEn: 'Good idea, I will warm up.', answerTh: 'ไอเดียดี เดี๋ยวฉันวอร์มร่างกายก่อน', distractors: ['Turn off the bedroom lamp.', 'These apples cost forty baht.', 'Our teacher checked the quiz.', 'The hotel lobby is quiet.'] },
             { promptEn: 'Do your eyes feel tired?', promptTh: 'รู้สึกตาล้าบ้างไหม?', answerEn: 'Yes, I stared at screens all day.', answerTh: 'ใช่ ฉันจ้องหน้าจอมาทั้งวันเลย', distractors: ['No, it rains in July.', 'Bake the bread for ten minutes.', 'My cousin lives nearby.', 'Take the elevator upstairs.'] },
             { promptEn: 'How much water should I drink?', promptTh: 'ฉันควรดื่มน้ำมากแค่ไหน?', answerEn: 'About eight glasses daily.', answerTh: 'ประมาณวันละแปดแก้ว', distractors: ['With my best friend.', 'Around the city square.', 'Because the shop closed.', 'That sweater fits nicely.'] },
-            { promptEn: 'Have you rested enough today?', promptTh: 'วันนี้คุณพักผ่อนเพียงพอหรือยัง?', answerEn: 'Almost, I will sleep early tonight.', answerTh: 'เกือบพอแล้ว คืนนี้จะรีบนอน', distractors: ['The train reached London.', 'Put extra ice inside.', 'She drew a small bird.', 'This dictionary is thick.'] }
+            { promptEn: 'Have you rested enough today?', promptTh: 'วันนี้คุณพักผ่อนเพียงพอหรือยัง?', answerEn: 'Almost, I will sleep early tonight.', answerTh: 'เกือบพอแล้ว คืนนี้จะรีบนอน', distractors: ['The train reached London.', 'Put extra ice inside.', 'She drew a small bird.', 'This dictionary is thick.'] },
+            { promptEn: "Are you feeling okay? You look a bit pale.", promptTh: "คุณโอเคไหม หน้าดูซีดๆ นะ", answerEn: "I'm just a little dizzy. I think I need some water.", answerTh: "แค่เวียนหัวนิดหน่อยน่ะ คิดว่าขอดื่มน้ำสักหน่อยก็ดีขึ้น", distractors: ["The supermarket closes at ten tonight.", "Could you send me the PDF file again?", "We planted some flowers in the garden.", "That movie had a very surprising ending."] }
         ],
         home: [
             { promptEn: 'Where should I put my bag?', promptTh: 'ฉันควรวางกระเป๋าไว้ตรงไหนดี?', answerEn: 'Put it beside the sofa.', answerTh: 'วางไว้ข้างโซฟาได้เลย', distractors: ['We visited the zoo.', 'I am studying history.', 'Yes, add some pepper.', 'She runs every morning.'] },
@@ -8479,7 +8487,10 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: 'Which shelf holds the cookbooks?', promptTh: 'ชั้นไหนวางหนังสือทำอาหารไว้?', answerEn: 'The wooden one near the kitchen.', answerTh: 'ชั้นไม้ตรงใกล้ๆ ห้องครัว', distractors: ['Tomorrow at noon sharp.', 'I drank cold orange juice.', 'They cheered for the team.', 'Pay at the counter.'] },
             { promptEn: 'Should we open the bedroom window?', promptTh: 'เราเปิดหน้าต่างห้องนอนดีไหม?', answerEn: 'Yes, let some fresh air in.', answerTh: 'เปิดเลย ให้ลมเย็นๆ เข้ามาหน่อย', distractors: ['No, the test is Friday.', 'Mix eggs and flour together.', 'He bought a train pass.', 'Follow the nurse inside.'] },
             { promptEn: 'Who swept the floor so cleanly?', promptTh: 'ใครกวาดพื้นซะสะอาดเอี่ยมเลย?', answerEn: 'My sister cleaned it earlier.', answerTh: 'น้องสาวฉันทำความสะอาดไว้เมื่อกี้', distractors: ['Take the first left turn.', 'Ten percent discount today.', 'The river looks peaceful.', 'Bring a notebook to class.'] },
-            { promptEn: 'Does this lamp need a new bulb?', promptTh: 'โคมไฟนี้ต้องเปลี่ยนหลอดไฟใหม่ไหม?', answerEn: 'Yes, it stopped shining yesterday.', answerTh: 'ต้องเปลี่ยน มันดับไปตั้งแต่เมื่อวาน', distractors: ['At the corner grocery store.', 'She passed the driving test.', 'Boil the water first.', 'Our neighbors are friendly.'] }
+            { promptEn: 'Does this lamp need a new bulb?', promptTh: 'โคมไฟนี้ต้องเปลี่ยนหลอดไฟใหม่ไหม?', answerEn: 'Yes, it stopped shining yesterday.', answerTh: 'ต้องเปลี่ยน มันดับไปตั้งแต่เมื่อวาน', distractors: ['At the corner grocery store.', 'She passed the driving test.', 'Boil the water first.', 'Our neighbors are friendly.'] },
+            { promptEn: "Did you remember to lock the back door?", promptTh: "จำได้ไหมว่าล็อกประตูหลังบ้านหรือยัง?", answerEn: "Yes, I locked it right before coming upstairs.", answerTh: "ล็อกแล้วครับ/ค่ะ เพิ่งล็อกก่อนเดินขึ้นมาชั้นบนนี่เอง", distractors: ["This jacket comes in three different sizes.", "I have a dentist appointment on Friday.", "The traffic is always heavy around five.", "You can borrow my pen if you need one."] },
+            { promptEn: "Could you help me carry these groceries upstairs?", promptTh: "ช่วยฉันถือของที่ซื้อมาขึ้นไปชั้นบนหน่อยได้ไหม", answerEn: "Sure, hand me the heavy bags.", answerTh: "ได้สิ ส่งถุงหนักๆ มาให้ฉันเลย", distractors: ["The museum closes at five p.m.", "I studied history at university.", "It costs around two hundred baht.", "They are going hiking this weekend."] },
+            { promptEn: "Where did you put the spare keys?", promptTh: "คุณวางกุญแจสำรองไว้ที่ไหนเหรอ", answerEn: "They're in the top drawer next to the door.", answerTh: "อยู่ในลิ้นชักบนสุดข้างประตูนะ", distractors: ["The flight was delayed by two hours.", "I have a dentist appointment on Friday.", "This shirt comes in blue and white.", "We learned about world history in class."] }
         ],
         people: [
             { promptEn: 'Who is that standing by the gate?', promptTh: 'คนที่ยืนตรงประตูรั้วนั่นใครน่ะ?', answerEn: 'That is our new neighbor.', answerTh: 'นั่นเพื่อนบ้านคนใหม่ของเรา', distractors: ['The kitchen is very clean.', 'We need two bottles of milk.', 'Open the window slightly.', 'I missed the early bus.'] },
@@ -8493,7 +8504,11 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: 'Did your parents enjoy the trip?', promptTh: 'คุณพ่อคุณแม่ชอบทริปนี้ไหม?', answerEn: 'They loved the peaceful beach.', answerTh: 'ท่านชอบชายหาดที่เงียบสงบมาก', distractors: ['Open page twelve now.', 'Wait until the light turns green.', 'Keep the milk refrigerated.', 'My ankle feels better.'] },
             { promptEn: 'How long have you known Ken?', promptTh: 'คุณรู้จักเคนมานานแค่ไหนแล้ว?', answerEn: 'Since we were in high school.', answerTh: 'ตั้งแต่สมัยเรียนมัธยมปลายแล้ว', distractors: ['At the hospital pharmacy.', 'Slice the bread thinly.', 'Yes, a round-trip ticket.', 'Turn the heater down.'] },
             { promptEn: 'Are the children already asleep?', promptTh: 'เด็กๆ นอนหลับกันหมดหรือยัง?', answerEn: 'Yes, right after their bedtime story.', answerTh: 'หลับแล้ว ทันทีที่ฟังนิทานก่อนนอนจบ', distractors: ['No, the market opens early.', 'Bring two extra chairs.', 'The project passed review.', 'Wear sunglasses outside.'] },
-            { promptEn: 'Who can help carry these boxes?', promptTh: 'ใครช่วยยกกล่องพวกนี้ได้บ้าง?', answerEn: 'Tom and I will grab them.', answerTh: 'เดี๋ยวทอมกับฉันช่วยยกให้เอง', distractors: ['This curry is mild.', 'Winter begins in December.', 'Check your passport date.', 'Write the date on top.'] }
+            { promptEn: 'Who can help carry these boxes?', promptTh: 'ใครช่วยยกกล่องพวกนี้ได้บ้าง?', answerEn: 'Tom and I will grab them.', answerTh: 'เดี๋ยวทอมกับฉันช่วยยกให้เอง', distractors: ['This curry is mild.', 'Winter begins in December.', 'Check your passport date.', 'Write the date on top.'] },
+            { promptEn: "How have you been since we last met?", promptTh: "ตั้งแต่เจอกันครั้งล่าสุด เป็นอย่างไรบ้าง?", answerEn: "Pretty good, thanks! I have been busy with a new project.", answerTh: "สบายดีเลย ขอบคุณนะ ช่วงนี้กำลังยุ่งกับโปรเจกต์ใหม่อยู่", distractors: ["Please place your tray on the counter.", "The pharmacy is right across the street.", "I prefer sitting near the window.", "My shoes got soaked in the storm."] },
+            { promptEn: "How do you know Sarah?", promptTh: "คุณรู้จักซาร่าได้ยังไงเหรอ", answerEn: "We used to be classmates in college.", answerTh: "เราเคยเป็นเพื่อนร่วมชั้นกันตอนเรียนมหาวิทยาลัยน่ะ", distractors: ["Put the milk back in the fridge.", "My flight got delayed by an hour.", "I am allergic to peanuts.", "The printer is out of paper."] },
+            { promptEn: "How long have you known each other?", promptTh: "พวกคุณรู้จักกันมานานแค่ไหนแล้ว", answerEn: "We've been close friends since university.", answerTh: "เราสนิทกันมาตั้งแต่สมัยเรียนมหาวิทยาลัยแล้ว", distractors: ["Don't forget to take your umbrella.", "The printer is out of paper again.", "I ordered iced tea instead of lemonade.", "Turn left at the second traffic light."] },
+            { promptEn: "How long have you and Pim known each other?", promptTh: "คุณกับพิมพ์รู้จักกันมานานแค่ไหนแล้ว", answerEn: "We have been close friends since university.", answerTh: "เราเป็นเพื่อนสนิทกันมาตั้งแต่สมัยเรียนมหาวิทยาลัยแล้ว", distractors: ["Can I pay by credit card here?", "The soup needs a bit more salt.", "My phone battery is almost dead.", "Check the weather before you leave."] }
         ],
         travel: [
             { promptEn: 'Where is the emergency exit?', promptTh: 'ทางออกฉุกเฉินอยู่ที่ไหน?', answerEn: 'Down the hall on the left.', answerTh: 'เดินตรงไปแล้วเลี้ยวซ้าย', distractors: ['Yes, I enjoy music.', 'Coffee without sugar, please.', 'My cousin cooks dinner.', 'The essay needs editing.'] },
@@ -8507,7 +8522,10 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: 'Did the taxi arrive on time?', promptTh: 'แท็กซี่มาถึงตรงเวลาไหม?', answerEn: 'Yes, five minutes early.', answerTh: 'ตรงเวลา แถมมาก่อนห้านาทีด้วย', distractors: ['It weighs two kilograms.', 'Mix milk with cereal.', 'My sister plays violin.', 'The library stays quiet.'] },
             { promptEn: 'Is breakfast included at the hotel?', promptTh: 'ที่โรงแรมรวมอาหารเช้าด้วยไหม?', answerEn: 'Yes, served from six to ten.', answerTh: 'รวมครับ เสิร์ฟตั้งแต่หกโมงถึงสิบโมง', distractors: ['Turn off the bedroom fan.', 'Look at the bright moon.', 'She hurt her shoulder.', 'The manager checked the plan.'] },
             { promptEn: 'Should we carry cash or a card?', promptTh: 'เราควรพกเงินสดหรือบัตรดี?', answerEn: 'Bring both, just in case.', answerTh: 'พกไว้ทั้งสองอย่างเลย เผื่อไว้', distractors: ['Behind the science lab.', 'Yes, she is my cousin.', 'This blanket feels soft.', 'Water boils at one hundred.'] },
-            { promptEn: 'Have you packed your suitcase yet?', promptTh: 'จัดกระเป๋าเดินทางเสร็จหรือยัง?', answerEn: 'Almost, just adding my charger.', answerTh: 'เกือบเสร็จแล้ว เหลือใส่สายชาร์จ', distractors: ['The river flows south.', 'Two slices of toasted bread.', 'Everyone cheered loudly.', 'Brush teeth twice daily.'] }
+            { promptEn: 'Have you packed your suitcase yet?', promptTh: 'จัดกระเป๋าเดินทางเสร็จหรือยัง?', answerEn: 'Almost, just adding my charger.', answerTh: 'เกือบเสร็จแล้ว เหลือใส่สายชาร์จ', distractors: ['The river flows south.', 'Two slices of toasted bread.', 'Everyone cheered loudly.', 'Brush teeth twice daily.'] },
+            { promptEn: "Excuse me, does this bus go to the central station?", promptTh: "ขอโทษครับ/ค่ะ รถเมล์สายนี้ไปสถานีกลางไหมครับ/คะ?", answerEn: "Yes, it stops right in front of the main entrance.", answerTh: "ไปครับ/ค่ะ รถจะจอดตรงหน้าทางเข้าหลักเลย", distractors: ["I am allergic to peanuts and seafood.", "She just finished her homework an hour ago.", "The printer is out of paper again.", "We decided to paint the bedroom blue."] },
+            { promptEn: "How long does it take to get to the airport by train?", promptTh: "นั่งรถไฟไปสนามบินใช้เวลานานเท่าไหร่ครับ/คะ", answerEn: "About thirty minutes from here.", answerTh: "จากตรงนี้ประมาณสามสิบนาทีครับ/ค่ะ", distractors: ["I need to buy some fresh fruit.", "Please sign your name at the bottom.", "My headache is much better now.", "The meeting room is on the third floor."] },
+            { promptEn: "Excuse me, does this train go to the airport?", promptTh: "ขอโทษนะครับ/คะ รถไฟขบวนนี้ไปสนามบินไหม", answerEn: "No, you need to transfer at the next station.", answerTh: "ไม่ครับ/ค่ะ คุณต้องเปลี่ยนขบวนที่สถานีหน้า", distractors: ["I had noodles for lunch today.", "The movie starts in ten minutes.", "He likes playing guitar on weekends.", "Please put the milk in the fridge."] }
         ],
         nature: [
             { promptEn: 'Should I take an umbrella today?', promptTh: 'วันนี้ฉันควรพกร่มไปด้วยไหม?', answerEn: 'Yes, it might rain later.', answerTh: 'ควรนะ เดี๋ยวฝนอาจจะตก', distractors: ['The ticket costs ten dollars.', 'Turn off the computer first.', 'Bake the pie slowly.', 'He sits beside his friend.'] },
@@ -8535,7 +8553,10 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: 'What helps you relax after work?', promptTh: 'หลังเลิกงานทำอะไรถึงช่วยให้ผ่อนคลาย?', answerEn: 'Listening to soft jazz music.', answerTh: 'ฟังเพลงแจ๊สเบาๆ น่ะ', distractors: ['Two stamps for a postcard.', 'Because it snowed heavily.', 'Pass the pepper shaker.', 'Vote at the town hall.'] },
             { promptEn: 'You sound very confident now.', promptTh: 'ตอนนี้เสียงคุณฟังดูมั่นใจมากเลยนะ', answerEn: 'Preparing well really helped.', answerTh: 'การเตรียมตัวมาดีช่วยได้มากเลย', distractors: ['Put your shoes by the mat.', 'Three kilometers ahead.', 'That mango is still green.', 'Take medicine twice daily.'] },
             { promptEn: 'Why did everyone go quiet suddenly?', promptTh: 'ทำไมจู่ๆ ทุกคนเงียบไปหมดเลย?', answerEn: 'They felt touched by the story.', answerTh: 'ทุกคนซาบซึ้งกับเรื่องเล่าน่ะ', distractors: ['Buy fruit at the corner.', 'Our train arrives at six.', 'Close the front blinds.', 'Send that email right now.'] },
-            { promptEn: 'Are you disappointed the picnic moved indoors?', promptTh: 'ผิดหวังไหมที่ต้องย้ายปิกนิกมาจัดในร่ม?', answerEn: 'Not really, we still have fun.', answerTh: 'ไม่นะ เรายังสนุกกันเหมือนเดิม', distractors: ['Turn left after the bridge.', 'Read paragraph three carefully.', 'Wash your hands with soap.', 'The manager praised our work.'] }
+            { promptEn: 'Are you disappointed the picnic moved indoors?', promptTh: 'ผิดหวังไหมที่ต้องย้ายปิกนิกมาจัดในร่ม?', answerEn: 'Not really, we still have fun.', answerTh: 'ไม่นะ เรายังสนุกกันเหมือนเดิม', distractors: ['Turn left after the bridge.', 'Read paragraph three carefully.', 'Wash your hands with soap.', 'The manager praised our work.'] },
+            { promptEn: "You look a little tired today. Are you okay?", promptTh: "วันนี้คุณดูเหนื่อยๆ นะ โอเคหรือเปล่า", answerEn: "I am fine, I just did not sleep well last night.", answerTh: "ฉันโอเค แค่เมื่อคืนนอนไม่ค่อยหลับน่ะ", distractors: ["You can pay by card or cash.", "Turn off the stove before leaving.", "The package arrived this morning.", "Let us meet outside the library."] },
+            { promptEn: "How did your job interview go?", promptTh: "การสัมภาษณ์งานของคุณเป็นยังไงบ้าง", answerEn: "I was nervous at first, but I feel relieved now.", answerTh: "ตอนแรกก็ตื่นเต้นนะ แต่ตอนนี้รู้สึกโล่งใจแล้ว", distractors: ["Please keep your receipt for returns.", "The air conditioner is making a strange noise.", "Cats usually sleep during the afternoon.", "I need to renew my passport next month."] },
+            { promptEn: "You look a bit tired today. Are you okay?", promptTh: "วันนี้คุณดูเหนื่อยๆ นะ โอเคไหม", answerEn: "I am fine, just didn't get enough sleep last night.", answerTh: "ฉันโอเค แค่เมื่อคืนนอนไม่ค่อยพอน่ะ", distractors: ["The package arrived this morning.", "Put your shoes on the rack.", "We booked two tickets online.", "The printer is out of paper."] }
         ],
         education: [
             { promptEn: 'Did you finish the homework?', promptTh: 'ทำการบ้านเสร็จหรือยัง?', answerEn: 'Almost done, just one page left.', answerTh: 'เกือบเสร็จแล้ว เหลืออีกแค่หน้าเดียว', distractors: ['The river flows to the sea.', 'Please slice the bread.', 'Lock the front door.', 'Her cough is gone.'] },
@@ -8563,7 +8584,11 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: 'Who checks the budget sheet?', promptTh: 'ใครเป็นคนตรวจเอกสารงบประมาณ?', answerEn: 'Dan reviews every number weekly.', answerTh: 'แดนตรวจตัวเลขทั้งหมดทุกสัปดาห์', distractors: ['Beside the bakery shop.', 'It rained for two hours.', 'Buy fresh fish tomorrow.', 'Put ice cubes inside.'] },
             { promptEn: 'Have you backed up the database?', promptTh: 'สำรองข้อมูลฐานข้อมูลแล้วหรือยัง?', answerEn: 'Yes, it saved safely this morning.', answerTh: 'ทำแล้ว บันทึกเรียบร้อยตั้งแต่เมื่อเช้า', distractors: ['She plays tennis daily.', 'My brother loves soup.', 'Walk carefully on ice.', 'Read unit seven tonight.'] },
             { promptEn: 'What does this startup specialize in?', promptTh: 'สตาร์ทอัพนี้เชี่ยวชาญด้านไหน?', answerEn: 'Smart tools for small shops.', answerTh: 'เครื่องมืออัจฉริยะสำหรับร้านค้าขนาดเล็ก', distractors: ['Three glasses of cold water.', 'Clean the kitchen sink.', 'Our flight boards soon.', 'I passed the physics quiz.'] },
-            { promptEn: 'When can I take a lunch break?', promptTh: 'ฉันไปพักทานมื้อเที่ยงได้ตอนไหน?', answerEn: 'Right after this quick call ends.', answerTh: 'ทันทีที่สายด่วนนี้คุยจบเลย', distractors: ['Under the living room rug.', 'Summer mornings feel bright.', 'She wears a wool scarf.', 'Vote before five today.'] }
+            { promptEn: 'When can I take a lunch break?', promptTh: 'ฉันไปพักทานมื้อเที่ยงได้ตอนไหน?', answerEn: 'Right after this quick call ends.', answerTh: 'ทันทีที่สายด่วนนี้คุยจบเลย', distractors: ['Under the living room rug.', 'Summer mornings feel bright.', 'She wears a wool scarf.', 'Vote before five today.'] },
+            { promptEn: "Do you have time to review this report before noon?", promptTh: "พอมีเวลาช่วยตรวจรายงานฉบับนี้ก่อนเที่ยงไหมครับ/คะ?", answerEn: "Yes, send it to my email and I will check it now.", answerTh: "มีครับ/ค่ะ ส่งมาที่อีเมลได้เลย เดี๋ยวตรวจให้ตอนนี้เลย", distractors: ["The soup needs a little more salt.", "I went jogging in the park this morning.", "My flight was delayed by thirty minutes.", "They adopted a puppy last weekend."] },
+            { promptEn: "Did you get a chance to check my email yet?", promptTh: "คุณได้ดูอีเมลของฉันหรือยังครับ/คะ", answerEn: "Not yet, I will read it right after this call.", answerTh: "ยังเลย เดี๋ยววางสายนี้แล้วจะรีบอ่านนะ", distractors: ["Take the second turning on the left.", "I prefer watching movies at home.", "This shirt comes in three colors.", "We should bring an umbrella just in case."] },
+            { promptEn: "Can we move our meeting to three o'clock?", promptTh: "เราเลื่อนการประชุมไปเป็นบ่ายสามโมงได้ไหมครับ/คะ", answerEn: "That works for me. I'll update the calendar.", answerTh: "ได้ครับ/ค่ะ เดี๋ยวผม/ฉันอัปเดตปฏิทินให้นะ", distractors: ["The soup needs a little more salt.", "There is a nice park near my house.", "I need to buy dog food on the way home.", "He enjoys swimming at the beach."] },
+            { promptEn: "When is the deadline for the monthly report?", promptTh: "กำหนดส่งรายงานประจำเดือนคือวันไหนครับ/คะ", answerEn: "We need to submit it by five o'clock tomorrow.", answerTh: "เราต้องส่งภายในห้าโมงเย็นวันพรุ่งนี้ครับ/ค่ะ", distractors: ["The cat is sleeping on the sofa.", "I need to buy fresh vegetables.", "It looks like it might rain soon.", "Turn left at the traffic light."] }
         ],
         society: [
             { promptEn: 'Where can citizens vote today?', promptTh: 'ประชาชนไปใช้สิทธิเลือกตั้งได้ที่ไหนวันนี้?', answerEn: 'At the local community center.', answerTh: 'ที่ศูนย์ชุมชนประจำท้องถิ่น', distractors: ['Add a little sugar to taste.', 'His cat sleeps under the chair.', 'Check in at counter five.', 'My elbow feels sore.'] },
@@ -8591,7 +8616,9 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: 'Could you push that heavy cart?', promptTh: 'ช่วยเข็นรถเข็นหนักคันนั้นหน่อยได้ไหม?', answerEn: 'No problem, watch your feet!', answerTh: 'ไม่มีปัญหา ระวังเท้าด้วยนะ!', distractors: ['The library closed early.', 'Her smile looked warm.', 'Boil carrots ten minutes.', 'Check today’s weather.'] },
             { promptEn: 'Let us cross the street carefully.', promptTh: 'มาข้ามถนนกันอย่างระมัดระวังเถอะ', answerEn: 'Right, look both ways first.', answerTh: 'จริง มองซ้ายมองขวาก่อนเลย', distractors: ['Two slices of warm pie.', 'My laptop updated overnight.', 'Open the study notes.', 'His aunt lives downtown.'] },
             { promptEn: 'Will you tape these torn pages?', promptTh: 'ช่วยเอาเทปติดหน้าที่ขาดพวกนี้ให้หน่อยได้ไหม?', answerEn: 'Sure, pass me the clear tape.', answerTh: 'ได้เลย ส่งเทปใสมาให้หน่อยสิ', distractors: ['Snow fell until dawn.', 'Order iced green tea.', 'She felt calm today.', 'Start the meeting now.'] },
-            { promptEn: 'Did someone lock the garden shed?', promptTh: 'มีคนล็อคห้องเก็บของในสวนหรือยัง?', answerEn: 'Yes, I clicked the padlock shut.', answerTh: 'ล็อคแล้ว ฉันกดแม่กุญแจปิดสนิทเลย', distractors: ['Five apples per basket.', 'He won the chess match.', 'Drink warm soup tonight.', 'Turn left near the bank.'] }
+            { promptEn: 'Did someone lock the garden shed?', promptTh: 'มีคนล็อคห้องเก็บของในสวนหรือยัง?', answerEn: 'Yes, I clicked the padlock shut.', answerTh: 'ล็อคแล้ว ฉันกดแม่กุญแจปิดสนิทเลย', distractors: ['Five apples per basket.', 'He won the chess match.', 'Drink warm soup tonight.', 'Turn left near the bank.'] },
+            { promptEn: "Do you mind if I open the window for some fresh air?", promptTh: "คุณจะว่าอะไรไหมถ้าฉันขอเปิดหน้าต่างรับลมหน่อย", answerEn: "Not at all, please go ahead.", answerTh: "ไม่เลยครับ/ค่ะ เปิดได้เลยตามสบาย", distractors: ["I ordered a vegetarian pasta.", "He forgot his umbrella at work.", "The exam is scheduled for Friday.", "That blue jacket looks great on you."] },
+            { promptEn: "Can you give me a hand carrying these boxes?", promptTh: "ช่วยฉันยกกล่องพวกนี้หน่อยได้ไหม", answerEn: "Of course, let me take the heavy one for you.", answerTh: "ได้เลย เดี๋ยวฉันช่วยถือกล่องที่หนักให้เอง", distractors: ["Her birthday is next Thursday.", "The pharmacy is open twenty-four hours.", "I prefer window seats on flights.", "Autumn leaves turn bright orange."] }
         ]
     };
 
@@ -8945,11 +8972,46 @@ document.addEventListener('DOMContentLoaded', () => {
     return x || 1;
   }
 
+  function weaveRandomDataWords(basePool, stage, unit, targetLimit) {
+    if (!Array.isArray(basePool) || basePool.length === 0 || stage?.isVirtual) return basePool;
+    const picked = [...basePool];
+    const pickedSet = new Set(picked);
+
+    const sameBucketNova = [];
+    const anyNova = [];
+    for (let i = 0; i < totalWords; i++) {
+      const w = wordsData[i];
+      if (!w || !w.novaBatch || keyToIndex.get(keyOf(w)) !== i) continue;
+      if (wordStatus[keyOf(w)] === 'known' || pickedSet.has(i)) continue;
+      if (unit && (w.topic === unit.topicId || w.cefr === unit.cefr)) {
+        sameBucketNova.push(i);
+      } else {
+        anyNova.push(i);
+      }
+    }
+
+    const novaCandidates = [...shuffle(sameBucketNova), ...shuffle(anyNova)];
+    if (novaCandidates.length === 0) return picked;
+
+    const injectCount = Math.min(novaCandidates.length, picked.length >= 6 ? 3 : Math.max(1, Math.floor(picked.length / 2)));
+    const keepCount = Math.max(1, Math.min(picked.length, targetLimit) - injectCount);
+    const merged = picked.slice(0, keepCount);
+    const mergedSet = new Set(merged);
+    for (const idx of novaCandidates) {
+      if (merged.length >= Math.min(targetLimit, Math.max(picked.length, injectCount + keepCount))) break;
+      if (!mergedSet.has(idx)) {
+        mergedSet.add(idx);
+        merged.push(idx);
+      }
+    }
+    return shuffle(merged);
+  }
+
   function selectStageWordPool(stage, unit, limit = 10, roundNum = 1, totalRounds = 4, replaySalt = 0) {
     const qLimit = Math.min(limit, Math.max(7, 6 + roundNum));
     if (!stage.isBoss && stage.nodeType !== 'review') {
       const src = stage.wordIndices || [];
-      if (src.length <= 1) return [...src];
+      if (src.length <= 1) return weaveRandomDataWords([...src], stage, unit, qLimit);
       const n = src.length;
       const coprimes = [1, 2, 3, 5, 7].filter(s => s < n && oxGcd(s, n) === 1);
       if (coprimes.length === 0) coprimes.push(1);
@@ -8986,10 +9048,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const candIdx = siblingPool[(replaySalt * 5 + roundNum * 2 + c * 3) % siblingPool.length];
             if (!mixed.includes(candIdx)) mixed.push(candIdx);
           }
-          return mixed;
+          return weaveRandomDataWords(mixed, stage, unit, qLimit);
         }
       }
-      return picked;
+      return weaveRandomDataWords(picked, stage, unit, qLimit);
     }
     if (stage.isBoss) {
       // Stratified sampling rotated by roundNum + replaySalt so each round/replay challenges different words
@@ -9018,7 +9080,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           round++;
         }
-        if (picked.length > 0) return picked;
+        if (picked.length > 0) return weaveRandomDataWords(picked, stage, unit, qLimit);
       }
     }
     // Review or single-chunk fallback: prioritize 'review' -> low mastery/wrong -> unseen -> evenly distributed & rotated by roundNum + replaySalt
@@ -9035,7 +9097,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return { idx, prio, spreadRank };
     });
     ranked.sort((a, b) => (a.prio - b.prio) || (a.spreadRank - b.spreadRank));
-    return ranked.slice(0, qLimit).map(x => x.idx);
+    return weaveRandomDataWords(ranked.slice(0, qLimit).map(x => x.idx), stage, unit, qLimit);
   }
 
   /**
@@ -9128,9 +9190,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (micro) return recordChoice(micro, true);
     }
 
-    // Step 4: Prefer an unseen + non-recent curated topic dialogue rotated by replaySalt
-    const freshTopic = topicRotated.find(isFreshCurated);
-    if (freshTopic) return recordChoice(freshTopic, false);
+    // Step 4: Randomly draw from unseen + non-recent topic dialogues so newly added dialogues surface immediately
+    const freshTopicPool = topicList.filter(isFreshCurated);
+    if (freshTopicPool.length > 0) {
+      const pick = freshTopicPool[Math.floor(Math.random() * freshTopicPool.length)];
+      return recordChoice(pick, false);
+    }
 
     // Step 5: Try synthesized micro-dialogue if recent curated dialogues were already seen
     const microFallback = buildMicroDialogue();
@@ -9616,6 +9681,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sec = learnState.activeSection || 'A1';
     const secUnits = OxCurriculum.sections[sec] || [];
     const secPool = secUnits.flatMap(u => u.wordIndices);
+    const defaultUnit = secUnits[0] || OxCurriculum.unitById.values().next().value;
+
     if (kind === 'weak') {
       const reviewIndices = [];
       for (let i = 0; i < totalWords; i++) {
@@ -9626,7 +9693,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const prioritized = shuffle(reviewIndices).slice(0, 10);
         const anchorWord = wordsData[prioritized[0]];
         const topicMeta = (anchorWord && TOPIC_META[anchorWord.topic]) || TOPIC_META.basics;
-        const unit = secUnits[0] || OxCurriculum.unitById.values().next().value;
+        const unit = defaultUnit;
         startVirtualLearnPractice({
           id: `__weak_drill_${Date.now()}`,
           title: `คลังคำที่ต้องทบทวน (${prioritized.length} คำ)`,
@@ -9636,18 +9703,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         return;
       }
-      showToast('เยี่ยม! ยังไม่มีคำติดทบทวน · เริ่มชุดฝึกด่วนระดับ ' + sec + ' ให้แทน');
+      showToast('เยี่ยม! ยังไม่มีคำติดทบทวน · เริ่มชุดฝึกสุ่มระดับ ' + sec + ' ให้แทน');
     }
-    const knownInSec = secPool.filter(idx => wordStatus[keyOf(wordsData[idx])] === 'known');
-    const sourcePool = knownInSec.length >= 6 ? knownInSec : secPool;
-    const picked = shuffle([...sourcePool]).slice(0, 10);
-    const unit = secUnits[0];
+    const novaGlobal = [];
+    for (let i = 0; i < totalWords; i++) {
+      const w = wordsData[i];
+      if (w && w.novaBatch && keyToIndex.get(keyOf(w)) === i && wordStatus[keyOf(w)] !== 'known') {
+        novaGlobal.push(i);
+      }
+    }
+    const unseenInSec = shuffle(secPool.filter(idx => !wordStatus[keyOf(wordsData[idx])]));
+    const knownInSec = shuffle(secPool.filter(idx => wordStatus[keyOf(wordsData[idx])] === 'known'));
+    const mixedSet = new Set();
+    const picked = [];
+    shuffle(novaGlobal).slice(0, 3).forEach(idx => { if (!mixedSet.has(idx)) { mixedSet.add(idx); picked.push(idx); } });
+    unseenInSec.slice(0, Math.max(0, 5 - picked.length)).forEach(idx => { if (!mixedSet.has(idx)) { mixedSet.add(idx); picked.push(idx); } });
+    knownInSec.slice(0, 10 - picked.length).forEach(idx => { if (!mixedSet.has(idx)) { mixedSet.add(idx); picked.push(idx); } });
+    if (picked.length < 10) {
+      shuffle([...secPool]).forEach(idx => {
+        if (picked.length < 10 && !mixedSet.has(idx)) { mixedSet.add(idx); picked.push(idx); }
+      });
+    }
     startVirtualLearnPractice({
       id: `__quick_review_${sec}_${Date.now()}`,
       title: `ทบทวนด่วน CEFR ${sec}`,
       label: `⚡ ทบทวน ${picked.length} คำ`,
-      wordIndices: picked,
-      unit
+      wordIndices: shuffle(picked),
+      unit: defaultUnit
     });
   }
 
