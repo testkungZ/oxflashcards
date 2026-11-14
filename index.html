@@ -1310,12 +1310,23 @@
                             <button type="button" id="btn-quiz-hint" class="btn glass-btn quiz-hint-btn" title="ขอคำใบ้ตัวอักษรเพิ่ม">ใบ้ตัวอักษร</button>
                             <button type="button" id="btn-quiz-submit-spell" class="btn btn-primary glass-btn">ตรวจคำตอบ</button>
                         </div>
-                        <div class="quiz-spell-feedback-wrap">
-                            <div id="quiz-spell-feedback" class="quiz-spell-feedback" hidden></div>
-                            <button type="button" id="btn-quiz-next-spell" class="btn btn-primary glass-btn quiz-next-spell-btn" hidden>ไปต่อ →</button>
-                        </div>
                     </div>
-                    <p class="kbd-hint" style="margin-top: 20px; font-size: 0.82rem;">คีย์ลัด: <kbd>1</kbd>–<kbd>4</kbd> หรือ <kbd>A</kbd>–<kbd>D</kbd> เลือกคำตอบ · <kbd>Space</kbd> ฟังเสียง</p>
+
+                    <!-- Unified Sequential Feedback Dock (All 4 Quiz Modes) -->
+                    <div id="quiz-feedback-bar" class="quiz-feedback-bar" hidden aria-live="polite">
+                        <div class="quiz-fb-head">
+                            <span id="quiz-fb-icon" class="quiz-fb-icon" aria-hidden="true">✓</span>
+                            <div class="quiz-fb-copy">
+                                <div class="quiz-fb-title-row">
+                                    <strong id="quiz-fb-title" class="quiz-fb-title">ถูกต้อง!</strong>
+                                    <span id="quiz-fb-combo" class="quiz-fb-combo" hidden>🔥 x2</span>
+                                </div>
+                                <p id="quiz-fb-detail" class="quiz-fb-detail"></p>
+                            </div>
+                        </div>
+                        <button type="button" id="btn-quiz-next" class="btn btn-primary glass-btn quiz-next-btn">ข้อต่อไป →</button>
+                    </div>
+                    <p class="kbd-hint" style="margin-top: 20px; font-size: 0.82rem;">คีย์ลัด: <kbd>1</kbd>–<kbd>4</kbd> หรือ <kbd>A</kbd>–<kbd>D</kbd> เลือกคำตอบ · <kbd>Enter</kbd> ไปต่อ · <kbd>Space</kbd> ฟังเสียง</p>
                 </div>
             </main>
         </div>
