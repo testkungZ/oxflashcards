@@ -172,33 +172,46 @@
 
             <!-- ===================== Learn Path Screen (Duolingo-style) ===================== -->
             <section id="learn-screen" class="screen active" aria-label="เส้นทางการเรียนรู้ตามหัวข้อ">
-                <div class="learn-sticky-header glass-panel">
-                    <div class="learn-section-tabs" id="learn-section-tabs" role="tablist" aria-label="เลือกระดับ CEFR">
-                        <button type="button" class="section-pill is-active" data-section="A1">ส่วนที่ 1 · A1</button>
-                        <button type="button" class="section-pill" data-section="A2">ส่วนที่ 2 · A2</button>
-                        <button type="button" class="section-pill" data-section="B1">ส่วนที่ 3 · B1</button>
-                        <button type="button" class="section-pill" data-section="B2">ส่วนที่ 4 · B2</button>
-                    </div>
-                    <div class="learn-header-meta">
-                        <span class="learn-overall-label" id="learn-overall-label">ผ่านแล้ว 0 ด่าน · A1 (0/864 คำ)</span>
-                        <button type="button" class="btn-jump-current" id="btn-learn-jump-current" title="เลื่อนไปยังด่านล่าสุด">ไปยังด่านล่าสุด</button>
-                    </div>
-                    <div class="learn-section-progress" aria-label="ความคืบหน้าคำศัพท์ในระดับ CEFR นี้">
-                        <div class="learn-section-progress-fill" id="learn-section-progress-fill" style="width: 0%;"></div>
-                    </div>
-                    <div class="learn-quick-tools" id="learn-quick-tools">
-                        <select id="learn-unit-jump-select" class="learn-unit-jump-select" aria-label="ข้ามไปยังหน่วยที่ต้องการ">
-                            <option value="">📍 ข้ามไปยังหน่วย...</option>
-                        </select>
-                        <div class="learn-quick-actions">
-                            <button type="button" class="learn-quick-btn is-weak" id="btn-learn-weak-drill" title="ฝึกคำศัพท์ที่กดผิดหรืออยู่ในรายการทบทวน">🎯 ฝึกคำอ่อน (<span id="learn-weak-count">0</span>)</button>
-                            <button type="button" class="learn-quick-btn is-review" id="btn-learn-quick-review" title="ฝึกทบทวนด่วนจากคำศัพท์ในระดับนี้">⚡ ทบทวนด่วน</button>
+                <div class="learn-sticky-header glass-panel" id="learn-sticky-header">
+                    <div class="learn-mobile-compact-bar" id="learn-mobile-compact-bar">
+                        <button type="button" class="learn-mob-sec-btn" id="btn-learn-mob-drawer" aria-expanded="false" aria-controls="learn-controls-drawer">
+                            <span class="learn-mob-sec-badge" id="learn-mob-sec-label">ส่วนที่ 1 · A1</span>
+                            <span class="learn-mob-pct-pill" id="learn-mob-pct">0%</span>
+                            <span class="learn-mob-caret" aria-hidden="true">▾</span>
+                        </button>
+                        <div class="learn-mob-quick-row">
+                            <button type="button" class="learn-mob-mini-btn is-weak" id="btn-learn-mob-weak" title="ฝึกคำอ่อน">🎯 <span id="learn-mob-weak-count">0</span></button>
+                            <button type="button" class="learn-mob-mini-btn" id="btn-learn-mob-jump" title="ไปยังด่านล่าสุด">📍 ล่าสุด</button>
                         </div>
                     </div>
-                    <button type="button" class="learn-active-unit-pill" id="learn-active-unit-pill" hidden title="เลื่อนขึ้นไปยังหัวหน่วยนี้">
-                        <span class="active-unit-dot" aria-hidden="true"></span>
-                        <span id="learn-active-unit-text">ส่วนที่ 1 · หน่วยที่ 1</span>
-                    </button>
+                    <div class="learn-controls-drawer" id="learn-controls-drawer">
+                        <div class="learn-section-tabs" id="learn-section-tabs" role="tablist" aria-label="เลือกระดับ CEFR">
+                            <button type="button" class="section-pill is-active" data-section="A1">ส่วนที่ 1 · A1</button>
+                            <button type="button" class="section-pill" data-section="A2">ส่วนที่ 2 · A2</button>
+                            <button type="button" class="section-pill" data-section="B1">ส่วนที่ 3 · B1</button>
+                            <button type="button" class="section-pill" data-section="B2">ส่วนที่ 4 · B2</button>
+                        </div>
+                        <div class="learn-header-meta">
+                            <span class="learn-overall-label" id="learn-overall-label">ผ่านแล้ว 0 ด่าน · A1 (0/864 คำ)</span>
+                            <button type="button" class="btn-jump-current" id="btn-learn-jump-current" title="เลื่อนไปยังด่านล่าสุด">ไปยังด่านล่าสุด</button>
+                        </div>
+                        <div class="learn-section-progress" aria-label="ความคืบหน้าคำศัพท์ในระดับ CEFR นี้">
+                            <div class="learn-section-progress-fill" id="learn-section-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <div class="learn-quick-tools" id="learn-quick-tools">
+                            <select id="learn-unit-jump-select" class="learn-unit-jump-select" aria-label="ข้ามไปยังหน่วยที่ต้องการ">
+                                <option value="">📍 ข้ามไปยังหน่วย...</option>
+                            </select>
+                            <div class="learn-quick-actions">
+                                <button type="button" class="learn-quick-btn is-weak" id="btn-learn-weak-drill" title="ฝึกคำศัพท์ที่กดผิดหรืออยู่ในรายการทบทวน">🎯 ฝึกคำอ่อน (<span id="learn-weak-count">0</span>)</button>
+                                <button type="button" class="learn-quick-btn is-review" id="btn-learn-quick-review" title="ฝึกทบทวนด่วนจากคำศัพท์ในระดับนี้">⚡ ทบทวนด่วน</button>
+                            </div>
+                        </div>
+                        <button type="button" class="learn-active-unit-pill" id="learn-active-unit-pill" hidden title="เลื่อนขึ้นไปยังหัวหน่วยนี้">
+                            <span class="active-unit-dot" aria-hidden="true"></span>
+                            <span id="learn-active-unit-text">ส่วนที่ 1 · หน่วยที่ 1</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="learn-units-container" id="learn-units-container"></div>
                 <div id="learn-node-popover" class="learn-node-popover palette-green" hidden role="dialog" aria-modal="false" aria-labelledby="node-pop-title">

@@ -7497,10 +7497,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const totalReviewCount = Object.values(wordStatus).filter(v => v === 'review').length;
         const secPct = calcAccuratePct(secKnownCount, secWordsTotal);
+        const secNumLabel = { A1: 1, A2: 2, B1: 3, B2: 4 }[sec] || 1;
 
         if (learnOverallLabel) {
             learnOverallLabel.textContent = `ผ่านครบ ${secStagesDone}/${secStagesTotal} ด่าน · ระดับ ${sec} · จำได้ ${secKnownCount.toLocaleString()}/${secWordsTotal.toLocaleString()} คำ (${secPct}%)`;
         }
+        const mobSecLabel = $('learn-mob-sec-label');
+        if (mobSecLabel) mobSecLabel.textContent = `ส่วนที่ ${secNumLabel} · ${sec}`;
+        const mobPctEl = $('learn-mob-pct');
+        if (mobPctEl) mobPctEl.textContent = `${secPct}%`;
+        const mobWeakCntEl = $('learn-mob-weak-count');
+        if (mobWeakCntEl) mobWeakCntEl.textContent = String(totalReviewCount);
+        const mobWeakBtn = $('btn-learn-mob-weak');
+        if (mobWeakBtn) mobWeakBtn.classList.toggle('has-items', totalReviewCount > 0);
         const secProgFill = $('learn-section-progress-fill');
         if (secProgFill) secProgFill.style.width = `${secPct}%`;
         const weakCntEl = $('learn-weak-count');
@@ -7736,10 +7745,35 @@ document.addEventListener('DOMContentLoaded', () => {
     $('btn-chest-claim')?.addEventListener('click', claimChestReward);
     chestModal?.addEventListener('click', (e) => { if (e.target === chestModal) claimChestReward(); });
 
+    function setLearnMobileDrawer(expanded) {
+        const hdr = $('learn-sticky-header');
+        const btn = $('btn-learn-mob-drawer');
+        if (!hdr) return;
+        hdr.classList.toggle('is-expanded', Boolean(expanded));
+        if (btn) btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+
+    $('btn-learn-mob-drawer')?.addEventListener('click', () => {
+        const hdr = $('learn-sticky-header');
+        const next = !(hdr && hdr.classList.contains('is-expanded'));
+        setLearnMobileDrawer(next);
+        SoundFX.nav();
+    });
+
+    $('btn-learn-mob-weak')?.addEventListener('click', () => {
+        $('btn-learn-weak-drill')?.click();
+    });
+
+    $('btn-learn-mob-jump')?.addEventListener('click', () => {
+        setLearnMobileDrawer(false);
+        $('btn-learn-jump-current')?.click();
+    });
+
     $('learn-unit-jump-select')?.addEventListener('change', (e) => {
         const sel = e.currentTarget;
         if (!(sel instanceof HTMLSelectElement) || !sel.value) return;
         closeNodePopover();
+        setLearnMobileDrawer(false);
         const targetId = sel.value;
         learnUnitsContainer?.querySelectorAll('.unit-block.ox-reveal-pending').forEach(u => {
             u.classList.remove('ox-reveal-pending');
@@ -7755,11 +7789,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('btn-learn-weak-drill')?.addEventListener('click', () => {
         closeNodePopover();
+        setLearnMobileDrawer(false);
         if (typeof startSmartLearnDrill === 'function') startSmartLearnDrill('weak');
     });
 
     $('btn-learn-quick-review')?.addEventListener('click', () => {
         closeNodePopover();
+        setLearnMobileDrawer(false);
         if (typeof startSmartLearnDrill === 'function') startSmartLearnDrill('quick');
     });
 
@@ -7768,6 +7804,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = e.target.closest('[data-section]');
         if (!(btn instanceof HTMLElement)) return;
         closeNodePopover();
+        setLearnMobileDrawer(false);
         SoundFX.nav();
         learnState.activeSection = btn.dataset.section;
         saveLearnState(false);

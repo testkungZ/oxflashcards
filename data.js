@@ -110516,5 +110516,508 @@ const wordsData = [
       "V2/V3: postulated",
       "V-ing: postulating"
     ]
+  },
+  {
+    "word": "reschedule",
+    "partOfSpeech": "verb",
+    "translation": "เลื่อนกำหนดการ",
+    "definition": "to change the time or date of a planned event or meeting",
+    "example": "Can we reschedule our meeting to Friday afternoon?",
+    "exampleTranslation": "เราเลื่อนการประชุมของเราไปเป็นบ่ายวันศุกร์ได้ไหม",
+    "phonetic": "/ˌriːˈskedʒuːl/",
+    "cefr": "B1",
+    "collocations": [
+      "reschedule a meeting",
+      "reschedule a flight"
+    ],
+    "synonyms": [
+      "postpone",
+      "rearrange"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "เราเลื่อน",
+      "การประชุม",
+      "ไปเป็น",
+      "บ่ายวันศุกร์",
+      "ได้ไหม"
+    ],
+    "extraExample": "The dentist had to reschedule my appointment because of an emergency.",
+    "extraExampleTranslation": "หมอฟันต้องเลื่อนเวลานัดของฉันเพราะมีเหตุฉุกเฉิน",
+    "usageTip": "ใช้กับสิ่งที่กำหนดเวลาไว้แล้วเช่นนัดหมายหรือเที่ยวบินมักตามด้วยคำนามโดยตรงไม่ต้องมีคำบุพบท",
+    "grammarPattern": "verb + noun",
+    "phoneticUK": "/ˌriːˈʃedjuːl/",
+    "syllables": "re·sched·ule",
+    "antonyms": [
+      "cancel"
+    ]
+  },
+  {
+    "word": "declutter",
+    "partOfSpeech": "verb",
+    "translation": "จัดระเบียบและเคลียร์ของ",
+    "definition": "to remove unnecessary things from a room or space to make it tidy",
+    "example": "I plan to declutter my bedroom closet this weekend.",
+    "exampleTranslation": "ฉันวางแผนจะจัดระเบียบและเคลียร์ตู้เสื้อผ้าในห้องนอนสุดสัปดาห์นี้",
+    "phonetic": "/diːˈklʌtər/",
+    "cefr": "B1",
+    "collocations": [
+      "declutter your home",
+      "declutter a space"
+    ],
+    "synonyms": [
+      "tidy up",
+      "organize"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ฉันวางแผน",
+      "จะจัดระเบียบ",
+      "ตู้เสื้อผ้า",
+      "สุดสัปดาห์นี้"
+    ],
+    "extraExample": "When you declutter your desk, it becomes much easier to focus.",
+    "extraExampleTranslation": "เมื่อคุณจัดระเบียบโต๊ะทำงานให้โล่งขึ้น การมีสมาธิจะง่ายขึ้นมาก",
+    "usageTip": "เน้นการคัดแยกและเอาของที่ไม่ได้ใช้แล้วออกไปเพื่อให้พื้นที่โล่งขึ้นมากกว่าการแค่ทำความสะอาด",
+    "grammarPattern": "verb + noun",
+    "phoneticUK": "/diːˈklʌtə/",
+    "syllables": "de·clut·ter",
+    "antonyms": [
+      "mess up"
+    ]
+  },
+  {
+    "word": "leftover",
+    "partOfSpeech": "adjective",
+    "translation": "ที่เหลือจากมื้อก่อน",
+    "definition": "remaining after the rest of the food or material has been used",
+    "example": "We heated up the leftover pasta for a quick lunch.",
+    "exampleTranslation": "เราอุ่นพาสต้าที่เหลือจากมื้อก่อนกินเป็นมื้อกลางวันแบบเร่งด่วน",
+    "phonetic": "/ˈleftoʊvər/",
+    "cefr": "B1",
+    "collocations": [
+      "leftover food",
+      "leftover pizza"
+    ],
+    "synonyms": [
+      "remaining",
+      "uneaten"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เราอุ่น",
+      "พาสต้าที่เหลือ",
+      "กินเป็น",
+      "มื้อกลางวัน"
+    ],
+    "extraExample": "You can freeze leftover soup in small containers for busy days.",
+    "extraExampleTranslation": "คุณสามารถแช่แข็งซุปที่เหลือในกล่องเล็กๆ ไว้กินในวันที่ยุ่งได้",
+    "usageTip": "เมื่อใช้เป็นคำคุณศัพท์จะวางไว้หน้าคำนามโดยไม่เติม s แต่ถ้าใช้เป็นคำนามหมายถึงอาหารเหลือจะเติม s เป็น leftovers",
+    "grammarPattern": "adjective + noun",
+    "phoneticUK": "/ˈleftəʊvə/",
+    "syllables": "left·o·ver",
+    "antonyms": [
+      "fresh"
+    ]
+  },
+  {
+    "word": "customize",
+    "partOfSpeech": "verb",
+    "translation": "ปรับแต่งตามต้องการ",
+    "definition": "to change or design something so it fits a person's specific needs",
+    "example": "This app lets you customize your daily study reminders.",
+    "exampleTranslation": "แอปนี้ให้คุณปรับแต่งการแจ้งเตือนการเรียนประจำวันได้ตามต้องการ",
+    "phonetic": "/ˈkʌstəmaɪz/",
+    "cefr": "B1",
+    "collocations": [
+      "customize settings",
+      "customize an order"
+    ],
+    "synonyms": [
+      "personalize",
+      "tailor"
+    ],
+    "topic": "actions",
+    "thTokens": [
+      "แอปนี้",
+      "ให้คุณปรับแต่ง",
+      "การแจ้งเตือน",
+      "ประจำวันได้"
+    ],
+    "extraExample": "Customers can customize their salad by choosing any three toppings.",
+    "extraExampleTranslation": "ลูกค้าสามารถปรับแต่งสลัดของตัวเองได้โดยเลือกท็อปปิงสามอย่างตามใจชอบ",
+    "usageTip": "ใช้บ่อยมากในแอปพลิเคชัน การสั่งอาหาร หรือการตั้งค่าต่างๆ เพื่อให้ตรงกับความชอบส่วนตัว",
+    "grammarPattern": "verb + noun",
+    "phoneticUK": "/ˈkʌstəmaɪz/",
+    "syllables": "cus·tom·ize",
+    "antonyms": [
+      "standardize"
+    ]
+  },
+  {
+    "word": "anytime",
+    "partOfSpeech": "adverb",
+    "translation": "เมื่อไหร่ก็ได้",
+    "definition": "at any time; whenever you want or need",
+    "example": "You can call me anytime if you need help.",
+    "exampleTranslation": "คุณโทรหาฉันเมื่อไหร่ก็ได้ถ้าต้องการความช่วยเหลือ",
+    "phonetic": "/ˈenitaɪm/",
+    "cefr": "A1",
+    "collocations": [
+      "call me anytime",
+      "visit anytime",
+      "ask anytime"
+    ],
+    "synonyms": [
+      "whenever",
+      "at any time"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "คุณโทรหาฉัน",
+      "เมื่อไหร่ก็ได้",
+      "ถ้าต้องการ",
+      "ความช่วยเหลือ"
+    ],
+    "extraExample": "Feel free to visit our shop anytime today.",
+    "extraExampleTranslation": "แวะมาที่ร้านของเราเมื่อไหร่ก็ได้ในวันนี้",
+    "usageTip": "ใช้ติดกันเป็นคำเดียว (anytime) เมื่อเป็นคำวิเศษณ์บอกเวลา เช่น Come anytime. แต่ถ้าใช้หลังบุพบท at ให้แยกเป็นสองคำว่า at any time",
+    "grammarPattern": "verb + object + anytime",
+    "phoneticUK": "/ˈenitaɪm/",
+    "syllables": "an·y·time",
+    "antonyms": [
+      "never"
+    ]
+  },
+  {
+    "word": "watermelon",
+    "partOfSpeech": "noun",
+    "translation": "แตงโม",
+    "definition": "a large round fruit with hard green skin, sweet red flesh, and black seeds",
+    "example": "We eat cold watermelon on hot summer days.",
+    "exampleTranslation": "พวกเรากินแตงโมเย็นๆ ในวันฤดูร้อนที่อากาศร้อน",
+    "phonetic": "/ˈwɔːtərmelən/",
+    "cefr": "A1",
+    "collocations": [
+      "fresh watermelon",
+      "watermelon juice",
+      "a slice of watermelon"
+    ],
+    "synonyms": [
+      "melon"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "พวกเรากิน",
+      "แตงโมเย็นๆ",
+      "ในวันฤดูร้อน",
+      "ที่อากาศร้อน"
+    ],
+    "extraExample": "Please cut the watermelon into small pieces.",
+    "extraExampleTranslation": "กรุณาหั่นแตงโมเป็นชิ้นเล็กๆ ให้หน่อย",
+    "usageTip": "ใช้เป็นคำนามนับไม่ได้เมื่อหมายถึงเนื้อแตงโมที่หั่นแล้ว (eat watermelon) และนับได้เมื่อหมายถึงทั้งลูก (buy a watermelon)",
+    "grammarPattern": "countable / uncountable noun",
+    "phoneticUK": "/ˈwɔːtəmelən/",
+    "syllables": "wa·ter·mel·on"
+  },
+  {
+    "word": "crispy",
+    "partOfSpeech": "adjective",
+    "translation": "กรอบ",
+    "definition": "pleasantly hard, dry, and easy to break when you bite it",
+    "example": "The fried chicken is hot and very crispy.",
+    "exampleTranslation": "ไก่ทอดจานนี้ร้อนและกรอบมาก",
+    "phonetic": "/ˈkrɪspi/",
+    "cefr": "A1",
+    "collocations": [
+      "crispy chicken",
+      "crispy skin",
+      "hot and crispy"
+    ],
+    "synonyms": [
+      "crunchy",
+      "crisp"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ไก่ทอดจานนี้",
+      "ร้อนและ",
+      "กรอบมาก"
+    ],
+    "extraExample": "I like crispy toast with butter for breakfast.",
+    "extraExampleTranslation": "ฉันชอบขนมปังปิ้งกรอบๆ ทาเนยเป็นอาหารเช้า",
+    "usageTip": "crispy มักใช้กับอาหารทอดหรืออบที่มีผิวบางกรอบ เช่น ไก่ทอด เฟรนช์ฟรายส์ หรือขนมปังปิ้ง ออกเสียงลงท้ายด้วยเสียง 'ปี้' เบาๆ",
+    "grammarPattern": "crispy + noun / be + crispy",
+    "phoneticUK": "/ˈkrɪspi/",
+    "syllables": "cris·py",
+    "antonyms": [
+      "soggy",
+      "soft"
+    ]
+  },
+  {
+    "word": "sunscreen",
+    "partOfSpeech": "noun",
+    "translation": "ครีมกันแดด",
+    "definition": "a cream or lotion that you put on your skin to protect it from the sun",
+    "example": "Put on sunscreen before you go to the beach.",
+    "exampleTranslation": "ทาครีมกันแดดก่อนที่คุณจะไปชายหาด",
+    "phonetic": "/ˈsʌnskriːn/",
+    "cefr": "A1",
+    "collocations": [
+      "apply sunscreen",
+      "put on sunscreen",
+      "wear sunscreen"
+    ],
+    "synonyms": [
+      "sunblock",
+      "sun lotion"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ทาครีมกันแดด",
+      "ก่อนที่",
+      "คุณจะไปชายหาด"
+    ],
+    "extraExample": "Do you have extra sunscreen in your bag?",
+    "extraExampleTranslation": "คุณมีครีมกันแดดสำรองอยู่ในกระเป๋าไหม",
+    "usageTip": "คำว่า 'ทา' ครีมกันแดดในภาษาอังกฤษนิยมใช้กริยา put on, apply หรือ wear ไม่ใช้คำว่า paint",
+    "grammarPattern": "uncountable noun (put on + sunscreen)",
+    "phoneticUK": "/ˈsʌnskriːn/",
+    "syllables": "sun·screen"
+  },
+  {
+    "word": "cozy",
+    "partOfSpeech": "adjective",
+    "translation": "อบอุ่นและสบาย",
+    "definition": "warm, comfortable, and relaxing, especially inside a small place",
+    "example": "This little cafe feels very warm and cozy.",
+    "exampleTranslation": "คาเฟ่เล็กๆ แห่งนี้ให้ความรู้สึกอบอุ่นและสบายมาก",
+    "phonetic": "/ˈkoʊzi/",
+    "cefr": "A1",
+    "collocations": [
+      "cozy room",
+      "cozy sweater",
+      "warm and cozy"
+    ],
+    "synonyms": [
+      "comfortable",
+      "snug"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "คาเฟ่เล็กๆ แห่งนี้",
+      "ให้ความรู้สึก",
+      "อบอุ่นและสบายมาก"
+    ],
+    "extraExample": "I love reading in my cozy living room.",
+    "extraExampleTranslation": "ฉันชอบอ่านหนังสือในห้องนั่งเล่นที่อบอุ่นสบายของฉัน",
+    "usageTip": "แบบอเมริกันสะกด cozy ส่วนแบบอังกฤษสะกด cosy ทั้งสองแบบออกเสียงเหมือนกันและนิยมใช้บรรยายห้อง ร้านกาแฟ หรือเสื้อผ้าที่ใส่นุ่มสบาย",
+    "grammarPattern": "cozy + noun / feel + cozy",
+    "phoneticUK": "/ˈkəʊzi/",
+    "syllables": "co·zy",
+    "antonyms": [
+      "uncomfortable",
+      "cold"
+    ]
+  },
+  {
+    "word": "unplug",
+    "partOfSpeech": "verb",
+    "translation": "ถอดปลั๊ก",
+    "definition": "to pull the plug of an electrical device out of the wall socket",
+    "example": "Please unplug the TV before we leave home.",
+    "exampleTranslation": "กรุณาถอดปลั๊กทีวีก่อนที่พวกเราจะออกจากบ้าน",
+    "phonetic": "/ˌʌnˈplʌɡ/",
+    "cefr": "A1",
+    "collocations": [
+      "unplug the charger",
+      "unplug the cord",
+      "unplug a device"
+    ],
+    "synonyms": [
+      "disconnect"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "กรุณา",
+      "ถอดปลั๊กทีวี",
+      "ก่อนที่พวกเราจะ",
+      "ออกจากบ้าน"
+    ],
+    "extraExample": "Remember to unplug your laptop when it is full.",
+    "extraExampleTranslation": "อย่าลืมถอดปลั๊กโน้ตบุ๊กของคุณเมื่อแบตเตอรี่เต็มแล้ว",
+    "usageTip": "เติมคำว่า un- ข้างหน้า plug เพื่อบอกการกระทำตรงข้ามคือ 'ถอดปลั๊ก' ส่วนเวลาเสียบปลั๊กต้องพูดว่า plug in (มีคำว่า in ด้วย)",
+    "grammarPattern": "unplug + noun",
+    "phoneticUK": "/ˌʌnˈplʌɡ/",
+    "syllables": "un·plug",
+    "antonyms": [
+      "plug in"
+    ]
+  },
+  {
+    "word": "roommate",
+    "partOfSpeech": "noun",
+    "translation": "เพื่อนร่วมห้อง",
+    "definition": "a person who shares a room, apartment, or house with you",
+    "example": "My roommate cooks dinner for us every Friday.",
+    "exampleTranslation": "เพื่อนร่วมห้องของฉันทำอาหารเย็นให้พวกเราทุกวันศุกร์",
+    "phonetic": "/ˈruːmmeɪt/",
+    "cefr": "A1",
+    "collocations": [
+      "college roommate",
+      "good roommate",
+      "share with a roommate"
+    ],
+    "synonyms": [
+      "flatmate",
+      "housemate"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "เพื่อนร่วมห้องของฉัน",
+      "ทำอาหารเย็น",
+      "ให้พวกเรา",
+      "ทุกวันศุกร์"
+    ],
+    "extraExample": "She is looking for a quiet roommate near school.",
+    "extraExampleTranslation": "เธอกำลังมองหาเพื่อนร่วมห้องที่เงียบสงบใกล้โรงเรียน",
+    "usageTip": "ในภาษาอังกฤษแบบอเมริกัน ใช้ roommate กับทั้งคนที่แชร์ห้องนอนและคนที่แชร์อพาร์ตเมนต์เดียวกัน ส่วนแบบอังกฤษมักใช้ flatmate",
+    "grammarPattern": "countable noun (my/a + roommate)",
+    "phoneticUK": "/ˈruːmmeɪt/",
+    "syllables": "room·mate"
+  },
+  {
+    "word": "scooter",
+    "partOfSpeech": "noun",
+    "translation": "สกู๊ตเตอร์ / รถจักรยานยนต์ขนาดเล็ก",
+    "definition": "a small vehicle with two wheels and a footboard that you ride standing or sitting",
+    "example": "He rides an electric scooter to the train station.",
+    "exampleTranslation": "เขาขี่สกู๊ตเตอร์ไฟฟ้าไปที่สถานีรถไฟ",
+    "phonetic": "/ˈskuːtər/",
+    "cefr": "A1",
+    "collocations": [
+      "electric scooter",
+      "ride a scooter",
+      "rent a scooter"
+    ],
+    "synonyms": [
+      "moped",
+      "kick scooter"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "เขาขี่",
+      "สกู๊ตเตอร์ไฟฟ้า",
+      "ไปที่",
+      "สถานีรถไฟ"
+    ],
+    "extraExample": "Always wear a helmet when riding a scooter.",
+    "extraExampleTranslation": "สวมหมวกกันน็อกเสมอเวลาขี่สกู๊ตเตอร์",
+    "usageTip": "เวลาพูดว่า 'ขี่สกู๊ตเตอร์' ให้ใช้กริยา ride (ride a scooter) เหมือนกับจักรยานและมอเตอร์ไซค์ ไม่ใช้ drive",
+    "grammarPattern": "countable noun (ride a + scooter)",
+    "phoneticUK": "/ˈskuːtə(r)/",
+    "syllables": "scoo·ter"
+  },
+  {
+    "word": "reusable",
+    "partOfSpeech": "adjective",
+    "translation": "ที่ใช้ซ้ำได้",
+    "definition": "able to be used again instead of being thrown away after one use",
+    "example": "I bring a reusable bag to the supermarket.",
+    "exampleTranslation": "ฉันพกถุงผ้าที่ใช้ซ้ำได้ไปซูเปอร์มาร์เก็ต",
+    "phonetic": "/ˌriːˈjuːzəbl/",
+    "cefr": "A1",
+    "collocations": [
+      "reusable bag",
+      "reusable bottle",
+      "reusable cup"
+    ],
+    "synonyms": [
+      "washable",
+      "eco-friendly"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ฉันพกถุงผ้า",
+      "ที่ใช้ซ้ำได้",
+      "ไปซูเปอร์มาร์เก็ต"
+    ],
+    "extraExample": "Using a reusable water bottle helps reduce plastic waste.",
+    "extraExampleTranslation": "การใช้ขวดน้ำที่ใช้ซ้ำได้ช่วยลดขยะพลาสติก",
+    "usageTip": "มาจาก re- (อีก) + use (ใช้) + -able (สามารถ) แปลว่า 'นำกลับมาใช้ใหม่ได้' ใช้บ่อยมากเวลาลดโลกร้อน เช่น reusable bag หรือ reusable cup",
+    "grammarPattern": "reusable + noun",
+    "phoneticUK": "/ˌriːˈjuːzəbl/",
+    "syllables": "re·us·a·ble",
+    "antonyms": [
+      "disposable",
+      "single-use"
+    ]
+  },
+  {
+    "word": "swipe",
+    "partOfSpeech": "verb",
+    "translation": "ปัดหน้าจอ / รูดบัตร",
+    "definition": "to move your finger across a phone screen or pass a card through a reader",
+    "example": "You can swipe left to see the next photo.",
+    "exampleTranslation": "คุณสามารถปัดซ้ายเพื่อดูรูปถัดไปได้",
+    "phonetic": "/swaɪp/",
+    "cefr": "A1",
+    "collocations": [
+      "swipe left",
+      "swipe right",
+      "swipe a card"
+    ],
+    "synonyms": [
+      "slide",
+      "tap"
+    ],
+    "topic": "actions",
+    "thTokens": [
+      "คุณสามารถ",
+      "ปัดซ้าย",
+      "เพื่อดูรูปถัดไป",
+      "ได้"
+    ],
+    "extraExample": "Please swipe your key card at the door.",
+    "extraExampleTranslation": "กรุณารูดบัตรคีย์การ์ดของคุณที่ประตู",
+    "usageTip": "ใช้ได้ทั้งกับการ 'ปัดหน้าจอ' มือถือ (swipe up / down / left / right) และการ 'รูดบัตร' เข้าประตูหรือจ่ายเงิน (swipe a card)",
+    "grammarPattern": "swipe + direction / swipe + noun",
+    "phoneticUK": "/swaɪp/",
+    "syllables": "swipe"
+  },
+  {
+    "word": "textbook",
+    "partOfSpeech": "noun",
+    "translation": "หนังสือเรียน, ตำราเรียน",
+    "definition": "a book that contains information about a subject for students to study",
+    "example": "Open your English textbook to page twenty-four.",
+    "exampleTranslation": "เปิดหนังสือเรียนภาษาอังกฤษของคุณไปที่หน้ายี่สิบสี่",
+    "phonetic": "/ˈtekstbʊk/",
+    "cefr": "A2",
+    "collocations": [
+      "school textbook",
+      "open your textbook"
+    ],
+    "synonyms": [
+      "coursebook",
+      "manual"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เปิด",
+      "หนังสือเรียนภาษาอังกฤษ",
+      "ของคุณ",
+      "ไปที่หน้ายี่สิบสี่"
+    ],
+    "extraExample": "This science textbook explains difficult ideas in simple words.",
+    "extraExampleTranslation": "หนังสือเรียนวิทยาศาสตร์เล่มนี้อธิบายแนวคิดยากๆ ด้วยคำง่ายๆ",
+    "usageTip": "เขียนติดกันเป็นคำเดียว (textbook) ใช้เฉพาะหนังสือสำหรับเรียนในวิชาต่างๆ ส่วนสมุดจดบันทึกใช้ว่า notebook",
+    "grammarPattern": "subject + textbook",
+    "phoneticUK": "/ˈtekstbʊk/",
+    "syllables": "text·book",
+    "antonyms": [
+      "novel"
+    ]
   }
 ];
