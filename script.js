@@ -4859,6 +4859,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (spellingBox) {
                 spellingBox.hidden = false;
                 if (spellFeedback) spellFeedback.hidden = true;
+                const btnNextSpell = /** @type {HTMLButtonElement|null} */ ($('btn-quiz-next-spell'));
+                if (btnNextSpell) btnNextSpell.hidden = true;
+                const btnSubSpell = /** @type {HTMLButtonElement|null} */ ($('btn-quiz-submit-spell'));
+                if (btnSubSpell) btnSubSpell.disabled = false;
                 if (spellInput) {
                     spellInput.value = '';
                     spellInput.disabled = false;
@@ -5553,8 +5557,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const btnQuizHint = $('btn-quiz-hint');
-    const btnQuizSubmitSpell = $('btn-quiz-submit-spell');
+    const btnQuizSubmitSpell = /** @type {HTMLButtonElement|null} */ ($('btn-quiz-submit-spell'));
+    const btnQuizNextSpell = /** @type {HTMLButtonElement|null} */ ($('btn-quiz-next-spell'));
     const quizSpellingInput = /** @type {HTMLInputElement|null} */ ($('quiz-spelling-input'));
+    let quizSpellAnsweredAt = 0;
     if (quizSpellingInput) {
         quizSpellingInput.addEventListener('input', () => SoundFX.typing());
     }
@@ -5571,6 +5577,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function advanceQuizSpelling() {
+        if (!quizSession || !quizAnswered || quizSession.mode !== 'spelling') return;
+        SoundFX.next();
+        quizSession.currentIndex++;
+        renderQuizQuestion();
+    }
+
     function submitQuizSpelling() {
         if (!quizSession || quizAnswered || quizSession.mode !== 'spelling') return;
         const index = quizSession.indices[quizSession.currentIndex];
@@ -5581,17 +5594,28 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         quizAnswered = true;
-        if (quizSpellingInput) quizSpellingInput.disabled = true;
+        quizSpellAnsweredAt = performance.now();
+        if (quizSpellingInput) {
+            quizSpellingInput.disabled = true;
+            quizSpellingInput.blur();
+        }
+        if (btnQuizSubmitSpell) btnQuizSubmitSpell.disabled = true;
 
         const target = correctWordData.word.trim().toLowerCase();
         const isCorrect = typed === target;
         const feedbackEl = $('quiz-spell-feedback');
+        const contextTrans = $('quiz-context-trans');
         const wKey = keyOf(correctWordData);
 
         recordDailyGoalProgress(1);
         updateSpellingHintDisplay(correctWordData.word, correctWordData.word.length);
         speakWordOverride(correctWordData.word, false);
 
+        if (contextTrans && correctWordData.example) {
+            contextTrans.textContent = `${correctWordData.example}${correctWordData.exampleTranslation ? ` (${correctWordData.exampleTranslation})` : ''}`;
+        }
+
+        const meaningNote = `${correctWordData.phonetic ? `${correctWordData.phonetic} · ` : ''}${correctWordData.translation}`;
         if (isCorrect) {
             SoundFX.known();
             quizSession.score++;
@@ -5600,7 +5624,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (feedbackEl) {
                 feedbackEl.hidden = false;
                 feedbackEl.className = 'quiz-spell-feedback correct';
-                feedbackEl.textContent = `✓ ถูกต้อง! "${correctWordData.word}" (${correctWordData.translation})`;
+                feedbackEl.textContent = `✓ ถูกต้อง! "${correctWordData.word}" (${meaningNote})`;
             }
         } else {
             SoundFX.review();
@@ -5614,29 +5638,40 @@ document.addEventListener('DOMContentLoaded', () => {
             if (feedbackEl) {
                 feedbackEl.hidden = false;
                 feedbackEl.className = 'quiz-spell-feedback wrong';
-                feedbackEl.textContent = `✗ คำที่ถูกคือ "${correctWordData.word}" (คุณพิมพ์: "${typed}")`;
+                feedbackEl.textContent = `✗ คำที่ถูกคือ "${correctWordData.word}" (${meaningNote}) · คุณพิมพ์: "${typed}"`;
             }
         }
 
-        setTimeout(() => {
-            if (quizSession) {
-                quizSession.currentIndex++;
-                renderQuizQuestion();
-            }
-        }, 1400);
+        if (btnQuizNextSpell) {
+            btnQuizNextSpell.hidden = false;
+            setTimeout(() => btnQuizNextSpell.focus({ preventScroll: true }), 40);
+        } else {
+            setTimeout(advanceQuizSpelling, 1800);
+        }
     }
 
     if (btnQuizSubmitSpell) {
         btnQuizSubmitSpell.addEventListener('click', submitQuizSpelling);
     }
+    if (btnQuizNextSpell) {
+        btnQuizNextSpell.addEventListener('click', advanceQuizSpelling);
+    }
     if (quizSpellingInput) {
         quizSpellingInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && !e.isComposing) {
                 e.preventDefault();
+                e.stopPropagation();
                 submitQuizSpelling();
             }
         });
     }
+    document.addEventListener('keydown', (e) => {
+        if (currentScreen !== 'quiz' || !quizSession || quizSession.mode !== 'spelling' || !quizAnswered) return;
+        if (e.key === 'Enter' && !e.repeat && !e.isComposing && (performance.now() - quizSpellAnsweredAt >= 260)) {
+            e.preventDefault();
+            advanceQuizSpelling();
+        }
+    });
 
     // 4. Quick Dictionary Search Command Palette (#quick-search-modal)
     const quickSearchModal = $('quick-search-modal');
@@ -7420,6 +7455,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${sec}|u:${units.length}|k:${knownCnt}|r:${revCnt}|c:${learnState.claimedChests.join(',')}|ul:${learnState.unlockedUnits.join(',')}|d:${doneSummary}`;
     }
 
+    function calcAccuratePct(done, total) {
+        if (!total || total <= 0 || !done || done <= 0) return 0;
+        if (done >= total) return 100;
+        const raw = (done / total) * 100;
+        if (raw < 1) return Number(raw.toFixed(1));
+        return Math.min(99, Math.round(raw));
+    }
+
     function renderLearnPath(force = false) {
         if (!learnUnitsContainer) return;
         const sec = learnState.activeSection || 'A1';
@@ -7434,6 +7477,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let secKnownCount = 0;
         let secReviewCount = 0;
         let secStagesDone = 0;
+        let secStagesTotal = 0;
         let currentNodeFound = false;
 
         units.forEach(u => {
@@ -7444,15 +7488,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (st === 'review') secReviewCount++;
             });
             u.nodes.forEach(n => {
-                if (n.kind === 'stage' && isStagePassedFull(n.id)) secStagesDone++;
+                if (n.kind === 'stage') {
+                    secStagesTotal++;
+                    if (isStagePassedFull(n.id)) secStagesDone++;
+                }
             });
         });
 
         const totalReviewCount = Object.values(wordStatus).filter(v => v === 'review').length;
-        const secPct = secWordsTotal > 0 ? Math.min(100, Math.round((secKnownCount / secWordsTotal) * 100)) : 0;
+        const secPct = calcAccuratePct(secKnownCount, secWordsTotal);
 
         if (learnOverallLabel) {
-            learnOverallLabel.textContent = `ผ่านแล้ว ${secStagesDone} ด่าน · ระดับ ${sec} (จำได้ ${secKnownCount.toLocaleString()}/${secWordsTotal.toLocaleString()} คำ)`;
+            learnOverallLabel.textContent = `ผ่านครบ ${secStagesDone}/${secStagesTotal} ด่าน · ระดับ ${sec} · จำได้ ${secKnownCount.toLocaleString()}/${secWordsTotal.toLocaleString()} คำ (${secPct}%)`;
         }
         const secProgFill = $('learn-section-progress-fill');
         if (secProgFill) secProgFill.style.width = `${secPct}%`;
@@ -7537,7 +7584,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? `<button type="button" class="btn-unit-jump" data-jump-unit="${escapeHtml(unit.id)}">ข้ามหน่วย</button>`
                 : '';
             const unitKnown = unit.wordIndices.filter(idx => wordStatus[keyOf(wordsData[idx])] === 'known').length;
-            const unitPct = unit.wordIndices.length > 0 ? Math.min(100, Math.round((unitKnown / unit.wordIndices.length) * 100)) : 0;
+            const unitPct = calcAccuratePct(unitKnown, unit.wordIndices.length);
 
             return `
         <article class="unit-block" data-unit-id="${escapeHtml(unit.id)}">
@@ -9417,13 +9464,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const key = keyOf(w);
     const status = isCorrect ? 'known' : 'review';
     if (!opts.skipStatusUpdate) {
-      if (isCorrect && wordStatus[key] !== 'review') {
+      recordWordMastery(key, status);
+      const streakAfter = Number(wordMastery[key]?.streak || 0);
+      if (isCorrect && (wordStatus[key] !== 'review' || streakAfter >= 2)) {
         wordStatus[key] = 'known';
       } else if (!isCorrect) {
         wordStatus[key] = 'review';
       }
       storage.set(STORAGE.status, wordStatus);
-      recordWordMastery(key, status);
     }
     if (!opts.skipDailyGoal) {
       recordDailyGoalProgress(1);
@@ -9469,6 +9517,8 @@ document.addEventListener('DOMContentLoaded', () => {
       isJumpTestForUnitId: opts.isJumpTestForUnitId || null,
       queue: steps,
       index: 0,
+      initialTotal: Math.max(1, steps.length),
+      clearedCount: 0,
       uniqueTotal: uniqueQuestionCount,
       answeredUnique: 0,
       firstTryCorrect: 0,
@@ -9476,6 +9526,7 @@ document.addEventListener('DOMContentLoaded', () => {
       combo: 0,
       maxCombo: 0,
       awaitingNext: false,
+      _feedbackShownAt: 0,
       completed: false
     };
 
@@ -9593,6 +9644,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modeBtn = $('btn-lesson-mode-toggle');
     const modeLabel = $('lesson-mode-toggle-label');
     const fbSpkBtn = $('btn-lesson-feedback-speak');
+    document.querySelector('#lesson-screen .lesson-shell')?.classList.remove('is-feedback-open');
 
     if (fbBar) fbBar.hidden = true;
     if (fbInsight) {
@@ -9637,8 +9689,9 @@ document.addEventListener('DOMContentLoaded', () => {
           syncLessonCheckButton();
         });
         inputEl.addEventListener('keydown', (ev) => {
-          if (ev.key === 'Enter' && !ev.shiftKey) {
+          if (ev.key === 'Enter' && !ev.shiftKey && !ev.isComposing) {
             ev.preventDefault();
+            ev.stopPropagation();
             const chk = /** @type {HTMLButtonElement|null} */ ($('btn-lesson-check'));
             if (chk && !chk.disabled && !activeLesson.awaitingNext) chk.click();
           }
@@ -9736,17 +9789,32 @@ document.addEventListener('DOMContentLoaded', () => {
       accPill.textContent = `👑 ${acc}% · เป้า ≥85%`;
       accPill.classList.add(acc < 85 ? 'is-warn-pace' : 'is-legendary');
     } else if (isBoss) {
-      accPill.textContent = `${acc}% · เป้า ≥70%`;
+      accPill.textContent = `🎯 ${acc}% · เป้า ≥70%`;
       if (acc < 70) accPill.classList.add('is-warn-pace');
     } else {
-      accPill.textContent = `${acc}%`;
+      accPill.textContent = `🎯 ${acc}%`;
     }
+  }
+
+  function updateLessonProgressUI(animateAdvance = false) {
+    if (!activeLesson) return;
+    const fill = $('lesson-progress-fill');
+    const track = fill?.closest('.lesson-progress-track');
+    const metaPct = $('lesson-progress-meta');
+    const total = Math.max(1, activeLesson.initialTotal || activeLesson.queue.length || 1);
+    const done = Math.max(0, Math.min(total, activeLesson.clearedCount || 0));
+    const pct = Math.min(100, Math.round((done / total) * 100));
+    if (fill) {
+      fill.style.width = `${pct}%`;
+      if (animateAdvance && pct > 0) OxMotion.pulseClass(fill, 'is-advancing', 540);
+    }
+    if (track) track.setAttribute('aria-valuenow', String(pct));
+    if (metaPct) metaPct.textContent = `${done}/${total} · ${pct}%`;
   }
 
   function renderCurrentLessonStep() {
     if (!activeLesson) return;
     const body = $('lesson-stage-body');
-    const fill = $('lesson-progress-fill');
     const accPill = $('lesson-acc-pill');
     const comboPill = $('lesson-combo-pill');
     if (!body) return;
@@ -9756,11 +9824,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const pct = Math.min(100, Math.round((activeLesson.index / Math.max(1, activeLesson.queue.length)) * 100));
-    if (fill) {
-      fill.style.width = `${pct}%`;
-      if (pct > 0) OxMotion.pulseClass(fill, 'is-advancing', 540);
-    }
+    updateLessonProgressUI(false);
     const acc = activeLesson.answeredUnique > 0
       ? Math.round((activeLesson.firstTryCorrect / activeLesson.answeredUnique) * 100)
       : 100;
@@ -9858,6 +9922,10 @@ document.addEventListener('DOMContentLoaded', () => {
       body.querySelector('.lesson-speak-slow-btn')?.addEventListener('click', (e) => speakWordOverride(w.example || w.word, true, e.currentTarget, { rate: 0.62 }));
       body.querySelector('.lesson-intro-next-btn')?.addEventListener('click', () => {
         SoundFX.tick();
+        if (!step._countedProgress) {
+          step._countedProgress = true;
+          activeLesson.clearedCount = Math.min(activeLesson.initialTotal || activeLesson.queue.length, (activeLesson.clearedCount || 0) + 1);
+        }
         activeLesson.index++;
         renderCurrentLessonStep();
       });
@@ -9993,8 +10061,9 @@ document.addEventListener('DOMContentLoaded', () => {
           syncLessonCheckButton();
         });
         inp.addEventListener('keydown', (ev) => {
-          if (ev.key === 'Enter') {
+          if (ev.key === 'Enter' && !ev.isComposing) {
             ev.preventDefault();
+            ev.stopPropagation();
             const chk = /** @type {HTMLButtonElement|null} */ ($('btn-lesson-check'));
             if (chk && !chk.disabled && !activeLesson.awaitingNext) chk.click();
           }
@@ -10117,8 +10186,9 @@ document.addEventListener('DOMContentLoaded', () => {
             syncLessonCheckButton();
           });
           inp.addEventListener('keydown', (ev) => {
-            if (ev.key === 'Enter') {
+            if (ev.key === 'Enter' && !ev.isComposing) {
               ev.preventDefault();
+              ev.stopPropagation();
               const chk = /** @type {HTMLButtonElement|null} */ ($('btn-lesson-check'));
               if (chk && !chk.disabled && !activeLesson.awaitingNext) chk.click();
             }
@@ -10345,11 +10415,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const fullSentence = step.maskedSentence.replace('______', step.targetSurface);
       const wrongOpt = !grade.ok && !isSkip && !step._useKeyboard && step.selectedChoice !== null ? wordsData[step.selectedChoice] : null;
       const wrongNote = wrongOpt ? ` · "${wrongOpt.word}" แปลว่า "${wrongOpt.translation}"` : '';
+      const sentNote = step.subTranslation || w.exampleTranslation || '';
       return {
         isCorrect: grade.ok,
         nearMiss: grade.nearMiss,
-        correctDisplay: step.targetSurface,
-        feedbackDetail: `${fullSentence} (${step.subTranslation || w.exampleTranslation || w.translation})${wrongNote}`,
+        correctDisplay: `${step.targetSurface} (${w.translation})`,
+        feedbackDetail: `${fullSentence}${sentNote ? ` (${sentNote})` : ''}${wrongNote}`,
         speakText: fullSentence,
         wordObj: w
       };
@@ -10358,11 +10429,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (step.type === 'spelling_context') {
       const res = isSkip ? { ok: false, nearMiss: false } : gradeLessonTextAnswer(step.keyboardVal, [step.targetSurface, w.word], false, true);
       const fullSentence = step.maskedSentence ? step.maskedSentence.replace('______', step.targetSurface) : w.word;
+      const ctxNote = step.subTranslation || w.exampleTranslation || w.definition || '';
       return {
         isCorrect: res.ok,
         nearMiss: res.nearMiss,
-        correctDisplay: step.targetSurface,
-        feedbackDetail: `${w.word} (${w.translation}) · ${step.subTranslation || w.exampleTranslation || ''}`,
+        correctDisplay: `${step.targetSurface} (${w.translation})`,
+        feedbackDetail: `${w.word} (${w.translation})${ctxNote ? ` · ${ctxNote}` : ''}`,
         speakText: fullSentence,
         wordObj: w
       };
@@ -10544,6 +10616,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const evalRes = evaluateCurrentStep(isSkip);
     if (!evalRes) return;
     activeLesson.awaitingNext = true;
+    activeLesson._feedbackShownAt = performance.now();
+    document.querySelector('#lesson-screen .lesson-shell')?.classList.add('is-feedback-open');
+    const stageBodyEl = $('lesson-stage-body');
+    if (document.activeElement instanceof HTMLElement && stageBodyEl?.contains(document.activeElement)) {
+      document.activeElement.blur();
+    }
     applyVisualFeedbackToStage(evalRes, isSkip);
 
     if (!step.requeued) {
@@ -10563,19 +10641,24 @@ document.addEventListener('DOMContentLoaded', () => {
       activeLesson.maxCombo = Math.max(activeLesson.maxCombo, activeLesson.combo);
       SoundFX.known(activeLesson.combo);
       recordLessonWordOutcome(step.wordIdx, true, outcomeOpts);
-      const fillNow = $('lesson-progress-fill');
-      if (fillNow) {
-        const pctNow = Math.min(100, Math.round(((activeLesson.index + 1) / Math.max(1, activeLesson.queue.length)) * 100));
-        fillNow.style.width = `${pctNow}%`;
-        OxMotion.pulseClass(fillNow, 'is-advancing', 540);
+      if (!step._countedProgress) {
+        step._countedProgress = true;
+        activeLesson.clearedCount = Math.min(activeLesson.initialTotal || activeLesson.queue.length, (activeLesson.clearedCount || 0) + 1);
       }
+      updateLessonProgressUI(true);
     } else {
       activeLesson.combo = 0;
       if (isSkip) SoundFX.skip();
       else SoundFX.review();
       recordLessonWordOutcome(step.wordIdx, false, outcomeOpts);
-      // Zero-penalty Mistake Re-Queue (No Hearts!): push max 1 retry per step
-      if (!step.requeued) {
+      if (step.requeued) {
+        if (!step._countedProgress) {
+          step._countedProgress = true;
+          activeLesson.clearedCount = Math.min(activeLesson.initialTotal || activeLesson.queue.length, (activeLesson.clearedCount || 0) + 1);
+        }
+        updateLessonProgressUI(false);
+      } else {
+        // Zero-penalty Mistake Re-Queue (No Hearts!): push max 1 retry per step
         const retryStep = {
           ...step,
           chosenIds: [],
@@ -10705,9 +10788,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const fill = $('lesson-progress-fill');
     const fbBar = $('lesson-feedback-bar');
     const actBar = $('lesson-action-bar');
-    if (fill) fill.style.width = '100%';
     if (fbBar) fbBar.hidden = true;
     if (actBar) actBar.hidden = true;
+    document.querySelector('#lesson-screen .lesson-shell')?.classList.remove('is-feedback-open');
+    activeLesson.clearedCount = activeLesson.initialTotal || activeLesson.queue.length;
+    updateLessonProgressUI(false);
 
     const isVirtual = Boolean(stage.isVirtual);
     const acc = Math.round((activeLesson.firstTryCorrect / Math.max(1, activeLesson.uniqueTotal)) * 100);
@@ -11003,7 +11088,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inTextField = tag === 'INPUT' || tag === 'TEXTAREA';
 
     if (activeLesson.awaitingNext) {
-      if (e.key === 'Enter') {
+      if (e.key === 'Enter' && !e.repeat && !e.isComposing && (performance.now() - (activeLesson._feedbackShownAt || 0) >= 260)) {
         e.preventDefault();
         $('btn-lesson-continue')?.click();
       }

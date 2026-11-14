@@ -223,16 +223,19 @@
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                         </button>
                         <div class="lesson-progress-wrap">
-                            <span class="lesson-combo-pill" id="lesson-combo-pill" hidden>🔥 2 ข้อรวด!</span>
-                            <div class="lesson-progress-track" aria-label="ความคืบหน้าด่าน">
+                            <div class="lesson-progress-track" role="progressbar" aria-label="ความคืบหน้าด่าน" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                                 <div class="lesson-progress-fill" id="lesson-progress-fill" style="width: 0%;"></div>
                             </div>
                         </div>
-                        <span class="lesson-acc-pill" id="lesson-acc-pill" title="ความแม่นยำปัจจุบัน">100%</span>
+                        <span class="lesson-acc-pill" id="lesson-acc-pill" title="ความแม่นยำปัจจุบัน">🎯 100%</span>
                     </header>
 
                     <div class="lesson-stage-meta">
                         <span class="lesson-stage-pill" id="lesson-stage-pill">หน่วยที่ 1 · ด่าน 1</span>
+                        <div class="lesson-meta-right">
+                            <span class="lesson-combo-pill" id="lesson-combo-pill" hidden>🔥 2 ข้อรวด!</span>
+                            <span class="lesson-progress-meta" id="lesson-progress-meta" title="ความคืบหน้าด่านปัจจุบัน">0%</span>
+                        </div>
                     </div>
 
                     <div class="lesson-stage-body" id="lesson-stage-body"></div>
@@ -258,9 +261,9 @@
                                         <p id="lesson-feedback-detail"></p>
                                         <div class="lesson-feedback-insight" id="lesson-feedback-insight" hidden></div>
                                         <div class="lesson-rate-chips" id="lesson-rate-chips" hidden>
-                                            <button type="button" class="lesson-rate-chip" data-rate="easy">⚡ ง่ายเกินไป</button>
-                                            <button type="button" class="lesson-rate-chip" data-rate="hard">⛰️ ยากเกินไป</button>
-                                            <button type="button" class="lesson-rate-chip" data-rate="review">🔁 เน้นทบทวนคำนี้</button>
+                                            <button type="button" class="lesson-rate-chip" data-rate="easy">⚡ ง่าย</button>
+                                            <button type="button" class="lesson-rate-chip" data-rate="hard">⛰️ ยาก</button>
+                                            <button type="button" class="lesson-rate-chip" data-rate="review">🔁 ทบทวน</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1294,7 +1297,10 @@
                             <button type="button" id="btn-quiz-hint" class="btn glass-btn quiz-hint-btn" title="ขอคำใบ้ตัวอักษรเพิ่ม">ใบ้ตัวอักษร</button>
                             <button type="button" id="btn-quiz-submit-spell" class="btn btn-primary glass-btn">ตรวจคำตอบ</button>
                         </div>
-                        <div id="quiz-spell-feedback" class="quiz-spell-feedback" hidden></div>
+                        <div class="quiz-spell-feedback-wrap">
+                            <div id="quiz-spell-feedback" class="quiz-spell-feedback" hidden></div>
+                            <button type="button" id="btn-quiz-next-spell" class="btn btn-primary glass-btn quiz-next-spell-btn" hidden>ไปต่อ →</button>
+                        </div>
                     </div>
                     <p class="kbd-hint" style="margin-top: 20px; font-size: 0.82rem;">คีย์ลัด: <kbd>1</kbd>–<kbd>4</kbd> หรือ <kbd>A</kbd>–<kbd>D</kbd> เลือกคำตอบ · <kbd>Space</kbd> ฟังเสียง</p>
                 </div>
