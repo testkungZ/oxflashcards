@@ -148,12 +148,13 @@
             <header class="mobile-top-bar" id="mobile-top-bar">
                 <div class="mob-top-left">
                     <button type="button" class="mob-cefr-pill" id="mob-cefr-badge" data-nav="learn" title="ระดับ CEFR ปัจจุบัน">A1</button>
-                    <span class="mob-stat-chip streak" title="วันต่อเนื่อง">
+                    <button type="button" class="mob-stat-chip streak shop-open-btn" id="mob-streak-chip" title="วันต่อเนื่อง &amp; เกราะกันไฟดับ (แตะเพื่อเปิดร้านค้า)">
                         <span aria-hidden="true">🔥</span><span id="mob-streak-val">0</span>
-                    </span>
-                    <span class="mob-stat-chip xp" title="คะแนนประสบการณ์ XP">
+                        <span class="mob-freeze-pip" id="mob-freeze-pip" hidden title="มีเกราะกันไฟดับ">🧊</span>
+                    </button>
+                    <button type="button" class="mob-stat-chip xp shop-open-btn" id="mob-xp-chip" title="คะแนน XP &amp; ร้านค้าแลกรางวัล">
                         <span aria-hidden="true">⚡</span><span id="mob-xp-val">0</span>
-                    </span>
+                    </button>
                 </div>
                 <div class="mob-top-right">
                     <button type="button" id="mob-search-btn" class="glass-btn-icon small" title="ค้นหาด่วน (/)" aria-label="ค้นหาด่วน">
@@ -205,6 +206,8 @@
                             <div class="learn-quick-actions">
                                 <button type="button" class="learn-quick-btn is-weak" id="btn-learn-weak-drill" title="ฝึกคำศัพท์ที่กดผิดหรืออยู่ในรายการทบทวน">🎯 ฝึกคำอ่อน (<span id="learn-weak-count">0</span>)</button>
                                 <button type="button" class="learn-quick-btn is-review" id="btn-learn-quick-review" title="ฝึกทบทวนด่วนจากคำศัพท์ในระดับนี้">⚡ ทบทวนด่วน</button>
+                                <button type="button" class="learn-quick-btn is-blitz" id="btn-learn-speed-blitz" title="โหมดท้าความไว 60 วินาที ล่าคอมโบและสถิติสูงสุด">⏱️ Speed Blitz 60s</button>
+                                <button type="button" class="learn-quick-btn is-confusables" id="btn-learn-confusables" title="ด่านปราบคำศัพท์คู่แฝดที่คนไทยสับสนบ่อย">⚔️ ปราบคำสับสน</button>
                             </div>
                         </div>
                         <button type="button" class="learn-active-unit-pill" id="learn-active-unit-pill" hidden title="เลื่อนขึ้นไปยังหัวหน่วยนี้">
@@ -1265,6 +1268,19 @@
             <main>
                 <div class="glass-panel main-panel quiz-panel">
                     <div class="progress-container">
+                        <!-- Speed Blitz 60s Live HUD -->
+                        <div id="quiz-blitz-hud" class="quiz-blitz-hud" hidden aria-live="off">
+                            <div class="quiz-blitz-top">
+                                <span id="quiz-blitz-timer-pill" class="quiz-blitz-pill is-timer">⏱️ <b id="quiz-blitz-time-val">60.0</b>s</span>
+                                <span id="quiz-blitz-combo-pill" class="quiz-blitz-pill is-combo">🔥 คอมโบ <b id="quiz-blitz-combo-val">x1</b></span>
+                                <span id="quiz-blitz-points-pill" class="quiz-blitz-pill is-points">⚡ <b id="quiz-blitz-points-val">0</b> แต้ม</span>
+                                <span id="quiz-blitz-bonus-pop" class="quiz-blitz-bonus-pop" hidden>+2s ⚡</span>
+                            </div>
+                            <div class="quiz-blitz-bar-track">
+                                <div id="quiz-blitz-timer-fill" class="quiz-blitz-timer-fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
                         <div class="progress-row">
                             <span class="card-status">คะแนน: <b id="quiz-score" style="color:var(--success);">0</b></span>
                             <div class="progress-text">
@@ -1279,6 +1295,7 @@
                     <div class="quiz-question-container">
                         <div class="quiz-mode-tag-wrap">
                             <span id="quiz-active-mode-tag" class="quiz-active-mode-tag">Multiple Choice</span>
+                            <span id="quiz-confusable-pair-tag" class="quiz-confusable-pair-tag" hidden>⚔️ คู่คำสับสน</span>
                         </div>
                         <h2 id="quiz-word" class="quiz-word">Loading...</h2>
                         <div id="quiz-context-box" class="quiz-context-box" hidden>
@@ -1314,7 +1331,7 @@
                         </div>
                     </div>
 
-                    <!-- Unified Sequential Feedback Dock (All 4 Quiz Modes) -->
+                    <!-- Unified Sequential Feedback Dock (All Quiz Modes) -->
                     <div id="quiz-feedback-bar" class="quiz-feedback-bar" hidden aria-live="polite">
                         <div class="quiz-fb-head">
                             <span id="quiz-fb-icon" class="quiz-fb-icon" aria-hidden="true">✓</span>
@@ -1324,6 +1341,7 @@
                                     <span id="quiz-fb-combo" class="quiz-fb-combo" hidden>🔥 x2</span>
                                 </div>
                                 <p id="quiz-fb-detail" class="quiz-fb-detail"></p>
+                                <div id="quiz-fb-nuance" class="quiz-fb-nuance" hidden></div>
                             </div>
                         </div>
                         <button type="button" id="btn-quiz-next" class="btn btn-primary glass-btn quiz-next-btn">ข้อต่อไป →</button>
@@ -1375,6 +1393,8 @@
                     <span class="summary-stat-label">เวลาที่ใช้</span>
                 </div>
             </div>
+
+            <div id="quiz-summary-special-banner" class="quiz-summary-special-banner" hidden></div>
 
             <div id="quiz-summary-mistakes-wrap" style="width: 100%; margin-top: 18px;">
                 <div class="dash-card-head" style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
@@ -1444,6 +1464,30 @@
                             <strong>สะกดคำตอบ</strong>
                             <small>พิมพ์คำอังกฤษจากคำแปล</small>
                         </button>
+                        <button type="button" class="quiz-mode-card is-special-blitz" data-qh-mode="blitz">
+                            <span class="qmc-badge">HOT</span>
+                            <span class="qmc-icon">⚡</span>
+                            <strong>Speed Blitz 60s</strong>
+                            <small>ท้าความไว 60 วินาที · ล่าคอมโบ</small>
+                        </button>
+                        <button type="button" class="quiz-mode-card is-special-confusables" data-qh-mode="confusables">
+                            <span class="qmc-badge">NEW</span>
+                            <span class="qmc-icon">⚔️</span>
+                            <strong>ปราบคำสับสน</strong>
+                            <small>แยกคำคู่แฝดที่คนไทยใช้ผิดบ่อย</small>
+                        </button>
+                    </div>
+
+                    <div class="qh-records-strip" id="qh-special-records">
+                        <div class="qh-record-chip">
+                            <span>⚡ สถิติ Speed Blitz สูงสุด:</span>
+                            <strong id="qh-blitz-best-score">0 แต้ม</strong>
+                            <small id="qh-blitz-best-combo">(คอมโบสูงสุด x0)</small>
+                        </div>
+                        <div class="qh-record-chip">
+                            <span>⚔️ คำสับสนที่พิชิตแล้ว:</span>
+                            <strong id="qh-confusables-mastered">0 / 32 คู่</strong>
+                        </div>
                     </div>
 
                     <div class="hub-form-row">
@@ -1637,7 +1681,10 @@
                     <!-- Identity Row -->
                     <div class="prof-identity-wrap">
                         <div class="prof-identity-main">
-                            <h2 id="prof-name">ผู้เรียน Oxford 3000</h2>
+                            <div class="prof-name-row">
+                                <h2 id="prof-name">ผู้เรียน Oxford 3000</h2>
+                                <span class="prof-title-badge" id="prof-title-badge" hidden></span>
+                            </div>
                             <div class="prof-handle-line" id="prof-handle">@oxford_learner</div>
                             <p id="prof-sub" class="prof-sub-txt">ยังไม่ได้เชื่อมต่อ Google Account · เก็บข้อมูลในเครื่องนี้</p>
                             <div class="prof-joined-line" id="prof-joined">เข้าร่วมเมื่อ พฤศจิกายน 2026</div>
@@ -1692,32 +1739,78 @@
                         </div>
                     </div>
 
-                    <!-- Achievements Section -->
+                    <!-- Streak Freeze & XP / Gems Shop Card -->
                     <div class="prof-section-head">
-                        <h3>ความสำเร็จ</h3>
-                        <span class="prof-ach-summary" id="prof-ach-summary">0 / 5 เหรียญ</span>
+                        <h3>เกราะกันไฟดับ &amp; ร้านค้าแลกรางวัล</h3>
+                        <span class="prof-gems-pill" id="prof-gems-pill">💎 <b id="prof-gems-val">100</b> แต้มแลกของ</span>
+                    </div>
+                    <div class="prof-shop-banner" id="prof-shop-banner">
+                        <div class="prof-shop-status-grid">
+                            <div class="prof-shop-stat">
+                                <span class="prof-shop-ico" aria-hidden="true">🧊</span>
+                                <div>
+                                    <strong id="prof-freeze-val">0 / 3 ชิ้น</strong>
+                                    <small>Streak Freeze (คุ้มครองวันขาดเรียนอัตโนมัติ)</small>
+                                </div>
+                            </div>
+                            <div class="prof-shop-stat">
+                                <span class="prof-shop-ico" aria-hidden="true">⚡</span>
+                                <div>
+                                    <strong id="prof-boost-val">พร้อมใช้งาน</strong>
+                                    <small id="prof-boost-sub">น้ำยาคูณ 2 XP &amp; เกราะเวลา Blitz</small>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="btn-prof-open-shop" class="btn btn-primary glass-btn small-btn shop-open-btn">🛒 เปิดร้านค้า XP / แลกไอเทม</button>
+                    </div>
+
+                    <!-- Achievements / Tiered Trophies Section -->
+                    <div class="prof-section-head">
+                        <div>
+                            <h3>ถ้วยรางวัลความสำเร็จ (Tiered Trophies)</h3>
+                            <div class="prof-trophy-tier-counts" id="prof-trophy-tier-counts">
+                                <span class="tier-count-pill is-gold">🥇 Gold <b id="prof-cnt-gold">0</b></span>
+                                <span class="tier-count-pill is-silver">🥈 Silver <b id="prof-cnt-silver">0</b></span>
+                                <span class="tier-count-pill is-bronze">🥉 Bronze <b id="prof-cnt-bronze">0</b></span>
+                            </div>
+                        </div>
+                        <span class="prof-ach-summary" id="prof-ach-summary">0 / 18 เหรียญ</span>
+                    </div>
+                    <div class="prof-ach-filter-bar" id="prof-ach-filter-bar" role="tablist" aria-label="หมวดหมู่เหรียญรางวัล">
+                        <button type="button" class="prof-ach-tab active" data-ach-cat="all">ทั้งหมด (18)</button>
+                        <button type="button" class="prof-ach-tab" data-ach-cat="vocab">คลังคำศัพท์</button>
+                        <button type="button" class="prof-ach-tab" data-ach-cat="learn">เส้นทาง &amp; ความขยัน</button>
+                        <button type="button" class="prof-ach-tab" data-ach-cat="challenge">โหมดท้าทาย</button>
                     </div>
                     <div class="prof-achievements-list" id="prof-achievements-list"></div>
                 </div>
             </section>
 
             <!-- ===================== More & Account Settings Screen (เพิ่มเติม) ===================== -->
-            <section id="more-screen" class="screen" aria-label="เพิ่มเติมและตั้งค่าบัญชี">
+            <section id="more-screen" class="screen" aria-label="เพิ่มเติมและตั้งค่าการใช้งาน">
                 <div class="more-layout">
-                    <!-- Main Left Settings Column -->
                     <div class="more-main-col">
                         <div class="more-page-header">
-                            <h2>ปรับแต่งการใช้งาน</h2>
-                            <button type="button" id="btn-more-view-profile" class="btn glass-btn small-btn">ดูหน้าโปรไฟล์</button>
+                            <div>
+                                <h2>ตั้งค่าและการใช้งาน</h2>
+                                <p class="more-page-sub">ปรับเสียงพูด ธีมหน้าจอ เป้าหมายรายวัน และจัดการข้อมูลการเรียน</p>
+                            </div>
                         </div>
 
-                        <!-- Section 1: Learning Experience & Appearance -->
-                        <div class="glass-panel more-card" id="more-sec-prefs">
-                            <h3 class="more-group-title">ประสบการณ์ในบทเรียน</h3>
+                        <!-- Section 1: Audio & Pronunciation -->
+                        <div class="glass-panel more-card" id="more-sec-audio">
+                            <div class="more-group-head">
+                                <span class="more-group-icon is-sky" aria-hidden="true">🔊</span>
+                                <div>
+                                    <h3 class="more-group-title">เสียงและการออกเสียง</h3>
+                                    <p class="more-group-sub">ตั้งค่าเอฟเฟกต์ สำเนียงหลัก และเสียงพูดเจ้าของภาษา</p>
+                                </div>
+                            </div>
+
                             <div class="more-row">
                                 <div class="more-row-info">
-                                    <strong>เอฟเฟกต์เสียง</strong>
-                                    <small>เปิดหรือปิดเสียงแจ้งเตือนตอบถูก/ผิดและเสียงเมนู</small>
+                                    <strong>เอฟเฟกต์เสียงในแอป</strong>
+                                    <small>เปิดหรือปิดเสียงแจ้งเตือนเมื่อตอบคำถามและกดเมนู</small>
                                 </div>
                                 <button type="button" id="prof-sound-btn" class="ox-switch sound-toggle-btn is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดเอฟเฟกต์เสียง"><span class="ox-switch-thumb"></span></button>
                             </div>
@@ -1727,75 +1820,17 @@
                                     <strong>ระดับเสียงเอฟเฟกต์</strong>
                                     <span id="prof-sound-vol-label" class="prof-val-pill">100%</span>
                                 </div>
-                                <input type="range" id="prof-sound-volume" class="glass-slider prof-vol-slider" min="0" max="100" step="5" value="100" aria-label="ปรับระดับเสียงเอฟเฟกต์">
-                                <div class="prof-sound-cats" id="prof-sound-cats">
-                                    <button type="button" class="chip chip-sm active" data-sound-cat="ui" aria-pressed="true">เสียงปุ่ม/เมนู</button>
-                                    <button type="button" class="chip chip-sm active" data-sound-cat="feedback" aria-pressed="true">ตอบถูก/ผิด</button>
-                                    <button type="button" class="chip chip-sm active" data-sound-cat="reward" aria-pressed="true">รางวัล/ฉลอง</button>
-                                </div>
+                                <input type="range" id="prof-sound-volume" class="more-vol-slider" min="0" max="100" step="5" value="100" aria-label="ปรับระดับเสียงเอฟเฟกต์">
                             </div>
 
                             <div class="more-row">
                                 <div class="more-row-info">
-                                    <strong>ภาพเคลื่อนไหว (Animation)</strong>
-                                    <small>เปิดอนิเมชันและลูกเล่นลื่นไหลในบทเรียน</small>
+                                    <strong>สำเนียงหลัก (US / UK)</strong>
+                                    <small>สำเนียงเริ่มต้นเมื่อกดฟังคำศัพท์และประโยคตัวอย่าง</small>
                                 </div>
-                                <button type="button" id="prof-motion-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดภาพเคลื่อนไหว"><span class="ox-switch-thumb"></span></button>
+                                <button type="button" id="prof-accent-btn" class="glass-accent-pill accent-toggle-btn" title="สลับสำเนียง US / UK">US</button>
                             </div>
 
-                            <div class="more-row">
-                                <div class="more-row-info">
-                                    <strong>ข้อความให้กำลังใจ</strong>
-                                    <small>แสดงคำชมและแอนิเมชันโต้ตอบจากมาสคอต</small>
-                                </div>
-                                <button type="button" id="more-mascot-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดข้อความให้กำลังใจ"><span class="ox-switch-thumb"></span></button>
-                            </div>
-
-                            <div class="more-row">
-                                <div class="more-row-info">
-                                    <strong>แบบฝึกหัดการฟัง</strong>
-                                    <small>รวมโจทย์ฟังเสียงในบทเรียน (ปิดเมื่ออยู่ในที่เงียบ)</small>
-                                </div>
-                                <button type="button" id="more-listening-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดแบบฝึกหัดการฟัง"><span class="ox-switch-thumb"></span></button>
-                            </div>
-
-                            <div class="more-row">
-                                <div class="more-row-info">
-                                    <strong>แรงสั่นตอบสนอง (มือถือ)</strong>
-                                    <small>สั่นเบาๆ เมื่อตอบคำถามหรือรับรางวัล</small>
-                                </div>
-                                <button type="button" id="prof-haptics-btn" class="ox-switch" role="switch" aria-checked="false" aria-label="เปิดหรือปิดแรงสั่นบนมือถือ"><span class="ox-switch-thumb"></span></button>
-                            </div>
-
-                            <hr class="more-sep">
-
-                            <h3 class="more-group-title" id="more-sec-appearance">ลักษณะภายนอก</h3>
-                            <div class="more-row vertical">
-                                <div class="prof-row-inline-head">
-                                    <div>
-                                        <strong>โหมดมืด</strong>
-                                        <small>เลือกโหมดสว่าง โหมดมืด หรือตามระบบอุปกรณ์</small>
-                                    </div>
-                                    <button type="button" id="prof-theme-btn" class="btn glass-btn small-btn theme-toggle-btn">สลับธีม</button>
-                                </div>
-                                <select id="prof-theme-select" class="more-select" aria-label="เลือกโหมดธีมหน้าจอ">
-                                    <option value="auto">ค่าเริ่มต้นของระบบ</option>
-                                    <option value="light">โหมดสว่าง</option>
-                                    <option value="dark">โหมดมืด</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Section 2: Course & Daily Goal -->
-                        <div class="glass-panel more-card" id="more-sec-course">
-                            <h3 class="more-group-title">หลักสูตร &amp; เป้าหมายรายวัน</h3>
-                            <div class="more-row">
-                                <div class="more-row-info">
-                                    <strong>สำเนียงเสียงอ่าน (US / UK)</strong>
-                                    <small>สำเนียงหลักที่ใช้เมื่อกดฟังคำศัพท์และประโยค</small>
-                                </div>
-                                <button type="button" id="prof-accent-btn" class="glass-accent-pill accent-toggle-btn">US</button>
-                            </div>
                             <div class="more-row">
                                 <div class="more-row-info">
                                     <strong>เสียงเจ้าของภาษา (MP3) ก่อนเสียงสังเคราะห์</strong>
@@ -1803,6 +1838,7 @@
                                 </div>
                                 <button type="button" id="more-human-audio-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดเสียงเจ้าของภาษา MP3"><span class="ox-switch-thumb"></span></button>
                             </div>
+
                             <div class="more-row vertical">
                                 <div class="more-row-info">
                                     <strong>เลือกเสียงพูดประจำสำเนียง (สำหรับประโยคและออฟไลน์)</strong>
@@ -1823,66 +1859,115 @@
                                     <button type="button" id="btn-test-voice-uk" class="btn glass-btn small-btn more-voice-test-btn" title="ทดลองฟังเสียง UK">🔊 ลองฟัง</button>
                                 </div>
                             </div>
+
                             <div class="more-row vertical">
                                 <div class="more-row-info">
                                     <strong>ความเร็วเสียงพูดปกติ</strong>
                                 </div>
-                                <div class="dgw-target-chips" id="prof-speech-rate-chips">
-                                    <button type="button" class="dgw-chip" data-rate="0.85">0.85x ช้าชัด</button>
-                                    <button type="button" class="dgw-chip active" data-rate="1">1.0x ปกติ</button>
-                                    <button type="button" class="dgw-chip" data-rate="1.1">1.1x เร็ว</button>
+                                <div class="more-chip-group" id="prof-speech-rate-chips">
+                                    <button type="button" class="more-chip" data-rate="0.85">0.85x ช้าชัด</button>
+                                    <button type="button" class="more-chip active" data-rate="1">1.0x ปกติ</button>
+                                    <button type="button" class="more-chip" data-rate="1.1">1.1x เร็ว</button>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Section 2: Appearance & Lesson Experience -->
+                        <div class="glass-panel more-card" id="more-sec-appearance">
+                            <div class="more-group-head">
+                                <span class="more-group-icon is-violet" aria-hidden="true">🎨</span>
+                                <div>
+                                    <h3 class="more-group-title">หน้าตาแอปและบทเรียน</h3>
+                                    <p class="more-group-sub">ปรับธีมหน้าจอ เป้าหมายรายวัน และรูปแบบการฝึก</p>
+                                </div>
+                            </div>
+
+                            <div class="more-row vertical">
+                                <div class="more-row-info">
+                                    <strong>ธีมหน้าจอ</strong>
+                                    <small>เลือกโหมดสว่าง โหมดมืด หรือให้ปรับตามระบบอุปกรณ์</small>
+                                </div>
+                                <div class="more-segmented" id="more-theme-pills" role="group" aria-label="เลือกโหมดธีมหน้าจอ">
+                                    <button type="button" class="more-seg-btn" data-theme-mode="light" aria-pressed="true">☀️ โหมดสว่าง</button>
+                                    <button type="button" class="more-seg-btn" data-theme-mode="dark" aria-pressed="false">🌙 โหมดมืด</button>
+                                    <button type="button" class="more-seg-btn" data-theme-mode="auto" aria-pressed="false">💻 ตามระบบ</button>
+                                </div>
+                            </div>
+
                             <div class="more-row vertical">
                                 <div class="more-row-info">
                                     <strong>เป้าหมายประจำวัน (คำ / XP ต่อวัน)</strong>
                                 </div>
-                                <div class="dgw-target-chips" id="prof-goal-chips">
-                                    <button type="button" class="dgw-chip" data-goal="10">10</button>
-                                    <button type="button" class="dgw-chip active" data-goal="20">20</button>
-                                    <button type="button" class="dgw-chip" data-goal="30">30</button>
-                                    <button type="button" class="dgw-chip" data-goal="50">50</button>
+                                <div class="more-chip-group" id="prof-goal-chips">
+                                    <button type="button" class="more-chip" data-goal="10">10 คำ</button>
+                                    <button type="button" class="more-chip active" data-goal="20">20 คำ</button>
+                                    <button type="button" class="more-chip" data-goal="30">30 คำ</button>
+                                    <button type="button" class="more-chip" data-goal="50">50 คำ</button>
                                 </div>
+                            </div>
+
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>ภาพเคลื่อนไหว (Animation)</strong>
+                                    <small>เปิดอนิเมชันและลูกเล่นลื่นไหลระหว่างทำบทเรียน</small>
+                                </div>
+                                <button type="button" id="prof-motion-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดภาพเคลื่อนไหว"><span class="ox-switch-thumb"></span></button>
+                            </div>
+
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>แบบฝึกหัดการฟังในบทเรียน</strong>
+                                    <small>รวมโจทย์ฟังเสียง (ปิดชั่วคราวเมื่ออยู่ในที่เงียบ)</small>
+                                </div>
+                                <button type="button" id="more-listening-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดแบบฝึกหัดการฟัง"><span class="ox-switch-thumb"></span></button>
                             </div>
                         </div>
 
-                        <!-- Section 3: Profile -->
+                        <!-- Section 3: Profile & Google Sync -->
                         <div class="glass-panel more-card" id="more-sec-account">
-                            <h3 class="more-group-title">โปรไฟล์ &amp; การตกแต่ง</h3>
+                            <div class="more-group-head">
+                                <span class="more-group-icon is-emerald" aria-hidden="true">👤</span>
+                                <div>
+                                    <h3 class="more-group-title">โปรไฟล์และบัญชี</h3>
+                                    <p class="more-group-sub">ตกแต่งข้อมูลส่วนตัวและเชื่อมต่อบัญชี Google</p>
+                                </div>
+                            </div>
+
                             <div class="more-row">
                                 <div class="more-row-info">
                                     <strong>แก้ไขชื่อ รูปอวาตาร์ และสีแบนเนอร์</strong>
-                                    <small>ปรับแต่งโปรไฟล์ส่วนตัวของคุณ</small>
+                                    <small>ปรับแต่งโปรไฟล์ส่วนตัวของคุณให้โดดเด่น</small>
                                 </div>
-                                <button type="button" id="btn-more-edit-prof" class="btn btn-primary glass-btn small-btn">แก้ไขโปรไฟล์</button>
+                                <button type="button" id="btn-more-edit-prof" class="btn glass-btn small-btn more-action-btn">แก้ไขโปรไฟล์</button>
+                            </div>
+
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>บัญชี Google &amp; ซิงค์ข้อมูลคลาวด์</strong>
+                                    <small>สำรองและซิงค์สถิติการเรียนอัตโนมัติข้ามอุปกรณ์</small>
+                                </div>
+                                <button type="button" id="btn-more-sync" class="btn glass-btn small-btn more-action-btn sync-open-btn">เชื่อมต่อ / ซิงค์</button>
                             </div>
                         </div>
 
-                        <!-- Section 4: Data & Support -->
+                        <!-- Section 4: Data & Backup -->
                         <div class="glass-panel more-card" id="more-sec-data">
-                            <h3 class="more-group-title">สำรองข้อมูล &amp; ความปลอดภัย</h3>
-                            <div class="prof-data-actions">
-                                <button type="button" id="btn-prof-export" class="btn glass-btn">ส่งออกไฟล์สำรอง (.json)</button>
-                                <button type="button" id="btn-prof-import" class="btn glass-btn">นำเข้าไฟล์สำรอง (.json)</button>
-                                <button type="button" id="btn-more-clear-cache" class="btn glass-btn">อัปเดตแคชแอป</button>
-                                <button type="button" id="btn-prof-reset" class="btn glass-btn btn-danger-outline">รีเซ็ตความก้าวหน้า</button>
+                            <div class="more-group-head">
+                                <span class="more-group-icon is-amber" aria-hidden="true">💾</span>
+                                <div>
+                                    <h3 class="more-group-title">ข้อมูลและสำรองไฟล์</h3>
+                                    <p class="more-group-sub">สำรองข้อมูลลงเครื่อง อัปเดตแคช หรือรีเซ็ตเริ่มต้นใหม่</p>
+                                </div>
+                            </div>
+
+                            <div class="more-data-grid">
+                                <button type="button" id="btn-prof-export" class="btn glass-btn more-data-btn">📤 ส่งออกไฟล์สำรอง (.json)</button>
+                                <button type="button" id="btn-prof-import" class="btn glass-btn more-data-btn">📥 นำเข้าไฟล์สำรอง (.json)</button>
+                                <button type="button" id="btn-more-clear-cache" class="btn glass-btn more-data-btn">🔄 อัปเดตแคชแอป</button>
+                                <button type="button" id="btn-prof-reset" class="btn glass-btn more-data-btn btn-danger-outline">⚠️ รีเซ็ตความก้าวหน้า</button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Right Sticky Sub-Nav Card (Duolingo Account Sidebar Style) -->
-                    <aside class="more-subnav-col" aria-label="หมวดหมู่การตั้งค่า">
-                        <div class="glass-panel more-subnav-card">
-                            <div class="more-subnav-title">บัญชี</div>
-                            <div class="more-subnav-list" id="more-subnav-list">
-                                <button type="button" class="more-subnav-btn is-active" data-more-target="more-sec-prefs">ปรับแต่งการใช้งาน</button>
-                                <button type="button" class="more-subnav-btn" data-more-target="more-sec-appearance">ลักษณะภายนอก</button>
-                                <button type="button" class="more-subnav-btn" data-more-target="more-sec-course">หลักสูตร &amp; เป้าหมาย</button>
-                                <button type="button" class="more-subnav-btn" data-more-target="more-sec-account">โปรไฟล์ &amp; บัญชี Google</button>
-                                <button type="button" class="more-subnav-btn" data-more-target="more-sec-data">ข้อมูล &amp; สำรองไฟล์</button>
-                            </div>
-                        </div>
-                    </aside>
                 </div>
             </section>
         </div><!-- /.app-center-col -->
@@ -1893,19 +1978,30 @@
                 <button type="button" id="rail-cefr-btn" class="rail-pill cefr" data-nav="learn" title="ระดับที่กำลังเรียน">
                     <span id="rail-cefr-label">A1</span>
                 </button>
-                <div class="rail-pill streak" title="วันต่อเนื่อง">
+                <button type="button" id="btn-rail-streak-shop" class="rail-pill streak shop-open-btn" title="วันต่อเนื่อง &amp; เกราะกันไฟดับ (คลิกเพื่อเปิดร้านค้า)">
                     <span aria-hidden="true">🔥</span>
                     <span id="rail-streak-val">0</span>
-                </div>
-                <div class="rail-pill xp" title="XP สะสม">
+                    <span id="rail-freeze-badge" class="rail-freeze-badge" hidden title="มีเกราะกันไฟดับ">🧊0</span>
+                </button>
+                <button type="button" id="btn-rail-xp-shop" class="rail-pill xp shop-open-btn" title="XP สะสม &amp; ร้านค้าแลกรางวัล">
                     <span aria-hidden="true">⚡</span>
                     <span id="rail-xp-val">0</span>
-                </div>
+                </button>
                 <button type="button" id="btn-rail-sync" class="rail-pill sync sync-open-btn" title="เข้าสู่ระบบด้วย Google" aria-label="เข้าสู่ระบบด้วย Google">
                     <img id="rail-sync-avatar" class="sync-user-avatar" alt="บัญชี Google" hidden>
                     <span class="sync-status-dot" id="rail-sync-dot"></span>
                     <span id="rail-sync-label">ล็อกอิน</span>
                 </button>
+            </div>
+
+            <!-- Streak Freeze & XP Shop Quick Card -->
+            <div class="glass-panel rail-card rail-shop-card" id="rail-shop-card">
+                <div class="rail-card-header">
+                    <h3>🧊 เกราะไฟ &amp; ร้านค้า XP</h3>
+                    <span class="rail-gems-badge" id="rail-gems-val">💎 100</span>
+                </div>
+                <div class="rail-shop-meta" id="rail-shop-meta">เกราะกันไฟดับ: <b id="rail-freeze-count">0/3</b> ชิ้น</div>
+                <button type="button" id="btn-rail-open-shop" class="btn glass-btn small-btn btn-full shop-open-btn">🛒 แลกเกราะไฟ &amp; ไอเทม</button>
             </div>
 
             <!-- Daily Quests Card -->
@@ -1987,8 +2083,71 @@
                 <div class="gb-mastery-track"><div class="gb-mastery-fill" id="gb-mastery-fill" style="width:0%"></div></div>
             </div>
             <p class="gb-tip" id="gb-tip"></p>
+
+            <!-- Mini Context Story (นิทาน/บทความสั้นราย Unit) -->
+            <div class="gb-mini-story-card" id="gb-mini-story-card">
+                <div class="gb-story-header">
+                    <div class="gb-story-title-wrap">
+                        <span class="gb-story-eyebrow">📖 Mini Context Story · เรื่องสั้นในบริบทจริง</span>
+                        <h4 id="gb-story-title">เรื่องสั้นประจำหน่วย</h4>
+                    </div>
+                    <div class="gb-story-controls">
+                        <span id="gb-story-done-badge" class="gb-story-done-badge" hidden>✓ อ่านจบแล้ว (+15 XP)</span>
+                        <button type="button" id="btn-gb-story-listen" class="btn glass-btn small-btn gb-story-btn" title="ฟังเสียงอ่านเรื่องสั้นทั้งหมด">🔊 ฟังทั้งเรื่อง</button>
+                        <button type="button" id="btn-gb-story-toggle-th" class="btn glass-btn small-btn gb-story-btn is-active" title="แสดงหรือซ่อนคำแปลภาษาไทย">🇹🇭 คำแปลไทย</button>
+                    </div>
+                </div>
+                <p class="gb-story-hint">💡 แตะคำศัพท์ที่ไฮไลต์ในเนื้อเรื่องเพื่อฟังเสียงและดูความหมายทันที</p>
+                <div class="gb-story-sentences" id="gb-story-sentences"></div>
+                <div class="gb-story-word-pop" id="gb-story-word-pop" hidden></div>
+                <div class="gb-story-quiz-box" id="gb-story-quiz-box">
+                    <div class="gb-story-quiz-head">
+                        <strong>🎯 คำถามเช็กความเข้าใจจากเนื้อเรื่อง (ตอบถูกครบรับ +15 XP &amp; +15 💎)</strong>
+                        <span id="gb-story-quiz-status" class="gb-story-quiz-status">0 / 2 ข้อ</span>
+                    </div>
+                    <div id="gb-story-quiz-list" class="gb-story-quiz-list"></div>
+                </div>
+            </div>
+
             <div class="gb-grammar-notes" id="gb-grammar-notes" hidden></div>
             <ul class="word-list gb-word-list" id="gb-word-list"></ul>
+        </div>
+    </div>
+
+    <!-- Streak Freeze & XP / Gems Reward Shop Modal -->
+    <div id="xp-shop-modal" class="modal-overlay" aria-hidden="true">
+        <div class="glass-panel modal-panel xp-shop-panel" role="dialog" aria-modal="true" aria-labelledby="xp-shop-title">
+            <div class="xp-shop-header">
+                <div class="xp-shop-head-title">
+                    <span class="xp-shop-head-badge" aria-hidden="true">🛒</span>
+                    <div>
+                        <h3 id="xp-shop-title">ร้านค้าแลกรางวัล</h3>
+                        <p class="xp-shop-note">แลกไอเทมด้วยแต้ม 💎 ได้เลย โดยไม่ลด XP สะสมรวมในโปรไฟล์</p>
+                    </div>
+                </div>
+                <div class="xp-shop-header-right">
+                    <span class="xp-shop-balance-pill" id="xp-shop-balance">💎 100</span>
+                    <button type="button" id="btn-xp-shop-close" class="glass-btn-icon small" aria-label="ปิดร้านค้า">✕</button>
+                </div>
+            </div>
+
+            <div class="xp-shop-inventory-bar" id="xp-shop-status-strip">
+                <span class="xp-inv-chip">🧊 เกราะไฟ <b id="xp-shop-freeze-owned">0/3</b></span>
+                <span class="xp-inv-chip">⏱️ Blitz <b id="xp-shop-blitz-owned">0/3</b></span>
+                <span class="xp-inv-chip" id="xp-shop-boost-timer">⚡ คูณ 2 XP: ปิด</span>
+            </div>
+
+            <div class="xp-shop-tabs" id="xp-shop-tabs" role="tablist" aria-label="หมวดหมู่ร้านค้า">
+                <button type="button" class="xp-shop-tab is-active" data-shop-tab="powerups" role="tab" aria-selected="true">🛡️ ไอเทมช่วยเหลือ (3)</button>
+                <button type="button" class="xp-shop-tab" data-shop-tab="titles" role="tab" aria-selected="false">👑 ฉายาโปรไฟล์ (4)</button>
+            </div>
+
+            <div class="xp-shop-tab-pane" id="xp-shop-pane-powerups">
+                <div class="xp-shop-list" id="xp-shop-powerups"></div>
+            </div>
+            <div class="xp-shop-tab-pane" id="xp-shop-pane-titles" hidden>
+                <div class="xp-shop-list" id="xp-shop-titles"></div>
+            </div>
         </div>
     </div>
 
@@ -2050,6 +2209,14 @@
                     <button type="button" class="quiz-mode-card" data-quiz-mode="spelling">
                         <strong>พิมพ์สะกดคำ</strong>
                         <small>ฝึกสะกดคำภาษาอังกฤษ</small>
+                    </button>
+                    <button type="button" class="quiz-mode-card is-special-blitz" data-quiz-mode="blitz">
+                        <strong>⚡ Speed Blitz 60s</strong>
+                        <small>ท้าความไว 60 วินาที</small>
+                    </button>
+                    <button type="button" class="quiz-mode-card is-special-confusables" data-quiz-mode="confusables">
+                        <strong>⚔️ ปราบคำสับสน</strong>
+                        <small>แยกคำคู่แฝดที่ใช้ผิดบ่อย</small>
                     </button>
                 </div>
                 <input type="hidden" id="quiz-mode-input" value="choice">

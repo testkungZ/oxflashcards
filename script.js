@@ -1407,8 +1407,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.theme-toggle-btn .theme-icon').forEach(el => {
       el.innerHTML = isDark ? ICON_SVG.sun : ICON_SVG.moon;
     });
-    const sel = /** @type {HTMLSelectElement|null} */ ($('prof-theme-select'));
-    if (sel) sel.value = mode;
+    const pills = $('more-theme-pills');
+    if (pills) {
+      pills.querySelectorAll('[data-theme-mode]').forEach(btn => {
+        if (!(btn instanceof HTMLElement)) return;
+        const active = btn.dataset.themeMode === mode;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', String(active));
+      });
+    }
   }
 
   if (themeMediaQuery && typeof themeMediaQuery.addEventListener === 'function') {
@@ -4495,19 +4502,156 @@ document.addEventListener('DOMContentLoaded', () => {
     let quizOptionsData = [];
     let quizAnswered = false;
     let quizFeedbackShownAt = 0;
+    let blitzTimerInterval = null;
+    let blitzAutoAdvanceTimer = null;
 
-    function createQuizSession({ indices, category = 'all', mode = 'choice' }) {
-        return {
-            indices,
+    function stopBlitzTimers() {
+        if (blitzTimerInterval) {
+            clearInterval(blitzTimerInterval);
+            blitzTimerInterval = null;
+        }
+        if (blitzAutoAdvanceTimer) {
+            clearTimeout(blitzAutoAdvanceTimer);
+            blitzAutoAdvanceTimer = null;
+        }
+    }
+
+    function buildConfusableQuizItems(cefr = 'all', desiredCount = 12) {
+        const sets = (typeof CONFUSABLE_SETS !== 'undefined' && Array.isArray(CONFUSABLE_SETS)) ? CONFUSABLE_SETS : [];
+        const filteredSets = (cefr && cefr !== 'all')
+            ? sets.filter(s => s.cefr === cefr)
+            : sets;
+        const activeSets = filteredSets.length > 0 ? filteredSets : sets;
+        const flat = [];
+        activeSets.forEach(s => {
+            (s.items || []).forEach(it => {
+                const matchIdx = wordsData.findIndex(w => w && w.word.toLowerCase() === it.answer.toLowerCase());
+                flat.push({
+                    setId: s.id,
+                    pair: s.pair,
+                    cefr: s.cefr,
+                    tipTh: s.tipTh,
+                    sentence: it.sentence,
+                    sentenceTh: it.sentenceTh,
+                    answer: it.answer,
+                    options: [...it.options],
+                    explainTh: it.explainTh,
+                    wordIdx: matchIdx >= 0 ? matchIdx : 0
+                });
+            });
+        });
+        return shuffle(flat).slice(0, Math.max(5, Math.min(desiredCount || 12, flat.length)));
+    }
+
+    function updateBlitzHudUI() {
+        const hud = $('quiz-blitz-hud');
+        if (!hud || !quizSession || quizSession.mode !== 'blitz') {
+            if (hud) hud.hidden = true;
+            return;
+        }
+        hud.hidden = false;
+        const remSec = Math.max(0, (quizSession.blitzRemainingMs || 0) / 1000);
+        const timeVal = $('quiz-blitz-time-val');
+        const timerPill = $('quiz-blitz-timer-pill');
+        const fill = $('quiz-blitz-timer-fill');
+        const comboVal = $('quiz-blitz-combo-val');
+        const pointsVal = $('quiz-blitz-points-val');
+
+        if (timeVal) timeVal.textContent = remSec.toFixed(1);
+        if (timerPill) {
+            timerPill.classList.toggle('is-warn', remSec <= 15 && remSec > 7);
+            timerPill.classList.toggle('is-danger', remSec <= 7);
+        }
+        if (fill) {
+            const pct = Math.max(0, Math.min(100, (quizSession.blitzRemainingMs / Math.max(1000, quizSession.blitzInitialMs || 60000)) * 100));
+            fill.style.width = `${pct}%`;
+        }
+        const combo = quizSession.combo || 0;
+        const mult = combo >= 9 ? 4 : (combo >= 6 ? 3 : (combo >= 3 ? 2 : 1));
+        if (comboVal) comboVal.textContent = combo >= 2 ? `x${mult} (${combo}🔥)` : 'x1';
+        if (pointsVal) pointsVal.textContent = Number(quizSession.blitzPoints || 0).toLocaleString();
+    }
+
+    function startBlitzTimer() {
+        stopBlitzTimers();
+        if (!quizSession || quizSession.mode !== 'blitz') return;
+        quizSession.blitzLastTick = performance.now();
+        updateBlitzHudUI();
+        blitzTimerInterval = setInterval(() => {
+            if (!quizSession || quizSession.mode !== 'blitz') {
+                stopBlitzTimers();
+                return;
+            }
+            if (quizSession.blitzPaused) {
+                quizSession.blitzLastTick = performance.now();
+                return;
+            }
+            const now = performance.now();
+            const dt = Math.max(0, Math.min(500, now - (quizSession.blitzLastTick || now)));
+            quizSession.blitzLastTick = now;
+            quizSession.blitzRemainingMs = Math.max(0, (quizSession.blitzRemainingMs || 0) - dt);
+            updateBlitzHudUI();
+            if (quizSession.blitzRemainingMs <= 0) {
+                stopBlitzTimers();
+                if (quizSession) {
+                    quizSession.forceFinishBlitz = true;
+                    renderQuizQuestion();
+                }
+            }
+        }, 100);
+    }
+
+    function createQuizSession({ indices, category = 'all', mode = 'choice', cefr = 'all', count = 10 }) {
+        stopBlitzTimers();
+        const cleanMode = mode || 'choice';
+        let sessionIndices = Array.isArray(indices) ? [...indices] : [];
+        let confusableItems = null;
+        let blitzInitialMs = 60000;
+        let usedTimeShield = false;
+
+        if (cleanMode === 'confusables') {
+            confusableItems = buildConfusableQuizItems(cefr, count || (sessionIndices.length || 12));
+            sessionIndices = confusableItems.map(it => it.wordIdx);
+        } else if (cleanMode === 'blitz') {
+            if (sessionIndices.length < 60) {
+                const extraPool = [];
+                for (let i = 0; i < totalWords; i++) {
+                    if (cefr !== 'all' && wordsData[i].cefr !== cefr) continue;
+                    extraPool.push(i);
+                }
+                const source = extraPool.length >= 20 ? extraPool : Array.from({ length: totalWords }, (_, i) => i);
+                sessionIndices = pickRandom(source, Math.min(80, source.length));
+            }
+            if (typeof learnState === 'object' && learnState && (learnState.blitzTimeShields || 0) > 0) {
+                learnState.blitzTimeShields = Math.max(0, learnState.blitzTimeShields - 1);
+                blitzInitialMs = 68000;
+                usedTimeShield = true;
+                saveLearnState(false);
+                setTimeout(() => showToast('⏱️ ใช้เกราะเวลา Speed Blitz อัตโนมัติ! เริ่มที่ 68 วินาที'), 180);
+            }
+        }
+
+        const sess = {
+            indices: sessionIndices,
             currentIndex: 0,
             score: 0,
             combo: 0,
+            maxCombo: 0,
             incorrectWords: [],
             category: category || 'all',
-            mode: mode || 'choice',
+            cefr: cefr || 'all',
+            mode: cleanMode,
             revealedChars: 1,
-            startTime: Date.now()
+            startTime: Date.now(),
+            confusableItems,
+            blitzInitialMs,
+            blitzRemainingMs: blitzInitialMs,
+            blitzPoints: 0,
+            blitzAnswered: 0,
+            usedTimeShield,
+            forceFinishBlitz: false
         };
+        return sess;
     }
 
     const btnQuizNext = /** @type {HTMLButtonElement|null} */ ($('btn-quiz-next'));
@@ -4578,37 +4722,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const actualSize = Math.min(selectedSize, pool.length);
+            const actualSize = selectedQuizMode === 'blitz' ? Math.min(80, pool.length) : Math.min(selectedSize, pool.length);
             const indices = pickRandom(pool, actualSize);
 
             quizSession = createQuizSession({
                 indices,
                 category: selectedCat,
-                mode: selectedQuizMode
+                mode: selectedQuizMode,
+                cefr: selectedQuizCefr,
+                count: selectedSize
             });
             showScreen('quiz');
             renderQuizQuestion();
+            if (selectedQuizMode === 'blitz') startBlitzTimer();
         });
     }
 
     if (btnQuizHome) {
         btnQuizHome.addEventListener('click', async () => {
-            if (quizSession && quizSession.currentIndex < quizSession.indices.length) {
+            if (quizSession && (quizSession.currentIndex < quizSession.indices.length && !quizSession.forceFinishBlitz)) {
+                if (quizSession.mode === 'blitz') quizSession.blitzPaused = true;
                 const ok = await confirmDialog({
                     title: 'ออกจากการทำแบบทดสอบ?',
-                    message: 'คุณยังทำแบบทดสอบไม่เสร็จ ต้องการออกไปหน้าแรกหรือไม่?',
+                    message: 'คุณยังทำแบบทดสอบไม่เสร็จ ต้องการออกไปหน้าศูนย์ทดสอบหรือไม่?',
                     confirmText: 'ออก'
                 });
-                if (!ok) return;
+                if (!ok) {
+                    if (quizSession && quizSession.mode === 'blitz') quizSession.blitzPaused = false;
+                    return;
+                }
             }
+            stopBlitzTimers();
             quizSession = null;
-            showScreen('welcome');
+            showScreen('quiz-hub');
         });
     }
 
     if (btnQuizSpeak) {
         btnQuizSpeak.addEventListener('click', () => {
             if (!quizSession) return;
+            if (quizSession.mode === 'confusables' && Array.isArray(quizSession.confusableItems)) {
+                const cfItem = quizSession.confusableItems[quizSession.currentIndex];
+                if (cfItem) {
+                    speakWordOverride(cfItem.answer, true);
+                    return;
+                }
+            }
             const word = wordsData[quizSession.indices[quizSession.currentIndex]].word;
             speakWordOverride(word, true);
         });
@@ -4929,22 +5088,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderQuizQuestion() {
         if (!quizSession) return;
-        if (quizSession.currentIndex >= quizSession.indices.length) {
+        const isBlitzFinished = quizSession.mode === 'blitz' && quizSession.forceFinishBlitz;
+        if (isBlitzFinished || quizSession.currentIndex >= quizSession.indices.length) {
             // End of quiz
+            stopBlitzTimers();
             SoundFX.victory();
-            const qPct = quizSession.indices.length ? Math.round((quizSession.score / quizSession.indices.length) * 100) : 0;
-            if (qPct >= 70) {
+            const answeredTotal = quizSession.mode === 'blitz'
+                ? Math.max(1, quizSession.blitzAnswered || quizSession.currentIndex || 1)
+                : Math.max(1, quizSession.indices.length);
+            const effectiveIndices = quizSession.mode === 'blitz'
+                ? quizSession.indices.slice(0, answeredTotal)
+                : quizSession.indices;
+            const qPct = Math.round((quizSession.score / answeredTotal) * 100);
+            if (qPct >= 70 || (quizSession.mode === 'blitz' && quizSession.score >= 5)) {
                 OxConfetti.launch(qPct === 100 ? 'perfect' : 'good');
             }
 
-            const timeSpentSec = Math.round((Date.now() - quizSession.startTime) / 1000);
+            const timeSpentSec = Math.max(1, Math.round((Date.now() - quizSession.startTime) / 1000));
+            let isNewBlitzRecord = false;
+            if (typeof learnState === 'object' && learnState && quizSession.mode === 'blitz') {
+                learnState.blitzGamesPlayed = (learnState.blitzGamesPlayed || 0) + 1;
+                const pts = Number(quizSession.blitzPoints || 0);
+                if (pts > (learnState.blitzHighScore || 0)) {
+                    learnState.blitzHighScore = pts;
+                    isNewBlitzRecord = true;
+                }
+                const bestC = Number(quizSession.maxCombo || 0);
+                if (bestC > (learnState.blitzBestCombo || 0)) {
+                    learnState.blitzBestCombo = bestC;
+                }
+            }
+
             const finishedQuiz = {
-                indices: quizSession.indices,
+                indices: effectiveIndices,
                 score: quizSession.score,
                 incorrectWords: [...quizSession.incorrectWords],
                 category: quizSession.category || 'all',
                 mode: quizSession.mode || 'choice',
                 timeSpent: timeSpentSec,
+                blitzPoints: quizSession.blitzPoints || 0,
+                maxCombo: quizSession.maxCombo || 0,
+                isNewBlitzRecord,
                 date: new Date().toISOString()
             };
 
@@ -4958,10 +5142,11 @@ document.addEventListener('DOMContentLoaded', () => {
             quizHistory.unshift({
                 date: finishedQuiz.date,
                 score: finishedQuiz.score,
-                total: finishedQuiz.indices.length,
-                percent: Math.round((finishedQuiz.score / finishedQuiz.indices.length) * 100),
+                total: effectiveIndices.length,
+                percent: qPct,
                 incorrectWords: finishedQuiz.incorrectWords,
                 category: finishedQuiz.category,
+                mode: finishedQuiz.mode,
                 timeSpent: finishedQuiz.timeSpent
             });
 
@@ -4969,18 +5154,25 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('oxford3000_quiz_history', JSON.stringify(quizHistory));
             if (typeof learnState === 'object' && learnState) {
                 ensureTodayQuests();
-                const quizXp = 10 + Math.round((qPct / 100) * 15);
+                let quizXp = quizSession.mode === 'blitz'
+                    ? 15 + Math.min(35, Math.floor((quizSession.blitzPoints || 0) / 100))
+                    : 10 + Math.round((qPct / 100) * 15);
+                if (typeof isXpBoostActive === 'function' && isXpBoostActive()) {
+                    quizXp *= 2;
+                }
                 learnState.xp += quizXp;
                 learnState.dailyQuests.xpToday += quizXp;
                 if (qPct >= 80) learnState.dailyQuests.perfectToday += 1;
                 saveLearnState(false);
                 if (typeof refreshShellTelemetry === 'function') refreshShellTelemetry();
+                if (typeof refreshQuizHubSpecialRecords === 'function') refreshQuizHubSpecialRecords();
             }
             if (scheduleGoogleAutoSync) scheduleGoogleAutoSync();
             trackGAEvent('quiz_complete', {
                 category: finishedQuiz.category,
+                mode: finishedQuiz.mode,
                 score: finishedQuiz.score,
-                total: finishedQuiz.indices.length,
+                total: effectiveIndices.length,
                 accuracy: qPct,
                 duration_sec: timeSpentSec
             });
@@ -4997,9 +5189,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         quizAnswered = false;
         quizSession.revealedChars = 1;
-        const index = quizSession.indices[quizSession.currentIndex];
-        const correctWord = wordsData[index];
         const qMode = quizSession.mode || 'choice';
+        const cfItem = (qMode === 'confusables' && Array.isArray(quizSession.confusableItems))
+            ? quizSession.confusableItems[quizSession.currentIndex]
+            : null;
+        const index = cfItem ? cfItem.wordIdx : quizSession.indices[quizSession.currentIndex];
+        const correctWord = wordsData[index] || wordsData[0];
+
         const quizPanelEl = screens.quiz ? screens.quiz.querySelector('.quiz-panel') : null;
         if (quizPanelEl) {
             quizPanelEl.setAttribute('data-quiz-mode', qMode);
@@ -5007,27 +5203,44 @@ document.addEventListener('DOMContentLoaded', () => {
             OxMotion.pulseClass(quizPanelEl, 'is-entering', 440);
         }
 
+        updateBlitzHudUI();
+
         const fbBar = $('quiz-feedback-bar');
         if (fbBar) {
             fbBar.hidden = true;
             fbBar.classList.remove('is-open', 'is-correct', 'is-wrong');
         }
+        const fbNuance = $('quiz-fb-nuance');
+        if (fbNuance) {
+            fbNuance.hidden = true;
+            fbNuance.textContent = '';
+        }
 
         const modeTag = $('quiz-active-mode-tag');
+        const cfPairTag = $('quiz-confusable-pair-tag');
         const contextBox = $('quiz-context-box');
         const contextSent = $('quiz-context-sentence');
         const contextTrans = $('quiz-context-trans');
         const spellingBox = $('quiz-spelling-box');
-        const spellHintEl = $('quiz-spell-hint');
         const spellInput = /** @type {HTMLInputElement|null} */ ($('quiz-spelling-input'));
 
         const MODE_LABELS = {
             choice: 'Multiple Choice · ทายคำแปล 4 ตัวเลือก',
             cloze: 'Context Cloze · เติมคำศัพท์ในประโยค',
             listening: 'Listening Dictation · ฟังเสียงทายความหมาย',
-            spelling: 'Spelling Challenge · พิมพ์สะกดคำศัพท์'
+            spelling: 'Spelling Challenge · พิมพ์สะกดคำศัพท์',
+            blitz: '⚡ Speed Blitz 60s · ท้าความไวล่าคอมโบ',
+            confusables: '⚔️ Confusables Arena · ปราบคำสับสนในบริบท'
         };
         if (modeTag) modeTag.textContent = MODE_LABELS[qMode] || MODE_LABELS.choice;
+        if (cfPairTag) {
+            if (qMode === 'confusables' && cfItem) {
+                cfPairTag.textContent = `⚔️ คู่คำสับสน: ${cfItem.pair}`;
+                cfPairTag.hidden = false;
+            } else {
+                cfPairTag.hidden = true;
+            }
+        }
 
         const qPos = document.getElementById('quiz-pos');
         if (qPos) {
@@ -5035,17 +5248,27 @@ document.addEventListener('DOMContentLoaded', () => {
             qPos.textContent = meta.th;
             qPos.className = 'part-of-speech pos-' + catOf(correctWord);
         }
-        OxCefr.applyBadge($('quiz-cefr-badge'), correctWord.cefr);
+        OxCefr.applyBadge($('quiz-cefr-badge'), cfItem ? cfItem.cefr : correctWord.cefr);
         OxMotion.springEnter(quizWord);
         const qPhonetic = document.getElementById('quiz-phonetic');
 
         quizCurrentIndex.textContent = quizSession.currentIndex + 1;
-        quizTotal.textContent = quizSession.indices.length;
+        quizTotal.textContent = qMode === 'blitz' ? '∞' : String(quizSession.indices.length);
         quizScoreEl.textContent = quizSession.score;
-        quizProgressFill.style.width = `${((quizSession.currentIndex) / quizSession.indices.length) * 100}%`;
+        quizProgressFill.style.width = qMode === 'blitz'
+            ? `${Math.min(100, (quizSession.score / 20) * 100)}%`
+            : `${((quizSession.currentIndex) / quizSession.indices.length) * 100}%`;
 
         // Configure UI per mode
-        if (qMode === 'cloze') {
+        if (qMode === 'confusables' && cfItem) {
+            quizWord.textContent = cfItem.pair;
+            if (qPhonetic) qPhonetic.textContent = 'เลือกคำที่เหมาะกับบริบทประโยคที่สุด';
+            if (contextBox && contextSent && contextTrans) {
+                contextBox.hidden = false;
+                contextSent.innerHTML = escapeHtml(cfItem.sentence).replace('_____', '<span class="cloze-blank">_____</span>');
+                contextTrans.textContent = cfItem.sentenceTh || '';
+            }
+        } else if (qMode === 'cloze') {
             quizWord.textContent = correctWord.translation;
             if (qPhonetic) qPhonetic.textContent = '';
             if (contextBox && contextSent && contextTrans) {
@@ -5102,30 +5325,38 @@ document.addEventListener('DOMContentLoaded', () => {
         quizOptions.hidden = false;
         if (spellingBox) spellingBox.hidden = true;
 
-        // Build 4 options (English words for Cloze mode; Thai translations for Choice/Listening)
-        const useEnglishOptions = qMode === 'cloze';
-        const correctText = useEnglishOptions ? correctWord.word : correctWord.translation;
-        const options = [{ text: correctText, isCorrect: true }];
-        const usedSet = new Set([correctText]);
+        let options = [];
+        if (qMode === 'confusables' && cfItem) {
+            options = cfItem.options.map(optText => ({
+                text: optText,
+                isCorrect: optText.toLowerCase() === cfItem.answer.toLowerCase()
+            }));
+        } else {
+            // Build 4 options (English words for Cloze mode; Thai translations for Choice/Listening/Blitz)
+            const useEnglishOptions = qMode === 'cloze';
+            const correctText = useEnglishOptions ? correctWord.word : correctWord.translation;
+            options = [{ text: correctText, isCorrect: true }];
+            const usedSet = new Set([correctText]);
 
-        const matchingPool = [];
-        const otherPool = [];
-        for (let i = 0; i < totalWords; i++) {
-            if (i === index) continue;
-            if (wordsData[i] && wordsData[i].partOfSpeech === correctWord.partOfSpeech) {
-                matchingPool.push(i);
-            } else {
-                otherPool.push(i);
+            const matchingPool = [];
+            const otherPool = [];
+            for (let i = 0; i < totalWords; i++) {
+                if (i === index) continue;
+                if (wordsData[i] && wordsData[i].partOfSpeech === correctWord.partOfSpeech) {
+                    matchingPool.push(i);
+                } else {
+                    otherPool.push(i);
+                }
             }
-        }
 
-        const combinedPool = [...shuffle(matchingPool), ...shuffle(otherPool)];
-        for (let i = 0; i < combinedPool.length && options.length < 4; i++) {
-            const w = wordsData[combinedPool[i]];
-            const candidate = useEnglishOptions ? w.word : w.translation;
-            if (w && candidate && !usedSet.has(candidate)) {
-                usedSet.add(candidate);
-                options.push({ text: candidate, isCorrect: false });
+            const combinedPool = [...shuffle(matchingPool), ...shuffle(otherPool)];
+            for (let i = 0; i < combinedPool.length && options.length < 4; i++) {
+                const w = wordsData[combinedPool[i]];
+                const candidate = useEnglishOptions ? w.word : w.translation;
+                if (w && candidate && !usedSet.has(candidate)) {
+                    usedSet.add(candidate);
+                    options.push({ text: candidate, isCorrect: false });
+                }
             }
         }
 
@@ -5143,7 +5374,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quizOptions.appendChild(btn);
         });
 
-        if (qMode !== 'cloze') {
+        if (qMode !== 'cloze' && qMode !== 'confusables') {
             speakWordOverride(correctWord.word, false);
         }
     }
@@ -5183,6 +5414,9 @@ document.addEventListener('DOMContentLoaded', () => {
         quizFeedbackShownAt = performance.now();
 
         const qMode = quizSession.mode || 'choice';
+        const cfItem = (qMode === 'confusables' && Array.isArray(quizSession.confusableItems))
+            ? quizSession.confusableItems[quizSession.currentIndex]
+            : null;
         const quizPanelEl = screens.quiz ? screens.quiz.querySelector('.quiz-panel') : null;
         if (quizPanelEl) {
             quizPanelEl.classList.add('is-answered', isCorrect ? 'is-answer-correct' : 'is-answer-wrong');
@@ -5194,14 +5428,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const qPhon = document.getElementById('quiz-phonetic');
             if (qPhon) qPhon.textContent = correctWordData.phonetic || '';
             OxMotion.springPop(quizWord);
-        } else if (qMode === 'cloze') {
+        } else if (qMode === 'cloze' || qMode === 'confusables') {
             const blankEl = document.querySelector('#quiz-context-sentence .cloze-blank');
+            const fillWord = cfItem ? cfItem.answer : correctWordData.word;
             if (blankEl) {
-                blankEl.textContent = correctWordData.word;
+                blankEl.textContent = fillWord;
                 blankEl.classList.add('is-filled', isCorrect ? 'is-correct' : 'is-wrong');
                 OxMotion.springPop(blankEl);
             }
-            speakWordOverride(correctWordData.word, false);
+            speakWordOverride(fillWord, false);
         } else if (qMode === 'spelling') {
             updateSpellingHintDisplay(correctWordData.word, correctWordData.word.length);
             speakWordOverride(correctWordData.word, false);
@@ -5209,24 +5444,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
         recordDailyGoalProgress(1);
         const wKey = keyOf(correctWordData);
+        quizSession.blitzAnswered = (quizSession.blitzAnswered || 0) + 1;
 
         if (isCorrect) {
             quizSession.combo = (quizSession.combo || 0) + 1;
+            quizSession.maxCombo = Math.max(quizSession.maxCombo || 0, quizSession.combo);
             SoundFX.known(quizSession.combo);
             quizSession.score++;
             quizScoreEl.textContent = String(quizSession.score);
             OxMotion.springPop(quizScoreEl);
             recordWordMastery(wKey, 'known');
+
+            if (qMode === 'blitz') {
+                const mult = quizSession.combo >= 9 ? 4 : (quizSession.combo >= 6 ? 3 : (quizSession.combo >= 3 ? 2 : 1));
+                quizSession.blitzPoints = (quizSession.blitzPoints || 0) + (100 * mult);
+                if (quizSession.combo > 0 && quizSession.combo % 5 === 0) {
+                    quizSession.blitzRemainingMs = Math.min((quizSession.blitzInitialMs || 60000) + 10000, (quizSession.blitzRemainingMs || 0) + 2000);
+                    const bonusPop = $('quiz-blitz-bonus-pop');
+                    if (bonusPop) {
+                        bonusPop.hidden = false;
+                        OxMotion.springPop(bonusPop);
+                        setTimeout(() => { bonusPop.hidden = true; }, 1100);
+                    }
+                }
+                updateBlitzHudUI();
+            } else if (qMode === 'confusables' && cfItem && typeof learnState === 'object' && learnState) {
+                learnState.confusablesCorrectTotal = (learnState.confusablesCorrectTotal || 0) + 1;
+                if (cfItem.setId && !learnState.confusablesMastered.includes(cfItem.setId)) {
+                    learnState.confusablesMastered.push(cfItem.setId);
+                }
+                saveLearnState(false);
+            }
         } else {
             quizSession.combo = 0;
             SoundFX.review();
             recordWordMastery(wKey, 'review');
             quizSession.incorrectWords.push({
-                word: correctWordData.word,
-                translation: correctWordData.translation,
+                word: cfItem ? cfItem.answer : correctWordData.word,
+                translation: cfItem ? `${cfItem.pair} — ${cfItem.explainTh}` : correctWordData.translation,
                 phonetic: correctWordData.phonetic || '',
                 partOfSpeech: correctWordData.partOfSpeech || 'noun'
             });
+            if (qMode === 'blitz') updateBlitzHudUI();
         }
 
         // Beat 2: Highlight choices & dim unrelated distractors
@@ -5257,9 +5516,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Advance progress bar immediately on verdict with pulse
         if (quizProgressFill) {
-            const pct = ((quizSession.currentIndex + 1) / Math.max(1, quizSession.indices.length)) * 100;
+            const pct = qMode === 'blitz'
+                ? Math.min(100, ((quizSession.score) / 20) * 100)
+                : ((quizSession.currentIndex + 1) / Math.max(1, quizSession.indices.length)) * 100;
             quizProgressFill.style.width = `${pct}%`;
             OxMotion.pulseClass(quizProgressFill, 'is-advancing', 540);
+        }
+
+        // Speed Blitz auto-advances rapidly for arcade momentum
+        if (qMode === 'blitz') {
+            if (blitzAutoAdvanceTimer) clearTimeout(blitzAutoAdvanceTimer);
+            blitzAutoAdvanceTimer = setTimeout(() => {
+                if (quizSession && quizSession.mode === 'blitz' && !quizSession.forceFinishBlitz) {
+                    advanceQuizQuestion();
+                }
+            }, isCorrect ? 340 : 620);
+            return;
         }
 
         // Beat 3: Slide up sequential Feedback Dock with verdict + combo + meaning + Next button
@@ -5268,6 +5540,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const fbTitle = $('quiz-fb-title');
         const fbCombo = $('quiz-fb-combo');
         const fbDetail = $('quiz-fb-detail');
+        const fbNuance = $('quiz-fb-nuance');
         const nextBtn = /** @type {HTMLButtonElement|null} */ ($('btn-quiz-next'));
 
         if (fbBar) {
@@ -5276,9 +5549,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (fbIcon) fbIcon.textContent = isCorrect ? '✓' : '✗';
             if (fbTitle) {
                 const cheers = ['ถูกต้อง! เก่งมาก', 'เป๊ะเลย! ยอดเยี่ยม', 'แม่นยำมาก!', 'เยี่ยมยอด!'];
-                const answerWordLabel = (qMode === 'choice' || qMode === 'listening')
-                    ? correctWordData.translation
-                    : correctWordData.word;
+                const answerWordLabel = cfItem
+                    ? cfItem.answer
+                    : ((qMode === 'choice' || qMode === 'listening') ? correctWordData.translation : correctWordData.word);
                 fbTitle.textContent = isCorrect
                     ? cheers[quizSession.currentIndex % cheers.length]
                     : `ยังไม่ถูก · เฉลย: ${answerWordLabel}`;
@@ -5292,10 +5565,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             if (fbDetail) {
-                const phon = correctWordData.phonetic ? ` (${correctWordData.phonetic})` : '';
-                const typedNote = (!isCorrect && typedText) ? ` · คุณพิมพ์: "${typedText}"` : '';
-                const exNote = (qMode === 'spelling' && correctWordData.example) ? ` · Ex: ${correctWordData.example}` : '';
-                fbDetail.textContent = `${correctWordData.word}${phon} — ${correctWordData.translation}${typedNote}${exNote}`;
+                if (cfItem) {
+                    fbDetail.textContent = `เฉลย "${cfItem.answer}" — ${cfItem.explainTh}`;
+                } else {
+                    const phon = correctWordData.phonetic ? ` (${correctWordData.phonetic})` : '';
+                    const typedNote = (!isCorrect && typedText) ? ` · คุณพิมพ์: "${typedText}"` : '';
+                    const exNote = (qMode === 'spelling' && correctWordData.example) ? ` · Ex: ${correctWordData.example}` : '';
+                    fbDetail.textContent = `${correctWordData.word}${phon} — ${correctWordData.translation}${typedNote}${exNote}`;
+                }
+            }
+            if (fbNuance) {
+                if (cfItem && cfItem.tipTh) {
+                    fbNuance.textContent = `💡 เทคนิคจำแม่น (${cfItem.pair}): ${cfItem.tipTh}`;
+                    fbNuance.hidden = false;
+                } else {
+                    fbNuance.hidden = true;
+                    fbNuance.textContent = '';
+                }
             }
             if (nextBtn) {
                 const isLast = quizSession.currentIndex + 1 >= quizSession.indices.length;
@@ -5380,6 +5666,42 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => { ringFg.style.strokeDashoffset = String(offset); }, 100);
         }
 
+        const specialBanner = $('quiz-summary-special-banner');
+        if (specialBanner) {
+            if (record.mode === 'blitz') {
+                const wpm = Math.round((record.score / Math.max(1, record.timeSpent || 60)) * 60);
+                specialBanner.innerHTML = `
+                    <div class="qss-blitz-card">
+                        <div class="qss-blitz-top">
+                            <span>⚡ ผลลัพธ์ Speed Blitz 60 วินาที</span>
+                            ${record.isNewBlitzRecord ? `<span class="qss-record-pill">🎉 สถิติสูงสุดใหม่!</span>` : ''}
+                        </div>
+                        <div class="qss-blitz-grid">
+                            <div><strong>${Number(record.blitzPoints || 0).toLocaleString()}</strong><small>คะแนนสายฟ้า</small></div>
+                            <div><strong>x${Math.max(1, record.maxCombo || 0)}</strong><small>คอมโบสูงสุด</small></div>
+                            <div><strong>${wpm} คำ/นาที</strong><small>ความไวตอบถูก</small></div>
+                            <div><strong>${Number(learnState?.blitzHighScore || 0).toLocaleString()}</strong><small>High Score สูงสุด</small></div>
+                        </div>
+                    </div>
+                `;
+                specialBanner.hidden = false;
+            } else if (record.mode === 'confusables') {
+                const masteredCnt = Array.isArray(learnState?.confusablesMastered) ? learnState.confusablesMastered.length : 0;
+                specialBanner.innerHTML = `
+                    <div class="qss-blitz-card is-confusables">
+                        <div class="qss-blitz-top">
+                            <span>⚔️ ผลลัพธ์ด่านปราบคำสับสน (Confusables Arena)</span>
+                            <span class="qss-record-pill">พิชิตสะสม ${masteredCnt} / ${CONFUSABLE_SETS.length} คู่</span>
+                        </div>
+                    </div>
+                `;
+                specialBanner.hidden = false;
+            } else {
+                specialBanner.hidden = true;
+                specialBanner.innerHTML = '';
+            }
+        }
+
         // Mistakes list
         const wrap = document.getElementById('quiz-summary-mistakes-wrap');
         const countEl = document.getElementById('quiz-summary-mistakes-count');
@@ -5403,7 +5725,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         quizSession = createQuizSession({
                             indices,
                             category: record.category || 'all',
-                            mode: record.mode || 'choice'
+                            mode: (record.mode === 'blitz' || record.mode === 'confusables') ? 'choice' : (record.mode || 'choice')
                         });
                         showScreen('quiz');
                         renderQuizQuestion();
@@ -5458,15 +5780,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (pool.length === 0) {
                     pool = Array.from({ length: totalWords }, (_, i) => i);
                 }
-                const actualSize = Math.min(record.indices.length, pool.length);
+                const actualSize = record.mode === 'blitz' ? Math.min(80, pool.length) : Math.min(Math.max(5, record.indices.length), pool.length);
                 const indices = pickRandom(pool, actualSize);
                 quizSession = createQuizSession({
                     indices,
                     category: record.category || 'all',
-                    mode: record.mode || 'choice'
+                    mode: record.mode || 'choice',
+                    count: actualSize
                 });
                 showScreen('quiz');
                 renderQuizQuestion();
+                if (record.mode === 'blitz') startBlitzTimer();
             };
         }
 
@@ -7308,6 +7632,25 @@ document.addEventListener('DOMContentLoaded', () => {
             unlockedUnits: [],
             /** @type {Record<string, number>} */
             stageReplays: {},
+            streakFreezes: 0,
+            /** @type {string[]} */
+            frozenDates: [],
+            xpSpent: 0,
+            bonusGems: 120,
+            xpBoostUntil: 0,
+            blitzTimeShields: 0,
+            /** @type {string[]} */
+            ownedTitles: [],
+            equippedTitle: '',
+            shopPurchasesCount: 0,
+            blitzHighScore: 0,
+            blitzBestCombo: 0,
+            blitzGamesPlayed: 0,
+            /** @type {string[]} */
+            confusablesMastered: [],
+            confusablesCorrectTotal: 0,
+            /** @type {string[]} */
+            completedStories: [],
             dailyQuests: {
                 date: getTodayDateString(),
                 xpToday: 0,
@@ -7354,6 +7697,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 const n = Number(cnt);
                 if (sid && Number.isFinite(n) && n > 0) base.stageReplays[sid] = Math.round(n);
             });
+        }
+        base.streakFreezes = Math.min(3, Math.max(0, Math.round(Number(raw.streakFreezes) || 0)));
+        if (Array.isArray(raw.frozenDates)) {
+            base.frozenDates = Array.from(new Set(raw.frozenDates.filter(x => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x))));
+        }
+        base.xpSpent = Math.max(0, Math.round(Number(raw.xpSpent) || 0));
+        base.bonusGems = typeof raw.bonusGems === 'number' && Number.isFinite(raw.bonusGems)
+            ? Math.max(0, Math.round(raw.bonusGems))
+            : 120;
+        base.xpBoostUntil = Math.max(0, Number(raw.xpBoostUntil) || 0);
+        base.blitzTimeShields = Math.min(3, Math.max(0, Math.round(Number(raw.blitzTimeShields) || 0)));
+        if (Array.isArray(raw.ownedTitles)) {
+            base.ownedTitles = Array.from(new Set(raw.ownedTitles.filter(x => typeof x === 'string')));
+        }
+        if (typeof raw.equippedTitle === 'string' && base.ownedTitles.includes(raw.equippedTitle)) {
+            base.equippedTitle = raw.equippedTitle;
+        }
+        base.shopPurchasesCount = Math.max(0, Math.round(Number(raw.shopPurchasesCount) || 0));
+        base.blitzHighScore = Math.max(0, Math.round(Number(raw.blitzHighScore) || 0));
+        base.blitzBestCombo = Math.max(0, Math.round(Number(raw.blitzBestCombo) || 0));
+        base.blitzGamesPlayed = Math.max(0, Math.round(Number(raw.blitzGamesPlayed) || 0));
+        if (Array.isArray(raw.confusablesMastered)) {
+            base.confusablesMastered = Array.from(new Set(raw.confusablesMastered.filter(x => typeof x === 'string')));
+        }
+        base.confusablesCorrectTotal = Math.max(0, Math.round(Number(raw.confusablesCorrectTotal) || 0));
+        if (Array.isArray(raw.completedStories)) {
+            base.completedStories = Array.from(new Set(raw.completedStories.filter(x => typeof x === 'string')));
         }
         const today = getTodayDateString();
         if (raw.dailyQuests && typeof raw.dailyQuests === 'object' && raw.dailyQuests.date === today) {
@@ -7485,6 +7855,361 @@ document.addEventListener('DOMContentLoaded', () => {
             storage.setBatched(LEARN_STORAGE_KEY, learnState);
         }
     }
+
+    function isXpBoostActive() {
+        return Boolean(learnState && learnState.xpBoostUntil && Date.now() < learnState.xpBoostUntil);
+    }
+
+    function getAvailableShopCredits() {
+        if (!learnState) return 0;
+        const baseXp = Math.max(0, Number(learnState.xp) || 0);
+        const bonus = Math.max(0, Number(learnState.bonusGems) || 0);
+        const spent = Math.max(0, Number(learnState.xpSpent) || 0);
+        return Math.max(0, baseXp + bonus - spent);
+    }
+
+    const SHOP_POWERUPS = [
+        {
+            id: 'streak_freeze',
+            icon: '🧊',
+            name: 'Streak Freeze (เกราะกันไฟดับ)',
+            desc: 'ป้องกันสถิติวันต่อเนื่อง (Streak) หายอัตโนมัติ 1 วันเมื่อคุณลืมเข้ามาเรียน (สะสมได้สูงสุด 3 ชิ้น)',
+            cost: 100,
+            maxInventory: 3,
+            getOwned: () => Number(learnState.streakFreezes || 0)
+        },
+        {
+            id: 'xp_boost_15m',
+            icon: '⚡',
+            name: 'น้ำยาคูณ 2 XP (15 นาที)',
+            desc: 'รับ XP 2 เท่าทันทีจากบทเรียน, Quiz, Speed Blitz และเรื่องสั้น เป็นเวลา 15 นาที',
+            cost: 120,
+            maxInventory: 1,
+            getOwned: () => (isXpBoostActive() ? 1 : 0)
+        },
+        {
+            id: 'blitz_time_shield',
+            icon: '⏱️',
+            name: 'เกราะเวลา Speed Blitz (+8 วิ)',
+            desc: 'เพิ่มเวลาเริ่มต้นในโหมด Speed Blitz จาก 60 วินาที เป็น 68 วินาทีในรอบถัดไปอัตโนมัติ (สูงสุด 3 ชิ้น)',
+            cost: 80,
+            maxInventory: 3,
+            getOwned: () => Number(learnState.blitzTimeShields || 0)
+        }
+    ];
+
+    const SHOP_TITLES = [
+        { id: 'title_striker', icon: '✨', label: '✨ นักสู้คำศัพท์', desc: 'ฉายาผู้เริ่มต้นเส้นทาง Oxford อย่างมุ่งมั่น', cost: 100, bannerHint: 'sky' },
+        { id: 'title_blitz', icon: '⚡', label: '⚡ อัศวินสายฟ้า', desc: 'ฉายานักปฏิกิริยาไวแห่งสนาม Speed Blitz', cost: 160, bannerHint: 'amber' },
+        { id: 'title_nuance', icon: '⚔️', label: '⚔️ จอมปราบคำสับสน', desc: 'ฉายาผู้แยกแยะคำคู่แฝดได้อย่างแม่นยำ', cost: 180, bannerHint: 'rose' },
+        { id: 'title_grandmaster', icon: '👑', label: '👑 ปราชญ์แห่ง Oxford', desc: 'ฉายาเกียรติยศสูงสุดของผู้พิชิตคลังคำศัพท์', cost: 260, bannerHint: 'violet' }
+    ];
+
+    /** Automatically bridges missed yesterday/recent day if learner holds Streak Freezes. */
+    function ensureStreakFreezeProtection() {
+        if (!learnState || (learnState.streakFreezes || 0) <= 0) return false;
+        const activeYmds = new Set(Array.isArray(learnState.frozenDates) ? learnState.frozenDates : []);
+        const toYmd = (dt) => {
+            if (!(dt instanceof Date) || Number.isNaN(dt.getTime())) return '';
+            const y = dt.getFullYear();
+            const m = String(dt.getMonth() + 1).padStart(2, '0');
+            const d = String(dt.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        };
+        sessions.forEach(s => { if (s && s.date) { const k = toYmd(new Date(s.date)); if (k) activeYmds.add(k); } });
+        Object.entries(activityLog || {}).forEach(([k, v]) => { if (Number(v) > 0 && /^\d{4}-\d{2}-\d{2}$/.test(k)) activeYmds.add(k); });
+        Object.values(learnState.completedStages || {}).forEach(st => {
+            if (st && Number(st.completedAt) > 0) {
+                const k = toYmd(new Date(Number(st.completedAt)));
+                if (k) activeYmds.add(k);
+            }
+        });
+        try {
+            const qh = JSON.parse(localStorage.getItem('oxford3000_quiz_history') || '[]') || [];
+            qh.forEach(q => { if (q && q.date) { const k = toYmd(new Date(q.date)); if (k) activeYmds.add(k); } });
+        } catch (_) { }
+
+        const now = new Date();
+        const yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+        const twoDaysAgo = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 2);
+        const yestKey = toYmd(yesterday);
+        const twoAgoKey = toYmd(twoDaysAgo);
+
+        if (!activeYmds.has(yestKey) && activeYmds.has(twoAgoKey) && learnState.streakFreezes > 0) {
+            learnState.streakFreezes = Math.max(0, learnState.streakFreezes - 1);
+            if (!learnState.frozenDates.includes(yestKey)) {
+                learnState.frozenDates.push(yestKey);
+            }
+            saveLearnState(false);
+            setTimeout(() => {
+                showToast('🧊 เกราะกันไฟดับทำงานอัตโนมัติ! ป้องกันสถิติไฟต่อเนื่องของคุณเมื่อวานนี้แล้ว');
+            }, 600);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 32 Curated Confusable Word Pairs & Groups frequently confused by Thai learners (A1–B2).
+     */
+    const CONFUSABLE_SETS = [
+        {
+            id: 'cf_make_do', pair: 'make vs. do', cefr: 'A1',
+            tipTh: 'do ใช้กับงาน/หน้าที่/กิจวัตร (do homework, do housework) ส่วน make ใช้กับการสร้าง/ผลิต/ตัดสินใจ (make a mistake, make a decision)',
+            items: [
+                { sentence: 'Please _____ your homework before playing games.', sentenceTh: 'กรุณาทำการบ้านของคุณให้เสร็จก่อนเล่นเกม', answer: 'do', options: ['do', 'make', 'making', 'done'], explainTh: 'ใช้ do กับ homework และงานประจำ' },
+                { sentence: 'Don\'t worry if you _____ a mistake while speaking English.', sentenceTh: 'ไม่ต้องกังวลหากคุณทำผิดพลาดขณะพูดภาษาอังกฤษ', answer: 'make', options: ['make', 'do', 'did', 'doing'], explainTh: 'สำนวนทำผิดพลาดต้องใช้ make a mistake เสมอ' }
+            ]
+        },
+        {
+            id: 'cf_say_tell', pair: 'say vs. tell', cefr: 'A1',
+            tipTh: 'tell ต้องตามด้วยกรรมบุคคล (tell me / tell someone) ส่วน say เน้นข้อความที่พูด (say something / say that...)',
+            items: [
+                { sentence: 'Did she _____ you what time the meeting starts?', sentenceTh: 'เธอได้บอกคุณไหมว่าการประชุมเริ่มกี่โมง?', answer: 'tell', options: ['tell', 'say', 'speak', 'talk'], explainTh: 'มีกรรมบุคคล (you) ตามหลังทันที จึงใช้ tell you' },
+                { sentence: 'He didn\'t _____ anything about the new project.', sentenceTh: 'เขาไม่ได้พูดอะไรเลยเกี่ยวกับโปรเจกต์ใหม่', answer: 'say', options: ['say', 'tell', 'told', 'telling'], explainTh: 'say anything = พูดอะไรบางอย่าง (ไม่มีกรรมบุคคลคั่น)' }
+            ]
+        },
+        {
+            id: 'cf_hear_listen', pair: 'hear vs. listen', cefr: 'A1',
+            tipTh: 'hear = ได้ยินเองตามธรรมชาติ ส่วน listen (to) = ตั้งใจฟัง',
+            items: [
+                { sentence: 'I love to _____ to English podcasts on the train.', sentenceTh: 'ฉันชอบตั้งใจฟังพอดแคสต์ภาษาอังกฤษบนรถไฟ', answer: 'listen', options: ['listen', 'hear', 'hearing', 'sound'], explainTh: 'มีบุพบท to ตามหลังและเป็นการตั้งใจฟัง ใช้ listen to' },
+                { sentence: 'Can you speak louder? I can barely _____ you.', sentenceTh: 'พูดดังขึ้นหน่อยได้ไหม? ฉันแทบไม่ได้ยินคุณเลย', answer: 'hear', options: ['hear', 'listen', 'listening', 'heard'], explainTh: 'can hear = สามารถได้ยินเสียงเข้ามาที่หู' }
+            ]
+        },
+        {
+            id: 'cf_see_look_watch', pair: 'see vs. look vs. watch', cefr: 'A1',
+            tipTh: 'see = มองเห็นเอง, look at = เพ่งมองสิ่งที่อยู่นิ่ง, watch = เฝ้าดูสิ่งที่เคลื่อนไหว',
+            items: [
+                { sentence: '_____ at that beautiful rainbow in the sky!', sentenceTh: 'ดูสายรุ้งแสนสวยบนท้องฟ้านั่นสิ!', answer: 'Look', options: ['Look', 'Watch', 'See', 'Saw'], explainTh: 'มีบุพบท at และชี้ให้เพ่งมอง ใช้ Look at' },
+                { sentence: 'We usually _____ a movie together on Friday nights.', sentenceTh: 'พวกเรามักจะดูหนังด้วยกันในคืนวันศุกร์', answer: 'watch', options: ['watch', 'look', 'sight', 'stare'], explainTh: 'ดูภาพยนตร์หรือสิ่งที่มีการเคลื่อนไหวต่อเนื่อง ใช้ watch' }
+            ]
+        },
+        {
+            id: 'cf_fun_funny', pair: 'fun vs. funny', cefr: 'A1',
+            tipTh: 'fun = สนุกสนานเพลิดเพลิน ส่วน funny = ตลก ขบขัน (ทำให้หัวเราะ)',
+            items: [
+                { sentence: 'The weekend trip to the beach was so much _____!', sentenceTh: 'ทริปไปเที่ยวทะเลช่วงสุดสัปดาห์สนุกมากจริงๆ!', answer: 'fun', options: ['fun', 'funny', 'laugh', 'joke'], explainTh: 'สนุกสนานเพลิดเพลิน ใช้ fun (ไม่ใช่ funny ที่แปลว่าตลก)' },
+                { sentence: 'His joke was so _____ that everyone burst out laughing.', sentenceTh: 'มุกตลกของเขาขำมากจนทุกคนหัวเราะลั่น', answer: 'funny', options: ['funny', 'fun', 'happy', 'glad'], explainTh: 'ทำให้หัวเราะ/ตลกขบขัน ใช้ funny' }
+            ]
+        },
+        {
+            id: 'cf_job_work', pair: 'job vs. work', cefr: 'A1',
+            tipTh: 'job (คำนามนับได้ a job) = อาชีพ/ตำแหน่งงาน ส่วน work (คำนามนับไม่ได้ / กริยา) = งานที่ทำ',
+            items: [
+                { sentence: 'She applied for a part-time _____ at the local library.', sentenceTh: 'เธอสมัครงานพาร์ทไทม์ที่ห้องสมุดท้องถิ่น', answer: 'job', options: ['job', 'work', 'working', 'career'], explainTh: 'มี a นำหน้า (คำนามนับได้) จึงต้องใช้ a part-time job' },
+                { sentence: 'I have a lot of _____ to finish before Friday.', sentenceTh: 'ฉันมีงานต้องทำให้เสร็จเยอะมากก่อนวันศุกร์', answer: 'work', options: ['work', 'job', 'jobs', 'employ'], explainTh: 'a lot of work = ปริมาณงานที่ต้องทำ (คำนามนับไม่ได้)' }
+            ]
+        },
+        {
+            id: 'cf_bring_take', pair: 'bring vs. take', cefr: 'A2',
+            tipTh: 'bring = นำมาหาผู้พูด (เอามาที่นี่) ส่วน take = นำออกไปจากจุดที่พูด (เอาไปที่อื่น)',
+            items: [
+                { sentence: 'Don\'t forget to _____ an umbrella with you when you go out.', sentenceTh: 'อย่าลืมพกร่มติดตัวไปด้วยตอนที่คุณออกไปข้างนอก', answer: 'take', options: ['take', 'bring', 'fetch', 'carry'], explainTh: 'พกออกไปข้างนอก (ออกจากจุดที่พูด) ใช้ take' },
+                { sentence: 'Could you _____ me a glass of water when you come here?', sentenceTh: 'ช่วยหยิบน้ำมาให้ฉันสักแก้วตอนที่คุณเดินมาตรงนี้ได้ไหม?', answer: 'bring', options: ['bring', 'take', 'took', 'leave'], explainTh: 'นำเข้ามาหาผู้พูด (when you come here) ใช้ bring' }
+            ]
+        },
+        {
+            id: 'cf_borrow_lend', pair: 'borrow vs. lend', cefr: 'A2',
+            tipTh: 'borrow = ขอยืมมาจากคนอื่น (borrow from) ส่วน lend = ให้คนอื่นยืมออกไป (lend to)',
+            items: [
+                { sentence: 'Can I _____ your pen for a moment, please?', sentenceTh: 'ฉันขอยืมปากกาของคุณสักครู่ได้ไหม?', answer: 'borrow', options: ['borrow', 'lend', 'loan', 'hire'], explainTh: 'ประธาน I เป็นผู้รับ/ขอยืมมาจากคุณ จึงใช้ borrow' },
+                { sentence: 'The bank refused to _____ him any more money.', sentenceTh: 'ธนาคารปฏิเสธที่จะให้เขากู้ยืมเงินเพิ่ม', answer: 'lend', options: ['lend', 'borrow', 'rent', 'owe'], explainTh: 'ธนาคารเป็นฝ่ายให้ยืมออกไป (lend someone something)' }
+            ]
+        },
+        {
+            id: 'cf_remind_remember', pair: 'remind vs. remember', cefr: 'A2',
+            tipTh: 'remember = จำได้ด้วยตัวเอง ส่วน remind = เตือนความจำคนอื่น (remind someone to...)',
+            items: [
+                { sentence: 'Please _____ me to call the dentist tomorrow morning.', sentenceTh: 'ช่วยเตือนฉันให้โทรหาหมอฟันพรุ่งนี้เช้าด้วยนะ', answer: 'remind', options: ['remind', 'remember', 'recall', 'memorize'], explainTh: 'เตือนให้คนอื่นทำ (remind me to + V.inf) ใช้ remind' },
+                { sentence: 'I still _____ the first day we met at university.', sentenceTh: 'ฉันยังจำวันแรกที่พวกเราเจอกันที่มหาวิทยาลัยได้', answer: 'remember', options: ['remember', 'remind', 'reminded', 'memory'], explainTh: 'นึกจำเรื่องราวได้ด้วยตัวเอง ใช้ remember' }
+            ]
+        },
+        {
+            id: 'cf_win_beat', pair: 'win vs. beat', cefr: 'A2',
+            tipTh: 'win + การแข่งขัน/รางวัล (win a game/prize) ส่วน beat + คู่แข่ง/ทีมตรงข้าม (beat an opponent)',
+            items: [
+                { sentence: 'Our school team managed to _____ the defending champions 3-1.', sentenceTh: 'ทีมโรงเรียนของพวกเราสามารถเอาชนะแชมป์เก่าได้ 3-1', answer: 'beat', options: ['beat', 'win', 'won', 'earn'], explainTh: 'กรรมข้างหลังคือคู่แข่ง (the defending champions) ต้องใช้ beat' },
+                { sentence: 'She trained hard for months to _____ the gold medal.', sentenceTh: 'เธอฝึกซ้อมอย่างหนักหลายเดือนเพื่อคว้าเหรียญทอง', answer: 'win', options: ['win', 'beat', 'defeat', 'conquer'], explainTh: 'กรรมข้างหลังคือรางวัล (the gold medal) จึงใช้ win' }
+            ]
+        },
+        {
+            id: 'cf_lose_loose', pair: 'lose vs. loose', cefr: 'A2',
+            tipTh: 'lose (v. มี o ตัวเดียว) = ทำหาย/พ่ายแพ้ ส่วน loose (adj. มี oo สองตัว) = หลวม/ไม่แน่น',
+            items: [
+                { sentence: 'Be careful not to _____ your passport while traveling abroad.', sentenceTh: 'ระวังอย่าทำพาสปอร์ตหายขณะเดินทางไปต่างประเทศ', answer: 'lose', options: ['lose', 'loose', 'lost', 'loss'], explainTh: 'หลัง not to ต้องตามด้วยคำกริยาช่อง 1 (lose = ทำหาย)' },
+                { sentence: 'This jacket is too _____ for me; I need a smaller size.', sentenceTh: 'เสื้อแจ็คเก็ตตัวนี้หลวมเกินไปสำหรับฉัน ฉันต้องการไซส์ที่เล็กลง', answer: 'loose', options: ['loose', 'lose', 'loss', 'loosen'], explainTh: 'หลัง verb to be + too ต้องเป็นคำคุณศัพท์ (loose = หลวม)' }
+            ]
+        },
+        {
+            id: 'cf_quiet_quite', pair: 'quiet vs. quite', cefr: 'A2',
+            tipTh: 'quiet (adj. ลงท้าย -et) = เงียบสงบ ส่วน quite (adv. ลงท้าย -te) = ค่อนข้าง/ทีเดียว',
+            items: [
+                { sentence: 'Please keep _____ in the library so others can study.', sentenceTh: 'กรุณารักษาความเงียบในห้องสมุดเพื่อให้คนอื่นอ่านหนังสือได้', answer: 'quiet', options: ['quiet', 'quite', 'quit', 'silently'], explainTh: 'keep quiet = รักษาความเงียบ' },
+                { sentence: 'The exam was _____ difficult, but I passed.', sentenceTh: 'ข้อสอบค่อนข้างยากทีเดียว แต่ฉันก็สอบผ่าน', answer: 'quite', options: ['quite', 'quiet', 'quit', 'quick'], explainTh: 'ขยายคำคุณศัพท์ difficult แปลว่า "ค่อนข้าง" ใช้ quite' }
+            ]
+        },
+        {
+            id: 'cf_advice_advise', pair: 'advice vs. advise', cefr: 'A2',
+            tipTh: 'advice (ลงท้ายด้วย -ce) เป็นคำนามนับไม่ได้ = คำแนะนำ ส่วน advise (ลงท้ายด้วย -se) เป็นคำกริยา = แนะนำ',
+            items: [
+                { sentence: 'My teacher gave me some very useful _____ about studying abroad.', sentenceTh: 'ครูของฉันให้คำแนะนำที่มีประโยชน์มากเกี่ยวกับการเรียนต่อต่างประเทศ', answer: 'advice', options: ['advice', 'advise', 'advises', 'advising'], explainTh: 'หลัง some very useful ต้องเป็นคำนาม คือ advice' },
+                { sentence: 'Doctors strongly _____ patients to exercise regularly.', sentenceTh: 'แพทย์แนะนำผู้ป่วยอย่างยิ่งให้ออกกำลังกายสม่ำเสมอ', answer: 'advise', options: ['advise', 'advice', 'advices', 'opinion'], explainTh: 'ต้องการคำกริยาของประโยค (advise someone to do something)' }
+            ]
+        },
+        {
+            id: 'cf_fit_suit_match', pair: 'fit vs. suit vs. match', cefr: 'A2',
+            tipTh: 'fit = ขนาดพอดีตัว, suit = เหมาะกับบุคลิก/สีผิว, match = เข้าคู่กันกับอีกสิ่งหนึ่ง',
+            items: [
+                { sentence: 'These shoes don\'t _____ me anymore; they are too tight.', sentenceTh: 'รองเท้าคู่นี้ใส่ไม่พอดีเท้าฉันอีกต่อไปแล้ว มันคับเกินไป', answer: 'fit', options: ['fit', 'suit', 'match', 'wear'], explainTh: 'พูดถึงขนาดคับ/หลวมพอดีตัว ใช้ fit' },
+                { sentence: 'That dark blue shirt really _____ you!', sentenceTh: 'เสื้อเชิ้ตสีน้ำเงินเข้มตัวนั้นเหมาะกับคุณมากจริงๆ!', answer: 'suits', options: ['suits', 'fits', 'matches', 'pairs'], explainTh: 'ใส่แล้วดูดีเข้ากับบุคลิกของผู้สวมใส่ ใช้ suit' }
+            ]
+        },
+        {
+            id: 'cf_travel_trip_journey', pair: 'travel vs. trip vs. journey', cefr: 'A2',
+            tipTh: 'trip = ทริปเดินทางไป-กลับสั้นๆ, journey = การเดินทางระยะทางไกลจากจุดหนึ่งไปอีกจุดหนึ่ง, travel = การเดินทางโดยรวม/คำกริยา',
+            items: [
+                { sentence: 'We went on a three-day business _____ to Singapore.', sentenceTh: 'พวกเราไปทริปดูงานระยะสั้น 3 วันที่สิงคโปร์', answer: 'trip', options: ['trip', 'travel', 'voyage', 'way'], explainTh: 'go on a business/weekend trip ใช้คำว่า trip' },
+                { sentence: 'The train _____ across the mountains tooktwelve hours.', sentenceTh: 'การเดินทางด้วยรถไฟข้ามหุบเขาใช้เวลานานถึง 12 ชั่วโมง', answer: 'journey', options: ['journey', 'travel', 'tour', 'outing'], explainTh: 'เน้นระยะเวลาและเส้นทางการเดินทางจากต้นทางไปปลายทาง ใช้ journey' }
+            ]
+        },
+        {
+            id: 'cf_affect_effect', pair: 'affect vs. effect', cefr: 'B1',
+            tipTh: 'affect (Verb - A = Action) = ส่งผลกระทบต่อ... ส่วน effect (Noun - E = End result) = ผลกระทบ/ผลลัพธ์ (have an effect on)',
+            items: [
+                { sentence: 'Lack of sleep can seriously _____ your concentration at work.', sentenceTh: 'การนอนไม่พอสามารถส่งผลกระทบอย่างหนักต่อสมาธิในการทำงานของคุณ', answer: 'affect', options: ['affect', 'effect', 'effects', 'effective'], explainTh: 'หลังกริยาช่วย can ต้องตามด้วยกริยาแท้ช่อง 1 คือ affect' },
+                { sentence: 'Social media has a huge _____ on how teenagers communicate.', sentenceTh: 'โซเชียลมีเดียมีผลกระทบอย่างมากต่อวิธีที่วัยรุ่นสื่อสารกัน', answer: 'effect', options: ['effect', 'affect', 'affected', 'affecting'], explainTh: 'หลัง a huge ต้องเป็นคำนาม (have an effect on)' }
+            ]
+        },
+        {
+            id: 'cf_economic_economical', pair: 'economic vs. economical', cefr: 'B1',
+            tipTh: 'economic = เกี่ยวกับระบบเศรษฐกิจ (economic growth) ส่วน economical = ประหยัด คุ้มค่า ไม่สิ้นเปลือง',
+            items: [
+                { sentence: 'Hybrid cars are very _____ because they use much less fuel.', sentenceTh: 'รถยนต์ไฮบริดประหยัดคุ้มค่ามากเพราะใช้น้ำมันน้อยกว่าเดิมมาก', answer: 'economical', options: ['economical', 'economic', 'economy', 'economics'], explainTh: 'พูดถึงความประหยัดพลังงาน/ประหยัดเงิน ใช้ economical' },
+                { sentence: 'The government announced a new policy to boost _____ growth.', sentenceTh: 'รัฐบาลประกาศนโยบายใหม่เพื่อกระตุ้นการเติบโตทางเศรษฐกิจ', answer: 'economic', options: ['economic', 'economical', 'economize', 'economist'], explainTh: 'เกี่ยวกับระบบเศรษฐกิจของประเทศ ใช้ economic growth' }
+            ]
+        },
+        {
+            id: 'cf_rise_raise', pair: 'rise vs. raise', cefr: 'B1',
+            tipTh: 'rise (อกรรมกริยา ไม่มีกรรมตามหลัง) = เพิ่มขึ้นเอง/ขึ้นเอง ส่วน raise (สกรรมกริยา ต้องมีกรรมตามหลัง) = ยกขึ้น/ปรับเพิ่มสิ่งใดสิ่งหนึ่ง',
+            items: [
+                { sentence: 'If you have a question, please _____ your hand.', sentenceTh: 'หากคุณมีคำถาม กรุณายกมือขึ้น', answer: 'raise', options: ['raise', 'rise', 'rose', 'arouse'], explainTh: 'มีกรรมมารองรับข้างหลัง (your hand) ต้องใช้ raise' },
+                { sentence: 'Global temperatures continue to _____ every decade.', sentenceTh: 'อุณหภูมิโลกยังคงปรับตัวสูงขึ้นอย่างต่อเนื่องทุกทศวรรษ', answer: 'rise', options: ['rise', 'raise', 'raised', 'arising'], explainTh: 'อุณหภูมิสูงขึ้นเองโดยไม่มีกรรมมารองรับ ใช้ rise' }
+            ]
+        },
+        {
+            id: 'cf_beside_besides', pair: 'beside vs. besides', cefr: 'B1',
+            tipTh: 'beside (ไม่มี s) = ข้างๆ (next to) ส่วน besides (มี s) = นอกจากนี้ / นอกเหนือจาก',
+            items: [
+                { sentence: 'Come and sit _____ me so we can look at the photos together.', sentenceTh: 'มานั่งข้างๆ ฉันสิ พวกเราจะได้ดูรูปถ่ายด้วยกัน', answer: 'beside', options: ['beside', 'besides', 'beyond', 'between'], explainTh: 'แปลว่า "ข้างๆ" (บอกตำแหน่งที่นั่ง) ใช้ beside' },
+                { sentence: '_____ English, she can also speak Japanese and French fluently.', sentenceTh: 'นอกเหนือจากภาษาอังกฤษแล้ว เธอยังพูดภาษาญี่ปุ่นและฝรั่งเศสได้คล่องแคล่วด้วย', answer: 'Besides', options: ['Besides', 'Beside', 'Except', 'Despite'], explainTh: 'แปลว่า "นอกเหนือจาก (รวมทั้ง...)" ใช้ Besides (มี s)' }
+            ]
+        },
+        {
+            id: 'cf_accept_except', pair: 'accept vs. except', cefr: 'B1',
+            tipTh: 'accept (v.) = ยอมรับ/ตอบรับ ส่วน except (prep.) = ยกเว้น',
+            items: [
+                { sentence: 'The store is open every day _____ Sunday.', sentenceTh: 'ร้านค้าเปิดทุกวันยกเว้นวันอาทิตย์', answer: 'except', options: ['except', 'accept', 'expect', 'access'], explainTh: 'แปลว่า "ยกเว้น" ใช้ except' },
+                { sentence: 'She was thrilled to _____ the scholarship offer from Oxford.', sentenceTh: 'เธอตื่นเต้นดีใจมากที่ได้ตอบรับข้อเสนอทุนการศึกษาจาก Oxford', answer: 'accept', options: ['accept', 'except', 'expect', 'excerpt'], explainTh: 'ตอบรับข้อเสนอ (to + Verb) ใช้ accept' }
+            ]
+        },
+        {
+            id: 'cf_adopt_adapt', pair: 'adopt vs. adapt', cefr: 'B1',
+            tipTh: 'adapt (ตัว a = adjust) = ปรับตัว/ดัดแปลง ส่วน adopt (ตัว o) = รับมาใช้/รับเลี้ยงเป็นบุตรบุญธรรม',
+            items: [
+                { sentence: 'It took him a few months to _____ to the cold weather in London.', sentenceTh: 'เขาใช้เวลาสองสามเดือนในการปรับตัวเข้ากับอากาศหนาวในลอนดอน', answer: 'adapt', options: ['adapt', 'adopt', 'adept', 'adjusting'], explainTh: 'adapt to = ปรับตัวให้เข้ากับสภาพแวดล้อมใหม่' },
+                { sentence: 'The company decided to _____ a flexible work-from-home policy.', sentenceTh: 'บริษัทตัดสินใจนำนโยบายทำงานจากบ้านแบบยืดหยุ่นมาใช้', answer: 'adopt', options: ['adopt', 'adapt', 'adept', 'appoint'], explainTh: 'นำนโยบาย/แนวคิดมาใช้จริง ใช้ adopt a policy' }
+            ]
+        },
+        {
+            id: 'cf_sensible_sensitive', pair: 'sensible vs. sensitive', cefr: 'B1',
+            tipTh: 'sensible = มีเหตุผล/รอบคอบ (มีสติปัญญาปฏิบัติได้จริง) ส่วน sensitive = อ่อนไหวง่าย/ไวต่อสิ่งกระตุ้น',
+            items: [
+                { sentence: 'Wearing a helmet while riding a motorbike is a very _____ decision.', sentenceTh: 'การสวมหมวกกันน็อกขณะขี่มอเตอร์ไซค์เป็นการตัดสินใจที่มีเหตุผลรอบคอบมาก', answer: 'sensible', options: ['sensible', 'sensitive', 'sensory', 'sensational'], explainTh: 'มีเหตุผลและรอบคอบ ใช้ sensible' },
+                { sentence: 'My teeth are very _____ to cold drinks and ice cream.', sentenceTh: 'ฟันของฉันไวต่อความรู้สึกมากเมื่อดื่มน้ำเย็นและกินไอศกรีม', answer: 'sensitive', options: ['sensitive', 'sensible', 'sense', 'senseless'], explainTh: 'sensitive to = ไวต่อสิ่งกระตุ้นหรืออ่อนไหวง่าย' }
+            ]
+        },
+        {
+            id: 'cf_rob_steal', pair: 'rob vs. steal', cefr: 'B1',
+            tipTh: 'steal + สิ่งของที่ถูกขโมย (steal money/a car) ส่วน rob + สถานที่หรือบุคคลที่ถูกปล้น (rob a bank/a person)',
+            items: [
+                { sentence: 'Someone tried to _____ my wallet on the crowded subway.', sentenceTh: 'มีคนพยายามขโมยกระเป๋าสตางค์ของฉันบนรถไฟใต้ดินที่แออัด', answer: 'steal', options: ['steal', 'rob', 'burglar', 'thief'], explainTh: 'กรรมข้างหลังคือสิ่งของ (my wallet) ต้องใช้ steal' },
+                { sentence: 'Two masked men attempted to _____ the jewelry bank last night.', sentenceTh: 'ชายสวมหน้ากากสองคนพยายามปล้นธนาคารเมื่อคืนนี้', answer: 'rob', options: ['rob', 'steal', 'stole', 'theft'], explainTh: 'กรรมข้างหลังคือสถานที่/องค์กร (the bank) ต้องใช้ rob' }
+            ]
+        },
+        {
+            id: 'cf_opportunity_possibility', pair: 'opportunity vs. possibility', cefr: 'B1',
+            tipTh: 'opportunity = โอกาสดีที่จะได้ทำสิ่งหนึ่ง ส่วน possibility = ความเป็นไปได้ที่เรื่องหนึ่งอาจจะเกิดขึ้นหรือไม่เกิดก็ได้',
+            items: [
+                { sentence: 'Studying abroad gives you a great _____ to practice English daily.', sentenceTh: 'การเรียนต่อต่างประเทศมอบโอกาสที่ดีเยี่ยมให้คุณได้ฝึกภาษาอังกฤษทุกวัน', answer: 'opportunity', options: ['opportunity', 'possibility', 'probable', 'fortune'], explainTh: 'จังหวะหรือโอกาสอันดีในการทำสิ่งที่มีคุณค่า ใช้ opportunity' },
+                { sentence: 'There is a strong _____ that it will rain heavily tonight.', sentenceTh: 'มีความเป็นไปได้สูงมากที่คืนนี้ฝนจะตกหนัก', answer: 'possibility', options: ['possibility', 'opportunity', 'occasion', 'ambition'], explainTh: 'คาดการณ์ว่าเหตุการณ์อาจเกิดขึ้น ใช้ possibility' }
+            ]
+        },
+        {
+            id: 'cf_used_to', pair: 'used to do vs. be used to doing', cefr: 'B1',
+            tipTh: 'used to + V.1 = เคยทำในอดีต (ตอนนี้ไม่ทำแล้ว) ส่วน be/get used to + V.ing/Noun = เคยชินกับ...',
+            items: [
+                { sentence: 'I am already used to _____ up early for my morning run.', sentenceTh: 'ฉันคุ้นชินกับการตื่นเช้าเพื่อออกไปวิ่งตอนเช้าแล้ว', answer: 'waking', options: ['waking', 'wake', 'woke', 'awoken'], explainTh: 'มี verb to be (am) นำหน้า used to แปลว่า "เคยชินกับ" ต้องตามด้วย V.ing (waking)' },
+                { sentence: 'He used to _____ in Chiang Mai before moving to Bangkok.', sentenceTh: 'เขาเคยอาศัยอยู่ที่เชียงใหม่ก่อนจะย้ายมาที่กรุงเทพฯ', answer: 'live', options: ['live', 'living', 'lived', 'lives'], explainTh: 'used to + V.1 (live) บอกสิ่งที่เคยทำในอดีต' }
+            ]
+        },
+        {
+            id: 'cf_lie_lay', pair: 'lie vs. lay', cefr: 'B2',
+            tipTh: 'lie (lay, lain) = นอนลง/วางอยู่เอง (ไม่มีกรรม) ส่วน lay (laid, laid) = วางสิ่งของลง (ต้องมีกรรมตามหลัง)',
+            items: [
+                { sentence: 'Please _____ the baby gently down on the crib.', sentenceTh: 'กรุณาอุ้มวางทารกลงบนเปลอย่างเบามือ', answer: 'lay', options: ['lay', 'lie', 'lain', 'lying'], explainTh: 'มีกรรมตามหลัง (the baby) แปลว่าวางลง ใช้ lay' },
+                { sentence: 'I just want to _____ down on the sofa and rest for ten minutes.', sentenceTh: 'ฉันแค่อยากเอนตัวนอนลงบนโซฟาและพักสักสิบนาที', answer: 'lie', options: ['lie', 'lay', 'laid', 'laying'], explainTh: 'เอนตัวนอนลงเอง (ไม่มีกรรม) ใช้ lie down' }
+            ]
+        },
+        {
+            id: 'cf_complement_compliment', pair: 'complement vs. compliment', cefr: 'B2',
+            tipTh: 'complement (ตัว e = complete) = เติมเต็มให้สมบูรณ์เข้ากัน ส่วน compliment (ตัว i = I like you) = คำชมเชย',
+            items: [
+                { sentence: 'The fresh lemon sauce really _____ the grilled salmon.', sentenceTh: 'ซอสเลมอนสดช่วยเสริมรสชาติให้ปลาแซลมอนย่างเข้ากันอย่างสมบูรณ์แบบ', answer: 'complements', options: ['complements', 'compliments', 'competes', 'completes'], explainTh: 'เสริมให้เข้าคู่กันอย่างลงตัว ใช้ complement (สะกดด้วย e)' },
+                { sentence: 'The manager paid her a nice _____ on her clear presentation.', sentenceTh: 'ผู้จัดการกล่าวคำชมเชยเธออย่างดีเกี่ยวกับการนำเสนอที่ชัดเจน', answer: 'compliment', options: ['compliment', 'complement', 'compliance', 'implement'], explainTh: 'pay a compliment = กล่าวคำชมเชย (สะกดด้วย i)' }
+            ]
+        },
+        {
+            id: 'cf_principal_principle', pair: 'principal vs. principle', cefr: 'B2',
+            tipTh: 'principal (ลงท้าย -pal) = อาจารย์ใหญ่ / สำคัญที่สุด (main) ส่วน principle (ลงท้าย -ple = rule) = หลักการ/อุดมการณ์',
+            items: [
+                { sentence: 'Honesty and fairness are the core _____ of our organization.', sentenceTh: 'ความซื่อสัตย์และความยุติธรรมคือหลักการสำคัญขององค์กรเรา', answer: 'principles', options: ['principles', 'principals', 'priorities', 'practices'], explainTh: 'หลักการ/ยึดถือปฏิบัติ ใช้ principles (-ple)' },
+                { sentence: 'The _____ reason for the delay was the severe thunderstorm.', sentenceTh: 'เหตุผลหลักที่สำคัญที่สุดของความล่าช้าคือพายุฝนฟ้าคะนองรุนแรง', answer: 'principal', options: ['principal', 'principle', 'primary', 'partial'], explainTh: 'ขยายคำนาม reason แปลว่า "สำคัญที่สุด/หลัก" ใช้ principal (-pal)' }
+            ]
+        },
+        {
+            id: 'cf_historic_historical', pair: 'historic vs. historical', cefr: 'B2',
+            tipTh: 'historic = สำคัญยิ่งจนต้องจารึกไว้ในประวัติศาสตร์ ส่วน historical = เกี่ยวข้องกับประวัติศาสตร์หรือเรื่องในอดีต',
+            items: [
+                { sentence: 'Signing the peace treaty was a _____ moment for both nations.', sentenceTh: 'การลงนามสนธิสัญญาสันติภาพเป็นช่วงเวลาครั้งประวัติศาสตร์ของทั้งสองชาติ', answer: 'historic', options: ['historic', 'historical', 'history', 'historian'], explainTh: 'เหตุการณ์ยิ่งใหญ่ระดับประวัติศาสตร์ ใช้ historic moment' },
+                { sentence: 'She enjoys reading _____ novels set in the 19th century.', sentenceTh: 'เธอชอบอ่านนวนิยายอิงประวัติศาสตร์ที่มีฉากในศตวรรษที่ 19', answer: 'historical', options: ['historical', 'historic', 'histories', 'ancient'], explainTh: 'เกี่ยวข้องกับเรื่องราวในอดีต/อิงประวัติศาสตร์ ใช้ historical novels' }
+            ]
+        },
+        {
+            id: 'cf_classic_classical', pair: 'classic vs. classical', cefr: 'B2',
+            tipTh: 'classic = ชั้นเยี่ยม/เป็นต้นแบบอมตะ (a classic film/example) ส่วน classical = ดนตรีคลาสสิกหรือศิลปะยุคกรีก-โรมันโบราณ',
+            items: [
+                { sentence: 'Listening to _____ music like Mozart helps me focus while reading.', sentenceTh: 'การฟังดนตรีคลาสสิกอย่างโมสาร์ทช่วยให้ฉันมีสมาธิขณะอ่านหนังสือ', answer: 'classical', options: ['classical', 'classic', 'classy', 'classified'], explainTh: 'แนวดนตรีคลาสสิกต้องใช้ classical music เสมอ' },
+                { sentence: 'Forgetting your keys inside the car is a _____ mistake.', sentenceTh: 'การลืมกุญแจไว้ในรถเป็นความผิดพลาดแบบคลาสสิกที่เจอกันประจำ', answer: 'classic', options: ['classic', 'classical', 'classes', 'clarified'], explainTh: 'ตัวอย่างที่พบบ่อยหรือเป็นแบบฉบับ ใช้ a classic mistake/example' }
+            ]
+        },
+        {
+            id: 'cf_stationary_stationery', pair: 'stationary vs. stationery', cefr: 'B2',
+            tipTh: 'stationary (ลงท้าย -ary = car stays) = หยุดนิ่งกับที่ ส่วน stationery (ลงท้าย -ery = pen/paper) = เครื่องเขียน',
+            items: [
+                { sentence: 'Please remain seated until the bus comes to a _____ stop.', sentenceTh: 'กรุณานั่งอยู่กับที่จนกว่ารถบัสจะจอดสนิทอยู่กับที่', answer: 'stationary', options: ['stationary', 'stationery', 'stationed', 'standing'], explainTh: 'หยุดนิ่งอยู่กับที่ ใช้ stationary (-ary)' },
+                { sentence: 'We ordered notebooks, pens, and other office _____ for the team.', sentenceTh: 'พวกเราสั่งซื้อสมุดโน้ต ปากกา และเครื่องเขียนสำนักงานอื่นๆ ให้ทีม', answer: 'stationery', options: ['stationery', 'stationary', 'stations', 'supplies'], explainTh: 'อุปกรณ์เครื่องเขียนกระดาษปากกา ใช้ stationery (-ery)' }
+            ]
+        },
+        {
+            id: 'cf_assure_ensure_insure', pair: 'assure vs. ensure vs. insure', cefr: 'B2',
+            tipTh: 'ensure = ทำให้มั่นใจว่าจะเกิดขึ้น, assure + บุคคล = รับรองให้คลายกังวล, insure = ทำประกันภัย',
+            items: [
+                { sentence: 'Double-check all doors to _____ that the building is secure.', sentenceTh: 'ตรวจสอบประตูทุกบานซ้ำอีกครั้งเพื่อให้มั่นใจว่าอาคารปลอดภัย', answer: 'ensure', options: ['ensure', 'assure', 'insure', 'reassure'], explainTh: 'ทำให้แน่ใจว่าสิ่งหนึ่งจะเกิดขึ้น (ensure that...) ใช้ ensure' },
+                { sentence: 'I can _____ you that your personal data will be kept strictly confidential.', sentenceTh: 'ฉันขอรับรองกับคุณได้เลยว่าข้อมูลส่วนตัวของคุณจะถูกเก็บเป็นความลับอย่างเคร่งครัด', answer: 'assure', options: ['assure', 'ensure', 'insure', 'ensured'], explainTh: 'มีกรรมบุคคลตามหลัง (assure you that...) เพื่อสร้างความมั่นใจ ใช้ assure' }
+            ]
+        }
+    ];
 
     /** Builds deterministic Section -> Topic Units -> S-Curve Stages from wordsData. */
     const OxCurriculum = (() => {
@@ -7821,7 +8546,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .sort(([a], [b]) => a.localeCompare(b))
             .map(([k, v]) => `${k}:${getStageDoneRounds(k)}:${v.legendary ? 1 : 0}`)
             .join(',');
-        return `${sec}|u:${units.length}|k:${knownCnt}|r:${revCnt}|c:${learnState.claimedChests.join(',')}|ul:${learnState.unlockedUnits.join(',')}|d:${doneSummary}`;
+        const stDone = Array.isArray(learnState.completedStories) ? learnState.completedStories.join(',') : '';
+        return `${sec}|u:${units.length}|k:${knownCnt}|r:${revCnt}|c:${learnState.claimedChests.join(',')}|ul:${learnState.unlockedUnits.join(',')}|st:${stDone}|d:${doneSummary}`;
     }
 
     function calcAccuratePct(done, total) {
@@ -7963,6 +8689,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 : '';
             const unitKnown = unit.wordIndices.filter(idx => wordStatus[keyOf(wordsData[idx])] === 'known').length;
             const unitPct = calcAccuratePct(unitKnown, unit.wordIndices.length);
+            const storyCompleted = Array.isArray(learnState.completedStories) && learnState.completedStories.includes(unit.id);
 
             return `
         <article class="unit-block" data-unit-id="${escapeHtml(unit.id)}">
@@ -7977,6 +8704,9 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="unit-banner-actions">
               ${jumpBtn}
+              <button type="button" class="btn-unit-guidebook btn-unit-story ${storyCompleted ? 'is-done' : ''}" data-story-unit="${escapeHtml(unit.id)}" title="อ่านเรื่องสั้นบริบทประจำหน่วยนี้">
+                ${storyCompleted ? '✓ เรื่องสั้น' : '✨ เรื่องสั้น'}
+              </button>
               <button type="button" class="btn-unit-guidebook" data-guidebook-unit="${escapeHtml(unit.id)}">
                 📖 คู่มือ
               </button>
@@ -7999,8 +8729,246 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let activeGuidebookUnitId = null;
+    let storySequenceTimer = null;
+    let isStoryPlaying = false;
 
-    function openUnitGuidebook(unitId) {
+    function stopStoryAudioPlayback() {
+        isStoryPlaying = false;
+        if (storySequenceTimer) {
+            clearTimeout(storySequenceTimer);
+            storySequenceTimer = null;
+        }
+        const listenBtn = $('btn-gb-story-listen');
+        if (listenBtn) {
+            listenBtn.classList.remove('is-playing');
+            listenBtn.textContent = '🔊 ฟังทั้งเรื่อง';
+        }
+        document.querySelectorAll('#gb-story-sentences .gb-story-sent-row.is-speaking').forEach(el => el.classList.remove('is-speaking'));
+    }
+
+    const STORY_TOPIC_INTROS = {
+        actions: { en: 'Every morning at the community center, our team prepares for a busy day.', th: 'ทุกเช้าที่ศูนย์ชุมชน ทีมของพวกเราเตรียมพร้อมสำหรับวันที่คึกคัก' },
+        people: { en: 'Living in a diverse neighborhood teaches us how to understand different people.', th: 'การใช้ชีวิตในย่านที่หลากหลายสอนให้เราเข้าใจผู้คนที่แตกต่างกัน' },
+        work: { en: 'During the quarterly project meeting, everyone shared practical ideas for success.', th: 'ระหว่างการประชุมโปรเจกต์ประจำไตรมาส ทุกคนแบ่งปันไอเดียที่นำไปใช้ได้จริงเพื่อความสำเร็จ' },
+        travel: { en: 'Before setting off on our international journey, we checked every detail of the route.', th: 'ก่อนออกเดินทางไปต่างประเทศ พวกเราตรวจสอบทุกรายละเอียดของเส้นทาง' },
+        food: { en: 'At the weekend market, fresh ingredients and local recipes bring neighbors together.', th: 'ที่ตลาดนัดสุดสัปดาห์ วัตถุดิบสดใหม่และสูตรอาหารท้องถิ่นดึงดูดเพื่อนบ้านให้มาพบปะกัน' },
+        health: { en: 'Maintaining a balanced lifestyle requires both daily exercise and mindful rest.', th: 'การรักษาวิถีชีวิตที่สมดุลต้องอาศัยทั้งการออกกำลังกายทุกวันและการพักผ่อนอย่างเหมาะสม' },
+        nature: { en: 'Walking along the mountain trail, we observed how nature changes with the seasons.', th: 'ขณะเดินไปตามเส้นทางบนภูเขา พวกเราสังเกตเห็นว่าธรรมชาติเปลี่ยนแปลงไปตามฤดูกาลอย่างไร' },
+        tech: { en: 'Modern digital tools allow small teams to solve complex problems from anywhere.', th: 'เครื่องมือดิจิทัลยุคใหม่ช่วยให้ทีมขนาดเล็กแก้ปัญหาที่ซับซ้อนได้จากทุกที่' },
+        society: { en: 'Strong communities depend on fair rules, open dialogue, and mutual respect.', th: 'สังคมที่เข้มแข็งพึ่งพากฎกติกาที่เป็นธรรม การพูดคุยที่เปิดกว้าง และความเคารพซึ่งกันและกัน' },
+        emotions: { en: 'When facing unexpected challenges, staying calm helps us make wiser choices.', th: 'เมื่อเผชิญกับความท้าทายที่ไม่คาดคิด การตั้งสติช่วยให้เราตัดสินใจได้อย่างฉลาดขึ้น' },
+        time: { en: 'Planning each week ahead of schedule gives us more freedom for creative work.', th: 'การวางแผนแต่ละสัปดาห์ล่วงหน้าช่วยให้เรามีอิสระมากขึ้นสำหรับงานสร้างสรรค์' },
+        communication: { en: 'Clear communication builds trust whether we are writing an email or speaking on stage.', th: 'การสื่อสารที่ชัดเจนสร้างความไว้วางใจไม่ว่าเราจะกำลังเขียนอีเมลหรือพูดบนเวที' }
+    };
+
+    function buildUnitMiniStory(unit) {
+        const indices = Array.isArray(unit.wordIndices) ? unit.wordIndices : [];
+        const richIndices = indices.filter(idx => {
+            const w = wordsData[idx];
+            return w && w.word && w.translation && w.example && w.example.length >= 16;
+        });
+        const chosenIndices = (richIndices.length >= 4 ? richIndices : indices).slice(0, 5);
+        const intro = STORY_TOPIC_INTROS[unit.topicId] || STORY_TOPIC_INTROS.actions;
+
+        const sentences = [
+            {
+                enHtml: escapeHtml(intro.en),
+                plainEn: intro.en,
+                th: intro.th,
+                wordIdx: null
+            }
+        ];
+
+        const connectorsEn = ['First, ', 'Along the way, ', 'At the same time, ', 'Finally, ', 'As a result, '];
+        const connectorsTh = ['ขั้นแรก ', 'ระหว่างทาง ', 'ในขณะเดียวกัน ', 'ท้ายที่สุด ', 'ผลลัพธ์คือ '];
+
+        chosenIndices.forEach((wIdx, sPos) => {
+            const w = wordsData[wIdx];
+            if (!w) return;
+            const rawEx = (w.example || `We need to understand the word ${w.word} clearly.`).trim();
+            const rawTh = (w.exampleTranslation || `${w.word} มีความหมายว่า ${w.translation}`).trim();
+            const escapedW = w.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const re = new RegExp(`\\b(${escapedW}(?:s|es|ed|ing|d)?)\\b`, 'i');
+            const chipHtml = (matched) => `<button type="button" class="story-word-chip" data-story-widx="${wIdx}" title="แตะเพื่อฟังเสียงและดูความหมาย: ${escapeHtml(w.translation)}">${escapeHtml(matched)}</button>`;
+
+            let highlightedHtml = '';
+            if (re.test(rawEx)) {
+                const parts = rawEx.split(re);
+                highlightedHtml = parts.map((part, pIdx) => (pIdx === 1 ? chipHtml(part) : escapeHtml(part))).join('');
+            } else {
+                highlightedHtml = `${escapeHtml(rawEx)} (${chipHtml(w.word)})`;
+            }
+
+            const prefEn = connectorsEn[sPos % connectorsEn.length];
+            const prefTh = connectorsTh[sPos % connectorsTh.length];
+            const cleanEx = rawEx.charAt(0).toLowerCase() + rawEx.slice(1);
+            const finalPlainEn = `${prefEn}${cleanEx}`;
+            const finalHtml = `${escapeHtml(prefEn)}${highlightedHtml.charAt(0) === '<' ? highlightedHtml : (highlightedHtml.charAt(0).toLowerCase() + highlightedHtml.slice(1))}`;
+
+            sentences.push({
+                enHtml: finalHtml,
+                plainEn: finalPlainEn,
+                th: `${prefTh}${rawTh}`,
+                wordIdx: wIdx
+            });
+        });
+
+        // Build 2 comprehension/context questions from chosenIndices
+        const quizTargets = chosenIndices.slice(0, 2);
+        const questions = quizTargets.map((targetIdx, qPos) => {
+            const targetW = wordsData[targetIdx];
+            const distractorPool = indices.filter(i => i !== targetIdx && wordsData[i]?.translation !== targetW.translation);
+            const fallbackPool = [0, 1, 2, 3, 4, 5].filter(i => i !== targetIdx);
+            const distIndices = (distractorPool.length >= 2 ? distractorPool : fallbackPool).slice(0, 2);
+            const opts = shuffle([
+                { text: targetW.translation, isCorrect: true },
+                ...distIndices.map(di => ({ text: wordsData[di]?.translation || 'ตัวเลือกอื่น', isCorrect: false }))
+            ]);
+            return {
+                qId: `${unit.id}_sq_${qPos + 1}`,
+                prompt: qPos === 0
+                    ? `จากเนื้อเรื่อง คำว่า "${targetW.word}" มีความหมายตรงกับข้อใด?`
+                    : `ในบริบทของบทนี้ หากต้องการสื่อความหมายว่า "${targetW.translation}" ควรใช้คำว่า "${targetW.word}" ซึ่งหมายถึงข้อใด?`,
+                word: targetW.word,
+                options: opts
+            };
+        });
+
+        return {
+            title: `เรื่องสั้น: ${unit.title} (${unit.cefr})`,
+            sentences,
+            questions
+        };
+    }
+
+    function renderGuidebookMiniStory(unit) {
+        stopStoryAudioPlayback();
+        const card = $('gb-mini-story-card');
+        const titleEl = $('gb-story-title');
+        const doneBadge = $('gb-story-done-badge');
+        const sentHost = $('gb-story-sentences');
+        const wordPop = $('gb-story-word-pop');
+        const quizStatus = $('gb-story-quiz-status');
+        const quizList = $('gb-story-quiz-list');
+        if (!card || !sentHost || !quizList) return;
+
+        const story = buildUnitMiniStory(unit);
+        const isCompleted = Array.isArray(learnState.completedStories) && learnState.completedStories.includes(unit.id);
+        if (titleEl) titleEl.textContent = story.title;
+        if (doneBadge) doneBadge.hidden = !isCompleted;
+        if (wordPop) {
+            wordPop.hidden = true;
+            wordPop.innerHTML = '';
+        }
+
+        sentHost.innerHTML = story.sentences.map((s, idx) => `
+            <div class="gb-story-sent-row" data-story-sent-idx="${idx}" data-plain-en="${escapeHtml(s.plainEn)}">
+                <p class="gb-story-en">${s.enHtml}</p>
+                <p class="gb-story-th">${escapeHtml(s.th)}</p>
+            </div>
+        `).join('');
+
+        const answeredMap = {};
+        const totalQs = story.questions.length;
+        const updateQuizStatusUI = () => {
+            const rightCnt = Object.values(answeredMap).filter(Boolean).length;
+            if (quizStatus) quizStatus.textContent = `${rightCnt} / ${totalQs} ข้อ`;
+            if (rightCnt >= totalQs && totalQs > 0) {
+                if (!learnState.completedStories.includes(unit.id)) {
+                    learnState.completedStories.push(unit.id);
+                    ensureTodayQuests();
+                    const storyXp = (typeof isXpBoostActive === 'function' && isXpBoostActive()) ? 30 : 15;
+                    learnState.xp += storyXp;
+                    learnState.bonusGems = (learnState.bonusGems || 0) + 15;
+                    learnState.dailyQuests.xpToday += storyXp;
+                    saveLearnState(true);
+                    SoundFX.quest();
+                    OxConfetti.launch('good');
+                    showToast(`📖 อ่านเรื่องสั้นและตอบคำถามครบ! รับ +${storyXp} XP & +15 💎`);
+                    if (doneBadge) doneBadge.hidden = false;
+                    renderLearnPath(true);
+                    refreshShellTelemetry();
+                }
+            }
+        };
+
+        quizList.innerHTML = story.questions.map((q, qIdx) => `
+            <div class="gb-story-q-item" data-story-qidx="${qIdx}">
+                <div class="gb-story-q-prompt">${qIdx + 1}. <b>"${escapeHtml(q.word)}"</b> ในเนื้อเรื่องมีความหมายว่าอย่างไร?</div>
+                <div class="gb-story-q-opts">
+                    ${q.options.map((opt, oIdx) => `
+                        <button type="button" class="gb-story-opt-btn" data-qidx="${qIdx}" data-oidx="${oIdx}" data-correct="${opt.isCorrect ? '1' : '0'}">
+                            ${escapeHtml(opt.text)}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+        if (quizStatus) quizStatus.textContent = isCompleted ? `${totalQs} / ${totalQs} ข้อ ✓` : `0 / ${totalQs} ข้อ`;
+
+        quizList.onclick = (e) => {
+            if (!(e.target instanceof Element)) return;
+            const btn = e.target.closest('.gb-story-opt-btn');
+            if (!(btn instanceof HTMLButtonElement)) return;
+            const qIdx = Number(btn.dataset.qidx);
+            const isRight = btn.dataset.correct === '1';
+            const parent = btn.closest('.gb-story-q-opts');
+            if (isRight) {
+                SoundFX.known(1);
+                answeredMap[qIdx] = true;
+                btn.classList.add('is-correct');
+                parent?.querySelectorAll('.gb-story-opt-btn').forEach(b => {
+                    if (b instanceof HTMLButtonElement) b.disabled = true;
+                });
+                updateQuizStatusUI();
+            } else {
+                SoundFX.review();
+                btn.classList.add('is-wrong');
+                btn.disabled = true;
+            }
+        };
+
+        sentHost.onclick = (e) => {
+            if (!(e.target instanceof Element)) return;
+            const chip = e.target.closest('.story-word-chip');
+            if (!(chip instanceof HTMLElement)) return;
+            const wIdx = Number(chip.dataset.storyWidx);
+            const w = wordsData[wIdx];
+            if (!w) return;
+            speakWordOverride(w.word, true, chip);
+            if (wordPop) {
+                const wKey = keyOf(w);
+                wordPop.innerHTML = `
+                    <div class="story-pop-main">
+                        <div>
+                            <strong>${escapeHtml(w.word)}</strong>
+                            ${w.phonetic ? `<span class="phonetic">${escapeHtml(w.phonetic)}</span>` : ''}
+                            <span class="story-pop-trans">— ${escapeHtml(w.translation)}</span>
+                        </div>
+                        <div class="story-pop-actions">
+                            <button type="button" class="dict-mini-pill-btn" data-story-speak="${escapeHtml(w.word)}">🔊 ฟังซ้ำ</button>
+                            <button type="button" class="dict-mini-pill-btn primary" data-story-inspect="${escapeHtml(wKey)}">🔍 ดูเชิงลึก</button>
+                        </div>
+                    </div>
+                `;
+                wordPop.hidden = false;
+                wordPop.onclick = (ev) => {
+                    if (!(ev.target instanceof Element)) return;
+                    const spk = ev.target.closest('[data-story-speak]');
+                    if (spk instanceof HTMLElement) {
+                        speakWordOverride(spk.dataset.storySpeak, true, spk);
+                        return;
+                    }
+                    const insp = ev.target.closest('[data-story-inspect]');
+                    if (insp instanceof HTMLElement && typeof openWordInspector === 'function') {
+                        openWordInspector(insp.dataset.storyInspect);
+                    }
+                };
+            }
+        };
+    }
+
+    function openUnitGuidebook(unitId, opts = {}) {
         const unit = OxCurriculum.unitById.get(unitId);
         if (!unit || !guidebookModal) return;
         activeGuidebookUnitId = unitId;
@@ -8020,6 +8988,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gbMasteryText) gbMasteryText.textContent = `จำได้ ${knownCount}/${unit.wordIndices.length} คำในหน่วยนี้ (${pct}%)`;
         if (gbMasteryFill) gbMasteryFill.style.width = `${pct}%`;
         if (gbTip) gbTip.textContent = unit.tip;
+
+        renderGuidebookMiniStory(unit);
 
         if (gbGrammarNotes) {
             const notes = [];
@@ -8054,9 +9024,15 @@ document.addEventListener('DOMContentLoaded', () => {
         guidebookModal.classList.add('open');
         guidebookModal.setAttribute('aria-hidden', 'false');
         SoundFX.popOpen();
+        if (opts && opts.focusStory) {
+            setTimeout(() => {
+                $('gb-mini-story-card')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 120);
+        }
     }
 
     function closeGuidebook() {
+        stopStoryAudioPlayback();
         if (!guidebookModal) return;
         const wasOpen = guidebookModal.classList.contains('open');
         guidebookModal.classList.remove('open');
@@ -8097,6 +9073,44 @@ document.addEventListener('DOMContentLoaded', () => {
     wireWordListEvents($('dict-word-list'));
 
     $('btn-gb-close')?.addEventListener('click', closeGuidebook);
+    $('btn-gb-story-toggle-th')?.addEventListener('click', (e) => {
+        const btn = e.currentTarget;
+        const sentHost = $('gb-story-sentences');
+        if (!sentHost || !(btn instanceof HTMLElement)) return;
+        const hiddenNow = sentHost.classList.toggle('is-hide-th');
+        btn.classList.toggle('is-active', !hiddenNow);
+        SoundFX.tick();
+    });
+    $('btn-gb-story-listen')?.addEventListener('click', () => {
+        if (isStoryPlaying) {
+            stopStoryAudioPlayback();
+            return;
+        }
+        const rows = Array.from(document.querySelectorAll('#gb-story-sentences .gb-story-sent-row'));
+        if (rows.length === 0) return;
+        isStoryPlaying = true;
+        const listenBtn = $('btn-gb-story-listen');
+        if (listenBtn) {
+            listenBtn.classList.add('is-playing');
+            listenBtn.textContent = '⏹️ หยุดฟัง';
+        }
+        let sIdx = 0;
+        const playNextSentence = () => {
+            if (!isStoryPlaying || sIdx >= rows.length) {
+                stopStoryAudioPlayback();
+                return;
+            }
+            rows.forEach((r, i) => r.classList.toggle('is-speaking', i === sIdx));
+            const row = rows[sIdx];
+            const text = (row instanceof HTMLElement && row.dataset.plainEn) ? row.dataset.plainEn : (row.querySelector('.gb-story-en')?.textContent || '');
+            speakWordOverride(text, true);
+            const wordCnt = text.trim().split(/\s+/).length;
+            const waitMs = Math.max(2400, Math.min(6200, wordCnt * 410));
+            sIdx++;
+            storySequenceTimer = setTimeout(playNextSentence, waitMs);
+        };
+        playNextSentence();
+    });
     $('btn-gb-practice-unit')?.addEventListener('click', () => {
         const unit = activeGuidebookUnitId ? OxCurriculum.unitById.get(activeGuidebookUnitId) : null;
         closeGuidebook();
@@ -8168,6 +9182,41 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof startSmartLearnDrill === 'function') startSmartLearnDrill('quick');
     });
 
+    $('btn-learn-speed-blitz')?.addEventListener('click', () => {
+        closeNodePopover();
+        setLearnMobileDrawer(false);
+        const sec = learnState.activeSection || 'A1';
+        const pool = [];
+        for (let i = 0; i < totalWords; i++) {
+            if (wordsData[i].cefr === sec) pool.push(i);
+        }
+        const source = pool.length >= 20 ? pool : Array.from({ length: totalWords }, (_, i) => i);
+        quizSession = createQuizSession({
+            indices: pickRandom(source, Math.min(80, source.length)),
+            category: 'all',
+            mode: 'blitz',
+            cefr: sec
+        });
+        showScreen('quiz');
+        renderQuizQuestion();
+        startBlitzTimer();
+    });
+
+    $('btn-learn-confusables')?.addEventListener('click', () => {
+        closeNodePopover();
+        setLearnMobileDrawer(false);
+        const sec = learnState.activeSection || 'A1';
+        quizSession = createQuizSession({
+            indices: [],
+            category: 'all',
+            mode: 'confusables',
+            cefr: sec,
+            count: 10
+        });
+        showScreen('quiz');
+        renderQuizQuestion();
+    });
+
     learnSectionTabs?.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
         const btn = e.target.closest('[data-section]');
@@ -8201,6 +9250,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     learnUnitsContainer?.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
+        const stBtn = e.target.closest('[data-story-unit]');
+        if (stBtn instanceof HTMLElement) {
+            openUnitGuidebook(stBtn.dataset.storyUnit, { focusStory: true });
+            return;
+        }
         const gbBtn = e.target.closest('[data-guidebook-unit]');
         if (gbBtn instanceof HTMLElement) {
             openUnitGuidebook(gbBtn.dataset.guidebookUnit);
@@ -11874,6 +12928,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       earnedXp = bossFailed ? 10 : (stage.isBoss ? 35 : 15) + stars * 5 + Math.min(10, activeLesson.maxCombo);
     }
+    if (typeof isXpBoostActive === 'function' && isXpBoostActive()) {
+      earnedXp *= 2;
+    }
 
     ensureTodayQuests();
     const prevStreakVal = typeof computeStreak === 'function' ? computeStreak() : 0;
@@ -12767,19 +13824,42 @@ document.addEventListener('DOMContentLoaded', () => {
      * Quiz Hub Screen (แบบทดสอบ)
      * ========================================================= */
   let qhState = { mode: 'choice', cefr: 'all' };
+
+  function refreshQuizHubSpecialRecords() {
+    const blitzScoreEl = $('qh-blitz-best-score');
+    const blitzComboEl = $('qh-blitz-best-combo');
+    const cfMasteredEl = $('qh-confusables-mastered');
+    if (blitzScoreEl) blitzScoreEl.textContent = `${Number(learnState.blitzHighScore || 0).toLocaleString()} แต้ม`;
+    if (blitzComboEl) blitzComboEl.textContent = `(คอมโบสูงสุด x${Number(learnState.blitzBestCombo || 0)})`;
+    if (cfMasteredEl) {
+      const mCnt = Array.isArray(learnState.confusablesMastered) ? learnState.confusablesMastered.length : 0;
+      const totalSets = (typeof CONFUSABLE_SETS !== 'undefined' && Array.isArray(CONFUSABLE_SETS)) ? CONFUSABLE_SETS.length : 32;
+      cfMasteredEl.textContent = `${mCnt} / ${totalSets} คู่`;
+    }
+    const startBtn = $('btn-qh-start');
+    if (startBtn) {
+      if (qhState.mode === 'blitz') startBtn.textContent = '⚡ เริ่มท้าความไว Speed Blitz (60 วินาที)';
+      else if (qhState.mode === 'confusables') startBtn.textContent = '⚔️ เริ่มด่านปราบคำสับสนเลย';
+      else startBtn.textContent = 'เริ่มทำแบบทดสอบเลย';
+    }
+  }
+
   $('qh-mode-selector')?.addEventListener('click', (e) => {
     if (!(e.target instanceof Element)) return;
     const card = e.target.closest('[data-qh-mode]');
     if (!(card instanceof HTMLElement)) return;
-    qhState.mode = card.dataset.qhMode;
+    qhState.mode = card.dataset.qhMode || 'choice';
     $('qh-mode-selector').querySelectorAll('.quiz-mode-card').forEach(c => c.classList.toggle('active', c === card));
+    SoundFX.tick();
+    refreshQuizHubSpecialRecords();
   });
   $('qh-cefr-selector')?.addEventListener('click', (e) => {
     if (!(e.target instanceof Element)) return;
     const pill = e.target.closest('[data-qh-cefr]');
     if (!(pill instanceof HTMLElement)) return;
-    qhState.cefr = pill.dataset.qhCefr;
+    qhState.cefr = pill.dataset.qhCefr || 'all';
     $('qh-cefr-selector').querySelectorAll('.cefr-pill').forEach(p => p.classList.toggle('active', p === pill));
+    SoundFX.tick();
   });
   const qhSlider = /** @type {HTMLInputElement|null} */ ($('qh-count-slider'));
   qhSlider?.addEventListener('input', () => {
@@ -12796,17 +13876,21 @@ document.addEventListener('DOMContentLoaded', () => {
       if (topic !== 'all' && (w.topic || 'actions') !== topic) continue;
       pool.push(i);
     }
-    if (pool.length === 0) {
+    if (qhState.mode !== 'confusables' && pool.length === 0) {
       showToast('ไม่พบคำศัพท์ในเงื่อนไขที่เลือก');
       return;
     }
+    const desiredLen = qhState.mode === 'blitz' ? Math.min(80, Math.max(pool.length, 40)) : Math.min(qCount, Math.max(1, pool.length));
     quizSession = createQuizSession({
-      indices: pickRandom(pool, Math.min(qCount, pool.length)),
+      indices: pool.length > 0 ? pickRandom(pool, desiredLen) : [],
       category: topic !== 'all' ? topic : 'all',
-      mode: qhState.mode
+      mode: qhState.mode,
+      cefr: qhState.cefr,
+      count: qCount
     });
     showScreen('quiz');
     renderQuizQuestion();
+    if (qhState.mode === 'blitz') startBlitzTimer();
   });
 
   /* =========================================================
@@ -12884,6 +13968,28 @@ document.addEventListener('DOMContentLoaded', () => {
     setTxt('prof-name', displayName);
     setTxt('prof-handle', cleanHandle);
 
+    const titleBadgeEl = $('prof-title-badge');
+    if (titleBadgeEl) {
+      const eqId = learnState.equippedTitle || '';
+      const tObj = SHOP_TITLES.find(t => t.id === eqId);
+      if (tObj) {
+        titleBadgeEl.textContent = tObj.label;
+        titleBadgeEl.hidden = false;
+      } else {
+        titleBadgeEl.textContent = '';
+        titleBadgeEl.hidden = true;
+      }
+    }
+
+    const gemsVal = getAvailableShopCredits();
+    setTxt('prof-gems-val', gemsVal.toLocaleString());
+    setTxt('prof-freeze-val', `${Number(learnState.streakFreezes || 0)} / 3 ชิ้น`);
+    const boostActive = isXpBoostActive();
+    const remBoostMin = boostActive ? Math.max(1, Math.ceil((learnState.xpBoostUntil - Date.now()) / 60000)) : 0;
+    setTxt('prof-boost-val', boostActive
+      ? `⚡ คูณ 2 XP กำลังทำงาน (${remBoostMin} นาที)`
+      : `เกราะเวลา Blitz: ${Number(learnState.blitzTimeShields || 0)}/3 ชิ้น`);
+
     const pAva = $('prof-avatar');
     if (pAva) {
       if (userProfile.avatarIdx >= 0) {
@@ -12910,9 +14016,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el.setAttribute('aria-checked', String(Boolean(on)));
     };
     setSwitch('prof-sound-btn', !isSoundMuted);
-    setSwitch('prof-haptics-btn', hapticsEnabled);
     setSwitch('prof-motion-btn', !document.documentElement.classList.contains('ox-reduce-motion'));
-    setSwitch('more-mascot-btn', mascotEncourageEnabled);
     setSwitch('more-listening-btn', listeningEnabled);
     setSwitch('more-human-audio-btn', preferHumanAudio);
 
@@ -12926,34 +14030,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     populateVoicePickerOptions();
 
-    const themeSel = /** @type {HTMLSelectElement|null} */ ($('prof-theme-select'));
-    if (themeSel) themeSel.value = themePreference || 'light';
+    const themePills = $('more-theme-pills');
+    if (themePills) {
+      const mode = themePreference || 'light';
+      themePills.querySelectorAll('[data-theme-mode]').forEach(btn => {
+        if (!(btn instanceof HTMLElement)) return;
+        const active = btn.dataset.themeMode === mode;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', String(active));
+      });
+    }
 
     const volSlider = /** @type {HTMLInputElement|null} */ ($('prof-sound-volume'));
     const volLabel = $('prof-sound-vol-label');
     const volPct = Math.round(soundVolume * 100);
     if (volSlider) volSlider.value = String(volPct);
     if (volLabel) volLabel.textContent = `${volPct}%`;
-
-    const catBox = $('prof-sound-cats');
-    if (catBox) {
-      catBox.querySelectorAll('[data-sound-cat]').forEach(btn => {
-        if (!(btn instanceof HTMLElement)) return;
-        const k = btn.dataset.soundCat;
-        const on = soundCats[k] !== false;
-        btn.classList.toggle('active', on);
-        btn.setAttribute('aria-pressed', String(on));
-      });
-    }
   }
+
+  let activeAchCategory = 'all';
 
   function renderProfileAchievements(knownCount, stagesDone, streak) {
     const box = $('prof-achievements-list');
     if (!box) return;
     const legendaryCount = Object.values(learnState.completedStages || {}).filter(s => s && s.legendary).length;
     let quizBestPct = 0;
+    let quizTotalRuns = 0;
     try {
       const qh = JSON.parse(localStorage.getItem('oxford3000_quiz_history') || '[]') || [];
+      quizTotalRuns = qh.length;
       qh.forEach(item => {
         if (item && item.total > 0) {
           const pct = Math.round((Number(item.score || 0) / Number(item.total)) * 100);
@@ -12962,33 +14067,102 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     } catch (_) { }
 
+    const knownByCefr = { A1: 0, A2: 0, B1: 0, B2: 0 };
+    let masteredSrsCount = 0;
+    for (let i = 0; i < totalWords; i++) {
+      const w = wordsData[i];
+      const k = keyOf(w);
+      if (wordStatus[k] === 'known') {
+        if (knownByCefr[w.cefr] !== undefined) knownByCefr[w.cefr]++;
+      }
+      const m = wordMastery[k];
+      if (m && Number(m.right || 0) >= 2) masteredSrsCount++;
+    }
+    const starredCount = typeof bookmarkedKeys === 'object' && bookmarkedKeys ? Object.keys(bookmarkedKeys).filter(k => bookmarkedKeys[k]).length : 0;
+    const storiesDoneCount = Array.isArray(learnState.completedStories) ? learnState.completedStories.length : 0;
+    const chestsDoneCount = Array.isArray(learnState.claimedChests) ? learnState.claimedChests.length : 0;
+    const cfRightTotal = Number(learnState.confusablesCorrectTotal || 0);
+    const blitzBestPts = Number(learnState.blitzHighScore || 0);
+
     const defs = [
-      { icon: '📚', title: 'นักสะสมคำศัพท์', desc: 'จำคำศัพท์ Oxford 3000 ได้ครบเป้า', cur: knownCount, tiers: [50, 250, 1000] },
-      { icon: '🧭', title: 'ผู้พิชิตเส้นทาง', desc: 'ผ่านบทเรียนในโหมดเรียนรู้', cur: stagesDone, tiers: [5, 25, 100] },
-      { icon: '🔥', title: 'ไฟแรงต่อเนื่อง', desc: 'เรียนต่อเนื่องไม่ขาดช่วง', cur: streak, tiers: [3, 7, 30] },
-      { icon: '👑', title: 'จ้าวแห่งตำนาน', desc: 'พิชิตด่านระดับ Legendary', cur: legendaryCount, tiers: [1, 10, 30] },
-      { icon: '🎯', title: 'นักแม่นแบบทดสอบ', desc: 'ทำคะแนน Quiz สูงสุดถึงเป้า', cur: quizBestPct, tiers: [70, 85, 100] }
+      { id: 'ach_vocab_1', cat: 'vocab', icon: '📚', title: 'นักสะสมคำศัพท์', desc: 'จำคำศัพท์ Oxford 3000 ได้ครบตามเป้าหมาย', cur: knownCount, tiers: [50, 300, 1000] },
+      { id: 'ach_vocab_2', cat: 'vocab', icon: '🎓', title: 'ผู้พิชิตคลัง Oxford', desc: 'เชี่ยวชาญคลังคำศัพท์จำนวนมากอย่างต่อเนื่อง', cur: knownCount, tiers: [500, 1800, 3500] },
+      { id: 'ach_cefr_a1', cat: 'vocab', icon: '🌱', title: 'รากฐานแน่นปึ้ก (A1)', desc: 'จำคำศัพท์ระดับพื้นฐาน A1 ได้ครบเป้า', cur: knownByCefr.A1, tiers: [50, 250, 600] },
+      { id: 'ach_cefr_a2', cat: 'vocab', icon: '🌿', title: 'คล่องแคล่วชีวิตประจำวัน (A2)', desc: 'จำคำศัพท์ระดับ A2 ได้ครบเป้า', cur: knownByCefr.A2, tiers: [40, 200, 500] },
+      { id: 'ach_cefr_b1', cat: 'vocab', icon: '🚀', title: 'ก้าวกระโดดระดับกลาง (B1)', desc: 'จำคำศัพท์ระดับ B1 ได้ครบเป้า', cur: knownByCefr.B1, tiers: [30, 180, 500] },
+      { id: 'ach_cefr_b2', cat: 'vocab', icon: '🏛️', title: 'ปราชญ์วิชาการระดับสูง (B2)', desc: 'จำคำศัพท์ระดับสูง B2 ได้ครบเป้า', cur: knownByCefr.B2, tiers: [20, 150, 500] },
+      { id: 'ach_starred', cat: 'vocab', icon: '⭐', title: 'นักปักหมุดคำสำคัญ', desc: 'ปักหมุดคำศัพท์ติดดาวไว้ทบทวนพิเศษ', cur: starredCount, tiers: [5, 25, 80] },
+      { id: 'ach_srs', cat: 'vocab', icon: '🧠', title: 'ความจำระยะยาว (SRS)', desc: 'ทบทวนคำศัพท์จนแม่นยำอย่างน้อย 2 รอบ', cur: masteredSrsCount, tiers: [20, 150, 600] },
+      { id: 'ach_stages', cat: 'learn', icon: '🧭', title: 'ผู้พิชิตเส้นทาง', desc: 'ผ่านด่านบทเรียนในโหมดเรียนรู้สำเร็จ', cur: stagesDone, tiers: [5, 30, 100] },
+      { id: 'ach_legend', cat: 'learn', icon: '👑', title: 'จ้าวแห่งตำนาน', desc: 'พิชิตด่านระดับ Legendary สีทอง', cur: legendaryCount, tiers: [1, 10, 30] },
+      { id: 'ach_streak', cat: 'learn', icon: '🔥', title: 'ไฟแรงไม่เคยมอด', desc: 'รักษาสถิติเรียนต่อเนื่องหลายวันติดต่อกัน', cur: streak, tiers: [3, 14, 30] },
+      { id: 'ach_xp', cat: 'learn', icon: '⚡', title: 'คลังพลังงาน XP', desc: 'สะสมคะแนนประสบการณ์ XP รวมทุกโหมด', cur: Number(learnState.xp || 0), tiers: [300, 1500, 5000] },
+      { id: 'ach_chests', cat: 'learn', icon: '💎', title: 'นักล่าหีบสมบัติ', desc: 'เปิดหีบสมบัติรับโบนัสบนเส้นทางเรียนรู้', cur: chestsDoneCount, tiers: [1, 5, 15] },
+      { id: 'ach_stories', cat: 'learn', icon: '📖', title: 'นักอ่านเรื่องสั้นบริบท', desc: 'อ่านและตอบคำถาม Mini Context Story ประจำหน่วย', cur: storiesDoneCount, tiers: [1, 5, 15] },
+      { id: 'ach_quiz_acc', cat: 'challenge', icon: '🎯', title: 'นักแม่นแบบทดสอบ', desc: 'ทำคะแนนความแม่นยำใน Quiz สูงสุดถึงเกณฑ์ (%)', cur: quizBestPct, tiers: [70, 90, 100] },
+      { id: 'ach_quiz_runs', cat: 'challenge', icon: '🏅', title: 'จอมยุทธ์สนามสอบ', desc: 'เข้าทำแบบทดสอบวัดความจำครบจำนวนรอบ', cur: quizTotalRuns, tiers: [3, 15, 50] },
+      { id: 'ach_blitz', cat: 'challenge', icon: '⏱️', title: 'อัศวินสายฟ้า Speed Blitz', desc: 'ทำคะแนนสูงสุดในโหมด Speed Blitz 60 วินาที', cur: blitzBestPts, tiers: [400, 1200, 2500] },
+      { id: 'ach_confusables', cat: 'challenge', icon: '⚔️', title: 'นักปราบคำสับสน', desc: 'ตอบคำถามในด่านปราบคำสับสนถูกต้องสะสม', cur: cfRightTotal, tiers: [5, 20, 50] }
     ];
+
     let earnedTotal = 0;
-    box.innerHTML = defs.map(d => {
+    let cntBronze = 0;
+    let cntSilver = 0;
+    let cntGold = 0;
+
+    const TIER_META = [
+      { cls: 'is-tier-locked', label: 'ยังไม่ได้รับ', pill: 'Locked' },
+      { cls: 'is-earned is-tier-bronze', label: '🥉 Bronze', pill: '🥉 Bronze' },
+      { cls: 'is-earned is-tier-silver', label: '🥈 Silver', pill: '🥈 Silver' },
+      { cls: 'is-earned is-tier-gold', label: '🥇 Gold', pill: '🥇 Gold MAX' }
+    ];
+
+    const enriched = defs.map(d => {
       let lv = 0;
       d.tiers.forEach(t => { if (d.cur >= t) lv++; });
       if (lv > 0) earnedTotal++;
+      if (lv === 1) cntBronze++;
+      else if (lv === 2) cntSilver++;
+      else if (lv >= 3) cntGold++;
+      return { ...d, lv };
+    });
+
+    const setTxt = (id, v) => { const el = $(id); if (el) el.textContent = String(v); };
+    setTxt('prof-cnt-gold', cntGold);
+    setTxt('prof-cnt-silver', cntSilver);
+    setTxt('prof-cnt-bronze', cntBronze);
+
+    const visibleDefs = activeAchCategory === 'all'
+      ? enriched
+      : enriched.filter(d => d.cat === activeAchCategory);
+
+    box.innerHTML = visibleDefs.map(d => {
+      const lv = d.lv;
+      const tMeta = TIER_META[Math.min(3, lv)];
       const nextTarget = d.tiers[Math.min(lv, d.tiers.length - 1)];
-      const pct = Math.min(100, Math.round((Math.min(d.cur, nextTarget) / nextTarget) * 100));
+      const pct = Math.min(100, Math.round((Math.min(d.cur, nextTarget) / Math.max(1, nextTarget)) * 100));
+      const tierStepsHtml = d.tiers.map((tVal, idx) => {
+        const passed = d.cur >= tVal;
+        const badgeName = idx === 0 ? '🥉' : (idx === 1 ? '🥈' : '🥇');
+        return `<span class="ach-step-chip ${passed ? 'is-done' : ''}">${badgeName} ${tVal.toLocaleString()}</span>`;
+      }).join('');
       return `
-        <div class="prof-ach-card">
-          <div class="prof-ach-badge ${lv > 0 ? 'is-earned' : ''}">
+        <div class="prof-ach-card ${tMeta.cls}">
+          <div class="prof-ach-badge ${tMeta.cls}">
             <span aria-hidden="true">${d.icon}</span>
-            <small>LV ${lv}</small>
+            <small>${lv === 0 ? 'LV 0' : (lv === 1 ? 'BRONZE' : (lv === 2 ? 'SILVER' : 'GOLD'))}</small>
           </div>
           <div class="prof-ach-info">
             <div class="prof-ach-top">
-              <strong>${d.title}</strong>
+              <div class="prof-ach-title-wrap">
+                <strong>${escapeHtml(d.title)}</strong>
+                <span class="prof-ach-tier-pill ${tMeta.cls}">${tMeta.pill}</span>
+              </div>
               <span class="tabular-nums">${Math.min(d.cur, nextTarget).toLocaleString()} / ${nextTarget.toLocaleString()}</span>
             </div>
-            <div class="prof-ach-desc">${d.desc}</div>
+            <div class="prof-ach-desc">${escapeHtml(d.desc)}</div>
             <div class="prof-ach-bar"><div class="prof-ach-bar-fill" style="width:${pct}%"></div></div>
+            <div class="prof-ach-steps">${tierStepsHtml}</div>
           </div>
         </div>
       `;
@@ -12996,6 +14170,229 @@ document.addEventListener('DOMContentLoaded', () => {
     const sumEl = $('prof-ach-summary');
     if (sumEl) sumEl.textContent = `${earnedTotal} / ${defs.length} เหรียญ`;
   }
+
+  $('prof-ach-filter-bar')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
+    const btn = e.target.closest('[data-ach-cat]');
+    if (!(btn instanceof HTMLElement)) return;
+    activeAchCategory = btn.dataset.achCat || 'all';
+    $('prof-ach-filter-bar')?.querySelectorAll('.prof-ach-tab').forEach(b => b.classList.toggle('active', b === btn));
+    SoundFX.tick();
+    const c = countStatuses();
+    const stagesDone = Object.keys(learnState.completedStages || {}).filter(sid => isStagePassedFull(sid)).length;
+    const streak = typeof computeStreak === 'function' ? computeStreak() : 0;
+    renderProfileAchievements(c.known, stagesDone, streak);
+  });
+
+  /* =========================================================
+     * Streak Freeze & XP / Gems Reward Shop Modal Logic
+     * ========================================================= */
+  const xpShopModal = $('xp-shop-modal');
+  let activeShopTab = 'powerups';
+
+  function syncShopTabsUI() {
+    const pPane = $('xp-shop-pane-powerups');
+    const tPane = $('xp-shop-pane-titles');
+    if (pPane) pPane.hidden = activeShopTab !== 'powerups';
+    if (tPane) tPane.hidden = activeShopTab !== 'titles';
+    $('xp-shop-tabs')?.querySelectorAll('[data-shop-tab]').forEach(btn => {
+      const on = btn instanceof HTMLElement && btn.dataset.shopTab === activeShopTab;
+      btn.classList.toggle('is-active', on);
+      btn.setAttribute('aria-selected', String(on));
+    });
+  }
+
+  function renderXpShopModal() {
+    if (!xpShopModal) return;
+    syncShopTabsUI();
+    const credits = getAvailableShopCredits();
+    const balEl = $('xp-shop-balance');
+    const frzEl = $('xp-shop-freeze-owned');
+    const blzEl = $('xp-shop-blitz-owned');
+    const bstEl = $('xp-shop-boost-timer');
+    if (balEl) balEl.textContent = `💎 ${credits.toLocaleString()} แต้ม`;
+    if (frzEl) frzEl.textContent = `${Number(learnState.streakFreezes || 0)}/3`;
+    if (blzEl) blzEl.textContent = `${Number(learnState.blitzTimeShields || 0)}/3`;
+    if (bstEl) {
+      if (isXpBoostActive()) {
+        const mins = Math.max(1, Math.ceil((learnState.xpBoostUntil - Date.now()) / 60000));
+        bstEl.textContent = `⚡ คูณ 2 XP: เหลือ ${mins} น.`;
+        bstEl.classList.add('is-active');
+      } else {
+        bstEl.textContent = '⚡ คูณ 2 XP: ปิด';
+        bstEl.classList.remove('is-active');
+      }
+    }
+
+    const powerupsHost = $('xp-shop-powerups');
+    if (powerupsHost) {
+      const tones = { streak_freeze: 'is-sky', xp_boost_15m: 'is-amber', blitz_time_shield: 'is-violet' };
+      const shortNames = {
+        streak_freeze: 'เกราะกันไฟดับ (Streak Freeze)',
+        xp_boost_15m: 'น้ำยาคูณ 2 XP (15 นาที)',
+        blitz_time_shield: 'เกราะเวลา Speed Blitz (+8 วิ)'
+      };
+      const shortDescs = {
+        streak_freeze: 'ป้องกันสถิติไฟต่อเนื่องหาย 1 วันอัตโนมัติหากลืมเรียน (เก็บได้สูงสุด 3 ชิ้น)',
+        xp_boost_15m: 'รับ XP 2 เท่าทันทีจากบทเรียน, Quiz, Speed Blitz และเรื่องสั้น',
+        blitz_time_shield: 'เริ่มรอบ Speed Blitz ด้วยเวลา 68 วินาที แทน 60 วินาที (เก็บได้สูงสุด 3 ชิ้น)'
+      };
+      powerupsHost.innerHTML = SHOP_POWERUPS.map(item => {
+        const owned = item.getOwned();
+        const isFull = owned >= item.maxInventory;
+        const canAfford = credits >= item.cost && !isFull;
+        const statusTxt = item.id === 'xp_boost_15m'
+          ? (isFull ? 'กำลังใช้งาน' : 'พร้อมเปิดใช้')
+          : `มี ${owned}/${item.maxInventory}`;
+        return `
+          <div class="xp-shop-row ${isFull ? 'is-maxed' : ''}">
+            <div class="xp-shop-row-icon ${tones[item.id] || 'is-sky'}" aria-hidden="true">${item.icon}</div>
+            <div class="xp-shop-row-body">
+              <div class="xp-shop-row-head">
+                <strong>${escapeHtml(shortNames[item.id] || item.name)}</strong>
+                <span class="xp-shop-badge ${isFull ? 'is-done' : ''}">${escapeHtml(statusTxt)}</span>
+              </div>
+              <p class="xp-shop-row-desc">${escapeHtml(shortDescs[item.id] || item.desc)}</p>
+            </div>
+            <div class="xp-shop-row-action">
+              <button type="button" class="xp-shop-buy-btn ${canAfford ? 'is-ready' : ''}"
+                data-buy-powerup="${escapeHtml(item.id)}" ${(!canAfford || isFull) ? 'disabled' : ''}>
+                ${isFull ? '✓ เต็มแล้ว' : `แลก ${item.cost} 💎`}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    const titlesHost = $('xp-shop-titles');
+    if (titlesHost) {
+      titlesHost.innerHTML = SHOP_TITLES.map(t => {
+        const isOwned = Array.isArray(learnState.ownedTitles) && learnState.ownedTitles.includes(t.id);
+        const isEquipped = learnState.equippedTitle === t.id;
+        const canAfford = credits >= t.cost;
+        const cleanLabel = t.label.replace(/^[^\s]+\s+/, '');
+        let btnHtml = '';
+        if (isOwned) {
+          btnHtml = `<button type="button" class="xp-shop-buy-btn ${isEquipped ? 'is-equipped' : 'is-equip'}" data-equip-title="${escapeHtml(t.id)}">
+            ${isEquipped ? '✓ กำลังใส่' : 'สวมใส่'}
+          </button>`;
+        } else {
+          btnHtml = `<button type="button" class="xp-shop-buy-btn ${canAfford ? 'is-ready' : ''}" data-buy-title="${escapeHtml(t.id)}" ${canAfford ? '' : 'disabled'}>
+            ปลดล็อก ${t.cost} 💎
+          </button>`;
+        }
+        return `
+          <div class="xp-shop-row ${isEquipped ? 'is-equipped' : ''}">
+            <div class="xp-shop-row-icon is-gold" aria-hidden="true">${t.icon}</div>
+            <div class="xp-shop-row-body">
+              <div class="xp-shop-row-head">
+                <strong>${escapeHtml(cleanLabel)}</strong>
+                <span class="xp-shop-badge ${isOwned ? 'is-done' : ''}">${isEquipped ? 'สวมใส่อยู่' : (isOwned ? 'เป็นเจ้าของแล้ว' : 'ฉายาโปรไฟล์')}</span>
+              </div>
+              <p class="xp-shop-row-desc">${escapeHtml(t.desc)}</p>
+            </div>
+            <div class="xp-shop-row-action">
+              ${btnHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  $('xp-shop-tabs')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
+    const tab = e.target.closest('[data-shop-tab]');
+    if (!(tab instanceof HTMLElement)) return;
+    activeShopTab = tab.dataset.shopTab === 'titles' ? 'titles' : 'powerups';
+    SoundFX.tick();
+    syncShopTabsUI();
+  });
+
+  function openXpShopModal() {
+    if (!xpShopModal) return;
+    renderXpShopModal();
+    xpShopModal.classList.add('open');
+    xpShopModal.setAttribute('aria-hidden', 'false');
+    SoundFX.popOpen();
+  }
+
+  function closeXpShopModal() {
+    if (!xpShopModal) return;
+    const wasOpen = xpShopModal.classList.contains('open');
+    xpShopModal.classList.remove('open');
+    xpShopModal.setAttribute('aria-hidden', 'true');
+    if (wasOpen) SoundFX.popClose();
+  }
+
+  document.querySelectorAll('.shop-open-btn').forEach(btn => {
+    btn.addEventListener('click', openXpShopModal);
+  });
+  $('btn-xp-shop-close')?.addEventListener('click', closeXpShopModal);
+  xpShopModal?.addEventListener('click', (e) => {
+    if (e.target === xpShopModal) closeXpShopModal();
+    if (!(e.target instanceof Element)) return;
+
+    const pBtn = e.target.closest('[data-buy-powerup]');
+    if (pBtn instanceof HTMLButtonElement) {
+      const pid = pBtn.dataset.buyPowerup;
+      const item = SHOP_POWERUPS.find(x => x.id === pid);
+      if (!item) return;
+      const credits = getAvailableShopCredits();
+      if (credits < item.cost || item.getOwned() >= item.maxInventory) return;
+      learnState.xpSpent = (learnState.xpSpent || 0) + item.cost;
+      learnState.shopPurchasesCount = (learnState.shopPurchasesCount || 0) + 1;
+      if (pid === 'streak_freeze') {
+        learnState.streakFreezes = Math.min(3, (learnState.streakFreezes || 0) + 1);
+        showToast('🧊 แลกเกราะกันไฟดับ +1 ชิ้นสำเร็จ!');
+      } else if (pid === 'xp_boost_15m') {
+        learnState.xpBoostUntil = Date.now() + 15 * 60 * 1000;
+        showToast('⚡ เปิดใช้น้ำยาคูณ 2 XP เป็นเวลา 15 นาทีแล้ว!');
+      } else if (pid === 'blitz_time_shield') {
+        learnState.blitzTimeShields = Math.min(3, (learnState.blitzTimeShields || 0) + 1);
+        showToast('⏱️ แลกเกราะเวลา Speed Blitz (+8 วิ) สำเร็จ!');
+      }
+      saveLearnState(true);
+      SoundFX.quest();
+      renderXpShopModal();
+      renderProfile();
+      refreshShellTelemetry();
+      return;
+    }
+
+    const tBuyBtn = e.target.closest('[data-buy-title]');
+    if (tBuyBtn instanceof HTMLButtonElement) {
+      const tid = tBuyBtn.dataset.buyTitle;
+      const tObj = SHOP_TITLES.find(x => x.id === tid);
+      if (!tObj) return;
+      const credits = getAvailableShopCredits();
+      if (credits < tObj.cost) return;
+      learnState.xpSpent = (learnState.xpSpent || 0) + tObj.cost;
+      learnState.shopPurchasesCount = (learnState.shopPurchasesCount || 0) + 1;
+      if (!learnState.ownedTitles.includes(tObj.id)) learnState.ownedTitles.push(tObj.id);
+      learnState.equippedTitle = tObj.id;
+      saveLearnState(true);
+      SoundFX.quest();
+      OxConfetti.launch('good');
+      showToast(`👑 ปลดล็อกและสวมใส่ฉายา "${tObj.label}" สำเร็จ!`);
+      renderXpShopModal();
+      renderProfile();
+      refreshShellTelemetry();
+      return;
+    }
+
+    const tEqBtn = e.target.closest('[data-equip-title]');
+    if (tEqBtn instanceof HTMLButtonElement) {
+      const tid = tEqBtn.dataset.equipTitle || '';
+      if (!learnState.ownedTitles.includes(tid)) return;
+      learnState.equippedTitle = (learnState.equippedTitle === tid) ? '' : tid;
+      saveLearnState(true);
+      SoundFX.tick();
+      renderXpShopModal();
+      renderProfile();
+    }
+  });
 
   function openProfileEditor() {
     const box = $('prof-edit-box');
@@ -13100,24 +14497,6 @@ document.addEventListener('DOMContentLoaded', () => {
     storage.flush();
     if (!isSoundMuted && soundVolume > 0) SoundFX.tick();
   });
-  $('prof-sound-cats')?.addEventListener('click', (e) => {
-    if (!(e.target instanceof Element)) return;
-    const btn = e.target.closest('[data-sound-cat]');
-    if (!(btn instanceof HTMLElement)) return;
-    const k = btn.dataset.soundCat;
-    if (!k || !(k in soundCats)) return;
-    soundCats[k] = !(soundCats[k] !== false);
-    storage.set('ox3k_sound_cats', soundCats);
-    SoundFX.toggle(soundCats[k]);
-    renderProfile();
-  });
-  $('prof-haptics-btn')?.addEventListener('click', () => {
-    hapticsEnabled = !hapticsEnabled;
-    storage.set('ox3k_haptics', hapticsEnabled);
-    SoundFX.toggle(hapticsEnabled);
-    renderProfile();
-    showToast(hapticsEnabled ? 'เปิดแรงสั่นบนมือถือแล้ว' : 'ปิดแรงสั่นแล้ว');
-  });
   $('prof-motion-btn')?.addEventListener('click', () => {
     const next = !document.documentElement.classList.contains('ox-reduce-motion');
     document.documentElement.classList.toggle('ox-reduce-motion', next);
@@ -13125,13 +14504,6 @@ document.addEventListener('DOMContentLoaded', () => {
     SoundFX.toggle(!next);
     renderProfile();
     showToast(next ? 'เปิดโหมดลดการเคลื่อนไหวแล้ว' : 'กลับมาใช้ลูกเล่นเคลื่อนไหวปกติแล้ว');
-  });
-  $('more-mascot-btn')?.addEventListener('click', () => {
-    mascotEncourageEnabled = !mascotEncourageEnabled;
-    storage.set('ox3k_mascot_encourage', mascotEncourageEnabled);
-    SoundFX.toggle(mascotEncourageEnabled);
-    renderProfile();
-    showToast(mascotEncourageEnabled ? 'เปิดข้อความให้กำลังใจแล้ว' : 'ปิดข้อความให้กำลังใจแล้ว');
   });
   $('more-listening-btn')?.addEventListener('click', () => {
     listeningEnabled = !listeningEnabled;
@@ -13177,29 +14549,23 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProfile();
     showToast(`ความเร็วเสียงพูด: ${speechRateScale}x`);
   });
-  $('prof-theme-select')?.addEventListener('change', (e) => {
-    const val = /** @type {HTMLSelectElement} */ (e.target).value;
-    applyTheme(val);
-    SoundFX.theme(document.body.classList.contains('dark-theme'));
-    if (currentScreen === 'history' && dashTab === 'dash-overview') renderOverview(computeCategoryStats());
-  });
-  $('more-subnav-list')?.addEventListener('click', (e) => {
+  $('more-theme-pills')?.addEventListener('click', (e) => {
     if (!(e.target instanceof Element)) return;
-    const btn = e.target.closest('[data-more-target]');
+    const btn = e.target.closest('[data-theme-mode]');
     if (!(btn instanceof HTMLElement)) return;
-    $('more-subnav-list')?.querySelectorAll('.more-subnav-btn').forEach(b => b.classList.remove('is-active'));
-    btn.classList.add('is-active');
-    const sec = $(btn.dataset.moreTarget);
-    if (sec) {
-      sec.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
-      OxMotion.pulseClass(sec, 'is-highlighted', 600);
+    const mode = btn.dataset.themeMode || 'light';
+    applyTheme(mode);
+    SoundFX.theme(document.body.classList.contains('dark-theme'));
+    if (currentScreen === 'history') {
+      if (dashTab === 'dash-overview') renderOverview(computeCategoryStats());
+      if (typeof renderQuizHistory === 'function') renderQuizHistory();
     }
-    SoundFX.tick();
+    const labels = { light: 'โหมดสว่าง', dark: 'โหมดมืด', auto: 'ตามระบบอุปกรณ์' };
+    showToast(`เปลี่ยนธีมเป็น ${labels[mode] || mode}`);
   });
 
   $('btn-prof-sync')?.addEventListener('click', openSyncModal);
   $('btn-prof-settings')?.addEventListener('click', () => { SoundFX.nav(); navigateByCategory('more'); });
-  $('btn-more-view-profile')?.addEventListener('click', () => { SoundFX.nav(); navigateByCategory('profile'); });
   $('btn-more-edit-prof')?.addEventListener('click', () => {
     SoundFX.nav();
     navigateByCategory('profile');
@@ -13377,6 +14743,20 @@ document.addEventListener('DOMContentLoaded', () => {
     setTxt('rail-cefr-label', learnState.activeSection || 'A1');
     setTxt('mob-cefr-badge', learnState.activeSection || 'A1');
 
+    const freezesOwned = Number(learnState.streakFreezes || 0);
+    const credits = getAvailableShopCredits();
+    setTxt('rail-gems-val', `💎 ${credits.toLocaleString()}`);
+    setTxt('rail-freeze-count', `${freezesOwned}/3`);
+    const railFrzBadge = $('rail-freeze-badge');
+    if (railFrzBadge) {
+      railFrzBadge.textContent = `🧊${freezesOwned}`;
+      railFrzBadge.hidden = freezesOwned <= 0;
+    }
+    const mobFrzPip = $('mob-freeze-pip');
+    if (mobFrzPip) {
+      mobFrzPip.hidden = freezesOwned <= 0;
+    }
+
     const due = getDueWordIndices();
     const srsDesc = $('rail-srs-desc');
     if (srsDesc) {
@@ -13514,15 +14894,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  onGetLearnStreakDatesHook = () => Object.values(learnState.completedStages || {})
-    .filter(st => st && Number(st.completedAt) > 0)
-    .map(st => Number(st.completedAt));
+  onGetLearnStreakDatesHook = () => {
+    const stageDates = Object.values(learnState.completedStages || {})
+      .filter(st => st && Number(st.completedAt) > 0)
+      .map(st => Number(st.completedAt));
+    const frozenTs = (Array.isArray(learnState.frozenDates) ? learnState.frozenDates : [])
+      .map(ymd => {
+        const m = typeof ymd === 'string' ? ymd.match(/^(\d{4})-(\d{2})-(\d{2})$/) : null;
+        return m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12, 0, 0).getTime() : 0;
+      })
+      .filter(ts => ts > 0);
+    return [...stageDates, ...frozenTs];
+  };
 
   onRenderLearnDashboardHook = renderLearnDashboard;
 
   onScreenShownHook = (name) => {
     if (name !== 'learn' && typeof closeNodePopover === 'function') closeNodePopover(false, true);
     if (name !== 'lesson') closeLessonExitConfirm();
+    if (name !== 'quiz') stopBlitzTimers();
+    if (name === 'quiz-hub') refreshQuizHubSpecialRecords();
     const activeNav = navCategoryForScreen(name);
     document.querySelectorAll('.nav-item[data-nav], .mob-nav-item[data-nav]').forEach(btn => {
       const on = btn instanceof HTMLElement && btn.dataset.nav === activeNav;
@@ -13584,6 +14975,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     learnState.claimedChests = Array.from(new Set([...learnState.claimedChests, ...cleanRemote.claimedChests]));
     learnState.unlockedUnits = Array.from(new Set([...learnState.unlockedUnits, ...cleanRemote.unlockedUnits]));
+    learnState.frozenDates = Array.from(new Set([...(learnState.frozenDates || []), ...(cleanRemote.frozenDates || [])]));
+    learnState.ownedTitles = Array.from(new Set([...(learnState.ownedTitles || []), ...(cleanRemote.ownedTitles || [])]));
+    learnState.confusablesMastered = Array.from(new Set([...(learnState.confusablesMastered || []), ...(cleanRemote.confusablesMastered || [])]));
+    learnState.completedStories = Array.from(new Set([...(learnState.completedStories || []), ...(cleanRemote.completedStories || [])]));
+    learnState.blitzHighScore = Math.max(learnState.blitzHighScore || 0, cleanRemote.blitzHighScore || 0);
+    learnState.blitzBestCombo = Math.max(learnState.blitzBestCombo || 0, cleanRemote.blitzBestCombo || 0);
+    learnState.blitzGamesPlayed = Math.max(learnState.blitzGamesPlayed || 0, cleanRemote.blitzGamesPlayed || 0);
+    learnState.confusablesCorrectTotal = Math.max(learnState.confusablesCorrectTotal || 0, cleanRemote.confusablesCorrectTotal || 0);
+    learnState.bonusGems = Math.max(learnState.bonusGems || 120, cleanRemote.bonusGems || 120);
     ensureTodayQuests();
     if (cleanRemote.dailyQuests && cleanRemote.dailyQuests.date === learnState.dailyQuests.date) {
       learnState.dailyQuests.xpToday = Math.max(learnState.dailyQuests.xpToday, cleanRemote.dailyQuests.xpToday);
@@ -13623,11 +15023,13 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================
      * Init
      * ========================================================= */
+  ensureStreakFreezeProtection();
   renderWelcome();
   updateDailyGoalUI();
   renderLearnPath();
   initLearnUnitScrollReveal();
   refreshShellTelemetry();
+  refreshQuizHubSpecialRecords();
   requestAnimationFrame(syncSidebarNavIndicator);
   window.addEventListener('resize', () => requestAnimationFrame(syncSidebarNavIndicator), { passive: true });
   if (typeof onGoogleUiRefreshHook === 'function') onGoogleUiRefreshHook(OxGoogleSync._state);
