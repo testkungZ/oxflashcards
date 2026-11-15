@@ -1200,6 +1200,20 @@ document.addEventListener('DOMContentLoaded', () => {
   /** @type {HTMLAudioElement|null} */
   let activeAudioEl = null;
   let speakResetTimer = null;
+  let speakRequestSeq = 0;
+  let preferHumanAudio = storage.get('ox3k_human_audio', true) !== false;
+  let speechRateScale = (() => {
+    const n = Number(storage.get('ox3k_speech_rate', 1));
+    return (n === 0.85 || n === 1.1) ? n : 1;
+  })();
+  /** @type {{ US: string, UK: string }} */
+  let preferredVoiceUris = (() => {
+    const raw = storage.get('ox3k_voice_uris_v1', null);
+    return {
+      US: raw && typeof raw.US === 'string' ? raw.US : '',
+      UK: raw && typeof raw.UK === 'string' ? raw.UK : ''
+    };
+  })();
 
   function isBookmarked(key) {
     return bookmarkedWords.has(key);
@@ -2375,6 +2389,9 @@ document.addEventListener('DOMContentLoaded', () => {
         availableVoices = window.speechSynthesis.getVoices();
         window.speechSynthesis.onvoiceschanged = () => {
             availableVoices = window.speechSynthesis.getVoices();
+            if (typeof populateVoicePickerOptions === 'function') {
+                populateVoicePickerOptions();
+            }
         };
     }
 
@@ -4619,79 +4636,206 @@ document.addEventListener('DOMContentLoaded', () => {
         speakResetTimer = setTimeout(() => clearSpeakingState(), timeoutMs);
     }
 
-    function speakViaWebSpeech(text, btn, rateOverride = null, langOverride = null) {
+    const VOICE_TEST_SAMPLES = {
+        US: 'Oxford three thousand helps you speak clearly every day.',
+        UK: 'Oxford three thousand helps you practise clear British pronunciation.'
+    };
+
+    function resolveTargetAccent(langOverride = null) {
+        if (langOverride === 'en-GB' || langOverride === 'UK') return 'UK';
+        if (langOverride === 'en-US' || langOverride === 'US') return 'US';
+        return preferredAccent === 'UK' ? 'UK' : 'US';
+    }
+
+    function getAllSpeechVoices() {
+        const live = window.speechSynthesis ? (window.speechSynthesis.getVoices() || []) : [];
+        if (live.length > 0) {
+            availableVoices = live;
+            return live;
+        }
+        return Array.isArray(availableVoices) ? availableVoices : [];
+    }
+
+    /** Score Web Speech voices cleanly so Neural / Natural / Google / Enhanced voices win over legacy robotic OS voices. */
+    function scoreWebSpeechVoice(v, accent = 'US') {
+        if (!v) return -9999;
+        const lang = String(v.lang || '').replace('_', '-').toLowerCase();
+        if (!lang.startsWith('en')) return -9999;
+        const name = String(v.name || '');
+        const low = name.toLowerCase();
+        const wantLang = accent === 'UK' ? 'en-gb' : 'en-us';
+        const otherLang = accent === 'UK' ? 'en-us' : 'en-gb';
+
+        let score = 0;
+        if (lang === wantLang) score += 220;
+        else if (lang.startsWith(wantLang)) score += 200;
+        else if (lang === otherLang || lang.startsWith(otherLang)) score -= 40;
+        else score += 60; // en-AU, en-CA, en-IE
+
+        if (low.includes('online (natural)') || low.includes('neural')) score += 130;
+        else if (low.includes('natural')) score += 115;
+        else if (low.includes('google')) score += 100;
+        else if (low.includes('(premium)') || low.includes('(enhanced)') || low.includes('siri')) score += 90;
+
+        // Clear high-quality system voices on macOS / iOS / Android
+        const clearNativeRe = accent === 'UK'
+            ? /\b(sonia|libby|ryan|daniel|kate|serena|oliver|arthur|martha)\b/i
+            : /\b(aria|jenny|guy|andrew|ava|emma|samantha|alex|allison|nicky|aaron)\b/i;
+        if (clearNativeRe.test(name)) score += 65;
+
+        // Demote legacy SAPI5 robotic desktop voices unless nothing else is available
+        if (/\b(zira|david|mark|hazel|george|susan|richard|heera)\b/i.test(name) && !low.includes('natural')) {
+            score -= 45;
+        }
+        if (v.localService === false && (low.includes('natural') || low.includes('google'))) {
+            score += 8;
+        }
+        return score;
+    }
+
+    function getRankedVoicesForAccent(accent = 'US') {
+        const all = getAllSpeechVoices();
+        const wantPrefix = accent === 'UK' ? 'en-gb' : 'en-us';
+        const ranked = all
+            .filter(v => String(v.lang || '').replace('_', '-').toLowerCase().startsWith('en'))
+            .map(v => {
+                const s = scoreWebSpeechVoice(v, accent);
+                const low = String(v.name || '').toLowerCase();
+                const badge = (low.includes('natural') || low.includes('neural'))
+                    ? '★ Natural'
+                    : (low.includes('google') ? '★ Google' : ((low.includes('enhanced') || low.includes('premium')) ? '★ ชัดพิเศษ' : 'มาตรฐาน'));
+                return { voice: v, score: s, badge, lang: String(v.lang || '').replace('_', '-') };
+            })
+            .sort((a, b) => b.score - a.score || a.voice.name.localeCompare(b.voice.name));
+
+        // Put exact US/UK locale voices first so the picker matches expectations
+        const exactGroup = ranked.filter(r => r.lang.toLowerCase().startsWith(wantPrefix));
+        const otherEn = ranked.filter(r => !r.lang.toLowerCase().startsWith(wantPrefix));
+        return exactGroup.length > 0 ? [...exactGroup, ...otherEn.slice(0, 4)] : ranked;
+    }
+
+    function pickBestVoiceForAccent(accent = 'US') {
+        const all = getAllSpeechVoices();
+        const savedUri = preferredVoiceUris[accent];
+        if (savedUri) {
+            const matched = all.find(v => v.voiceURI === savedUri || v.name === savedUri);
+            if (matched) return matched;
+        }
+        const ranked = getRankedVoicesForAccent(accent);
+        return ranked[0]?.voice || null;
+    }
+
+    function stopActiveAudioPlayback() {
+        if (activeAudioEl) {
+            try {
+                activeAudioEl.onended = null;
+                activeAudioEl.onerror = null;
+                activeAudioEl.pause();
+                activeAudioEl.currentTime = 0;
+            } catch (_) { }
+        }
+    }
+
+    /** Optional CDN audio resolver for Phase B pre-generated studio Neural audio files */
+    function resolveCdnAudioUrl(cleanText, targetAccent = 'US') {
+        const base = typeof /** @type {any} */ (window).OX_AUDIO_CDN_BASE === 'string'
+            ? /** @type {any} */ (window).OX_AUDIO_CDN_BASE.trim().replace(/\/+$/, '')
+            : '';
+        if (!base) return null;
+        const slug = String(cleanText || '').trim().toLowerCase()
+            .replace(/[^a-z0-9\s'-]/g, '')
+            .replace(/\s+/g, '_');
+        if (!slug) return null;
+        return `${base}/${targetAccent.toLowerCase()}/${encodeURIComponent(slug)}.mp3`;
+    }
+
+    function speakViaWebSpeech(text, btn, rateOverride = null, langOverride = null, reqSeq = speakRequestSeq) {
+        if (reqSeq !== speakRequestSeq) return;
         if (!window.speechSynthesis) {
             clearSpeakingState();
             return;
         }
-        const langTag = langOverride || (preferredAccent === 'UK' ? 'en-GB' : 'en-US');
+        stopActiveAudioPlayback();
+        const targetAccent = resolveTargetAccent(langOverride);
+        const langTag = targetAccent === 'UK' ? 'en-GB' : 'en-US';
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = langTag;
-        const voicesList = (typeof availableVoices !== 'undefined' && Array.isArray(availableVoices) && availableVoices.length)
-            ? availableVoices
-            : (window.speechSynthesis.getVoices() || []);
-        const exact = voicesList.find(v =>
-            v.lang && v.lang.replace('_', '-') === langTag &&
-            (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('Samantha') || v.name.includes('Zira'))
-        ) || voicesList.find(v => v.lang && v.lang.replace('_', '-').startsWith(langTag))
-            || voicesList.find(v => v.lang && v.lang.startsWith('en'));
+        const exact = pickBestVoiceForAccent(targetAccent);
+        utterance.lang = exact?.lang || langTag;
         if (exact) utterance.voice = exact;
-        const baseRate = text.includes(' ') ? 0.92 : 0.86;
-        utterance.rate = (typeof rateOverride === 'number' && rateOverride >= 0.4 && rateOverride <= 2.0) ? rateOverride : baseRate;
+        utterance.pitch = 1.0;
+
+        const baseRate = text.includes(' ') ? 0.92 : 0.88;
+        const rawRate = (typeof rateOverride === 'number' && rateOverride >= 0.4 && rateOverride <= 2.0)
+            ? rateOverride
+            : (baseRate * speechRateScale);
+        utterance.rate = Math.min(1.6, Math.max(0.5, Number(rawRate.toFixed(2))));
 
         if (btn) {
-            utterance.onstart = () => setSpeakingState(btn, text.includes(' ') ? 4200 : 2800);
+            utterance.onstart = () => setSpeakingState(btn, text.includes(' ') ? 4500 : 2800);
             utterance.onend = () => clearSpeakingState();
             utterance.onerror = () => clearSpeakingState();
         }
         setTimeout(() => {
+            if (reqSeq !== speakRequestSeq) return;
             try {
-                if (window.speechSynthesis) window.speechSynthesis.speak(utterance);
+                if (window.speechSynthesis) {
+                    if (window.speechSynthesis.paused) window.speechSynthesis.resume();
+                    window.speechSynthesis.speak(utterance);
+                }
             } catch (_) {
                 clearSpeakingState();
             }
-        }, 40);
+        }, 32);
     }
 
-    async function tryPlayDictionaryMp3(wordText, btn, rateOverride = null) {
-        const clean = String(wordText || '').trim().toLowerCase();
-        if (!clean || /\s/.test(clean) || clean.length > 26 || navigator.onLine === false) return false;
-        const cacheKey = `${clean}|${preferredAccent}`;
-        let audioUrl = audioUrlCache.get(cacheKey);
-        if (audioUrl === undefined) {
-            audioUrl = null;
-            try {
-                const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
-                const tid = ctrl ? setTimeout(() => ctrl.abort(), 1100) : null;
-                const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(clean)}`, ctrl ? { signal: ctrl.signal } : undefined);
-        if (tid) clearTimeout(tid);
-        if (res && res.ok) {
-          const data = await res.json();
-          const phs = Array.isArray(data?.[0]?.phonetics) ? data[0].phonetics : [];
-          const urls = phs.map(p => p?.audio).filter(u => typeof u === 'string' && u.startsWith('http'));
-          const wantUk = preferredAccent === 'UK';
-          const matched = urls.find(u => wantUk ? /-uk[\.\-]/i.test(u) : /-us[\.\-]/i.test(u));
-          if (matched) audioUrl = matched;
-          else if (!wantUk && urls.length > 0) audioUrl = urls.find(u => !/-uk[\.\-]/i.test(u)) || null;
+    async function fetchDictionaryAudioUrl(cleanWord, targetAccent = 'US', timeoutMs = 1100) {
+        const clean = String(cleanWord || '').trim().toLowerCase();
+        if (!clean || /\s/.test(clean) || clean.length > 26 || navigator.onLine === false) return null;
+        const cacheKey = `${clean}|${targetAccent}`;
+        if (audioUrlCache.has(cacheKey)) {
+            return audioUrlCache.get(cacheKey) || null;
         }
-      } catch (_) {
-                audioUrl = null;
-            }
-            audioUrlCache.set(cacheKey, audioUrl || null);
-        }
-        if (!audioUrl) return false;
+        let audioUrl = null;
         try {
-            if (activeAudioEl) {
-                activeAudioEl.pause();
-                activeAudioEl.currentTime = 0;
+            const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+            const tid = ctrl ? setTimeout(() => ctrl.abort(), timeoutMs) : null;
+            const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(clean)}`, ctrl ? { signal: ctrl.signal } : undefined);
+            if (tid) clearTimeout(tid);
+            if (res && res.ok) {
+                const data = await res.json();
+                const phs = Array.isArray(data?.[0]?.phonetics) ? data[0].phonetics : [];
+                const urls = phs.map(p => p?.audio).filter(u => typeof u === 'string' && u.startsWith('http'));
+                const wantUk = targetAccent === 'UK';
+                const exactUk = urls.find(u => /-uk[\.\-]|\/uk\//i.test(u));
+                const exactUs = urls.find(u => /-us[\.\-]|\/us\//i.test(u));
+                if (wantUk) {
+                    audioUrl = exactUk || null;
+                } else {
+                    audioUrl = exactUs || urls.find(u => !/-uk[\.\-]|\/uk\//i.test(u) && !/-au[\.\-]/i.test(u)) || null;
+                }
             }
+        } catch (_) {
+            audioUrl = null;
+        }
+        audioUrlCache.set(cacheKey, audioUrl || null);
+        return audioUrl || null;
+    }
+
+    async function playAudioUrlWithGuard(audioUrl, btn, rateOverride = null, reqSeq = speakRequestSeq) {
+        if (!audioUrl || reqSeq !== speakRequestSeq) return false;
+        try {
+            stopActiveAudioPlayback();
             const audio = activeAudioEl || new Audio();
             activeAudioEl = audio;
             audio.src = audioUrl;
-            audio.playbackRate = (typeof rateOverride === 'number' && rateOverride >= 0.4 && rateOverride <= 2.0) ? rateOverride : 1.0;
+            const targetRate = (typeof rateOverride === 'number' && rateOverride >= 0.4 && rateOverride <= 2.0)
+                ? rateOverride
+                : speechRateScale;
+            audio.playbackRate = Math.min(1.6, Math.max(0.5, Number(targetRate.toFixed(2))));
             audio.onended = () => clearSpeakingState();
             audio.onerror = () => clearSpeakingState();
-            if (btn) setSpeakingState(btn, 2800);
+            if (btn) setSpeakingState(btn, 3000);
+            if (reqSeq !== speakRequestSeq) return false;
             await audio.play();
             return true;
         } catch (_) {
@@ -4699,11 +4843,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function tryPlayDictionaryMp3(wordText, btn, rateOverride = null, accentOverride = null, reqSeq = speakRequestSeq) {
+        const clean = String(wordText || '').trim().toLowerCase();
+        const targetAccent = accentOverride || preferredAccent;
+        if (!clean || /\s/.test(clean) || clean.length > 26 || navigator.onLine === false) return false;
+        const audioUrl = await fetchDictionaryAudioUrl(clean, targetAccent, 1100);
+        if (!audioUrl || reqSeq !== speakRequestSeq) return false;
+        return playAudioUrlWithGuard(audioUrl, btn, rateOverride, reqSeq);
+    }
+
+    /** Silently warm dictionary audio cache for upcoming card/lesson words so playback feels instant. */
+    let lastPrefetchKey = '';
+    function prefetchWordAudio(wordText, accentOverride = null) {
+        if (!preferHumanAudio || navigator.onLine === false) return;
+        const clean = String(wordText || '').trim().toLowerCase();
+        if (!clean || /\s/.test(clean) || clean.length > 24) return;
+        const targetAccent = accentOverride || preferredAccent;
+        const cacheKey = `${clean}|${targetAccent}`;
+        if (audioUrlCache.has(cacheKey) || lastPrefetchKey === cacheKey) return;
+        lastPrefetchKey = cacheKey;
+        fetchDictionaryAudioUrl(clean, targetAccent, 1400).catch(() => { });
+    }
+
     /**
      * @param {string} text
      * @param {boolean} [isManual]
      * @param {EventTarget|null} [targetBtn]
-     * @param {{ rate?: number }|null} [opts]
+     * @param {{ rate?: number, lang?: string }|null} [opts]
      */
     function speakWordOverride(text, isManual = false, targetBtn = null, opts = null) {
         if (!text) return;
@@ -4712,24 +4878,54 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!clean) return;
         const rateOverride = opts && typeof opts.rate === 'number' ? opts.rate : null;
         const langOverride = opts && typeof opts.lang === 'string' ? opts.lang : null;
+        const targetAccent = resolveTargetAccent(langOverride);
+        const reqSeq = ++speakRequestSeq;
+
         try {
+            stopActiveAudioPlayback();
             if (window.speechSynthesis) {
                 window.speechSynthesis.cancel();
             }
         } catch (_) { }
 
         const btn = targetBtn || (btnQuizSpeak && btnQuizSpeak.offsetParent !== null ? btnQuizSpeak : (btnSpeak && btnSpeak.offsetParent !== null ? btnSpeak : null));
-        if (btn) setSpeakingState(btn, clean.includes(' ') ? 4200 : 2800);
+        if (btn) setSpeakingState(btn, clean.includes(' ') ? 4500 : 2800);
 
-        if (isManual && !clean.includes(' ') && !langOverride && navigator.onLine !== false) {
-            tryPlayDictionaryMp3(clean, btn, rateOverride).then(played => {
-                if (!played) speakViaWebSpeech(clean, btn, rateOverride, langOverride);
-            }).catch(() => speakViaWebSpeech(clean, btn, rateOverride, langOverride));
+        const cdnUrl = preferHumanAudio && navigator.onLine !== false ? resolveCdnAudioUrl(clean, targetAccent) : null;
+        if (cdnUrl) {
+            playAudioUrlWithGuard(cdnUrl, btn, rateOverride, reqSeq).then(played => {
+                if (!played && reqSeq === speakRequestSeq) {
+                    if (!clean.includes(' ')) {
+                        tryPlayDictionaryMp3(clean, btn, rateOverride, targetAccent, reqSeq).then(dictOk => {
+                            if (!dictOk && reqSeq === speakRequestSeq) speakViaWebSpeech(clean, btn, rateOverride, langOverride, reqSeq);
+                        }).catch(() => speakViaWebSpeech(clean, btn, rateOverride, langOverride, reqSeq));
+                    } else {
+                        speakViaWebSpeech(clean, btn, rateOverride, langOverride, reqSeq);
+                    }
+                }
+            }).catch(() => speakViaWebSpeech(clean, btn, rateOverride, langOverride, reqSeq));
+            return;
+        }
+
+        if (preferHumanAudio && !clean.includes(' ') && navigator.onLine !== false) {
+            tryPlayDictionaryMp3(clean, btn, rateOverride, targetAccent, reqSeq).then(played => {
+                if (!played && reqSeq === speakRequestSeq) {
+                    speakViaWebSpeech(clean, btn, rateOverride, langOverride, reqSeq);
+                }
+            }).catch(() => {
+                if (reqSeq === speakRequestSeq) speakViaWebSpeech(clean, btn, rateOverride, langOverride, reqSeq);
+            });
         } else {
-            speakViaWebSpeech(clean, btn, rateOverride, langOverride);
+            speakViaWebSpeech(clean, btn, rateOverride, langOverride, reqSeq);
         }
     }
     /** @type {any} */ (window).speakWordOverride = speakWordOverride;
+    /** @type {any} */ (window).OxAudio = {
+        scoreVoice: scoreWebSpeechVoice,
+        getRankedVoices: getRankedVoicesForAccent,
+        pickBestVoice: pickBestVoiceForAccent,
+        prefetch: prefetchWordAudio
+    };
 
     function renderQuizQuestion() {
         if (!quizSession) return;
@@ -7183,6 +7379,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const recentStageDialogueKeys = {};
     /** @type {Record<string, number>} */
     const stageInsightRotation = {};
+    const LEARN_RECENT_SESSION_KEY = 'ox3k_learn_recent_v1';
+    /** @type {Record<string, string[]>} */
+    const recentStageWordKeys = (() => {
+        try {
+            const raw = sessionStorage.getItem(LEARN_RECENT_SESSION_KEY);
+            const parsed = raw ? JSON.parse(raw) : null;
+            return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (_) {
+            return {};
+        }
+    })();
+
+    function saveRecentStageWordKeys() {
+        try {
+            sessionStorage.setItem(LEARN_RECENT_SESSION_KEY, JSON.stringify(recentStageWordKeys));
+        } catch (_) {
+            // Ignore private-browsing quota errors
+        }
+    }
+
+    function recordRecentStageWords(stageId, indices) {
+        if (!stageId || !Array.isArray(indices) || indices.length === 0) return;
+        const keys = indices.map(i => wordsData[i] ? keyOf(wordsData[i]) : '').filter(Boolean);
+        const prev = Array.isArray(recentStageWordKeys[stageId]) ? recentStageWordKeys[stageId] : [];
+        recentStageWordKeys[stageId] = [...prev.filter(k => !keys.includes(k)), ...keys].slice(-20);
+        saveRecentStageWordKeys();
+    }
+
+    /**
+     * Calibrate stage difficulty cleanly into 4 progressive tiers (1=พื้นฐาน .. 4=ตำนาน/ตัดสิน).
+     */
+    function getDifficultyProfile(stage, opts = {}) {
+        const totalRounds = opts.totalRounds || getStageTotalRounds(stage);
+        const roundNum = Math.min(totalRounds, Math.max(1, Number(opts.roundNum) || 1));
+        const mode = opts.mode === 'legendary' ? 'legendary' : (opts.mode === 'practice' ? 'practice' : 'normal');
+        const isJump = Boolean(opts.isJumpTestForUnitId);
+        const isVirtual = Boolean(stage && stage.isVirtual);
+        const isBoss = Boolean(stage && stage.isBoss);
+        const isReview = Boolean(stage && stage.nodeType === 'review');
+
+        let tier = 1;
+        if (isVirtual) {
+            tier = 2;
+        } else if (mode === 'legendary' || isJump || (isBoss && roundNum >= totalRounds)) {
+            tier = 4;
+        } else if (isBoss || (isReview && roundNum >= 2) || (totalRounds >= 3 && roundNum === totalRounds) || (mode === 'practice' && isReview)) {
+            tier = 3;
+        } else if (mode === 'practice' || isReview || roundNum >= 2) {
+            tier = 2;
+        } else {
+            tier = 1;
+        }
+
+        const META = {
+            1: { label: 'พื้นฐาน', badgeText: '🌱 พื้นฐาน', cls: 'is-tier-1' },
+            2: { label: 'ระดับกลาง', badgeText: '📘 ระดับกลาง', cls: 'is-tier-2' },
+            3: { label: 'เข้มข้น', badgeText: '🔥 เข้มข้น', cls: 'is-tier-3' },
+            4: { label: 'ระดับตำนาน', badgeText: '👑 ระดับตำนาน', cls: 'is-tier-4' }
+        };
+        return { tier, ...(META[tier] || META[1]) };
+    }
+
+    /** Score word complexity + learner struggle to match stage difficulty tier. */
+    function scoreWordDifficultyForLearn(w) {
+        if (!w) return 0;
+        const wordStr = String(w.word || '').trim();
+        const k = keyOf(w);
+        const m = wordMastery[k];
+        const st = wordStatus[k];
+        let score = Math.min(20, wordStr.length * 1.4);
+        if (wordStr.includes(' ') || wordStr.includes('-')) score += 8;
+        const exLen = w.example ? w.example.trim().split(/\s+/).length : 6;
+        score += Math.min(16, exLen * 1.5);
+        if (st === 'review') score += 18;
+        if (m) {
+            const wrong = Number(m.wrong || 0);
+            const right = Number(m.right || 0);
+            score += Math.min(24, wrong * 6);
+            if (right >= 3 && wrong === 0) score -= 6;
+        }
+        return score;
+    }
 
     function ensureTodayQuests() {
         const today = getTodayDateString();
@@ -8139,10 +8417,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else {
             const nextRound = Math.min(totalRounds, doneRounds + 1);
-            const tierLabel = nextRound === totalRounds ? 'ระดับเข้มข้น' : (nextRound === 1 ? 'พื้นฐาน' : 'ระดับกลาง');
+            const tierProfile = getDifficultyProfile(stage, { roundNum: nextRound, totalRounds, mode: 'normal' });
             if (nodePopBadge) nodePopBadge.hidden = true;
             if (nodePopSub) {
-                nodePopSub.textContent = `บทที่ ${nextRound}/${totalRounds} · ${tierLabel}`;
+                nodePopSub.textContent = `บทที่ ${nextRound}/${totalRounds} · ${tierProfile.badgeText}`;
             }
             if (btnNodePopStart) {
                 btnNodePopStart.textContent = `เริ่มต้น +${stage.isBoss ? 35 : 20} XP`;
@@ -8538,7 +8816,25 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Could you please repeat that a bit slower?", promptTh: "ช่วยพูดซ้ำช้าลงอีกนิดได้ไหมครับ/คะ?", answerEn: "Sure, no problem. Let me say that again.", answerTh: "ได้เลยครับ/ค่ะ ไม่มีปัญหา เดี๋ยวฉันพูดใหม่อีกครั้งนะ", distractors: ["I am going to the bank now.", "The coffee shop is on the left.", "Yes, I have two brothers.", "It costs twenty dollars."] },
             { promptEn: "Where can I charge my phone around here?", promptTh: "แถวนี้มีที่ให้ชาร์จแบตโทรศัพท์ตรงไหนบ้างครับ/คะ?", answerEn: "There is a power outlet right next to the counter.", answerTh: "มีปลั๊กไฟอยู่ข้างๆ เคาน์เตอร์เลยครับ/ค่ะ", distractors: ["My phone screen is cracked.", "I usually wake up at seven.", "The weather is very sunny today.", "She bought a new jacket yesterday."] },
             { promptEn: "What time does the supermarket close tonight?", promptTh: "คืนนี้ซูเปอร์มาร์เก็ตปิดกี่โมงครับ/คะ?", answerEn: "It stays open until ten o'clock.", answerTh: "เปิดถึงสี่ทุ่มครับ/ค่ะ", distractors: ["I need to buy some apples.", "The bus stop is across the street.", "He is cooking dinner right now.", "We went there last Sunday."] },
-            { promptEn: "Could you spell your last name for me?", promptTh: "ช่วยสะกดนามสกุลของคุณให้หน่อยได้ไหม?", answerEn: "Sure, it is K-A-S-E-M.", answerTh: "ได้เลย สะกดว่า K-A-S-E-M", distractors: ["Next Thursday afternoon.", "The coffee tastes sweet.", "It fits inside my bag.", "Turn right at the signal."] }
+            { promptEn: "Could you spell your last name for me?", promptTh: "ช่วยสะกดนามสกุลของคุณให้หน่อยได้ไหม?", answerEn: "Sure, it is K-A-S-E-M.", answerTh: "ได้เลย สะกดว่า K-A-S-E-M", distractors: ["Next Thursday afternoon.", "The coffee tastes sweet.", "It fits inside my bag.", "Turn right at the signal."] },
+            { promptEn: "Would you mind if I opened the window for some fresh air?", promptTh: "คุณจะรังเกียจไหมถ้าฉันจะเปิดหน้าต่างรับอากาศบริสุทธิ์?", answerEn: "Not at all, please go ahead.", answerTh: "ไม่เลยครับ เชิญตามสบายเลย", distractors: ["Breakfast is served until ten.", "Vote before five o’clock.", "Yes, I stared at screens all day.", "I'm craving something light, maybe a noodle soup or a salad."] },
+            { promptEn: "I am so sorry I spilled coffee on your notebook.", promptTh: "ฉันขอโทษจริงๆ ที่ทำกาแฟหกใส่สมุดบันทึกของคุณ", answerEn: "It is totally fine, do not worry about it.", answerTh: "ไม่เป็นไรเลยครับ ไม่ต้องกังวลไปนะ", distractors: ["Let's check the train schedule.", "Take two pills with water.", "Our team finished the slide.", "The weather is much warmer today."] },
+            { promptEn: "Could you possibly speak a little more slowly?", promptTh: "คุณช่วยพูดช้าลงอีกนิดได้ไหมครับ?", answerEn: "Of course, I will slow down.", answerTh: "ได้เลยค่ะ เดี๋ยวฉันจะพูดช้าลงนะ", distractors: ["Yes, I am tired.", "Please sign your name at the bottom.", "Right, look both ways first.", "I need to buy a new laptop."] },
+            { promptEn: "Excuse me, may I borrow your pen for a second?", promptTh: "ขอโทษนะครับ ขอยืมปากกาหน่อยได้ไหมครับ?", answerEn: "Sure, here you go.", answerTh: "ได้เลยครับ นี่ครับ", distractors: ["Yes, I would like a glass of sparkling water.", "Thirty baht a bowl.", "Because the exam started.", "I lost my umbrella."] },
+            { promptEn: "I apologize for keeping you waiting so long.", promptTh: "ขอโทษด้วยนะครับที่ปล่อยให้รอนานขนาดนี้", answerEn: "No problem at all, I just got here myself.", answerTh: "ไม่เป็นไรเลยค่ะ ฉันเองก็เพิ่งมาถึงเหมือนกัน", distractors: ["Turn off the porch light.", "Third floor, right beside reception.", "It costs around two hundred baht.", "He reads novels every night."] },
+            { promptEn: "Would it be alright if I called you back in ten minutes?", promptTh: "จะสะดวกไหมถ้าฉันโทรกลับหาคุณในอีกสิบนาที?", answerEn: "Yes, that works well for me.", answerTh: "ได้ครับ เวลานั้นสะดวกดีเลย", distractors: ["The train arrives at platform four.", "Ten minutes by bicycle.", "Take the first left turn.", "The exam was pretty fair."] },
+            { promptEn: "Excuse me, would you mind turning down the music a little?", promptTh: "ขอโทษนะครับ รบกวนช่วยลดเสียงเพลงลงหน่อยได้ไหมครับ", answerEn: "Not at all! Sorry if it was too loud.", answerTh: "ได้เลยครับ ขอโทษด้วยนะถ้าเสียงดังเกินไป", distractors: ["The chemistry test was easy.", "This room has two beds.", "The soup needs a little more salt.", "Buy fresh fish tomorrow."] },
+            { promptEn: "Could you possibly send me the updated file by noon?", promptTh: "คุณพอจะส่งไฟล์ที่อัปเดตให้ฉันภายในเที่ยงนี้ได้ไหมครับ", answerEn: "Sure, I will email it to you right away.", answerTh: "ได้เลยครับ ฉันจะส่งอีเมลให้คุณทันที", distractors: ["I usually take the bus to the office.", "I drank iced lemon tea.", "Do dynamic movements before running, and save deep stretches for after.", "Slice the watermelon now."] },
+            { promptEn: "I am so sorry for spilling coffee on your desk!", promptTh: "ฉันขอโทษจริงๆ ที่ทำกาแฟหกบนโต๊ะของคุณ", answerEn: "Don't worry about it, accidents happen.", answerTh: "ไม่เป็นไรเลย อุบัติเหตุมันเกิดขึ้นได้", distractors: ["Pack a lighter coat.", "Right after the rainy season, when the water flow is strongest.", "The train station is across the street.", "I studied history at university."] },
+            { promptEn: "May I borrow your charger for just ten minutes?", promptTh: "ขอฉันยืมที่ชาร์จของคุณสักสิบนาทีได้ไหม", answerEn: "Of course, here you go.", answerTh: "ได้เลย นี่จ้ะ", distractors: ["I prefer watching movies at home.", "Yes, she is very transparent and always shares the numbers with us.", "Order two cups of tea.", "No, the lemon tastes sour."] },
+            { promptEn: "Would it be okay if I left work thirty minutes early today?", promptTh: "วันนี้ฉันขอกลับบ้านก่อนเวลาสามสิบนาทีจะได้ไหมครับ", answerEn: "Yes, that is fine as long as your tasks are done.", answerTh: "ได้ครับ ไม่มีปัญหาตราบใดที่งานของคุณเสร็จเรียบร้อย", distractors: ["Her cough is gone.", "Look at the bright stars.", "The wooden one near the kitchen.", "The exam is scheduled for Friday."] },
+            { promptEn: "I apologize for keeping you waiting in the lobby.", promptTh: "ฉันขอโทษที่ปล่อยให้คุณรออยู่ที่ล็อบบี้นะครับ", answerEn: "No problem at all, I just arrived a few minutes ago.", answerTh: "ไม่เป็นไรเลยครับ ฉันเพิ่งมาถึงเมื่อไม่กี่นาทีนี้เอง", distractors: ["Sure, happy to meet her!", "Buy fresh fish tomorrow.", "Surprisingly calm, actually.", "Four tickets for Saturday."] },
+            { promptEn: "Would you mind lowering your voice a little?", promptTh: "คุณช่วยลดเสียงลงหน่อยได้ไหมครับ", answerEn: "Oh, I am so sorry. I did not realize I was speaking so loudly.", answerTh: "โอ้ ขอโทษด้วยค่ะ ฉันไม่ทันรู้ตัวว่าพูดเสียงดังขนาดนั้น", distractors: ["In the second aisle.", "I ordered a vegetarian pasta.", "Her coat is dark green.", "Check your passport date."] },
+            { promptEn: "Could I possibly borrow your charger for ten minutes?", promptTh: "ฉันขอยืมที่ชาร์จของคุณสักสิบนาทีได้ไหมคะ", answerEn: "Sure, no problem at all. Here you go.", answerTh: "ได้เลยครับ ไม่มีปัญหาเลย นี่ครับ", distractors: ["We need to buy more milk today.", "Let's take the elevator instead of the stairs.", "Sure, hand me the heavy bags.", "I detected a faint noise coming from the server room."] },
+            { promptEn: "I am terribly sorry for spilling coffee on your desk.", promptTh: "ฉันขอโทษจริงๆ ที่ทำกาแฟหกบนโต๊ะของคุณ", answerEn: "Do not worry about it, accidents happen. Let me grab a tissue.", answerTh: "ไม่ต้องกังวลเลยครับ อุบัติเหตุเกิดขึ้นได้ เดี๋ยวผมไปหยิบทิชชู่ให้นะ", distractors: ["I usually take the train to work.", "Two blocks past the hotel.", "Tomorrow is Monday.", "The weather is supposed to rain tomorrow."] },
+            { promptEn: "May I ask you a quick question about the schedule?", promptTh: "ขอถามคำถามสั้นๆ เกี่ยวกับตารางเวลาได้ไหมคะ", answerEn: "Of course, go ahead. What would you like to know?", answerTh: "ได้เลยครับ ถามมาได้เลย คุณอยากรู้อะไรครับ", distractors: ["The movie starts at eight.", "Wash your hands thoroughly.", "It's on the second floor.", "Yes, everything is normal, so I finally feel reassured."] },
+            { promptEn: "Excuse me, is this seat taken?", promptTh: "ขอโทษนะครับ ที่นั่งนี้มีคนนั่งหรือยังครับ", answerEn: "No, it is free. Please feel free to sit here.", answerTh: "ยังครับ ว่างอยู่ เชิญนั่งได้เลยครับ", distractors: ["The weather looks much better today.", "This restaurant has great pasta.", "I went jogging in the park this morning.", "Pack two clean shirts."] },
+            { promptEn: "I apologize for not replying to your email sooner.", promptTh: "ผมขอโทษที่ไม่ได้ตอบอีเมลของคุณให้เร็วกว่านี้", answerEn: "That is completely fine, I know you have been busy.", answerTh: "ไม่เป็นไรเลยค่ะ ฉันรู้ว่าคุณยุ่งอยู่", distractors: ["Turn off the porch light.", "She wears a wool scarf.", "Definitely, let's do a quick sound check now.", "Our school won the debate cup!"] }
         ],
         food: [
             { promptEn: 'Tea or coffee?', promptTh: 'รับชาหรือกาแฟดี?', answerEn: 'Tea, please.', answerTh: 'ขอชา ได้โปรด', distractors: ['Yes, I am tired.', 'Welcome to my home.', 'Turn off the light.', 'He works downtown.'] },
@@ -8562,7 +8858,24 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Should we split the appetizer or order our own?", promptTh: "เราควรสั่งอาหารเรียกน้ำย่อยมาแบ่งกัน หรือสั่งของตัวเองดี?", answerEn: "Let's share the garlic bread so we have room for the main course.", answerTh: "แบ่งขนมปังกระเทียมกันดีกว่า จะได้เหลือพื้นที่สำหรับอาหารจานหลัก", distractors: ["The train arrives at platform four.", "I need to charge my phone first.", "She works at the bakery downtown.", "The weather is much cooler tonight."] },
             { promptEn: "Do you have any food allergies I should know about?", promptTh: "คุณแพ้อาหารอะไรบ้างไหมครับที่ผมควรทราบ?", answerEn: "Yes, I am allergic to peanuts and shellfish.", answerTh: "ค่ะ ฉันแพ้ถั่วลิสงและอาหารทะเลจำพวกหอยและกุ้ง", distractors: ["I prefer spicy food over sweet dishes.", "Let's order a large pizza to share.", "The waiter will bring the bill soon.", "I learned to cook this from my grandmother."] },
             { promptEn: "What do you feel like eating for lunch today?", promptTh: "วันนี้มื้อเที่ยงคุณอยากกินอะไรดี?", answerEn: "I'm craving something light, maybe a noodle soup or a salad.", answerTh: "ฉันอยากกินอะไรเบาๆ อาจจะเป็นก๋วยเตี๋ยวหรือสลัด", distractors: ["I already finished my morning meeting.", "The kitchen needs to be cleaned tonight.", "We should buy more napkins at the store.", "My favorite color is dark green."] },
-            { promptEn: "Should we dine in or order takeout tonight?", promptTh: "คืนนี้เรานั่งกินที่ร้านหรือสั่งอาหารกลับบ้านดี?", answerEn: "Let us grab takeout and eat comfortably at home.", answerTh: "สั่งกลับบ้านไปกินสบายๆ ที่บ้านดีกว่า", distractors: ["My flight boards at noon.", "Wear a scarf outside.", "Her notebook is yellow.", "Open window number two."] }
+            { promptEn: "Should we dine in or order takeout tonight?", promptTh: "คืนนี้เรานั่งกินที่ร้านหรือสั่งอาหารกลับบ้านดี?", answerEn: "Let us grab takeout and eat comfortably at home.", answerTh: "สั่งกลับบ้านไปกินสบายๆ ที่บ้านดีกว่า", distractors: ["My flight boards at noon.", "Wear a scarf outside.", "Her notebook is yellow.", "Open window number two."] },
+            { promptEn: "Does this soup contain any dairy?", promptTh: "ซุปนี้มีส่วนผสมของนมไหม", answerEn: "No, it is made with coconut milk instead.", answerTh: "ไม่ มีแต่น้ำกะทิแทน", distractors: ["Use this bandage carefully.", "Wait until the light turns green.", "At the ticket machine over there.", "He recovered after resting."] },
+            { promptEn: "Are you following a special diet right now?", promptTh: "ช่วงนี้คุณกำลังคุมอาหารแบบพิเศษอยู่หรือเปล่า", answerEn: "I am trying a plant-based diet for a month.", answerTh: "ฉันกำลังลองทานอาหารจากพืชเป็นเวลาหนึ่งเดือน", distractors: ["Write with a dark pen.", "Sure, take your time walking in.", "Yes, inside the drawer.", "Take cough syrup tonight."] },
+            { promptEn: "Can I substitute the cheese with avocado?", promptTh: "ขอเปลี่ยนชีสเป็นอะโวคาโดได้ไหม", answerEn: "Of course, we can easily make that change for you.", answerTh: "ได้เลย เราเปลี่ยนให้คุณได้สบายมาก", distractors: ["Yes, let us meet at two instead.", "I will call the plumber tomorrow afternoon.", "Look at the bright moon.", "The hotel breakfast is on the second floor."] },
+            { promptEn: "Why are you checking the back of that box?", promptTh: "ทำไมคุณถึงดูด้านหลังกล่องนั้นล่ะ", answerEn: "I want to read the label to check for gluten.", answerTh: "ฉันอยากอ่านฉลากเพื่อเช็กว่ามีกลูเตนไหม", distractors: ["Turn right after the bridge.", "Right after the rainy season, when the water flow is strongest.", "Wait by the main gate.", "Not at all, please go ahead."] },
+            { promptEn: "Is this bakery item nut-free?", promptTh: "ขนมอบชิ้นนี้ปราศจากถั่วไหม", answerEn: "I am not sure, so let's ask the staff first.", answerTh: "ฉันไม่แน่ใจ งั้นถามพนักงานก่อนดีกว่า", distractors: ["Wait by platform two.", "Clean the dining table.", "I usually have lunch around twelve thirty.", "The traffic is heavy this morning."] },
+            { promptEn: "Do you have any food allergies we should know about?", promptTh: "คุณมีอาการแพ้อาหารที่พวกเราควรรู้บ้างไหม", answerEn: "Yes, I am severely allergic to shellfish and peanuts.", answerTh: "ใช่ ฉันแพ้สัตว์น้ำมีเปลือกและถั่วลิสงอย่างรุนแรง", distractors: ["It is a twenty-minute walk from here.", "The pharmacy is across the street.", "The train leaves from platform three.", "Let us meet outside the library."] },
+            { promptEn: "Does this pasta dish contain any milk or cheese?", promptTh: "พาสต้าจานนี้มีส่วนผสมของนมหรือชีสไหม", answerEn: "No, it is made with olive oil and fresh tomatoes.", answerTh: "ไม่มีเลย จานนี้ทำจากน้ำมันมะกอกและมะเขือเทศสด", distractors: ["In the hall closet.", "Four tickets for Saturday.", "He ordered grilled salmon.", "He walks every morning."] },
+            { promptEn: "Can you recommend a good dish for someone who doesn't eat meat?", promptTh: "ช่วยแนะนำอาหารจานเด็ดสำหรับคนที่ไม่กินเนื้อสัตว์หน่อยได้ไหม", answerEn: "Our roasted vegetable curry with tofu is very popular.", answerTh: "แกงผักย่างใส่เต้าหู้ของเราได้รับความนิยมมากเลยครับ", distractors: ["My keys fell outside.", "Yes, I have two brothers.", "She forgot to bring her umbrella this morning.", "Take the second turning on the left."] },
+            { promptEn: "Is the soup safe for someone with a gluten sensitivity?", promptTh: "ซุปนี้ปลอดภัยสำหรับคนที่ไวต่อกลูเตนไหม", answerEn: "Yes, we thicken it with cornstarch instead of wheat flour.", answerTh: "ปลอดภัยครับ เราใช้แป้งข้าวโพดทำให้น้ำข้นแทนแป้งสาลี", distractors: ["Drink plenty of fluids.", "You can visit the artisan stalls near the old town gate.", "We need to clean the living room.", "It costs around two hundred baht."] },
+            { promptEn: "Why are you checking the back of that cereal box?", promptTh: "ทำไมคุณถึงดูด้านหลังกล่องซีเรียลอันนั้นล่ะ", answerEn: "I am looking at the label to see if it has artificial additives.", answerTh: "ฉันกำลังดูฉลากว่ามีสารปรุงแต่งสังเคราะห์หรือเปล่า", distractors: ["At the corner bakery.", "The train arrived early.", "Breakfast starts at seven.", "Yes, it might rain later."] },
+            { promptEn: "Would you like me to make your smoothie with oat milk instead?", promptTh: "อยากให้ฉันทำสมูทตี้ของคุณด้วยนมข้าวโอ๊ตแทนไหม", answerEn: "That would be great, since regular milk upsets my stomach.", answerTh: "ดีเลยครับ เพราะนมธรรมดาทำให้ฉันปวดท้อง", distractors: ["I missed the early bus.", "I'm planning to visit my parents this weekend.", "She bought a new pair of shoes.", "At seven in the evening."] },
+            { promptEn: "Does this soup have any peanuts in it?", promptTh: "ซุปนี้มีถั่วลิสงผสมอยู่ไหมคะ", answerEn: "No, it is completely nut-free and safe for you.", answerTh: "ไม่มีครับ ปลอดถั่วร้อยเปอร์เซ็นต์และปลอดภัยสำหรับคุณครับ", distractors: ["You might be sleeping in a stiff position, so try gentle shoulder rolls when you wake up.", "About three weeks of rest and light physical therapy.", "Right after this quick call ends.", "They love clean, humid areas with plenty of trees."] },
+            { promptEn: "Can I get this sandwich without cheese?", promptTh: "ขอแซนด์วิชนี้แบบไม่ใส่ชีสได้ไหมครับ", answerEn: "Of course, we can add extra avocado instead.", answerTh: "ได้เลยค่ะ เราเพิ่มอะโวคาโดให้แทนได้นะคะ", distractors: ["This shirt comes in three colors.", "The office is on the third floor.", "Two blankets on the sofa.", "Of course, I will send them over by eleven."] },
+            { promptEn: "Are you allergic to anything on the menu?", promptTh: "คุณแพ้อาหารอะไรในเมนูบ้างไหมคะ", answerEn: "Yes, I cannot eat shrimp or crab.", answerTh: "ครับ ผมกินกุ้งกับปูไม่ได้ครับ", distractors: ["Call the clinic tomorrow.", "Check your passport date.", "His uncle lives in Osaka.", "Lock the garden gate."] },
+            { promptEn: "Do you have any vegetarian dishes today?", promptTh: "วันนี้มีเมนูมังสวิรัติบ้างไหมครับ", answerEn: "Yes, our roasted vegetable pasta is very popular.", answerTh: "มีค่ะ พาสต้าผักย่างของเราขายดีมากเลยค่ะ", distractors: ["Down the stairs on the right.", "Open the textbook first.", "Add pepper to the eggs.", "Put your shoes by the mat."] },
+            { promptEn: "Is this cake made with regular wheat?", promptTh: "เค้กนี้ทำจากข้าวสาลีปกติหรือเปล่าคะ", answerEn: "No, we baked it with almond flour.", answerTh: "ไม่ค่ะ เราอบด้วยแป้งอัลมอนด์ค่ะ", distractors: ["Because the exam started.", "The bank closes at four.", "I already finished my lunch.", "Sure, no problem. Let me say that again."] },
+            { promptEn: "Would you prefer almond milk in your coffee?", promptTh: "คุณอยากใส่นมอัลมอนด์ในกาแฟไหมครับ", answerEn: "Yes, please, I do not drink cow's milk.", answerTh: "ได้ค่ะ ฉันไม่ดื่มนมวัวค่ะ", distractors: ["We hiked up the hill.", "My flight got delayed by an hour.", "She signed the contract.", "Sure, here you go."] }
         ],
         body: [
             { promptEn: 'What is wrong today?', promptTh: 'วันนี้เป็นอะไรไปหรือเปล่า?', answerEn: 'I have a slight headache.', answerTh: 'ฉันปวดหัวนิดหน่อย', distractors: ['The museum closes at five.', 'This soup tastes sweet.', 'Put it inside the box.', 'Our flight is delayed.'] },
@@ -8583,7 +8896,25 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Are you feeling any better today?", promptTh: "วันนี้คุณรู้สึกดีขึ้นบ้างไหม", answerEn: "Much better, thanks. My headache is finally gone.", answerTh: "ดีขึ้นมากเลย ขอบคุณนะ อาการปวดหัวหายไปแล้วในที่สุด", distractors: ["I will send you the file later.", "The train arrives at platform two.", "She is studying for her exam.", "Let us meet at the coffee shop."] },
             { promptEn: "Why are you rubbing your shoulders?", promptTh: "ทำไมคุณถึงนวดไหล่ตัวเองล่ะ", answerEn: "They feel really tense after sitting at my desk all morning.", answerTh: "ไหล่รู้สึกตึงมากหลังจากนั่งทำงานที่โต๊ะมาตลอดทั้งเช้าเลย", distractors: ["I forgot to bring my umbrella today.", "The coffee shop closes at six.", "My phone battery is almost dead.", "We should take the train instead."] },
             { promptEn: "Do you stretch before going for a run?", promptTh: "คุณยืดเหยียดกล้ามเนื้อก่อนออกไปวิ่งไหม", answerEn: "Yes, I always spend five minutes warming up my legs.", answerTh: "ใช่ ฉันใช้เวลาห้านาทีวอร์มขาเสมอ", distractors: ["I prefer reading mystery novels.", "The meeting starts in ten minutes.", "She bought a new pair of glasses.", "Let's order pizza for dinner."] },
-            { promptEn: "How long did it take your knee to heal?", promptTh: "หัวเข่าของคุณใช้เวลานานแค่ไหนกว่าจะหาย", answerEn: "About three weeks of rest and light physical therapy.", answerTh: "ประมาณสามสัปดาห์กับการพักผ่อนและกายภาพบำบัดเบาๆ", distractors: ["I left my keys on the kitchen table.", "The movie was much longer than expected.", "He is studying engineering at university.", "It usually rains here in October."] }
+            { promptEn: "How long did it take your knee to heal?", promptTh: "หัวเข่าของคุณใช้เวลานานแค่ไหนกว่าจะหาย", answerEn: "About three weeks of rest and light physical therapy.", answerTh: "ประมาณสามสัปดาห์กับการพักผ่อนและกายภาพบำบัดเบาๆ", distractors: ["I left my keys on the kitchen table.", "The movie was much longer than expected.", "He is studying engineering at university.", "It usually rains here in October."] },
+            { promptEn: "How long should we hold each stretch?", promptTh: "เราควรค้างท่ายืดเหยียดแต่ละท่านานแค่ไหน?", answerEn: "About twenty to thirty seconds is enough for most muscles.", answerTh: "ประมาณยี่สิบถึงสามสิบวินาทีก็เพียงพอสำหรับกล้ามเนื้อส่วนใหญ่", distractors: ["Let's take the elevator.", "Yes, a green tea please.", "I need to buy some apples.", "I forgot my library card."] },
+            { promptEn: "Should I stretch before or after my run?", promptTh: "ฉันควรยืดเหยียดก่อนหรือหลังวิ่งดี?", answerEn: "Do dynamic movements before running, and save deep stretches for after.", answerTh: "ให้เคลื่อนไหวแบบไดนามิกก่อนวิ่ง แล้วค่อยยืดเหยียดแบบลึกหลังจากวิ่งเสร็จ", distractors: ["I have one younger brother.", "Green vegetables are healthy.", "Yes, I would like a glass of sparkling water.", "The weather is very sunny today."] },
+            { promptEn: "Why do my shoulders feel so tight today?", promptTh: "ทำไมวันนี้ไหล่ของฉันถึงรู้สึกตึงมากเลย?", answerEn: "You probably sat at your desk too long without taking a stretch break.", answerTh: "คุณน่าจะนั่งที่โต๊ะทำงานนานเกินไปโดยไม่ได้พักยืดเส้นยืดสายเลย", distractors: ["I already finished my homework.", "Boil pasta ten minutes.", "My shoes are wet.", "We should take the train instead."] },
+            { promptEn: "Can you show me how to do a proper squat?", promptTh: "ช่วยสอนฉันทำท่าสควอทที่ถูกต้องหน่อยได้ไหม?", answerEn: "Sure, keep your chest up and push your hips back as you lower down.", answerTh: "ได้เลย ยืดอกขึ้นแล้วดันสะโพกไปด้านหลังขณะย่อตัวลง", distractors: ["I forgot to bring my backpack.", "The air conditioner is making a strange noise.", "Mix milk with cereal.", "Right after the rainy season, when the water flow is strongest."] },
+            { promptEn: "What helps relieve sore calves after leg day?", promptTh: "อะไรช่วยบรรเทาอาการปวดน่องหลังจากวันเล่นขาได้บ้าง?", answerEn: "Try rolling them gently on a foam roller and drinking plenty of water.", answerTh: "ลองใช้โฟมโรลเลอร์นวดเบาๆ แล้วดื่มน้ำให้มากๆ ดูสิ", distractors: ["Two cups of green tea.", "Vote before five o’clock.", "I forgot my library card.", "Fix dripping taps right away."] },
+            { promptEn: "Is it normal to feel a slight pull when stretching?", promptTh: "รู้สึกตึงๆ นิดหน่อยตอนยืดเหยียดนี่ปกติไหม?", answerEn: "Yes, mild tension is normal, but stop immediately if you feel sharp pain.", answerTh: "ปกติเลย แค่ตึงเบาๆ ถือว่าใช้ได้ แต่ถ้าเจ็บแปลบให้หยุดทันที", distractors: ["My favorite movie starts at eight.", "Sure, I will send you photos of them tonight.", "The meeting starts in ten minutes.", "She speaks two languages."] },
+            { promptEn: "How long should I hold each stretch after a workout?", promptTh: "ฉันควรยืดกล้ามเนื้อค้างไว้ท่านานแค่ไหนหลังออกกำลังกาย?", answerEn: "Try holding each static stretch for twenty to thirty seconds without bouncing.", answerTh: "ลองค้างท่ายืดแบบอยู่กับที่ไว้ประมาณยี่สิบถึงสามสิบวินาทีโดยไม่ต้องขย่มตัวนะ", distractors: ["It costs fifty baht.", "Keep your voice down please.", "The package arrived this morning.", "It's on the second floor."] },
+            { promptEn: "Why do my shoulders feel so tight every morning?", promptTh: "ทำไมไหล่ของฉันถึงรู้สึกตึงมากทุกเช้าเลย?", answerEn: "You might be sleeping in a stiff position, so try gentle shoulder rolls when you wake up.", answerTh: "คุณอาจจะนอนในท่าที่เกร็ง ลองหมุนหัวไหล่เบาๆ ตอนตื่นนอนดูสิ", distractors: ["She wears warm gloves.", "Her ankle swelled slightly.", "He bought a new jacket yesterday.", "My laptop needs charging."] },
+            { promptEn: "Should I stretch before or after my morning run?", promptTh: "ฉันควรยืดเหยียดก่อนหรือหลังวิ่งตอนเช้าดี?", answerEn: "Do dynamic stretches before running to warm up, and static stretches afterward.", answerTh: "ยืดแบบเคลื่อนไหวก่อนวิ่งเพื่ออบอุ่นร่างกาย และยืดแบบค้างท่าหลังจากวิ่งเสร็จนะ", distractors: ["Buy fresh bread outside.", "We went there last Sunday.", "That would be great, since regular milk upsets my stomach.", "I prefer reading books in the morning."] },
+            { promptEn: "What is the best stretch for a stiff lower back?", promptTh: "ท่ายืดไหนดีที่สุดสำหรับอาการปวดตึงหลังส่วนล่าง?", answerEn: "Pulling both knees gently toward your chest while lying down works really well.", answerTh: "การนอนหงายแล้วดึงเข่าทั้งสองข้างเข้าหาอกเบาๆ ช่วยได้ดีมากเลย", distractors: ["Soup warms you quickly.", "The garden smells lovely.", "Please sign at the bottom.", "This math rule helps."] },
+            { promptEn: "How can I improve my overall body mobility?", promptTh: "ฉันจะเพิ่มความคล่องตัวของร่างกายโดยรวมได้อย่างไร?", answerEn: "Spend ten minutes every day doing slow, full-body stretching routines.", answerTh: "ใช้เวลาวันละสิบนาทีทำท่ายืดเหยียดทั่วร่างกายอย่างช้าๆ เป็นประจำสิ", distractors: ["I practice speaking with a study partner every evening.", "Slice the bread thinly.", "Aunt May planned the whole party.", "No, I haven't had lunch yet."] },
+            { promptEn: "Why do you carry a big water bottle everywhere?", promptTh: "ทำไมคุณพกขวดน้ำใบใหญ่ติดตัวไปทุกที่เลย?", answerEn: "Good hydration helps me focus all afternoon.", answerTh: "การดื่มน้ำให้สมดุลช่วยให้ฉันมีสมาธิตลอดช่วงบ่าย", distractors: ["Because the train arrived early.", "Print two boarding passes.", "Close the garden gate.", "Her cat is sleeping."] },
+            { promptEn: "How long should we stretch after our run?", promptTh: "เราควรยืดเหยียดนานแค่ไหนหลังวิ่งเสร็จ?", answerEn: "About ten minutes is enough to relax your body.", answerTh: "ประมาณสิบนาทีก็เพียงพอที่จะช่วยให้ร่างกายผ่อนคลายแล้ว", distractors: ["Follow the nurse inside.", "It is very windy outside.", "A small scoop of ice cream.", "Close the front blinds."] },
+            { promptEn: "Do you want to try the new yoga class tonight?", promptTh: "คืนนี้อยากลองเข้าคลาสโยคะใหม่ไหม?", answerEn: "Sure, it sounds great for improving my flexibility.", answerTh: "ได้เลย ฟังดูดีมากสำหรับช่วยเพิ่มความยืดหยุ่นของฉัน", distractors: ["That coat is very warm.", "Yes, I passed the test.", "That works for me. I'll update the calendar.", "I am studying for the final exam."] },
+            { promptEn: "Why are you rolling your shoulders like that?", promptTh: "ทำไมคุณถึงหมุนไหล่แบบนั้นล่ะ?", answerEn: "They feel a bit stiff from sitting all morning.", answerTh: "ไหล่มันรู้สึกตึงนิดหน่อยจากการนั่งมาทั้งเช้า", distractors: ["He bought a new jacket yesterday.", "The homework takes ten minutes.", "Yes, I locked it right before coming upstairs.", "In the second aisle."] },
+            { promptEn: "Should I rest today if my ankle still hurts?", promptTh: "ถ้าข้อเท้ายังเจ็บอยู่ วันนี้ฉันควรพักไหม?", answerEn: "Yes, take a day off so it can recover properly.", answerTh: "ใช่ พักสักวันเพื่อให้มันฟื้นตัวได้อย่างเต็มที่", distractors: ["Just upload your PDF file under the Week 3 tab before Sunday.", "We need to buy more milk today.", "It is raining heavily outside.", "Brush teeth twice daily."] },
+            { promptEn: "What is your favorite way to build stamina?", promptTh: "วิธีโปรดของคุณในการสร้างความอึดคืออะไร?", answerEn: "I like cycling outdoors for about forty minutes.", answerTh: "ฉันชอบปั่นจักรยานกลางแจ้งประมาณสี่สิบนาที", distractors: ["Wash your hands first.", "My brother works at a hospital.", "Pay at the counter.", "Not at all! Sorry if it was too loud."] },
+            { promptEn: "Can you show me how to fix my posture?", promptTh: "ช่วยสอนวิธีปรับท่าทางให้ฉันหน่อยได้ไหม?", answerEn: "Keep your chin up and pull your shoulders back gently.", answerTh: "เชิดคางขึ้นเล็กน้อยแล้วดึงไหล่ไปด้านหลังเบาๆ", distractors: ["This soup tastes a bit salty.", "Yes, it is accredited and widely respected in the industry.", "Yes, she was so touched and grateful that everyone came.", "Buy fruit at the corner."] }
         ],
         home: [
             { promptEn: 'Where should I put my bag?', promptTh: 'ฉันควรวางกระเป๋าไว้ตรงไหนดี?', answerEn: 'Put it beside the sofa.', answerTh: 'วางไว้ข้างโซฟาได้เลย', distractors: ['We visited the zoo.', 'I am studying history.', 'Yes, add some pepper.', 'She runs every morning.'] },
@@ -8605,7 +8936,26 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Is the internet working in the bedroom?", promptTh: "อินเทอร์เน็ตในห้องนอนใช้งานได้ไหม?", answerEn: "The signal is a bit weak, so let's move the router closer.", answerTh: "สัญญาณอ่อนไปหน่อย งั้นย้ายเราเตอร์เข้ามาใกล้ขึ้นเถอะ", distractors: ["I forgot my email password.", "The electricity bill is due tomorrow.", "She is watching a movie downstairs.", "I need to charge my phone."] },
             { promptEn: "Do we have enough space in the freezer?", promptTh: "ในช่องแช่แข็งมีพื้นที่พอไหม?", answerEn: "Barely, we need to eat some of the leftovers first.", answerTh: "แทบไม่พอเลย เราต้องกินของเหลือบางส่วนก่อน", distractors: ["The fridge is in the kitchen.", "I prefer warm soup for dinner.", "We bought groceries this morning.", "The ice cream melted outside."] },
             { promptEn: "Where should we put the new bookshelf?", promptTh: "เราควรวางชั้นวางหนังสืออันใหม่ไว้ตรงไหนดี?", answerEn: "Let's place it against the wall next to the window.", answerTh: "วางไว้ชิดผนังข้างหน้าต่างกันเถอะ", distractors: ["I forgot to charge my phone.", "The train arrives in ten minutes.", "He is working from home today.", "We need to buy more milk."] },
-            { promptEn: "Why is the living room so warm right now?", promptTh: "ทำไมตอนนี้ห้องนั่งเล่นถึงร้อนจัง?", answerEn: "Someone turned off the air conditioner earlier.", answerTh: "มีคนปิดแอร์ไปเมื่อกี้", distractors: ["I left my umbrella on the bus.", "The meeting was moved to Friday.", "She prefers tea over coffee.", "They are playing soccer outside."] }
+            { promptEn: "Why is the living room so warm right now?", promptTh: "ทำไมตอนนี้ห้องนั่งเล่นถึงร้อนจัง?", answerEn: "Someone turned off the air conditioner earlier.", answerTh: "มีคนปิดแอร์ไปเมื่อกี้", distractors: ["I left my umbrella on the bus.", "The meeting was moved to Friday.", "She prefers tea over coffee.", "They are playing soccer outside."] },
+            { promptEn: "Did you hear the loud music last night?", promptTh: "เมื่อคืนคุณได้ยินเสียงเพลงดังไหม", answerEn: "Yes, it came from the apartment upstairs.", answerTh: "ได้ยินสิ มันดังมาจากห้องชั้นบนนะ", distractors: ["The movie starts at eight o'clock.", "This soup tastes sweet.", "Check in at counter B.", "The movie starts at seven thirty."] },
+            { promptEn: "Who should I call if the water stops running?", promptTh: "ถ้าน้ำไม่ไหล ฉันควรโทรหาใคร", answerEn: "You should contact the building manager right away.", answerTh: "คุณควรติดต่อผู้จัดการอาคารทันทีเลย", distractors: ["It weighs three kilos.", "Let us meet at the coffee shop.", "To organize the closet neatly.", "Yes, I am lactose intolerant, so please no dairy in my dish."] },
+            { promptEn: "Is there a quiet hour rule in this building?", promptTh: "อาคารนี้มีกฎเรื่องช่วงเวลางดใช้เสียงไหม", answerEn: "Yes, everyone must be quiet after ten p.m.", answerTh: "มีสิ ทุกคนต้องเงียบหลังสี่ทุ่ม", distractors: ["Let's take the elevator.", "My phone screen is cracked.", "Bake until golden brown.", "I read that book yesterday."] },
+            { promptEn: "Where can I throw away large cardboard boxes?", promptTh: "ฉันจะทิ้งกล่องกระดาษใบใหญ่ได้ที่ไหน", answerEn: "Put them in the recycling area behind the building.", answerTh: "เอาไปวางไว้ที่จุดรีไซเคิลหลังอาคารได้เลย", distractors: ["She is studying for her exam.", "The pharmacy is across the street.", "Not yet, I will read it right after this call.", "Her suitcase is very heavy."] },
+            { promptEn: "Do you mind if I borrow your step ladder?", promptTh: "คุณจะว่าอะไรไหมถ้าฉันขอยืมบันไดพับหน่อย", answerEn: "Not at all, I will bring it over now.", answerTh: "ไม่เลย เดี๋ยวฉันเอาไปให้ตอนนี้", distractors: ["Tomorrow will be sunny.", "I am fine, just didn't get enough sleep last night.", "She is very patient and always listens to our ideas.", "Yes, a storm is moving north."] },
+            { promptEn: "Have you met the new couple next door?", promptTh: "คุณได้เจอกับคู่รักคู่ใหม่ห้องข้างๆ หรือยัง", answerEn: "Yes, they seemed very friendly and polite.", answerTh: "เจอแล้ว พวกเขาดูเป็นมิตรและสุภาพมาก", distractors: ["I spilled coffee on my shirt.", "She drew a small bird.", "I forgot to charge my phone last night.", "I'm planning to visit my parents this weekend."] },
+            { promptEn: "Did you hear the construction noise this morning?", promptTh: "เมื่อเช้าคุณได้ยินเสียงก่อสร้างไหม", answerEn: "Yes, it woke me up around seven.", answerTh: "ได้ยินสิ มันปลุกฉันตื่นตอนประมาณเจ็ดโมง", distractors: ["We planted mango trees.", "The waiter will bring the bill soon.", "He missed the last train home.", "It looks like it might rain this afternoon."] },
+            { promptEn: "Where do we put the recycling bags?", promptTh: "เราเอาถุงขยะรีไซเคิลไปทิ้งที่ไหน", answerEn: "There's a green bin right next to the back stairs.", answerTh: "มีถังสีเขียวอยู่ข้างบันไดหลังตึกเลย", distractors: ["Yes, for taking typed notes.", "Let's take the elevator instead of the stairs.", "That would be great! Could you double-check the final slides?", "See you tomorrow morning."] },
+            { promptEn: "Could you lower the TV volume a bit?", promptTh: "ช่วยลดเสียงทีวีลงหน่อยได้ไหม", answerEn: "Oh, sorry! I didn't realize it was so loud.", answerTh: "โอ้ ขอโทษที ฉันไม่ทันสังเกตว่ามันดังขนาดนี้", distractors: ["Please close the door.", "Yes, the long drought has really lowered the water level.", "There is a currency booth right after baggage claim.", "This math rule helps."] },
+            { promptEn: "Are pets allowed in this building?", promptTh: "ตึกนี้อนุญาตให้เลี้ยงสัตว์ไหม", answerEn: "Small cats are fine, as long as you tell the manager.", answerTh: "แมวตัวเล็กเลี้ยงได้ ตราบใดที่คุณแจ้งผู้จัดการไว้", distractors: ["Look at the bright stars.", "There is a nice park near my house.", "Add a little olive oil.", "The hotel room was cozy."] },
+            { promptEn: "Do you know when the water will be back on?", promptTh: "คุณรู้ไหมว่าน้ำจะกลับมาไหลเมื่อไหร่", answerEn: "The notice said it should be fixed by three p.m.", answerTh: "ประกาศบอกว่าน่าจะซ่อมเสร็จภายในบ่ายสามโมง", distractors: ["Our roasted vegetable curry with tofu is very popular.", "I have a slight headache.", "I think the meeting was canceled.", "You can borrow my pen if you need one."] },
+            { promptEn: "Can I borrow your step ladder for a minute?", promptTh: "ขอยืมบันไดพับของคุณสักครู่ได้ไหม", answerEn: "Sure, just bring it back before dinner.", answerTh: "ได้เลย แค่เอามาคืนก่อนมื้อเย็นนะ", distractors: ["She works at the bank downtown.", "Much better, thanks. My headache is finally gone.", "I ordered the pasta twenty minutes ago.", "Turn left near the bank."] },
+            { promptEn: "How do you get along with your new roommate?", promptTh: "อยู่กับเพื่อนร่วมห้องคนใหม่เป็นยังไงบ้าง?", answerEn: "Really well, we split chores fairly every week.", answerTh: "เข้ากันได้ดีเลย เราแบ่งงานบ้านกันอย่างยุติธรรมทุกสัปดาห์", distractors: ["Yes, add extra ice.", "Turn left near the bridge.", "The soup smells wonderful.", "Tomorrow will be rainy."] },
+            { promptEn: "Did you hear the loud music from apartment 4B last night?", promptTh: "เมื่อคืนคุณได้ยินเสียงเพลงดังจากห้อง 4B ไหม", answerEn: "Yes, it kept me awake until two in the morning.", answerTh: "ได้ยินสิ มันทำฉันนอนไม่หลับจนถึงตีสองเลย", distractors: ["I had noodles for lunch today.", "Boil the water first.", "You might be sleeping in a stiff position, so try gentle shoulder rolls when you wake up.", "I bought a new jacket at the mall yesterday."] },
+            { promptEn: "Where do we put the cardboard boxes for recycling?", promptTh: "เราต้องเอาลังกระดาษไปทิ้งรีไซเคิลที่ไหน", answerEn: "There is a blue recycling bin next to the back exit.", answerTh: "มีถังรีไซเคิลสีน้ำเงินอยู่ข้างทางออกด้านหลังนะ", distractors: ["Wait until the rain stops.", "Wait by platform two.", "I think the meeting was canceled.", "I bought a new dictionary yesterday."] },
+            { promptEn: "Could you water my plants while I am away this weekend?", promptTh: "สุดสัปดาห์นี้ฉันไม่อยู่ ช่วยรดน้ำต้นไม้ให้หน่อยได้ไหม", answerEn: "Of course, just leave your spare key with me.", answerTh: "ได้เลย แค่ฝากกุญแจสำรองไว้กับฉันก็พอ", distractors: ["Yes, I passed the test.", "Not yet, snowplows are still clearing the main highway.", "No, the soup needs salt.", "Don't worry about it, accidents happen."] },
+            { promptEn: "Is the elevator working again today?", promptTh: "วันนี้ลิฟต์กลับมาใช้งานได้หรือยัง", answerEn: "Not yet, we still have to take the stairs.", answerTh: "ยังเลย เรายังต้องเดินขึ้นบันไดอยู่", distractors: ["Buy two stamps please.", "Pay at the counter.", "Yes, half sweet would be perfect, thank you.", "She is very patient and always listens to our ideas."] },
+            { promptEn: "Have you met the new neighbors who moved in yesterday?", promptTh: "คุณได้เจอเพื่อนบ้านใหม่ที่เพิ่งย้ายเข้ามาเมื่อวานหรือยัง", answerEn: "Yes, I said hello in the mailroom this morning.", answerTh: "เจอแล้ว ฉันทักทายพวกเขาที่ห้องรับจดหมายเมื่อเช้านี้", distractors: ["I'm not sure, we should ask the manager to check.", "The quiz starts at eight.", "My aunt teaches art.", "The restaurant is just around the corner."] },
+            { promptEn: "Do we have to pay extra for parking in the garage?", promptTh: "เราต้องจ่ายค่าจอดรถในโรงรถเพิ่มไหม", answerEn: "Yes, it is fifty dollars a month per car.", answerTh: "ใช่ เดือนละห้าสิบดอลลาร์ต่อคัน", distractors: ["Two blocks past the hotel.", "Use a clean spoon first.", "We are planning a trip next month.", "We used to be classmates in college."] }
         ],
         people: [
             { promptEn: 'Who is that standing by the gate?', promptTh: 'คนที่ยืนตรงประตูรั้วนั่นใครน่ะ?', answerEn: 'That is our new neighbor.', answerTh: 'นั่นเพื่อนบ้านคนใหม่ของเรา', distractors: ['The kitchen is very clean.', 'We need two bottles of milk.', 'Open the window slightly.', 'I missed the early bus.'] },
@@ -8629,7 +8979,20 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Who do you usually spend your weekends with?", promptTh: "ปกติคุณใช้เวลาวันหยุดสุดสัปดาห์กับใคร?", answerEn: "I mostly hang out with my cousins or my neighbor.", answerTh: "ส่วนใหญ่ฉันจะไปเที่ยวกับลูกพี่ลูกน้องหรือไม่ก็เพื่อนบ้าน", distractors: ["The museum closes at five.", "I forgot to bring my umbrella.", "This soup tastes a bit salty.", "Let's check the train schedule."] },
             { promptEn: "What is your new teammate like?", promptTh: "เพื่อนร่วมทีมคนใหม่ของคุณเป็นคนยังไงบ้าง?", answerEn: "She's super friendly and easy to work with.", answerTh: "เธอเป็นมิตรมากและทำงานด้วยง่ายสุดๆ เลย", distractors: ["The meeting starts at ten o'clock.", "I forgot to bring my umbrella.", "We ordered pizza for lunch.", "The office is on the third floor."] },
             { promptEn: "Do you stay in touch with your college friends?", promptTh: "คุณยังติดต่อกับเพื่อนสมัยเรียนมหาวิทยาลัยอยู่ไหม?", answerEn: "Yes, we still have a group chat and meet up every few months.", answerTh: "ยังติดต่ออยู่ เรายังมีกลุ่มแชทและนัดเจอกันทุกๆ สองสามเดือน", distractors: ["I graduated three years ago.", "The library closes at nine.", "My phone battery is almost dead.", "I need to buy a new laptop."] },
-            { promptEn: "Who do you usually turn to for advice?", promptTh: "ปกติเวลาต้องการคำปรึกษา คุณมักจะไปหาใคร?", answerEn: "Usually my older brother, because he's a great listener.", answerTh: "ปกติก็พี่ชายของฉัน เพราะเขาเป็นผู้ฟังที่ดีมาก", distractors: ["I'll send you the document tonight.", "The train was delayed by ten minutes.", "I prefer coffee over tea.", "Let's take the elevator."] }
+            { promptEn: "Who do you usually turn to for advice?", promptTh: "ปกติเวลาต้องการคำปรึกษา คุณมักจะไปหาใคร?", answerEn: "Usually my older brother, because he's a great listener.", answerTh: "ปกติก็พี่ชายของฉัน เพราะเขาเป็นผู้ฟังที่ดีมาก", distractors: ["I'll send you the document tonight.", "The train was delayed by ten minutes.", "I prefer coffee over tea.", "Let's take the elevator."] },
+            { promptEn: "Do you trust the new team lead with the budget?", promptTh: "คุณไว้ใจหัวหน้าทีมคนใหม่เรื่องงบประมาณไหม", answerEn: "Yes, she is very transparent and always shares the numbers with us.", answerTh: "ใช่ เธอโปร่งใสมากและแชร์ตัวเลขให้พวกเราดูเสมอ", distractors: ["Sure, it was getting dark.", "She is feeling very happy.", "She ordered a cup of iced tea.", "The soup needs a bit more salt."] },
+            { promptEn: "How can we improve communication in our group?", promptTh: "เราจะปรับปรุงการสื่อสารในกลุ่มของเราได้อย่างไร", answerEn: "Let's have a quick ten-minute check-in every morning.", answerTh: "เรามาคุยอัปเดตสั้นๆ สิบนาทีทุกเช้ากันเถอะ", distractors: ["The exam starts tomorrow.", "Vote before five today.", "It rained for two hours.", "Lock the side window."] },
+            { promptEn: "Who is going to present the final slides tomorrow?", promptTh: "พรุ่งนี้ใครจะเป็นคนพรีเซนต์สไลด์ชุดสุดท้าย", answerEn: "Mark and I will split the presentation so it feels balanced.", answerTh: "มาร์คกับฉันจะแบ่งกันพรีเซนต์เพื่อให้ดูสมดุล", distractors: ["Check in at counter B.", "Winter feels very cold.", "Add ice to the glass.", "He is cooking dinner right now."] },
+            { promptEn: "Why did you ask Maya to join our task force?", promptTh: "ทำไมคุณถึงชวนมายาเข้าร่วมทีมเฉพาะกิจของเรา", answerEn: "Because she stays calm under pressure and listens to everyone.", answerTh: "เพราะเธอใจเย็นภายใต้ความกดดันและรับฟังทุกคน", distractors: ["The river flows south.", "The museum closes at five p.m.", "Yes, before four in the afternoon.", "The glass broke yesterday."] },
+            { promptEn: "Can I count on you to review my draft before five?", promptTh: "ฉันฝากคุณช่วยตรวจร่างงานก่อนห้าโมงเย็นได้ไหม", answerEn: "Of course, send it over and I'll give you feedback right away.", answerTh: "ได้เลย ส่งมาสิ แล้วฉันจะรีบให้ข้อเสนอแนะทันที", distractors: ["Lock the kitchen door.", "Dinner is on the stove.", "Right after the rainy season, when the water flow is strongest.", "You can park your car near the exit."] },
+            { promptEn: "What should we do if two members disagree on the plan?", promptTh: "เราควรทำอย่างไรถ้าสมาชิกสองคนเห็นไม่ตรงกันเรื่องแผน", answerEn: "We should hear both sides out and vote on the best option.", answerTh: "เราควรรับฟังทั้งสองฝ่ายแล้วโหวตเลือกทางที่ดีที่สุด", distractors: ["They love clean, humid areas with plenty of trees.", "We need to clean the living room.", "Check the city news.", "I left my keys on the kitchen table."] },
+            { promptEn: "Can I count on you to finish the slides before noon?", promptTh: "ฉันไว้ใจให้คุณทำสไลด์เสร็จก่อนเที่ยงได้ไหม", answerEn: "Of course, I will send them over by eleven.", answerTh: "ได้เลย ฉันจะส่งให้ก่อนสิบเอ็ดโมง", distractors: ["The train leaves from platform three.", "Yes, it is quiet and has fast Wi-Fi.", "Her desk faces the door.", "My flight was delayed by thirty minutes."] },
+            { promptEn: "How should we divide the tasks for this group project?", promptTh: "เราควรแบ่งงานสำหรับโปรเจกต์กลุ่มนี้อย่างไรดี", answerEn: "Let's list what each person is good at and decide together.", answerTh: "มาจดสิ่งที่แต่ละคนถนัดแล้วตัดสินใจร่วมกันเถอะ", distractors: ["My brother lives near the beach.", "My brother lives in another city.", "It stays open until ten o'clock.", "The traffic is heavy this morning."] },
+            { promptEn: "Do you feel comfortable sharing honest feedback with the team?", promptTh: "คุณรู้สึกสบายใจที่จะให้ข้อเสนอแนะอย่างตรงไปตรงมากับทีมไหม", answerEn: "Yes, everyone here listens respectfully without taking it personally.", answerTh: "ใช่ ทุกคนที่นี่รับฟังอย่างให้เกียรติโดยไม่ถือสา", distractors: ["It is on the table.", "We went by subway.", "He enjoys swimming at the beach.", "This room has two beds."] },
+            { promptEn: "What should we do if two teammates disagree on the plan?", promptTh: "เราควรทำอย่างไรถ้าเพื่อนร่วมทีมสองคนไม่เห็นด้วยกับแผน", answerEn: "Let's hear both sides calmly and find a middle ground.", answerTh: "มาฟังทั้งสองฝ่ายอย่างใจเย็นแล้วหาจุดกึ่งกลางกันเถอะ", distractors: ["I think the meeting was canceled.", "The movie starts at eight.", "It has amazing biodiversity, with rare birds and ancient trees.", "I forgot to buy groceries yesterday."] },
+            { promptEn: "Why is it important to admit mistakes quickly at work?", promptTh: "ทำไมการยอมรับความผิดพลาดอย่างรวดเร็วในที่ทำงานจึงสำคัญ", answerEn: "Because honesty helps the team fix problems faster and builds trust.", answerTh: "เพราะความซื่อสัตย์ช่วยให้ทีมแก้ปัญหาได้เร็วขึ้นและสร้างความไว้วางใจ", distractors: ["Let's wait five more minutes, then start.", "Our train arrives at six.", "That works for me. I'll update the calendar.", "At the corner market."] },
+            { promptEn: "Would you like me to back you up during the presentation?", promptTh: "คุณอยากให้ฉันช่วยเสริมคุณระหว่างการนำเสนอไหม", answerEn: "That would be great, thanks for having my back.", answerTh: "ดีเลย ขอบคุณที่คอยสนับสนุนฉันนะ", distractors: ["Much better, thanks. My headache is finally gone.", "Put the cups in the sink.", "Sure, just bring it back before dinner.", "Sweep under the sofa."] },
+            { promptEn: "Who made that beautiful latte art for you?", promptTh: "ใครเป็นคนวาดลายลาเต้สวยๆ แก้วนี้ให้คุณน่ะ?", answerEn: "The barista at the corner cafe drew it.", answerTh: "บาริสต้าตรงร้านกาแฟหัวมุมเป็นคนวาดให้น่ะ", distractors: ["Four apples in a basket.", "The train left ten minutes ago.", "Sweep the balcony floor.", "Read page forty-two."] }
         ],
         travel: [
             { promptEn: 'Where is the emergency exit?', promptTh: 'ทางออกฉุกเฉินอยู่ที่ไหน?', answerEn: 'Down the hall on the left.', answerTh: 'เดินตรงไปแล้วเลี้ยวซ้าย', distractors: ['Yes, I enjoy music.', 'Coffee without sugar, please.', 'My cousin cooks dinner.', 'The essay needs editing.'] },
@@ -8652,7 +9015,13 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Could you recommend a good place to exchange currency?", promptTh: "ช่วยแนะนำจุดแลกเปลี่ยนเงินตราที่ดีหน่อยได้ไหมครับ", answerEn: "There is a reliable exchange booth right across the street.", answerTh: "มีบูธแลกเงินที่น่าเชื่อถืออยู่ฝั่งตรงข้ามถนนเลยครับ", distractors: ["The flight was very smooth today.", "I prefer window seats on planes.", "Don't forget to pack a jacket.", "The traffic is heavy this morning."] },
             { promptEn: "What time does our boarding start?", promptTh: "การขึ้นเครื่องของเราเริ่มกี่โมง", answerEn: "Boarding starts at 9:15 AM at Gate 12.", answerTh: "การขึ้นเครื่องเริ่มเวลา 9:15 น. ที่ประตู 12", distractors: ["The hotel breakfast is on the second floor.", "I forgot to bring my umbrella today.", "We should buy more groceries tonight.", "The museum closes every Monday."] },
             { promptEn: "Do you need help carrying your suitcase?", promptTh: "คุณต้องการให้ช่วยยกกระเป๋าเดินทางไหม", answerEn: "Yes, please, it is heavier than I expected.", answerTh: "ใช่ ขอบคุณนะ มันหนักกว่าที่ฉันคิดไว้", distractors: ["I already finished my homework.", "The movie starts in ten minutes.", "No, I prefer tea over coffee.", "She works at a bank downtown."] },
-            { promptEn: "How far is the beach from our hotel?", promptTh: "ชายหาดอยู่ห่างจากโรงแรมของเราแค่ไหน", answerEn: "It is just a ten-minute walk down this road.", answerTh: "เดินลงถนนเส้นนี้ไปแค่สิบนาทีก็ถึงแล้ว", distractors: ["I will call you back after lunch.", "The printer is out of paper.", "He bought a new jacket yesterday.", "We need to water the plants."] }
+            { promptEn: "How far is the beach from our hotel?", promptTh: "ชายหาดอยู่ห่างจากโรงแรมของเราแค่ไหน", answerEn: "It is just a ten-minute walk down this road.", answerTh: "เดินลงถนนเส้นนี้ไปแค่สิบนาทีก็ถึงแล้ว", distractors: ["I will call you back after lunch.", "The printer is out of paper.", "He bought a new jacket yesterday.", "We need to water the plants."] },
+            { promptEn: "Where can I exchange my dollars for local cash?", promptTh: "ฉันจะแลกเงินดอลลาร์เป็นเงินท้องถิ่นได้ที่ไหน", answerEn: "There is a currency booth right after baggage claim.", answerTh: "มีบูธแลกเงินอยู่ถัดจากจุดรับกระเป๋าเลยครับ", distractors: ["Take this pill after meals.", "Pack two clean shirts.", "Our train arrives at six.", "I need to charge my phone."] },
+            { promptEn: "Does this travel insurance cover canceled flights?", promptTh: "ประกันการเดินทางนี้คุ้มครองเที่ยวบินที่ถูกยกเลิกไหม", answerEn: "Yes, it covers delays and cancellations over six hours.", answerTh: "คุ้มครองครับ ครอบคลุมทั้งความล่าช้าและการยกเลิกที่เกินหกชั่วโมง", distractors: ["The river looks peaceful.", "The library closes at nine on Fridays.", "My knee hurts slightly.", "You are most welcome."] },
+            { promptEn: "Should I pay in local currency or my home currency?", promptTh: "ฉันควรจ่ายเป็นสกุลเงินท้องถิ่นหรือสกุลเงินของประเทศตัวเองดี", answerEn: "Always choose local currency to avoid extra conversion fees.", answerTh: "เลือกสกุลเงินท้องถิ่นเสมอเพื่อหลีกเลี่ยงค่าธรรมเนียมการแปลงเงินเพิ่มครับ", distractors: ["Yes, she was so touched and grateful that everyone came.", "Because the bus ran late.", "Yes, coding and reading clubs!", "The soup tastes a little too salty."] },
+            { promptEn: "What do I need to file a medical claim?", promptTh: "ฉันต้องใช้อะไรบ้างในการยื่นเคลมค่ารักษาพยาบาล", answerEn: "Just keep your hospital receipts and the doctor's report.", answerTh: "แค่เก็บใบเสร็จโรงพยาบาลและรายงานของแพทย์ไว้ก็พอค่ะ", distractors: ["Yes, right after their bedtime story.", "The ticket costs ten dollars.", "Bring two erasers to class.", "I already ate lunch at noon."] },
+            { promptEn: "Is there an ATM fee for using a foreign card?", promptTh: "มีค่าธรรมเนียมตู้เอทีเอ็มสำหรับการใช้บัตรต่างประเทศไหม", answerEn: "Yes, this machine charges five dollars per withdrawal.", answerTh: "มีครับ ตู้นี้คิดค่าธรรมเนียมห้าดอลลาร์ต่อการถอนหนึ่งครั้ง", distractors: ["I already watered them this morning.", "They feel really tense after sitting at my desk all morning.", "Open the kitchen curtain.", "I prefer working from home on Mondays."] },
+            { promptEn: "How much cash should I carry for the trip?", promptTh: "ฉันควรพกเงินสดไปเท่าไหร่ดีสำหรับทริปนี้", answerEn: "Bring a small amount for tips and use your card elsewhere.", answerTh: "พกไปเล็กน้อยสำหรับค่าทิป และใช้บัตรในที่อื่นๆ แทนครับ", distractors: ["Since we were in high school.", "Put extra ice inside.", "Her notebook is green.", "The train leaves in ten minutes."] }
         ],
         nature: [
             { promptEn: 'Should I take an umbrella today?', promptTh: 'วันนี้ฉันควรพกร่มไปด้วยไหม?', answerEn: 'Yes, it might rain later.', answerTh: 'ควรนะ เดี๋ยวฝนอาจจะตก', distractors: ['The ticket costs ten dollars.', 'Turn off the computer first.', 'Bake the pie slowly.', 'He sits beside his friend.'] },
@@ -8672,7 +9041,19 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "What makes this national park so special to visit?", promptTh: "อะไรทำให้อุทยานแห่งชาติแห่งนี้พิเศษน่ามาเที่ยวมาก?", answerEn: "It has amazing biodiversity, with rare birds and ancient trees.", answerTh: "ที่นี่มีความหลากหลายทางชีวภาพที่น่าทึ่ง มีทั้งนกหายากและต้นไม้โบราณ", distractors: ["The wifi password is written on the receipt.", "You can park your car near the exit.", "I need to finish my homework tonight.", "The soup tastes a little too salty."] },
             { promptEn: "What is the best time to see the waterfall?", promptTh: "ช่วงไหนเหมาะที่สุดที่จะไปดูน้ำตก?", answerEn: "Right after the rainy season, when the water flow is strongest.", answerTh: "หลังฤดูฝนทันที เพราะน้ำจะไหลแรงที่สุด", distractors: ["I forgot to bring my umbrella today.", "The museum closes at five o'clock.", "Please turn down the air conditioner.", "Let's order some iced coffee."] },
             { promptEn: "Why are there so many fireflies near the river?", promptTh: "ทำไมถึงมีหิ่งห้อยเยอะแยะแถวแม่น้ำ?", answerEn: "They love clean, humid areas with plenty of trees.", answerTh: "พวกมันชอบบริเวณที่สะอาด ชื้น และมีต้นไม้เยอะ", distractors: ["The train leaves in ten minutes.", "I usually wake up at seven.", "This soup needs a bit more salt.", "She bought a new pair of shoes."] },
-            { promptEn: "Should we take the forest trail or the coastal path?", promptTh: "เราควรเดินเส้นทางป่าหรือเส้นทางเลียบชายฝั่งดี?", answerEn: "Let's take the forest trail since it's shaded and cooler.", answerTh: "ไปเส้นทางป่าดีกว่า เพราะมีร่มเงาและเย็นกว่า", distractors: ["He is studying for his math test.", "The package arrived this morning.", "I prefer watching movies at home.", "Can you pass me the remote?"] }
+            { promptEn: "Should we take the forest trail or the coastal path?", promptTh: "เราควรเดินเส้นทางป่าหรือเส้นทางเลียบชายฝั่งดี?", answerEn: "Let's take the forest trail since it's shaded and cooler.", answerTh: "ไปเส้นทางป่าดีกว่า เพราะมีร่มเงาและเย็นกว่า", distractors: ["He is studying for his math test.", "The package arrived this morning.", "I prefer watching movies at home.", "Can you pass me the remote?"] },
+            { promptEn: "Did you see the severe weather alert on your phone?", promptTh: "คุณเห็นประกาศเตือนภัยอากาศรุนแรงในโทรศัพท์หรือยัง", answerEn: "Yes, it says a heavy thunderstorm will hit our area around 5 p.m.", answerTh: "เห็นแล้ว มันบอกว่าจะมีพายุฝนฟ้าคะนองรุนแรงเข้าพื้นที่เราประมาณ 5 โมงเย็น", distractors: ["We packed light luggage.", "Cats usually sleep during the afternoon.", "Not at all, I will bring it over now.", "The weather is supposed to rain tomorrow."] },
+            { promptEn: "How is the weather looking for our hike this weekend?", promptTh: "สภาพอากาศสำหรับการเดินป่าสุดสัปดาห์นี้เป็นยังไงบ้าง", answerEn: "The forecast shows clear skies on Saturday, but light drizzle on Sunday.", answerTh: "พยากรณ์อากาศบอกว่าวันเสาร์ท้องฟ้าแจ่มใส แต่วันอาทิตย์จะมีฝนตกปรอยๆ", distractors: ["She got a high score in chemistry.", "The station is across the street.", "The movie starts in twenty minutes.", "You are most welcome."] },
+            { promptEn: "Why is it still so humid even though autumn has started?", promptTh: "ทำไมอากาศยังชื้นอยู่อีกทั้งที่เข้าฤดูใบไม้ร่วงแล้ว", answerEn: "A warm ocean breeze is keeping the moisture levels high this week.", answerTh: "ลมทะเลอุ่นๆ ทำให้ระดับความชื้นยังคงสูงในสัปดาห์นี้", distractors: ["The cat is sleeping on the sofa.", "The soup is quite hot.", "My brother lives near the beach.", "Put it beside the sofa."] },
+            { promptEn: "Should we cancel the outdoor picnic because of the gale warning?", promptTh: "เราควรยกเลิกปิกนิกกลางแจ้งเพราะคำเตือนลมแรงไหม", answerEn: "Definitely, winds are supposed to reach sixty kilometers per hour.", answerTh: "แน่นอน ลมน่าจะแรงถึงหกสิบกิโลเมตรต่อชั่วโมงเลย", distractors: ["This pen is black ink.", "He teaches basic math.", "The clouds look heavy.", "Check the weather before you leave."] },
+            { promptEn: "When does the frost usually start in this mountain town?", promptTh: "น้ำค้างแข็งมักจะเริ่มตกเมื่อไหร่ในเมืองบนภูเขานี้", answerEn: "Usually around late November, right before the first snow.", answerTh: "มักจะประมาณปลายเดือนพฤศจิกายน ก่อนหิมะแรกจะตกพอดี", distractors: ["That works for me. I'll update the calendar.", "It starts at nine o'clock sharp.", "Yes, one bottle in the fridge.", "Two slices of warm pie."] },
+            { promptEn: "Are the roads safe to drive on after last night's blizzard?", promptTh: "ถนนปลอดภัยพอที่จะขับรถหรือยังหลังจากพายุหิมะเมื่อคืน", answerEn: "Not yet, snowplows are still clearing the main highway.", answerTh: "ยังเลย รถกวาดหิมะกำลังเคลียร์ทางหลวงสายหลักอยู่", distractors: ["Of course, we can easily make that change for you.", "Send the invoice Monday.", "We have separate bins for plastic, paper, and glass.", "The coffee shop is closed on Sundays."] },
+            { promptEn: "Did you get the severe weather alert on your phone?", promptTh: "คุณได้รับแจ้งเตือนสภาพอากาศรุนแรงในโทรศัพท์หรือยัง?", answerEn: "Yes, it says a thunderstorm is heading our way this evening.", answerTh: "ได้รับแล้ว มันบอกว่าพายุฝนฟ้าคะนองกำลังมุ่งหน้ามาทางเราเย็นนี้", distractors: ["Oh, those are mine!", "Let me trace the tracking number and let you know.", "The movie starts at seven tonight.", "It looks like it might rain this afternoon."] },
+            { promptEn: "Is it safe to drive up the mountain in this weather?", promptTh: "ขับรถขึ้นเขาในสภาพอากาศแบบนี้จะปลอดภัยไหม?", answerEn: "Probably not, because the fog is getting thicker by the minute.", answerTh: "น่าจะไม่ปลอดภัยนะ เพราะหมอกเริ่มหนาขึ้นเรื่อยๆ ทุกนาทีเลย", distractors: ["I already finished my lunch.", "She is feeling very happy.", "They loved the peaceful beach.", "Check the city news."] },
+            { promptEn: "Which season do you enjoy the most here?", promptTh: "คุณชอบฤดูไหนมากที่สุดที่นี่?", answerEn: "I love autumn because the air is crisp and the breeze is cool.", answerTh: "ฉันชอบฤดูใบไม้ร่วงเพราะอากาศสดชื่นและมีลมพัดเย็นสบาย", distractors: ["At the corner bakery.", "Almost, I just need to edit the final slides.", "The waiter will bring the bill soon.", "Two blocks past the hotel."] },
+            { promptEn: "Why are they canceling the outdoor concert tonight?", promptTh: "ทำไมพวกเขาถึงยกเลิกคอนเสิร์ตกลางแจ้งคืนนี้ล่ะ?", answerEn: "The city issued a wind advisory due to dangerous gusts.", answerTh: "ทางเมืองออกประกาศเตือนเรื่องลมแรงเนื่องจากมีลมกระโชกที่เป็นอันตราย", distractors: ["We organize weekend food drives.", "It usually rains here in October.", "Her office is upstairs.", "The hotel breakfast is on the second floor."] },
+            { promptEn: "Should we bring extra water for the weekend trip?", promptTh: "เราควรเตรียมน้ำดื่มเพิ่มสำหรับทริปสุดสัปดาห์ไหม?", answerEn: "Definitely, especially since the region is experiencing a dry spell.", answerTh: "แน่นอน โดยเฉพาะอย่างยิ่งเมื่อภูมิภาคนี้กำลังเผชิญกับช่วงอากาศแห้งแล้ง", distractors: ["We should order some local food.", "Add garlic and onions.", "Only thirty minutes to finish slides.", "Dinner will be ready at six."] },
+            { promptEn: "When does the rainy season usually end in this area?", promptTh: "ฤดูฝนในแถบนี้มักจะสิ้นสุดลงเมื่อไหร่?", answerEn: "It usually clears up by late October, leaving mild and sunny days.", answerTh: "โดยปกติจะเริ่มซาลงช่วงปลายเดือนตุลาคม จากนั้นอากาศก็จะอบอุ่นสบายและมีแดด", distractors: ["The train reached London.", "Her notebook is yellow.", "The fridge is in the kitchen.", "It starts at nine o'clock."] }
         ],
         feelings: [
             { promptEn: 'You look excited today!', promptTh: 'วันนี้คุณดูตื่นเต้นจังเลย!', answerEn: 'I finally passed my exam!', answerTh: 'ในที่สุดฉันก็สอบผ่านแล้ว!', distractors: ['Put the dishes in the sink.', 'The airport is two miles away.', 'Boil rice for fifteen minutes.', 'Turn off the porch light.'] },
@@ -8695,7 +9076,18 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Why do you seem so stressed out this week?", promptTh: "ทำไมสัปดาห์นี้คุณดูเครียดจังเลย?", answerEn: "I have three deadlines at work and I feel completely overwhelmed.", answerTh: "ฉันมีเดดไลน์งานตั้งสามอย่างเลยรู้สึกท่วมท้นรับมือไม่ไหวแล้ว", distractors: ["I'm going to the supermarket later.", "The movie was about two hours long.", "She moved to Chiang Mai last year.", "I prefer tea over coffee."] },
             { promptEn: "How did you feel after giving your presentation today?", promptTh: "วันนี้หลังจากพรีเซนต์งานเสร็จ คุณรู้สึกอย่างไรบ้าง", answerEn: "I was nervous at first, but I felt really relieved once it was over.", answerTh: "ตอนแรกฉันประหม่ามาก แต่พอจบแล้วก็รู้สึกโล่งใจสุดๆ เลย", distractors: ["I sent the slides to the printer before lunch.", "The meeting room is on the third floor.", "We should order coffee for the whole team.", "My laptop battery died during the train ride."] },
             { promptEn: "You seem a bit quiet tonight. Is something bothering you?", promptTh: "คืนนี้คุณดูเงียบๆ นะ มีเรื่องอะไรไม่สบายใจหรือเปล่า", answerEn: "I'm just feeling overwhelmed with all the changes at work lately.", answerTh: "ฉันแค่รู้สึกหนักใจกับความเปลี่ยนแปลงหลายอย่างที่ทำงานช่วงนี้น่ะ", distractors: ["I bought a new jacket at the mall yesterday.", "The restaurant closes at ten o'clock.", "Let's take the elevator instead of the stairs.", "I usually drink tea in the morning."] },
-            { promptEn: "Did your sister like the surprise party you planned for her?", promptTh: "น้องสาวของคุณชอบงานปาร์ตี้เซอร์ไพรส์ที่คุณจัดให้ไหม", answerEn: "Yes, she was so touched and grateful that everyone came.", answerTh: "ชอบมาก เธอซาบซึ้งใจและขอบคุณที่ทุกคนมางานกัน", distractors: ["She forgot to bring her umbrella this morning.", "The bakery is right next to the station.", "We need to buy more chairs for the office.", "I will call the plumber tomorrow afternoon."] }
+            { promptEn: "Did your sister like the surprise party you planned for her?", promptTh: "น้องสาวของคุณชอบงานปาร์ตี้เซอร์ไพรส์ที่คุณจัดให้ไหม", answerEn: "Yes, she was so touched and grateful that everyone came.", answerTh: "ชอบมาก เธอซาบซึ้งใจและขอบคุณที่ทุกคนมางานกัน", distractors: ["She forgot to bring her umbrella this morning.", "The bakery is right next to the station.", "We need to buy more chairs for the office.", "I will call the plumber tomorrow afternoon."] },
+            { promptEn: "Did the test results turn out okay?", promptTh: "ผลตรวจออกมาเรียบร้อยดีไหม", answerEn: "Yes, everything is normal, so I finally feel reassured.", answerTh: "ใช่ ทุกอย่างปกติดี ฉันเลยรู้สึกอุ่นใจขึ้นสักที", distractors: ["The printer on the second floor is out of paper.", "The signal is a bit weak, so let's move the router closer.", "The meeting starts at ten o'clock.", "It weighs two kilograms."] },
+            { promptEn: "You seem much lighter today. What happened?", promptTh: "วันนี้คุณดูสบายใจขึ้นเยอะเลย เกิดอะไรขึ้นเหรอ", answerEn: "I finished that huge deadline, and I feel completely unburdened.", answerTh: "ฉันส่งงานใหญ่ทันกำหนดแล้ว เลยรู้สึกโล่งอกสุดๆ ไปเลย", distractors: ["Pack your toothbrush too.", "Local music and traditional crafts.", "The weather is very sunny today.", "The coffee tastes sweet."] },
+            { promptEn: "Are you still worried about the presentation?", promptTh: "คุณยังกังวลเรื่องการนำเสนออยู่ไหม", answerEn: "Not as much now—my manager gave me some helpful reassurance.", answerTh: "ไม่ค่อยแล้วล่ะ หัวหน้าให้คำแนะนำที่ทำให้ฉันอุ่นใจขึ้นเยอะเลย", distractors: ["It is a twenty-minute walk from here.", "She felt sleepy early.", "It is totally fine, do not worry about it.", "Sure, I'll bring it right over."] },
+            { promptEn: "How are you feeling about the new schedule?", promptTh: "คุณรู้สึกยังไงกับตารางเวลาใหม่บ้าง", answerEn: "Actually, I am quite hopeful that it will give us more balance.", answerTh: "จริงๆ แล้วฉันค่อนข้างมีความหวังนะว่ามันจะช่วยให้เรามีสมดุลมากขึ้น", distractors: ["I have a dentist appointment on Friday.", "She works at the bank downtown.", "We need to submit it by five o'clock tomorrow.", "That train stops at York."] },
+            { promptEn: "Did talking with your sister help?", promptTh: "การได้คุยกับพี่สาวช่วยได้บ้างไหม", answerEn: "Yes, her kind words really brightened my afternoon.", answerTh: "ช่วยได้มากเลย คำพูดใจดีของเธอทำให้ช่วงบ่ายของฉันสดใสขึ้นจริงๆ", distractors: ["The cat is sleeping on the sofa.", "My shoes are wet.", "Open the window slightly.", "Add a little sugar to taste."] },
+            { promptEn: "Why do you look so relaxed right now?", promptTh: "ทำไมตอนนี้คุณดูผ่อนคลายจังเลย", answerEn: "The rain stopped and the quiet air just soothed my nerves.", answerTh: "ฝนหยุดตกแล้ว อากาศเงียบสงบก็เลยช่วยให้ฉันรู้สึกผ่อนคลายลง", distractors: ["Check today’s weather.", "She typed twelve pages.", "It is on the second floor.", "Put the dishes in the sink."] },
+            { promptEn: "Did the mechanic say the car is okay?", promptTh: "ช่างซ่อมรถบอกว่ารถโอเคไหม?", answerEn: "Yes, it was just a loose wire, so we don't need an expensive repair.", answerTh: "ใช่ แค่สายไฟหลวม เราเลยไม่ต้องซ่อมแพง", distractors: ["It costs around two hundred baht.", "The station is across the street.", "That mango is still green.", "The library closes at six o'clock."] },
+            { promptEn: "How did the meeting with your boss go?", promptTh: "การประชุมกับเจ้านายของคุณเป็นอย่างไรบ้าง?", answerEn: "Better than I expected! She liked our ideas and gave us more time.", answerTh: "ดีกว่าที่คาดไว้! เธอชอบไอเดียของเราและให้เวลาเราเพิ่มด้วย", distractors: ["Board the train carefully.", "Our roasted vegetable curry with tofu is very popular.", "I am studying history.", "Yes, I am tired."] },
+            { promptEn: "Did you manage to catch the last train?", promptTh: "คุณขึ้นรถไฟขบวนสุดท้ายทันไหม?", answerEn: "Just in time! I'm so glad I don't have to walk home in the rain.", answerTh: "ทันเวลาพอดี! ดีใจมากที่ไม่ต้องเดินตากฝนกลับบ้าน", distractors: ["My favorite color is dark blue.", "Our neighbors are friendly.", "Our community has kept this tradition alive for over two hundred years.", "The supermarket closes at ten tonight."] },
+            { promptEn: "Is your headache getting any better?", promptTh: "อาการปวดหัวของคุณดีขึ้นบ้างไหม?", answerEn: "Yes, the medicine is finally working and I feel much lighter now.", answerTh: "ใช่ ยาเริ่มออกฤทธิ์แล้วและตอนนี้ฉันรู้สึกเบาหัวขึ้นมาก", distractors: ["There is a currency booth right after baggage claim.", "Write the date on top.", "We booked two tickets online.", "Dinner is on the stove."] },
+            { promptEn: "Do you think the weather will clear up soon?", promptTh: "คุณคิดว่าอากาศจะแจ่มใสขึ้นเร็วๆ นี้ไหม?", answerEn: "The clouds are already moving away, so the afternoon should be nice.", answerTh: "เมฆเริ่มเคลื่อนตัวออกไปแล้ว ช่วงบ่ายน่าจะอากาศดีนะ", distractors: ["Two tickets to Bangkok.", "The restaurant closes at ten o'clock.", "The soup needs a little more salt.", "You can park your car near the exit."] }
         ],
         education: [
             { promptEn: 'Did you finish the homework?', promptTh: 'ทำการบ้านเสร็จหรือยัง?', answerEn: 'Almost done, just one page left.', answerTh: 'เกือบเสร็จแล้ว เหลืออีกแค่หน้าเดียว', distractors: ['The river flows to the sea.', 'Please slice the bread.', 'Lock the front door.', 'Her cough is gone.'] },
@@ -8715,7 +9107,19 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Can I borrow your lecture notes?", promptTh: "ฉันขอยืมสมุดจดเลกเชอร์ของคุณหน่อยได้ไหม", answerEn: "Sure, I will send you photos of them tonight.", answerTh: "ได้เลย เดี๋ยวคืนนี้ฉันส่งรูปถ่ายไปให้นะ", distractors: ["The weather is very warm today.", "I already ate lunch at noon.", "My brother lives in another city.", "The train station is across the street."] },
             { promptEn: "When is the deadline for our history essay?", promptTh: "กำหนดส่งเรียงความวิชาประวัติศาสตร์คือเมื่อไหร่", answerEn: "It is due this Friday at five in the afternoon.", answerTh: "กำหนดส่งวันศุกร์นี้เวลาห้าโมงเย็น", distractors: ["I really enjoy studying world history.", "The library closes at nine tonight.", "My favorite subject is biology.", "We have a math quiz tomorrow morning."] },
             { promptEn: "Could you share your lecture notes from yesterday?", promptTh: "คุณช่วยแชร์โน้ตเลกเชอร์ของเมื่อวานให้หน่อยได้ไหม", answerEn: "Sure, I will send you a photo of them right now.", answerTh: "ได้เลย เดี๋ยวฉันส่งรูปให้คุณตอนนี้เลย", distractors: ["The professor spoke very fast today.", "I forgot to bring my backpack.", "The cafeteria is on the second floor.", "I am studying for the final exam."] },
-            { promptEn: "How are you preparing for the English speaking test?", promptTh: "คุณเตรียมตัวสำหรับการสอบพูดภาษาอังกฤษอย่างไรบ้าง", answerEn: "I practice speaking with a study partner every evening.", answerTh: "ฉันฝึกพูดกับเพื่อนร่วมติวทุกเย็น", distractors: ["The test room is down the hall.", "I bought a new dictionary yesterday.", "She got a high score in chemistry.", "Our class starts at eight thirty."] }
+            { promptEn: "How are you preparing for the English speaking test?", promptTh: "คุณเตรียมตัวสำหรับการสอบพูดภาษาอังกฤษอย่างไรบ้าง", answerEn: "I practice speaking with a study partner every evening.", answerTh: "ฉันฝึกพูดกับเพื่อนร่วมติวทุกเย็น", distractors: ["The test room is down the hall.", "I bought a new dictionary yesterday.", "She got a high score in chemistry.", "Our class starts at eight thirty."] },
+            { promptEn: "How long does it take to finish this online course?", promptTh: "หลักสูตรออนไลน์นี้ใช้เวลาเรียนนานแค่ไหน", answerEn: "It is self-paced, so most learners finish it in about four weeks.", answerTh: "เป็นแบบเรียนด้วยตนเอง ดังนั้นผู้เรียนส่วนใหญ่จะเรียนจบในประมาณสี่สัปดาห์", distractors: ["Mix eggs and flour together.", "I have three deadlines at work and I feel completely overwhelmed.", "Bring two erasers to class.", "The weather is quite warm today."] },
+            { promptEn: "Do I get a certificate after passing the final exam?", promptTh: "ฉันจะได้รับใบรับรองหลังจากสอบผ่านปลายภาคไหม", answerEn: "Yes, a verified digital certificate will be emailed to you automatically.", answerTh: "ใช่ ใบรับรองดิจิทัลที่ผ่านการตรวจสอบแล้วจะถูกส่งไปยังอีเมลของคุณโดยอัตโนมัติ", distractors: ["I left my bag on the bus.", "The tea tastes bitter.", "In the top bathroom drawer.", "Four tickets for Saturday."] },
+            { promptEn: "Is this certification recognized by employers?", promptTh: "ใบรับรองนี้เป็นที่ยอมรับของนายจ้างหรือไม่", answerEn: "Yes, it is accredited and widely respected in the industry.", answerTh: "ใช่ มันได้รับการรับรองและเป็นที่ยอมรับอย่างกว้างขวางในอุตสาหกรรม", distractors: ["Usually bread and eggs.", "We bought groceries this morning.", "Look at that tall tree.", "I felt proud and relieved."] },
+            { promptEn: "What happens if I miss the assignment deadline?", promptTh: "จะเกิดอะไรขึ้นถ้าฉันส่งงานเลยกำหนดส่ง", answerEn: "You can still submit it late, but a small penalty may apply.", answerTh: "คุณยังสามารถส่งช้าได้ แต่อาจมีการหักคะแนนเล็กน้อย", distractors: ["He likes playing guitar on weekends.", "Wait until the light turns green.", "Open the textbook first.", "The movie was much longer than expected."] },
+            { promptEn: "Are the live webinars recorded in case I cannot join?", promptTh: "การสัมมนาผ่านเว็บสดมีการบันทึกไว้เผื่อฉันไม่สามารถเข้าร่วมได้ไหม", answerEn: "Yes, all sessions are recorded and uploaded to the portal.", answerTh: "ใช่ ทุกเซสชันจะถูกบันทึกและอัปโหลดไปยังพอร์ทัล", distractors: ["Open window number two.", "The coffee shop closes at six.", "I prefer window seats on planes.", "I usually drink tea in the morning."] },
+            { promptEn: "Do I need any prior experience before enrolling?", promptTh: "ฉันจำเป็นต้องมีประสบการณ์มาก่อนไหมก่อนลงทะเบียนเรียน", answerEn: "No, this is a beginner-friendly course with no prerequisites.", answerTh: "ไม่ หลักสูตรนี้เหมาะสำหรับผู้เริ่มต้นและไม่มีเงื่อนไขเบื้องต้น", distractors: ["Of course, no problem!", "I usually drink coffee without sugar.", "The library closes at nine.", "Because the exam started."] },
+            { promptEn: "Can I download the lecture videos to watch offline?", promptTh: "ฉันสามารถดาวน์โหลดวิดีโอบรรยายไว้ดูแบบออฟไลน์ได้ไหม?", answerEn: "Yes, the mobile app lets you save lessons for offline viewing.", answerTh: "ได้สิ แอปมือถือให้คุณบันทึกบทเรียนไว้ดูแบบออฟไลน์ได้", distractors: ["Sure, keep your chest up and push your hips back as you lower down.", "The blue pen works well.", "It fits inside my bag.", "The library closes at six o'clock."] },
+            { promptEn: "Do we get a certificate after finishing this course?", promptTh: "เราจะได้รับใบรับรองหลังจากเรียนจบคอร์สนี้ไหม?", answerEn: "Yes, you get a verified digital certificate once you pass the final quiz.", answerTh: "ใช่ คุณจะได้รับใบรับรองดิจิทัลที่ยืนยันแล้วเมื่อสอบผ่านควิซสุดท้าย", distractors: ["Her ankle swelled slightly.", "Great! They invited me back Monday.", "I forgot my email password.", "That sweater fits nicely."] },
+            { promptEn: "How do I submit my weekly assignment?", promptTh: "ฉันจะส่งงานประจำสัปดาห์ได้อย่างไร?", answerEn: "Just upload your PDF file under the Week 3 tab before Sunday.", answerTh: "แค่อัปโหลดไฟล์ PDF ของคุณในแท็บสัปดาห์ที่ 3 ก่อนวันอาทิตย์", distractors: ["Behind the science lab.", "Look at those dark clouds.", "Our meeting starts soon.", "Let us tighten the loose screws."] },
+            { promptEn: "What happens if I miss a live webinar session?", promptTh: "จะเกิดอะไรขึ้นถ้าฉันพลาดเซสชันสัมมนาออนไลน์สด?", answerEn: "Don't worry, the recording is posted on the platform within two hours.", answerTh: "ไม่ต้องกังวล วิดีโอบันทึกจะถูกโพสต์บนแพลตฟอร์มภายในสองชั่วโมง", distractors: ["The train arrived early.", "With my younger sister.", "Because the bus ran late.", "I need to renew my passport next month."] },
+            { promptEn: "Is there any prerequisite for the data analysis certificate?", promptTh: "มีวิชาบังคับก่อนสำหรับใบรับรองการวิเคราะห์ข้อมูลไหม?", answerEn: "You only need basic spreadsheet skills to get started.", answerTh: "คุณแค่ต้องมีทักษะสเปรดชีตพื้นฐานเพื่อเริ่มต้นเท่านั้น", distractors: ["The supermarket closes at ten tonight.", "Put books on the desk.", "Bring both, just in case.", "Yes, add some pepper."] },
+            { promptEn: "Can I switch from the free audit track to the certificate track?", promptTh: "ฉันสามารถเปลี่ยนจากแบบเรียนฟรีเป็นแบบรับใบรับรองได้ไหม?", answerEn: "Sure, you can upgrade your enrollment anytime before the course ends.", answerTh: "ได้แน่นอน คุณสามารถอัปเกรดการลงทะเบียนได้ตลอดเวลาก่อนคอร์สจะจบ", distractors: ["Look at the bright moon.", "Her birthday is next Thursday.", "Five apples per basket.", "Next Friday looks bright."] }
         ],
         work: [
             { promptEn: 'When is the project deadline?', promptTh: 'กำหนดส่งโปรเจกต์คือวันไหน?', answerEn: 'This Friday before five.', answerTh: 'วันศุกร์นี้ก่อนห้าโมงเย็น', distractors: ['I spilled coffee on my shirt.', 'The garden smells lovely.', 'Boil pasta ten minutes.', 'My knee feels sore.'] },
@@ -8739,7 +9143,19 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Are you free for a quick meeting this afternoon?", promptTh: "บ่ายนี้คุณว่างคุยประชุมสั้นๆ ไหม", answerEn: "Yes, I'm available after two o'clock if that works for you.", answerTh: "ว่างครับ ผมสะดวกหลังบ่ายสองโมงถ้าคุณโอเค", distractors: ["I forgot to bring my umbrella this morning.", "The restaurant across the street has great pasta.", "Yes, I finished reading that novel yesterday.", "My flight leaves at seven in the morning."] },
             { promptEn: "Could we move our afternoon meeting to tomorrow morning?", promptTh: "เราขอเลื่อนประชุมช่วงบ่ายไปเป็นพรุ่งนี้เช้าได้ไหม?", answerEn: "Sure, tomorrow morning works better for me too.", answerTh: "ได้เลย พรุ่งนี้เช้าฉันก็สะดวกกว่าเหมือนกัน", distractors: ["I forgot to bring my umbrella today.", "The coffee machine in the kitchen is broken.", "I usually take the bus to the office.", "Let's order pizza for dinner tonight."] },
             { promptEn: "Have you had a chance to review the sales report yet?", promptTh: "คุณได้มีโอกาสตรวจดูรายงานการขายหรือยัง?", answerEn: "Yes, I just finished reading it and left a few comments.", answerTh: "ดูแล้วครับ ฉันเพิ่งอ่านจบและใส่ความเห็นไว้เล็กน้อยแล้ว", distractors: ["My favorite color is dark blue.", "The train was delayed by ten minutes.", "I am going to the gym after work.", "This restaurant has great pasta."] },
-            { promptEn: "Do you need any help finishing the presentation before 5 p.m.?", promptTh: "คุณต้องการความช่วยเหลือในการทำสไลด์ให้เสร็จก่อนห้าโมงเย็นไหม?", answerEn: "That would be great! Could you double-check the final slides?", answerTh: "ดีเลยครับ! ช่วยตรวจทานสไลด์หน้าท้ายๆ ให้หน่อยได้ไหม?", distractors: ["I bought a new pair of running shoes.", "It looks like it might rain this weekend.", "I prefer tea over coffee in the morning.", "The movie starts at eight o'clock."] }
+            { promptEn: "Do you need any help finishing the presentation before 5 p.m.?", promptTh: "คุณต้องการความช่วยเหลือในการทำสไลด์ให้เสร็จก่อนห้าโมงเย็นไหม?", answerEn: "That would be great! Could you double-check the final slides?", answerTh: "ดีเลยครับ! ช่วยตรวจทานสไลด์หน้าท้ายๆ ให้หน่อยได้ไหม?", distractors: ["I bought a new pair of running shoes.", "It looks like it might rain this weekend.", "I prefer tea over coffee in the morning.", "The movie starts at eight o'clock."] },
+            { promptEn: "When should we send the stakeholder update?", promptTh: "เราควรส่งอัปเดตให้ผู้มีส่วนได้ส่วนเสียเมื่อไหร่", answerEn: "Let's send it by 3 p.m. once the facts are verified.", answerTh: "ส่งภายในบ่าย 3 โมงหลังจากตรวจสอบข้อเท็จจริงแล้วนะ", distractors: ["Yes, it is very quiet and well-lit.", "Usually around late November, right before the first snow.", "Please slice the bread.", "Yes, she comes home next summer."] },
+            { promptEn: "Should the CEO speak at the press briefing?", promptTh: "ซีอีโอควรพูดในการบรรยายสรุปสื่อไหม", answerEn: "Yes, having the CEO there shows we take this seriously.", answerTh: "ใช่ การมีซีอีโออยู่ที่นั่นแสดงว่าเราจริงจังกับเรื่องนี้", distractors: ["That maple leaf is red.", "Snow fell until dawn.", "Put the milk back in the fridge.", "We need to clean the living room."] },
+            { promptEn: "How do we handle the rumors on social media?", promptTh: "เราจะจัดการกับข่าวลือบนโซเชียลมีเดียยังไงดี", answerEn: "Post a short, clear statement to clarify the truth.", answerTh: "โพสต์แถลงการณ์สั้นๆ ที่ชัดเจนเพื่อชี้แจงความจริงสิ", distractors: ["We decided to paint the bedroom blue.", "This shirt comes in blue and white.", "The train arrives at platform two.", "My laptop updated overnight."] },
+            { promptEn: "Are investors worried about the system outage?", promptTh: "นักลงทุนกังวลเรื่องระบบล่มไหม", answerEn: "A little, so we are calling them to reassure them.", answerTh: "นิดหน่อย เราเลยกำลังโทรไปทำให้พวกเขามั่นใจขึ้น", distractors: ["She finished her biology test.", "The kitchen is very clean.", "She typed the report quickly.", "Five apples per basket."] },
+            { promptEn: "Should we apologize in the first paragraph?", promptTh: "เราควรขอโทษในย่อหน้าแรกเลยไหม", answerEn: "Yes, acknowledge the issue right away and explain the fix.", answerTh: "ใช่ ยอมรับปัญหาทันทีแล้วอธิบายวิธีแก้ไข", distractors: ["Put the milk back in the fridge.", "Medium rare, please, with a side of roasted vegetables.", "The weather is very warm this week.", "Mark and I will split the presentation so it feels balanced."] },
+            { promptEn: "Who is approving the final press release?", promptTh: "ใครเป็นคนอนุมัติข่าวประชาสัมพันธ์ฉบับสุดท้าย", answerEn: "The legal team and our spokesperson are reviewing it now.", answerTh: "ทีมกฎหมายและโฆษกของเรากำลังตรวจสอบอยู่ตอนนี้", distractors: ["The quiz starts at eight.", "Wash your hands with soap.", "Sure, I will speak more slowly for you.", "Yes, it is right in my hand."] },
+            { promptEn: "When should we send the update to stakeholders?", promptTh: "เราควรส่งข้อมูลอัปเดตให้ผู้มีส่วนได้ส่วนเสียเมื่อไหร่", answerEn: "As soon as the facts are confirmed, ideally within the hour.", answerTh: "ทันทีที่ยืนยันข้อเท็จจริงได้ ควรภายในหนึ่งชั่วโมงนี้", distractors: ["Yes, it is accredited and widely respected in the industry.", "Only when I walk fast.", "No, it is too salty.", "I have one younger brother."] },
+            { promptEn: "Should we post a statement on social media right now?", promptTh: "เราควรโพสต์แถลงการณ์ลงโซเชียลมีเดียตอนนี้เลยไหม", answerEn: "Yes, but let the legal team check the wording first.", answerTh: "ใช่ แต่ให้ทีมกฎหมายตรวจถ้อยคำก่อนนะ", distractors: ["I drank iced coffee.", "Wait by platform two.", "I usually drink coffee in the morning.", "Winter feels very cold."] },
+            { promptEn: "How are customers reacting to the service outage?", promptTh: "ลูกค้ามีปฏิกิริยาอย่างไรต่อเหตุระบบล่ม", answerEn: "Most are frustrated, so we are offering a one-month credit.", answerTh: "ส่วนใหญ่หงุดหงิด เราจึงเสนอเครดิตชดเชยให้หนึ่งเดือน", distractors: ["He bought a train pass.", "Open the study notes.", "The soup needs a bit more salt.", "Buy two stamps please."] },
+            { promptEn: "Who will speak at the press briefing this afternoon?", promptTh: "ใครจะเป็นคนพูดในการแถลงข่าวบ่ายนี้", answerEn: "Our communications director will handle all media questions.", answerTh: "ผู้อำนวยการฝ่ายสื่อสารของเราจะเป็นคนตอบคำถามสื่อทั้งหมด", distractors: ["No, it is made with olive oil and fresh tomatoes.", "Look at that tall tree.", "The city issued a wind advisory due to dangerous gusts.", "Down the stairs on the right."] },
+            { promptEn: "Did the board approve the compensation plan?", promptTh: "คณะกรรมการอนุมัติแผนการชดเชยแล้วหรือยัง", answerEn: "Yes, they signed off on it ten minutes ago.", answerTh: "ใช่ พวกเขาอนุมัติไปเมื่อสิบนาทีที่แล้ว", distractors: ["Let us tighten the loose screws.", "She signed the contract.", "Slice the bread thinly.", "We took the blue bus."] },
+            { promptEn: "What is our main message for the investors?", promptTh: "ข้อความหลักของเราสำหรับนักลงทุนคืออะไร", answerEn: "That the issue is contained and normal service has resumed.", answerTh: "คือปัญหาถูกควบคุมได้แล้วและบริการกลับมาเป็นปกติแล้ว", distractors: ["The museum closes at five p.m.", "The river flows to the sea.", "It costs fifty baht.", "Right, look both ways first."] }
         ],
         society: [
             { promptEn: 'Where can citizens vote today?', promptTh: 'ประชาชนไปใช้สิทธิเลือกตั้งได้ที่ไหนวันนี้?', answerEn: 'At the local community center.', answerTh: 'ที่ศูนย์ชุมชนประจำท้องถิ่น', distractors: ['Add a little sugar to taste.', 'His cat sleeps under the chair.', 'Check in at counter five.', 'My elbow feels sore.'] },
@@ -8759,7 +9175,19 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "What can we do to reduce plastic waste in our community?", promptTh: "เราจะทำอะไรได้บ้างเพื่อลดขยะพลาสติกในชุมชนของเรา", answerEn: "We should encourage people to use reusable bags.", answerTh: "เราควรสนับสนุนให้ผู้คนใช้ถุงผ้าที่ใช้ซ้ำได้", distractors: ["Plastic is very cheap to produce.", "The recycling truck comes on Tuesday.", "I prefer drinking iced tea.", "Our community center has a library."] },
             { promptEn: "Are you going to vote in the local election this Sunday?", promptTh: "คุณจะไปลงคะแนนเสียงเลือกตั้งท้องถิ่นวันอาทิตย์นี้ไหม", answerEn: "Yes, I think it is important for everyone to participate.", answerTh: "ไปสิ ฉันคิดว่ามันสำคัญที่ทุกคนควรจะมีส่วนร่วม", distractors: ["I forgot my umbrella at the coffee shop.", "The train arrives at platform three.", "My favorite color is dark blue.", "We need to buy more milk today."] },
             { promptEn: "How does your neighborhood handle recycling?", promptTh: "แถวบ้านคุณจัดการเรื่องการรีไซเคิลอย่างไรบ้าง", answerEn: "We have separate bins for plastic, paper, and glass.", answerTh: "เรามีถังแยกสำหรับพลาสติก กระดาษ และแก้ว", distractors: ["The movie starts at seven thirty.", "She is studying for her math exam.", "I usually drink tea in the morning.", "The weather is very warm this week."] },
-            { promptEn: "Did you hear about the new community center opening downtown?", promptTh: "คุณได้ยินเรื่องศูนย์ชุมชนแห่งใหม่ที่กำลังจะเปิดในตัวเมืองไหม", answerEn: "Yes, they will offer free computer classes for seniors.", answerTh: "ได้ยินแล้ว พวกเขาจะเปิดสอนคอมพิวเตอร์ฟรีสำหรับผู้สูงอายุด้วย", distractors: ["I left my jacket in the car.", "He plays guitar every Friday night.", "The soup needs a little more salt.", "My flight was delayed by an hour."] }
+            { promptEn: "Did you hear about the new community center opening downtown?", promptTh: "คุณได้ยินเรื่องศูนย์ชุมชนแห่งใหม่ที่กำลังจะเปิดในตัวเมืองไหม", answerEn: "Yes, they will offer free computer classes for seniors.", answerTh: "ได้ยินแล้ว พวกเขาจะเปิดสอนคอมพิวเตอร์ฟรีสำหรับผู้สูงอายุด้วย", distractors: ["I left my jacket in the car.", "He plays guitar every Friday night.", "The soup needs a little more salt.", "My flight was delayed by an hour."] },
+            { promptEn: "When does the lantern festival start tonight?", promptTh: "คืนนี้เทศกาลโคมไฟเริ่มกี่โมงคะ", answerEn: "It begins at seven o'clock right after the opening parade.", answerTh: "เริ่มตอนหนึ่งทุ่มตรงหลังจากขบวนแห่เปิดงานครับ", distractors: ["The tea tastes bitter.", "Call the clinic first.", "Sure, tomorrow morning works better for me too.", "Yes, one bottle in the fridge."] },
+            { promptEn: "Are visitors allowed to join the traditional dance?", promptTh: "นักท่องเที่ยวสามารถเข้าร่วมการเต้นรำพื้นเมืองได้ไหมครับ", answerEn: "Yes, everyone is welcome to join the circle at the end.", answerTh: "ได้ครับ ทุกคนสามารถเข้าร่วมวงได้ในช่วงท้ายเลย", distractors: ["My sister is studying medicine in Bangkok.", "Near the bus terminal.", "My shoes got soaked in the storm.", "Study unit four tonight."] },
+            { promptEn: "Why do people wear white clothes for this ceremony?", promptTh: "ทำไมผู้คนถึงสวมชุดสีขาวในพิธีนี้คะ", answerEn: "White symbolizes peace and respect for our ancestors.", answerTh: "สีขาวเป็นสัญลักษณ์ของความสงบสุขและการเคารพบรรพบุรุษครับ", distractors: ["Send me a voice message.", "Take two pills daily.", "He likes playing guitar on weekends.", "Five dollars each."] },
+            { promptEn: "Where can I buy authentic handmade crafts here?", promptTh: "ฉันจะซื้อของทำมือของแท้ได้ที่ไหนคะ", answerEn: "You can visit the artisan stalls near the old town gate.", answerTh: "คุณสามารถไปที่ซุ้มช่างฝีมือใกล้ประตูเมืองเก่าได้เลยครับ", distractors: ["I am from Chiang Mai.", "No, you need to transfer at the next station.", "Fresh mangoes taste sweet.", "Please wait a moment."] },
+            { promptEn: "How long has this harvest festival been celebrated?", promptTh: "เทศกาลเก็บเกี่ยวนี้จัดมานานแค่ไหนแล้วครับ", answerEn: "Our community has kept this tradition alive for over two hundred years.", answerTh: "ชุมชนของเราสืบสานประเพณีนี้มานานกว่าสองร้อยปีแล้วค่ะ", distractors: ["Sure, bend your knees and count three.", "He arrived at the station.", "It weighs two kilograms.", "This curry is mild."] },
+            { promptEn: "Should we book tickets for the heritage museum in advance?", promptTh: "เราควรจองตั๋วเข้าชมพิพิธภัณฑ์มรดกวัฒนธรรมล่วงหน้าไหมครับ", answerEn: "Yes, it gets very crowded during the festival weekend.", answerTh: "ใช่ครับ ช่วงสุดสัปดาห์เทศกาลคนจะแน่นมากเลย", distractors: ["Because the road was wet.", "Two kilometers south.", "A little, so we are calling them to reassure them.", "Put ice cubes inside."] },
+            { promptEn: "When does the lantern festival start this year?", promptTh: "เทศกาลโคมไฟปีนี้เริ่มเมื่อไหร่ครับ", answerEn: "It starts this Friday evening right after sunset.", answerTh: "เริ่มเย็นวันศุกร์นี้หลังพระอาทิตย์ตกเลยครับ", distractors: ["I had breakfast already.", "They planted green beans.", "Yes, please call the clinic.", "I prefer tea over coffee."] },
+            { promptEn: "Do people wear traditional clothes to the parade?", promptTh: "ผู้คนใส่ชุดประจำชาติไปงานขบวนแห่ไหมคะ", answerEn: "Yes, many families wear silk outfits passed down from their elders.", answerTh: "ใช่ค่ะ หลายครอบครัวใส่ชุดผ้าไหมที่สืบทอดมาจากผู้ใหญ่", distractors: ["The waiter will bring the bill soon.", "Plastic is very cheap to produce.", "I am studying for the final exam.", "Our flight is delayed."] },
+            { promptEn: "How old is the stone monument in the square?", promptTh: "อนุสาวรีย์หินที่จัตุรัสอายุเท่าไหร่แล้วครับ", answerEn: "It was built more than two hundred years ago to honor the town founders.", answerTh: "สร้างขึ้นมากว่าสองร้อยปีแล้วเพื่อเป็นเกียรติแก่ผู้ก่อตั้งเมือง", distractors: ["Science, because I love experiments.", "Yes, I always warm up for ten minutes to avoid injuries.", "My flight got delayed by an hour.", "He enjoys swimming at the beach."] },
+            { promptEn: "Can visitors enter the main shrine during the ceremony?", promptTh: "นักท่องเที่ยวเข้าไปในศาลเจ้าหลักระหว่างพิธีได้ไหมคะ", answerEn: "Visitors are welcome, as long as they stay quiet and dress modestly.", answerTh: "ยินดีต้อนรับนักท่องเที่ยวค่ะ ขอแค่เงียบและแต่งกายสุภาพ", distractors: ["I need to charge my phone first.", "We met in college and realized we shared the same hobbies.", "Bake the pie slowly.", "I need to charge my phone."] },
+            { promptEn: "What kind of food is served at the harvest banquet?", promptTh: "ในงานเลี้ยงฉลองเก็บเกี่ยวมีอาหารอะไรเสิร์ฟบ้างครับ", answerEn: "They serve roasted vegetables, sweet rice cakes, and local herbal tea.", answerTh: "มีผักย่าง ขนมข้าวเหนียวหวาน และชาสมุนไพรท้องถิ่นครับ", distractors: ["The rainbow faded slowly.", "I forgot to charge my laptop last night.", "Sure, coming right up.", "Let's order a large pizza to share."] },
+            { promptEn: "Where can I learn more about the local dialect?", promptTh: "ฉันจะเรียนรู้เพิ่มเติมเกี่ยวกับภาษาถิ่นได้ที่ไหนคะ", answerEn: "The cultural center offers free weekend workshops for beginners.", answerTh: "ศูนย์วัฒนธรรมมีเวิร์กชอปฟรีช่วงสุดสัปดาห์สำหรับผู้เริ่มต้นค่ะ", distractors: ["The kitchen is very clean.", "It snowed in December.", "Our teacher checked the quiz.", "Let's take the elevator instead of the stairs."] }
         ],
         actions: [
             { promptEn: 'Could you hold the door for me?', promptTh: 'ช่วยจับประตูค้างไว้ให้หน่อยได้ไหม?', answerEn: 'Sure, take your time walking in.', answerTh: 'ได้เลย ค่อยๆ เดินเข้ามานะ', distractors: ['Breakfast starts at seven.', 'Winter is my favorite season.', 'Her notebook is green.', 'Take two pills daily.'] },
@@ -8781,7 +9209,19 @@ document.addEventListener('DOMContentLoaded', () => {
             { promptEn: "Why are you rushing to finish the presentation now?", promptTh: "ทำไมคุณถึงรีบทำสไลด์นำเสนอให้เสร็จตอนนี้ล่ะ?", answerEn: "Because the client moved our meeting up to this afternoon.", answerTh: "เพราะลูกค้าเลื่อนการประชุมของเรามาเป็นบ่ายวันนี้ไง", distractors: ["I bought this jacket on sale last week.", "The library closes at nine on Fridays.", "He enjoys playing tennis on weekends.", "There is a new bakery across the street."] },
             { promptEn: "Could you help me assemble this desk?", promptTh: "คุณช่วยฉันประกอบโต๊ะตัวนี้หน่อยได้ไหม?", answerEn: "Sure, let's check the instructions first.", answerTh: "ได้เลย มาดูคู่มือกันก่อนนะ", distractors: ["I already ate lunch an hour ago.", "The weather is supposed to rain tomorrow.", "She works at the bank downtown.", "My favorite color is dark blue."] },
             { promptEn: "Did you adjust the thermostat before leaving?", promptTh: "คุณได้ปรับเทอร์โมสตัทก่อนออกจากบ้านไหม?", answerEn: "Yes, I turned it down to save energy.", answerTh: "ใช่ ฉันลดอุณหภูมิลงเพื่อประหยัดพลังงานแล้ว", distractors: ["I bought a new pair of running shoes.", "The movie starts at seven tonight.", "He forgot his umbrella on the train.", "We are planning a trip next month."] },
-            { promptEn: "Should we proceed with the backup plan now?", promptTh: "เราควรดำเนินการตามแผนสำรองเลยไหม?", answerEn: "Let's wait five more minutes, then start.", answerTh: "รออีกห้านาทีแล้วค่อยเริ่มกันเถอะ", distractors: ["The coffee shop is closed on Sundays.", "I usually take the subway to work.", "That book was written ten years ago.", "They live in a quiet neighborhood."] }
+            { promptEn: "Should we proceed with the backup plan now?", promptTh: "เราควรดำเนินการตามแผนสำรองเลยไหม?", answerEn: "Let's wait five more minutes, then start.", answerTh: "รออีกห้านาทีแล้วค่อยเริ่มกันเถอะ", distractors: ["The coffee shop is closed on Sundays.", "I usually take the subway to work.", "That book was written ten years ago.", "They live in a quiet neighborhood."] },
+            { promptEn: "Did you double-check the figures on the final report?", promptTh: "คุณตรวจสอบตัวเลขในรายงานฉบับสุดท้ายซ้ำหรือยัง", answerEn: "Yes, I compared them with the original spreadsheet.", answerTh: "ใช่ ฉันเปรียบเทียบกับตารางต้นฉบับแล้ว", distractors: ["Walk straight two blocks.", "I studied history at university.", "We have a math quiz tomorrow morning.", "We should buy more napkins at the store."] },
+            { promptEn: "How can we be sure this signature is genuine?", promptTh: "เราจะมั่นใจได้อย่างไรว่าลายเซ็นนี้เป็นของจริง", answerEn: "We should scrutinize it against the copy on file.", answerTh: "เราควรพินิจพิเคราะห์เทียบกับสำเนาที่เก็บไว้ในแฟ้ม", distractors: ["My phone screen is cracked.", "Yes, she is my cousin.", "Winter feels very cold.", "Wear warm boots outside."] },
+            { promptEn: "Did you notice anything unusual during the night shift?", promptTh: "คุณสังเกตเห็นอะไรผิดปกติระหว่างกะกลางคืนไหม", answerEn: "I detected a faint noise coming from the server room.", answerTh: "ฉันสังเกตเห็นเสียงเบาๆ ดังมาจากห้องเซิร์ฟเวอร์", distractors: ["Bake the bread for ten minutes.", "Sure, hand me the heavy bags.", "The train was delayed by ten minutes.", "Vote before five o’clock."] },
+            { promptEn: "Should we record the condition of the package before opening it?", promptTh: "เราควรบันทึกสภาพของพัสดุก่อนเปิดไหม", answerEn: "Definitely, let's document it with a few quick photos.", answerTh: "แน่นอน มาบันทึกไว้ด้วยรูปถ่ายสักสองสามรูปกันเถอะ", distractors: ["The printer is out of paper again.", "Take this pill after meals.", "Warm rain fell lightly.", "I already finished my homework."] },
+            { promptEn: "How do you keep track of the temperature changes?", promptTh: "คุณติดตามการเปลี่ยนแปลงของอุณหภูมิอย่างไร", answerEn: "We monitor the digital gauge every thirty minutes.", answerTh: "เราเฝ้าติดตามมาตรวัดดิจิทัลทุกๆ สามสิบนาที", distractors: ["Great! They invited me back Monday.", "Yes, everything is normal, so I finally feel reassured.", "Two cups of green tea.", "The coffee tastes sweet."] },
+            { promptEn: "Can you confirm if the delivery arrived on time?", promptTh: "คุณช่วยยืนยันได้ไหมว่าของมาส่งตรงเวลา", answerEn: "Let me trace the tracking number and let you know.", answerTh: "ขอฉันแกะรอยหมายเลขพัสดุดูก่อนแล้วจะแจ้งให้ทราบ", distractors: ["Let us meet outside the library.", "Five dollars each.", "Can you pass me the remote?", "Yes, she is my sister."] },
+            { promptEn: "Did you check the serial number on the box?", promptTh: "คุณเช็กหมายเลขซีเรียลบนกล่องหรือยัง", answerEn: "Yes, it matches the one on the receipt.", answerTh: "เช็กแล้ว มันตรงกับเลขในใบเสร็จเลย", distractors: ["Park near the side gate.", "The forecast shows clear skies on Saturday, but light drizzle on Sunday.", "Keep the receipt safe.", "Two cups of black coffee."] },
+            { promptEn: "Are these figures from yesterday's report?", promptTh: "ตัวเลขพวกนี้มาจากรายงานเมื่อวานใช่ไหม", answerEn: "Let me look closer to be sure.", answerTh: "ขอฉันดูให้ละเอียดอีกทีเพื่อความแน่ใจนะ", distractors: ["The soup needs a bit more salt.", "I practice speaking with a study partner every evening.", "Turn off the hallway light.", "Open the study notes."] },
+            { promptEn: "Why are you taking photos of the meter?", promptTh: "ทำไมคุณถึงถ่ายรูปมิเตอร์ไว้ล่ะ", answerEn: "I want to keep a clear record of the reading.", answerTh: "ฉันอยากเก็บหลักฐานตัวเลขที่อ่านได้ไว้ให้ชัดเจน", distractors: ["Yes, we just need it to verify your booking.", "Wait until five o’clock.", "Only when I walk fast.", "I prefer working from home on Mondays."] },
+            { promptEn: "Can you tell if this signature is real?", promptTh: "คุณบอกได้ไหมว่าลายเซ็นนี้เป็นของจริง", answerEn: "I'm not sure, we should ask the manager to check.", answerTh: "ไม่แน่ใจเลย เราควรให้ผู้จัดการช่วยตรวจสอบนะ", distractors: ["Heat butter in a pan.", "Of course, send it over and I'll give you feedback right away.", "I need to buy fresh vegetables.", "The glass broke yesterday."] },
+            { promptEn: "Did anyone notice when the alarm went off?", promptTh: "มีใครสังเกตไหมว่าสัญญาณเตือนดังขึ้นตอนไหน", answerEn: "I saw the clock; it was right at 3:15 PM.", answerTh: "ฉันดูนาฬิกาอยู่ ตอนนั้นบ่าย 3 โมง 15 นาทีพอดี", distractors: ["Turn off the light.", "The weather is supposed to rain tomorrow.", "The dentist checked my tooth.", "Our school won the debate cup!"] },
+            { promptEn: "Should we test the microphone before the guests arrive?", promptTh: "เราควรทดสอบไมโครโฟนก่อนแขกมาถึงไหม", answerEn: "Definitely, let's do a quick sound check now.", answerTh: "แน่นอน มาเช็กเสียงกันสั้นๆ ตอนนี้เลย", distractors: ["Under the study desk.", "She is watching a movie downstairs.", "The cultural center offers free weekend workshops for beginners.", "The movie starts in ten minutes."] }
         ]
     };
 
@@ -8881,28 +9321,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function pickChoiceBubbleVariant(w, salt = 0, difficultyTier = 1) {
         const thShort = String(w?.translation || '').split(/[,;/]/)[0].trim();
+        const showThaiClueInHard = difficultyTier <= 2;
         /** @type {Array<{ quizAngle: string, direction: string, angleMeta?: string, angleMasked?: string, angleThClue?: string }>} */
-        const angles = [
+        const basicAngles = [
             { quizAngle: 'en_to_th', direction: 'en_to_th' },
             { quizAngle: 'th_to_en', direction: 'th_to_en' }
         ];
+        /** @type {Array<{ quizAngle: string, direction: string, angleMeta?: string, angleMasked?: string, angleThClue?: string }>} */
+        const midAngles = [];
+        /** @type {Array<{ quizAngle: string, direction: string, angleMeta?: string, angleMasked?: string, angleThClue?: string }>} */
+        const deepAngles = [];
+
         if (w?.definition && String(w.definition).trim().length >= 10) {
             let defTxt = String(w.definition).trim();
             if (w.word && w.word.length >= 3) {
                 defTxt = defTxt.replace(new RegExp(`\\b${escapeRegExpStr(w.word.trim())}\\w*`, 'gi'), '______');
             }
             if (defTxt.length > 135) defTxt = defTxt.slice(0, 132).trim() + '...';
-            angles.push({ quizAngle: 'def_to_en', direction: 'th_to_en', angleMeta: defTxt, angleThClue: thShort });
+            const defAngle = {
+                quizAngle: 'def_to_en',
+                direction: 'th_to_en',
+                angleMeta: defTxt,
+                angleThClue: showThaiClueInHard ? thShort : ''
+            };
+            midAngles.push(defAngle);
+            deepAngles.push(defAngle);
         }
-        const cleanSyns = getCleanRelatedWords(w?.synonyms, w?.word).slice(0, 2);
+        const cleanSyns = getCleanRelatedWords(w?.synonyms, w?.word);
         if (cleanSyns.length > 0) {
-            const synWord = cleanSyns[Math.abs(salt) % cleanSyns.length];
-            angles.push({ quizAngle: 'syn_to_en', direction: 'th_to_en', angleMeta: synWord, angleThClue: thShort });
+            const synWord = cleanSyns[Math.floor(Math.random() * cleanSyns.length)];
+            deepAngles.push({
+                quizAngle: 'syn_to_en',
+                direction: 'th_to_en',
+                angleMeta: synWord,
+                angleThClue: difficultyTier >= 4 ? '' : thShort
+            });
         }
-        const cleanAnts = getCleanRelatedWords(w?.antonyms, w?.word).slice(0, 2);
+        const cleanAnts = getCleanRelatedWords(w?.antonyms, w?.word);
         if (cleanAnts.length > 0) {
-            const antWord = cleanAnts[Math.abs(salt) % cleanAnts.length];
-            angles.push({ quizAngle: 'ant_to_en', direction: 'th_to_en', angleMeta: antWord, angleThClue: thShort });
+            const antWord = cleanAnts[Math.floor(Math.random() * cleanAnts.length)];
+            deepAngles.push({ quizAngle: 'ant_to_en', direction: 'th_to_en', angleMeta: antWord, angleThClue: '' });
         }
         if (Array.isArray(w?.collocations)) {
             const colVars = [];
@@ -8917,16 +9375,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             if (colVars.length > 0) {
-                const pickedCol = colVars[Math.abs(salt) % colVars.length];
-                angles.push({ quizAngle: 'colloc_to_en', direction: 'th_to_en', angleMeta: pickedCol.raw, angleMasked: pickedCol.masked, angleThClue: thShort });
+                const pickedCol = colVars[Math.floor(Math.random() * colVars.length)];
+                const colAngle = {
+                    quizAngle: 'colloc_to_en',
+                    direction: 'th_to_en',
+                    angleMeta: pickedCol.raw,
+                    angleMasked: pickedCol.masked,
+                    angleThClue: difficultyTier >= 3 ? '' : thShort
+                };
+                midAngles.push(colAngle);
+                deepAngles.push(colAngle);
             }
         }
-        // On fresh Tier 1 first question, alternate base recognition and definition/collocation; on higher tiers/replays, rotate all rich angles
-        if (difficultyTier === 1 && salt < 18 && angles.length > 2) {
-            const tier1Pool = angles.filter(a => a.quizAngle === 'en_to_th' || a.quizAngle === 'th_to_en' || a.quizAngle === 'def_to_en' || a.quizAngle === 'colloc_to_en');
-            return tier1Pool[Math.abs(salt) % tier1Pool.length];
+
+        if (difficultyTier === 1) {
+            const pool1 = midAngles.length > 0 && Math.random() < 0.35
+                ? [...basicAngles, midAngles[0]]
+                : basicAngles;
+            return pool1[Math.floor(Math.random() * pool1.length)];
         }
-        return angles[Math.abs(salt) % angles.length];
+        if (difficultyTier === 2) {
+            const pool2 = [...basicAngles, ...midAngles, ...deepAngles.slice(0, 1)];
+            return pool2[Math.floor(Math.random() * pool2.length)];
+        }
+        if (difficultyTier >= 3) {
+            const hardPool = deepAngles.length > 0
+                ? [...deepAngles, ...(difficultyTier === 3 ? [basicAngles[1]] : [])]
+                : (midAngles.length > 0 ? midAngles : [basicAngles[1], basicAngles[0]]);
+            return hardPool[Math.floor(Math.random() * hardPool.length)];
+        }
+        const allAngles = [...basicAngles, ...midAngles, ...deepAngles];
+        return allAngles[Math.abs(salt) % allAngles.length];
     }
 
     function buildClozeSentence(wordObj) {
@@ -8958,20 +9437,51 @@ document.addEventListener('DOMContentLoaded', () => {
         return splitToks.length >= 2 ? splitToks : (Array.isArray(wordObj?.thTokens) ? [...wordObj.thTokens] : splitToks);
     }
 
-    function pickDistractorIndices(targetIdx, candidatePool, count = 3, salt = 0) {
+    function pickDistractorIndices(targetIdx, candidatePool, count = 3, salt = 0, difficultyTier = 1) {
         const targetWord = wordsData[targetIdx];
+        if (!targetWord) return [];
+        const targetWordLow = String(targetWord.word || '').trim().toLowerCase();
+        const targetLen = targetWordLow.length;
+        const targetFirst = targetWordLow.charAt(0);
         const chosen = [];
         const usedTrans = new Set([String(targetWord.translation || '').trim().toLowerCase()]);
-        const samePos = candidatePool.filter(i => i !== targetIdx && wordsData[i].partOfSpeech === targetWord.partOfSpeech);
-        const others = candidatePool.filter(i => i !== targetIdx && wordsData[i].partOfSpeech !== targetWord.partOfSpeech);
+        const usedWords = new Set([targetWordLow]);
+
+        const basePool = Array.from(new Set(candidatePool || [])).filter(i => i !== targetIdx && wordsData[i]);
+        const samePos = shuffle(basePool.filter(i => wordsData[i].partOfSpeech === targetWord.partOfSpeech));
+        const others = shuffle(basePool.filter(i => wordsData[i].partOfSpeech !== targetWord.partOfSpeech));
+
+        if (difficultyTier >= 3) {
+            // Tier 3-4: rank distractors by confusability (same POS, same CEFR, similar length / initial letter)
+            samePos.sort((a, b) => {
+                const wa = wordsData[a];
+                const wb = wordsData[b];
+                const waStr = String(wa.word || '').trim().toLowerCase();
+                const wbStr = String(wb.word || '').trim().toLowerCase();
+                let sa = 0;
+                let sb = 0;
+                if (wa.cefr === targetWord.cefr) sa += 4;
+                if (wb.cefr === targetWord.cefr) sb += 4;
+                if (Math.abs(waStr.length - targetLen) <= 2) sa += 3;
+                if (Math.abs(wbStr.length - targetLen) <= 2) sb += 3;
+                if (waStr.charAt(0) === targetFirst) sa += 2;
+                if (wbStr.charAt(0) === targetFirst) sb += 2;
+                return sb - sa;
+            });
+            const topHalf = shuffle(samePos.slice(0, Math.max(count * 3, Math.ceil(samePos.length * 0.6))));
+            const rest = samePos.slice(Math.max(count * 3, Math.ceil(samePos.length * 0.6)));
+            samePos.splice(0, samePos.length, ...topHalf, ...rest);
+        }
 
         const pushFrom = (arr) => {
-            const step = Math.max(1, Math.floor(arr.length / 7));
             for (let k = 0; k < arr.length && chosen.length < count; k++) {
-                const idx = arr[(k * step + targetIdx + salt) % arr.length];
-                const tr = String(wordsData[idx].translation || '').trim().toLowerCase();
-                if (!usedTrans.has(tr) && !chosen.includes(idx)) {
+                const idx = arr[k];
+                const dw = wordsData[idx];
+                const tr = String(dw?.translation || '').trim().toLowerCase();
+                const wLow = String(dw?.word || '').trim().toLowerCase();
+                if (tr && !usedTrans.has(tr) && wLow && !usedWords.has(wLow) && !chosen.includes(idx)) {
                     usedTrans.add(tr);
+                    usedWords.add(wLow);
                     chosen.push(idx);
                 }
             }
@@ -8979,11 +9489,17 @@ document.addEventListener('DOMContentLoaded', () => {
         pushFrom(samePos);
         if (chosen.length < count) pushFrom(others);
         if (chosen.length < count) {
-            for (let i = (targetIdx * 17) % totalWords; chosen.length < count; i = (i + 31) % totalWords) {
+            const globalStart = Math.floor(Math.random() * Math.max(1, totalWords));
+            for (let step = 0; step < totalWords && chosen.length < count; step++) {
+                const i = (globalStart + step * 37 + salt) % totalWords;
                 if (i === targetIdx || chosen.includes(i)) continue;
-                const tr = String(wordsData[i].translation || '').trim().toLowerCase();
-                if (!usedTrans.has(tr)) {
+                const gw = wordsData[i];
+                if (difficultyTier >= 3 && gw?.cefr !== targetWord.cefr && step < totalWords / 2) continue;
+                const tr = String(gw?.translation || '').trim().toLowerCase();
+                const wLow = String(gw?.word || '').trim().toLowerCase();
+                if (tr && !usedTrans.has(tr) && wLow && !usedWords.has(wLow)) {
                     usedTrans.add(tr);
+                    usedWords.add(wLow);
                     chosen.push(i);
                 }
             }
@@ -9091,27 +9607,55 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  function buildListeningStepData(wordIdx, distractorPool, salt = 0) {
-    const w = wordsData[wordIdx];
-    const phraseCandidates = [];
-    if (Array.isArray(w.collocations)) {
-      w.collocations.forEach(c => {
-        const toks = tokenizeEnglishSentence(c).slice(0, 6);
-        if (toks.length >= 2) phraseCandidates.push({ tokens: toks, note: `${w.translation} (วลีคู่กัน)` });
-      });
-    }
+  function collectCompleteListeningPhrases(w, difficultyTier = 1) {
+    if (!w) return [];
+    const maxTokens = difficultyTier >= 3 ? 10 : (difficultyTier === 2 ? 7 : 6);
+    const minTokens = difficultyTier >= 3 ? 3 : 2;
+    const candidates = [];
     if (w.example) {
-      const exToks = tokenizeEnglishSentence(w.example).slice(0, 6);
-      if (exToks.length >= 2) phraseCandidates.push({ tokens: exToks, note: w.exampleTranslation || w.translation });
+      const exToks = tokenizeEnglishSentence(w.example);
+      if (exToks.length >= minTokens && exToks.length <= maxTokens) {
+        candidates.push({ tokens: exToks, note: w.exampleTranslation || w.translation });
+      }
     }
     if (w.extraExample) {
-      const ex2Toks = tokenizeEnglishSentence(w.extraExample).slice(0, 6);
-      if (ex2Toks.length >= 2) phraseCandidates.push({ tokens: ex2Toks, note: w.extraExampleTranslation || w.translation });
+      const ex2Toks = tokenizeEnglishSentence(w.extraExample);
+      if (ex2Toks.length >= minTokens && ex2Toks.length <= maxTokens) {
+        candidates.push({ tokens: ex2Toks, note: w.extraExampleTranslation || w.translation });
+      }
+    }
+    if (Array.isArray(w.collocations)) {
+      w.collocations.forEach(c => {
+        const toks = tokenizeEnglishSentence(c);
+        if (toks.length >= 2 && toks.length <= maxTokens) {
+          candidates.push({ tokens: toks, note: `${w.translation} (วลีคู่กัน)` });
+        }
+      });
+    }
+    return candidates;
+  }
+
+  function buildListeningStepData(wordIdx, distractorPool, salt = 0, difficultyTier = 1) {
+    const w = wordsData[wordIdx];
+    const phraseCandidates = collectCompleteListeningPhrases(w, difficultyTier);
+    // If primary sentence slightly exceeded Tier limit without collocations, allow complete sentence up to 9 tokens rather than truncating mid-sentence
+    if (phraseCandidates.length === 0 && w.example) {
+      const fullToks = tokenizeEnglishSentence(w.example);
+      if (fullToks.length >= 2 && fullToks.length <= 9) {
+        phraseCandidates.push({ tokens: fullToks, note: w.exampleTranslation || w.translation });
+      }
+    }
+    if (phraseCandidates.length === 0 && w.extraExample) {
+      const fullToks2 = tokenizeEnglishSentence(w.extraExample);
+      if (fullToks2.length >= 2 && fullToks2.length <= 9) {
+        phraseCandidates.push({ tokens: fullToks2, note: w.extraExampleTranslation || w.translation });
+      }
     }
     if (phraseCandidates.length === 0) {
-      phraseCandidates.push({ tokens: [w.word], note: w.translation });
+      const wordToks = tokenizeEnglishSentence(w.word);
+      phraseCandidates.push({ tokens: wordToks.length ? wordToks : [w.word], note: w.translation });
     }
-    const chosenCand = phraseCandidates[Math.abs(salt) % phraseCandidates.length];
+    const chosenCand = phraseCandidates[Math.floor(Math.random() * phraseCandidates.length)];
     const tokens = chosenCand.tokens;
     const wb = createWordBankData(tokens, wordIdx, distractorPool, false, salt);
     return {
@@ -9124,7 +9668,7 @@ document.addEventListener('DOMContentLoaded', () => {
       expectedVariants: [tokens.join(' ')],
       chosenIds: [],
       keyboardVal: '',
-      _useKeyboard: false,
+      _useKeyboard: difficultyTier >= 4 && tokens.length <= 6 && Math.random() < 0.35,
       requeued: false
     };
   }
@@ -9135,28 +9679,33 @@ document.addEventListener('DOMContentLoaded', () => {
     return x || 1;
   }
 
-  function weaveRandomDataWords(basePool, stage, unit, targetLimit) {
+  function weaveRandomDataWords(basePool, stage, unit, targetLimit, difficultyTier = 1) {
     if (!Array.isArray(basePool) || basePool.length === 0 || stage?.isVirtual) return basePool;
     const picked = [...basePool];
     const pickedSet = new Set(picked);
+    const unitCefr = unit?.cefr || 'A1';
+    const allowCrossTopic = Boolean(stage?.isBoss || stage?.nodeType === 'review');
 
-    const sameBucketNova = [];
-    const anyNova = [];
+    const exactBucketNova = [];
+    const sameCefrNova = [];
     for (let i = 0; i < totalWords; i++) {
       const w = wordsData[i];
       if (!w || !w.novaBatch || keyToIndex.get(keyOf(w)) !== i) continue;
+      // Strict CEFR match so A1 stages never pull B1/B2 words!
+      if ((w.cefr || 'A1') !== unitCefr) continue;
       if (wordStatus[keyOf(w)] === 'known' || pickedSet.has(i)) continue;
-      if (unit && (w.topic === unit.topicId || w.cefr === unit.cefr)) {
-        sameBucketNova.push(i);
-      } else {
-        anyNova.push(i);
+      if (unit && w.topic === unit.topicId) {
+        exactBucketNova.push(i);
+      } else if (allowCrossTopic) {
+        sameCefrNova.push(i);
       }
     }
 
-    const novaCandidates = [...shuffle(sameBucketNova), ...shuffle(anyNova)];
-    if (novaCandidates.length === 0) return picked;
+    const novaCandidates = [...shuffle(exactBucketNova), ...shuffle(sameCefrNova)];
+    if (novaCandidates.length === 0) return shuffle(picked);
 
-    const injectCount = Math.min(novaCandidates.length, picked.length >= 6 ? 3 : Math.max(1, Math.floor(picked.length / 2)));
+    const maxInject = difficultyTier >= 3 ? 2 : 1;
+    const injectCount = Math.min(maxInject, novaCandidates.length, picked.length >= 6 ? maxInject : 1);
     const keepCount = Math.max(1, Math.min(picked.length, targetLimit) - injectCount);
     const merged = picked.slice(0, keepCount);
     const mergedSet = new Set(merged);
@@ -9170,97 +9719,102 @@ document.addEventListener('DOMContentLoaded', () => {
     return shuffle(merged);
   }
 
-  function selectStageWordPool(stage, unit, limit = 10, roundNum = 1, totalRounds = 4, replaySalt = 0) {
-    const qLimit = Math.min(limit, Math.max(7, 6 + roundNum));
+  function selectStageWordPool(stage, unit, limit = 10, roundNum = 1, totalRounds = 4, replaySalt = 0, difficultyTier = 1) {
+    const baseCount = stage?.isBoss ? Math.min(limit, 8 + Math.min(2, difficultyTier - 1)) : Math.min(limit, 7 + Math.min(3, Math.max(0, difficultyTier - 1) + (roundNum > 1 ? 1 : 0)));
+    const qLimit = stage?.isVirtual ? Math.min(limit, (stage.wordIndices || []).length || limit) : baseCount;
+    const stageRecentSet = new Set(Array.isArray(recentStageWordKeys[stage?.id]) ? recentStageWordKeys[stage.id] : []);
+
+    /** Weighted random sampler that respects tier difficulty & strongly avoids repeating recent session words */
+    const sampleByDifficulty = (sourceIndices, targetCount) => {
+      const unique = Array.from(new Set(sourceIndices || [])).filter(i => wordsData[i]);
+      if (unique.length <= targetCount) return shuffle(unique);
+
+      const scored = unique.map(idx => {
+        const w = wordsData[idx];
+        const k = keyOf(w);
+        const st = wordStatus[k];
+        const m = wordMastery[k];
+        const diff = scoreWordDifficultyForLearn(w);
+        const isRecent = stageRecentSet.has(k);
+        let weight = 10;
+
+        if (difficultyTier === 1) {
+          // Tier 1: Favor unseen/new words and clearer, simpler vocabulary
+          weight += (!st ? 14 : (st === 'review' ? 8 : 2));
+          weight += Math.max(0, 26 - diff * 0.45);
+        } else if (difficultyTier === 2) {
+          // Tier 2: Balanced mix across stage, favoring not-yet-known words
+          weight += (st === 'review' ? 14 : (!st ? 10 : 4));
+          weight += 12 - Math.abs(diff - 30) * 0.25;
+        } else {
+          // Tier 3-4: Prioritize missed/review words + deeper/complex vocabulary + non-recent rotation
+          const wrongBoost = m ? Math.min(18, Number(m.wrong || 0) * 5) : 0;
+          weight += (st === 'review' ? 20 : 6) + wrongBoost + Math.min(22, diff * 0.45);
+        }
+
+        if (isRecent) weight *= 0.12;
+        const randKey = (Math.random() * 0.8 + 0.6) * Math.max(1, weight);
+        return { idx, randKey };
+      });
+
+      scored.sort((a, b) => b.randKey - a.randKey);
+      return shuffle(scored.slice(0, targetCount).map(x => x.idx));
+    };
+
     if (!stage.isBoss && stage.nodeType !== 'review') {
       const src = stage.wordIndices || [];
-      if (src.length <= 1) return weaveRandomDataWords([...src], stage, unit, qLimit);
-      const n = src.length;
-      const coprimes = [1, 2, 3, 5, 7].filter(s => s < n && oxGcd(s, n) === 1);
-      if (coprimes.length === 0) coprimes.push(1);
-      const shift = Math.floor(((roundNum - 1) * n) / Math.max(1, totalRounds)) + replaySalt * 3;
-      const stride = (replaySalt > 0 || roundNum % 2 === 0)
-        ? coprimes[(roundNum + replaySalt) % coprimes.length]
-        : 1;
-      const targetLen = Math.min(qLimit, n);
-      const picked = [];
-      const seen = new Set();
-      for (let i = 0; i < n && picked.length < targetLen; i++) {
-        const idx = src[(shift + i * stride) % n];
-        if (!seen.has(idx)) { seen.add(idx); picked.push(idx); }
-      }
-      for (let i = 0; i < n && picked.length < targetLen; i++) {
-        const idx = src[(shift + i) % n];
-        if (!seen.has(idx)) { seen.add(idx); picked.push(idx); }
-      }
+      const targetLen = Math.min(qLimit, src.length);
+      let picked = sampleByDifficulty(src, targetLen);
 
-      // On replay (Practice / Legendary / Repeating rounds), mix in 1-2 rotating reinforcement words from the same unit
+      // On replays or Tier 2+, mix in 1-2 CEFR-matched reinforcement words from the same unit
       const unitPool = Array.isArray(unit?.wordIndices) ? unit.wordIndices : [];
-      if (replaySalt > 0 && unitPool.length > n) {
-        const siblingPool = unitPool.filter(idx => !seen.has(idx));
+      if ((replaySalt > 0 || difficultyTier >= 3) && unitPool.length > src.length && picked.length >= 5) {
+        const seenPicked = new Set(picked);
+        const siblingPool = unitPool.filter(idx => !seenPicked.has(idx));
         if (siblingPool.length > 0) {
-          siblingPool.sort((a, b) => {
-            const sa = wordStatus[keyOf(wordsData[a])] === 'review' ? 0 : 1;
-            const sb = wordStatus[keyOf(wordsData[b])] === 'review' ? 0 : 1;
-            return sa - sb;
-          });
-          const desiredCompanions = Math.min(2, siblingPool.length);
-          const coreKeep = Math.min(picked.length, Math.max(6, qLimit - desiredCompanions));
-          const mixed = picked.slice(0, coreKeep);
-          for (let c = 0; c < siblingPool.length && mixed.length < qLimit && (mixed.length - coreKeep) < desiredCompanions; c++) {
-            const candIdx = siblingPool[(replaySalt * 5 + roundNum * 2 + c * 3) % siblingPool.length];
-            if (!mixed.includes(candIdx)) mixed.push(candIdx);
-          }
-          return weaveRandomDataWords(mixed, stage, unit, qLimit);
+          const companions = sampleByDifficulty(siblingPool, Math.min(2, Math.max(1, difficultyTier - 1)));
+          const keepCore = Math.max(4, qLimit - companions.length);
+          picked = shuffle([...picked.slice(0, keepCore), ...companions]).slice(0, qLimit);
         }
       }
-      return weaveRandomDataWords(picked, stage, unit, qLimit);
+      const finalPool = weaveRandomDataWords(picked, stage, unit, qLimit, difficultyTier);
+      recordRecentStageWords(stage.id, finalPool);
+      return finalPool;
     }
+
     if (stage.isBoss) {
-      // Stratified sampling rotated by roundNum + replaySalt so each round/replay challenges different words
+      // Stratified sampling across all chunks in this Unit with random sampling per chunk
       const chunkStages = (unit.nodes || []).filter(n => n.kind === 'stage' && !n.isBoss && n.nodeType !== 'review' && Array.isArray(n.wordIndices) && n.wordIndices.length > 0);
       if (chunkStages.length > 1) {
         const picked = [];
         const seen = new Set();
-        const buckets = chunkStages.map(st => {
-          const sorted = [...st.wordIndices].sort((a, b) => {
-            const sa = wordStatus[keyOf(wordsData[a])] === 'review' ? 0 : 1;
-            const sb = wordStatus[keyOf(wordsData[b])] === 'review' ? 0 : 1;
-            return sa - sb;
-          });
-          return sorted;
-        });
-        let round = Math.max(0, roundNum - 1) + replaySalt;
-        let guard = 0;
-        while (picked.length < qLimit && guard++ < 40) {
-          for (let b = 0; b < buckets.length && picked.length < qLimit; b++) {
-            const bucket = buckets[(b + roundNum - 1 + replaySalt) % buckets.length];
-            const idx = bucket[round % bucket.length];
-            if (!seen.has(idx)) {
+        const perChunkTarget = Math.max(2, Math.ceil(qLimit / chunkStages.length));
+        const sampledBuckets = shuffle(chunkStages).map(st => sampleByDifficulty(st.wordIndices, perChunkTarget));
+        let depth = 0;
+        while (picked.length < qLimit && depth < perChunkTarget) {
+          for (const bucket of sampledBuckets) {
+            if (picked.length >= qLimit) break;
+            const idx = bucket[depth];
+            if (idx !== undefined && !seen.has(idx)) {
               seen.add(idx);
               picked.push(idx);
             }
           }
-          round++;
+          depth++;
         }
-        if (picked.length > 0) return weaveRandomDataWords(picked, stage, unit, qLimit);
+        if (picked.length < qLimit) {
+          const fallback = sampleByDifficulty((unit.wordIndices || []).filter(i => !seen.has(i)), qLimit - picked.length);
+          picked.push(...fallback);
+        }
+        const finalBoss = weaveRandomDataWords(shuffle(picked), stage, unit, qLimit, difficultyTier);
+        recordRecentStageWords(stage.id, finalBoss);
+        return finalBoss;
       }
     }
-    // Review or single-chunk fallback: prioritize 'review' -> low mastery/wrong -> unseen -> evenly distributed & rotated by roundNum + replaySalt
-    const total = unit.wordIndices.length;
-    const ranked = unit.wordIndices.map((idx, pos) => {
-      const k = keyOf(wordsData[idx]);
-      const st = wordStatus[k];
-      const m = wordMastery[k];
-      let prio = 2;
-      if (st === 'review') prio = 0;
-      else if (m && (m.wrong || 0) > (m.right || 0)) prio = 1;
-      else if (st === 'known') prio = 3;
-      const spreadRank = ((pos * 7 + unit.unitNumber * 3 + (roundNum - 1) * 5 + replaySalt * 11) % Math.max(1, total));
-      return { idx, prio, spreadRank };
-    });
-    ranked.sort((a, b) => (a.prio - b.prio) || (a.spreadRank - b.spreadRank));
-    return weaveRandomDataWords(ranked.slice(0, qLimit).map(x => x.idx), stage, unit, qLimit);
+
+    const finalPool = weaveRandomDataWords(sampleByDifficulty(unit.wordIndices || [], qLimit), stage, unit, qLimit, difficultyTier);
+    recordRecentStageWords(stage.id, finalPool);
+    return finalPool;
   }
 
   /**
@@ -9373,13 +9927,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalRounds = getStageTotalRounds(stage);
     const roundNum = Math.min(totalRounds, Math.max(1, Number(roundOpts.roundNum) || 1));
     const replaySalt = Math.max(0, Number(roundOpts.replaySalt) || 0);
-    const diffRatio = totalRounds <= 1 ? 1 : (roundNum - 1) / (totalRounds - 1);
-    const difficultyTier = diffRatio >= 0.75 ? 3 : (diffRatio >= 0.3 ? 2 : 1);
-    const pool = selectStageWordPool(stage, unit, 10, roundNum, totalRounds, replaySalt);
+    const diffProfile = getDifficultyProfile(stage, {
+      totalRounds,
+      roundNum,
+      mode: roundOpts.mode,
+      isJumpTestForUnitId: roundOpts.isJumpTestForUnitId
+    });
+    const difficultyTier = diffProfile.tier;
+    const pool = selectStageWordPool(stage, unit, 10, roundNum, totalRounds, replaySalt, difficultyTier);
 
     const steps = [];
     // Show intro cards only on Round 1 of fresh normal lesson stages (not replays) so replays stay snappy
-    const introCandidates = (stage.nodeType === 'lesson' && roundNum === 1 && replaySalt === 0)
+    const introCandidates = (stage.nodeType === 'lesson' && roundNum === 1 && replaySalt === 0 && difficultyTier === 1)
       ? pool.filter(idx => !wordStatus[keyOf(wordsData[idx])]).slice(0, 2)
       : [];
     introCandidates.forEach(idx => {
@@ -9389,67 +9948,110 @@ document.addEventListener('DOMContentLoaded', () => {
     const distractorPool = unit.wordIndices.length >= 8 ? unit.wordIndices : pool;
     const listeningMutedNow = !listeningEnabled || Date.now() < lessonListeningMutedUntil;
     const topicDialogues = OX_DIALOGUES_BY_TOPIC[unit.topicId] || OX_DIALOGUES_BY_TOPIC.basics;
-    const stageOffset = Math.max(0, (unit.nodes || []).indexOf(stage)) + (roundNum - 1) * 5 + replaySalt * 3;
+    const stageOffset = Math.max(0, (unit.nodes || []).indexOf(stage)) + (roundNum - 1) * 5 + replaySalt * 3 + Math.floor(Math.random() * 7);
     const usedDialogues = new Set();
 
-    const CORE_8_MODES = ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'spelling_context', 'pair_match'];
-    const REPLAY_STRIDES = [1, 3, 5, 7];
-
-    const TIER_SEQS = {
-      lesson: [
-        ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'spelling_context', 'pair_match', 'sentence_cloze_inline', 'order_en_to_th'],
-        ['dialogue_complete', 'listening_word_bank', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'pair_match', 'sentence_cloze_inline', 'order_th_to_en', 'spelling_context', 'choice_bubble_match'],
-        ['sentence_cloze_inline', 'order_th_to_en', 'listening_word_bank', 'dialogue_complete', 'spelling_context', 'order_th_to_en', 'pair_match', 'sentence_cloze_inline', 'order_en_to_th', 'spelling_context']
-      ],
-      review: [
-        ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'pair_match', 'spelling_context'],
-        ['dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'pair_match', 'spelling_context'],
-        ['sentence_cloze_inline', 'order_th_to_en', 'spelling_context', 'listening_word_bank', 'pair_match', 'spelling_context']
-      ],
-      boss: [
-        ['choice_bubble_match', 'listening_word_bank', 'dialogue_complete', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en'],
-        ['dialogue_complete', 'listening_word_bank', 'sentence_cloze_inline', 'order_en_to_th', 'order_th_to_en', 'spelling_context'],
-        ['sentence_cloze_inline', 'order_th_to_en', 'spelling_context', 'listening_word_bank', 'dialogue_complete', 'spelling_context']
-      ]
+    const TIER_WEIGHTS = {
+      lesson: {
+        1: { choice_bubble_match: 28, dialogue_complete: 16, listening_word_bank: 16, order_en_to_th: 14, sentence_cloze_inline: 12, pair_match: 12, order_th_to_en: 8, spelling_context: 6 },
+        2: { choice_bubble_match: 16, dialogue_complete: 16, listening_word_bank: 18, order_en_to_th: 12, sentence_cloze_inline: 18, pair_match: 12, order_th_to_en: 14, spelling_context: 10 },
+        3: { sentence_cloze_inline: 24, order_th_to_en: 18, spelling_context: 18, listening_word_bank: 16, dialogue_complete: 12, pair_match: 10, order_en_to_th: 8, choice_bubble_match: 8 },
+        4: { spelling_context: 24, sentence_cloze_inline: 24, order_th_to_en: 18, listening_word_bank: 16, dialogue_complete: 12, pair_match: 10, choice_bubble_match: 6, order_en_to_th: 4 }
+      },
+      review: {
+        1: { choice_bubble_match: 24, listening_word_bank: 18, dialogue_complete: 16, sentence_cloze_inline: 16, order_en_to_th: 14, pair_match: 14, spelling_context: 8 },
+        2: { sentence_cloze_inline: 22, listening_word_bank: 16, dialogue_complete: 16, order_en_to_th: 12, order_th_to_en: 14, pair_match: 12, spelling_context: 12, choice_bubble_match: 10 },
+        3: { sentence_cloze_inline: 24, order_th_to_en: 20, spelling_context: 20, listening_word_bank: 14, pair_match: 12, dialogue_complete: 10, choice_bubble_match: 6 },
+        4: { spelling_context: 26, sentence_cloze_inline: 24, order_th_to_en: 20, listening_word_bank: 14, dialogue_complete: 12, pair_match: 10 }
+      },
+      boss: {
+        1: { choice_bubble_match: 20, dialogue_complete: 18, listening_word_bank: 18, sentence_cloze_inline: 18, order_en_to_th: 14, order_th_to_en: 12, pair_match: 10 },
+        2: { sentence_cloze_inline: 22, dialogue_complete: 18, listening_word_bank: 18, order_th_to_en: 16, order_en_to_th: 12, spelling_context: 12, pair_match: 10 },
+        3: { sentence_cloze_inline: 24, order_th_to_en: 20, spelling_context: 20, listening_word_bank: 16, dialogue_complete: 14, pair_match: 10 },
+        4: { spelling_context: 26, sentence_cloze_inline: 24, order_th_to_en: 20, listening_word_bank: 16, dialogue_complete: 14, pair_match: 10 }
+      },
+      audio: {
+        1: { listening_word_bank: 68, choice_bubble_match: 18, dialogue_complete: 14 },
+        2: { listening_word_bank: 62, order_th_to_en: 18, sentence_cloze_inline: 12, choice_bubble_match: 8 },
+        3: { listening_word_bank: 56, sentence_cloze_inline: 20, order_th_to_en: 14, spelling_context: 10 },
+        4: { listening_word_bank: 52, spelling_context: 22, sentence_cloze_inline: 16, order_th_to_en: 10 }
+      }
     };
 
+    const weightTable = (TIER_WEIGHTS[stage.nodeType] || TIER_WEIGHTS.lesson)[difficultyTier]
+      || (TIER_WEIGHTS[stage.nodeType] || TIER_WEIGHTS.lesson)[2];
     const totalQ = pool.length;
+    const modeCap = {
+      pair_match: 1,
+      dialogue_complete: 2,
+      spelling_context: difficultyTier >= 3 ? 3 : 2,
+      choice_bubble_match: difficultyTier === 1 ? 3 : 2,
+      listening_word_bank: stage.nodeType === 'audio' ? totalQ : 2,
+      sentence_cloze_inline: 3,
+      order_en_to_th: 2,
+      order_th_to_en: 2
+    };
+    const modeCounts = {};
+    const pickWeightedMode = (excludeModes = []) => {
+      const entries = Object.entries(weightTable).filter(([modeName]) => {
+        if (listeningMutedNow && modeName === 'listening_word_bank') return false;
+        if (excludeModes.includes(modeName)) return false;
+        if (modeName === 'dialogue_complete' && topicDialogues.length === 0) return false;
+        if (modeName === 'pair_match' && pool.length < 3) return false;
+        const cap = modeCap[modeName] ?? 3;
+        return (modeCounts[modeName] || 0) < cap;
+      });
+      const activeEntries = entries.length > 0
+        ? entries
+        : Object.entries(weightTable).filter(([modeName]) => !(listeningMutedNow && modeName === 'listening_word_bank'));
+      const totalW = activeEntries.reduce((sum, [, wVal]) => sum + wVal, 0) || 1;
+      let r = Math.random() * totalW;
+      for (const [modeName, wVal] of activeEntries) {
+        r -= wVal;
+        if (r <= 0) return modeName;
+      }
+      return activeEntries[0]?.[0] || 'choice_bubble_match';
+    };
+
     /** @type {string[]} */
-    const plannedModes = pool.map((idx, pos) => {
-      const w = wordsData[idx];
-      const tierIdx = difficultyTier - 1;
-      let m = 'choice_bubble_match';
-      if (stage.nodeType === 'audio') {
-        if (listeningMutedNow) {
-          m = difficultyTier >= 3 ? (pos % 2 === 0 ? 'spelling_context' : 'order_th_to_en') : (pos % 2 === 0 ? 'sentence_cloze_inline' : 'order_en_to_th');
-        } else if (difficultyTier === 1) {
-          m = pos % 4 === 3 ? 'choice_bubble_match' : 'listening_word_bank';
-        } else if (difficultyTier === 2) {
-          m = (pos + replaySalt) % 3 === 2 ? 'order_th_to_en' : 'listening_word_bank';
-        } else {
-          m = (pos + replaySalt) % 3 === 2 ? 'spelling_context' : ((pos + replaySalt) % 3 === 1 ? 'sentence_cloze_inline' : 'listening_word_bank');
-        }
-      } else if (stage.nodeType === 'lesson' && replaySalt > 0 && totalQ >= 8) {
-        if (pos < 8) {
-          const modeStride = REPLAY_STRIDES[replaySalt % REPLAY_STRIDES.length];
-          m = CORE_8_MODES[(pos * modeStride + replaySalt + roundNum) % 8];
-        } else {
-          const extraSeq = TIER_SEQS.lesson[tierIdx] || TIER_SEQS.lesson[0];
-          m = extraSeq[(pos + replaySalt + roundNum) % extraSeq.length];
-        }
-      } else {
-        const seqTable = TIER_SEQS[stage.nodeType] || TIER_SEQS.lesson;
-        const seq = seqTable[tierIdx] || seqTable[0];
-        m = seq[(pos + (difficultyTier > 1 ? roundNum - 1 : 0) + replaySalt) % seq.length];
-        if (difficultyTier === 1 && pos === totalQ - 1 && m !== 'pair_match' && !w.word.includes(' ') && w.word.length <= 10) {
-          m = 'spelling_context';
+    const plannedModes = [];
+    for (let pos = 0; pos < totalQ; pos++) {
+      let picked = pickWeightedMode(stage.nodeType === 'audio' ? [] : [plannedModes[pos - 1]]);
+      if (listeningMutedNow && picked === 'listening_word_bank') {
+        picked = difficultyTier >= 3 ? 'order_th_to_en' : 'sentence_cloze_inline';
+      }
+      modeCounts[picked] = (modeCounts[picked] || 0) + 1;
+      plannedModes.push(picked);
+    }
+
+    // Gentle pacing envelope for non-audio stages: friendly warm-up first, challenge peak near end
+    if (stage.nodeType !== 'audio' && plannedModes.length >= 4) {
+      const warmSet = difficultyTier <= 2 ? ['choice_bubble_match', 'dialogue_complete', 'pair_match'] : ['dialogue_complete', 'sentence_cloze_inline', 'listening_word_bank'];
+      if (!warmSet.includes(plannedModes[0])) {
+        const warmIdx = plannedModes.findIndex((m, idx) => idx > 0 && idx < plannedModes.length - 1 && warmSet.includes(m));
+        if (warmIdx > 0) {
+          [plannedModes[0], plannedModes[warmIdx]] = [plannedModes[warmIdx], plannedModes[0]];
         }
       }
-      if (m === 'listening_word_bank' && listeningMutedNow) {
-        m = difficultyTier >= 3 ? 'order_th_to_en' : 'sentence_cloze_inline';
+      const peakSet = ['spelling_context', 'pair_match', 'sentence_cloze_inline'];
+      const lastIdx = plannedModes.length - 1;
+      if (!peakSet.includes(plannedModes[lastIdx])) {
+        const peakIdx = plannedModes.findIndex((m, idx) => idx > 0 && idx < lastIdx && peakSet.includes(m));
+        if (peakIdx > 0) {
+          [plannedModes[lastIdx], plannedModes[peakIdx]] = [plannedModes[peakIdx], plannedModes[lastIdx]];
+        }
       }
-      return m;
-    });
+      // Reduce back-to-back identical modes where an alternative slot exists
+      for (let i = 1; i < plannedModes.length; i++) {
+        if (plannedModes[i] !== plannedModes[i - 1]) continue;
+        for (let j = i + 1; j < plannedModes.length; j++) {
+          if (plannedModes[j] !== plannedModes[i] && plannedModes[j] !== plannedModes[i - 1] && (j === plannedModes.length - 1 || plannedModes[i] !== plannedModes[j + 1])) {
+            [plannedModes[i], plannedModes[j]] = [plannedModes[j], plannedModes[i]];
+            break;
+          }
+        }
+      }
+    }
 
     // Repair any mode slot whose word isn't eligible (e.g., single-token Thai or hyphen/long spelling) by swapping with an eligible slot
     const isWordEligibleForMode = (w, modeName, salt) => {
@@ -9458,6 +10060,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (modeName === 'order_th_to_en') return tokenizeEnglishSentence(pickWordSentenceVariant(w, salt + 1).en).length >= 2;
       if (modeName === 'sentence_cloze_inline') return Boolean(findBestClozeVariant(w, salt));
       if (modeName === 'spelling_context') return !w.word.includes(' ') && w.word.length <= 13;
+      if (modeName === 'listening_word_bank') return collectCompleteListeningPhrases(w, difficultyTier).length > 0 || tokenizeEnglishSentence(w.example || '').length >= 2;
       return true;
     };
     for (let p = 0; p < plannedModes.length; p++) {
@@ -9477,9 +10080,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    const sessionSaltJitter = Math.floor(Math.random() * 97);
     pool.forEach((idx, pos) => {
       const w = wordsData[idx];
-      const distSalt = roundNum * 17 + pos + replaySalt * 13;
+      const distSalt = roundNum * 17 + pos + replaySalt * 13 + sessionSaltJitter;
       let desired = plannedModes[pos] || 'choice_bubble_match';
 
       if (desired === 'spelling_context' && (w.word.includes(' ') || w.word.length > 13)) {
@@ -9487,7 +10091,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (desired === 'listening_word_bank') {
-        steps.push({ ...buildListeningStepData(idx, distractorPool, distSalt), castIdx: pos });
+        steps.push({ ...buildListeningStepData(idx, distractorPool, distSalt, difficultyTier), castIdx: pos });
         return;
       }
 
@@ -9496,9 +10100,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const dlg = picked.dlg;
         if (dlg && dlg.promptEn) usedDialogues.add(dlg.promptEn);
         const allDists = Array.isArray(dlg.distractors) ? dlg.distractors.filter(Boolean) : [];
-        const distShift = allDists.length ? ((replaySalt * 2 + pos + stageOffset) % allDists.length) : 0;
-        const rotatedDists = allDists.length ? allDists.slice(distShift).concat(allDists.slice(0, distShift)) : [];
-        const rawOpts = [dlg.answerEn, ...shuffle(rotatedDists).slice(0, 2)];
+        const distTake = (difficultyTier >= 3 && allDists.length >= 3) ? 3 : 2;
+        const rawOpts = [dlg.answerEn, ...shuffle(allDists).slice(0, distTake)];
         const order = shuffle(rawOpts.map((txt, oi) => ({ txt, isCorrect: oi === 0 })));
         const correctChoiceIdx = order.findIndex(o => o.isCorrect);
         steps.push({
@@ -9569,9 +10172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const cloze = findBestClozeVariant(w, distSalt);
         if (cloze) {
           const isBaseForm = cloze.surface.toLowerCase() === w.word.toLowerCase();
-          const forceTyped = difficultyTier >= 3 && (pos % 2 === 0 || !isBaseForm);
+          const forceTyped = difficultyTier >= 3 && (!isBaseForm || Math.random() < (difficultyTier >= 4 ? 0.65 : 0.45));
           if (isBaseForm && !forceTyped) {
-            const dist = pickDistractorIndices(idx, distractorPool, difficultyTier === 1 ? 2 : 3, distSalt);
+            const dist = pickDistractorIndices(idx, distractorPool, difficultyTier === 1 ? 2 : 3, distSalt, difficultyTier);
             steps.push({
               type: 'sentence_cloze_inline',
               wordIdx: idx,
@@ -9601,6 +10204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedChoice: null,
             keyboardVal: '',
             _useKeyboard: true,
+            hintRevealCount: 0,
             castIdx: pos,
             requeued: false
           });
@@ -9619,6 +10223,7 @@ document.addEventListener('DOMContentLoaded', () => {
           subTranslation: cloze ? cloze.thText : (w.exampleTranslation || ''),
           clozeContextTag: cloze ? cloze.tag : '',
           keyboardVal: '',
+          hintRevealCount: 0,
           castIdx: pos,
           requeued: false
         });
@@ -9643,17 +10248,20 @@ document.addEventListener('DOMContentLoaded', () => {
           pairIndices.push(cIdx);
         }
         if (pairIndices.length >= 3) {
-          const pairVariantRoll = (roundNum + replaySalt + pos) % 3;
+          const pmRoll = Math.random();
           let pairMode = 'word_th';
-          if ((replaySalt > 0 || difficultyTier >= 2) && pairVariantRoll === 1) pairMode = 'colloc_match';
-          else if ((replaySalt > 0 || difficultyTier >= 2) && pairVariantRoll === 2) pairMode = 'syn_match';
+          if (difficultyTier === 1) {
+            pairMode = pmRoll < 0.22 ? 'colloc_match' : 'word_th';
+          } else {
+            pairMode = pmRoll < 0.34 ? 'word_th' : (pmRoll < 0.67 ? 'colloc_match' : 'syn_match');
+          }
 
           const pairs = pairIndices.map((pIdx, pi) => {
             const pw = wordsData[pIdx];
             const thShort = String(pw.translation || '').split(/[,;\/]/)[0].trim() || pw.translation;
             let rightLabel = thShort;
             if (pairMode === 'colloc_match' && Array.isArray(pw.collocations) && pw.collocations.length > 0) {
-              const rawCol = pw.collocations[(replaySalt + pi) % pw.collocations.length];
+              const rawCol = pw.collocations[(replaySalt + pi + Math.floor(Math.random() * pw.collocations.length)) % pw.collocations.length];
               const m = findClozeMatch(pw, rawCol);
               rightLabel = m ? `${m.masked} (${thShort})` : `${rawCol} · ${thShort}`;
             } else if (pairMode === 'syn_match') {
@@ -9699,7 +10307,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Default / choice_bubble_match (6 rotating question angles: EN->TH, TH->EN, Definition, Synonym, Antonym, Collocation)
       const distCount = difficultyTier === 1 ? 2 : 3;
       const angleObj = pickChoiceBubbleVariant(w, distSalt + pos, difficultyTier);
-      let dist = pickDistractorIndices(idx, distractorPool, distCount + 2, distSalt);
+      let dist = pickDistractorIndices(idx, distractorPool, distCount + 2, distSalt, difficultyTier);
       if ((angleObj.quizAngle === 'syn_to_en' || angleObj.quizAngle === 'ant_to_en') && angleObj.angleMeta) {
         const metaLow = angleObj.angleMeta.toLowerCase();
         dist = dist.filter(dIdx => String(wordsData[dIdx]?.word || '').trim().toLowerCase() !== metaLow);
@@ -9766,10 +10374,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const modeSalt = mode === 'legendary' ? 5 : (mode === 'practice' ? 3 : 0);
     const replaySalt = prevPlayCount * 2 + modeSalt;
 
-    const steps = buildLessonSteps(stage, unit, { roundNum, replaySalt });
+    const diffProfile = getDifficultyProfile(stage, {
+      totalRounds,
+      roundNum,
+      mode,
+      isJumpTestForUnitId: opts.isJumpTestForUnitId
+    });
+    const difficultyTier = diffProfile.tier;
+    const steps = buildLessonSteps(stage, unit, {
+      roundNum,
+      replaySalt,
+      mode,
+      isJumpTestForUnitId: opts.isJumpTestForUnitId
+    });
     const uniqueQuestionCount = steps.filter(s => !s.isIntro).length || 1;
-    const diffRatio = totalRounds <= 1 ? 1 : (roundNum - 1) / (totalRounds - 1);
-    const difficultyTier = stage.isVirtual ? 2 : (diffRatio >= 0.75 ? 3 : (diffRatio >= 0.3 ? 2 : 1));
 
     activeLesson = {
       stage,
@@ -9779,6 +10397,7 @@ document.addEventListener('DOMContentLoaded', () => {
       replaySalt,
       totalRounds,
       difficultyTier,
+      diffProfile,
       isJumpTestForUnitId: opts.isJumpTestForUnitId || null,
       queue: steps,
       index: 0,
@@ -9794,6 +10413,13 @@ document.addEventListener('DOMContentLoaded', () => {
       _feedbackShownAt: 0,
       completed: false
     };
+
+    const diffPill = $('lesson-diff-pill');
+    if (diffPill) {
+      diffPill.hidden = false;
+      diffPill.className = `lesson-diff-pill ${diffProfile.cls}`;
+      diffPill.textContent = diffProfile.badgeText;
+    }
 
     const stagePill = $('lesson-stage-pill');
     if (stagePill) {
@@ -9926,6 +10552,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modeBtn = $('btn-lesson-mode-toggle');
     const modeLabel = $('lesson-mode-toggle-label');
     const fbSpkBtn = $('btn-lesson-feedback-speak');
+    const fbBookBtn = $('btn-lesson-feedback-bookmark');
     document.querySelector('#lesson-screen .lesson-shell')?.classList.remove('is-feedback-open');
 
     if (fbBar) fbBar.hidden = true;
@@ -9938,6 +10565,7 @@ document.addEventListener('DOMContentLoaded', () => {
       rateChips.querySelectorAll('.lesson-rate-chip').forEach(c => c.classList.remove('is-chosen'));
     }
     if (fbSpkBtn) fbSpkBtn.hidden = true;
+    if (fbBookBtn) fbBookBtn.hidden = true;
 
     if (!step || step.isIntro) {
       if (actBar) actBar.hidden = true;
@@ -9987,6 +10615,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const bankEl = container.querySelector('.lesson-wb-bank');
     if (!trayEl || !bankEl) return;
 
+    let kbdHintEl = /** @type {HTMLElement|null} */ (container.querySelector('.lesson-wb-kbd-hint'));
+    if (!kbdHintEl && !isThaiTarget) {
+      kbdHintEl = document.createElement('div');
+      kbdHintEl.className = 'lesson-wb-kbd-hint';
+      kbdHintEl.hidden = true;
+      bankEl.insertAdjacentElement('afterend', kbdHintEl);
+    }
+
     const renderTokens = (animateFlip = false) => {
       const prevRects = animateFlip
         ? OxMotion.snapshotRects(container, '.wb-tile[data-tok-id]:not(.is-ghost)', 'data-tok-id')
@@ -10008,10 +10644,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const chosenSet = new Set(step.chosenIds);
+      const kbdBuf = String(step._kbdBuffer || '').trim().toLowerCase();
+      const kbdMatchIds = new Set();
+      if (kbdBuf && !isThaiTarget && !activeLesson?.awaitingNext) {
+        step.bankItems.forEach(item => {
+          if (!chosenSet.has(item.id) && String(item.text || '').toLowerCase().startsWith(kbdBuf)) {
+            kbdMatchIds.add(item.id);
+          }
+        });
+      }
+
       bankEl.innerHTML = step.bankItems.map(item => {
         const isGhost = chosenSet.has(item.id);
-        return `<button type="button" class="wb-tile${isGhost ? ' is-ghost' : ''}" data-bank-id="${item.id}" data-tok-id="${item.id}" ${isGhost || activeLesson?.awaitingNext ? 'disabled tabindex="-1"' : ''}>${escapeHtml(item.text)}</button>`;
+        const isKbdMatch = !isGhost && kbdMatchIds.has(item.id);
+        return `<button type="button" class="wb-tile${isGhost ? ' is-ghost' : ''}${isKbdMatch ? ' is-kbd-match' : ''}" data-bank-id="${item.id}" data-tok-id="${item.id}" ${isGhost || activeLesson?.awaitingNext ? 'disabled tabindex="-1"' : ''}>${escapeHtml(item.text)}</button>`;
       }).join('');
+
+      if (kbdHintEl) {
+        if (kbdBuf && !isThaiTarget && !activeLesson?.awaitingNext) {
+          kbdHintEl.hidden = false;
+          kbdHintEl.textContent = kbdMatchIds.size > 0
+            ? `⌨️ "${kbdBuf}" (${kbdMatchIds.size} คำตรงกัน · Space/Enter เลือก · Esc ล้าง)`
+            : `⌨️ ไม่พบคำที่ขึ้นต้นด้วย "${kbdBuf}" (Esc/Backspace ล้าง)`;
+        } else {
+          kbdHintEl.hidden = true;
+          kbdHintEl.textContent = '';
+        }
+      }
 
       if (animateFlip && prevRects) {
         OxMotion.playFlip(container, prevRects, '.wb-tile[data-tok-id]:not(.is-ghost)', 'data-tok-id');
@@ -10020,6 +10679,7 @@ document.addEventListener('DOMContentLoaded', () => {
       trayEl.querySelector('.lesson-wb-clear-btn')?.addEventListener('click', () => {
         if (!activeLesson || activeLesson.awaitingNext) return;
         step.chosenIds = [];
+        step._kbdBuffer = '';
         SoundFX.tileDrop();
         renderTokens(true);
         syncLessonCheckButton();
@@ -10030,6 +10690,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!activeLesson || activeLesson.awaitingNext) return;
           const pos = Number(btn.dataset.trayPos);
           step.chosenIds.splice(pos, 1);
+          step._kbdBuffer = '';
           SoundFX.tileDrop();
           renderTokens(true);
           syncLessonCheckButton();
@@ -10041,6 +10702,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!activeLesson || activeLesson.awaitingNext) return;
           const id = Number(btn.dataset.bankId);
           if (!step.chosenIds.includes(id)) {
+            step._kbdBuffer = '';
             step.chosenIds.push(id);
             SoundFX.tilePick();
             const nowMs = Date.now();
@@ -10121,6 +10783,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const step = activeLesson.queue[activeLesson.index];
     const w = wordsData[step.wordIdx];
+    const nextStep = activeLesson.queue[activeLesson.index + 1];
+    const nextWordObj = nextStep && wordsData[nextStep.wordIdx];
+    if (w && w.word) prefetchWordAudio(w.word);
+    if (nextWordObj && nextWordObj.word) prefetchWordAudio(nextWordObj.word);
     const retryTag = step.requeued ? ' · ทบทวนอีกครั้ง' : '';
     setupFooterDockForStep(step);
 
@@ -10150,6 +10816,92 @@ document.addEventListener('DOMContentLoaded', () => {
           SoundFX.tick();
         });
       }
+    };
+    const buildSpellingSlotsText = (targetWord, revealCount, typedVal) => {
+      const target = String(targetWord || '').trim();
+      const totalChars = target.length;
+      if (!totalChars) return '';
+      const revealed = Math.min(totalChars, Math.max(1, 1 + Number(revealCount || 0)));
+      const cleanTyped = String(typedVal || '').trim();
+      return Array.from(target).map((ch, idx) => {
+        if (ch === ' ' || ch === '-') return ch;
+        if (idx < cleanTyped.length) return cleanTyped[idx];
+        if (idx < revealed) return ch;
+        return '_';
+      }).join(' ');
+    };
+    const wireSpellingAssist = (rootEl, stepObj, targetWord, slotEl) => {
+      const inp = /** @type {HTMLInputElement|null} */ (rootEl.querySelector('.lesson-spelling-input'));
+      const slotsEl = rootEl.querySelector('.lesson-spelling-slots');
+      const hintBtn = /** @type {HTMLButtonElement|null} */ (rootEl.querySelector('.lesson-spelling-hint-btn'));
+      const target = String(targetWord || '').trim();
+      const maxHints = Math.max(0, target.replace(/[\s-]/g, '').length - 2);
+      const syncSlots = () => {
+        if (slotsEl) {
+          slotsEl.textContent = buildSpellingSlotsText(target, stepObj.hintRevealCount || 0, inp ? inp.value : stepObj.keyboardVal);
+        }
+        if (hintBtn) {
+          const used = Number(stepObj.hintRevealCount || 0);
+          hintBtn.disabled = used >= maxHints || Boolean(activeLesson?.awaitingNext);
+          hintBtn.textContent = used >= maxHints ? '💡 ใบ้ครบแล้ว' : `💡 ใบ้ตัวอักษร (${used}/${maxHints})`;
+        }
+      };
+      if (hintBtn) {
+        hintBtn.addEventListener('click', () => {
+          if (!activeLesson || activeLesson.awaitingNext) return;
+          const used = Number(stepObj.hintRevealCount || 0);
+          if (used >= maxHints) return;
+          stepObj.hintRevealCount = used + 1;
+          const nextPrefix = target.slice(0, 1 + stepObj.hintRevealCount);
+          if (inp && inp.value.trim().length < nextPrefix.length) {
+            inp.value = nextPrefix;
+            stepObj.keyboardVal = nextPrefix;
+            if (slotEl) {
+              slotEl.textContent = nextPrefix;
+              slotEl.classList.add('is-filled');
+            }
+          }
+          SoundFX.tick();
+          syncSlots();
+          syncLessonCheckButton();
+          inp?.focus();
+        });
+      }
+      if (inp) {
+        inp.value = stepObj.keyboardVal || '';
+        if (slotEl && inp.value.trim()) {
+          slotEl.textContent = inp.value.trim();
+          slotEl.classList.add('is-filled');
+        }
+        inp.addEventListener('input', () => {
+          stepObj.keyboardVal = inp.value;
+          SoundFX.typing();
+          if (slotEl) {
+            const v = inp.value.trim();
+            slotEl.textContent = v || '______';
+            slotEl.classList.toggle('is-filled', Boolean(v));
+          }
+          syncSlots();
+          syncLessonCheckButton();
+        });
+        inp.addEventListener('focus', () => {
+          setTimeout(() => {
+            if (document.activeElement === inp) {
+              inp.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }
+          }, 180);
+        });
+        inp.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Enter' && !ev.isComposing) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const chk = /** @type {HTMLButtonElement|null} */ ($('btn-lesson-check'));
+            if (chk && !chk.disabled && !activeLesson.awaitingNext) chk.click();
+          }
+        });
+        setTimeout(() => inp.focus(), 40);
+      }
+      syncSlots();
     };
 
     // --- INTRO CARD ---
@@ -10196,20 +10948,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${w.example ? `<div class="example-box"><i>"${renderHintableSentenceHtml(w.example)}"</i>${w.exampleTranslation ? `<div style="margin-top:6px; font-size:0.86rem; color:var(--text-muted);">${escapeHtml(w.exampleTranslation)}</div>` : ''}</div>` : ''}
                     ${insightRows ? `<div class="lesson-intro-insights">${insightRows}</div>` : ''}
                 </div>
-                <button type="button" class="btn btn-primary glass-btn btn-full lesson-intro-next-btn">เข้าใจแล้ว · ลุยต่อ →</button>
+                <div class="lesson-intro-actions">
+                    <button type="button" class="btn btn-primary glass-btn btn-full lesson-intro-next-btn">เข้าใจแล้ว · ลุยต่อ →</button>
+                    <button type="button" class="lesson-intro-known-btn" title="ข้ามคำนี้และจำว่าแม่นแล้ว">⚡ รู้คำนี้แล้ว</button>
+                </div>
             `;
       const introSpkBtn = body.querySelector('.lesson-speak-btn');
       introSpkBtn?.addEventListener('click', (e) => speakWordOverride(w.word, true, e.currentTarget));
       body.querySelector('.lesson-speak-uk-btn')?.addEventListener('click', (e) => speakWordOverride(w.word, true, e.currentTarget, { lang: 'en-GB' }));
       body.querySelector('.lesson-speak-slow-btn')?.addEventListener('click', (e) => speakWordOverride(w.example || w.word, true, e.currentTarget, { rate: 0.62 }));
-      body.querySelector('.lesson-intro-next-btn')?.addEventListener('click', () => {
-        SoundFX.tick();
+      const advanceIntro = () => {
         if (!step._countedProgress) {
           step._countedProgress = true;
           activeLesson.clearedCount = Math.min(activeLesson.initialTotal || activeLesson.queue.length, (activeLesson.clearedCount || 0) + 1);
         }
         activeLesson.index++;
         renderCurrentLessonStep();
+      };
+      body.querySelector('.lesson-intro-next-btn')?.addEventListener('click', () => {
+        SoundFX.tick();
+        advanceIntro();
+      });
+      body.querySelector('.lesson-intro-known-btn')?.addEventListener('click', () => {
+        const k = keyOf(w);
+        if (k) {
+          wordStatus[k] = 'known';
+          storage.set(STORAGE.status, wordStatus);
+          recordWordMastery(k, 'known');
+        }
+        SoundFX.known(1);
+        showToast(`⚡ บันทึกคำว่า "${w.word}" เป็นรู้จักแล้ว`);
+        advanceIntro();
       });
       wireHintButtons(body);
       speakWordOverride(w.word, false, introSpkBtn);
@@ -10267,6 +11036,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const tag = body.querySelector('.lesson-prompt-tag');
           if (tag) tag.textContent = `${pmTagBase} (${step.matchedIds.length}/${step.pairs.length})${retryTag}`;
           syncLessonCheckButton();
+          if (step.matchedIds.length >= step.pairs.length && !step._autoChecking) {
+            step._autoChecking = true;
+            setTimeout(() => {
+              if (activeLesson && !activeLesson.awaitingNext && activeLesson.queue[activeLesson.index] === step) {
+                handleLessonCheck(false);
+              }
+            }, 320);
+          }
         } else {
           step.mistakesCount = (step.mistakesCount || 0) + 1;
           step.selectedLeftId = null;
@@ -10313,47 +11090,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="lesson-prompt-tag">พิมพ์คำภาษาอังกฤษให้ถูกต้อง${step.clozeContextTag ? ` · ${escapeHtml(step.clozeContextTag)}` : ''}${retryTag}</span>
                 <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
                     <h2 class="lesson-prompt-heading" style="font-size:1.55rem;">${escapeHtml(w.translation)}</h2>
-                    <button type="button" class="glass-btn-icon small speak-btn lesson-speak-btn" aria-label="ฟังคำใบ้เสียง">🔊</button>
+                    <div class="lesson-audio-tools">
+                        <button type="button" class="glass-btn-icon small lesson-speak-slow-btn" title="ฟังช้า (0.62x)" aria-label="ฟังเสียงช้า">🐢</button>
+                        <button type="button" class="glass-btn-icon small speak-btn lesson-speak-btn" aria-label="ฟังคำใบ้เสียง">🔊</button>
+                    </div>
                 </div>
                 ${sentenceHtml}
                 <p class="lesson-question-sub">${escapeHtml(w.definition || '')} (${escapeHtml(w.partOfSpeech || '')})</p>
                 <div class="lesson-spelling-row">
                     <input type="text" class="lesson-spelling-input" placeholder="พิมพ์คำศัพท์..." autocomplete="off" autocapitalize="none" spellcheck="false">
                 </div>
-                <div style="font-size:0.82rem; color:var(--text-muted);">คำใบ้: ขึ้นต้นด้วย "${escapeHtml(step.targetSurface.charAt(0).toUpperCase())}" · ยาว ${step.targetSurface.length} ตัวอักษร</div>
+                <div class="lesson-spelling-tools">
+                    <span class="lesson-spelling-slots" aria-label="โครงตัวอักษร"></span>
+                    <button type="button" class="lesson-spelling-hint-btn">💡 ใบ้ตัวอักษร</button>
+                </div>
                 ${buildCoachHelperHtml(w)}
             `;
       wireCoachHelper(body);
-      const inp = /** @type {HTMLInputElement|null} */ (body.querySelector('.lesson-spelling-input'));
       const slotEl = body.querySelector('[data-cloze-slot]');
-      if (inp) {
-        inp.value = step.keyboardVal || '';
-        if (slotEl && inp.value.trim()) {
-          slotEl.textContent = inp.value.trim();
-          slotEl.classList.add('is-filled');
-        }
-        inp.addEventListener('input', () => {
-          step.keyboardVal = inp.value;
-          SoundFX.typing();
-          if (slotEl) {
-            const v = inp.value.trim();
-            slotEl.textContent = v || '______';
-            slotEl.classList.toggle('is-filled', Boolean(v));
-          }
-          syncLessonCheckButton();
-        });
-        inp.addEventListener('keydown', (ev) => {
-          if (ev.key === 'Enter' && !ev.isComposing) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            const chk = /** @type {HTMLButtonElement|null} */ ($('btn-lesson-check'));
-            if (chk && !chk.disabled && !activeLesson.awaitingNext) chk.click();
-          }
-        });
-        setTimeout(() => inp.focus(), 40);
-      }
+      wireSpellingAssist(body, step, step.targetSurface || w.word, slotEl);
       const spk = body.querySelector('.lesson-speak-btn');
       spk?.addEventListener('click', () => speakWordOverride(step.targetSurface || w.word, true, spk));
+      body.querySelector('.lesson-speak-slow-btn')?.addEventListener('click', (e) => speakWordOverride(step.targetSurface || w.word, true, e.currentTarget, { rate: 0.62 }));
       wireHintButtons(body);
       return;
     }
@@ -10441,7 +11199,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 ${step._useKeyboard ? `
                     <div class="lesson-spelling-row">
-                        <input type="text" class="lesson-spelling-input" placeholder="พิมพ์คำที่หายไป (${escapeHtml(step.targetSurface.charAt(0).toUpperCase())}..., ${step.targetSurface.length} ตัวอักษร)..." autocomplete="off" autocapitalize="none" spellcheck="false">
+                        <input type="text" class="lesson-spelling-input" placeholder="พิมพ์คำที่หายไป..." autocomplete="off" autocapitalize="none" spellcheck="false">
+                    </div>
+                    <div class="lesson-spelling-tools">
+                        <span class="lesson-spelling-slots" aria-label="โครงตัวอักษร"></span>
+                        <button type="button" class="lesson-spelling-hint-btn">💡 ใบ้ตัวอักษร</button>
                     </div>` : `<div class="lesson-options-grid is-cloze-pills" id="lesson-options-grid">${optsHtml}</div>`}
                 ${buildCoachHelperHtml(w)}
             `;
@@ -10454,29 +11216,7 @@ document.addEventListener('DOMContentLoaded', () => {
       wireHintButtons(body);
 
       if (step._useKeyboard) {
-        const inp = /** @type {HTMLInputElement|null} */ (body.querySelector('.lesson-spelling-input'));
-        if (inp) {
-          inp.value = step.keyboardVal || '';
-          inp.addEventListener('input', () => {
-            step.keyboardVal = inp.value;
-            SoundFX.typing();
-            if (slotEl) {
-              const v = inp.value.trim();
-              slotEl.textContent = v || '______';
-              slotEl.classList.toggle('is-filled', Boolean(v));
-            }
-            syncLessonCheckButton();
-          });
-          inp.addEventListener('keydown', (ev) => {
-            if (ev.key === 'Enter' && !ev.isComposing) {
-              ev.preventDefault();
-              ev.stopPropagation();
-              const chk = /** @type {HTMLButtonElement|null} */ ($('btn-lesson-check'));
-              if (chk && !chk.disabled && !activeLesson.awaitingNext) chk.click();
-            }
-          });
-          setTimeout(() => inp.focus(), 40);
-        }
+        wireSpellingAssist(body, step, step.targetSurface || w.word, slotEl);
       } else {
         body.querySelectorAll('.lesson-opt-btn').forEach(btn => {
           btn.addEventListener('click', () => {
@@ -10642,11 +11382,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (step.type === 'pair_match') {
       const ok = !isSkip && Array.isArray(step.matchedIds) && step.matchedIds.length >= step.pairs.length;
       const summaryLine = step.pairs.map(p => `${p.en} (${p.th})`).join(' · ');
+      const mistakes = Number(step.mistakesCount || 0);
+      const perfMsg = !ok ? summaryLine : (mistakes === 0 ? `จับคู่เป๊ะ 100% รวดเดียว ไม่พลาดเลย! · ${summaryLine}` : `พลาดเลือกผิด ${mistakes} ครั้ง · ${summaryLine}`);
       return {
         isCorrect: ok,
-        nearMiss: ok && Number(step.mistakesCount || 0) > 2,
+        nearMiss: ok && mistakes > 2,
         correctDisplay: `${step.pairs.length}/${step.pairs.length} คู่`,
-        feedbackDetail: summaryLine,
+        feedbackDetail: perfMsg,
         speakText: w.word,
         wordObj: w
       };
@@ -10701,6 +11443,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return {
         isCorrect: grade.ok,
         nearMiss: grade.nearMiss,
+        userAnswerDisplay: !grade.ok && !isSkip && step._useKeyboard ? String(step.keyboardVal || '').trim() : '',
         correctDisplay: `${step.targetSurface} (${w.translation})`,
         feedbackDetail: `${fullSentence}${sentNote ? ` (${sentNote})` : ''}${wrongNote}`,
         speakText: fullSentence,
@@ -10715,6 +11458,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return {
         isCorrect: res.ok,
         nearMiss: res.nearMiss,
+        userAnswerDisplay: !res.ok && !isSkip ? String(step.keyboardVal || '').trim() : '',
         correctDisplay: `${step.targetSurface} (${w.translation})`,
         feedbackDetail: `${w.word} (${w.translation})${ctxNote ? ` · ${ctxNote}` : ''}`,
         speakText: fullSentence,
@@ -10732,6 +11476,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return {
         isCorrect: res.ok,
         nearMiss: res.nearMiss,
+        userAnswerDisplay: !res.ok && !isSkip ? String(rawAnswer || '').trim() : '',
         correctDisplay: fullCorrect,
         feedbackDetail: isThai
           ? `${step.promptEn} = ${step.answerTh || w.exampleTranslation}`
@@ -10950,6 +11695,9 @@ document.addEventListener('DOMContentLoaded', () => {
           selectedLeftId: null,
           selectedRightId: null,
           mistakesCount: 0,
+          _autoChecking: false,
+          hintRevealCount: 0,
+          _kbdBuffer: '',
           _useKeyboard: step.type === 'sentence_cloze_inline' && !Array.isArray(step.options),
           _rerenderBank: undefined,
           requeued: true
@@ -10974,6 +11722,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fbInsight = $('lesson-feedback-insight');
     const rateChips = $('lesson-rate-chips');
     const fbSpkBtn = $('btn-lesson-feedback-speak');
+    const fbBookBtn = $('btn-lesson-feedback-bookmark');
 
     if (actBar) actBar.hidden = true;
     if (fbBar && fbIcon && fbTitle && fbDetail) {
@@ -10991,6 +11740,16 @@ document.addEventListener('DOMContentLoaded', () => {
       fbDetail.textContent = evalRes.isCorrect
         ? evalRes.feedbackDetail
         : `${evalRes.feedbackDetail} · จะวนกลับมาให้ทบทวนตอนท้ายด่าน`;
+      if (!evalRes.isCorrect && evalRes.userAnswerDisplay) {
+        const diffWrap = document.createElement('span');
+        diffWrap.className = 'lesson-fb-diff';
+        diffWrap.appendChild(document.createTextNode('ที่ตอบ: '));
+        const userSpan = document.createElement('span');
+        userSpan.className = 'lesson-fb-diff-user';
+        userSpan.textContent = evalRes.userAnswerDisplay;
+        diffWrap.appendChild(userSpan);
+        fbDetail.appendChild(diffWrap);
+      }
       if (fbInsight) {
         const wo = evalRes.wordObj;
         const insightCandidates = [];
@@ -11037,6 +11796,28 @@ document.addEventListener('DOMContentLoaded', () => {
       fbSpkBtn.onclick = hasSpeak ? () => speakWordOverride(evalRes.speakText, true, fbSpkBtn) : null;
       if (hasSpeak && evalRes.isCorrect && step.type !== 'choice_bubble_match' && !isSoundMuted) {
         speakWordOverride(evalRes.speakText, false, fbSpkBtn);
+      }
+    }
+    if (fbBookBtn) {
+      const wo = evalRes.wordObj;
+      const canBookmark = Boolean(wo && step.type !== 'pair_match' && !step.isTopicDialogue);
+      fbBookBtn.hidden = !canBookmark;
+      if (canBookmark && wo) {
+        const wKey = keyOf(wo);
+        const syncBookState = (starred) => {
+          fbBookBtn.classList.toggle('is-starred', starred);
+          fbBookBtn.setAttribute('aria-pressed', starred ? 'true' : 'false');
+          fbBookBtn.textContent = starred ? '★' : '☆';
+        };
+        syncBookState(isBookmarked(wKey));
+        fbBookBtn.onclick = () => {
+          const nowStar = toggleBookmark(wKey);
+          syncBookState(nowStar);
+          OxMotion.springPop(fbBookBtn);
+          showToast(nowStar ? `⭐ บันทึก "${wo.word}" เข้าคำโปรดแล้ว` : `นำ "${wo.word}" ออกจากคำโปรดแล้ว`);
+        };
+      } else {
+        fbBookBtn.onclick = null;
       }
     }
   }
@@ -11180,7 +11961,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="lesson-complete-words">
                         <div class="lesson-complete-words-head">คำศัพท์ที่ฝึกในรอบนี้ (${outcomeEntries.length} คำ)</div>
                         <div class="lesson-complete-words-list">
-                            ${outcomeEntries.slice(0, 8).map(o => `
+                            ${outcomeEntries.slice(0, 12).map(o => `
                                 <div class="lesson-complete-word-row ${o.isCorrect ? 'is-ok' : 'is-miss'}">
                                     <span class="lesson-cw-badge">${o.isCorrect ? '✓' : '↻'}</span>
                                     <div class="lesson-cw-main">
@@ -11267,6 +12048,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   $('btn-lesson-continue')?.addEventListener('click', () => {
     if (!activeLesson || !activeLesson.awaitingNext) return;
+    if (performance.now() - (activeLesson._feedbackShownAt || 0) < 260) return;
     activeLesson.index++;
     if (activeLesson.index < activeLesson.queue.length) {
       SoundFX.next();
@@ -11409,24 +12191,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (!inTextField && !step._useKeyboard && Array.isArray(step.chosenIds)) {
-      if (e.key === 'Backspace' && step.chosenIds.length > 0) {
+      if (e.key === 'Escape' && step._kbdBuffer) {
         e.preventDefault();
-        step.chosenIds.pop();
-        SoundFX.tileDrop();
-        if (typeof step._rerenderBank === 'function') step._rerenderBank();
-        syncLessonCheckButton();
+        step._kbdBuffer = '';
+        if (typeof step._rerenderBank === 'function') step._rerenderBank(false);
         return;
       }
-      if (/^[a-zA-Z']$/.test(e.key) && step.type !== 'order_en_to_th') {
+      if (e.key === 'Backspace') {
+        if (step._kbdBuffer) {
+          e.preventDefault();
+          step._kbdBuffer = step._kbdBuffer.slice(0, -1);
+          if (typeof step._rerenderBank === 'function') step._rerenderBank(false);
+          return;
+        }
+        if (step.chosenIds.length > 0) {
+          e.preventDefault();
+          step.chosenIds.pop();
+          SoundFX.tileDrop();
+          if (typeof step._rerenderBank === 'function') step._rerenderBank(true);
+          syncLessonCheckButton();
+          return;
+        }
+      }
+      if (step.type !== 'order_en_to_th') {
         const chosenSet = new Set(step.chosenIds);
         const avail = step.bankItems.filter(b => !chosenSet.has(b.id));
-        const match = avail.find(b => b.text.toLowerCase().startsWith(e.key.toLowerCase()));
-        if (match && avail.filter(b => b.text.toLowerCase().startsWith(e.key.toLowerCase())).length === 1) {
+        if (/^[a-zA-Z'\-]$/.test(e.key)) {
           e.preventDefault();
-          step.chosenIds.push(match.id);
-          SoundFX.tilePick();
-          if (typeof step._rerenderBank === 'function') step._rerenderBank();
-          syncLessonCheckButton();
+          const nextBuf = `${step._kbdBuffer || ''}${e.key.toLowerCase()}`;
+          const matches = avail.filter(b => b.text.toLowerCase().startsWith(nextBuf));
+          if (matches.length === 1) {
+            step.chosenIds.push(matches[0].id);
+            step._kbdBuffer = '';
+            SoundFX.tilePick();
+            if (typeof step._rerenderBank === 'function') step._rerenderBank(true);
+            syncLessonCheckButton();
+          } else {
+            step._kbdBuffer = nextBuf;
+            SoundFX.typing();
+            if (typeof step._rerenderBank === 'function') step._rerenderBank(false);
+          }
+          return;
+        }
+        if ((e.key === ' ' || e.key === 'Enter') && step._kbdBuffer) {
+          e.preventDefault();
+          const buf = step._kbdBuffer.toLowerCase();
+          const matches = avail.filter(b => b.text.toLowerCase().startsWith(buf));
+          const exact = matches.find(b => b.text.toLowerCase() === buf) || matches[0];
+          if (exact) {
+            step.chosenIds.push(exact.id);
+            step._kbdBuffer = '';
+            SoundFX.tilePick();
+            if (typeof step._rerenderBank === 'function') step._rerenderBank(true);
+            syncLessonCheckButton();
+          }
           return;
         }
       }
@@ -11994,6 +12812,42 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================
      * Profile Screen, Quests, Right Rail & 6-Category Navigation
      * ========================================================= */
+  function populateVoicePickerOptions() {
+    const syncSelect = (selId, accent) => {
+      const sel = /** @type {HTMLSelectElement|null} */ ($(selId));
+      if (!sel) return;
+      const ranked = getRankedVoicesForAccent(accent);
+      const best = ranked[0];
+      const autoLabel = best
+        ? `อัตโนมัติ (แนะนำ: ${best.voice.name.replace(/^Microsoft\s+/i, '').slice(0, 34)} · ${best.badge})`
+        : 'อัตโนมัติ (ตามค่าเริ่มต้นของอุปกรณ์)';
+      const curVal = preferredVoiceUris[accent] || '';
+      const opts = [`<option value="">${escapeHtml(autoLabel)}</option>`];
+      ranked.forEach(item => {
+        const uri = item.voice.voiceURI || item.voice.name;
+        const shortName = item.voice.name.replace(/^Microsoft\s+/i, '');
+        opts.push(`<option value="${escapeHtml(uri)}">${escapeHtml(`${shortName} [${item.lang}] · ${item.badge}`)}</option>`);
+      });
+      sel.innerHTML = opts.join('');
+      const hasCur = curVal && ranked.some(r => (r.voice.voiceURI || r.voice.name) === curVal);
+      sel.value = hasCur ? curVal : '';
+    };
+    syncSelect('prof-voice-us', 'US');
+    syncSelect('prof-voice-uk', 'UK');
+
+    const hintEl = $('prof-voice-hint');
+    if (hintEl) {
+      const bestUs = getRankedVoicesForAccent('US')[0];
+      const bestUk = getRankedVoicesForAccent('UK')[0];
+      const hasHighQuality = (bestUs && bestUs.score >= 290) || (bestUk && bestUk.score >= 290);
+      if (hasHighQuality) {
+        hintEl.textContent = '✓ พบเสียง Neural / Natural คุณภาพสูงบนอุปกรณ์นี้แล้ว (ใช้งานอัตโนมัติสำหรับประโยค)';
+      } else {
+        hintEl.textContent = 'ใช้เสียงในเครื่องเป็นตัวสำรอง — หากใช้ Microsoft Edge หรือ Chrome จะมีเสียง Online Neural ที่เหมือนคนจริงยิ่งขึ้น';
+      }
+    }
+  }
+
   function renderProfile() {
     const c = countStatuses();
     const stagesDone = Object.keys(learnState.completedStages || {}).filter(sid => isStagePassedFull(sid)).length;
@@ -12060,6 +12914,17 @@ document.addEventListener('DOMContentLoaded', () => {
     setSwitch('prof-motion-btn', !document.documentElement.classList.contains('ox-reduce-motion'));
     setSwitch('more-mascot-btn', mascotEncourageEnabled);
     setSwitch('more-listening-btn', listeningEnabled);
+    setSwitch('more-human-audio-btn', preferHumanAudio);
+
+    const rateBox = $('prof-speech-rate-chips');
+    if (rateBox) {
+      rateBox.querySelectorAll('[data-rate]').forEach(btn => {
+        if (!(btn instanceof HTMLElement)) return;
+        const r = Number(btn.dataset.rate || 1);
+        btn.classList.toggle('active', Math.abs(r - speechRateScale) < 0.02);
+      });
+    }
+    populateVoicePickerOptions();
 
     const themeSel = /** @type {HTMLSelectElement|null} */ ($('prof-theme-select'));
     if (themeSel) themeSel.value = themePreference || 'light';
@@ -12274,6 +13139,43 @@ document.addEventListener('DOMContentLoaded', () => {
     SoundFX.toggle(listeningEnabled);
     renderProfile();
     showToast(listeningEnabled ? 'เปิดแบบฝึกหัดการฟังแล้ว' : 'ปิดแบบฝึกหัดการฟังแล้ว');
+  });
+  $('more-human-audio-btn')?.addEventListener('click', () => {
+    preferHumanAudio = !preferHumanAudio;
+    storage.set('ox3k_human_audio', preferHumanAudio);
+    SoundFX.toggle(preferHumanAudio);
+    renderProfile();
+    showToast(preferHumanAudio ? 'เปิดใช้เสียงเจ้าของภาษา MP3 ก่อนเสียงสังเคราะห์แล้ว' : 'เปลี่ยนเป็นใช้เสียงสังเคราะห์บนอุปกรณ์');
+  });
+  ['US', 'UK'].forEach(acc => {
+    const selId = acc === 'US' ? 'prof-voice-us' : 'prof-voice-uk';
+    const testId = acc === 'US' ? 'btn-test-voice-us' : 'btn-test-voice-uk';
+    $(selId)?.addEventListener('change', (e) => {
+      const sel = /** @type {HTMLSelectElement} */ (e.target);
+      preferredVoiceUris[acc] = sel.value || '';
+      storage.set('ox3k_voice_uris_v1', preferredVoiceUris);
+      SoundFX.tick();
+      const picked = pickBestVoiceForAccent(acc);
+      showToast(`เลือกเสียง ${acc}: ${picked ? picked.name : 'อัตโนมัติ'}`);
+    });
+    $(testId)?.addEventListener('click', (e) => {
+      try {
+        stopActiveAudioPlayback();
+        window.speechSynthesis?.cancel();
+      } catch (_) { }
+      speakViaWebSpeech(VOICE_TEST_SAMPLES[acc], /** @type {EventTarget|null} */ (e.currentTarget), null, acc === 'UK' ? 'en-GB' : 'en-US', ++speakRequestSeq);
+    });
+  });
+  $('prof-speech-rate-chips')?.addEventListener('click', (e) => {
+    if (!(e.target instanceof Element)) return;
+    const chip = e.target.closest('[data-rate]');
+    if (!(chip instanceof HTMLElement)) return;
+    const nextRate = Number(chip.dataset.rate || 1);
+    speechRateScale = (nextRate === 0.85 || nextRate === 1.1) ? nextRate : 1;
+    storage.set('ox3k_speech_rate', speechRateScale);
+    SoundFX.tick();
+    renderProfile();
+    showToast(`ความเร็วเสียงพูด: ${speechRateScale}x`);
   });
   $('prof-theme-select')?.addEventListener('change', (e) => {
     const val = /** @type {HTMLSelectElement} */ (e.target).value;

@@ -10886,6 +10886,51 @@ body.dark-theme .more-select {
     border-color: rgba(255, 255, 255, 0.16);
 }
 
+.more-voice-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+}
+
+.more-voice-row .more-select {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.more-voice-label {
+    flex-shrink: 0;
+    min-width: 36px;
+    text-align: center;
+    padding: 6px 8px;
+    border-radius: 10px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    background: rgba(59, 130, 246, 0.14);
+    color: #2563eb;
+    border: 1px solid rgba(59, 130, 246, 0.28);
+}
+
+.more-voice-label.is-uk {
+    background: rgba(168, 85, 247, 0.14);
+    color: #7c3aed;
+    border-color: rgba(168, 85, 247, 0.28);
+}
+
+body.dark-theme .more-voice-label {
+    color: #93c5fd;
+}
+
+body.dark-theme .more-voice-label.is-uk {
+    color: #d8b4fe;
+}
+
+.more-voice-test-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
 .more-subnav-col {
     position: sticky;
     top: 18px;
@@ -16938,6 +16983,167 @@ body.dark-theme #lesson-screen .lesson-angle-pill.is-colloc {
         width: 74px;
         height: 74px;
     }
+}
+
+/* Learn Mode Difficulty Badge, Hint Slots, Quick Bookmark & UX Polish */
+.lesson-diff-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.lesson-diff-pill.is-tier-1 {
+    background: rgba(16, 185, 129, 0.14);
+    border-color: rgba(16, 185, 129, 0.34);
+    color: #047857;
+}
+
+.lesson-diff-pill.is-tier-2 {
+    background: rgba(14, 165, 233, 0.14);
+    border-color: rgba(14, 165, 233, 0.34);
+    color: #0369a1;
+}
+
+.lesson-diff-pill.is-tier-3 {
+    background: rgba(245, 158, 11, 0.16);
+    border-color: rgba(245, 158, 11, 0.38);
+    color: #b45309;
+}
+
+.lesson-diff-pill.is-tier-4 {
+    background: rgba(168, 85, 247, 0.16);
+    border-color: rgba(168, 85, 247, 0.4);
+    color: #7e22ce;
+}
+
+body.dark-theme .lesson-diff-pill.is-tier-1 { color: #6ee7b7; }
+body.dark-theme .lesson-diff-pill.is-tier-2 { color: #7dd3fc; }
+body.dark-theme .lesson-diff-pill.is-tier-3 { color: #fbbf24; }
+body.dark-theme .lesson-diff-pill.is-tier-4 { color: #d8b4fe; }
+
+.lesson-intro-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lesson-intro-known-btn {
+    align-self: center;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.34);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.14s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.lesson-intro-known-btn:hover {
+    border-color: #10b981;
+    color: #059669;
+    transform: translateY(-1px);
+}
+
+body.dark-theme .lesson-intro-known-btn {
+    background: rgba(30, 41, 59, 0.65);
+}
+
+body.dark-theme .lesson-intro-known-btn:hover {
+    color: #6ee7b7;
+}
+
+.lesson-spelling-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.lesson-spelling-slots {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--text-main);
+    padding: 5px 10px;
+    border-radius: 10px;
+    background: rgba(148, 163, 184, 0.14);
+}
+
+.lesson-spelling-hint-btn {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(245, 158, 11, 0.42);
+    background: rgba(245, 158, 11, 0.12);
+    color: #b45309;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.12s ease, background 0.15s ease;
+}
+
+.lesson-spelling-hint-btn:hover:not(:disabled) {
+    background: rgba(245, 158, 11, 0.22);
+    transform: translateY(-1px);
+}
+
+.lesson-spelling-hint-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+body.dark-theme .lesson-spelling-hint-btn {
+    color: #fbbf24;
+}
+
+.lesson-wb-kbd-hint {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #0284c7;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: rgba(14, 165, 233, 0.1);
+    align-self: flex-start;
+}
+
+body.dark-theme .lesson-wb-kbd-hint {
+    color: #7dd3fc;
+}
+
+.lesson-fb-star-btn {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.lesson-fb-star-btn.is-starred {
+    color: #eab308 !important;
+    border-color: rgba(234, 179, 8, 0.55) !important;
+    background: rgba(250, 204, 21, 0.18) !important;
+}
+
+.lesson-fb-diff {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    opacity: 0.92;
+}
+
+.lesson-fb-diff-user {
+    text-decoration: line-through;
+    opacity: 0.78;
 }
 
 /* Unified In-App & OS Reduced Motion (Phase C) */

@@ -245,6 +245,7 @@
 
                     <div class="lesson-stage-meta">
                         <span class="lesson-stage-pill" id="lesson-stage-pill">หน่วยที่ 1 · ด่าน 1</span>
+                        <span class="lesson-diff-pill" id="lesson-diff-pill" hidden>🌱 พื้นฐาน</span>
                         <div class="lesson-meta-right">
                             <span class="lesson-combo-pill" id="lesson-combo-pill" hidden>🔥 2 ข้อรวด!</span>
                             <span class="lesson-progress-meta" id="lesson-progress-meta" title="ความคืบหน้าด่านปัจจุบัน">0%</span>
@@ -281,6 +282,7 @@
                                     </div>
                                 </div>
                                 <div class="lesson-feedback-actions">
+                                    <button type="button" id="btn-lesson-feedback-bookmark" class="glass-btn-icon small lesson-fb-star-btn" title="บันทึกคำศัพท์เข้าคลังคำโปรด" aria-label="บันทึกคำศัพท์นี้" aria-pressed="false" hidden>☆</button>
                                     <button type="button" id="btn-lesson-feedback-speak" class="glass-btn-icon small speak-btn" title="ฟังประโยคเต็ม" aria-label="ฟังประโยคเต็ม" hidden>
                                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
                                     </button>
@@ -1793,6 +1795,43 @@
                                     <small>สำเนียงหลักที่ใช้เมื่อกดฟังคำศัพท์และประโยค</small>
                                 </div>
                                 <button type="button" id="prof-accent-btn" class="glass-accent-pill accent-toggle-btn">US</button>
+                            </div>
+                            <div class="more-row">
+                                <div class="more-row-info">
+                                    <strong>เสียงเจ้าของภาษา (MP3) ก่อนเสียงสังเคราะห์</strong>
+                                    <small>ดึงไฟล์เสียงคนจริงแยกสำเนียง US / UK อัตโนมัติเมื่อออนไลน์</small>
+                                </div>
+                                <button type="button" id="more-human-audio-btn" class="ox-switch is-on" role="switch" aria-checked="true" aria-label="เปิดหรือปิดเสียงเจ้าของภาษา MP3"><span class="ox-switch-thumb"></span></button>
+                            </div>
+                            <div class="more-row vertical">
+                                <div class="more-row-info">
+                                    <strong>เลือกเสียงพูดประจำสำเนียง (สำหรับประโยคและออฟไลน์)</strong>
+                                    <small id="prof-voice-hint">แนะนำเสียงที่มีป้าย ★ Natural หรือ Google เพื่อความชัดเจนใกล้เคียงคนจริง</small>
+                                </div>
+                                <div class="more-voice-row">
+                                    <label class="more-voice-label" for="prof-voice-us">US</label>
+                                    <select id="prof-voice-us" class="more-select" aria-label="เลือกเสียงพูดสำเนียงอเมริกัน">
+                                        <option value="">อัตโนมัติ (ชัดที่สุดบนเครื่องนี้)</option>
+                                    </select>
+                                    <button type="button" id="btn-test-voice-us" class="btn glass-btn small-btn more-voice-test-btn" title="ทดลองฟังเสียง US">🔊 ลองฟัง</button>
+                                </div>
+                                <div class="more-voice-row">
+                                    <label class="more-voice-label is-uk" for="prof-voice-uk">UK</label>
+                                    <select id="prof-voice-uk" class="more-select" aria-label="เลือกเสียงพูดสำเนียงอังกฤษ">
+                                        <option value="">อัตโนมัติ (ชัดที่สุดบนเครื่องนี้)</option>
+                                    </select>
+                                    <button type="button" id="btn-test-voice-uk" class="btn glass-btn small-btn more-voice-test-btn" title="ทดลองฟังเสียง UK">🔊 ลองฟัง</button>
+                                </div>
+                            </div>
+                            <div class="more-row vertical">
+                                <div class="more-row-info">
+                                    <strong>ความเร็วเสียงพูดปกติ</strong>
+                                </div>
+                                <div class="dgw-target-chips" id="prof-speech-rate-chips">
+                                    <button type="button" class="dgw-chip" data-rate="0.85">0.85x ช้าชัด</button>
+                                    <button type="button" class="dgw-chip active" data-rate="1">1.0x ปกติ</button>
+                                    <button type="button" class="dgw-chip" data-rate="1.1">1.1x เร็ว</button>
+                                </div>
                             </div>
                             <div class="more-row vertical">
                                 <div class="more-row-info">
