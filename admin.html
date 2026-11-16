@@ -14,37 +14,36 @@
     <style>
         :root {
             --bg: #f1f5f9;
-            --bg-accent: radial-gradient(circle at 12% 10%, rgba(34, 197, 94, 0.14), transparent 36%),
-                         radial-gradient(circle at 88% 12%, rgba(14, 165, 233, 0.15), transparent 38%),
-                         radial-gradient(circle at 50% 90%, rgba(99, 102, 241, 0.10), transparent 42%);
-            --surface: rgba(255, 255, 255, 0.90);
+            --bg-accent: radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.12), transparent 36%),
+                         radial-gradient(circle at 88% 12%, rgba(14, 165, 233, 0.13), transparent 38%),
+                         radial-gradient(circle at 50% 90%, rgba(99, 102, 241, 0.08), transparent 42%);
+            --surface: rgba(255, 255, 255, 0.92);
             --surface-solid: #ffffff;
             --surface-soft: #f8fafc;
             --border: rgba(148, 163, 184, 0.28);
             --text: #0f172a;
             --text-muted: #64748b;
             --primary: #10b981;
-            --primary-dark: #059669;
             --blue: #0ea5e9;
             --indigo: #6366f1;
             --amber: #f59e0b;
             --rose: #f43f5e;
-            --shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.12);
+            --shadow: 0 10px 28px -12px rgba(15, 23, 42, 0.12);
             --radius: 18px;
         }
 
         html[data-theme="dark"] {
             --bg: #0b1120;
-            --bg-accent: radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.16), transparent 38%),
-                         radial-gradient(circle at 88% 12%, rgba(56, 189, 248, 0.14), transparent 40%),
-                         radial-gradient(circle at 50% 90%, rgba(99, 102, 241, 0.12), transparent 45%);
-            --surface: rgba(15, 23, 42, 0.86);
+            --bg-accent: radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.15), transparent 38%),
+                         radial-gradient(circle at 88% 12%, rgba(56, 189, 248, 0.13), transparent 40%),
+                         radial-gradient(circle at 50% 90%, rgba(99, 102, 241, 0.10), transparent 45%);
+            --surface: rgba(15, 23, 42, 0.88);
             --surface-solid: #111827;
             --surface-soft: #1e293b;
             --border: rgba(148, 163, 184, 0.18);
             --text: #f8fafc;
             --text-muted: #94a3b8;
-            --shadow: 0 14px 36px -12px rgba(0, 0, 0, 0.45);
+            --shadow: 0 14px 34px -12px rgba(0, 0, 0, 0.45);
         }
 
         * { box-sizing: border-box; }
@@ -74,27 +73,52 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
-        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
         .brand-logo {
-            width: 40px; height: 40px; border-radius: 12px;
-            background: linear-gradient(135deg, #22c55e, #0ea5e9);
+            width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
             color: #fff; display: grid; place-items: center; font-weight: 800;
             box-shadow: 0 6px 16px rgba(16, 185, 129, 0.28);
         }
-        .brand-title { font-size: 1.05rem; font-weight: 700; margin: 0; }
+        .brand-title { font-size: 1.04rem; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         .brand-sub { font-size: 0.78rem; color: var(--text-muted); }
         .topbar-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
+        .live-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 2px 9px; border-radius: 999px;
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.03em;
+            background: rgba(16, 185, 129, 0.14); color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.34);
+        }
+        html[data-theme="dark"] .live-pill { color: #34d399; }
+        .live-pill.is-demo {
+            background: rgba(245, 158, 11, 0.14); color: #d97706;
+            border-color: rgba(245, 158, 11, 0.35);
+        }
+        html[data-theme="dark"] .live-pill.is-demo { color: #fbbf24; }
+        .live-dot {
+            width: 7px; height: 7px; border-radius: 50%; background: currentColor;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+        .live-pill.is-demo .live-dot { animation: none; }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+        @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+
         .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 9px 15px; border-radius: 12px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+            padding: 9px 14px; border-radius: 12px;
             border: 1px solid var(--border); background: var(--surface-solid); color: var(--text);
-            font-family: inherit; font-size: 0.875rem; font-weight: 600; cursor: pointer;
+            font-family: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer;
             transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
+            white-space: nowrap;
         }
         .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
         .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
@@ -102,9 +126,9 @@
         .btn-danger { background: rgba(244, 63, 94, 0.12); color: var(--rose); border-color: rgba(244, 63, 94, 0.35); }
         .btn-sm { padding: 6px 11px; font-size: 0.8rem; border-radius: 10px; }
 
-        .container { max-width: 1420px; margin: 0 auto; padding: 22px 20px 64px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px 20px 64px; }
 
-        .gate-wrapper { max-width: 680px; margin: 48px auto; }
+        .gate-wrapper { max-width: 660px; margin: 48px auto; }
         .card {
             background: var(--surface);
             backdrop-filter: blur(16px);
@@ -131,7 +155,6 @@
         .alert-warn { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); }
         .alert-info { background: rgba(14, 165, 233, 0.10); border-color: rgba(14, 165, 233, 0.3); }
         .alert-danger { background: rgba(244, 63, 94, 0.10); border-color: rgba(244, 63, 94, 0.32); }
-        .alert-success { background: rgba(16, 185, 129, 0.10); border-color: rgba(16, 185, 129, 0.32); }
 
         pre.code-box {
             text-align: left; background: #0f172a; color: #e2e8f0;
@@ -141,24 +164,24 @@
 
         /* Tabs */
         .tabs {
-            display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; padding: 6px;
+            display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; padding: 6px;
             background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
         }
         .tab-btn {
             border: none; background: transparent; color: var(--text-muted);
-            font-family: inherit; font-size: 0.9rem; font-weight: 600;
-            padding: 10px 16px; border-radius: 12px; cursor: pointer;
+            font-family: inherit; font-size: 0.88rem; font-weight: 600;
+            padding: 9px 15px; border-radius: 12px; cursor: pointer;
             transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 8px;
         }
         .tab-btn:hover { color: var(--text); background: var(--surface-soft); }
         .tab-btn.active {
             background: linear-gradient(135deg, #10b981, #0ea5e9);
-            color: #fff; box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
+            color: #fff; box-shadow: 0 6px 16px rgba(16, 185, 129, 0.24);
         }
         .tab-panel { display: none; }
         .tab-panel.active { display: block; }
 
-        /* Balanced 3x2 KPI Grid */
+        /* KPI Grids */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -179,7 +202,7 @@
             border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow);
         }
         .kpi-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
-        .kpi-value { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3px; }
+        .kpi-value { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3px; font-variant-numeric: tabular-nums; }
         .kpi-sub { font-size: 0.77rem; color: var(--text-muted); }
 
         .grid-2 {
@@ -195,7 +218,7 @@
         .card-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
 
         .chart-wrap { position: relative; height: 280px; width: 100%; }
-        .chart-wrap.tall { height: 350px; }
+        .chart-wrap.tall { height: 380px; }
         .chart-wrap.hourly { height: 300px; }
 
         /* Controls & Filters */
@@ -225,7 +248,6 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         }
 
-        /* Peak Callout Banner */
         .hourly-highlight {
             display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
             padding: 10px 14px; border-radius: 12px; margin-bottom: 12px;
@@ -236,7 +258,7 @@
 
         /* Live Activity Feed */
         .feed-list {
-            display: flex; flex-direction: column; gap: 10px;
+            display: flex; flex-direction: column; gap: 9px;
             max-height: 330px; overflow-y: auto; padding-right: 4px;
         }
         .feed-item {
@@ -244,7 +266,7 @@
             padding: 10px 12px; border-radius: 12px;
             background: var(--surface-soft); border: 1px solid var(--border); font-size: 0.84rem;
         }
-        .feed-meta { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+        .feed-meta { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; text-align: right; }
 
         /* Tables */
         .table-wrap {
@@ -276,31 +298,19 @@
         .badge-hot { background: rgba(244, 63, 94, 0.14); color: var(--rose); }
         .badge-ok { background: rgba(16, 185, 129, 0.14); color: var(--primary); }
         .badge-warn { background: rgba(245, 158, 11, 0.16); color: #d97706; }
+        .badge-violet { background: rgba(139, 92, 246, 0.16); color: #7c3aed; }
 
         html[data-theme="dark"] .badge-a1 { color: #4ade80; }
         html[data-theme="dark"] .badge-a2 { color: #38bdf8; }
         html[data-theme="dark"] .badge-b1, html[data-theme="dark"] .badge-warn { color: #fbbf24; }
         html[data-theme="dark"] .badge-b2 { color: #fb7185; }
+        html[data-theme="dark"] .badge-violet { color: #c4b5fd; }
 
-        /* GA Cards & Embed */
-        .ga-links {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 14px 0 18px;
+        .ext-links-row {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 12px; flex-wrap: wrap;
         }
-        .ga-link-card {
-            display: flex; flex-direction: column; gap: 5px; padding: 15px; border-radius: 14px;
-            border: 1px solid var(--border); background: var(--surface-solid);
-            transition: transform 0.14s ease, border-color 0.14s ease;
-        }
-        .ga-link-card:hover { transform: translateY(-2px); border-color: var(--blue); text-decoration: none; }
-        .looker-frame {
-            width: 100%; min-height: 520px; border: 1px solid var(--border);
-            border-radius: 14px; background: var(--surface-solid);
-        }
-        details.clean-details {
-            border: 1px solid var(--border); border-radius: 14px; padding: 12px 16px;
-            background: var(--surface-soft); margin-top: 12px;
-        }
-        details.clean-details summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+        .ext-links-pills { display: flex; gap: 8px; flex-wrap: wrap; }
 
         /* Modals */
         .modal-backdrop {
@@ -310,7 +320,7 @@
         }
         .modal-backdrop.open { display: flex; }
         .modal-box {
-            width: 100%; max-width: 820px; max-height: 88vh; overflow-y: auto;
+            width: 100%; max-width: 840px; max-height: 88vh; overflow-y: auto;
             background: var(--surface-solid); border: 1px solid var(--border);
             border-radius: 20px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); padding: 24px;
         }
@@ -325,6 +335,12 @@
             opacity: 0; pointer-events: none; transform: translateY(10px); transition: all 0.2s ease;
         }
         .toast.show { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 640px) {
+            .topbar { padding: 10px 14px; }
+            .container { padding: 14px 12px 54px; }
+            .card { padding: 16px; }
+        }
     </style>
 </head>
 
@@ -333,16 +349,17 @@
         <div class="brand">
             <div class="brand-logo" aria-hidden="true">Ox</div>
             <div>
-                <h1 class="brand-title">Oxflashcards Admin Dashboard</h1>
-                <div class="brand-sub" id="topbar-subtitle">ระบบวิเคราะห์ผู้เรียนและคลังคำศัพท์ Oxford 3000</div>
+                <h1 class="brand-title">
+                    <span>Oxflashcards Admin</span>
+                    <span class="live-pill hidden" id="live-pill"><span class="live-dot" aria-hidden="true"></span><span id="live-pill-text">LIVE</span></span>
+                </h1>
+                <div class="brand-sub" id="topbar-subtitle">ระบบวิเคราะห์ผู้เรียนและคลังคำศัพท์ Oxford 3000+ (Real-Time)</div>
             </div>
         </div>
         <div class="topbar-actions">
             <span class="small muted" id="user-pill">ยังไม่ได้เข้าสู่ระบบ</span>
-            <button type="button" class="btn btn-sm" id="btn-refresh" title="โหลดข้อมูลล่าสุดจาก Firestore">รีเฟรชข้อมูล</button>
-            <button type="button" class="btn btn-sm" id="btn-rules-help" title="ดู Firestore Security Rules สำหรับแอดมิน">ตั้งค่าสิทธิ์ Rules</button>
+            <button type="button" class="btn btn-sm" id="btn-refresh" title="รีเฟรชการเชื่อมต่อข้อมูลล่าสุด">รีเฟรช</button>
             <button type="button" class="btn btn-sm" id="btn-theme-toggle" title="สลับโหมดสว่าง/มืด">โหมดสี</button>
-            <a href="agent-hq.html" class="btn btn-sm" id="btn-open-agent-hq" title="เปิดศูนย์บัญชาการ AI Agent HQ Studio">🤖 Agent HQ</a>
             <a href="index.html" class="btn btn-sm">กลับหน้าแอป</a>
             <button type="button" class="btn btn-sm btn-danger hidden" id="btn-signout">ออกจากระบบ</button>
         </div>
@@ -360,11 +377,11 @@
                 </div>
                 <h2 style="margin:0 0 8px;">เข้าสู่ระบบหลังบ้าน (Admin)</h2>
                 <p class="muted" id="gate-desc" style="margin:0 0 12px;">
-                    เข้าสู่ระบบด้วยบัญชี Google ที่ได้รับสิทธิ์แอดมินใน Firestore เพื่อดูสถิติผู้เรียน ช่วงเวลาใช้งานวันนี้ และคำศัพท์ที่ติดขัดบ่อย
+                    เข้าสู่ระบบด้วยบัญชี Google ที่ได้รับสิทธิ์แอดมินใน Firestore เพื่อติดตามข้อมูลผู้เรียนแบบ Real-Time
                 </p>
                 <div id="gate-alert" class="alert alert-danger hidden" style="text-align:left; margin-top:16px;"></div>
                 <div id="gate-rules-box" class="hidden" style="text-align:left; margin-top:14px;">
-                    <div class="small muted">คัดลอกกติกานี้ไปวางใน <strong>Firebase Console → Firestore Database → Rules</strong> (แทนที่ของคุณแล้วกด Publish):</div>
+                    <div class="small muted">วางกติกานี้ใน <strong>Firebase Console → Firestore Database → Rules</strong> แล้วกด Publish:</div>
                     <pre class="code-box" id="gate-rules-pre"></pre>
                     <button type="button" class="btn btn-sm btn-primary" id="btn-copy-gate-rules">คัดลอก Firestore Rules</button>
                 </div>
@@ -379,29 +396,28 @@
         <section id="dashboard-root" class="hidden">
             <div id="demo-banner" class="alert alert-warn hidden">
                 <div>
-                    <strong>โหมดแสดงข้อมูลจำลอง (Demo Mode)</strong> — ข้อมูลทั้งหมดในหน้านี้เป็นข้อมูลจำลองเพื่อตรวจสอบกราฟและตารางก่อนใช้งานจริง
+                    <strong>โหมดแสดงข้อมูลจำลอง (Demo Mode)</strong> — ข้อมูลทั้งหมดในหน้านี้เป็นข้อมูลจำลองเพื่อตรวจสอบกราฟและตาราง
                 </div>
                 <button type="button" class="btn btn-sm btn-primary" id="btn-switch-real">สลับไปโหลดข้อมูลจริง (Firestore)</button>
             </div>
 
             <nav class="tabs" role="tablist" aria-label="หมวดหมู่ข้อมูลหลังบ้าน">
-                <button type="button" class="tab-btn active" data-tab="overview">ภาพรวม & เวลาวันนี้</button>
+                <button type="button" class="tab-btn active" data-tab="overview">ภาพรวม &amp; เวลา Real-Time</button>
                 <button type="button" class="tab-btn" data-tab="words">คำศัพท์ที่ติดขัดบ่อย</button>
-                <button type="button" class="tab-btn" data-tab="analytics">ผู้ชมเว็บ (GA4)</button>
-                <button type="button" class="tab-btn" data-tab="insights">ด่าน Learn Path & CEFR</button>
+                <button type="button" class="tab-btn" data-tab="features">โหมดฝึก &amp; ฟีเจอร์เกม</button>
+                <button type="button" class="tab-btn" data-tab="insights">ด่าน Learn Path &amp; CEFR</button>
                 <button type="button" class="tab-btn" data-tab="learners">รายชื่อผู้เรียน</button>
             </nav>
 
-            <!-- TAB 1: Overview & Today Hourly Usage -->
+            <!-- TAB 1: Overview & Hourly Real-Time -->
             <div id="tab-overview" class="tab-panel active">
                 <div class="kpi-grid" id="overview-kpis"></div>
 
-                <!-- Featured Hourly Chart: Today & Any Date -->
                 <div class="card mb">
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">กราฟช่วงเวลาที่ผู้เรียนใช้งาน (รายชั่วโมง 00:00–23:00 น.)</h3>
-                            <div class="card-desc">ดูได้ว่าวันนี้ (หรือวันที่เลือก) มีคนใช้งานตอนกี่โมงบ้าง จากเวลาเรียนจริง, Learn, Flashcard และ Quiz</div>
+                            <div class="card-desc">วัดจากเวลาใช้งานจริงในแอป, Learn Path, Flashcard, Quiz และ Speed Blitz</div>
                         </div>
                         <div class="controls-inline">
                             <div class="pill-group" id="hourly-mode-pills">
@@ -423,10 +439,11 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">ผู้เรียน Active รายวัน & จำนวนคำที่ฝึก</h3>
-                                <div class="card-desc">คำนวณจาก activityLog และวันที่ใช้งานล่าสุด</div>
+                                <h3 class="card-title">ผู้เรียน Active รายวัน &amp; จำนวนคำที่ฝึก</h3>
+                                <div class="card-desc">นับจากการเข้าฝึกคำศัพท์และการใช้งานจริงแต่ละวัน</div>
                             </div>
                             <div class="pill-group" id="range-pills">
+                                <button type="button" class="pill-btn" data-days="7">7 วัน</button>
                                 <button type="button" class="pill-btn active" data-days="14">14 วัน</button>
                                 <button type="button" class="pill-btn" data-days="30">30 วัน</button>
                             </div>
@@ -440,7 +457,7 @@
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">เวลาการใช้งานรวมรายวัน (นาที)</h3>
-                                <div class="card-desc">วัดจากเวลาใช้งานจริงในแอป (usageTimeLog) และเวลารอบฝึก/แบบทดสอบ</div>
+                                <div class="card-desc">รวมจากเวลาใช้งานจริงในแอปและระยะเวลารอบฝึก/แบบทดสอบ</div>
                             </div>
                         </div>
                         <div class="chart-wrap">
@@ -453,8 +470,8 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">กิจกรรมล่าสุดในระบบ (Activity Feed)</h3>
-                                <div class="card-desc">เรียงตามเวลาล่าสุดจาก Learn Path, Quiz และ Flashcard ของผู้เรียนทุกคน</div>
+                                <h3 class="card-title">กิจกรรมล่าสุดในระบบ (Live Activity Feed)</h3>
+                                <div class="card-desc">อัปเดตอัตโนมัติเมื่อผู้เรียนจบบทเรียน, Flashcard หรือ Quiz</div>
                             </div>
                         </div>
                         <div id="recent-feed" class="feed-list"></div>
@@ -463,8 +480,8 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">สรุประยะเวลาเฉลี่ยตามโหมดการฝึก</h3>
-                                <div class="card-desc">เปรียบเทียบระยะเวลาเฉลี่ยต่อรอบและความต่อเนื่องของผู้เรียน</div>
+                                <h3 class="card-title">สรุปประสิทธิภาพและระยะเวลาฝึก</h3>
+                                <div class="card-desc">เวลาเฉลี่ยต่อรอบ ความต่อเนื่องรายสัปดาห์ และอัตราพิชิตเป้าหมาย</div>
                             </div>
                         </div>
                         <div id="duration-breakdown"></div>
@@ -480,12 +497,12 @@
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">15 อันดับคำศัพท์ที่ผู้เรียนติดขัด / ทบทวนซ้ำบ่อยที่สุด</h3>
-                            <div class="card-desc">คลิกที่แถวคำศัพท์ในตารางด้านล่างเพื่อดูตัวอย่างประโยคและคำแปลจาก data.js สำหรับนำไปปรับปรุง</div>
+                            <div class="card-desc">คลิกที่แถวคำศัพท์ในตารางด้านล่างเพื่อดูคำแปล ตัวอย่างประโยค และคำแนะนำ</div>
                         </div>
                         <button type="button" class="btn btn-sm btn-primary" id="btn-export-words">ส่งออก CSV คำศัพท์</button>
                     </div>
                     <div id="words-chart-empty" class="alert alert-info hidden">
-                        <div>ยังไม่มีข้อมูลคำศัพท์ที่ถูกกด "ทบทวน" หรือตอบผิดใน Quiz จากผู้เรียนในระบบ (เมื่อผู้เรียนเริ่มผิดหรือกดทบทวน กราฟจะแสดงอัตโนมัติ)</div>
+                        <div>ยังไม่มีข้อมูลคำศัพท์ที่ถูกกด "ทบทวน" หรือตอบผิดใน Quiz จากผู้เรียนในระบบ</div>
                     </div>
                     <div class="chart-wrap tall" id="words-chart-wrap">
                         <canvas id="chart-struggling-words"></canvas>
@@ -539,14 +556,16 @@
                 </div>
             </div>
 
-            <!-- TAB 3: Google Analytics & Feature Usage -->
-            <div id="tab-analytics" class="tab-panel">
+            <!-- TAB 3: Modes, Gamification & External Analytics -->
+            <div id="tab-features" class="tab-panel">
+                <div class="kpi-grid kpi-4" id="features-kpis"></div>
+
                 <div class="grid-2">
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">การใช้งานแยกตามโหมดในแอป (ข้อมูลจริงใน Firestore)</h3>
-                                <div class="card-desc">เปรียบเทียบความนิยมระหว่าง Learn Path, Quiz และ Flashcard จากผู้เรียนที่ซิงค์</div>
+                                <h3 class="card-title">เปรียบเทียบการใช้งานทุกโหมดฝึกในแอป</h3>
+                                <div class="card-desc">จำนวนรอบและกิจกรรมจริงจาก Learn Path, Flashcard, Quiz, Speed Blitz, คำคู่สับสน และเรื่องสั้น</div>
                             </div>
                         </div>
                         <div class="chart-wrap">
@@ -557,52 +576,53 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h3 class="card-title">ผู้เข้าชมที่ไม่ได้ล็อกอิน (Google Analytics 4)</h3>
-                                <div class="card-desc">Measurement ID: <code>G-36GSY6NCFC</code> กำลังส่งข้อมูลจาก <code>index.html</code></div>
+                                <h3 class="card-title">สัดส่วนระดับหลักสูตรที่ผู้เรียนกำลังฝึกอยู่ (A1–B2)</h3>
+                                <div class="card-desc">อ้างอิงจากหมวดล่าสุด (activeSection) ของผู้เรียนทุกคนที่ซิงค์</div>
                             </div>
-                            <span class="badge badge-ok">กำลังทำงาน</span>
                         </div>
-                        <p class="small muted" style="margin-top:0;">
-                            ผู้เข้าชมที่ไม่ได้ล็อกอินจะถูกนับยอดคนเข้าเว็บ, เวลาเฉลี่ยต่อหน้า, ประเทศ และอุปกรณ์บน Google Analytics 4 อัตโนมัติ พร้อมอีเวนต์ <code>session_complete</code>, <code>quiz_complete</code> และ <code>learn_lesson_complete</code>
-                        </p>
-                        <div class="ga-links" style="margin-bottom:0;">
-                            <a class="ga-link-card" href="https://analytics.google.com/analytics/web/" target="_blank" rel="noopener">
-                                <strong>ดูผู้ชม Realtime ตอนนี้ (GA4)</strong>
-                                <span class="small muted">เห็นจำนวนคนเปิดเว็บอยู่ตอนนี้แม้ไม่ได้ล็อกอิน</span>
-                            </a>
-                            <a class="ga-link-card" href="https://console.firebase.google.com/project/oxflashcard/analytics" target="_blank" rel="noopener">
-                                <strong>Firebase Analytics</strong>
-                                <span class="small muted">กราฟ Retention และอีเวนต์การเรียนทั้งหมด</span>
-                            </a>
-                            <a class="ga-link-card" href="https://console.firebase.google.com/project/oxflashcard/authentication/users" target="_blank" rel="noopener">
-                                <strong>รายชื่อบัญชีที่เคยล็อกอิน Google</strong>
-                                <span class="small muted">ดูบัญชีทั้งหมดใน Firebase Auth</span>
-                            </a>
+                        <div class="chart-wrap">
+                            <canvas id="chart-section-dist"></canvas>
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card mb">
                     <div class="card-header">
                         <div>
-                            <h3 class="card-title">ฝังรายงาน GA4 เข้ามาในหน้านี้โดยตรง (ผ่าน Looker Studio)</h3>
-                            <div class="card-desc">เหมาะสำหรับแสดงยอดผู้เข้าชมที่ไม่ล็อกอินแบบฝังถาวรไว้ใน Dashboard</div>
+                            <h3 class="card-title">สถิติโหมดเกม &amp; ร้านค้า XP รายบุคคล</h3>
+                            <div class="card-desc">ดูสถิติ Speed Blitz, ปราบคำสับสน, เรื่องสั้นราย Unit และการใช้เกราะกันไฟดับของแต่ละบัญชี</div>
                         </div>
                     </div>
-                    <details class="clean-details">
-                        <summary>วิธีตั้งค่าและวางลิงก์ Looker Studio Embed (ทำครั้งเดียว)</summary>
-                        <div class="small muted" style="margin:10px 0;">
-                            1. เปิด <a href="https://lookerstudio.google.com/" target="_blank" rel="noopener">lookerstudio.google.com</a> → Create Report → เลือก <strong>Google Analytics</strong> ของรหัส <code>G-36GSY6NCFC</code><br>
-                            2. กดเมนู File → Embed report → เปิด Enable embedding → คัดลอก <strong>Embed URL</strong> มาวางด้านล่าง
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ผู้เรียน</th>
+                                    <th>ระดับ</th>
+                                    <th class="num">XP</th>
+                                    <th class="num">Blitz (รอบ / สูงสุด)</th>
+                                    <th class="num">คำคู่สับสน (คู่ / ถูก)</th>
+                                    <th class="num">เรื่องสั้น</th>
+                                    <th class="num">เกราะไฟ / ซื้อไอเทม</th>
+                                    <th>ฉายาที่สวมใส่</th>
+                                </tr>
+                            </thead>
+                            <tbody id="features-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="ext-links-row">
+                        <div>
+                            <div style="font-weight:700; font-size:0.92rem;">เครื่องมือสถิติผู้เข้าชมภายนอก (Google Analytics 4: <code>G-36GSY6NCFC</code>)</div>
+                            <div class="small muted">สำหรับดูยอดผู้เข้าชมเว็บไซต์แบบไม่ล็อกอิน หรือรายการบัญชีทั้งหมดใน Firebase Auth</div>
                         </div>
-                        <div class="toolbar" style="margin-top:10px;">
-                            <input type="url" id="looker-url-input" class="input input-search" placeholder="https://lookerstudio.google.com/embed/reporting/...">
-                            <button type="button" class="btn btn-primary" id="btn-save-looker">บันทึกและแสดงรายงาน</button>
-                            <button type="button" class="btn" id="btn-clear-looker">ล้างลิงก์</button>
+                        <div class="ext-links-pills">
+                            <a class="btn btn-sm" href="https://analytics.google.com/analytics/web/" target="_blank" rel="noopener">ดูผู้ชม Realtime (GA4) ↗</a>
+                            <a class="btn btn-sm" href="https://console.firebase.google.com/project/oxflashcard/analytics" target="_blank" rel="noopener">Firebase Analytics ↗</a>
+                            <a class="btn btn-sm" href="https://console.firebase.google.com/project/oxflashcard/authentication/users" target="_blank" rel="noopener">บัญชี Google Auth ↗</a>
                         </div>
-                    </details>
-                    <div id="looker-container" class="hidden" style="margin-top:14px;">
-                        <iframe id="looker-iframe" class="looker-frame" title="Google Analytics Looker Studio Report" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
                     </div>
                 </div>
             </div>
@@ -614,7 +634,7 @@
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">ความคืบหน้า Learn Path รายหมวด (12 หมวด)</h3>
-                                <div class="card-desc">แสดงเฉพาะจำนวนผู้เรียน & จำนวนด่านที่ผ่านจริงเทียบกับความแม่นยำ</div>
+                                <div class="card-desc">จำนวนด่านที่ผ่านจริงเทียบกับความแม่นยำเฉลี่ย (%)</div>
                             </div>
                             <label class="small" style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;">
                                 <input type="checkbox" id="toggle-active-units-only"> ซ่อนหมวดที่ยังไม่มีคนเล่น
@@ -629,7 +649,7 @@
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">ความครอบคลุมคลังคำศัพท์ Oxford 3000+ (A1–B2)</h3>
-                                <div class="card-desc">เทียบสัดส่วนคำที่ผู้เรียนจำได้แล้ว vs ทบทวน vs ยังไม่เคยเรียน (จาก 3,600 คำ)</div>
+                                <div class="card-desc" id="cefr-coverage-desc">เทียบสัดส่วนคำที่ผู้เรียนจำได้แล้ว vs ทบทวน vs ยังไม่เคยเรียน</div>
                             </div>
                         </div>
                         <div class="chart-wrap tall">
@@ -643,7 +663,7 @@
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">ด่านที่ผู้เรียนได้คะแนนเฉลี่ยน้อยสุด / ท้าทายที่สุด</h3>
-                                <div class="card-desc">ใช้ตรวจสอบว่าด่านไหนยากเกินไปหรือควรปรับคำใบ้เพิ่ม</div>
+                                <div class="card-desc">ใช้ตรวจสอบด่านที่ยากหรือควรปรับปรุงคำอธิบายเพิ่มเติม</div>
                             </div>
                         </div>
                         <div class="table-wrap">
@@ -665,7 +685,7 @@
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">การตั้งค่าและเป้าหมายของผู้เรียน</h3>
-                                <div class="card-desc">สำเนียงยอดนิยม, ขนาดรอบเฉลี่ย และความสำเร็จเป้าหมายรายวัน</div>
+                                <div class="card-desc">สำเนียงยอดนิยม, ขนาดรอบเฉลี่ย และเป้าหมายรายวัน</div>
                             </div>
                         </div>
                         <div class="chart-wrap" style="height:210px; margin-bottom:14px;">
@@ -682,12 +702,12 @@
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">รายชื่อผู้เรียนทั้งหมดที่ซิงค์คลาวด์</h3>
-                            <div class="card-desc">คลิกที่แถวเพื่อดูเวลาเรียนวันนี้ รายละเอียดด่านที่ผ่าน และคำศัพท์ที่ติดขัดรายบุคคล</div>
+                            <div class="card-desc">คลิกที่แถวเพื่อดูเวลาเรียนวันนี้ ด่านที่ผ่าน สถิติเกม และคำศัพท์ที่ติดขัดรายบุคคล</div>
                         </div>
                         <button type="button" class="btn btn-sm btn-primary" id="btn-export-learners">ส่งออก CSV ผู้เรียน</button>
                     </div>
                     <div class="toolbar">
-                        <input type="search" id="learner-search" class="input input-search" placeholder="ค้นหา Email หรือ UID...">
+                        <input type="search" id="learner-search" class="input input-search" placeholder="ค้นหา Email, ชื่อโปรไฟล์ หรือ UID...">
                         <div class="pill-group" id="learner-status-pills">
                             <button type="button" class="pill-btn active" data-lstatus="all">ทั้งหมด</button>
                             <button type="button" class="pill-btn" data-lstatus="today">ใช้งานวันนี้</button>
@@ -709,12 +729,12 @@
                                 <tr>
                                     <th>ผู้เรียน (Email / UID)</th>
                                     <th>สถานะ</th>
+                                    <th>ระดับ</th>
                                     <th>ใช้งานล่าสุด</th>
                                     <th class="num">XP</th>
                                     <th class="num">Streak</th>
                                     <th class="num">จำได้ / ทบทวน</th>
-                                    <th class="num">ด่าน Learn</th>
-                                    <th class="num">Quiz</th>
+                                    <th class="num">Learn / Quiz</th>
                                     <th class="num">เวลาใช้งาน</th>
                                 </tr>
                             </thead>
@@ -752,23 +772,6 @@
                 <button type="button" class="btn btn-sm" id="btn-close-word-modal">ปิด</button>
             </div>
             <div id="word-modal-body"></div>
-        </div>
-    </div>
-
-    <!-- Firestore Rules Helper Modal -->
-    <div id="rules-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="rules-modal-title">
-        <div class="modal-box">
-            <div class="card-header">
-                <div>
-                    <h3 class="card-title" id="rules-modal-title">ตั้งค่า Firestore Security Rules สำหรับ Admin</h3>
-                    <div class="card-desc">กติกานี้เปิดให้เฉพาะบัญชีแอดมินอ่านข้อมูลทุกผู้ใช้ได้ โดยยังปกป้องข้อมูลผู้ใช้ทั่วไปไม่ให้ดูข้อมูลของคนอื่น</div>
-                </div>
-                <button type="button" class="btn btn-sm" id="btn-close-rules-modal">ปิด</button>
-            </div>
-            <p class="small">1. เปิด <a href="https://console.firebase.google.com/project/oxflashcard/firestore/rules" target="_blank" rel="noopener">Firebase Console → Firestore Database → Rules</a></p>
-            <p class="small">2. วาง Rules ด้านล่าง (ระบบใส่อีเมล/UID ของคุณให้แล้วถ้าล็อกอินอยู่) แล้วกด <strong>Publish</strong></p>
-            <pre class="code-box" id="modal-rules-pre"></pre>
-            <button type="button" class="btn btn-primary btn-sm" id="btn-copy-modal-rules">คัดลอก Firestore Rules</button>
         </div>
     </div>
 

@@ -13,7 +13,6 @@
         measurementId: "G-36GSY6NCFC"
     };
     const FIREBASE_SDK_BASE = 'https://www.gstatic.com/firebasejs/10.14.1';
-    const LOOKER_STORAGE_KEY = 'ox3k_admin_looker_url_v1';
     const THEME_STORAGE_KEY = 'ox3k_admin_theme_v1';
 
     const TOPIC_LABELS = {
@@ -32,14 +31,23 @@
     };
     const TOPIC_ORDER = Object.keys(TOPIC_LABELS);
     const CEFR_ORDER = ['A1', 'A2', 'B1', 'B2'];
+    const TITLE_LABELS = {
+        title_striker: '✨ นักสู้คำศัพท์',
+        title_blitz: '⚡ อัศวินสายฟ้า',
+        title_nuance: '⚔️ จอมปราบคำสับสน',
+        title_grandmaster: '👑 ปราชญ์แห่ง Oxford'
+    };
+
+    // data.js declares `const wordsData = [...]` at global lexical scope (not attached to `window`).
+    /** @type {any[]} */
+    const rawWords = (typeof wordsData !== 'undefined' && Array.isArray(wordsData))
+        ? wordsData
+        : (Array.isArray(/** @type {any} */ (window).wordsData) ? /** @type {any[]} */ (/** @type {any} */ (window).wordsData) : []);
 
     /** @type {Map<string, any>} */
     const wordLookup = new Map();
     /** @type {Map<string, any>} */
     const wordOnlyLookup = new Map();
-    const rawWords = Array.isArray(/** @type {any} */ (window).wordsData)
-        ? /** @type {any[]} */ (/** @type {any} */ (window).wordsData)
-        : [];
     const posSet = new Set();
     /** @type {Record<string, number>} */
     const cefrInventoryTotals = { A1: 0, A2: 0, B1: 0, B2: 0 };
@@ -47,14 +55,16 @@
     rawWords.forEach((w) => {
         if (!w || !w.word) return;
         const pos = String(w.partOfSpeech || 'noun').trim();
-        const key = `${String(w.word).trim().toLowerCase()}|${pos.toLowerCase()}`;
+        const wordLow = String(w.word).trim().toLowerCase();
+        const key = `${wordLow}|${pos.toLowerCase()}`;
         wordLookup.set(key, w);
-        if (!wordOnlyLookup.has(String(w.word).trim().toLowerCase())) {
-            wordOnlyLookup.set(String(w.word).trim().toLowerCase(), w);
+        if (!wordOnlyLookup.has(wordLow)) {
+            wordOnlyLookup.set(wordLow, w);
         }
         if (pos) posSet.add(pos);
-        if (CEFR_ORDER.includes(w.cefr)) {
-            cefrInventoryTotals[w.cefr]++;
+        const cefrUp = String(w.cefr || '').trim().toUpperCase();
+        if (CEFR_ORDER.includes(cefrUp)) {
+            cefrInventoryTotals[cefrUp]++;
         }
     });
 
@@ -64,6 +74,19 @@
         const m = String(d.getMonth() + 1).padStart(2, '0');
         const day = String(d.getDate()).padStart(2, '0');
         return `${y}-${m}-${day}`;
+    }
+
+    /** @param {any} val */
+    function parseTimestampMs(val) {
+        if (typeof val === 'number') return Number.isFinite(val) && val > 0 ? val : 0;
+        if (typeof val === 'string') {
+            const trimmed = val.trim();
+            if (!trimmed) return 0;
+            if (/^\d+$/.test(trimmed)) return Number(trimmed) || 0;
+            const parsed = Date.parse(trimmed);
+            return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
+        }
+        return 0;
     }
 
     const state = {
@@ -78,6 +101,12 @@
         wordQuickFilter: 'all',
         learnerStatusFilter: 'all',
         hideEmptyUnits: false,
+        /** @type {(() => void)|null} */
+        unsubscribeSnapshot: null,
+        /** @type {ReturnType<typeof setInterval>|null} */
+        liveTickTimer: null,
+        /** @type {string|null} */
+        openLearnerUid: null,
         /** @type {any[]} */
         rawUsers: [],
         /** @type {any|null} */
@@ -89,7 +118,7 @@
     /** @param {string} id */
     const $ = (id) => document.getElementById(id);
 
-    /** @param {string} str */
+    /** @param {any} str */
     function escapeHtml(str) {
         return String(str == null ? '' : str)
             .replace(/&/g, '&amp;')
@@ -153,7 +182,7 @@
         const raw = String(key || '').trim();
         const lower = raw.toLowerCase();
         if (wordLookup.has(lower)) return wordLookup.get(lower);
-        const wordPart = lower.split('|')[0];
+        const wordPart = lower.split('|')[0].trim();
         if (wordOnlyLookup.has(wordPart)) return wordOnlyLookup.get(wordPart);
         const parts = raw.split('|');
         return {
@@ -164,7 +193,8 @@
             phonetic: '',
             definition: '',
             example: '',
-            exampleTranslation: ''
+            exampleTranslation: '',
+            usageTip: ''
         };
     }
 
@@ -192,11 +222,8 @@ service cloud.firestore {
     }
 
     function refreshRulesSnippets() {
-        const snippet = buildFirestoreRulesSnippet(state.user);
         const gatePre = $('gate-rules-pre');
-        const modalPre = $('modal-rules-pre');
-        if (gatePre) gatePre.textContent = snippet;
-        if (modalPre) modalPre.textContent = snippet;
+        if (gatePre) gatePre.textContent = buildFirestoreRulesSnippet(state.user);
     }
 
     /** @param {string} theme */
@@ -205,7 +232,7 @@ service cloud.firestore {
         document.documentElement.setAttribute('data-theme', resolved);
         localStorage.setItem(THEME_STORAGE_KEY, resolved);
         const btn = $('btn-theme-toggle');
-        if (btn) btn.textContent = resolved === 'dark' ? 'โหมดสว่าง' : 'โหมดมืด';
+        if (btn) btn.textContent = resolved === 'dark' ? '☀️ โหมดสว่าง' : '🌙 โหมดมืด';
         if (state.analytics) renderAllCharts();
     }
 
@@ -238,13 +265,46 @@ service cloud.firestore {
         return state.modules;
     }
 
+    function stopFirestoreSubscription() {
+        if (typeof state.unsubscribeSnapshot === 'function') {
+            try { state.unsubscribeSnapshot(); } catch (_) { }
+            state.unsubscribeSnapshot = null;
+        }
+        if (state.liveTickTimer) {
+            clearInterval(state.liveTickTimer);
+            state.liveTickTimer = null;
+        }
+    }
+
+    function startLiveRelativeTimer() {
+        if (state.liveTickTimer) clearInterval(state.liveTickTimer);
+        state.liveTickTimer = setInterval(() => {
+            if (!state.analytics || state.isDemo) return;
+            const activeTab = document.querySelector('.tab-btn.active')?.getAttribute('data-tab');
+            if (activeTab === 'overview') renderOverview();
+            if (activeTab === 'learners') renderLearnersTable();
+        }, 25000);
+    }
+
+    function updateLivePill(mode, labelText) {
+        const pill = $('live-pill');
+        const txt = $('live-pill-text');
+        if (!pill || !txt) return;
+        if (mode === 'off') {
+            pill.classList.add('hidden');
+            return;
+        }
+        pill.classList.remove('hidden');
+        pill.classList.toggle('is-demo', mode === 'demo');
+        txt.textContent = labelText;
+    }
+
     function generateDemoUsers() {
-        const sampleKeys = rawWords.slice(0, 120).map((w) => `${w.word}|${w.partOfSpeech || 'noun'}`);
+        const sampleKeys = rawWords.slice(0, 160).map((w) => `${w.word}|${w.partOfSpeech || 'noun'}`);
         const fallbackKeys = [
             'abandon|verb', 'accurate|adjective', 'acknowledge|verb', 'acquire|verb',
             'adequate|adjective', 'ambition|noun', 'analyze|verb', 'anxious|adjective',
-            'appreciate|verb', 'approach|noun', 'appropriate|adjective', 'assume|verb',
-            'atmosphere|noun', 'attribute|verb', 'available|adjective', 'benefit|noun'
+            'appreciate|verb', 'approach|noun', 'appropriate|adjective', 'assume|verb'
         ];
         const pool = sampleKeys.length >= 20 ? sampleKeys : fallbackKeys;
         const now = Date.now();
@@ -255,6 +315,7 @@ service cloud.firestore {
             'prawit.learn@gmail.com', 'mintra.vocab@gmail.com', 'kittipong.s@gmail.com',
             'jiraporn.bkk@gmail.com', 'thanawat.tu@gmail.com', 'waranya.cu@gmail.com'
         ];
+        const titleKeys = Object.keys(TITLE_LABELS);
 
         return names.map((email, uIdx) => {
             const daysAgoActive = uIdx < 5 ? 0 : (uIdx < 9 ? (uIdx % 5) + 1 : (uIdx % 14) + 6);
@@ -267,7 +328,7 @@ service cloud.firestore {
             const status = {};
             /** @type {Record<string, any>} */
             const mastery = {};
-            const wordQuota = 35 + (uIdx * 11) % 70;
+            const wordQuota = 35 + (uIdx * 13) % 85;
             for (let i = 0; i < wordQuota; i++) {
                 const k = pool[(i * 7 + uIdx * 3) % pool.length];
                 const isStruggle = (i % 4 === 0) || (pool.indexOf(k) < 10 && i % 2 === 0);
@@ -311,7 +372,7 @@ service cloud.firestore {
                 const durSec = 110 + ((uIdx + s) * 43) % 420;
                 sessions.push({
                     id: `demo_${uIdx}_${s}`,
-                    startedAt: endMs - durSec * 1000,
+                    startedAt: new Date(endMs - durSec * 1000).toISOString(),
                     date: new Date(endMs).toISOString(),
                     mode: s % 2 === 0 ? 'random' : 'cefr',
                     size: 20,
@@ -335,8 +396,9 @@ service cloud.firestore {
                     total: 20,
                     percent: Math.round((score / 20) * 100),
                     incorrectWords: wrongPool,
-                    category: 'all',
-                    timeSpent: 95 + ((uIdx * 19 + q * 31) % 210)
+                    category: q === 2 ? 'blitz' : 'all',
+                    mode: q === 2 ? 'blitz' : 'mixed',
+                    timeSpent: q === 2 ? 60 : (95 + ((uIdx * 19 + q * 31) % 210))
                 });
             }
 
@@ -357,6 +419,12 @@ service cloud.firestore {
                 }
             }
 
+            const sec = CEFR_ORDER[uIdx % CEFR_ORDER.length];
+            const blitzGames = uIdx < 8 ? ((uIdx % 4) + 1) : 0;
+            const blitzHi = blitzGames ? (180 + (10 - uIdx) * 45) : 0;
+            const confList = uIdx < 7 ? Array.from({ length: 3 + (uIdx % 8) }, (_, ci) => `pair_${ci}`) : [];
+            const storiesList = uIdx < 6 ? TOPIC_ORDER.slice(0, (uIdx % 5) + 1).map((t) => `${sec}_${t}_1`) : [];
+
             return {
                 uid: `demo_uid_${uIdx + 1}`,
                 email,
@@ -376,7 +444,18 @@ service cloud.firestore {
                     learningPath: {
                         xp: 180 + (12 - uIdx) * 145,
                         streak: uIdx < 5 ? (7 - uIdx) : (uIdx % 3),
-                        completedStages
+                        activeSection: sec,
+                        completedStages,
+                        streakFreezes: uIdx % 4,
+                        frozenDates: uIdx < 3 ? [toLocalDateStr(new Date(now - 3 * 86400000))] : [],
+                        shopPurchasesCount: uIdx < 6 ? (uIdx % 4) + 1 : 0,
+                        equippedTitle: uIdx < 4 ? titleKeys[uIdx % titleKeys.length] : '',
+                        blitzGamesPlayed: blitzGames,
+                        blitzHighScore: blitzHi,
+                        blitzBestCombo: blitzGames ? (5 + (uIdx % 7)) : 0,
+                        confusablesMastered: confList,
+                        confusablesCorrectTotal: confList.length * 4,
+                        completedStories: storiesList
                     }
                 }
             };
@@ -384,7 +463,6 @@ service cloud.firestore {
     }
 
     /**
-     * Record a timestamped activity inside the per-date, per-hour index.
      * @param {Map<string, { users: Set<string>[], events: number[], seconds: number[] }>} hourlyByDate
      * @param {number} ts
      * @param {string} uid
@@ -431,9 +509,10 @@ service cloud.firestore {
             dayUsageSec.set(ds, 0);
         }
 
+        const m15Cutoff = now - 15 * 60000;
+        const h24Cutoff = now - 86400000;
         const wauCutoff = now - 7 * 86400000;
         const mauCutoff = now - 30 * 86400000;
-        const h24Cutoff = now - 86400000;
 
         /** @type {Set<string>} */
         const dauSet = new Set();
@@ -442,6 +521,7 @@ service cloud.firestore {
         /** @type {Set<string>} */
         const mauSet = new Set();
         let active24h = 0;
+        let activeNowCount = 0;
 
         /** @type {Map<string, { users: Set<string>[], events: number[], seconds: number[] }>} */
         const hourlyByDate = new Map();
@@ -461,11 +541,12 @@ service cloud.firestore {
                     word: info.word || cleanKey,
                     translation: info.translation || '-',
                     pos: info.partOfSpeech || '-',
-                    cefr: CEFR_ORDER.includes(info.cefr) ? info.cefr : '-',
+                    cefr: CEFR_ORDER.includes(String(info.cefr || '').toUpperCase()) ? String(info.cefr).toUpperCase() : '-',
                     phonetic: info.phonetic || '',
                     definition: info.definition || '',
                     example: info.example || '',
                     exampleTranslation: info.exampleTranslation || '',
+                    usageTip: info.usageTip || '',
                     reviewCountSum: 0,
                     quizMisses: 0,
                     sessionReviews: 0,
@@ -484,6 +565,9 @@ service cloud.firestore {
             B2: { known: new Set(), review: new Set(), knownTotal: 0, reviewTotal: 0 }
         };
 
+        /** @type {Record<string, number>} */
+        const activeSectionCounts = { A1: 0, A2: 0, B1: 0, B2: 0 };
+
         /** @type {Record<string, { learners: Set<string>, stages: number, legendary: number, accSum: number, accCount: number }>} */
         const unitStats = {};
         TOPIC_ORDER.forEach((t) => {
@@ -498,6 +582,21 @@ service cloud.firestore {
 
         const prefsSummary = { US: 0, UK: 0, sizeSum: 0, sizeCount: 0, goalTargetSum: 0, goalCount: 0, goalHitToday: 0 };
 
+        const featuresSummary = {
+            blitzGamesTotal: 0,
+            blitzPlayers: 0,
+            blitzTopScore: 0,
+            blitzTopCombo: 0,
+            confusablesMasteredSum: 0,
+            confusablesCorrectSum: 0,
+            confusablesPlayers: 0,
+            storiesReadSum: 0,
+            storiesReaders: 0,
+            shopPurchasesSum: 0,
+            freezesStockedSum: 0,
+            frozenDatesSum: 0
+        };
+
         let totalFlashcardSec = 0;
         let flashcardDurCount = 0;
         let totalQuizSec = 0;
@@ -506,6 +605,7 @@ service cloud.firestore {
         let totalSessions = 0;
         let totalQuizzes = 0;
         let quizAccSum = 0;
+        let quizAccCount = 0;
         let totalKnown = 0;
         let totalReview = 0;
         let totalXp = 0;
@@ -514,14 +614,16 @@ service cloud.firestore {
         let learnAccCount = 0;
         let totalActivityWords = 0;
 
+        /** @type {any[]} */
         const learners = [];
 
         docs.forEach((doc) => {
             const uid = String(doc.uid || doc.id || '');
             const email = String(doc.email || uid || 'ไม่ระบุอีเมล');
             const payload = (doc.payload && typeof doc.payload === 'object') ? doc.payload : {};
-            const updatedAt = Number(doc.updatedAt || payload.exportedAt || 0);
+            const updatedAt = parseTimestampMs(doc.updatedAt || payload.exportedAt || 0);
 
+            if (updatedAt >= m15Cutoff) activeNowCount++;
             if (updatedAt >= h24Cutoff) active24h++;
             if (updatedAt >= wauCutoff) wauSet.add(uid);
             if (updatedAt >= mauCutoff) mauSet.add(uid);
@@ -603,7 +705,8 @@ service cloud.firestore {
                 const info = resolveWordInfo(k);
                 const canonical = `${String(info.word || k).toLowerCase()}|${String(info.partOfSpeech || '').toLowerCase()}`;
                 studiedKeysGlobal.add(canonical);
-                const cefr = CEFR_ORDER.includes(info.cefr) ? info.cefr : null;
+                const cefrUp = String(info.cefr || '').toUpperCase();
+                const cefr = CEFR_ORDER.includes(cefrUp) ? cefrUp : null;
                 if (stVal === 'known') {
                     userKnown++;
                     totalKnown++;
@@ -625,10 +728,8 @@ service cloud.firestore {
 
             for (const [k, mVal] of Object.entries(wMastery)) {
                 if (!mVal || typeof mVal !== 'object') continue;
-                const lsMs = typeof mVal.lastStudied === 'number'
-                    ? mVal.lastStudied
-                    : (mVal.lastStudied ? Date.parse(mVal.lastStudied) : 0);
-                if (lsMs > 0 && !Number.isNaN(lsMs)) {
+                const lsMs = parseTimestampMs(mVal.lastStudied);
+                if (lsMs > 0) {
                     addHourlyPoint(hourlyByDate, lsMs, uid, 1, 0);
                     if (toLocalDateStr(new Date(lsMs)) === todayStr) {
                         const hr = new Date(lsMs).getHours();
@@ -644,19 +745,19 @@ service cloud.firestore {
                 }
             }
 
-            // Sessions (Flashcard)
+            // Sessions (Flashcard) — parses both ISO strings and epoch ms cleanly
             const sessArr = Array.isArray(payload.sessions) ? payload.sessions : [];
             let userSessionSec = 0;
             sessArr.forEach((s) => {
                 if (!s || typeof s !== 'object') return;
                 totalSessions++;
-                const endMs = s.date ? Date.parse(s.date) : 0;
-                const startMs = Number(s.startedAt || 0);
-                if (endMs && !Number.isNaN(endMs)) {
+                const endMs = parseTimestampMs(s.date);
+                const startMs = parseTimestampMs(s.startedAt);
+                if (endMs > 0) {
                     let durSec = 0;
                     if (startMs > 0 && endMs > startMs) {
                         const diff = Math.round((endMs - startMs) / 1000);
-                        if (diff >= 5 && diff <= 7200) {
+                        if (diff >= 3 && diff <= 7200) {
                             durSec = diff;
                             totalFlashcardSec += diff;
                             flashcardDurCount++;
@@ -691,14 +792,17 @@ service cloud.firestore {
                 }
             });
 
-            // Quiz history
+            // Quiz history (including Speed Blitz & Confusables)
             const qhArr = Array.isArray(payload.quizHistory) ? payload.quizHistory : [];
             let userQuizSec = 0;
             qhArr.forEach((q) => {
                 if (!q || typeof q !== 'object') return;
                 totalQuizzes++;
-                if (typeof q.percent === 'number') quizAccSum += q.percent;
-                const qMs = q.date ? Date.parse(q.date) : 0;
+                if (typeof q.percent === 'number' && Number.isFinite(q.percent)) {
+                    quizAccSum += q.percent;
+                    quizAccCount++;
+                }
+                const qMs = parseTimestampMs(q.date);
                 const ts = Number(q.timeSpent || 0);
                 let qSec = 0;
                 if (ts > 0 && ts <= 3600) {
@@ -706,12 +810,14 @@ service cloud.firestore {
                     totalQuizSec += ts;
                     quizDurCount++;
                     userQuizSec += ts;
-                    if (userTrackedSec === 0 && qMs && !Number.isNaN(qMs)) {
+                    if (userTrackedSec === 0 && qMs > 0) {
                         const ds = toLocalDateStr(new Date(qMs));
                         if (dayUsageSec.has(ds)) dayUsageSec.set(ds, dayUsageSec.get(ds) + ts);
                     }
                 }
-                if (qMs && !Number.isNaN(qMs)) {
+                const isBlitz = q.mode === 'blitz' || q.category === 'blitz';
+                const isConf = q.mode === 'confusables' || q.category === 'confusables';
+                if (qMs > 0) {
                     addHourlyPoint(hourlyByDate, qMs, uid, 2, qSec);
                     if (toLocalDateStr(new Date(qMs)) === todayStr) {
                         const hr = new Date(qMs).getHours();
@@ -721,7 +827,7 @@ service cloud.firestore {
                         ts: qMs,
                         email,
                         uid,
-                        type: 'Quiz',
+                        type: isBlitz ? 'Speed Blitz' : (isConf ? 'คำคู่สับสน' : 'Quiz'),
                         detail: `ได้คะแนน ${q.score}/${q.total} (${q.percent || 0}%)${qSec ? ` · ${formatDuration(qSec)}` : ''}`
                     });
                 }
@@ -737,22 +843,49 @@ service cloud.firestore {
                 }
             });
 
-            // Learn Path
+            // Learn Path & Gamification Features
             const lp = (payload.learningPath && typeof payload.learningPath === 'object') ? payload.learningPath : {};
             const xp = Number(lp.xp || 0);
             const streak = Number(lp.streak || 0);
+            const activeSection = CEFR_ORDER.includes(lp.activeSection) ? lp.activeSection : 'A1';
+            activeSectionCounts[activeSection]++;
             totalXp += xp;
+
+            const blitzGames = Math.max(0, Number(lp.blitzGamesPlayed || 0));
+            const blitzHighScore = Math.max(0, Number(lp.blitzHighScore || 0));
+            const blitzBestCombo = Math.max(0, Number(lp.blitzBestCombo || 0));
+            const confMastered = Array.isArray(lp.confusablesMastered) ? lp.confusablesMastered.length : 0;
+            const confCorrect = Math.max(0, Number(lp.confusablesCorrectTotal || 0));
+            const storiesCount = Array.isArray(lp.completedStories) ? lp.completedStories.length : 0;
+            const streakFreezes = Math.max(0, Number(lp.streakFreezes || 0));
+            const frozenCount = Array.isArray(lp.frozenDates) ? lp.frozenDates.length : 0;
+            const shopPurchases = Math.max(0, Number(lp.shopPurchasesCount || 0));
+            const equippedTitle = String(lp.equippedTitle || '');
+
+            featuresSummary.blitzGamesTotal += blitzGames;
+            if (blitzGames > 0 || blitzHighScore > 0) featuresSummary.blitzPlayers++;
+            if (blitzHighScore > featuresSummary.blitzTopScore) featuresSummary.blitzTopScore = blitzHighScore;
+            if (blitzBestCombo > featuresSummary.blitzTopCombo) featuresSummary.blitzTopCombo = blitzBestCombo;
+            featuresSummary.confusablesMasteredSum += confMastered;
+            featuresSummary.confusablesCorrectSum += confCorrect;
+            if (confMastered > 0 || confCorrect > 0) featuresSummary.confusablesPlayers++;
+            featuresSummary.storiesReadSum += storiesCount;
+            if (storiesCount > 0) featuresSummary.storiesReaders++;
+            featuresSummary.shopPurchasesSum += shopPurchases;
+            featuresSummary.freezesStockedSum += streakFreezes;
+            featuresSummary.frozenDatesSum += frozenCount;
+
             const completedStages = (lp.completedStages && typeof lp.completedStages === 'object') ? lp.completedStages : {};
             const stageKeys = Object.keys(completedStages);
             totalLearnStages += stageKeys.length;
             stageKeys.forEach((sid) => {
                 const st = completedStages[sid];
                 if (!st || typeof st !== 'object') return;
-                if (typeof st.bestAcc === 'number') {
+                if (typeof st.bestAcc === 'number' && Number.isFinite(st.bestAcc)) {
                     learnAccSum += st.bestAcc;
                     learnAccCount++;
                 }
-                const cMs = Number(st.completedAt || 0);
+                const cMs = parseTimestampMs(st.completedAt);
                 if (cMs > 0) {
                     addHourlyPoint(hourlyByDate, cMs, uid, 2, 0);
                     if (toLocalDateStr(new Date(cMs)) === todayStr) {
@@ -773,12 +906,12 @@ service cloud.firestore {
                     unitStats[topic].learners.add(uid);
                     unitStats[topic].stages++;
                     if (st.legendary) unitStats[topic].legendary++;
-                    if (typeof st.bestAcc === 'number') {
+                    if (typeof st.bestAcc === 'number' && Number.isFinite(st.bestAcc)) {
                         unitStats[topic].accSum += st.bestAcc;
                         unitStats[topic].accCount++;
                     }
                 }
-                if (typeof st.bestAcc === 'number') {
+                if (typeof st.bestAcc === 'number' && Number.isFinite(st.bestAcc)) {
                     const sd = stageDifficulty.get(sid) || { stageId: sid, topic: TOPIC_LABELS[topic] || topic || '-', learners: 0, accSum: 0 };
                     sd.learners++;
                     sd.accSum += st.bestAcc;
@@ -817,6 +950,7 @@ service cloud.firestore {
                 email,
                 updatedAt: userLatestDateMs,
                 statusTag,
+                activeSection,
                 xp,
                 streak,
                 known: userKnown,
@@ -828,6 +962,16 @@ service cloud.firestore {
                 trackedSec: userTrackedSec,
                 accent: p.accent === 'UK' ? 'UK' : 'US',
                 dailyGoalTarget: target,
+                blitzGames,
+                blitzHighScore,
+                blitzBestCombo,
+                confMastered,
+                confCorrect,
+                storiesCount,
+                streakFreezes,
+                frozenCount,
+                shopPurchases,
+                equippedTitle,
                 todayHoursSec: userTodayHoursSec,
                 recentSessions: sessArr.slice(0, 5),
                 recentQuizzes: qhArr.slice(0, 5),
@@ -851,6 +995,7 @@ service cloud.firestore {
                     definition: item.definition,
                     example: item.example,
                     exampleTranslation: item.exampleTranslation,
+                    usageTip: item.usageTip,
                     reviewCountSum: item.reviewCountSum,
                     quizMisses: item.quizMisses,
                     sessionReviews: item.sessionReviews,
@@ -889,6 +1034,7 @@ service cloud.firestore {
 
         return {
             totalUsers: docs.length,
+            activeNowCount,
             dau: dauSet.size,
             wau: wauSet.size,
             mau: mauSet.size,
@@ -900,7 +1046,7 @@ service cloud.firestore {
             avgQuizSec: quizDurCount ? Math.round(totalQuizSec / quizDurCount) : 0,
             totalSessions,
             totalQuizzes,
-            avgQuizAcc: totalQuizzes ? Math.round(quizAccSum / totalQuizzes) : 0,
+            avgQuizAcc: quizAccCount ? Math.round(quizAccSum / quizAccCount) : 0,
             totalKnown,
             totalReview,
             studiedWordsCount: studiedKeysGlobal.size,
@@ -916,20 +1062,19 @@ service cloud.firestore {
                 usageMinutes: Math.round((dayUsageSec.get(ds) || 0) / 60)
             })),
             hourlyByDate,
-            recentFeed: recentFeed.slice(0, 25),
+            recentFeed: recentFeed.slice(0, 30),
             strugglingWords,
             unitFunnel,
             hardStages,
             cefrMastery,
+            activeSectionCounts,
+            featuresSummary,
             prefsSummary,
             learners
         };
     }
 
-    /**
-     * Compute 24-hour arrays for the selected hourly mode/date.
-     * @param {any} a
-     */
+    /** @param {any} a */
     function buildHourlySeries(a) {
         const now = new Date();
         const todayStr = toLocalDateStr(now);
@@ -973,31 +1118,51 @@ service cloud.firestore {
     /** @param {string} key @param {any} config */
     function renderChart(key, config) {
         const canvas = /** @type {HTMLCanvasElement|null} */ ($(key));
-        if (!canvas || typeof /** @type {any} */ (window).Chart !== 'function') return;
+        const ChartCtor = /** @type {any} */ (window).Chart;
+        if (!canvas || typeof ChartCtor !== 'function') return;
         if (state.charts[key]) {
             state.charts[key].destroy();
         }
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        const textColor = isDark ? '#cbd5e1' : '#475569';
-        const gridColor = isDark ? 'rgba(148,163,184,0.12)' : 'rgba(15,23,42,0.07)';
+        const textColor = isDark ? '#cbd5e1' : '#334155';
+        const mutedTextColor = isDark ? '#94a3b8' : '#64748b';
+        const gridColor = isDark ? 'rgba(148,163,184,0.13)' : 'rgba(15,23,42,0.07)';
 
+        ChartCtor.defaults.color = textColor;
         config.options = config.options || {};
         config.options.responsive = true;
         config.options.maintainAspectRatio = false;
+        config.options.animation = false;
         config.options.plugins = config.options.plugins || {};
-        config.options.plugins.legend = config.options.plugins.legend || { labels: { color: textColor } };
-        if (config.options.plugins.legend.labels) {
-            config.options.plugins.legend.labels.color = textColor;
-        }
+        config.options.plugins.legend = config.options.plugins.legend || {};
+        config.options.plugins.legend.labels = {
+            ...(config.options.plugins.legend.labels || {}),
+            color: textColor,
+            font: { family: "'Prompt', 'Inter', sans-serif", size: 12, weight: '600' }
+        };
+        config.options.plugins.tooltip = {
+            backgroundColor: isDark ? 'rgba(15, 23, 42, 0.96)' : 'rgba(15, 23, 42, 0.92)',
+            titleColor: '#f8fafc',
+            bodyColor: '#e2e8f0',
+            borderColor: 'rgba(148, 163, 184, 0.25)',
+            borderWidth: 1,
+            padding: 10,
+            cornerRadius: 10,
+            ...(config.options.plugins.tooltip || {})
+        };
         if (config.options.scales) {
             Object.values(config.options.scales).forEach((sc) => {
                 sc.ticks = sc.ticks || {};
                 sc.ticks.color = textColor;
+                sc.ticks.font = { family: "'Prompt', 'Inter', sans-serif", size: 11.5 };
+                if (sc.title) {
+                    sc.title.color = mutedTextColor;
+                    sc.title.font = { family: "'Prompt', 'Inter', sans-serif", size: 11.5, weight: '600' };
+                }
                 sc.grid = sc.grid || {};
                 sc.grid.color = gridColor;
             });
         }
-        const ChartCtor = /** @type {any} */ (window).Chart;
         state.charts[key] = new ChartCtor(canvas.getContext('2d'), config);
     }
 
@@ -1068,7 +1233,7 @@ service cloud.firestore {
                 {
                     label: 'ผู้เรียนที่ซิงค์ทั้งหมด',
                     value: `${a.totalUsers.toLocaleString()} คน`,
-                    sub: `ใช้งานใน 24 ชม. ล่าสุด: ${a.active24h} คน`
+                    sub: `ใช้งานใน 24 ชม.: ${a.active24h} คน · เพิ่งออนไลน์ (15 นาที): ${a.activeNowCount} คน`
                 },
                 {
                     label: 'Active (วันนี้ / 7 วัน / 30 วัน)',
@@ -1083,7 +1248,7 @@ service cloud.firestore {
                 {
                     label: 'คำที่จำได้ vs ค้างทบทวน',
                     value: `${a.totalKnown.toLocaleString()} / ${a.totalReview.toLocaleString()}`,
-                    sub: `ครอบคลุม ${a.studiedWordsCount.toLocaleString()}/${rawWords.length.toLocaleString()} คำในคลัง`
+                    sub: `ครอบคลุม ${a.studiedWordsCount.toLocaleString()} / ${rawWords.length.toLocaleString()} คำในคลัง`
                 },
                 {
                     label: 'ความแม่นยำ (Learn / Quiz)',
@@ -1110,7 +1275,11 @@ service cloud.firestore {
                 feedEl.innerHTML = '<div class="muted small" style="padding:12px;">ยังไม่มีประวัติกิจกรรมที่มีเวลาบันทึก</div>';
             } else {
                 feedEl.innerHTML = a.recentFeed.map((item) => {
-                    const cls = item.type === 'Quiz' ? 'badge-warn' : (item.type === 'Learn Path' ? 'badge-ok' : 'badge-a2');
+                    const cls = item.type === 'Quiz'
+                        ? 'badge-warn'
+                        : (item.type === 'Speed Blitz'
+                            ? 'badge-violet'
+                            : (item.type === 'คำคู่สับสน' ? 'badge-hot' : (item.type === 'Learn Path' ? 'badge-ok' : 'badge-a2')));
                     return `
                         <div class="feed-item">
                             <div>
@@ -1130,7 +1299,7 @@ service cloud.firestore {
             const fcText = a.flashcardDurCount > 0 ? formatDuration(a.avgFlashcardSec) : 'ยังไม่มีข้อมูลเวลา';
             const fcSub = a.flashcardDurCount > 0
                 ? `วัดจาก ${a.flashcardDurCount}/${a.totalSessions} รอบที่มีเวลาเริ่ม`
-                : `มี ${a.totalSessions} รอบ (รอบเก่าไม่มีเวลาเริ่ม)`;
+                : `มี ${a.totalSessions} รอบ (ยังไม่พบบันทึกเวลาเริ่ม-จบ)`;
 
             durEl.innerHTML = `
                 <div class="kpi-grid kpi-2" style="margin-bottom:0;">
@@ -1178,7 +1347,7 @@ service cloud.firestore {
 
         box.innerHTML = [
             {
-                label: 'ครอบคลุมคลัง Oxford 3000',
+                label: 'ครอบคลุมคลัง Oxford 3000+',
                 value: `${a.studiedWordsCount.toLocaleString()} / ${rawWords.length.toLocaleString()}`,
                 sub: `ผู้เรียนเคยศึกษาไปแล้ว ${pctCov}% ของทั้งหมด`
             },
@@ -1190,12 +1359,12 @@ service cloud.firestore {
             {
                 label: 'ระดับ CEFR ที่ติดมากสุด',
                 value: topCefr && topCefr[1] > 0 ? topCefr[0] : '-',
-                sub: topCefr && topCefr[1] > 0 ? `คะแนนติดขัดรวม ${topCefr[1]}` : 'ยังไม่พบคำติดขัด'
+                sub: topCefr && topCefr[1] > 0 ? `คะแนนติดขัดรวม ${topCefr[1].toLocaleString()}` : 'ยังไม่พบคำติดขัด'
             },
             {
                 label: 'ประเภทคำ (POS) ที่พลาดบ่อยสุด',
                 value: topPos && topPos[1] > 0 ? topPos[0] : '-',
-                sub: topPos && topPos[1] > 0 ? `คะแนนติดขัดรวม ${topPos[1]}` : 'ยังไม่พบคำติดขัด'
+                sub: topPos && topPos[1] > 0 ? `คะแนนติดขัดรวม ${topPos[1].toLocaleString()}` : 'ยังไม่พบคำติดขัด'
             }
         ].map((k) => `
             <div class="kpi-card">
@@ -1204,6 +1373,79 @@ service cloud.firestore {
                 <div class="kpi-sub">${escapeHtml(k.sub)}</div>
             </div>
         `).join('');
+    }
+
+    function renderFeaturesTab() {
+        const a = state.analytics;
+        const kpiBox = $('features-kpis');
+        const tbody = $('features-tbody');
+        if (!a) return;
+
+        const fs = a.featuresSummary;
+        if (kpiBox) {
+            kpiBox.innerHTML = [
+                {
+                    label: '⏱️ Speed Blitz 60s',
+                    value: `${fs.blitzGamesTotal.toLocaleString()} รอบ`,
+                    sub: fs.blitzTopScore > 0
+                        ? `สถิติสูงสุด ${fs.blitzTopScore.toLocaleString()} คะแนน (คอมโบ x${fs.blitzTopCombo})`
+                        : 'ยังไม่มีประวัติเล่น Speed Blitz'
+                },
+                {
+                    label: '⚔️ ปราบคำสับสน (Confusables)',
+                    value: `${fs.confusablesMasteredSum.toLocaleString()} คู่`,
+                    sub: `ตอบถูกสะสม ${fs.confusablesCorrectSum.toLocaleString()} ครั้ง · ${fs.confusablesPlayers} ผู้เล่น`
+                },
+                {
+                    label: '📖 Mini Context Stories',
+                    value: `${fs.storiesReadSum.toLocaleString()} เรื่อง`,
+                    sub: `มีผู้เรียนอ่านจบแล้ว ${fs.storiesReaders} คน`
+                },
+                {
+                    label: '🧊 เกราะกันไฟ & ร้านค้า XP',
+                    value: `${fs.shopPurchasesSum.toLocaleString()} รายการ`,
+                    sub: `เกราะในคลัง ${fs.freezesStockedSum} ชิ้น · กันไฟดับไป ${fs.frozenDatesSum} วัน`
+                }
+            ].map((k) => `
+                <div class="kpi-card">
+                    <div class="kpi-label">${escapeHtml(k.label)}</div>
+                    <div class="kpi-value" style="font-size:1.45rem;">${escapeHtml(k.value)}</div>
+                    <div class="kpi-sub">${escapeHtml(k.sub)}</div>
+                </div>
+            `).join('');
+        }
+
+        if (tbody) {
+            const sorted = [...a.learners].sort((x, y) => (y.xp - x.xp) || (y.blitzHighScore - x.blitzHighScore));
+            if (!sorted.length) {
+                tbody.innerHTML = '<tr><td colspan="8" class="muted" style="text-align:center; padding:22px;">ยังไม่มีข้อมูลผู้เรียน</td></tr>';
+            } else {
+                tbody.innerHTML = sorted.map((l) => {
+                    const secCls = `badge-${l.activeSection.toLowerCase()}`;
+                    const titleTxt = TITLE_LABELS[l.equippedTitle] || '-';
+                    return `
+                        <tr class="clickable" data-fuid="${escapeHtml(l.uid)}">
+                            <td><strong>${escapeHtml(l.email)}</strong></td>
+                            <td><span class="badge ${secCls}">${escapeHtml(l.activeSection)}</span></td>
+                            <td class="num">${l.xp.toLocaleString()}</td>
+                            <td class="num">${l.blitzGames} รอบ · <strong>${l.blitzHighScore.toLocaleString()}</strong> (x${l.blitzBestCombo})</td>
+                            <td class="num">${l.confMastered} คู่ · ${l.confCorrect} ถูก</td>
+                            <td class="num">${l.storiesCount} เรื่อง</td>
+                            <td class="num">🧊 ${l.streakFreezes} · 🛒 ${l.shopPurchases}</td>
+                            <td>${escapeHtml(titleTxt)}</td>
+                        </tr>
+                    `;
+                }).join('');
+
+                tbody.querySelectorAll('tr[data-fuid]').forEach((tr) => {
+                    tr.addEventListener('click', () => {
+                        const uid = tr.getAttribute('data-fuid');
+                        const found = a.learners.find((x) => x.uid === uid);
+                        if (found) openLearnerModal(found);
+                    });
+                });
+            }
+        }
     }
 
     function renderAllCharts() {
@@ -1270,39 +1512,45 @@ service cloud.firestore {
             renderChart('chart-struggling-words', {
                 type: 'bar',
                 data: {
-                    labels: top15.map((w) => `${w.word} (${w.cefr})`),
+                    labels: top15.map((w) => {
+                        const shortTh = w.translation && w.translation !== '-' ? w.translation.split(/[,;/]/)[0].trim().slice(0, 16) : '';
+                        return shortTh ? `${w.word} (${w.cefr} · ${shortTh})` : `${w.word} (${w.cefr})`;
+                    }),
                     datasets: [
                         {
                             label: 'กดทบทวนซ้ำ (ครั้ง)',
                             data: top15.map((w) => w.reviewCountSum),
-                            backgroundColor: 'rgba(244, 63, 94, 0.78)',
+                            backgroundColor: 'rgba(244, 63, 94, 0.80)',
                             borderRadius: 5
                         },
                         {
                             label: 'ตอบผิดใน Quiz (ครั้ง)',
                             data: top15.map((w) => w.quizMisses),
-                            backgroundColor: 'rgba(245, 158, 11, 0.78)',
+                            backgroundColor: 'rgba(245, 158, 11, 0.80)',
                             borderRadius: 5
                         }
                     ]
                 },
                 options: {
                     indexAxis: 'y',
-                    scales: { x: { beginAtZero: true, stacked: true }, y: { stacked: true } }
+                    scales: {
+                        x: { beginAtZero: true, stacked: true, ticks: { precision: 0 } },
+                        y: { stacked: true, ticks: { autoSkip: false } }
+                    }
                 }
             });
         }
 
-        // Mode Popularity Chart (Analytics tab)
+        const fs = a.featuresSummary;
         renderChart('chart-mode-popularity', {
             type: 'bar',
             data: {
-                labels: ['ด่าน Learn Path (ด่าน)', 'Flashcard (รอบ)', 'แบบทดสอบ Quiz (ครั้ง)'],
+                labels: ['Learn Path (ด่าน)', 'Flashcard (รอบ)', 'Quiz (ครั้ง)', 'Speed Blitz (รอบ)', 'คู่สับสน (คู่)', 'เรื่องสั้น (เรื่อง)'],
                 datasets: [{
-                    label: 'จำนวนการใช้งานที่บันทึกในระบบ',
-                    data: [a.totalLearnStages, a.totalSessions, a.totalQuizzes],
-                    backgroundColor: ['#10b981', '#0ea5e9', '#f59e0b'],
-                    borderRadius: 8
+                    label: 'ยอดรวมการใช้งานที่บันทึกในระบบ',
+                    data: [a.totalLearnStages, a.totalSessions, a.totalQuizzes, fs.blitzGamesTotal, fs.confusablesMasteredSum, fs.storiesReadSum],
+                    backgroundColor: ['#10b981', '#0ea5e9', '#f59e0b', '#8b5cf6', '#f43f5e', '#14b8a6'],
+                    borderRadius: 7
                 }]
             },
             options: {
@@ -1310,7 +1558,18 @@ service cloud.firestore {
             }
         });
 
-        // Unit Funnel with dual X axis (stages/learners vs % accuracy)
+        renderChart('chart-section-dist', {
+            type: 'doughnut',
+            data: {
+                labels: CEFR_ORDER.map((lvl) => `ระดับ ${lvl} (${a.activeSectionCounts[lvl]} คน)`),
+                datasets: [{
+                    data: CEFR_ORDER.map((lvl) => a.activeSectionCounts[lvl]),
+                    backgroundColor: ['#22c55e', '#0ea5e9', '#f59e0b', '#f43f5e'],
+                    borderWidth: 0
+                }]
+            }
+        });
+
         const units = state.hideEmptyUnits ? a.unitFunnel.filter((u) => u.stages > 0) : a.unitFunnel;
         renderChart('chart-unit-funnel', {
             type: 'bar',
@@ -1318,17 +1577,17 @@ service cloud.firestore {
                 labels: units.map((u) => u.label),
                 datasets: [
                     {
-                        label: 'จำนวนด่านที่ผ่านรวม (ด่าน)',
+                        label: 'ด่านที่ผ่านรวม',
                         data: units.map((u) => u.stages),
-                        backgroundColor: 'rgba(14, 165, 233, 0.76)',
-                        borderRadius: 6,
+                        backgroundColor: 'rgba(14, 165, 233, 0.80)',
+                        borderRadius: 5,
                         xAxisID: 'x'
                     },
                     {
                         label: 'ความแม่นยำเฉลี่ย (%)',
                         data: units.map((u) => u.avgAcc),
-                        backgroundColor: 'rgba(16, 185, 129, 0.65)',
-                        borderRadius: 6,
+                        backgroundColor: 'rgba(16, 185, 129, 0.68)',
+                        borderRadius: 5,
                         xAxisID: 'x1'
                     }
                 ]
@@ -1336,28 +1595,33 @@ service cloud.firestore {
             options: {
                 indexAxis: 'y',
                 scales: {
+                    y: { ticks: { autoSkip: false } },
                     x: { beginAtZero: true, ticks: { precision: 0 }, position: 'bottom', title: { display: true, text: 'ด่านที่ผ่าน' } },
                     x1: { beginAtZero: true, max: 100, position: 'top', grid: { drawOnChartArea: false }, title: { display: true, text: 'ความแม่นยำ %' } }
                 }
             }
         });
 
-        // Oxford 3000 Coverage per CEFR
+        const covDesc = $('cefr-coverage-desc');
+        if (covDesc) {
+            covDesc.textContent = `เทียบสัดส่วนคำที่ผู้เรียนจำได้แล้ว vs ทบทวน vs ยังไม่เคยเรียน (จากทั้งหมด ${rawWords.length.toLocaleString()} คำใน data.js)`;
+        }
+
         renderChart('chart-cefr-mastery', {
             type: 'bar',
             data: {
-                labels: CEFR_ORDER.map((lvl) => `${lvl} (${cefrInventoryTotals[lvl]} คำ)`),
+                labels: CEFR_ORDER.map((lvl) => `${lvl} (${cefrInventoryTotals[lvl].toLocaleString()} คำ)`),
                 datasets: [
                     {
-                        label: 'จำได้แล้ว (Unique Words)',
+                        label: 'จำได้แล้ว (Unique)',
                         data: CEFR_ORDER.map((lvl) => a.cefrMastery[lvl].known.size),
-                        backgroundColor: 'rgba(16, 185, 129, 0.85)',
+                        backgroundColor: 'rgba(16, 185, 129, 0.86)',
                         borderRadius: 5
                     },
                     {
-                        label: 'ต้องทบทวน (Unique Words)',
+                        label: 'ต้องทบทวน (Unique)',
                         data: CEFR_ORDER.map((lvl) => a.cefrMastery[lvl].review.size),
-                        backgroundColor: 'rgba(244, 63, 94, 0.78)',
+                        backgroundColor: 'rgba(244, 63, 94, 0.80)',
                         borderRadius: 5
                     },
                     {
@@ -1369,14 +1633,17 @@ service cloud.firestore {
                 ]
             },
             options: {
-                scales: { x: { stacked: true }, y: { beginAtZero: true, stacked: true } }
+                scales: {
+                    x: { stacked: true },
+                    y: { beginAtZero: true, stacked: true, ticks: { precision: 0 } }
+                }
             }
         });
 
         renderChart('chart-prefs', {
             type: 'doughnut',
             data: {
-                labels: ['สำเนียง US', 'สำเนียง UK'],
+                labels: [`สำเนียง US (${a.prefsSummary.US})`, `สำเนียง UK (${a.prefsSummary.UK})`],
                 datasets: [{
                     data: [a.prefsSummary.US, a.prefsSummary.UK],
                     backgroundColor: ['#0ea5e9', '#8b5cf6'],
@@ -1423,7 +1690,7 @@ service cloud.firestore {
         if (sub) sub.textContent = `${w.pos} · CEFR: ${w.cefr}`;
 
         body.innerHTML = `
-            <div class="kpi-grid kpi-3" style="margin-bottom:14px;">
+            <div class="kpi-grid" style="margin-bottom:14px;">
                 <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">ผู้เรียนที่ติด</div><div class="kpi-value" style="font-size:1.25rem;">${w.learnersCount} คน</div></div>
                 <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">กดทบทวนซ้ำ</div><div class="kpi-value" style="font-size:1.25rem;">${w.reviewCountSum} ครั้ง</div></div>
                 <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">ตอบผิดใน Quiz</div><div class="kpi-value" style="font-size:1.25rem;">${w.quizMisses} ครั้ง</div></div>
@@ -1431,6 +1698,7 @@ service cloud.firestore {
             <p><strong>คำแปลไทย:</strong> ${escapeHtml(w.translation)}</p>
             ${w.definition ? `<p class="small"><strong>คำจำกัดความ (EN):</strong> ${escapeHtml(w.definition)}</p>` : ''}
             ${w.example ? `<p class="small"><strong>ตัวอย่างประโยค:</strong> ${escapeHtml(w.example)}<br><span class="muted">${escapeHtml(w.exampleTranslation || '')}</span></p>` : ''}
+            ${w.usageTip ? `<p class="small"><strong>💡 เคล็ดลับการใช้:</strong> ${escapeHtml(w.usageTip)}</p>` : ''}
         `;
         modal.classList.add('open');
     }
@@ -1551,6 +1819,7 @@ service cloud.firestore {
                 const statusBadge = l.statusTag === 'today'
                     ? '<span class="badge badge-ok">ใช้งานวันนี้</span>'
                     : (l.statusTag === '7d' ? '<span class="badge badge-a2">Active 7 วัน</span>' : '<span class="badge badge-pos">เงียบ &gt;7 วัน</span>');
+                const secCls = `badge-${l.activeSection.toLowerCase()}`;
                 return `
                     <tr class="clickable" data-uid="${escapeHtml(l.uid)}">
                         <td>
@@ -1558,6 +1827,7 @@ service cloud.firestore {
                             <div class="small muted">${escapeHtml(l.uid)}</div>
                         </td>
                         <td>${statusBadge}</td>
+                        <td><span class="badge ${secCls}">${escapeHtml(l.activeSection)}</span></td>
                         <td>
                             <div>${escapeHtml(formatRelativeTime(l.updatedAt))}</div>
                             <div class="small muted">${escapeHtml(formatDateTime(l.updatedAt))}</div>
@@ -1565,8 +1835,7 @@ service cloud.firestore {
                         <td class="num">${l.xp.toLocaleString()}</td>
                         <td class="num">${l.streak} วัน</td>
                         <td class="num"><strong>${l.known}</strong> / <span class="muted">${l.review}</span></td>
-                        <td class="num">${l.learnStages}</td>
-                        <td class="num">${l.quizzes}</td>
+                        <td class="num">${l.learnStages} ด่าน · ${l.quizzes} Q</td>
                         <td class="num">${escapeHtml(formatDuration(l.studyTimeSec))}</td>
                     </tr>
                 `;
@@ -1582,7 +1851,7 @@ service cloud.firestore {
         }
 
         if (note) {
-            note.textContent = `แสดงผู้เรียนทั้งหมด ${rows.length} คน (คลิกที่แถวเพื่อดูเวลาเรียนวันนี้และคำที่ติดขัดรายบุคคล)`;
+            note.textContent = `แสดงผู้เรียนทั้งหมด ${rows.length} คน (คลิกที่แถวเพื่อดูเวลาเรียนวันนี้ สถิติเกม และคำที่ติดขัดรายบุคคล)`;
         }
     }
 
@@ -1593,8 +1862,10 @@ service cloud.firestore {
         const sub = $('learner-modal-sub');
         const body = $('learner-modal-body');
         if (!modal || !body) return;
+        state.openLearnerUid = learner.uid;
         if (title) title.textContent = learner.email || learner.uid;
-        if (sub) sub.textContent = `UID: ${learner.uid} · ใช้งานล่าสุด: ${formatDateTime(learner.updatedAt)} (${formatRelativeTime(learner.updatedAt)})`;
+        const titleChip = TITLE_LABELS[learner.equippedTitle] ? ` · ${TITLE_LABELS[learner.equippedTitle]}` : '';
+        if (sub) sub.textContent = `UID: ${learner.uid} · ระดับ ${learner.activeSection}${titleChip} · อัปเดต ${formatRelativeTime(learner.updatedAt)}`;
 
         const activeHoursBadges = learner.todayHoursSec
             .map((sec, hr) => sec > 0 ? `<span class="badge badge-ok" style="margin:2px;">${String(hr).padStart(2, '0')}:00 น. (${Math.max(1, Math.round(sec / 60))} นาที)</span>` : '')
@@ -1614,11 +1885,17 @@ service cloud.firestore {
             : '<li class="muted">ยังไม่มีประวัติรอบ Flashcard</li>';
 
         body.innerHTML = `
-            <div class="kpi-grid kpi-4" style="margin-bottom:16px;">
-                <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">XP / Streak</div><div class="kpi-value" style="font-size:1.2rem;">${learner.xp.toLocaleString()} XP · ${learner.streak} วัน</div></div>
-                <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">จำได้ / ทบทวน</div><div class="kpi-value" style="font-size:1.2rem;">${learner.known} / ${learner.review}</div></div>
-                <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">เวลาใช้งานรวม</div><div class="kpi-value" style="font-size:1.2rem;">${escapeHtml(formatDuration(learner.studyTimeSec))}</div></div>
-                <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">สำเนียง / เป้า</div><div class="kpi-value" style="font-size:1.2rem;">${learner.accent} · ${learner.dailyGoalTarget}/วัน</div></div>
+            <div class="kpi-grid kpi-4" style="margin-bottom:14px;">
+                <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">XP / Streak</div><div class="kpi-value" style="font-size:1.15rem;">${learner.xp.toLocaleString()} XP · ${learner.streak} วัน</div></div>
+                <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">จำได้ / ทบทวน</div><div class="kpi-value" style="font-size:1.15rem;">${learner.known} / ${learner.review}</div></div>
+                <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">เวลาใช้งานรวม</div><div class="kpi-value" style="font-size:1.15rem;">${escapeHtml(formatDuration(learner.studyTimeSec))}</div></div>
+                <div class="kpi-card" style="box-shadow:none;"><div class="kpi-label">สำเนียง / เป้า</div><div class="kpi-value" style="font-size:1.15rem;">${learner.accent} · ${learner.dailyGoalTarget}/วัน</div></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+                <span class="badge badge-violet">⏱️ Speed Blitz: ${learner.blitzGames} รอบ (สูงสุด ${learner.blitzHighScore}, คอมโบ x${learner.blitzBestCombo})</span>
+                <span class="badge badge-warn">⚔️ คำสับสน: ${learner.confMastered} คู่ (${learner.confCorrect} ถูก)</span>
+                <span class="badge badge-a2">📖 เรื่องสั้น: ${learner.storiesCount} เรื่อง</span>
+                <span class="badge badge-ok">🧊 เกราะกันไฟ: ${learner.streakFreezes} ชิ้น (ซื้อ ${learner.shopPurchases} ครั้ง)</span>
             </div>
             <h4 style="margin:10px 0 6px;">ช่วงเวลาที่เข้าใช้งานวันนี้</h4>
             <div style="margin-bottom:14px;">${activeHoursBadges || '<span class="muted small">ยังไม่มีกิจกรรมวันนี้</span>'}</div>
@@ -1659,10 +1936,18 @@ service cloud.firestore {
         state.analytics = computeAnalytics(state.rawUsers, state.rangeDays);
         renderOverview();
         renderWordsOverviewKpis();
+        renderFeaturesTab();
         renderAllCharts();
         renderWordsTable();
         renderOtherInsights();
         renderLearnersTable();
+
+        // Keep open learner modal synced live when real-time snapshot arrives.
+        const modal = $('learner-modal');
+        if (modal && modal.classList.contains('open') && state.openLearnerUid) {
+            const refreshed = state.analytics.learners.find((l) => l.uid === state.openLearnerUid);
+            if (refreshed) openLearnerModal(refreshed);
+        }
     }
 
     function showDashboardView() {
@@ -1685,30 +1970,69 @@ service cloud.firestore {
         $('gate-rules-box')?.classList.toggle('hidden', !showRules);
     }
 
-    async function loadFirestoreUsers() {
+    async function subscribeFirestoreUsers() {
         const mods = await ensureFirebase();
+        stopFirestoreSubscription();
         const colRef = mods.fsMod.collection(mods.db, 'oxford_users');
-        const snap = await mods.fsMod.getDocs(colRef);
-        const docs = [];
-        snap.forEach((docSnap) => {
-            const data = docSnap.data() || {};
-            docs.push({
-                uid: data.uid || docSnap.id,
-                email: data.email || '',
-                updatedAt: data.updatedAt || 0,
-                payload: data.payload || {}
-            });
+
+        return new Promise((resolve, reject) => {
+            let resolvedFirst = false;
+            const unsub = mods.fsMod.onSnapshot(
+                colRef,
+                (snap) => {
+                    /** @type {any[]} */
+                    const docs = [];
+                    snap.forEach((docSnap) => {
+                        const data = docSnap.data() || {};
+                        docs.push({
+                            uid: data.uid || docSnap.id,
+                            email: data.email || '',
+                            updatedAt: data.updatedAt || 0,
+                            payload: data.payload || {}
+                        });
+                    });
+                    state.isDemo = false;
+                    state.rawUsers = docs;
+                    updateLivePill('live', 'LIVE');
+                    const sub = $('topbar-subtitle');
+                    if (sub) {
+                        sub.textContent = `ซิงค์ Real-Time จาก Firestore · อัปเดตล่าสุด ${new Date().toLocaleTimeString('th-TH')} (${docs.length} บัญชี)`;
+                    }
+                    showDashboardView();
+                    startLiveRelativeTimer();
+                    if (!resolvedFirst) {
+                        resolvedFirst = true;
+                        resolve(docs);
+                    }
+                },
+                (err) => {
+                    stopFirestoreSubscription();
+                    updateLivePill('off', '');
+                    if (!resolvedFirst) {
+                        resolvedFirst = true;
+                        reject(err);
+                    } else {
+                        const code = err && err.code ? String(err.code) : '';
+                        if (code === 'permission-denied') {
+                            showGateError(
+                                `<div><strong>ไม่มีสิทธิ์อ่านข้อมูลทั้งหมดใน Firestore (permission-denied)</strong><br>บัญชี <code>${escapeHtml(state.user?.email || state.user?.uid || '')}</code> ยังไม่ได้รับสิทธิ์ <code>isAdmin()</code> ใน Firestore Rules</div>`,
+                                true
+                            );
+                        } else {
+                            showToast(`ขาดการเชื่อมต่อ Real-Time: ${err && err.message ? err.message : code}`);
+                        }
+                    }
+                }
+            );
+            state.unsubscribeSnapshot = unsub;
         });
-        state.isDemo = false;
-        state.rawUsers = docs;
-        const sub = $('topbar-subtitle');
-        if (sub) sub.textContent = `ข้อมูลจริงจาก Firestore · โหลดล่าสุด ${new Date().toLocaleTimeString('th-TH')} (${docs.length} บัญชี)`;
-        showDashboardView();
     }
 
     function enterDemoMode() {
+        stopFirestoreSubscription();
         state.isDemo = true;
         state.rawUsers = generateDemoUsers();
+        updateLivePill('demo', 'DEMO');
         const sub = $('topbar-subtitle');
         if (sub) sub.textContent = 'โหมดตัวอย่าง (Demo Mode · ข้อมูลจำลอง 12 บัญชี)';
         showDashboardView();
@@ -1731,9 +2055,11 @@ service cloud.firestore {
     /** @param {any} fbUser */
     async function handleAuthUser(fbUser) {
         if (!fbUser) {
+            stopFirestoreSubscription();
             state.user = null;
             syncUserUI();
             if (!state.isDemo) {
+                updateLivePill('off', '');
                 $('dashboard-root')?.classList.add('hidden');
                 $('auth-gate')?.classList.remove('hidden');
             }
@@ -1746,7 +2072,7 @@ service cloud.firestore {
         };
         syncUserUI();
         try {
-            await loadFirestoreUsers();
+            await subscribeFirestoreUsers();
         } catch (err) {
             const code = err && err.code ? String(err.code) : '';
             if (code === 'permission-denied') {
@@ -1758,57 +2084,6 @@ service cloud.firestore {
                 showGateError(`<div><strong>โหลดข้อมูล Firestore ไม่สำเร็จ:</strong> ${escapeHtml(err && err.message ? err.message : String(err))}</div>`, false);
             }
         }
-    }
-
-    function initLookerEmbed() {
-        const input = /** @type {HTMLInputElement|null} */ ($('looker-url-input'));
-        const container = $('looker-container');
-        const iframe = /** @type {HTMLIFrameElement|null} */ ($('looker-iframe'));
-        const saved = localStorage.getItem(LOOKER_STORAGE_KEY) || '';
-        /** @param {string} url */
-        const applyUrl = (url) => {
-            const clean = String(url || '').trim();
-            if (!clean) {
-                container?.classList.add('hidden');
-                if (iframe) iframe.src = 'about:blank';
-                return;
-            }
-            try {
-                const parsed = new URL(clean);
-                const allowedHost = parsed.hostname === 'lookerstudio.google.com' || parsed.hostname === 'datastudio.google.com';
-                if (parsed.protocol !== 'https:' || !allowedHost) {
-                    showToast('อนุญาตเฉพาะลิงก์ https://lookerstudio.google.com/... เท่านั้น');
-                    return;
-                }
-                if (iframe) iframe.src = parsed.href;
-                container?.classList.remove('hidden');
-            } catch (_) {
-                showToast('รูปแบบ URL ไม่ถูกต้อง');
-            }
-        };
-
-        if (saved && input) {
-            input.value = saved;
-            applyUrl(saved);
-        }
-
-        $('btn-save-looker')?.addEventListener('click', () => {
-            const val = String(input?.value || '').trim();
-            if (!val) {
-                showToast('กรุณาวางลิงก์ Embed URL จาก Looker Studio');
-                return;
-            }
-            localStorage.setItem(LOOKER_STORAGE_KEY, val);
-            applyUrl(val);
-            showToast('บันทึกลิงก์ Looker Studio แล้ว');
-        });
-
-        $('btn-clear-looker')?.addEventListener('click', () => {
-            localStorage.removeItem(LOOKER_STORAGE_KEY);
-            if (input) input.value = '';
-            applyUrl('');
-            showToast('ล้างลิงก์ Looker Studio แล้ว');
-        });
     }
 
     function populatePosDropdown() {
@@ -1823,7 +2098,6 @@ service cloud.firestore {
     }
 
     function bindEvents() {
-        // Tabs
         document.querySelectorAll('.tab-btn[data-tab]').forEach((btn) => {
             btn.addEventListener('click', () => {
                 const tab = btn.getAttribute('data-tab');
@@ -1832,7 +2106,6 @@ service cloud.firestore {
             });
         });
 
-        // Date range pills
         document.querySelectorAll('#range-pills .pill-btn').forEach((btn) => {
             btn.addEventListener('click', () => {
                 const days = Number(btn.getAttribute('data-days') || 14);
@@ -1842,7 +2115,6 @@ service cloud.firestore {
             });
         });
 
-        // Hourly mode pills & date picker
         const datePicker = /** @type {HTMLInputElement|null} */ ($('hourly-date-picker'));
         if (datePicker) {
             datePicker.value = state.hourlyDate;
@@ -1868,7 +2140,6 @@ service cloud.firestore {
             });
         });
 
-        // Word quick filter pills & inputs
         document.querySelectorAll('#word-quick-pills .pill-btn').forEach((btn) => {
             btn.addEventListener('click', () => {
                 state.wordQuickFilter = btn.getAttribute('data-wfilter') || 'all';
@@ -1881,14 +2152,12 @@ service cloud.firestore {
             $(id)?.addEventListener('change', renderWordsTable);
         });
 
-        // Unit filter toggle
         const unitToggle = /** @type {HTMLInputElement|null} */ ($('toggle-active-units-only'));
         unitToggle?.addEventListener('change', () => {
             state.hideEmptyUnits = !!unitToggle.checked;
             renderAllCharts();
         });
 
-        // Learner status pills & filters
         document.querySelectorAll('#learner-status-pills .pill-btn').forEach((btn) => {
             btn.addEventListener('click', () => {
                 state.learnerStatusFilter = btn.getAttribute('data-lstatus') || 'all';
@@ -1901,7 +2170,6 @@ service cloud.firestore {
             $(id)?.addEventListener('change', renderLearnersTable);
         });
 
-        // Exports
         $('btn-export-words')?.addEventListener('click', () => {
             const rows = getFilteredStrugglingWords();
             const csv = [['Word', 'Translation', 'Part of Speech', 'CEFR', 'Struggling Learners', 'Review Count', 'Quiz Misses', 'Struggle Score']];
@@ -1914,15 +2182,19 @@ service cloud.firestore {
 
         $('btn-export-learners')?.addEventListener('click', () => {
             const rows = getFilteredLearners();
-            const csv = [['Email', 'UID', 'Status', 'Last Active', 'XP', 'Streak (Days)', 'Known Words', 'Review Words', 'Learn Stages', 'Quizzes', 'Usage Seconds']];
+            const csv = [['Email', 'UID', 'Status', 'Section', 'Last Active', 'XP', 'Streak', 'Known', 'Review', 'Learn Stages', 'Quizzes', 'Blitz High', 'Confusables', 'Stories', 'Usage Seconds']];
             rows.forEach((l) => {
-                csv.push([l.email, l.uid, l.statusTag, formatDateTime(l.updatedAt), String(l.xp), String(l.streak), String(l.known), String(l.review), String(l.learnStages), String(l.quizzes), String(l.studyTimeSec)]);
+                csv.push([
+                    l.email, l.uid, l.statusTag, l.activeSection, formatDateTime(l.updatedAt),
+                    String(l.xp), String(l.streak), String(l.known), String(l.review),
+                    String(l.learnStages), String(l.quizzes), String(l.blitzHighScore),
+                    String(l.confMastered), String(l.storiesCount), String(l.studyTimeSec)
+                ]);
             });
             downloadCsv(`oxflashcards_learners_${toLocalDateStr(new Date())}.csv`, csv);
             showToast('ส่งออกไฟล์ CSV รายชื่อผู้เรียนแล้ว');
         });
 
-        // Sign In / Sign Out / Refresh / Demo
         $('btn-admin-signin')?.addEventListener('click', async () => {
             try {
                 const mods = await ensureFirebase();
@@ -1944,6 +2216,7 @@ service cloud.firestore {
         });
 
         $('btn-signout')?.addEventListener('click', async () => {
+            stopFirestoreSubscription();
             try {
                 const mods = await ensureFirebase();
                 await mods.authMod.signOut(mods.auth);
@@ -1951,6 +2224,7 @@ service cloud.firestore {
             state.user = null;
             state.isDemo = false;
             syncUserUI();
+            updateLivePill('off', '');
             $('dashboard-root')?.classList.add('hidden');
             $('auth-gate')?.classList.remove('hidden');
             showToast('ออกจากระบบแล้ว');
@@ -1960,6 +2234,7 @@ service cloud.firestore {
         $('btn-switch-real')?.addEventListener('click', async () => {
             state.isDemo = false;
             if (!state.user) {
+                updateLivePill('off', '');
                 $('dashboard-root')?.classList.add('hidden');
                 $('auth-gate')?.classList.remove('hidden');
                 return;
@@ -1977,41 +2252,40 @@ service cloud.firestore {
                 return;
             }
             await handleAuthUser(state.user);
-            showToast('อัปเดตข้อมูลล่าสุดแล้ว');
+            showToast('รีเฟรชการเชื่อมต่อ Real-Time แล้ว');
         });
 
-        // Theme toggle
         $('btn-theme-toggle')?.addEventListener('click', () => {
             const curr = document.documentElement.getAttribute('data-theme');
             applyTheme(curr === 'dark' ? 'light' : 'dark');
         });
 
-        // Rules & Modals
-        const copyRules = () => {
+        $('btn-copy-gate-rules')?.addEventListener('click', () => {
             const txt = buildFirestoreRulesSnippet(state.user);
             navigator.clipboard?.writeText(txt).then(
                 () => showToast('คัดลอก Firestore Rules แล้ว'),
                 () => showToast('คัดลอกไม่สำเร็จ กรุณากด Ctrl+C จากกล่องโค้ด')
             );
-        };
-        $('btn-copy-gate-rules')?.addEventListener('click', copyRules);
-        $('btn-copy-modal-rules')?.addEventListener('click', copyRules);
-
-        $('btn-rules-help')?.addEventListener('click', () => {
-            refreshRulesSnippets();
-            $('rules-modal')?.classList.add('open');
         });
-        $('btn-close-rules-modal')?.addEventListener('click', () => $('rules-modal')?.classList.remove('open'));
-        $('btn-close-learner-modal')?.addEventListener('click', () => $('learner-modal')?.classList.remove('open'));
+
+        const closeLearner = () => {
+            state.openLearnerUid = null;
+            $('learner-modal')?.classList.remove('open');
+        };
+        $('btn-close-learner-modal')?.addEventListener('click', closeLearner);
         $('btn-close-word-modal')?.addEventListener('click', () => $('word-modal')?.classList.remove('open'));
 
         document.querySelectorAll('.modal-backdrop').forEach((bd) => {
             bd.addEventListener('click', (e) => {
-                if (e.target === bd) bd.classList.remove('open');
+                if (e.target === bd) {
+                    if (bd.id === 'learner-modal') state.openLearnerUid = null;
+                    bd.classList.remove('open');
+                }
             });
         });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
+                state.openLearnerUid = null;
                 document.querySelectorAll('.modal-backdrop.open').forEach((m) => m.classList.remove('open'));
             }
         });
@@ -2021,13 +2295,12 @@ service cloud.firestore {
         applyTheme(localStorage.getItem(THEME_STORAGE_KEY) || 'light');
         populatePosDropdown();
         refreshRulesSnippets();
-        initLookerEmbed();
         bindEvents();
 
         if (isFileProtocol()) {
             const desc = $('gate-desc');
             if (desc) {
-                desc.innerHTML = 'ขณะนี้เปิดผ่าน <code>file://</code> จึงใช้ Google Login ไม่ได้ (สามารถกด <strong>ดูตัวอย่างด้วยข้อมูลจำลอง</strong> เพื่อทดลองหน้า Admin ได้ทันที หรือเปิดผ่าน <code>https://</code> GitHub Pages เพื่อเชื่อมต่อ Firestore จริง)';
+                desc.innerHTML = 'ขณะนี้เปิดผ่าน <code>file://</code> จึงใช้ Google Login ไม่ได้ (สามารถกด <strong>ดูตัวอย่างด้วยข้อมูลจำลอง</strong> เพื่อทดลองหน้า Admin ได้ทันที หรือเปิดผ่าน <code>https://</code> GitHub Pages เพื่อเชื่อมต่อ Firestore Real-Time จริง)';
             }
             return;
         }
