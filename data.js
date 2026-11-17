@@ -4613,7 +4613,8 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ไปให้พ้น"
+      "ไปให",
+      "้พ้น!"
     ],
     "syllables": "a·way",
     "extraExample": "Please put your phone away during the presentation.",
@@ -7366,7 +7367,9 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "สุขสันต์วันเกิด"
+      "สุขสันต์",
+      "วัน",
+      "เกิด!"
     ],
     "phoneticUK": "/bˈɜːθdˌeɪ/",
     "syllables": "bir·thday",
@@ -52791,7 +52794,8 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "เปิดไฟ"
+      "เปิ",
+      "ดไฟ"
     ],
     "antonyms": [
       "dark",
@@ -58433,7 +58437,8 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "อรุณสวัสดิ์"
+      "อรุณ",
+      "สวัสดิ์!"
     ],
     "antonyms": [
       "evening",
@@ -85963,7 +85968,8 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ครับผม"
+      "ครั",
+      "บผม"
     ],
     "phoneticUK": "/sˈɜː/",
     "extraExample": "Excuse me, sir, you dropped your wallet.",
@@ -121300,11 +121306,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "เราเลื่อน",
-      "การประชุม",
-      "ไปเป็น",
-      "บ่ายวันศุกร์",
-      "ได้ไหม"
+      "เราเลื่อนการประชุม",
+      "ของเราไป",
+      "เป็นบ่ายวัน",
+      "ศุกร์ได้ไหม"
     ],
     "extraExample": "The dentist had to reschedule my appointment because of an emergency.",
     "extraExampleTranslation": "หมอฟันต้องเลื่อนเวลานัดของฉันเพราะมีเหตุฉุกเฉิน",
@@ -121335,10 +121340,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ฉันวางแผน",
-      "จะจัดระเบียบ",
-      "ตู้เสื้อผ้า",
-      "สุดสัปดาห์นี้"
+      "ฉันวางแผนจะจัดระเบียบ",
+      "และเคลียร์",
+      "ตู้เสื้อผ้าในห้อง",
+      "นอนสุดสัปดาห์นี้"
     ],
     "extraExample": "When you declutter your desk, it becomes much easier to focus.",
     "extraExampleTranslation": "เมื่อคุณจัดระเบียบโต๊ะทำงานให้โล่งขึ้น การมีสมาธิจะง่ายขึ้นมาก",
@@ -121369,10 +121374,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "เราอุ่น",
-      "พาสต้าที่เหลือ",
-      "กินเป็น",
-      "มื้อกลางวัน"
+      "เราอุ่นพาสต้า",
+      "ที่เหลือจากมื้อก่อน",
+      "กินเป็นมื้อก",
+      "ลางวันแบบเร่งด่วน"
     ],
     "extraExample": "You can freeze leftover soup in small containers for busy days.",
     "extraExampleTranslation": "คุณสามารถแช่แข็งซุปที่เหลือในกล่องเล็กๆ ไว้กินในวันที่ยุ่งได้",
@@ -121403,10 +121408,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "แอปนี้",
-      "ให้คุณปรับแต่ง",
-      "การแจ้งเตือน",
-      "ประจำวันได้"
+      "แอปนี้ให้คุณปรับ",
+      "แต่งการแจ้งเตือ",
+      "นการเรียนประ",
+      "จำวันได้ตามต้องการ"
     ],
     "extraExample": "Customers can customize their salad by choosing any three toppings.",
     "extraExampleTranslation": "ลูกค้าสามารถปรับแต่งสลัดของตัวเองได้โดยเลือกท็อปปิงสามอย่างตามใจชอบ",
@@ -121906,8 +121911,9 @@ const wordsData = [
     "topic": "education",
     "thTokens": [
       "การทบทวนบัตรคำศัพท์",
-      "วันละสิบใบทุกเช้า",
-      "ช่วยให้จำคำศัพท์ใหม่ๆ ได้ดี"
+      "วันละสิบใบทุกเช้าช่วย",
+      "ให้จำคำศัพท์",
+      "อังกฤษใหม่ๆได้ดี"
     ],
     "extraExample": "This smart flashcard app tracks which vocabulary words you find difficult.",
     "extraExampleTranslation": "แอปบัตรคำศัพท์อัจฉริยะนี้ติดตามว่าคำไหนที่คุณยังจำไม่คล่อง",
@@ -122010,9 +122016,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "พวกเราเหนื่อยเกินกว่าจะทำอาหาร",
-      "เลยสั่งอาหารไทยกลับบ้าน",
-      "สำหรับมื้อเย็น"
+      "พวกเราเหนื่อยเกิน",
+      "กว่าจะทำอาหาร",
+      "เลยสั่งอาหารไทย",
+      "กลับมากินมื้อเย็น"
     ],
     "extraExample": "Most cafes near the office offer quick takeout coffee every morning.",
     "extraExampleTranslation": "ร้านกาแฟส่วนใหญ่แถวออฟฟิศมีบริการกาแฟสั่งกลับบ้านอย่างรวดเร็วทุกเช้า",
@@ -122045,9 +122052,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "อย่าทิ้งอาหารที่เหลือ",
-      "เก็บใส่ตู้เย็นไว้",
-      "สำหรับมื้อกลางวัน"
+      "อย่าทิ้งอาหาร",
+      "ที่เหลือเก็บ",
+      "ใส่ตู้เย็นไว้กิน",
+      "มื้อกลางวันได้เลย"
     ],
     "extraExample": "Heating up yesterday's leftovers saved me thirty minutes tonight.",
     "extraExampleTranslation": "การอุ่นอาหารที่เหลือจากเมื่อวานช่วยประหยัดเวลาฉันไปได้ตั้งสามสิบนาทีคืนนี้",
@@ -122116,8 +122124,9 @@ const wordsData = [
     "topic": "travel",
     "thTokens": [
       "เพื่อนร่วมงานสี่คน",
-      "นั่งรถร่วมคันทุกวันธรรมดา",
-      "เพื่อลดค่าน้ำมันลงครึ่งหนึ่ง"
+      "นั่งรถร่วมคันไปทำงาน",
+      "ทุกวันธรรมดาเพื่อลด",
+      "ค่าน้ำมันลงครึ่งหนึ่ง"
     ],
     "extraExample": "Carpooling also helps reduce heavy morning traffic across the city.",
     "extraExampleTranslation": "การเดินทางร่วมคันยังช่วยลดปัญหารถติดหนักช่วงเช้าทั่วเมืองได้ด้วย",
@@ -122150,9 +122159,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ในฐานะนักออกแบบอิสระ",
-      "เธอดูแลลูกค้า",
-      "และตารางเวลาของตัวเอง"
+      "ในฐานะนักออกแบบ",
+      "อิสระเธอดูแลลูก",
+      "ค้าและจัดตารางเวลาข",
+      "องตัวเองทั้งหมด"
     ],
     "extraExample": "Many skilled freelancers work remotely from quiet neighborhood cafes.",
     "extraExampleTranslation": "ฟรีแลนซ์ฝีมือดีหลายคนทำงานทางไกลจากร้านกาแฟบรรยากาศสงบใกล้บ้าน",
@@ -122186,8 +122196,9 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "การฝึกสติวันละสิบนาที",
-      "ช่วยลดความเครียด",
+      "การฝึกสติอยู่กับ",
+      "ปัจจุบันวันละสิบ",
+      "นาทีช่วยลดความเครียด",
       "ก่อนประชุมสำคัญ"
     ],
     "extraExample": "Breathing exercises are a simple way to practice mindfulness anywhere.",
@@ -122222,9 +122233,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "เธอทำตามคลิปสอนทีละขั้นออนไลน์",
+      "เธอทำตามคลิปสอน",
+      "วิธีทำทีละขั้นออนไลน์",
       "เพื่ออบขนมปัง",
-      "ก้อนแรกของเธอ"
+      "ซาวโดวจ์ก้อนแรก"
     ],
     "extraExample": "Built-in tutorials help new players learn the game controls in two minutes.",
     "extraExampleTranslation": "บทแนะนำในตัวช่วยให้ผู้เล่นใหม่เรียนรู้ปุ่มบังคับเกมได้ในสองนาที",
@@ -122293,9 +122305,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "กรุณาเดินบนทางเท้า",
-      "แทนการลงไปเดิน",
-      "บนถนนที่รถพลุกพล่าน"
+      "กรุณาเดินบน",
+      "ทางเท้าริมถนน",
+      "แทนการลงไปบนถนน",
+      "ที่รถพลุกพล่าน"
     ],
     "extraExample": "Wide shady sidewalks encourage neighbors to walk to the market.",
     "extraExampleTranslation": "ทางเท้าที่กว้างและร่มรื่นช่วยให้เพื่อนบ้านอยากเดินไปตลาดมากขึ้น",
@@ -122328,9 +122341,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "บาริสต้าที่เป็นมิตร",
-      "วาดลวดลายใบไม้",
-      "ลงบนลาเต้ของฉัน"
+      "บาริสต้าที่เป็น",
+      "มิตรวาดลวด",
+      "ลายใบไม้ลงบนกาแฟ",
+      "ลาเต้ของฉัน"
     ],
     "extraExample": "Ask the barista if you would like oat milk instead of regular milk.",
     "extraExampleTranslation": "ลองถามบาริสต้าดูได้ถ้าอยากเปลี่ยนเป็นนมโอ๊ตแทนนมวัวปกติ",
@@ -122363,9 +122377,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ล้างขวดพลาสติกคร่าวๆ",
-      "ก่อนทิ้งลงถังรีไซเคิล",
-      "เพื่อนำกลับมาใช้ใหม่"
+      "ล้างขวดพลาส",
+      "ติกคร่าวๆ",
+      "ก่อนทิ้งลง",
+      "ถังคัดแยกขยะรีไซเคิล"
     ],
     "extraExample": "Every office floor now has labeled recycle bins for cans and cardboard.",
     "extraExampleTranslation": "ทุกชั้นของออฟฟิศมีถังรีไซเคิลติดป้ายชัดเจนสำหรับกระป๋องและกล่องกระดาษ",
@@ -122397,9 +122412,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "หมัก",
-      "แช่",
-      "ปรุงรส"
+      "คุณควรหมัก",
+      "เนื้อวัวไว้อย่าง",
+      "น้อยสองชั่วโมง",
+      "ก่อนนำไปย่าง"
     ],
     "extraExample": "She likes to marinate tofu in soy sauce and ginger.",
     "extraExampleTranslation": "เธอชอบหมักเต้าหู้ในซีอิ๊วและขิง",
@@ -122425,9 +122441,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ฉันชอบใส่วอลนัท",
       "กรุบกรอบ",
-      "กรอบ",
-      "เคี้ยวเพลิน"
+      "ลงใน",
+      "สลัดมื้อเช้า"
     ],
     "extraExample": "The fried chicken stayed crunchy even after it cooled down.",
     "extraExampleTranslation": "ไก่ทอดยังคงความกรุบกรอบแม้จะเย็นลงแล้ว",
@@ -122453,9 +122470,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ตกแต่งจาน",
-      "ประดับอาหาร",
-      "โรยหน้า"
+      "เชฟจะตก",
+      "แต่งซุป",
+      "ด้วยพาร์สลีย์สด",
+      "ก่อนเสิร์ฟ"
     ],
     "extraExample": "You can garnish the cocktail with a thin slice of lime.",
     "extraExampleTranslation": "คุณสามารถตกแต่งค็อกเทลด้วยมะนาวฝานบางๆ ได้",
@@ -122481,9 +122499,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ฉันชอบขนมอบ",
       "รสเค็มกลมกล่อม",
-      "คาว",
-      "อร่อยเข้มข้น"
+      "อย่างทาร์ตชีส",
+      "มากกว่าเค้กหวาน"
     ],
     "extraExample": "The restaurant is famous for its savory pies and rich gravies.",
     "extraExampleTranslation": "ร้านอาหารนี้ขึ้นชื่อเรื่องพายรสเค็มกลมกล่อมและน้ำเกรวี่เข้มข้น",
@@ -122509,9 +122528,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "การยืดเหยียด",
+      "ทุกวันช่วยเพิ่ม",
       "ความยืดหยุ่น",
-      "ความอ่อนตัว",
-      "ความคล่องตัว"
+      "ของร่างกาย"
     ],
     "extraExample": "Yoga is great for improving balance and flexibility.",
     "extraExampleTranslation": "โยคะดีมากสำหรับการพัฒนาการทรงตัวและความยืดหยุ่น",
@@ -122537,9 +122557,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "การวิ่งระ",
+      "ยะไกลต้องใช้",
       "ความอึด",
-      "ความทนทาน",
-      "พละกำลัง"
+      "อย่างมาก"
     ],
     "extraExample": "He built up his stamina by swimming three times a week.",
     "extraExampleTranslation": "เขาสร้างความอึดด้วยการว่ายน้ำสัปดาห์ละสามครั้ง",
@@ -122565,9 +122586,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ปวดเมื่อย",
-      "ปวด",
-      "ระบม"
+      "ขาของฉันปวด",
+      "เมื่อยหลัง",
+      "จากเดินเที่ยวรอ",
+      "บเมืองทั้งวัน"
     ],
     "extraExample": "His shoulders began to ache from carrying the heavy bag.",
     "extraExampleTranslation": "ไหล่ของเขาเริ่มปวดเมื่อยจากการสะพายกระเป๋าหนัก",
@@ -122593,9 +122615,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ความรก",
-      "ของเกะกะ",
-      "ไม่เป็นระเบียบ"
+      "ฉันใช้เวลาทั้ง",
+      "วันอาทิตย์เก็บ",
+      "ของรกๆออก",
+      "จากห้องนั่งเล่น"
     ],
     "extraExample": "Keeping your desk free of clutter helps you focus better.",
     "extraExampleTranslation": "การทำให้โต๊ะทำงานไม่มีของเกะกะช่วยให้มีสมาธิดีขึ้น",
@@ -122621,9 +122644,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "เครื่องควบคุม",
-      "อุณหภูมิ",
-      "เทอร์โมสตัท"
+      "ช่วยปรับ",
+      "เครื่องควบคุมอุณหภูมิ",
+      "ขึ้นหน่อยได้ไหมข้าง",
+      "ในนี้รู้สึกหนาว"
     ],
     "extraExample": "A smart thermostat can lower your heating bills.",
     "extraExampleTranslation": "เครื่องควบคุมอุณหภูมิอัจฉริยะช่วยลดค่าทำความร้อนได้",
@@ -122649,9 +122673,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "หุ้มฉนวน",
-      "กันความร้อน",
-      "กันเสียง"
+      "พวกเขาตัดสินใจ",
+      "หุ้มฉนวนห้องใต้หลังคาเพื่อ",
+      "ให้บ้านอุ่นขึ้น",
+      "ในฤดูหนาว"
     ],
     "extraExample": "Thick curtains also help insulate windows against the cold.",
     "extraExampleTranslation": "ผ้าม่านหนายังช่วยกันความเย็นที่หน้าต่างได้อีกด้วย",
@@ -122677,9 +122702,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "อะพาร์ตเมนต์ให",
+      "ม่มีระเบียง",
       "กว้างขวาง",
-      "โอ่โถง",
-      "มีพื้นที่มาก"
+      "ที่มองเห็นสวนสาธารณะ"
     ],
     "extraExample": "We chose this house because the bedrooms are bright and spacious.",
     "extraExampleTranslation": "เราเลือกบ้านหลังนี้เพราะห้องนอนสว่างและกว้างขวาง",
@@ -122763,10 +122789,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ฉันมี",
-      "ความทรงจำที่มีความสุข",
-      "เกี่ยวกับวัยเด็ก",
-      "ในชนบท"
+      "ฉันมีความทรง",
+      "จำที่มีความสุขมากมาย",
+      "เกี่ยว",
+      "กับวัยเด็กในชนบท"
     ],
     "extraExample": "They became best friends during their early childhood.",
     "extraExampleTranslation": "พวกเขากลายเป็นเพื่อนสนิทกันตั้งแต่ช่วงวัยเด็กตอนต้น",
@@ -122792,10 +122818,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "เที่ยวบิน",
-      "ของเรา",
-      "จะออกเดินทาง",
-      "เวลาหกนาฬิกา"
+      "เที่ยวบินของเราจะ",
+      "ออกเดินทาง",
+      "จากประตูสิบส",
+      "องเวลาหกนาฬิกา"
     ],
     "extraExample": "The express bus is scheduled to depart on time despite the rain.",
     "extraExampleTranslation": "รถโดยสารด่วนมีกำหนดออกเดินทางตรงเวลาแม้ว่าฝนจะตก",
@@ -122879,9 +122905,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "เราใช้เวลา",
-      "ตลอดช่วงบ่าย",
-      "ในการเที่ยวชมสถานที่"
+      "เราใช้เวลาตลอ",
+      "ดช่วงบ่ายใน",
+      "การเที่ยวชมสถาน",
+      "ที่รอบเมืองเก่า"
     ],
     "extraExample": "A sightseeing bus is an easy way to see the city's main landmarks.",
     "extraExampleTranslation": "รถบัสนำเที่ยวเป็นวิธีที่ง่ายในการชมสถานที่สำคัญหลักของเมือง",
@@ -122907,9 +122934,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
+      "แสงแดดแทบส่อ",
+      "งไม่ถึงพื้นป่าผ่าน",
       "เรือนยอดไม้",
-      "ร่มเงาไม้",
-      "ยอดไม้"
+      "ที่หนาแน่น"
     ],
     "extraExample": "Many colorful birds live high up in the jungle canopy.",
     "extraExampleTranslation": "นกสีสันสวยงามหลายชนิดอาศัยอยู่สูงขึ้นไปบนเรือนยอดไม้ในป่า",
@@ -122965,9 +122993,9 @@ const wordsData = [
     "topic": "education",
     "thTokens": [
       "การเข้าเรียน",
-      "อย่างสม่ำเสมอ",
-      "เป็นสิ่งจำเป็น",
-      "เพื่อผ่านวิชานี้"
+      "อย่างสม่ำเสมอเป็น",
+      "สิ่งจำเป็นเพื่อ",
+      "ที่จะผ่านวิชานี้"
     ],
     "extraExample": "The teacher takes attendance at the beginning of every morning lesson.",
     "extraExampleTranslation": "ครูเช็กชื่อการเข้าเรียนตอนต้นชั่วโมงทุกเช้า",
@@ -122993,10 +123021,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "พ่อแม่ของฉัน",
-      "จ้างติวเตอร์",
-      "คณิตศาสตร์",
-      "มาช่วยเตรียมสอบเข้า"
+      "พ่อแม่ของฉันจ้าง",
+      "ติวเตอร์",
+      "คณิตศาสตร์มาช่วยฉัน",
+      "เตรียมตัวสอบเข้า"
     ],
     "extraExample": "She works as a private English tutor for high school students.",
     "extraExampleTranslation": "เธอทำงานเป็นครูสอนพิเศษภาษาอังกฤษส่วนตัวสำหรับนักเรียนมัธยมปลาย",
@@ -123022,9 +123050,9 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "พี่สาวของฉัน",
-      "จะเรียนจบ",
-      "มหาวิทยาลัย",
+      "พี่สาวของฉันจะเรียน",
+      "จบมหาวิทยาลัย",
+      "ด้วยปริญญาสถาปัตยกรรมศาสตร์",
       "ในเดือนมิถุนายนหน้า"
     ],
     "extraExample": "He hopes to graduate at the top of his class this year.",
@@ -123051,9 +123079,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ความยากจน",
-      "ความขัดสน",
-      "ความลำบาก"
+      "องค์กรกำลังทำงาน",
+      "อย่างหนัก",
+      "เพื่อลดความยากจน",
+      "ในพื้นที่ชนบท"
     ],
     "extraExample": "Access to good education can help families escape poverty.",
     "extraExampleTranslation": "การเข้าถึงการศึกษาที่ดีสามารถช่วยให้ครอบครัวหลุดพ้นจากความยากจนได้",
@@ -123079,9 +123108,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "พวกเขากำลังเดินขบวน",
+      "เพื่อเรียกร้อง",
       "ความเท่าเทียม",
-      "ความเสมอภาค",
-      "ความยุติธรรม"
+      "ในสถานที่ทำงาน"
     ],
     "extraExample": "True equality means everyone has a fair chance to succeed.",
     "extraExampleTranslation": "ความเท่าเทียมที่แท้จริงหมายถึงทุกคนมีโอกาสที่ยุติธรรมในการประสบความสำเร็จ",
@@ -123107,9 +123137,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "เราย้ายมาอยู่ที่",
       "ย่านชุมชน",
-      "ละแวกบ้าน",
-      "ชุมชน"
+      "ที่เงียบสงบ",
+      "ใกล้สวนสาธารณะ"
     ],
     "extraExample": "Everyone in our neighborhood knows each other well.",
     "extraExampleTranslation": "ทุกคนในย่านชุมชนของเรารู้จักกันเป็นอย่างดี",
@@ -123135,9 +123166,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
+      "เราใช้เวลาสอ",
+      "งชั่วโมงในการ",
       "ประกอบ",
-      "รวบรวม",
-      "รวมตัว"
+      "ชั้นวางหนังสือใหม่"
     ],
     "extraExample": "The students assembled in the main hall for the announcement.",
     "extraExampleTranslation": "นักเรียนมารวมตัวกันที่หอประชุมใหญ่เพื่อฟังประกาศ",
@@ -123163,9 +123195,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "เหลือบมอง",
-      "ชำเลือง",
-      "มองผ่านๆ"
+      "เขาเหลือบมอง",
+      "นาฬิกาของเขาระ",
+      "หว่างการประชุม",
+      "ที่ยาวนาน"
     ],
     "extraExample": "She glanced over the report before sending it to her manager.",
     "extraExampleTranslation": "เธอกวาดตามองรายงานคร่าวๆ ก่อนส่งให้ผู้จัดการ",
@@ -123191,9 +123224,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "เลื่อนออกไป",
-      "ผัดผ่อน",
-      "ชะลอ"
+      "พวกเขาต้อง",
+      "เลื่อนคอนเสิร์",
+      "ตกลางแจ้งออกไป",
+      "เนื่องจากพายุ"
     ],
     "extraExample": "Let us postpone our discussion until everyone is present.",
     "extraExampleTranslation": "เรามาเลื่อนการพูดคุยออกไปจนกว่าทุกคนจะมากันครบเถอะ",
@@ -123219,9 +123253,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "โอบกอด",
-      "กอด",
-      "เปิดรับ"
+      "เพื่อนเก่าทั้ง",
+      "สองคนโอบกอด",
+      "กันอย่างอบอุ่น",
+      "ที่สนามบิน"
     ],
     "extraExample": "Our company is ready to embrace new digital tools.",
     "extraExampleTranslation": "บริษัทของเราพร้อมที่จะเปิดรับเครื่องมือดิจิทัลใหม่ๆ",
@@ -123276,9 +123311,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ชิมซุป",
+      "ก่อนแล้วค่อยเติม",
       "เครื่องปรุงรส",
-      "เครื่องเทศ",
-      "การปรุงรส"
+      "เพิ่มถ้าจำเป็น"
     ],
     "extraExample": "This grilled fish needs a little extra seasoning.",
     "extraExampleTranslation": "ปลาย่างจานนี้ต้องการเครื่องปรุงรสเพิ่มอีกเล็กน้อย",
@@ -123304,9 +123340,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ปล่อยให้สตูว์",
       "เคี่ยว",
-      "ต้มไฟอ่อน",
-      "อุ่น"
+      "ด้วยไฟอ่อนเป็น",
+      "เวลาสี่สิบนาที"
     ],
     "extraExample": "Cover the pot and simmer until the vegetables are soft.",
     "extraExampleTranslation": "ปิดฝาหม้อแล้วเคี่ยวจนกว่าผักจะนุ่ม",
@@ -123332,9 +123369,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กระดูกสันหลัง",
-      "หลัง",
-      "แกนกลาง"
+      "ท่าทางที่ดีช่วย",
+      "ให้กระดูกสัน",
+      "หลังตรงและป้อง",
+      "กันอาการปวดหลัง"
     ],
     "extraExample": "The yoga instructor told us to lengthen our spine.",
     "extraExampleTranslation": "ครูสอนโยคะบอกให้เรายืดกระดูกสันหลังให้ตรง",
@@ -123360,9 +123398,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ฉนวนกันความร้อน",
-      "ฉนวนกันเสียง",
-      "วัสดุกันความร้อน"
+      "ฉนวนกันความร้อนบน",
+      "หลังคาที่ดีช่วย",
+      "ให้บ้านเย็นสบาย",
+      "ในช่วงอากาศร้อน"
     ],
     "extraExample": "We added extra insulation to the walls to block street noise.",
     "extraExampleTranslation": "เราเพิ่มฉนวนกันเสียงที่ผนังเพื่อกันเสียงรบกวนจากถนน",
@@ -123388,9 +123427,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ชื่นชม",
-      "นับถือ",
-      "ยกย่อง"
+      "ฉันชื่นชมจริงๆ",
+      "ที่เธอใจเย็น",
+      "ได้แม้อยู่ภาย",
+      "ใต้ความกดดัน"
     ],
     "extraExample": "Many young athletes admire his dedication to training.",
     "extraExampleTranslation": "นักกีฬาอายุน้อยหลายคนชื่นชมความทุ่มเทในการฝึกซ้อมของเขา",
@@ -123416,10 +123456,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ฉันซื้อ",
-      "หนังสือนำเที่ยว",
-      "เพื่อช่วยหา",
-      "ร้านอาหารที่ดีที่สุด"
+      "ฉันซื้อหนังสือนำเที่ยว",
+      "เพื่อช่วย",
+      "เราหาร้านอาหาร",
+      "ที่ดีที่สุดในกรุงโรม"
     ],
     "extraExample": "According to the guidebook, the museum is closed on Mondays.",
     "extraExampleTranslation": "ตามข้อมูลในหนังสือนำเที่ยว พิพิธภัณฑ์จะปิดทำการในวันจันทร์",
@@ -123445,9 +123485,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
+      "ต้นซากุระมักจะ",
       "ผลิบาน",
-      "ออกดอก",
-      "เบ่งบาน"
+      "ในช่วงต้นฤ",
+      "ดูใบไม้ผลิ"
     ],
     "extraExample": "These desert plants only bloom after heavy rain.",
     "extraExampleTranslation": "พืชทะเลทรายเหล่านี้จะผลิบานเฉพาะหลังฝนตกหนักเท่านั้น",
@@ -123473,9 +123514,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "แห้งแล้ง",
-      "ขาดน้ำ",
-      "กันดาร"
+      "มีพืชผลไม่กี่ชนิด",
+      "ที่สามารถอยู่รอ",
+      "ดได้ในสภาพอากาศ",
+      "ที่แห้งแล้งเช่นนี้"
     ],
     "extraExample": "The northern region consists mostly of arid plains.",
     "extraExampleTranslation": "ภูมิภาคทางตอนเหนือส่วนใหญ่ประกอบด้วยที่ราบแห้งแล้ง",
@@ -123501,9 +123543,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ประเมินผล",
-      "วัดผล",
-      "ตรวจสอบ"
+      "ครูประเมินผล",
+      "นักเรียนผ่านการสอบ",
+      "และโครงงาน",
+      "ในชั้นเรียน"
     ],
     "extraExample": "We need to evaluate how effective this new study method is.",
     "extraExampleTranslation": "เราต้องประเมินว่าวิธีการเรียนแบบใหม่นี้มีประสิทธิภาพแค่ไหน",
@@ -123529,9 +123572,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
+      "คุณต้อง",
       "ปรับ",
-      "ปรับแต่ง",
-      "แก้ไขเล็กน้อย"
+      "กระจก",
+      "ก่อนขับรถ"
     ],
     "extraExample": "She adjusted her chair to sit more comfortably.",
     "extraExampleTranslation": "เธอปรับเก้าอี้เพื่อนั่งให้สบายขึ้น",
@@ -123557,9 +123601,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
+      "ช่างจะ",
       "ตรวจสอบ",
-      "ตรวจดู",
-      "ตรวจตรา"
+      "เบรก",
+      "บ่ายนี้"
     ],
     "extraExample": "Customs officers inspected every bag at the border.",
     "extraExampleTranslation": "เจ้าหน้าที่ศุลกากรตรวจกระเป๋าทุกใบที่ชายแดน",
@@ -123585,9 +123630,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
+      "เราขออภัยใน",
       "ความไม่สะดวก",
-      "ก่อให้เกิดความลำบาก",
-      "ขออภัยในความไม่สะดวก"
+      "ที่เกิด",
+      "จากการก่อสร้าง"
     ],
     "extraExample": "Would it be an inconvenience if I arrived an hour early?",
     "extraExampleTranslation": "จะรบกวนไหมถ้าฉันจะมาถึงเร็วกว่ากำหนดหนึ่งชั่วโมง",
@@ -123613,9 +123659,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ขอความช่วยเหลือ",
-      "ทำคุณให้",
-      "น้ำใจ"
+      "ช่วยทำอะไร",
+      "ให้หน่อยได้ไหมรด",
+      "น้ำต้นไม้ให้ฉัน",
+      "สุดสัปดาห์นี้ที"
     ],
     "extraExample": "I owe you a huge favor for covering my shift.",
     "extraExampleTranslation": "ฉันติดหนี้บุญคุณคุณมากเลยที่ช่วยเข้าเวรแทน",
@@ -123641,9 +123688,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "กลูเตน",
-      "โปรตีนในข้าวสาลี",
-      "สารก่อภูมิแพ้"
+      "เธอหลีก",
+      "เลี่ยงขนมปัง",
+      "เพราะ",
+      "แพ้กลูเตน"
     ],
     "extraExample": "This pasta is made without gluten.",
     "extraExampleTranslation": "พาสต้าจานนี้ทำโดยไม่มีกลูเตน",
@@ -123669,9 +123717,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ผลิตภัณฑ์จากนม",
-      "ของที่ทำจากนม",
-      "อาหารประเภทนม"
+      "ฉันงดผลิตภัณฑ์",
+      "จากนม",
+      "เพื่อดูว่าท้อง",
+      "จะดีขึ้นไหม"
     ],
     "extraExample": "Many cafés now offer milk alternatives to dairy.",
     "extraExampleTranslation": "หลายร้านกาแฟมีทางเลือกแทนนมจากสัตว์แล้ว",
@@ -123697,9 +123746,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ภาวะย่อยไม่ได้",
-      "ความไวต่ออาหาร",
-      "อาการแพ้"
+      "เขามีภาวะ",
+      "ย่อยน้ำตาล",
+      "แลคโตส",
+      "ไม่ได้เล็กน้อย"
     ],
     "extraExample": "Food intolerance can cause discomfort after eating.",
     "extraExampleTranslation": "ภาวะแพ้อาหารอาจทำให้ไม่สบายท้องหลังทานอาหาร",
@@ -123725,9 +123775,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ถั่วลิสงเป็น",
       "สารก่อภูมิแพ้",
-      "ตัวกระตุ้นภูมิแพ้",
-      "สิ่งที่ทำให้แพ้"
+      "ที่พบบ่อย",
+      "ในเด็ก"
     ],
     "extraExample": "Restaurants must list every major allergen on the menu.",
     "extraExampleTranslation": "ร้านอาหารต้องระบุสารก่อภูมิแพ้หลักทุกชนิดในเมนู",
@@ -123753,9 +123804,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "จากพืช",
-      "อาหารจากพืช",
-      "มังสวิรัติ"
+      "ผู้คนจำนวนมาก",
+      "กำลังเลือก",
+      "ทานอาหาร",
+      "ที่ทำจากพืชเป็นหลัก"
     ],
     "extraExample": "This burger is 100 percent plant-based.",
     "extraExampleTranslation": "เบอร์เกอร์ชิ้นนี้ทำจากพืชร้อยเปอร์เซ็นต์",
@@ -123781,9 +123833,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจากถั่ว",
-      "ไม่มีถั่ว",
-      "ปลอดภัยจากถั่ว"
+      "โรงอาหารโร",
+      "งเรียนจัด",
+      "เมนูที่",
+      "ปราศจากถั่ว"
     ],
     "extraExample": "Please bring a nut-free dessert to the party.",
     "extraExampleTranslation": "กรุณานำขนมที่ปราศจากถั่วมางานเลี้ยง",
@@ -123809,9 +123862,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "เส้นเอ็น",
-      "เอ็นยึดกล้ามเนื้อ",
-      "ส่วนเชื่อมต่อกระดูก"
+      "การยืดเหยียด",
+      "เบาๆช่วยอุ่น",
+      "เส้นเอ็นก่อน",
+      "ที่คุณจะเริ่มวิ่ง"
     ],
     "extraExample": "He felt a sharp pain in his Achilles tendon after the sprint.",
     "extraExampleTranslation": "เขารู้สึกเจ็บแปลบที่เอ็นร้อยหวายหลังจากวิ่งสปรินต์",
@@ -123837,9 +123891,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กล้ามเนื้อต้นขาด้านหลัง",
-      "เอ็นหลังเข่า",
-      "กล้ามเนื้อขา"
+      "กล้ามเนื้อต้นขาด้าน",
+      "หลังที่ตึงอาจ",
+      "จำกัดระยะการก้ม",
+      "ตัวไปข้างหน้าของคุณ"
     ],
     "extraExample": "Remember to stretch each hamstring for at least twenty seconds.",
     "extraExampleTranslation": "อย่าลืมยืดกล้ามเนื้อต้นขาด้านหลังแต่ละข้างอย่างน้อยยี่สิบวินาที",
@@ -123865,9 +123920,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "น่อง",
-      "กล้ามเนื้อน่อง",
-      "ช่วงขาส่วนล่าง"
+      "การเขย่งส้นเท้าขึ้น",
+      "จากพื้นช่วย",
+      "เสริมสร้างกล้ามเนื้อ",
+      "น่องของคุณ"
     ],
     "extraExample": "My left calf felt sore after climbing the steep hill.",
     "extraExampleTranslation": "น่องซ้ายของฉันรู้สึกปวดเมื่อยหลังจากเดินขึ้นเนินชัน",
@@ -123893,9 +123949,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ความทนทาน",
-      "ความอึด",
-      "ความสามารถในการออกแรงต่อเนื่อง"
+      "การปั่นจักรยานเป็น",
+      "ประจำช่วยสร้าง",
+      "ความทนทานของระบบหัวใจ",
+      "และหลอดเลือด"
     ],
     "extraExample": "Her endurance improved noticeably after a month of training.",
     "extraExampleTranslation": "ความทนทานของเธอดีขึ้นอย่างเห็นได้ชัดหลังจากฝึกซ้อมหนึ่งเดือน",
@@ -123921,9 +123978,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ย่อตัว",
-      "ลุกนั่ง",
-      "ท่าสควอท"
+      "วางส้น",
+      "เท้าให้ราบ",
+      "กับพื้น",
+      "เมื่อคุณย่อตัวลง"
     ],
     "extraExample": "You should squat slowly to control the movement.",
     "extraExampleTranslation": "คุณควรย่อตัวลงช้าๆ เพื่อควบคุมการเคลื่อนไหว",
@@ -123949,9 +124007,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ท่าย่อขาไปข้างหน้า",
-      "ท่าลันจ์",
-      "การก้าวย่อ"
+      "การทำท่าย่อขาไปข้างหน้า",
+      "ช่วยยืดสะโพก",
+      "และเสริมสร้าง",
+      "ความแข็งแรงให้ต้นขา"
     ],
     "extraExample": "Try ten repetitions of the lunge on each leg.",
     "extraExampleTranslation": "ลองทำท่าย่อขาไปข้างหน้าข้างละสิบครั้ง",
@@ -123977,9 +124036,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "การดื่มน้ำให้เพีย",
+      "งพอช่วยป้องกันอาการ",
       "ตะคริว",
-      "อาการกล้ามเนื้อเกร็ง",
-      "การหดเกร็งฉับพลัน"
+      "ระหว่างออกกำลังกาย"
     ],
     "extraExample": "He stopped jogging because of a sudden cramp in his leg.",
     "extraExampleTranslation": "เขาหยุดวิ่งเหยาะๆ เพราะเกิดอาการตะคริวที่ขาอย่างกะทันหัน",
@@ -124006,8 +124066,9 @@ const wordsData = [
     "topic": "body",
     "thTokens": [
       "การอบอุ่นร่างกาย",
-      "การวอร์มอัพ",
-      "การเตรียมพร้อมก่อนออกกำลังกาย"
+      "ห้านาทีช่วยเพิ่ม",
+      "อัตราการเต้นของหัวใจ",
+      "อย่างปลอดภัย"
     ],
     "extraExample": "Never skip the warm-up if you want to avoid pulling a muscle.",
     "extraExampleTranslation": "อย่าข้ามการอบอุ่นร่างกายหากคุณต้องการหลีกเลี่ยงอาการกล้ามเนื้อฉีก",
@@ -124033,9 +124094,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "คล่องแคล่ว",
-      "ว่องไว",
-      "ยืดหยุ่นและเคลื่อนไหวง่าย"
+      "โยคะและการยืดเหยียดช่วย",
+      "ให้ร่างกาย",
+      "ของคุณคล่องแคล่ว",
+      "เมื่ออายุมากขึ้น"
     ],
     "extraExample": "The gymnast is remarkably agile on the balance beam.",
     "extraExampleTranslation": "นักยิมนาสติกมีความคล่องแคล่วอย่างน่าทึ่งบนคานทรงตัว",
@@ -124061,9 +124123,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ลำตัว",
-      "ช่วงลำตัว",
-      "ส่วนกลางของร่างกาย"
+      "บิดลำตัว",
+      "ของคุณเบาๆจากซ้ายไป",
+      "ขวาเพื่อคลาย",
+      "กล้ามเนื้อหลัง"
     ],
     "extraExample": "Keep your torso upright while performing the stretch.",
     "extraExampleTranslation": "รักษาลำตัวให้ตั้งตรงในขณะที่ทำท่ายืดเหยียด",
@@ -124089,9 +124152,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "เจ้าของ",
-      "ห้อง",
-      "เช่า"
+      "เจ้าของห้องเช่า",
+      "ของเราซ่อมเค",
+      "รื่องปรับอากาศ",
+      "ที่เสียเมื่อวานนี้"
     ],
     "extraExample": "I need to call the landlord about the leaking pipe.",
     "extraExampleTranslation": "ฉันต้องโทรหาเจ้าของห้องเช่าเรื่องท่อน้ำรั่ว",
@@ -124117,9 +124181,9 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ผู้",
-      "เช่า",
-      "ห้อง"
+      "ผู้เช่าคนใหม่ย้ายเข้าห้อง",
+      "4B",
+      "เมื่อเช้านี้"
     ],
     "extraExample": "Every tenant must follow the building rules.",
     "extraExampleTranslation": "ผู้เช่าทุกคนต้องปฏิบัติตามกฎของอาคาร",
@@ -124145,9 +124209,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "สัญญา",
-      "เช่า",
-      "บ้าน"
+      "เราเซ็น",
+      "สัญญาเช่า",
+      "หนึ่งปีสำหรับอ",
+      "พาร์ตเมนต์นี้"
     ],
     "extraExample": "My lease expires at the end of next month.",
     "extraExampleTranslation": "สัญญาเช่าของฉันจะหมดอายุสิ้นเดือนหน้า",
@@ -124173,9 +124238,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "โถง",
-      "ทาง",
-      "เดิน"
+      "กรุณาอย่าวาง",
+      "รองเท้าไว้ใน",
+      "โถงทางเดิน",
+      "ส่วนกลาง"
     ],
     "extraExample": "The hallway lights turn on automatically at night.",
     "extraExampleTranslation": "ไฟโถงทางเดินจะเปิดอัตโนมัติในตอนกลางคืน",
@@ -124201,9 +124267,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "อิน",
-      "เตอร์",
-      "คอม"
+      "กดปุ่ม",
+      "อินเตอร์คอม",
+      "เพื่อเปิดประ",
+      "ตูให้แขกเข้ามา"
     ],
     "extraExample": "The delivery driver buzzed my intercom downstairs.",
     "extraExampleTranslation": "พนักงานส่งของกดอินเตอร์คอมเรียกฉันจากข้างล่าง",
@@ -124229,9 +124296,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "กัน",
-      "เสียง",
-      "รบกวน"
+      "ผนังไม่ค่อย",
+      "กันเสียง",
+      "ฉันเลยได้ยินเสียง",
+      "เพื่อนบ้าน"
     ],
     "extraExample": "We installed soundproof curtains to block street noise.",
     "extraExampleTranslation": "เราติดผ้าม่านกันเสียงเพื่อลดเสียงรบกวนจากถนน",
@@ -124257,9 +124325,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "เกรง",
-      "ใจ",
-      "ผู้อื่น"
+      "เกรงใจ",
+      "เพื่อนบ้านหน่อย",
+      "และลดเสีย",
+      "งเพลงลงด้วย"
     ],
     "extraExample": "She is a considerate neighbor who always greets everyone.",
     "extraExampleTranslation": "เธอเป็นเพื่อนบ้านที่น่ารักและทักทายทุกคนเสมอ",
@@ -124285,9 +124354,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "การ",
-      "บำรุง",
-      "รักษา"
+      "วันนี้อาคาร",
+      "ปิด",
+      "ซ่อมบำรุง",
+      "ลิฟต์"
     ],
     "extraExample": "Call the maintenance team if your sink is clogged.",
     "extraExampleTranslation": "โทรหาทีมซ่อมบำรุงถ้าอ่างล้างจานของคุณอุดตัน",
@@ -124313,9 +124383,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "มอบหมายงาน",
-      "กระจายหน้าที่",
-      "ส่งต่อความรับผิดชอบ"
+      "ผู้จัดการ",
+      "ที่ดีรู้ว่าเมื่อ",
+      "ไหร่ควร",
+      "มอบหมายงานให้ทีม"
     ],
     "extraExample": "He learned to delegate duties instead of doing everything alone.",
     "extraExampleTranslation": "เขาเรียนรู้ที่จะมอบหมายหน้าที่แทนที่จะทำทุกอย่างคนเดียว",
@@ -124341,9 +124412,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "ทุกคนในทีม",
       "มีความรับผิดชอบ",
-      "รับผิดชอบต่อผลลัพธ์",
-      "ตรวจสอบได้"
+      "ในการส่งงาน",
+      "ให้ทันกำหนด"
     ],
     "extraExample": "Leaders must hold themselves accountable when mistakes happen.",
     "extraExampleTranslation": "ผู้นำต้องรับผิดชอบต่อตนเองเมื่อเกิดความผิดพลาด",
@@ -124369,9 +124441,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "เราขอให้",
       "ผู้ไกล่เกลี่ย",
-      "คนกลาง",
-      "ผู้ประสานรอยร้าว"
+      "ที่เป็นกลางช่วย",
+      "ยุติข้อพิพาท"
     ],
     "extraExample": "She acted as a mediator between the two arguing departments.",
     "extraExampleTranslation": "เธอทำหน้าที่เป็นผู้ไกล่เกลี่ยระหว่างสองแผนกที่กำลังโต้เถียงกัน",
@@ -124397,9 +124470,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "ทีมงานบรรลุ",
       "ฉันทามติ",
-      "ความเห็นพ้องต้องกัน",
-      "ข้อตกลงร่วมกัน"
+      "เรื่องกรอบเวลาข",
+      "องโครงการแล้ว"
     ],
     "extraExample": "Building consensus takes patience and open communication.",
     "extraExampleTranslation": "การสร้างฉันทามติต้องใช้ความอดทนและการสื่อสารที่เปิดกว้าง",
@@ -124425,9 +124499,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "พันธมิตร",
-      "ผู้สนับสนุน",
-      "แนวร่วม"
+      "การมีพันธมิตร",
+      "ที่แข็งแกร่งใน",
+      "ที่ประชุมทำให้ฉัน",
+      "รู้สึกมั่นใจ"
     ],
     "extraExample": "She proved to be a reliable ally during the reorganization.",
     "extraExampleTranslation": "เธอพิสูจน์ให้เห็นว่าเป็นพันธมิตรที่พึ่งพาได้ในช่วงปรับโครงสร้างองค์กร",
@@ -124453,9 +124528,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "ฉันรู้สึกขอบคุณ",
+      "ที่มีทีมที่",
       "คอยสนับสนุน",
-      "ให้กำลังใจ",
-      "เกื้อกูล"
+      "อยู่รอบตัวแบบนี้"
     ],
     "extraExample": "A supportive environment encourages people to share new ideas.",
     "extraExampleTranslation": "สภาพแวดล้อมที่คอยสนับสนุนจะกระตุ้นให้ผู้คนกล้าแบ่งปันไอเดียใหม่ๆ",
@@ -124482,8 +124558,9 @@ const wordsData = [
     "topic": "people",
     "thTokens": [
       "พลังร่วม",
-      "การทำงานประสานกัน",
-      "ผลลัพธ์ทวีคูณ"
+      "ระหว่างนักเขียนทั้ง",
+      "สองคนทำให้เกิดบท",
+      "ที่ยอดเยี่ยม"
     ],
     "extraExample": "Great teamwork creates synergy that multiplies everyone's efforts.",
     "extraExampleTranslation": "การทำงานเป็นทีมที่ดีสร้างพลังร่วมที่ทวีคูณความพยายามของทุกคน",
@@ -124509,9 +124586,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
+      "แผนนี้รวม",
       "ความคุ้มครอง",
-      "การประกัน",
-      "สิทธิประโยชน์"
+      "ค่ารักษาพยาบาล",
+      "ในต่างประเทศไหม"
     ],
     "extraExample": "We bought extra coverage for adventure sports.",
     "extraExampleTranslation": "เราซื้อความคุ้มครองเพิ่มเติมสำหรับกีฬาผจญภัย",
@@ -124537,9 +124615,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ชดใช้คืน",
-      "จ่ายคืน",
-      "คืนเงิน"
+      "บริษัทประ",
+      "กันจะชด",
+      "ใช้ค่ารักษาพยาบาลคืน",
+      "ให้คุณ"
     ],
     "extraExample": "They promised to reimburse us for the delayed train.",
     "extraExampleTranslation": "พวกเขาสัญญาว่าจะจ่ายเงินคืนให้เราสำหรับรถไฟที่ล่าช้า",
@@ -124565,9 +124644,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ค่าเสียหายส่วนแรก",
-      "ส่วนที่ต้องจ่ายเอง",
-      "หักส่วนแรก"
+      "แผนราคาถูกนี้มี",
+      "ค่าเสีย",
+      "หายส่วนแรก",
+      "ที่สูงมาก"
     ],
     "extraExample": "You must pay the hundred-dollar deductible first.",
     "extraExampleTranslation": "คุณต้องจ่ายค่าเสียหายส่วนแรกหนึ่งร้อยดอลลาร์ก่อน",
@@ -124593,9 +124673,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "เบี้ยประกัน",
-      "ค่าเบี้ย",
-      "เงินประกัน"
+      "การจ่ายเบี้ยประกัน",
+      "ที่สูงขึ้นจะ",
+      "ให้สิทธิป",
+      "ระโยชน์ที่ดีกว่า"
     ],
     "extraExample": "Our travel insurance premium was only twenty dollars.",
     "extraExampleTranslation": "เบี้ยประกันการเดินทางของเราแค่ยี่สิบดอลลาร์เท่านั้น",
@@ -124621,9 +124702,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
+      "ตรวจสอบ",
       "ธนบัตร",
-      "แบงก์",
-      "เงินกระดาษ"
+      "อย่างละเอียด",
+      "เผื่อมีรอยขาด"
     ],
     "extraExample": "Exchange booths often prefer clean, new banknotes.",
     "extraExampleTranslation": "บูธแลกเงินมักชอบธนบัตรที่สะอาดและใหม่",
@@ -124649,9 +124731,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ค่าธรรมเนียมเพิ่ม",
-      "ค่าบริการพิเศษ",
-      "บวกเพิ่ม"
+      "ตู้เอทีเอ็มบางแห่งคิด",
+      "ค่าธรรมเนีย",
+      "มเพิ่มเติมสูง",
+      "สำหรับบัตรต่างประเทศ"
     ],
     "extraExample": "Watch out for the weekend currency surcharge.",
     "extraExampleTranslation": "ระวังค่าธรรมเนียมเพิ่มเติมของการแลกเงินในวันหยุดสุดสัปดาห์",
@@ -124677,9 +124760,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
+      "มีวงเงินจำกัด",
+      "ต่อวันสำหรับ",
       "การถอนเงิน",
-      "เบิกเงิน",
-      "ถอนสด"
+      "สดในต่างประเทศ"
     ],
     "extraExample": "My bank notified me about a large withdrawal.",
     "extraExampleTranslation": "ธนาคารแจ้งเตือนฉันเกี่ยวกับการถอนเงินจำนวนมาก",
@@ -124705,9 +124789,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "การแปลงเงิน",
-      "เปลี่ยนสกุล",
-      "อัตราแลกเปลี่ยน"
+      "แอปแสดงอัตรา",
+      "การแปล",
+      "งสกุลเงิน",
+      "แบบเรียลไทม์"
     ],
     "extraExample": "Dynamic currency conversion at shops is often expensive.",
     "extraExampleTranslation": "การแปลงสกุลเงินที่ร้านค้ามักมีราคาแพง",
@@ -124733,9 +124818,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "บัตรกำนัล",
-      "คูปอง",
-      "ใบสำคัญ"
+      "สายการบิน",
+      "ให้คูปองอาหารแก่เราใน",
+      "ช่วง",
+      "ที่เที่ยวบินล่าช้า"
     ],
     "extraExample": "Show this hotel voucher at the front desk.",
     "extraExampleTranslation": "แสดงใบสำคัญจองโรงแรมนี้ที่เคาน์เตอร์ต้อนรับ",
@@ -124761,9 +124847,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "มรสุม",
-      "ฤดูมรสุม",
-      "ลมมรสุม"
+      "ฤดูมรสุมมักจะมาถึง",
+      "ในช่วงปลายเดือนพฤษภาคม",
+      "และยาวไป",
+      "จนถึงเดือนตุลาคม"
     ],
     "extraExample": "Heavy monsoon rains caused traffic delays across the city.",
     "extraExampleTranslation": "ฝนตกหนักจากมรสุมทำให้การจราจรติดขัดทั่วเมือง",
@@ -124789,9 +124876,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "พายุหิมะ",
-      "พายุหิมะรุนแรง",
-      "หิมะตกหนัก"
+      "กรมอุตุนิยมวิท",
+      "ยาออกประกาศเตือน",
+      "พายุหิมะสำหรับภูเขาทาง",
+      "ตอนเหนือ"
     ],
     "extraExample": "Drivers were advised to stay home until the blizzard passed.",
     "extraExampleTranslation": "ผู้ขับขี่ได้รับคำแนะนำให้อยู่บ้านจนกว่าพายุหิมะจะผ่านพ้นไป",
@@ -124817,9 +124905,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "คลื่นความร้อน",
-      "อากาศร้อนจัด",
-      "ช่วงอากาศร้อน"
+      "ในช่วงคลื่นความร้อน",
+      "ฤดูร้อนความต้อง",
+      "การใช้ไฟฟ้าพุ่งสูง",
+      "เป็นประวัติการณ์"
     ],
     "extraExample": "Health officials warned elderly residents to stay hydrated during the heatwave.",
     "extraExampleTranslation": "เจ้าหน้าที่สาธารณสุขเตือนผู้สูงอายุให้ดื่มน้ำให้เพียงพอในช่วงคลื่นความร้อน",
@@ -124846,8 +124935,9 @@ const wordsData = [
     "topic": "nature",
     "thTokens": [
       "น้ำค้างแข็ง",
-      "แม่คะนิ้ง",
-      "เกล็ดน้ำแข็ง"
+      "ยามเช้าปกค",
+      "ลุมพื้นหญ้าและ",
+      "กระจกหน้ารถ"
     ],
     "extraExample": "Farmers worried that a sudden frost would damage their young crops.",
     "extraExampleTranslation": "เกษตรกรกังวลว่าน้ำค้างแข็งกะทันหันจะทำลายพืชผลที่ยังอ่อนอยู่",
@@ -124873,9 +124963,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ลูกเห็บ",
-      "พายุลูกเห็บ",
-      "ฝนลูกเห็บ"
+      "ลูกเห็บขนาดเท่าลูก",
+      "กอล์ฟทำให้รถ",
+      "ที่จอดอยู่หลายคันบุบ",
+      "ระหว่างพายุ"
     ],
     "extraExample": "The sudden hail forced hikers to seek shelter under a wooden roof.",
     "extraExampleTranslation": "ลูกเห็บที่ตกลงมากะทันหันทำให้นักเดินป่าต้องหาที่หลบใต้หลังคาไม้",
@@ -124901,9 +124992,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ลมแรง",
-      "พายุลมแรง",
-      "ลมกรรโชก"
+      "ลมแรงชายฝั่ง",
+      "พัดเรือประ",
+      "มงขนาดเล็กค",
+      "ว่ำใกล้ท่าเรือ"
     ],
     "extraExample": "The weather alert warned of gale-force winds along the highway.",
     "extraExampleTranslation": "ประกาศเตือนภัยอากาศเตือนเรื่องลมแรงระดับพายุตามแนวทางหลวง",
@@ -124929,9 +125021,9 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ฝนปรอยๆ",
-      "ฝนละออง",
-      "ฝนตกเบาๆ"
+      "ฝนตกปรอยๆ",
+      "เบาๆ",
+      "ตลอดช่วงบ่ายฤดูใบไม้ร่วงที่อากาศเย็น"
     ],
     "extraExample": "You only need a light jacket for this gentle drizzle.",
     "extraExampleTranslation": "คุณแค่ใส่เสื้อแจ็คเก็ตบางๆ ก็พอสำหรับฝนปรอยๆ เบาๆ นี้",
@@ -124957,9 +125049,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ชื้น",
-      "ชื้นแฉะ",
-      "อบอ้าว"
+      "อากาศรู้สึกเห",
+      "นียวเหนอะหนะ",
+      "และชื้นแฉะ",
+      "ก่อนเกิดพายุฤดูร้อน"
     ],
     "extraExample": "Coastal cities are often much more humid than inland towns.",
     "extraExampleTranslation": "เมืองชายฝั่งมักจะมีความชื้นสูงกว่าเมืองที่อยู่ลึกเข้าไปในแผ่นดินมาก",
@@ -124985,9 +125078,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "อพยพ",
-      "ย้ายออก",
-      "หนีภัย"
+      "ประชาชนได้รับคำสั่ง",
+      "ให้อพยพ",
+      "ก่อนที่ระดับ",
+      "น้ำท่วมจะสูงขึ้น"
     ],
     "extraExample": "Emergency crews helped families evacuate from the coastal zone.",
     "extraExampleTranslation": "หน่วยกู้ภัยช่วยครอบครัวต่างๆ อพยพออกจากเขตชายฝั่ง",
@@ -125013,9 +125107,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ละลาย",
-      "คลายความหนาว",
-      "น้ำแข็งละลาย"
+      "ทะเลสาบ",
+      "ที่แข็งตัวเริ่มละลาย",
+      "ในช่วง",
+      "ต้นฤดูใบไม้ผลิ"
     ],
     "extraExample": "It takes several hours for the icy roads to thaw under the sun.",
     "extraExampleTranslation": "ถนนที่เป็นน้ำแข็งใช้เวลาหลายชั่วโมงกว่าจะละลายภายใต้แสงแดด",
@@ -125041,9 +125136,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "มืดครึ้ม",
-      "มีเมฆมาก",
-      "ฟ้าครึ้ม"
+      "ท้องฟ้ายังคง",
+      "มืดครึ้มตลอดช่ว",
+      "งเช้าโดย",
+      "ไม่มีวี่แววของแสงแดด"
     ],
     "extraExample": "An overcast afternoon often signals an approaching cold front.",
     "extraExampleTranslation": "ช่วงบ่ายที่ฟ้ามืดครึ้มมักเป็นสัญญาณของแนวอากาศเย็นที่กำลังเคลื่อนเข้ามา",
@@ -125069,9 +125165,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "รู้สึกอุ่นใจ",
-      "คลายความกังวล",
-      "มั่นใจขึ้น"
+      "ฉันรู้สึกอุ่นใจ",
+      "ขึ้นหลัง",
+      "จากได้ยินหมอบอก",
+      "ว่าผลตรวจปกติดี"
     ],
     "extraExample": "Her calm voice made everyone in the room feel reassured.",
     "extraExampleTranslation": "น้ำเสียงที่สงบของเธอทำให้ทุกคนในห้องรู้สึกอุ่นใจ",
@@ -125097,9 +125194,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "มีความหวัง",
-      "มองในแง่ดี",
-      "คาดหวังสิ่งดี"
+      "พวกเรามีความ",
+      "หวังว่าโครง",
+      "การใหม่นี้จะป",
+      "ระสบความสำเร็จ"
     ],
     "extraExample": "Despite the rain, she remained hopeful about the afternoon picnic.",
     "extraExampleTranslation": "แม้ฝนจะตก เธอก็ยังคงมีความหวังเกี่ยวกับการปิกนิกช่วงบ่าย",
@@ -125125,9 +125223,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "โล่งอก",
-      "หมดภาระใจ",
-      "เบาสบาย"
+      "หลังจากพูดความ",
+      "จริงออกไปเขาก็",
+      "รู้สึกโล่งอก",
+      "อย่างสมบูรณ์"
     ],
     "extraExample": "She walked out of the meeting feeling unburdened and ready to rest.",
     "extraExampleTranslation": "เธอเดินออกจากห้องประชุมด้วยความรู้สึกโล่งใจและพร้อมที่จะพักผ่อน",
@@ -125153,9 +125252,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ร่าเริง",
-      "สดใส",
-      "มองแง่ดี"
+      "น้ำเสียงของเธอฟังดู",
+      "ร่าเริงและมองโลก",
+      "ในแง่ดีระหว่าง",
+      "ที่เราคุยโทรศัพท์กันเมื่อเช้า"
     ],
     "extraExample": "The coach gave an upbeat talk before the final match.",
     "extraExampleTranslation": "โค้ชพูดให้กำลังใจอย่างสดใสก่อนการแข่งขันรอบชิงชนะเลิศ",
@@ -125181,9 +125281,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "สงบลง",
-      "ผ่อนคลาย",
-      "สบายใจขึ้น"
+      "เสียงเพลงเบาๆ",
+      "ทำให้เธอ",
+      "รู้สึกสงบลงหลัง",
+      "จากวันที่ยาวนาน"
     ],
     "extraExample": "He felt soothed by the warm tea and gentle conversation.",
     "extraExampleTranslation": "เขารู้สึกผ่อนคลายจากชาอุ่นๆ และการพูดคุยอย่างอ่อนโยน",
@@ -125209,9 +125310,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "สดใสขึ้น",
-      "ร่าเริงขึ้น",
-      "คลายเศร้า"
+      "รอยยิ้ม",
+      "ของเธอมักจะ",
+      "ทำให้ทั้งออฟฟิศดู",
+      "สดใสขึ้นเสมอ"
     ],
     "extraExample": "His mood began to brighten when the sun came out.",
     "extraExampleTranslation": "อารมณ์ของเขาเริ่มสดใสขึ้นเมื่อพระอาทิตย์โผล่ออกมา",
@@ -125237,9 +125339,9 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "คำปลอบใจ",
-      "ความอุ่นใจ",
-      "การยืนยันให้มั่นใจ"
+      "คำปลอบใจเล็กๆ",
+      "น้อยๆ",
+      "จากเพื่อนสามารถสร้างความแตกต่างได้อย่างมาก"
     ],
     "extraExample": "She needed some reassurance before stepping onto the stage.",
     "extraExampleTranslation": "เธอต้องการความอุ่นใจบ้างก่อนที่จะก้าวขึ้นไปบนเวที",
@@ -125265,9 +125367,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ความสบายใจ",
-      "การปลอบโยน",
-      "ที่พึ่งทางใจ"
+      "เขาพบความสบายใจ",
+      "จากการเดินเล่น",
+      "ในสวนสาธารณะ",
+      "ที่เงียบสงบ"
     ],
     "extraExample": "Reading old letters brought her solace during a hard week.",
     "extraExampleTranslation": "การอ่านจดหมายเก่าๆ ช่วยปลอบโยนเธอในช่วงสัปดาห์ที่ยากลำบาก",
@@ -125293,9 +125396,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "มีพลังใจ",
+      "ผู้ฟังรู้สึก",
       "จิตใจเบิกบาน",
-      "อิ่มเอมใจ"
+      "จากสุนทรพจน์",
+      "ที่สร้างแรงบันดาลใจ"
     ],
     "extraExample": "She felt uplifted after spending the afternoon with her family.",
     "extraExampleTranslation": "เธอรู้สึกมีพลังใจขึ้นหลังจากใช้เวลาช่วงบ่ายกับครอบครัว",
@@ -125321,9 +125425,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
+      "พวกเขาหัวเราะกัน",
+      "อย่าง",
       "สบายใจ",
-      "ร่าเริง",
-      "ไม่เครียด"
+      "ระหว่างมื้อค่ำ"
     ],
     "extraExample": "The movie was lighthearted and helped me forget my stress.",
     "extraExampleTranslation": "หนังเรื่องนี้ดูสบายๆ และช่วยให้ฉันลืมความเครียดไปได้",
@@ -125350,8 +125455,9 @@ const wordsData = [
     "topic": "education",
     "thTokens": [
       "หน่วยการเรียน",
-      "โมดูล",
-      "บทเรียนย่อย"
+      "แรกครอบ",
+      "คลุมกฎไว",
+      "ยากรณ์พื้นฐาน"
     ],
     "extraExample": "Each module ends with a short quiz to test your understanding.",
     "extraExampleTranslation": "แต่ละหน่วยการเรียนจะจบด้วยแบบทดสอบสั้นๆ เพื่อทดสอบความเข้าใจของคุณ",
@@ -125377,9 +125483,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ที่ได้รับการรับรอง",
-      "ที่ได้มาตรฐาน",
-      "ที่เชื่อถือได้"
+      "นายจ้างชอบปริญ",
+      "ญาจากมหาวิท",
+      "ยาลัยออนไลน์",
+      "ที่ได้รับการรับรอง"
     ],
     "extraExample": "This program is fully accredited by the national board.",
     "extraExampleTranslation": "โปรแกรมนี้ได้รับการรับรองอย่างสมบูรณ์จากคณะกรรมการแห่งชาติ",
@@ -125405,9 +125512,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
+      "หลักสูตรนี้ร",
+      "วมแบบทดสอบ",
       "เชิงโต้ตอบ",
-      "มีปฏิสัมพันธ์",
-      "แบบมีส่วนร่วม"
+      "และบทเรียนวิดีโอ"
     ],
     "extraExample": "Students learn faster through interactive exercises.",
     "extraExampleTranslation": "นักเรียนเรียนรู้ได้เร็วขึ้นผ่านแบบฝึกหัดเชิงโต้ตอบ",
@@ -125433,9 +125541,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "การสัมมนาผ่านเว็บ",
-      "สัมมนาออนไลน์",
-      "เวิร์กชอปออนไลน์"
+      "ฉันเข้าร่วม",
+      "การสัมมนาผ่านเว็บสด",
+      "เกี่ยวกับการตลาดดิจิทัล",
+      "เมื่อวานนี้"
     ],
     "extraExample": "The recorded webinar will be available for all participants.",
     "extraExampleTranslation": "การสัมมนาผ่านเว็บที่บันทึกไว้จะพร้อมให้ผู้เข้าร่วมทุกคนรับชม",
@@ -125461,9 +125570,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "โฆษกของบริษัท",
-      "ตอบคำถามสื่อ",
-      "ในช่วงวิกฤต"
+      "โฆษก",
+      "ของเราจะตอบคำถาม",
+      "จากสื่อมวลชน",
+      "ตอนเที่ยง"
     ],
     "extraExample": "The company hired a new spokesperson during the crisis.",
     "extraExampleTranslation": "บริษัทจ้างโฆษกคนใหม่ในช่วงวิกฤต",
@@ -125489,9 +125599,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ความโปร่งใสเต็มที่",
-      "สร้างความไว้วางใจ",
-      "เปิดเผยอย่างตรงไปตรงมา"
+      "ผู้มีส่วนได้ส่วน",
+      "เสียคาดหวังความโปร่งใส",
+      "เต็มที่ระหว่าง",
+      "การเรียกคืนสินค้า"
     ],
     "extraExample": "High transparency builds long-term trust with the public.",
     "extraExampleTranslation": "ความโปร่งใสสูงช่วยสร้างความไว้วางใจระยะยาวกับสาธารณชน",
@@ -125517,9 +125628,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "จัดการข่าวลือ",
-      "ข่าวลือเท็จ",
-      "แพร่กระจายเร็ว"
+      "เราต้องจัดการ",
+      "กับข่าวลือ",
+      "ก่อนที่มันจะไป",
+      "ถึงสื่อข่าว"
     ],
     "extraExample": "The rumor about layoffs caused panic among staff.",
     "extraExampleTranslation": "ข่าวลือเรื่องการเลิกจ้างทำให้พนักงานตื่นตระหนก",
@@ -125545,9 +125657,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
+      "การขึ้นราคาอย่าง",
+      "กะทันหันทำให้เกิด",
       "กระแสตีกลับ",
-      "ปฏิกิริยาเชิงลบ",
-      "เสียงวิจารณ์"
+      "จากสาธารณชนอย่างมาก"
     ],
     "extraExample": "They changed the ad to avoid further backlash.",
     "extraExampleTranslation": "พวกเขาเปลี่ยนโฆษณาเพื่อหลีกเลี่ยงกระแสตีกลับเพิ่มเติม",
@@ -125573,9 +125686,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "แหล่งข้อมูลที่น่าเชื่อถือ",
-      "คำอธิบายที่น่าเชื่อถือ",
-      "เชื่อถือได้"
+      "ตรวจสอบให้แน่ใจ",
+      "ว่าข้อเท็จจริงทุก",
+      "อย่างในข่าวประชาสัมพันธ์",
+      "น่าเชื่อถือ"
     ],
     "extraExample": "Customers want a credible explanation for the delay.",
     "extraExampleTranslation": "ลูกค้าต้องการคำอธิบายที่น่าเชื่อถือสำหรับความล่าช้า",
@@ -125601,9 +125715,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "มรดกทางวัฒนธรรม",
-      "สืบทอด",
-      "คนรุ่นหลัง"
+      "วัดเก่าแก่แห่ง",
+      "นี้เป็นส่วนสำคัญ",
+      "ของมรดกทางวัฒนธรรม",
+      "แห่งชาติของเรา"
     ],
     "extraExample": "We must protect our cultural heritage for future generations.",
     "extraExampleTranslation": "เราต้องปกป้องมรดกทางวัฒนธรรมของเราไว้ให้คนรุ่นหลัง",
@@ -125630,8 +125745,9 @@ const wordsData = [
     "topic": "society",
     "thTokens": [
       "พิธีกรรม",
-      "การปฏิบัติ",
-      "ตามประเพณี"
+      "ยามเช้าที่ศาล",
+      "เจ้าดึงดูดผู้มาเยือ",
+      "นจำนวนมาก"
     ],
     "extraExample": "Lighting candles is a common ritual during the festival.",
     "extraExampleTranslation": "การจุดเทียนเป็นพิธีกรรมที่พบได้ทั่วไปในช่วงเทศกาล",
@@ -125658,8 +125774,9 @@ const wordsData = [
     "topic": "society",
     "thTokens": [
       "ขบวนแห่",
-      "เดินขบวน",
-      "งานพิธี"
+      "สีสันสดใสเดินไป",
+      "ตาม",
+      "ถนนสายหลัก"
     ],
     "extraExample": "Children carried lanterns in the evening procession.",
     "extraExampleTranslation": "เด็กๆ ถือโคมไฟในขบวนแห่ยามค่ำคืน",
@@ -125685,9 +125802,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "เรื่องเล่าพื้นบ้าน",
-      "ตำนาน",
-      "ความเชื่อ"
+      "เรื่องเล่าพื้น",
+      "บ้านอธิบาย",
+      "ว่าภูเขาลูก",
+      "นี้ได้ชื่อมาอย่างไร"
     ],
     "extraExample": "The dance is inspired by ancient regional folklore.",
     "extraExampleTranslation": "การเต้นรำนี้ได้รับแรงบันดาลใจจากคติชนวิทยาโบราณของภูมิภาค",
@@ -125713,9 +125831,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "เทศกาลนี้จัด",
+      "ขึ้นทุกปีเพื่อ",
       "รำลึกถึง",
-      "เชิดชู",
-      "เหตุการณ์สำคัญ"
+      "ผู้ก่อตั้งเมือง"
     ],
     "extraExample": "A special monument was built to commemorate the historic victory.",
     "extraExampleTranslation": "อนุสาวรีย์พิเศษถูกสร้างขึ้นเพื่อรำลึกถึงชัยชนะครั้งประวัติศาสตร์",
@@ -125742,8 +125861,9 @@ const wordsData = [
     "topic": "society",
     "thTokens": [
       "ช่างฝีมือ",
-      "งานทำมือ",
-      "ทักษะดั้งเดิม"
+      "ท้องถิ่นขายเครื่องปั้น",
+      "ดินเผาทำมือ",
+      "ที่ตลาดมรดกวัฒนธรรม"
     ],
     "extraExample": "The festival supports traditional artisans from nearby villages.",
     "extraExampleTranslation": "เทศกาลนี้สนับสนุนช่างฝีมือดั้งเดิมจากหมู่บ้านใกล้เคียง",
@@ -125769,9 +125889,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "งานรื่นเริง",
-      "ขบวนพาเหรด",
-      "ความสนุกสนาน"
+      "งานคาร์นิวัลประ",
+      "จำปีทำให้เมืองเต็มไป",
+      "ด้วยเสียงดนต",
+      "รีและเสียงหัวเราะ"
     ],
     "extraExample": "Tourists travel from afar to see the vibrant street carnival.",
     "extraExampleTranslation": "นักท่องเที่ยวเดินทางมาจากแดนไกลเพื่อชมงานรื่นเริงริมถนนที่มีชีวิตชีวา",
@@ -125797,9 +125918,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ชุดแต่งกาย",
-      "เครื่องแต่งกาย",
-      "ประเพณี"
+      "นักเต้นสวมชุด",
+      "แต่งกายดั้ง",
+      "เดิมสีสันสดใส",
+      "สำหรับพิธีเปิด"
     ],
     "extraExample": "Children love dressing up in colorful costumes during the parade.",
     "extraExampleTranslation": "เด็กๆ ชอบแต่งตัวในชุดประจำเทศกาลสีสันสดใสระหว่างขบวนแห่",
@@ -125825,9 +125947,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ศักดิ์สิทธิ์",
-      "เคารพบูชา",
-      "ความศรัทธา"
+      "ผู้มาเยือนต้อ",
+      "งพูดเบาๆภาย",
+      "ในบริเวณวัดอัน",
+      "ศักดิ์สิทธิ์"
     ],
     "extraExample": "The river is regarded as a sacred place by local communities.",
     "extraExampleTranslation": "แม่น้ำสายนี้ได้รับการยกย่องว่าเป็นสถานที่ศักดิ์สิทธิ์โดยชุมชนท้องถิ่น",
@@ -125853,9 +125976,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "รื่นเริง",
-      "บรรยากาศเทศกาล",
-      "ความสุข"
+      "ถนนหนทางดูรื่นเริงมาก",
+      "เมื่อมีโค",
+      "มไฟสีแดงประ",
+      "ดับอยู่ทั่วทุกแห่ง"
     ],
     "extraExample": "Everyone enjoyed the festive atmosphere at the night market.",
     "extraExampleTranslation": "ทุกคนเพลิดเพลินกับบรรยากาศแห่งการเฉลิมฉลองที่ตลาดกลางคืน",
@@ -125881,9 +126005,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
+      "ผู้ตรวจสอบบัญชี",
       "พินิจพิเคราะห์",
-      "เพ่งพินิจ",
-      "ตรวจตราอย่างเข้มงวด"
+      "ใบเสร็จทุกใบ",
+      "ระหว่างการตรวจประจำปี"
     ],
     "extraExample": "She scrutinized the signature to make sure it was real.",
     "extraExampleTranslation": "เธอพินิจพิเคราะห์ลายเซ็นเพื่อให้แน่ใจว่าเป็นของจริง",
@@ -125909,9 +126034,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ยืนยันความถูกต้อง",
-      "ตรวจสอบยืนยัน",
-      "พิสูจน์ความจริง"
+      "กรุณายืนยันค",
+      "วามถูกต้อง",
+      "ของอีเมลของคุณ",
+      "โดยคลิกลิงก์"
     ],
     "extraExample": "We need to verify the witness's story before publishing.",
     "extraExampleTranslation": "เราต้องยืนยันความถูกต้องของเรื่องราวพยานก่อนเผยแพร่",
@@ -125937,9 +126063,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
+      "เซ็นเซอร์สามารถ",
       "ตรวจจับ",
-      "สังเกตเห็น",
-      "ค้นพบ"
+      "ควันได้แม้ในปริมาณ",
+      "เพียงเล็กน้อย"
     ],
     "extraExample": "I detected a slight hesitation in his voice.",
     "extraExampleTranslation": "ฉันสังเกตเห็นความลังเลเล็กน้อยในน้ำเสียงของเขา",
@@ -125965,9 +126092,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ตรวจสอบซ้ำ",
-      "เช็กเทียบกับแหล่งอื่น",
-      "ทวนสอบ"
+      "นักข่าวตรวจส",
+      "อบข้อมูลซ้ำกับ",
+      "แหล่งอื่น",
+      "ก่อนตีพิมพ์ข่าว"
     ],
     "extraExample": "I will cross-check the invoice against our delivery list.",
     "extraExampleTranslation": "ฉันจะตรวจสอบใบแจ้งหนี้ซ้ำกับรายการส่งของของเรา",
@@ -125994,8 +126122,9 @@ const wordsData = [
     "topic": "basics",
     "thTokens": [
       "ขอบคุณสำหรับ",
-      "ความสุภาพและ",
-      "ความอดทนของคุณ"
+      "ความสุภาพ",
+      "และความอดทน",
+      "ของคุณในวันนี้"
     ],
     "extraExample": "It is common courtesy to hold the door open for others.",
     "extraExampleTranslation": "การเปิดประตูค้างไว้ให้ผู้อื่นเป็นมารยาทพื้นฐาน",
@@ -126021,9 +126150,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "น้ำตาลในนม",
-      "แลคโตส",
-      "ไม่มีแลคโตส"
+      "หลายคนไม่สามาร",
+      "ถย่อยน้ำตาล",
+      "แลคโตสได้อ",
+      "ย่างเหมาะสม"
     ],
     "extraExample": "This yogurt is completely free of lactose.",
     "extraExampleTranslation": "โยเกิร์ตนี้ปราศจากน้ำตาลแลคโตสอย่างสิ้นเชิง",
@@ -126049,9 +126179,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "มังสวิรัติกินปลา",
-      "ไม่กินเนื้อสัตว์บก",
-      "กินอาหารทะเล"
+      "ในฐานะผู้ที่กิน",
+      "มังสวิรัติแต่กินปลา",
+      "เธอจึงสั่งแซ",
+      "ลมอนย่างแทนสเต็ก"
     ],
     "extraExample": "The restaurant has several great options for a pescatarian.",
     "extraExampleTranslation": "ร้านอาหารมีตัวเลือกดีๆ หลายอย่างสำหรับผู้ที่กินมังสวิรัติแต่กินปลา",
@@ -126077,9 +126208,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "สัตว์น้ำมีเปลือก",
-      "กุ้งหอยปูปลามีเปลือก",
-      "แพ้อาหารทะเล"
+      "เขามีอาการ",
+      "แพ้สัตว์น้ำที่มีเป",
+      "ลือกแข็งทุกชนิด",
+      "อย่างรุนแรง"
     ],
     "extraExample": "Please let the waiter know if you cannot eat shellfish.",
     "extraExampleTranslation": "กรุณาแจ้งพนักงานเสิร์ฟหากคุณไม่สามารถรับประทานสัตว์น้ำที่มีเปลือกแข็งได้",
@@ -126105,9 +126237,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "โรคแพ้กลูเตน",
-      "ไวต่อกลูเตน",
-      "อาหารไร้กลูเตน"
+      "เธอควบคุมอาหาร",
+      "อย่างเข้มงวด",
+      "เนื่องจากภาวะ",
+      "แพ้กลูเตนของเธอ"
     ],
     "extraExample": "This bakery specializes in celiac-friendly bread and desserts.",
     "extraExampleTranslation": "ร้านเบเกอรี่นี้เชี่ยวชาญเรื่องขนมปังและของหวานที่เหมาะสำหรับผู้แพ้กลูเตน",
@@ -126133,9 +126266,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ฉันชอบซื้อขนม",
+      "ที่ไม่มี",
       "สารกันบูด",
-      "วัตถุกันเสีย",
-      "ถนอมอาหาร"
+      "สังเคราะห์"
     ],
     "extraExample": "Salt has been used as a natural preservative for centuries.",
     "extraExampleTranslation": "เกลือถูกใช้เป็นสารกันบูดตามธรรมชาติมานานหลายศตวรรษ",
@@ -126161,9 +126295,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "สารปรุงแต่ง",
-      "สารเจือปน",
-      "ส่วนผสมเพิ่ม"
+      "ควรตรวจสอบบรรจุภัณฑ์เสมอ",
+      "เพื่อหลีกเลี่ยง",
+      "สารปรุง",
+      "แต่งอาหารที่ไม่จำเป็น"
     ],
     "extraExample": "Some people get headaches from certain color additives.",
     "extraExampleTranslation": "บางคนมีอาการปวดหัวจากสารปรุงแต่งสีบางชนิด",
@@ -126189,9 +126324,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ซอสผัด",
+      "นี้ทำจาก",
       "ถั่วเหลือง",
-      "ซอสถั่วเหลือง",
-      "โปรตีนถั่วเหลือง"
+      "หมัก"
     ],
     "extraExample": "Many vegetarian products use soy as their main protein.",
     "extraExampleTranslation": "ผลิตภัณฑ์มังสวิรัติหลายชนิดใช้ถั่วเหลืองเป็นโปรตีนหลัก",
@@ -126217,9 +126353,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ย่อยอาหาร",
-      "ดูดซึม",
-      "ระบบย่อย"
+      "อาหารทอด",
+      "ที่หนักท้อง",
+      "มักจะย่อยยาก",
+      "ในช่วงดึก"
     ],
     "extraExample": "Drinking warm tea can help your stomach digest a big meal.",
     "extraExampleTranslation": "การดื่มชาอุ่นๆ สามารถช่วยให้กระเพาะอาหารย่อยมื้อใหญ่ได้ดีขึ้น",
@@ -126245,9 +126382,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กล้ามเนื้อ",
-      "ต้นขา",
-      "ด้านหน้า"
+      "ยืดกล้ามเนื้อ",
+      "ต้นขาด้านหน้า",
+      "ก่อนออก",
+      "ไปวิ่งระยะไกล"
     ],
     "extraExample": "Strong quadriceps help protect your knees during squats.",
     "extraExampleTranslation": "กล้ามเนื้อต้นขาด้านหน้าที่แข็งแรงช่วยปกป้องเข่าของคุณระหว่างการสควอท",
@@ -126273,9 +126411,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "เอ็น",
-      "ยึดข้อ",
-      "เชื่อมต่อกระดูก"
+      "เขาเอ็นยึดข้อ",
+      "เข่าฉีก",
+      "ขณะเล่น",
+      "บาสเกตบอล"
     ],
     "extraExample": "Proper stretching keeps your ligaments healthy and flexible.",
     "extraExampleTranslation": "การยืดเหยียดที่เหมาะสมช่วยให้เอ็นยึดข้อของคุณแข็งแรงและยืดหยุ่น",
@@ -126302,8 +126441,9 @@ const wordsData = [
     "topic": "body",
     "thTokens": [
       "กระดูกอ่อน",
-      "รองรับ",
-      "ข้อต่อ"
+      "ที่แข็งแรงช่วยป้อ",
+      "งกันไม่ให้กระ",
+      "ดูกเสียดสีกัน"
     ],
     "extraExample": "Low-impact exercises are gentle on your knee cartilage.",
     "extraExampleTranslation": "การออกกำลังกายแบบแรงกระแทกต่ำช่วยถนอมกระดูกอ่อนหัวเข่าของคุณ",
@@ -126331,7 +126471,8 @@ const wordsData = [
     "thTokens": [
       "กระดูกสันหลัง",
       "แต่ละข้อ",
-      "เรียงต่อกัน"
+      "ช่วยรับน้ำหนัก",
+      "ตัวส่วนบนของคุณ"
     ],
     "extraExample": "Gentle yoga twists can relieve pressure between each vertebra.",
     "extraExampleTranslation": "การบิดตัวเบาๆ ในโยคะช่วยลดแรงกดระหว่างกระดูกสันหลังแต่ละข้อได้",
@@ -126357,9 +126498,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กระดูก",
-      "เชิงกราน",
-      "ช่วงสะโพก"
+      "รักษาระดับ",
+      "กระดูกเชิงกราน",
+      "ให้ตรงเมื่อทำท่าแพ",
+      "ลงก์ด้านข้าง"
     ],
     "extraExample": "Tight hips can pull your pelvis out of alignment.",
     "extraExampleTranslation": "สะโพกที่ตึงอาจดึงให้กระดูกเชิงกรานของคุณเสียสมดุลได้",
@@ -126385,9 +126527,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "เกร็งกล้ามเนื้อ",
       "ช่องท้อง",
-      "หน้าท้อง",
-      "แกนกลางลำตัว"
+      "เพื่อให้หลัง",
+      "ของคุณมั่นคง"
     ],
     "extraExample": "Deep breathing exercises expand the lower abdomen.",
     "extraExampleTranslation": "การฝึกหายใจลึกๆ ช่วยขยายช่องท้องส่วนล่าง",
@@ -126413,9 +126556,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "เธอยกดัมเบล",
+      "เพื่อเสริมสร้าง",
       "กล้ามเนื้อ",
-      "ต้นแขน",
-      "ด้านหน้า"
+      "ต้นแขนด้านหน้า"
     ],
     "extraExample": "Stretch your biceps by extending your arms behind you.",
     "extraExampleTranslation": "ยืดกล้ามเนื้อต้นแขนด้านหน้าโดยการเหยียดแขนไปด้านหลัง",
@@ -126441,9 +126585,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กล้ามเนื้อ",
-      "ต้นแขน",
-      "ด้านหลัง"
+      "ท่าดิปส์เป็นการออก",
+      "กำลังกาย",
+      "ที่ดีสำหรับกระชับ",
+      "กล้ามเนื้อต้นแขนด้านหลัง"
     ],
     "extraExample": "Pull your elbow gently overhead to stretch your triceps.",
     "extraExampleTranslation": "ดึงข้อศอกขึ้นเหนือศีรษะเบาๆ เพื่อยืดกล้ามเนื้อต้นแขนด้านหลัง",
@@ -126469,9 +126614,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ความคล่องตัว",
-      "การเคลื่อนไหว",
-      "ข้อต่อ"
+      "การยืดเหยียด",
+      "ทุกวันช่วย",
+      "เพิ่มความคล่องตัว",
+      "ของข้อไหล่"
     ],
     "extraExample": "Good hip mobility makes deep squats much easier.",
     "extraExampleTranslation": "ความคล่องตัวของสะโพกที่ดีช่วยให้ทำท่าสควอทลึกได้ง่ายขึ้นมาก",
@@ -126497,9 +126643,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "การคลาย",
-      "กล้ามเนื้อ",
-      "หลังออกกำลังกาย"
+      "อย่าข้าม",
+      "การคลายกล้ามเนื้อ",
+      "หลังออกกำลังกาย",
+      "แบบคาร์ดิโอหนักๆ"
     ],
     "extraExample": "A ten-minute cooldown helps lower your heart rate safely.",
     "extraExampleTranslation": "การคลายกล้ามเนื้อสิบนาทีช่วยลดอัตราการเต้นของหัวใจอย่างปลอดภัย",
@@ -126525,9 +126672,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "อาการปวดเมื่อย",
-      "กล้ามเนื้อ",
-      "หลังออกกำลังกาย"
+      "อาการปวดเมื่อยกล้ามเนื้อ",
+      "เล็กน้อยเป็น",
+      "เรื่องปกติหลัง",
+      "จากลองออกกำลังกายแบบใหม่"
     ],
     "extraExample": "Light walking and stretching can reduce soreness the next day.",
     "extraExampleTranslation": "การเดินเบาๆ และการยืดเหยียดช่วยลดอาการปวดเมื่อยในวันถัดไปได้",
@@ -126553,9 +126701,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ลานกลาง",
-      "พื้นที่ส่วนกลาง",
-      "ลานอาคาร"
+      "เพื่อนบ้าน",
+      "มักคุยกันที่",
+      "ลานกลางอาคาร",
+      "หลังอาหารเย็น"
     ],
     "extraExample": "Kids are playing safely in the shared courtyard.",
     "extraExampleTranslation": "เด็กๆ กำลังเล่นอย่างปลอดภัยในลานกลางอาคารส่วนกลาง",
@@ -126581,9 +126730,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ไล่ออก",
-      "บังคับย้าย",
-      "ขับไล่"
+      "ผู้จัดการอาคาร",
+      "สามารถไล่ใครก็ตาม",
+      "ที่ฝ่าฝืนกฎ",
+      "เรื่องเสียงออกได้"
     ],
     "extraExample": "They were worried the owner would evict them for keeping a pet.",
     "extraExampleTranslation": "พวกเขากังวลว่าเจ้าของจะไล่ออกเพราะเลี้ยงสัตว์",
@@ -126609,9 +126759,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "มีเฟอร์นิเจอร์",
-      "ตกแต่งพร้อม",
-      "พร้อมอยู่"
+      "ฉันเช่าห้องสตูดิโอ",
+      "ที่มีเฟอร์",
+      "นิเจอร์พร้อม",
+      "จะได้ไม่ต้องซื้อโซฟา"
     ],
     "extraExample": "The apartment comes fully furnished with a fridge and a desk.",
     "extraExampleTranslation": "อพาร์ตเมนต์นี้มีเฟอร์นิเจอร์ครบทั้งตู้เย็นและโต๊ะทำงาน",
@@ -126637,9 +126788,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "สาธารณูปโภค",
-      "ค่าน้ำค่าไฟ",
-      "บริการพื้นฐาน"
+      "ค่าน้ำรวมอยู่แล้ว",
+      "แต่คุณ",
+      "ต้องจ่ายค่าไฟ",
+      "ฟ้าแยกต่างหาก"
     ],
     "extraExample": "Our monthly utility bills went up during the hot summer.",
     "extraExampleTranslation": "บิลค่าสาธารณูปโภครายเดือนของเราเพิ่มขึ้นในช่วงหน้าร้อน",
@@ -126665,9 +126817,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "ฉันจะไปเจอคุณ",
+      "ที่",
       "โถงต้อนรับ",
-      "ล็อบบี้",
-      "โถงทางเข้า"
+      "ตอนหนึ่งทุ่ม"
     ],
     "extraExample": "Packages are left with the guard in the main lobby.",
     "extraExampleTranslation": "พัสดุจะถูกฝากไว้กับรปภ. ที่โถงต้อนรับหลัก",
@@ -126693,9 +126846,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "ผู้นำที่",
       "น่าไว้วางใจ",
-      "ซื่อสัตย์",
-      "ไว้ใจได้"
+      "จะรับฟังความคิดเห็น",
+      "โดยไม่โกรธ"
     ],
     "extraExample": "You can share your ideas here because everyone is trustworthy.",
     "extraExampleTranslation": "คุณสามารถแบ่งปันไอเดียได้ที่นี่เพราะทุกคนน่าไว้วางใจ",
@@ -126721,9 +126875,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ประสานงาน",
-      "จัดระเบียบร่วมกัน",
-      "เชื่อมโยงการทำงาน"
+      "ฉันจะประสานงาน",
+      "กับวิทยากร",
+      "เพื่อยืนยันตาราง",
+      "เวลาของพวกเขา"
     ],
     "extraExample": "It takes effort to coordinate a remote team across three time zones.",
     "extraExampleTranslation": "ต้องใช้ความพยายามในการประสานงานทีมทางไกลข้ามสามเขตเวลา",
@@ -126749,9 +126904,9 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "พึ่งพาได้",
-      "ไว้ใจได้",
-      "สม่ำเสมอ"
+      "เมื่อเรื่องต่างๆ",
+      "ยุ่งเหยิง",
+      "คุณย่อมต้องการคู่หูที่พึ่งพาได้อยู่เคียงข้าง"
     ],
     "extraExample": "She has been a dependable member of our volunteer group for years.",
     "extraExampleTranslation": "เธอเป็นสมาชิกที่พึ่งพาได้ของกลุ่มอาสาสมัครเรามาหลายปีแล้ว",
@@ -126777,9 +126932,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "ความไว้วางใจและ",
       "ความภักดี",
-      "ความซื่อสัตย์",
-      "ความจงรักภักดี"
+      "ได้มาจากการกระทำที่สม่ำเสมอ",
+      "เมื่อเวลาผ่านไป"
     ],
     "extraExample": "The team showed great loyalty by supporting each other during tough times.",
     "extraExampleTranslation": "ทีมแสดงความภักดีอย่างมากด้วยการสนับสนุนกันในช่วงเวลาที่ยากลำบาก",
@@ -126805,9 +126961,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ให้ความร่วมมือ",
-      "ร่วมมือ",
-      "ช่วยกันทำ"
+      "ทั้งสองกลุ่มตกลง",
+      "ที่จะให้ความร่วมมือ",
+      "เพื่อ",
+      "ให้งานประสบความสำเร็จ"
     ],
     "extraExample": "Thank you for your willingness to cooperate on this tight schedule.",
     "extraExampleTranslation": "ขอบคุณที่เต็มใจให้ความร่วมมือภายใต้ตารางเวลาที่กระชั้นชิดนี้",
@@ -126833,9 +126990,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "สายลม",
-      "ลมอ่อนๆ",
-      "พัดเบาๆ"
+      "สายลมทะเลเย็น",
+      "ๆทำให้ช่วงบ่าย",
+      "ที่อบอุ่น",
+      "รู้สึกสบายขึ้น"
     ],
     "extraExample": "The leaves rustled gently in the evening breeze.",
     "extraExampleTranslation": "ใบไม้ไหวเบาๆ ท่ามกลางสายลมอ่อนๆ ยามเย็น",
@@ -126861,9 +127019,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "หนาวเย็น",
-      "เย็นยะเยือก",
-      "อากาศเย็น"
+      "อากาศจะค่อนข้าง",
+      "หนาวเย็นใน",
+      "ตอนเย็นเมื่อฤ",
+      "ดูใบไม้ร่วงมาถึง"
     ],
     "extraExample": "Bring a light jacket because the morning air is still chilly.",
     "extraExampleTranslation": "นำเสื้อแจ็คเก็ตบางๆ มาด้วย เพราะอากาศตอนเช้ายังหนาวเย็นอยู่",
@@ -126889,9 +127048,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ฟ้าผ่า",
-      "ฟ้าแลบ",
-      "ประกายไฟ"
+      "แสงฟ้าแลบสว่าง",
+      "จ้าส่องสว่าง",
+      "ทั่วท้องฟ้ายาม",
+      "ค่ำคืนที่มืดมิด"
     ],
     "extraExample": "Stay indoors when you see lightning to stay safe.",
     "extraExampleTranslation": "อยู่ในอาคารเมื่อคุณเห็นฟ้าผ่าเพื่อความปลอดภัย",
@@ -126917,9 +127077,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "มีหมอกหนา",
-      "มัว",
-      "มองไม่ชัด"
+      "การขับรถบนถน",
+      "นบนภูเขาเป็น",
+      "อันตรายในเช้าที่",
+      "มีหมอกหนา"
     ],
     "extraExample": "The harbor was so foggy that we could barely see the boats.",
     "extraExampleTranslation": "ท่าเรือมีหมอกหนามากจนเราแทบมองไม่เห็นเรือเลย",
@@ -126945,9 +127106,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ฝนตกหนัก",
-      "ฝนเทลงมา",
-      "ห่าฝน"
+      "เราติดอยู่ท่ามกลางฝน",
+      "ที่ตกลง",
+      "มาอย่างหนักกะทันหัน",
+      "โดยไม่มีร่ม"
     ],
     "extraExample": "The afternoon downpour quickly flooded the narrow streets.",
     "extraExampleTranslation": "ฝนที่ตกลงมาอย่างหนักในช่วงบ่ายทำให้น้ำท่วมถนนแคบๆ อย่างรวดเร็ว",
@@ -126973,9 +127135,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ตามฤดูกาล",
-      "ประจำฤดู",
-      "เปลี่ยนตามฤดู"
+      "นกหลายชนิดเริ่ม",
+      "การอพยพตามฤดูกาล",
+      "ก่อน",
+      "ที่ฤดูหนาวจะเริ่มต้นขึ้น"
     ],
     "extraExample": "The market sells fresh seasonal fruits grown by local farmers.",
     "extraExampleTranslation": "ตลาดขายผลไม้สดตามฤดูกาลที่ปลูกโดยเกษตรกรในท้องถิ่น",
@@ -127002,8 +127165,9 @@ const wordsData = [
     "topic": "nature",
     "thTokens": [
       "ลมกระโชก",
-      "ลมพัดแรง",
-      "วูบ"
+      "แรงพัดหมวก",
+      "ของฉันปลิวหลุด",
+      "จากหัวไปเลย"
     ],
     "extraExample": "The weather warning mentioned wind gusts reaching seventy kilometers per hour.",
     "extraExampleTranslation": "คำเตือนสภาพอากาศระบุถึงลมกระโชกที่อาจแรงถึงเจ็ดสิบกิโลเมตรต่อชั่วโมง",
@@ -127029,9 +127193,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ผู้สอน",
-      "ตอบคำถาม",
-      "แบบฝึกหัด"
+      "ผู้สอนออนไลน์",
+      "ของเราต",
+      "อบคำถาม",
+      "ในฟอรัมทุกวัน"
     ],
     "extraExample": "Ask the instructor if you need help with the exercises.",
     "extraExampleTranslation": "ถามผู้สอนได้หากคุณต้องการความช่วยเหลือเกี่ยวกับแบบฝึกหัด",
@@ -127057,9 +127222,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "เรียนตามจังหวะของตนเอง",
-      "ทำงานประจำ",
-      "ทบทวนได้ตลอด"
+      "ฉันชอบคอร์สที่",
+      "เรียนตามจังหวะ",
+      "ของตนเอง",
+      "เพราะฉันทำงานประจำ"
     ],
     "extraExample": "The self-paced format lets you pause and review anytime.",
     "extraExampleTranslation": "รูปแบบการเรียนตามจังหวะของตนเองช่วยให้คุณหยุดและทบทวนได้ตลอดเวลา",
@@ -127086,8 +127252,9 @@ const wordsData = [
     "topic": "education",
     "thTokens": [
       "ผู้คุมสอบ",
-      "ตรวจสอบบัตร",
-      "เปิดกล้องไว้"
+      "ออนไลน์จะตรวจสอบ",
+      "บัตรประจำตัว",
+      "ของคุณก่อนเริ่มสอบ"
     ],
     "extraExample": "The proctor reminded everyone to keep their cameras on.",
     "extraExampleTranslation": "ผู้คุมสอบเตือนทุกคนให้เปิดกล้องไว้ตลอดเวลา",
@@ -127113,9 +127280,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "คำขอโทษ",
-      "การขออภัย",
-      "แสดงความเสียใจ"
+      "ซีอีโอออกคำขอโทษ",
+      "อย่างจริงใจ",
+      "ต่อลูกค้าที่ได้รับ",
+      "ผลกระทบทุกคน"
     ],
     "extraExample": "We need to include a clear apology in the email update.",
     "extraExampleTranslation": "เราต้องใส่คำขอโทษที่ชัดเจนไว้ในอีเมลอัปเดต",
@@ -127142,8 +127310,9 @@ const wordsData = [
     "topic": "work",
     "thTokens": [
       "ผู้มีส่วนได้ส่วนเสีย",
-      "ผู้เกี่ยวข้อง",
-      "ผู้ถือหุ้นและคู่ค้า"
+      "หลักทุกคน",
+      "ได้รับข้อมูลอัปเดต",
+      "ก่อนข่าวจะออก"
     ],
     "extraExample": "We must keep our stakeholders informed during a crisis.",
     "extraExampleTranslation": "เราต้องแจ้งข้อมูลให้ผู้มีส่วนได้ส่วนเสียทราบอยู่เสมอในช่วงวิกฤต",
@@ -127169,9 +127338,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ทำให้เข้าใจผิด",
-      "บิดเบือน",
-      "คลาดเคลื่อน"
+      "เรานำโฆษณา",
+      "ที่ทำให้เข้าใจ",
+      "ผิด",
+      "ออกทันที"
     ],
     "extraExample": "The post contained misleading numbers about our sales.",
     "extraExampleTranslation": "โพสต์นั้นมีตัวเลขที่ทำให้เข้าใจผิดเกี่ยวกับยอดขายของเรา",
@@ -127197,9 +127367,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ระบบล่ม",
-      "ไฟดับ",
-      "การหยุดชะงัก"
+      "ระบบเซิร์ฟ",
+      "เวอร์ล่มเป็น",
+      "เวลาสามชั่วโมง",
+      "เมื่อคืนนี้"
     ],
     "extraExample": "We sent an alert to users explaining the network outage.",
     "extraExampleTranslation": "เราส่งแจ้งเตือนถึงผู้ใช้เพื่ออธิบายเรื่องระบบเครือข่ายขัดข้อง",
@@ -127225,9 +127396,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ชดเชย",
-      "จ่ายค่าเสียหาย",
-      "ทดแทน"
+      "สายการบินมอบบัตรกำนัล",
+      "เพื่อ",
+      "ชดเชยผู้โดยสาร",
+      "สำหรับความล่าช้า"
     ],
     "extraExample": "How will we compensate clients who lost access today?",
     "extraExampleTranslation": "เราจะชดเชยลูกค้าที่เข้าใช้งานไม่ได้ในวันนี้อย่างไร",
@@ -127253,9 +127425,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "เชื้อสาย",
-      "บรรพบุรุษ",
-      "ต้นตระกูล"
+      "ผู้คนมารวมตัวกัน",
+      "ที่งานเทศกาล",
+      "เพื่อเฉลิมฉลอง",
+      "เชื้อสายร่วมกัน"
     ],
     "extraExample": "She traced her ancestry back to a small coastal village.",
     "extraExampleTranslation": "เธอสืบค้นเชื้อสายของตัวเองย้อนกลับไปถึงหมู่บ้านชายฝั่งเล็กๆ",
@@ -127281,9 +127454,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "โบราณวัตถุ",
-      "สิ่งประดิษฐ์",
-      "วัตถุโบราณ"
+      "พิพิธภัณฑ์จัด",
+      "แสดงโบราณวัต",
+      "ถุหายาก",
+      "จากอาณาจักรโบราณ"
     ],
     "extraExample": "Local divers found a ceramic artifact near the sunken ship.",
     "extraExampleTranslation": "นักดำน้ำท้องถิ่นพบโบราณวัตถุเซรามิกใกล้เรือที่อับปาง",
@@ -127309,9 +127483,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "งานเลี้ยง",
-      "งานเลี้ยงฉลอง",
-      "โต๊ะจีน"
+      "เทศกาลเก็บเกี่ย",
+      "วปิดท้ายด้วย",
+      "งานเลี้ยงฉลองใหญ่",
+      "ที่ศาลาว่าการเมือง"
     ],
     "extraExample": "Guests enjoyed traditional dishes during the royal banquet.",
     "extraExampleTranslation": "แขกเหรื่อเพลิดเพลินกับอาหารพื้นเมืองระหว่างงานเลี้ยงหลวง",
@@ -127337,9 +127512,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ภาษาถิ่น",
-      "สำเนียงท้องถิ่น",
-      "ภาษาพื้นเมือง"
+      "เพลงพื้นบ้าน",
+      "ในงานเทศกาล",
+      "ถูกขับร้อง",
+      "ด้วยภาษาถิ่น"
     ],
     "extraExample": "He can understand the northern dialect even though he grew up in the city.",
     "extraExampleTranslation": "เขาเข้าใจภาษาถิ่นทางเหนือแม้จะเติบโตในเมือง",
@@ -127365,9 +127541,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "โคมไฟ",
-      "โคม",
-      "โคมลอย"
+      "โคมกระดาษห",
+      "ลายพันดวงลอย",
+      "ขึ้นสู่ท้อง",
+      "ฟ้ายามค่ำคืน"
     ],
     "extraExample": "Families hung red lanterns outside their doors for good luck.",
     "extraExampleTranslation": "ครอบครัวต่างๆ แขวนโคมไฟสีแดงหน้าประตูเพื่อความเป็นสิริมงคล",
@@ -127393,9 +127570,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "อนุสาวรีย์",
-      "อนุสรณ์สถาน",
-      "สิ่งก่อสร้างรำลึก"
+      "นักท่องเที่ย",
+      "วเยี่ยมชมอ",
+      "นุสาวรีย์หินก",
+      "ลางจัตุรัสเก่า"
     ],
     "extraExample": "The city restored the historic monument before the national holiday.",
     "extraExampleTranslation": "เมืองได้บูรณะอนุสรณ์สถานทางประวัติศาสตร์ก่อนวันหยุดชาติ",
@@ -127421,9 +127599,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ขบวนพาเหรด",
-      "ขบวนแห่",
-      "การเดินขบวน"
+      "ฝูงชนยืนเรียงราย",
+      "ตามถนน",
+      "เพื่อชมขบวนพาเหรด",
+      "ปีใหม่ที่สดใส"
     ],
     "extraExample": "The school band joined the annual cultural parade.",
     "extraExampleTranslation": "วงดนตรีโรงเรียนเข้าร่วมขบวนแห่ทางวัฒนธรรมประจำปี",
@@ -127449,9 +127628,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "การแสวงบุญ",
-      "การเดินทางสักการะ",
-      "ทริปแสวงบุญ"
+      "ทุกฤดูใบไม้ผ",
+      "ลิผู้คนหลายพัน",
+      "เดินทางไปแสวงบุญ",
+      "ที่วัดบนภูเขา"
     ],
     "extraExample": "Her grandfather completed his lifelong pilgrimage last autumn.",
     "extraExampleTranslation": "คุณปู่ของเธอเดินทางแสวงบุญที่ตั้งใจไว้ตลอดชีวิตสำเร็จเมื่อฤดูใบไม้ร่วงปีที่แล้ว",
@@ -127477,9 +127657,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "พระธาตุ",
-      "วัตถุโบราณ",
-      "ของเก่าแก่"
+      "วัดเก็บรักษาพ",
+      "ระธาตุอัน",
+      "ศักดิ์สิทธิ์",
+      "ไว้ในมณฑปทองคำ"
     ],
     "extraExample": "Archaeologists studied every relic found at the heritage site.",
     "extraExampleTranslation": "นักโบราณคดีศึกษาวัตถุโบราณทุกชิ้นที่พบในแหล่งมรดกทางวัฒนธรรม",
@@ -127505,9 +127686,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ศาลเจ้า",
-      "สถานที่สักการะ",
-      "หอพระ"
+      "ผู้คนวางด",
+      "อกไม้สด",
+      "และธูป",
+      "ที่ศาลเจ้าริมทาง"
     ],
     "extraExample": "The wooden shrine is over three hundred years old.",
     "extraExampleTranslation": "ศาลเจ้าไม้แห่งนี้มีอายุมากกว่าสามร้อยปี",
@@ -127533,9 +127715,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ผ้าทอ",
-      "พรมทอ",
-      "ผ้าแขวนผนัง"
+      "ผนังพระราชวังประดับ",
+      "ด้วยผ้าทอขนาด",
+      "ใหญ่ที่แสดงภาพการ",
+      "รบทางประวัติศาสตร์"
     ],
     "extraExample": "Weavers spent months creating the detailed silk tapestry.",
     "extraExampleTranslation": "ช่างทอใช้เวลาหลายเดือนในการสร้างสรรค์ผ้าทอไหมที่มีรายละเอียดประณีต",
@@ -127561,9 +127744,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ตรวจ",
-      "สอบ",
-      "ซ้ำ"
+      "ตรวจสอบหนังสือ",
+      "เดินทางซ้ำอีกค",
+      "รั้งเสมอก่อนออก",
+      "จากบ้านไปสนามบิน"
     ],
     "extraExample": "I will double-check the numbers before sending the invoice.",
     "extraExampleTranslation": "ฉันจะตรวจสอบตัวเลขซ้ำอีกครั้งก่อนส่งใบแจ้งหนี้",
@@ -127645,9 +127829,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ถั่วลิสง",
-      "เนยถั่ว",
-      "แพ้ถั่วลิสง"
+      "เขาแพ้ถั่วลิสง",
+      "อย่างรุนแรง",
+      "และหลีก",
+      "เลี่ยงซอสเอเชีย"
     ],
     "extraExample": "Please check if the cookies contain any peanut oil.",
     "extraExampleTranslation": "โปรดตรวจสอบว่าคุกกี้มีน้ำมันถั่วลิสงผสมอยู่หรือไม่",
@@ -127673,9 +127858,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "งา",
-      "เมล็ดงา",
-      "น้ำมันงา"
+      "ขนมปังโร",
+      "ยหน้าด้ว",
+      "ยเมล็ด",
+      "งาคั่ว"
     ],
     "extraExample": "Some people are allergic to sesame oil in dressings.",
     "extraExampleTranslation": "บางคนแพ้น้ำมันงาในน้ำสลัด",
@@ -127701,9 +127887,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ผู้ที่ไวต่อ",
       "ข้าวสาลี",
-      "โฮลวีต",
-      "ธัญพืช"
+      "มักเลือกกินเส้นก๋ว",
+      "ยเตี๋ยวจากข้าว"
     ],
     "extraExample": "This whole wheat bread is rich in fiber.",
     "extraExampleTranslation": "ขนมปังโฮลวีตนี้มีใยอาหารสูง",
@@ -127729,9 +127916,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ฉันกิน",
       "ข้าวโอ๊ตต้ม",
-      "โจ๊กข้าวโอ๊ต",
-      "อาหารเช้า"
+      "กับเบอร์รีส",
+      "ดทุกเช้า"
     ],
     "extraExample": "Oatmeal is a healthy choice for a dairy-free breakfast.",
     "extraExampleTranslation": "ข้าวโอ๊ตต้มเป็นตัวเลือกที่ดีต่อสุขภาพสำหรับมื้อเช้าที่ไม่มีนม",
@@ -127757,9 +127945,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "เราย่าง",
       "เต้าหู้",
-      "เต้าหู้ทอด",
-      "โปรตีนจากพืช"
+      "หั่นเต๋ากับกระเทียม",
+      "และสมุนไพร"
     ],
     "extraExample": "Tofu is a popular protein for people who skip meat.",
     "extraExampleTranslation": "เต้าหู้เป็นโปรตีนยอดนิยมสำหรับคนที่ไม่กินเนื้อสัตว์",
@@ -127785,9 +127974,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "เธอดื่มนม",
       "อัลมอนด์",
-      "นมอัลมอนด์",
-      "ถั่วอัลมอนด์"
+      "ในกาแฟเย็น",
+      "ของเธอ"
     ],
     "extraExample": "Sliced almonds add nice texture to the salad.",
     "extraExampleTranslation": "อัลมอนด์สไลด์ช่วยเพิ่มเนื้อสัมผัสที่ดีให้กับสลัด",
@@ -127813,9 +128003,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจากน้ำตาล",
-      "ไม่มีน้ำตาล",
-      "ไร้น้ำตาล"
+      "เธอเลือกโยเกิร์ต",
+      "ปราศ",
+      "จากน้ำตาลสำหรับ",
+      "ของว่างยามบ่าย"
     ],
     "extraExample": "This bakery makes sugar-free muffins for diabetic guests.",
     "extraExampleTranslation": "ร้านเบเกอรีนี้ทำมัฟฟินปราศจากน้ำตาลสำหรับลูกค้าเบาหวาน",
@@ -127899,9 +128090,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ให้เช่าช่วง",
-      "ห้องเช่า",
-      "ขออนุญาต"
+      "ฉันวางแผนจะ",
+      "ให้เช่าช่วงอพาร์ตเมนต์",
+      "ของฉันในช่วง",
+      "ที่ไม่อยู่ฤดูร้อนนี้"
     ],
     "extraExample": "Make sure you ask the building manager before you sublet your unit.",
     "extraExampleTranslation": "อย่าลืมขออนุญาตผู้จัดการอาคารก่อนที่จะให้เช่าช่วงห้องของคุณ",
@@ -127928,8 +128120,9 @@ const wordsData = [
     "topic": "home",
     "thTokens": [
       "เครื่องทำความร้อน",
-      "ในห้อง",
-      "ส่งเสียงดัง"
+      "ในห้องนั่ง",
+      "เล่นส่งเสียงดังปังๆ",
+      "ในตอนกลางคืน"
     ],
     "extraExample": "Please do not put wet towels directly on the electric radiator.",
     "extraExampleTranslation": "กรุณาอย่าวางผ้าเช็ดตัวเปียกบนเครื่องทำความร้อนไฟฟ้าโดยตรง",
@@ -127955,9 +128148,9 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ร้านซักรีด",
-      "หยอดเหรียญ",
-      "เครื่องซักผ้า"
+      "มีร้านซักรีดหยอดเหรียญที่เปิด",
+      "24",
+      "ชั่วโมงอยู่ตรงข้ามตึกอพาร์ตเมนต์ของเราเลย"
     ],
     "extraExample": "Since my unit has no washer, I walk to the laundromat every Sunday.",
     "extraExampleTranslation": "เนื่องจากห้องของฉันไม่มีเครื่องซักผ้า ฉันจึงเดินไปร้านซักรีดหยอดเหรียญทุกวันอาทิตย์",
@@ -127983,9 +128176,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ปล่องทิ้งขยะ",
-      "แต่ละชั้น",
-      "ถุงขยะ"
+      "คุณสามารถทิ้งถุงขยะ",
+      "ที่มัดปากแล้วลง",
+      "ในปล่องทิ้งขยะ",
+      "ในแต่ละชั้นได้"
     ],
     "extraExample": "Someone blocked the chute with a large cardboard box yesterday.",
     "extraExampleTranslation": "เมื่อวานมีคนทำปล่องทิ้งขยะตันด้วยกล่องกระดาษใบใหญ่",
@@ -128012,8 +128206,9 @@ const wordsData = [
     "topic": "home",
     "thTokens": [
       "พนักงานหน้าตึก",
-      "เปิดประตู",
-      "รับฝากของ"
+      "มักจะเปิดประตูค้าง",
+      "ไว้ให้เสมอเวลาฉันถือ",
+      "ของชำหนักๆ"
     ],
     "extraExample": "You should leave your spare key with the doorman for the plumber.",
     "extraExampleTranslation": "คุณควรฝากกุญแจสำรองไว้กับพนักงานหน้าตึกเพื่อให้ช่างประปา",
@@ -128039,9 +128234,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "เพื่อนบ้านมัก",
+      "จะมารวมตัวกันบน",
       "ดาดฟ้า",
-      "พื้นที่ส่วนกลาง",
-      "ชมวิว"
+      "เพื่อดูพระอาทิตย์ตก"
     ],
     "extraExample": "Our building has a small rooftop garden with benches and string lights.",
     "extraExampleTranslation": "ตึกของเรามีสวนเล็กๆ บนดาดฟ้าพร้อมม้านั่งและไฟประดับ",
@@ -128067,9 +128263,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ลานระเบียง",
-      "ชั้นล่าง",
-      "พื้นที่นั่งเล่น"
+      "เพื่อนบ้าน",
+      "ของฉันปลูกสมุนไพรสด",
+      "ในกระถางบน",
+      "ลานระเบียงชั้นล่างของเธอ"
     ],
     "extraExample": "We invited the people next door for coffee on our patio.",
     "extraExampleTranslation": "เราชวนคนข้างห้องมาดื่มกาแฟที่ลานระเบียงของเรา",
@@ -128095,9 +128292,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "แจ้งให้ทราบ",
-      "ประกาศ",
-      "ผู้พักอาศัย"
+      "กรุณาแจ้ง",
+      "ให้เพื่อนบ้านทราบ",
+      "ก่อนจัดปาร์ตี้เสียงดัง",
+      "ในวันสุดสัปดาห์"
     ],
     "extraExample": "Management will notify all residents when the water is turned off for repairs.",
     "extraExampleTranslation": "ฝ่ายบริหารจะแจ้งให้ผู้พักอาศัยทุกคนทราบเมื่อปิดน้ำเพื่อซ่อมแซม",
@@ -128123,9 +128321,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ภารโรง",
-      "ดูแลความสะอาด",
-      "ซ่อมบำรุง"
+      "ภารโรงถูบันได",
+      "ที่เปีย",
+      "กทันทีหลัง",
+      "จากพายุฝนสงบ"
     ],
     "extraExample": "If a light bulb burns out in the corridor, tell the janitor.",
     "extraExampleTranslation": "หากหลอดไฟในทางเดินขาด ให้บอกภารโรง",
@@ -128151,9 +128350,9 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "น้ำผึ้ง",
-      "ความหวานจากผึ้ง",
-      "เติมน้ำผึ้ง"
+      "บางค",
+      "นไม่กิน",
+      "น้ำผึ้ง"
     ],
     "extraExample": "Add a little honey to your tea.",
     "extraExampleTranslation": "เติมน้ำผึ้งเล็กน้อยลงในชาของคุณ",
@@ -128179,9 +128378,9 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "เขากิน",
       "กุ้ง",
-      "อาหารทะเล",
-      "แพ้กุ้ง"
+      "ไม่ได้"
     ],
     "extraExample": "Does this noodle bowl have shrimp?",
     "extraExampleTranslation": "ก๋วยเตี๋ยวชามนี้มีกุ้งไหม",
@@ -128207,9 +128406,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "เห็ด",
-      "ใส่เห็ด",
-      "ไม่ชอบเห็ด"
+      "เธอใส่",
+      "เห็ดลง",
+      "ในพาส",
+      "ต้าของเธอ"
     ],
     "extraExample": "I do not like mushroom on pizza.",
     "extraExampleTranslation": "ฉันไม่ชอบเห็ดบนพิซซ่า",
@@ -128235,9 +128435,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "วอลนัท",
-      "ถั่ววอลนัท",
-      "หลีกเลี่ยงถั่ว"
+      "ขนมปัง",
+      "นี้มีชิ้น",
+      "วอล",
+      "นัท"
     ],
     "extraExample": "Avoid walnut if you have a nut allergy.",
     "extraExampleTranslation": "หลีกเลี่ยงวอลนัทหากคุณแพ้ถั่ว",
@@ -128263,9 +128464,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "ฉันกิน",
       "โยเกิร์ต",
-      "รสธรรมชาติ",
-      "ทำจากนม"
+      "กับ",
+      "เบอร์รี"
     ],
     "extraExample": "She buys plain yogurt without sugar.",
     "extraExampleTranslation": "เธอซื้อโยเกิร์ตรสธรรมชาติแบบไม่ใส่น้ำตาล",
@@ -128291,9 +128493,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "เช็กตู้จดหมาย",
-      "กุญแจตู้จดหมาย",
-      "จดหมายในตู้"
+      "ฉันเช็ก",
+      "ตู้จดหมาย",
+      "หลัง",
+      "เลิกงาน"
     ],
     "extraExample": "There is a letter in the mailbox.",
     "extraExampleTranslation": "มีจดหมายอยู่ในตู้จดหมาย",
@@ -128319,9 +128522,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "เดินขึ้นบันได",
-      "บันไดแคบ",
-      "ทำความสะอาดบันได"
+      "เดินขึ้น",
+      "บันได",
+      "ไปชั้น",
+      "สอง"
     ],
     "extraExample": "The staircase is clean and bright.",
     "extraExampleTranslation": "บันไดสะอาดและสว่าง",
@@ -128347,9 +128551,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "มองผ่านรูกุญแจ",
-      "รูกุญแจเล็ก",
-      "เสียบกุญแจ"
+      "เสียบกุญแจเข้าไป",
+      "ในรูกุญแจ",
+      "อย่าง",
+      "ระมัดระวัง"
     ],
     "extraExample": "I cannot see the keyhole in the dark.",
     "extraExampleTranslation": "ฉันมองไม่เห็นรูกุญแจในความมืด",
@@ -128375,9 +128580,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "กดกริ่งประตู",
-      "เสียงกริ่ง",
-      "กริ่งหน้าห้อง"
+      "กรุณากด",
+      "กริ่งประตู",
+      "เมื่อ",
+      "คุณมาถึง"
     ],
     "extraExample": "I heard the doorbell ring twice.",
     "extraExampleTranslation": "ฉันได้ยินเสียงกริ่งประตูดังสองครั้ง",
@@ -128403,9 +128609,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ความบังเอิญ",
-      "อุบัติเหตุ",
-      "ไม่ได้ตั้งใจ"
+      "ฉันทำแก้วแตก",
+      "โดย",
+      "บังเอิญฉัน",
+      "ขอโทษนะ"
     ],
     "extraExample": "It was an accident, please do not be mad.",
     "extraExampleTranslation": "มันเป็นอุบัติเหตุ โปรดอย่าโกรธเลยนะ",
@@ -128431,9 +128638,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจากกลูเตน",
-      "เมนูไร้กลูเตน",
-      "ขนมปังไร้กลูเตน"
+      "ฉันขอพิซ",
+      "ซ่าแบบ",
+      "ปราศ",
+      "จากกลูเตนครับ"
     ],
     "extraExample": "They sell gluten-free pasta at this store.",
     "extraExampleTranslation": "ร้านนี้ขายพาสต้าแบบปราศจากกลูเตน",
@@ -128459,9 +128667,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจากนม",
-      "ไม่มีส่วนผสมของนม",
-      "ทางเลือกไร้้นม"
+      "ไอศกรีมนี้",
+      "ปราศ",
+      "จากนม",
+      "ใช่ไหม"
     ],
     "extraExample": "She buys dairy-free drinks for her son.",
     "extraExampleTranslation": "เธอซื้อเครื่องดื่มปราศจากนมให้ลูกชาย",
@@ -128487,9 +128696,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "อาหารฮาลาล",
-      "ไก่ฮาลาล",
-      "ป้ายฮาลาล"
+      "ร้าน",
+      "อาหาร",
+      "นี้เสิร์ฟไก่",
+      "ฮาลาล"
     ],
     "extraExample": "He always looks for a halal sign.",
     "extraExampleTranslation": "เขามองหาป้ายฮาลาลเสมอ",
@@ -128515,9 +128725,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "อาหารโคเชอร์",
-      "ขนมปังโคเชอร์",
-      "ครัวโคเชอร์"
+      "พวกเขาจะ",
+      "กินเฉพาะอาหาร",
+      "โคเชอร์",
+      "ที่บ้าน"
     ],
     "extraExample": "This bakery makes kosher bread.",
     "extraExampleTranslation": "ร้านเบเกอรี่นี้ทำขนมปังโคเชอร์",
@@ -128543,9 +128754,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "ฉันทำ",
       "ท่าแพลงก์",
-      "เกร็งลำตัว",
-      "ค้างท่าแพลงก์"
+      "ค้างไว้สาม",
+      "สิบวินาที"
     ],
     "extraExample": "The plank makes your core strong.",
     "extraExampleTranslation": "ท่าแพลงก์ช่วยให้แกนกลางลำตัวแข็งแรง",
@@ -128571,9 +128783,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "พวกเรา",
       "วิ่งเหยาะๆ",
-      "วิ่งเบาๆ",
-      "วิ่งออกกำลังกาย"
+      "ในสวน",
+      "ทุกเช้า"
     ],
     "extraExample": "He jogs for twenty minutes to warm up.",
     "extraExampleTranslation": "เขาวิ่งเหยาะๆ ยี่สิบนาทีเพื่ออบอุ่นร่างกาย",
@@ -128600,8 +128813,9 @@ const wordsData = [
     "topic": "basics",
     "thTokens": [
       "โชคดีที่",
-      "อย่างโล่งใจ",
-      "ด้วยความขอบคุณ"
+      "ไม่มีใครได้รับบาดเจ็บ",
+      "จากอุบัติเห",
+      "ตุเล็กน้อยนั้น"
     ],
     "extraExample": "She accepted my apology thankfully.",
     "extraExampleTranslation": "เธอรับคำขอโทษของฉันอย่างโล่งใจ",
@@ -128627,9 +128841,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "อย่างนอบน้อม",
-      "อย่างถ่อมตัว",
-      "ด้วยความเคารพ"
+      "ผมขอน้อมรับความอดทน",
+      "จากคุณ",
+      "ระหว่างที่เรากำลัง",
+      "แก้ไขเรื่องนี้"
     ],
     "extraExample": "He humbly accepted the award on behalf of his team.",
     "extraExampleTranslation": "เขารับรางวัลอย่างถ่อมตัวในนามของทีม",
@@ -128655,9 +128870,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ความพลั้งเผลอ",
-      "การมองข้าม",
-      "ความสะเพร่า"
+      "ขอโทษด้วยครับ",
+      "การลืมแนบไฟล์เป็น",
+      "ความพ",
+      "ลั้งเผลอของผมเอง"
     ],
     "extraExample": "The billing error happened due to a minor oversight.",
     "extraExampleTranslation": "ข้อผิดพลาดเรื่องบิลเกิดจากความพลั้งเผลอเล็กน้อย",
@@ -128683,9 +128899,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "มีไหวพริบ",
-      "รู้จักกาลเทศะ",
-      "นุ่มนวล"
+      "คุณมีไหวพริบ",
+      "มากเลย",
+      "ที่ช่วยเปลี่ย",
+      "นเรื่องคุย"
     ],
     "extraExample": "Try to give tactful feedback so they don't feel hurt.",
     "extraExampleTranslation": "พยายามให้คำแนะนำอย่างนุ่มนวลเพื่อไม่ให้เขารู้สึกเสียใจ",
@@ -128711,9 +128928,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "อย่างน่าเสียดาย",
-      "น่าเสียดายที่",
-      "เป็นเรื่องน่าเศร้า"
+      "น่าเสียดาย",
+      "ที่เราไม่สามารถคืนเงิน",
+      "ให้ได้หาก",
+      "ไม่มีใบเสร็จ"
     ],
     "extraExample": "The outdoor event was regrettably canceled due to rain.",
     "extraExampleTranslation": "งานกลางแจ้งถูกยกเลิกอย่างน่าเสียดายเนื่องจากฝนตก",
@@ -128739,9 +128957,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
+      "เขารับคำขอโทษ",
+      "ของฉัน",
       "อย่างมีน้ำใจ",
-      "อย่างสุภาพ",
-      "อย่างสง่างาม"
+      "และจับมือทักทาย"
     ],
     "extraExample": "She graciously invited the guests into the living room.",
     "extraExampleTranslation": "เธอเชิญแขกเข้าห้องนั่งเล่นอย่างสุภาพและมีน้ำใจ",
@@ -128767,9 +128986,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "อย่างเป็นมิตร",
-      "อย่างอบอุ่น",
-      "ด้วยความยินดี"
+      "ขอเรียนเชิญคุณ",
+      "เข้าร่วมงานเลี้ยง",
+      "อาหารค่ำประจำปีขอ",
+      "งเราอย่างเป็นกันเอง"
     ],
     "extraExample": "The two managers greeted each other cordially.",
     "extraExampleTranslation": "ผู้จัดการทั้งสองทักทายกันอย่างเป็นมิตร",
@@ -128795,9 +129015,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ภาวะภูมิแพ้",
-      "รุนแรง",
-      "เฉียบพลัน"
+      "ถั่วลิสงสามารถกระตุ้น",
+      "ภาวะภูมิแพ้รุน",
+      "แรงเฉียบพลัน",
+      "ในผู้ที่แพ้อย่างหนักได้"
     ],
     "extraExample": "She carries an EpiPen in case of anaphylaxis.",
     "extraExampleTranslation": "เธอพกยาฉีดอีพิเพนติดตัวไว้เผื่อเกิดภาวะภูมิแพ้รุนแรงเฉียบพลัน",
@@ -128823,9 +129044,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "การปนเปื้อน",
-      "ข้าม",
-      "ระหว่างอาหาร"
+      "เขียงที่แยก",
+      "ใช้ช่วยป้องกัน",
+      "การปนเปื้อนข้าม",
+      "ในครัวได้"
     ],
     "extraExample": "Restaurants must avoid cross-contamination when preparing allergy-friendly meals.",
     "extraExampleTranslation": "ร้านอาหารต้องหลีกเลี่ยงการปนเปื้อนข้ามเมื่อเตรียมอาหารสำหรับผู้แพ้อาหาร",
@@ -128851,9 +129073,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ผู้ทานมังสวิรัติ",
-      "แบบ",
-      "ยืดหยุ่น"
+      "ในฐานะผู้ทานมังส",
+      "วิรัติแบบยืดหยุ่น",
+      "เขาทานอาหารมังส",
+      "วิรัติในช่วงวันธรรมดา"
     ],
     "extraExample": "Many people are becoming flexitarians for health and environmental reasons.",
     "extraExampleTranslation": "หลายคนหันมาทานมังสวิรัติแบบยืดหยุ่นเพื่อสุขภาพและสิ่งแวดล้อม",
@@ -128879,9 +129102,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "พืช",
-      "ตระกูล",
-      "ถั่ว"
+      "พืชตระกูลถั่ว",
+      "เป็นแหล่งโปรตีน",
+      "จากพืชชั้นเยี่ยม",
+      "สำหรับผู้ทานวีแกน"
     ],
     "extraExample": "Lentils and black beans are common legumes in healthy diets.",
     "extraExampleTranslation": "ถั่วเลนทิลและถั่วดำเป็นพืชตระกูลถั่วที่พบได้บ่อยในอาหารเพื่อสุขภาพ",
@@ -128907,9 +129131,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "เม็ดมะม่วง",
-      "หิม",
-      "พานต์"
+      "ช่วยตรวจดูหน่อ",
+      "ยว่าแกงนี้มี",
+      "เม็ดมะม่วงหิมพานต์",
+      "ไหมเพราะฉันแพ้"
     ],
     "extraExample": "Cashew cream is a popular substitute for heavy cream.",
     "extraExampleTranslation": "ครีมเม็ดมะม่วงหิมพานต์เป็นทางเลือกยอดนิยมแทนวิปปิ้งครีม",
@@ -128935,9 +129160,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ถั่ว",
-      "พิส",
-      "ตาชิโอ"
+      "เขาทานไอศกรีมเจ",
+      "ลาโต้รสพิสตาชิโอ",
+      "ไม่ได้เพราะ",
+      "แพ้ถั่วเปลือกแข็ง"
     ],
     "extraExample": "Crushed pistachio adds great crunch to salads.",
     "extraExampleTranslation": "ถั่วพิสตาชิโอบดช่วยเพิ่มความกรุบกรอบให้กับสลัดได้ดี",
@@ -128963,8 +129189,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ถั่ว",
-      "เหลือง"
+      "ผลิตภัณฑ์จาก",
+      "ถั่วเหลือง",
+      "เป็นอาหารหลัก",
+      "ในเมนูที่เน้นพืชเป็นหลัก"
     ],
     "extraExample": "Always read food labels if you have a soybean allergy.",
     "extraExampleTranslation": "ควรอ่านฉลากอาหารเสมอหากคุณแพ้ถั่วเหลือง",
@@ -128990,9 +129218,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ถั่ว",
-      "ลูก",
-      "ไก่"
+      "ถั่วลูกไก่คั่วเป็น",
+      "ของว่าง",
+      "ที่ดีต่อสุขภาพและปราศ",
+      "จากถั่วเปลือกแข็ง"
     ],
     "extraExample": "We used chickpea flour to make the flatbread.",
     "extraExampleTranslation": "เราใช้แป้งถั่วลูกไก่ในการทำขนมปังแผ่นแบน",
@@ -129018,8 +129247,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ควิ",
-      "นัว"
+      "ควินัวเป็นธัญ",
+      "พืชทางเลือก",
+      "ที่ดีสำหรับผู้ที่เป็น",
+      "โรคแพ้กลูเตน"
     ],
     "extraExample": "She packed a quinoa salad with vegetables for lunch.",
     "extraExampleTranslation": "เธอเตรียมสลัดควินัวใส่ผักไปทานเป็นมื้อกลางวัน",
@@ -129045,8 +129276,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "คาร์โบไฮเดรต",
-      "ต่ำ"
+      "เขาทานอาหาร",
+      "คาร์โบไฮเดรตต่ำ",
+      "เพื่อควบคุมระ",
+      "ดับน้ำตาลในเลือด"
     ],
     "extraExample": "Cauliflower rice is a popular low-carb substitute for white rice.",
     "extraExampleTranslation": "ข้าวดอกกะหล่ำเป็นทางเลือกคาร์โบไฮเดรตต่ำยอดนิยมแทนข้าวขาว",
@@ -129072,9 +129305,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ไม่มี",
-      "คาเฟ",
-      "อีน"
+      "ฉันชอบดื่ม",
+      "ชาสมุนไพร",
+      "ที่ไม่มีคาเฟอีน",
+      "ในตอนเย็น"
     ],
     "extraExample": "Is this root beer completely caffeine-free?",
     "extraExampleTranslation": "รูทเบียร์นี้ไม่มีคาเฟอีนเลยใช่ไหม",
@@ -129100,9 +129334,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ไม่มี",
-      "เนื้อ",
-      "สัตว์"
+      "ครอบครัว",
+      "ของเราพยายามทานมื้อเย็น",
+      "ที่ไม่มีเนื้อสัตว์",
+      "สัปดาห์ละหนึ่งวัน"
     ],
     "extraExample": "The cafe offers several delicious meatless sandwiches.",
     "extraExampleTranslation": "คาเฟ่แห่งนี้มีแซนด์วิชที่ไม่มีเนื้อสัตว์แสนอร่อยหลายเมนู",
@@ -129128,9 +129363,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "วิดพื้น",
-      "ออกกำลังกายแขน",
-      "ท่าพื้นฐาน"
+      "ฉันวิดพื้น",
+      "ยี่สิบ",
+      "ครั้ง",
+      "ทุกเช้า"
     ],
     "extraExample": "Keep your back straight during a push-up.",
     "extraExampleTranslation": "หลังตรงไว้ขณะวิดพื้น",
@@ -129156,9 +129392,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ซิทอัพ",
-      "บริหารหน้าท้อง",
-      "ลุกนั่ง"
+      "เธอทำซิทอัพ",
+      "ได้สาม",
+      "สิบครั้ง",
+      "ในหนึ่งนาที"
     ],
     "extraExample": "Sit-ups help build a stronger core.",
     "extraExampleTranslation": "ซิทอัพช่วยสร้างแกนกลางลำตัวให้แข็งแรง",
@@ -129184,9 +129421,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "เริ่มจาก",
       "หมุนแขน",
-      "อบอุ่นร่างกาย",
-      "คลายไหล่"
+      "สิบครั้ง",
+      "เพื่อคลายหัวไหล่"
     ],
     "extraExample": "Arm circles are great before swimming.",
     "extraExampleTranslation": "การหมุนแขนดีมากก่อนว่ายน้ำ",
@@ -129212,9 +129450,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "ค้างท่า",
       "เอียงตัวด้านข้าง",
-      "ยืดเอว",
-      "ยืดลำตัว"
+      "ไว้สิบ",
+      "ห้าวินาที"
     ],
     "extraExample": "A gentle side bend stretches your waist.",
     "extraExampleTranslation": "การเอียงตัวด้านข้างเบาๆ ช่วยยืดเอว",
@@ -129240,9 +129479,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กระโดดตบ",
-      "คาร์ดิโอ",
-      "อบอุ่นร่างกาย"
+      "เรากระโดดตบ",
+      "ห้าสิบครั้ง",
+      "เพื่ออบ",
+      "อุ่นร่างกาย"
     ],
     "extraExample": "Jumping jacks raise your heart rate quickly.",
     "extraExampleTranslation": "การกระโดดตบช่วยเพิ่มอัตราการเต้นหัวใจได้เร็ว",
@@ -129268,9 +129508,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กล้ามเนื้อสะโพก",
-      "ก้น",
-      "พยุงหลัง"
+      "การเดินขึ้น",
+      "เนินช่วยบริหาร",
+      "กล้าม",
+      "เนื้อสะโพก"
     ],
     "extraExample": "Strong glutes support your lower back.",
     "extraExampleTranslation": "กล้ามเนื้อสะโพกที่แข็งแรงช่วยพยุงหลังส่วนล่าง",
@@ -129296,9 +129537,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "ใช้",
       "โฟมโรลเลอร์",
-      "นวดกล้ามเนื้อ",
-      "คลายความตึง"
+      "หลังวิ่ง",
+      "ระยะไกล"
     ],
     "extraExample": "Rolling on a foam roller reduces stiffness.",
     "extraExampleTranslation": "การกลิ้งบนโฟมโรลเลอร์ช่วยลดอาการตึง",
@@ -129325,8 +129567,9 @@ const wordsData = [
     "topic": "body",
     "thTokens": [
       "เบอร์พี",
-      "ออกกำลังกายทั้งตัว",
-      "เผาผลาญสูง"
+      "เหนื่อย",
+      "แต่เผาผลาญแคล",
+      "อรีได้มาก"
     ],
     "extraExample": "Our trainer added ten burpees to the circuit.",
     "extraExampleTranslation": "เทรนเนอร์เพิ่มเบอร์พีสิบครั้งในเซตออกกำลังกาย",
@@ -129352,9 +129595,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "ท่ายกแขนด้าน",
+      "ข้างเน้น",
       "กล้ามเนื้อหัวไหล่",
-      "หัวไหล่",
-      "กล้ามไหล่"
+      "ด้านข้าง"
     ],
     "extraExample": "Stretch your deltoid gently after lifting weights.",
     "extraExampleTranslation": "ยืดกล้ามเนื้อหัวไหล่เบาๆ หลังยกเวท",
@@ -129380,9 +129624,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กล้ามเนื้อหน้าอก",
-      "บริเวณอก",
-      "ยืดหน้าอก"
+      "ท่ายืดกล้าม",
+      "เนื้อหน้าอ",
+      "กช่วยเปิด",
+      "ไหล่ที่ตึง"
     ],
     "extraExample": "He felt soreness in his pectoral area.",
     "extraExampleTranslation": "เขารู้สึกปวดตึงบริเวณกล้ามเนื้อหน้าอก",
@@ -129408,9 +129653,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "แบบเกร็งค้าง",
-      "ไม่ขยับข้อต่อ",
-      "สร้างความมั่นคง"
+      "ท่านั่งพิง",
+      "กำแพงเป็นการออก",
+      "กำลังกาย",
+      "แบบเกร็งค้าง"
     ],
     "extraExample": "Isometric holds build stability safely.",
     "extraExampleTranslation": "การเกร็งค้างช่วยสร้างความมั่นคงได้อย่างปลอดภัย",
@@ -129436,9 +129682,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ระยะการเคลื่อนไหว",
-      "ความคล่องตัวข้อต่อ",
-      "องศาการขยับ"
+      "การยืดเหยีย",
+      "ดสม่ำเสมอช่ว",
+      "ยเพิ่ม",
+      "ระยะการเคลื่อนไหว"
     ],
     "extraExample": "Stop if you feel pain beyond your normal range of motion.",
     "extraExampleTranslation": "หยุดหากรู้สึกเจ็บเกินระยะการเคลื่อนไหวปกติ",
@@ -129464,9 +129711,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ข้างบ้าน",
+      "เพื่อนบ้าน",
       "ห้องข้างๆ",
-      "ติดกัน"
+      "เอาคุกกี้อบ",
+      "ใหม่มาให้เรา"
     ],
     "extraExample": "The next-door apartment has been empty for a month.",
     "extraExampleTranslation": "ห้องข้างๆ ว่างมาหนึ่งเดือนแล้ว",
@@ -129492,9 +129740,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "พวกเขาซื้อ",
       "คอนโด",
-      "คอนโดมิเนียม",
-      "ห้องชุด"
+      "เล็กๆใกล้ส",
+      "ถานีรถไฟ"
     ],
     "extraExample": "Our condo building has a gym on the fifth floor.",
     "extraExampleTranslation": "ตึกคอนโดของเรามีฟิตเนสอยู่ที่ชั้นห้า",
@@ -129520,9 +129769,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ตาแมว",
-      "ช่องมองประตู",
-      "รูมอง"
+      "มองผ่านตาแมว",
+      "ก่อน",
+      "เปิดประ",
+      "ตูทุกครั้งนะ"
     ],
     "extraExample": "The delivery driver was visible through the peephole.",
     "extraExampleTranslation": "มองเห็นคนส่งของผ่านช่องตาแมว",
@@ -129548,9 +129798,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "เราเชิญ",
+      "เพื่อนบ้านทุกคนมา",
       "งานขึ้นบ้านใหม่",
-      "ฉลองบ้านใหม่",
-      "ปาร์ตี้ขึ้นบ้านใหม่"
+      "เล็กๆ"
     ],
     "extraExample": "She brought a potted plant as a housewarming gift.",
     "extraExampleTranslation": "เธอเอาต้นไม้กระถางมาเป็นของขวัญขึ้นบ้านใหม่",
@@ -129576,9 +129827,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "อย่างเสียงดัง",
-      "เอะอะ",
-      "ดังลั่น"
+      "เด็กๆวิ่ง",
+      "เสียงดังไป",
+      "ตาม",
+      "ทางเดิน"
     ],
     "extraExample": "Someone was moving furniture noisily at midnight.",
     "extraExampleTranslation": "มีคนกำลังย้ายเฟอร์นิเจอร์เสียงดังตอนเที่ยงคืน",
@@ -129605,8 +129857,9 @@ const wordsData = [
     "topic": "home",
     "thTokens": [
       "ห้องชุดชั้นบนสุด",
-      "เพนต์เฮาส์",
-      "ห้องหรูชั้นดาดฟ้า"
+      "มีระเบีย",
+      "งส่วนตัว",
+      "ที่เห็นวิวเมือง"
     ],
     "extraExample": "Only the elevator key card can reach the penthouse.",
     "extraExampleTranslation": "ต้องใช้คีย์การ์ดลิฟต์เท่านั้นถึงจะขึ้นไปชั้นเพนต์เฮาส์ได้",
@@ -129632,9 +129885,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "พวกเขาเช่า",
       "อพาร์ตเมนต์สองชั้น",
-      "ห้องดูเพล็กซ์",
-      "บ้านแฝดสองชั้น"
+      "ที่กว้างขวางสำหรับครอบครัว",
+      "ที่กำลังขยาย"
     ],
     "extraExample": "The bedrooms in this duplex are on the upper level.",
     "extraExampleTranslation": "ห้องนอนในห้องชุดสองชั้นนี้อยู่ที่ชั้นบน",
@@ -129660,9 +129914,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "กลอนประตูนิรภัย",
-      "กลอนล็อกตาย",
-      "ตัวล็อกเสริม"
+      "อย่าลืม",
+      "ล็อกกลอนนิรภัย",
+      "ก่อ",
+      "นเข้านอนนะ"
     ],
     "extraExample": "The building manager installed a new deadbolt on our front door.",
     "extraExampleTranslation": "ผู้จัดการอาคารติดตั้งกลอนนิรภัยตัวใหม่ที่ประตูหน้าห้องเรา",
@@ -129688,9 +129943,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ช่วยเหลือ",
-      "ยื่นมือช่วย",
-      "ช่วยทำ"
+      "คุณช่วย",
+      "จัดเตรียมสถาน",
+      "ที่ห",
+      "น่อยได้ไหม"
     ],
     "extraExample": "We always help out new staff.",
     "extraExampleTranslation": "พวกเราช่วยเหลือพนักงานใหม่เสมอ",
@@ -129716,9 +129972,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "เธอเป็น",
       "เพื่อนร่วมทีม",
-      "คนในทีม",
-      "ผู้ร่วมงาน"
+      "ที่ช่วย",
+      "เหลือดีมาก"
     ],
     "extraExample": "Pass the ball to your teammate.",
     "extraExampleTranslation": "ส่งบอลให้เพื่อนร่วมทีมของคุณ",
@@ -129745,8 +130002,8 @@ const wordsData = [
     "topic": "people",
     "thTokens": [
       "การทำงานเป็นทีม",
-      "ความร่วมมือ",
-      "การร่วมแรง"
+      "ที่ดีทำให้งาน",
+      "ง่ายขึ้น"
     ],
     "extraExample": "The coach praised their teamwork.",
     "extraExampleTranslation": "โค้ชชื่นชมการทำงานเป็นทีมของพวกเขา",
@@ -129772,9 +130029,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "เพื่อนร่วมงาน",
-      "คนทำงานด้วยกัน",
-      "ผู้ร่วมอาชีพ"
+      "ฉันขอ",
+      "คำแนะนำจาก",
+      "เพื่อน",
+      "ร่วมงาน"
     ],
     "extraExample": "He gets along well with every co-worker.",
     "extraExampleTranslation": "เขาเข้ากับเพื่อนร่วมงานทุกคนได้ดี",
@@ -129800,9 +130058,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "ทุกคนต้อง",
       "ช่วยกัน",
-      "ลงขัน",
-      "ร่วมด้วยช่วยกัน"
+      "เพื่อ",
+      "ให้เสร็จทันเวลา"
     ],
     "extraExample": "We all decided to chip in for her gift.",
     "extraExampleTranslation": "พวกเราทุกคนตัดสินใจลงขันซื้อของขวัญให้เธอ",
@@ -129828,9 +130087,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ร่วมแรงร่วมใจ",
-      "ช่วยกันทำ",
-      "ลงมือช่วย"
+      "ถ้าเราช่วย",
+      "กันทุกคน",
+      "เราจะทำความสะ",
+      "อาดได้เร็ว"
     ],
     "novaBatch": true,
     "usageTip": "ใช้เมื่อหลายคนร่วมแรงร่วมใจกันช่วยทำงานหรืองานกลุ่มให้เสร็จเร็วขึ้น",
@@ -129856,9 +130116,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "คุณสามารถ",
       "ไว้วางใจ",
-      "เปิดใจเล่า",
-      "เล่าความลับ"
+      "เล่าให้ฉัน",
+      "ฟังได้เสมอ"
     ],
     "extraExample": "She confided her worries to her mentor.",
     "extraExampleTranslation": "เธอระบายความกังวลให้พี่เลี้ยงฟัง",
@@ -129884,9 +130145,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "สามัคคี",
-      "กลมเกลียว",
-      "เป็นอันหนึ่งอันเดียวกัน"
+      "เราสร้างกลุ่ม",
+      "ที่สามัค",
+      "คีกัน",
+      "ได้ตลอดทั้งปี"
     ],
     "extraExample": "A cohesive team handles stress better.",
     "extraExampleTranslation": "ทีมที่กลมเกลียวรับมือกับความเครียดได้ดีกว่า",
@@ -129912,9 +130174,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ความสนิทสนม",
-      "มิตรภาพในทีม",
-      "ความสามัคคี"
+      "มีความสนิท",
+      "สนมกลมเกลีย",
+      "วกันมาก",
+      "ในออฟฟิศของเรา"
     ],
     "extraExample": "Sports help build camaraderie among players.",
     "extraExampleTranslation": "กีฬาช่วยสร้างความสามัคคีในหมู่ผู้เล่น",
@@ -129940,9 +130203,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "บัตรหักบัญชี",
-      "ใช้จ่าย",
-      "ถอนเงิน"
+      "การใช้บัตรเดบิต",
+      "ในต่างประเท",
+      "ศอาจมีค่าธรรม",
+      "เนียมต่างประเทศ"
     ],
     "extraExample": "She withdrew euros using her debit card.",
     "extraExampleTranslation": "เธอถอนเงินยูโรโดยใช้บัตรเดบิตของเธอ",
@@ -129968,9 +130232,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ค่าเงิน",
-      "เทียบสกุลเงิน",
-      "เรตแลกเปลี่ยน"
+      "ตรวจสอบ",
+      "อัตราแลกเปลี่ยน",
+      "ประจำวัน",
+      "ก่อนแลกเงินของคุณ"
     ],
     "extraExample": "The exchange rate at the airport is usually less favorable.",
     "extraExampleTranslation": "อัตราแลกเปลี่ยนที่สนามบินมักจะไม่ค่อยคุ้มค่าเท่าไร",
@@ -129996,9 +130261,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ไม่ใช้เงินสด",
-      "จ่ายผ่านแอป",
-      "สแกนจ่าย"
+      "หลายเมือง",
+      "กำลังกลายเป็นระบบไร้เงินสด",
+      "อย่างสมบูรณ์",
+      "สำหรับขนส่งสาธารณะ"
     ],
     "extraExample": "A cashless payment system is very convenient for tourists.",
     "extraExampleTranslation": "ระบบการชำระเงินแบบไร้เงินสดสะดวกมากสำหรับนักท่องเที่ยว",
@@ -130024,9 +130290,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ร้านแลกเงิน",
-      "คนรับแลกเงิน",
-      "อัตราดีกว่า"
+      "ร้านรับแลกเงิน",
+      "ที่ได้รับอนุญาต",
+      "ในตัวเมืองมัก",
+      "ให้เรตที่ดีกว่า"
     ],
     "extraExample": "Ask the moneychanger for smaller bills.",
     "extraExampleTranslation": "ขอธนบัตรใบย่อยจากผู้รับแลกเงิน",
@@ -130052,9 +130319,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "เจ้าของประกัน",
-      "ผู้เอาประกัน",
-      "ได้รับสิทธิ์"
+      "ผู้ถือกรมธรรม์",
+      "ได้รับความคุ้มครอง",
+      "สำหรับการอพยพ",
+      "ทางการแพทย์ฉุกเฉิน"
     ],
     "extraExample": "Every policyholder receives a twenty-four-hour helpline number.",
     "extraExampleTranslation": "ผู้ถือกรมธรรม์ทุกคนจะได้รับหมายเลขสายด่วนตลอดยี่สิบสี่ชั่วโมง",
@@ -130080,9 +130348,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ตลาดเงินตรา",
-      "แลกเปลี่ยนสากล",
-      "ค่าเงินโลก"
+      "นักเดินทางไม่ค่อย",
+      "จำเป็นต้องติด",
+      "ตามความผันผวน",
+      "ของตลาดฟอเร็กซ์แบบเรียลไทม์"
     ],
     "extraExample": "Some travel cards lock in forex rates in advance.",
     "extraExampleTranslation": "บัตรเดินทางบางใบสามารถล็อกเรตแลกเปลี่ยนเงินตราต่างประเทศล่วงหน้าได้",
@@ -130108,9 +130377,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ค่าชดเชย",
-      "ความคุ้มครอง",
-      "ประกันความเสี่ยง"
+      "กรมธรรม์ให้ความคุ้ม",
+      "ครองชดใช้ค่าเสีย",
+      "หายเต็มจำนวน",
+      "สำหรับอุบัติเหตุรถเช่า"
     ],
     "extraExample": "Read the indemnity clause carefully before signing.",
     "extraExampleTranslation": "อ่านเงื่อนไขการชดใช้ค่าเสียหายอย่างละเอียดก่อนเซ็นชื่อ",
@@ -130136,9 +130406,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "รุ้ง",
-      "กิน",
-      "น้ำ"
+      "รุ้งกินน้ำ",
+      "สีสดใสปรากฏขึ้นเห",
+      "นือเนินเขาห",
+      "ลังฝนตกช่วงบ่าย"
     ],
     "extraExample": "The children ran outside to look at the double rainbow.",
     "extraExampleTranslation": "เด็กๆ วิ่งออกไปข้างนอกเพื่อดูรุ้งกินน้ำสองชั้น",
@@ -130164,9 +130435,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "แอ่ง",
-      "น้ำ",
-      "ขัง"
+      "ระวัง",
+      "แอ่งน้ำขัง",
+      "ลึกๆตรงริมทางเท้านั้น",
+      "ด้วยนะ"
     ],
     "extraExample": "My shoes got soaked when I stepped into a puddle.",
     "extraExampleTranslation": "รองเท้าของฉันเปียกโชกตอนที่เหยียบลงไปในแอ่งน้ำขัง",
@@ -130192,9 +130464,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ตุ๊ก",
-      "ตา",
-      "หิมะ"
+      "พวกเราปั้น",
+      "ตุ๊กตาหิมะ",
+      "ตัวใหญ่ในสนามห",
+      "น้าบ้านฤดูหนาวนี้"
     ],
     "extraExample": "The snowman started to melt as soon as the sun came out.",
     "extraExampleTranslation": "ตุ๊กตาหิมะเริ่มละลายทันทีที่พระอาทิตย์ออก",
@@ -130220,9 +130493,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "เสื้อ",
-      "กัน",
-      "ฝน"
+      "หยิบเสื้อกันฝน",
+      "ไปด้วยนะ",
+      "เพราะท้อง",
+      "ฟ้าดูมืดครึ้มมาก"
     ],
     "extraExample": "She zipped up her yellow raincoat and walked into the storm.",
     "extraExampleTranslation": "เธอรูดซิปเสื้อกันฝนสีเหลืองขึ้นแล้วเดินฝ่าพายุออกไป",
@@ -130248,9 +130522,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "เกล็ด",
-      "หิ",
-      "มะ"
+      "เกล็ดหิมะ",
+      "แต่ละเกล็ดมีลวด",
+      "ลายหกเหลี่ยม",
+      "ที่ไม่ซ้ำกัน"
     ],
     "extraExample": "A cold snowflake landed right on the tip of my nose.",
     "extraExampleTranslation": "เกล็ดหิมะเย็นๆ ตกลงมาตรงปลายจมูกของฉันพอดี",
@@ -130276,9 +130551,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ฝน",
-      "ปน",
-      "หิมะ"
+      "การขับรถจะอันตรายขึ้น",
+      "เมื่อ",
+      "ฝนปนหิมะจับตัวเป็น",
+      "น้ำแข็งบนทางหลวง"
     ],
     "extraExample": "The weather alert warned of heavy sleet overnight.",
     "extraExampleTranslation": "ประกาศเตือนสภาพอากาศแจ้งเตือนเรื่องฝนปนหิมะตกหนักตลอดคืน",
@@ -130304,9 +130580,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ร้อน",
-      "ชื้น",
-      "อบอ้าว"
+      "ช่วงบ่ายเดือ",
+      "นสิงหาคม",
+      "ที่นี่มักจะ",
+      "ร้อนชื้นอบอ้าวมาก"
     ],
     "extraExample": "The muggy weather made it hard to sleep without a fan.",
     "extraExampleTranslation": "อากาศที่ร้อนชื้นอบอ้าวทำให้นอนหลับยากถ้าไม่มีพัดลม",
@@ -130332,9 +130609,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "พายุ",
-      "ลม",
-      "แรง"
+      "พายุฝนลมแรงฉับพลัน",
+      "ทำให้เรือ",
+      "ประมงต้อง",
+      "รีบกลับเข้าฝั่ง"
     ],
     "extraExample": "The squall passed within twenty minutes, leaving clear skies.",
     "extraExampleTranslation": "พายุฝนลมแรงพัดผ่านไปภายในยี่สิบนาที ทิ้งไว้เพียงท้องฟ้าแจ่มใส",
@@ -130360,9 +130638,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "เครื่อง",
-      "วัด",
-      "ความกดอากาศ"
+      "ค่าบนเครื่องวัดค",
+      "วามกดอากาศ",
+      "ที่ลดลงมักเป็นสัญญาณ",
+      "ของพายุที่กำลังเข้ามา"
     ],
     "extraExample": "The sailor checked the barometer before setting sail.",
     "extraExampleTranslation": "กะลาสีเรือตรวจสอบเครื่องวัดความกดอากาศก่อนออกเรือ",
@@ -130388,9 +130667,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ประกาศ",
-      "เตือน",
-      "ภัย"
+      "ทางเมืองออก",
+      "ประกาศเตือนภัย",
+      "พายุฤดูหนาว",
+      "สำหรับช่วงสุดสัปดาห์"
     ],
     "extraExample": "Check the latest heat advisory before planning an outdoor hike.",
     "extraExampleTranslation": "ตรวจสอบประกาศเตือนภัยความร้อนล่าสุดก่อนวางแผนเดินป่ากลางแจ้ง",
@@ -130416,9 +130696,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "วิ",
-      "ษุ",
-      "วัต"
+      "วันวสันตวิษุวัต",
+      "เป็นจุดเริ่มต้น",
+      "อย่างเป็นทางการของวัน",
+      "ที่อากาศอบอุ่นขึ้น"
     ],
     "extraExample": "Farmers often track the autumn equinox to plan late harvests.",
     "extraExampleTranslation": "เกษตรกรมักติดตามวันศารทวิษุวัตเพื่อวางแผนการเก็บเกี่ยวช่วงปลายฤดู",
@@ -130444,9 +130725,9 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ใจเย็นลง",
-      "สงบสติอารมณ์",
-      "ค่อยยังชั่ว"
+      "หายใจเข้าลึกๆ",
+      "แล้วใจเย็นลงนะ",
+      "ทุกอย่างจะเรียบร้อยเอง"
     ],
     "extraExample": "The noisy crowd began to calm down after the announcement.",
     "extraExampleTranslation": "ฝูงชนที่ส่งเสียงดังเริ่มสงบลงหลังจากมีประกาศ",
@@ -130472,9 +130753,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ร่าเริงขึ้น",
-      "ทำให้สดใส",
-      "หายเศร้า"
+      "ฉันเอาชาร้อนมาฝาก",
+      "เพื่อช่วย",
+      "ให้คุณ",
+      "รู้สึกสดใสขึ้น"
     ],
     "extraExample": "She started to cheer up as soon as she heard the good news.",
     "extraExampleTranslation": "เธอเริ่มร่าเริงขึ้นทันทีที่ได้ยินข่าวดี",
@@ -130500,9 +130782,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ร่าเริง",
-      "สดใส",
-      "ยิ้มแย้ม"
+      "รอยยิ้มที่สดใส",
+      "ของเธอทำให้บ",
+      "รรยากาศ",
+      "ในห้องดูเบาลงทันที"
     ],
     "extraExample": "He greeted everyone with a cheery good morning.",
     "extraExampleTranslation": "เขาทักทายทุกคนด้วยคำว่าสวัสดีตอนเช้าอย่างร่าเริง",
@@ -130528,9 +130811,9 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ดีขึ้น",
-      "มีหวังขึ้น",
-      "กระเตื้องขึ้น"
+      "หลังจากเดือนที่ยากลำบาก",
+      "ในที่สุดอะไรๆ",
+      "ก็เริ่มดีขึ้นแล้ว"
     ],
     "extraExample": "Sales began to look up once the new season started.",
     "extraExampleTranslation": "ยอดขายเริ่มดีขึ้นเมื่อฤดูกาลใหม่เริ่มต้นขึ้น",
@@ -130556,9 +130839,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "คลายเครียด",
-      "พักผ่อน",
-      "ปล่อยวาง"
+      "การฟังเพลงแจ๊ส",
+      "เบาๆช่วย",
+      "ให้ฉันคลายเครียดหลัง",
+      "จากวันที่วุ่นวาย"
     ],
     "extraExample": "They went to the beach for the weekend to unwind.",
     "extraExampleTranslation": "พวกเขาไปทะเลช่วงสุดสัปดาห์เพื่อพักผ่อนคลายเครียด",
@@ -130584,9 +130868,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "กระปรี้กระเปร่า",
-      "สดชื่นขึ้น",
-      "มีชีวิตชีวา"
+      "การเดินเล่นสั้น",
+      "ๆกลางแดด",
+      "ทำให้ทุกคน",
+      "กระปรี้กระเปร่าขึ้น"
     ],
     "extraExample": "The team seemed to perk up after hearing the positive feedback.",
     "extraExampleTranslation": "ทีมดูสดชื่นมีชีวิตชีวาขึ้นหลังจากได้ยินคำชม",
@@ -130612,9 +130897,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ข้อดีในเรื่องร้าย",
-      "แสงสว่าง",
-      "ความหวังเล็กๆ"
+      "เที่ยวบิน",
+      "ล่าช้าก็น่ารำคาญอยู่หรอก",
+      "แต่ข้อดีคือได้เจอ",
+      "เพื่อนเก่า"
     ],
     "extraExample": "She always tries to find the silver lining in every setback.",
     "extraExampleTranslation": "เธอมักจะพยายามมองหาข้อดีในทุกอุปสรรคเสมอ",
@@ -130640,9 +130926,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ความโล่งใจ",
-      "ความเบาสบาย",
-      "หายกังวล"
+      "ความรู้สึกโล่ง",
+      "ใจแผ่ซ่าน",
+      "เข้ามาในตัวเขาเมื่อ",
+      "การสอบจบลง"
     ],
     "extraExample": "She spoke with a new lightness in her voice.",
     "extraExampleTranslation": "เธอพูดด้วยน้ำเสียงที่ฟังดูเบาสบายใจขึ้นอย่างเห็นได้ชัด",
@@ -130668,9 +130955,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
+      "ทีมรู้สึก",
       "เบิกบานใจ",
-      "มีกำลังใจ",
-      "สดใส"
+      "และมีกำลังใจหลัง",
+      "จากชนะนัดแรก"
     ],
     "extraExample": "Despite the rain, her mood remained surprisingly buoyant.",
     "extraExampleTranslation": "แม้ฝนจะตก แต่อารมณ์ของเธอก็ยังคงสดใสอย่างน่าประหลาดใจ",
@@ -130696,9 +130984,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "น่าชื่นใจ",
-      "ให้กำลังใจ",
-      "มีหวัง"
+      "เป็นเรื่อง",
+      "น่าชื่นใจที่ได้เห็น",
+      "เพื่อนบ้าน",
+      "คอยช่วยเหลือกัน"
     ],
     "extraExample": "The doctor gave us some heartening news about his recovery.",
     "extraExampleTranslation": "คุณหมอแจ้งข่าวที่น่ายินดีและให้กำลังใจเกี่ยวกับการฟื้นตัวของเขา",
@@ -130724,9 +131013,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "เบาบางลง",
-      "คลายลง",
-      "ลดความตึงเครียด"
+      "พอพ้นกำหนด",
+      "ส่งงานความ",
+      "กดดันก็เริ่ม",
+      "เบาบางลง"
     ],
     "extraExample": "I hope the heavy workload will ease up next week.",
     "extraExampleTranslation": "ฉันหวังว่าภาระงานที่หนักจะลดน้อยลงในสัปดาห์หน้า",
@@ -130752,9 +131042,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "การเข้าสู่ระบบ",
-      "ข้อมูลล็อกอิน",
-      "หน้าเข้าสู่ระบบ"
+      "โปรดตรวจสอบอีเมล",
+      "ของคุณ",
+      "เพื่อดูรายละเอียด",
+      "การเข้าสู่ระบบคอร์ส"
     ],
     "extraExample": "I forgot my login password for the learning portal.",
     "extraExampleTranslation": "ฉันลืมรหัสผ่านเข้าสู่ระบบสำหรับพอร์ทัลการเรียน",
@@ -130781,8 +131072,9 @@ const wordsData = [
     "topic": "education",
     "thTokens": [
       "การลงทะเบียน",
-      "แบบฟอร์มสมัคร",
-      "สมัครเรียน"
+      "คอร์สจะปิด",
+      "ในวันศุกร์นี้เว",
+      "ลาเที่ยงคืน"
     ],
     "extraExample": "The signup form only takes two minutes to complete.",
     "extraExampleTranslation": "แบบฟอร์มลงทะเบียนใช้เวลาทำเพียงสองนาทีเท่านั้น",
@@ -130808,9 +131100,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ออฟไลน์",
-      "โหมดออฟไลน์",
-      "ไม่ใช้เน็ต"
+      "คุณสามารถดูบทเรียน",
+      "ที่ดาวน์",
+      "โหลดไว้ในโหมด",
+      "ออฟไลน์ได้"
     ],
     "extraExample": "The app lets students complete quizzes offline.",
     "extraExampleTranslation": "แอปนี้อนุญาตให้นักเรียนทำแบบทดสอบแบบออฟไลน์ได้",
@@ -130836,9 +131129,9 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ดาวน์โหลดได้",
-      "ไฟล์ดาวน์โหลด",
-      "เอกสารแจก"
+      "แต่ละโมดูลมีใบงาน",
+      "PDF",
+      "ที่ดาวน์โหลดได้รวมอยู่ด้วย"
     ],
     "extraExample": "The instructor shared downloadable slides after the session.",
     "extraExampleTranslation": "ผู้สอนได้แชร์สไลด์ที่ดาวน์โหลดได้หลังจบเซสชัน",
@@ -130864,9 +131157,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ถ่ายทอดสด",
-      "ไลฟ์สด",
-      "สตรีมสด"
+      "เข้าร่วมการถ่าย",
+      "ทอดสดประจำสัปดาห์",
+      "เพื่อถามตอบสด",
+      "กับพี่เลี้ยง"
     ],
     "extraExample": "The graduation ceremony was shown via livestream.",
     "extraExampleTranslation": "พิธีรับประกาศนียบัตรถูกเผยแพร่ผ่านการถ่ายทอดสดออนไลน์",
@@ -130892,9 +131186,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "การปฐมนิเทศ",
-      "แนะนำการใช้งาน",
-      "เริ่มต้นระบบ"
+      "วิดีโอปฐม",
+      "นิเทศอธิบาย",
+      "วิธีการส่งงาน",
+      "ของคุณ"
     ],
     "extraExample": "New students complete a short onboarding checklist first.",
     "extraExampleTranslation": "นักเรียนใหม่ต้องทำรายการตรวจสอบการเริ่มต้นใช้งานสั้นๆ ก่อน",
@@ -130920,9 +131215,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "เพิ่มทักษะ",
-      "พัฒนาทักษะ",
-      "อัปสกิล"
+      "คนทำงานจำนวนมากเรีย",
+      "นคอร์สออนไลน์เพื่อ",
+      "เพิ่มพูนทักษะ",
+      "ด้านการวิเคราะห์ข้อมูล"
     ],
     "extraExample": "Our company pays for certifications to help staff upskill.",
     "extraExampleTranslation": "บริษัทของเราออกค่าใบรับรองเพื่อช่วยพนักงานพัฒนาทักษะ",
@@ -130948,9 +131244,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "เรียนตามสะดวก",
-      "ไม่พร้อมกัน",
-      "ยืดหยุ่นเวลา"
+      "คลาสเรียนแบบไม่พร้อมกัน",
+      "ช่วย",
+      "ให้คุณดูวิดีโอบรรยาย",
+      "เมื่อไหร่ก็ได้ที่ว่าง"
     ],
     "extraExample": "Discussion boards are great for asynchronous learning.",
     "extraExampleTranslation": "กระดานสนทนาเหมาะมากสำหรับการเรียนรู้แบบไม่พร้อมกัน",
@@ -130976,9 +131273,9 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ใบรับรอง",
-      "คุณวุฒิ",
-      "หลักฐานรับรอง"
+      "ใบรับรองดิจิทัลนี้สามารถเพิ่มลงในโปรไฟล์",
+      "LinkedIn",
+      "ของคุณได้โดยตรง"
     ],
     "extraExample": "Employers value verified credentials from recognized platforms.",
     "extraExampleTranslation": "นายจ้างให้ความสำคัญกับคุณวุฒิที่ตรวจสอบได้จากแพลตฟอร์มที่เป็นที่ยอมรับ",
@@ -131004,9 +131301,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "โปรเจกต์จบ",
-      "งานวิจัยจบ",
-      "โครงงานสรุป"
+      "คุณต้องผ่าน",
+      "โปรเจกต์จบหลักสูตร",
+      "เพื่อรับใบรับ",
+      "รองความเชี่ยวชาญ"
     ],
     "extraExample": "Her capstone analyzed real customer data for a local business.",
     "extraExampleTranslation": "โปรเจกต์จบของเธอวิเคราะห์ข้อมูลลูกค้าจริงให้ธุรกิจท้องถิ่น",
@@ -131032,9 +131330,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ฝึกทักษะใหม่",
-      "เปลี่ยนสายงาน",
-      "รีสกิล"
+      "เขาตัดสินใจฝึก",
+      "ทักษะใหม่เพื่อเป็น",
+      "วิศวกรคลาวด์",
+      "ผ่านบูตแคมป์ออนไลน์"
     ],
     "extraExample": "Online certifications make it easier to reskill at any age.",
     "extraExampleTranslation": "ใบรับรองออนไลน์ช่วยให้การเปลี่ยนสายงานทำได้ง่ายขึ้นในทุกวัย",
@@ -131060,9 +131359,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "อวยพร",
-      "ขอให้โชคดี",
-      "สาธุ"
+      "ขอให้สุข",
+      "ภาพแข็งแร",
+      "งนะต้อง",
+      "การทิชชูไหม"
     ],
     "extraExample": "May I bless your meal before we eat?",
     "extraExampleTranslation": "ขออวยพรให้อาหารมื้อนี้ก่อนเราทานได้ไหม",
@@ -131088,9 +131388,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "รู้สึกขอบคุณ",
-      "ซาบซึ้งใจ",
-      "โล่งใจ"
+      "ฉันรู้สึกขอบคุณ",
+      "มากสำหรับค",
+      "วามช่วยเหลือ",
+      "ที่รวดเร็วของคุณ"
     ],
     "extraExample": "We are thankful that you arrived safely.",
     "extraExampleTranslation": "เราขอบคุณที่คุณเดินทางมาถึงอย่างปลอดภัย",
@@ -131116,9 +131417,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "สุภาพอ่อนโยน",
-      "มีน้ำใจ",
-      "ให้เกียรติ"
+      "พนักงานโรงแรม",
+      "สุภาพ",
+      "อ่อนโยน",
+      "กับแขกทุกคนมาก"
     ],
     "extraExample": "A courteous reply can calm an angry customer.",
     "extraExampleTranslation": "การตอบกลับอย่างสุภาพช่วยทำให้ลูกค้าที่โกรธใจเย็นลงได้",
@@ -131144,9 +131446,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ความผิดพลาด",
-      "พลาดพลั้ง",
-      "เรื่องน่าอาย"
+      "ฉันทำผิดพลาด",
+      "อย่างมาก",
+      "ที่เรีย",
+      "กชื่อเขาผิด"
     ],
     "extraExample": "The team apologized for the scheduling blunder.",
     "extraExampleTranslation": "ทีมงานได้ขอโทษสำหรับความผิดพลาดในการจัดตาราง",
@@ -131172,9 +131475,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "เฮเซล",
-      "นัท",
-      "ถั่ว"
+      "ครีมช็อกโก",
+      "แลตนี้มีส่ว",
+      "นผสมของ",
+      "เฮเซลนัทไหม"
     ],
     "extraExample": "I am allergic to hazelnut, so I check every label.",
     "extraExampleTranslation": "ฉันแพ้เฮเซลนัท จึงต้องตรวจฉลากทุกครั้ง",
@@ -131200,9 +131504,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "เรามีเมนูที่",
       "ปราศ",
-      "จาก",
-      "หมู"
+      "จากหมู",
+      "สำหรับแขกทุกคน"
     ],
     "extraExample": "Please confirm that the broth is pork-free.",
     "extraExampleTranslation": "กรุณายืนยันว่าน้ำซุปนี้ปราศจากหมู",
@@ -131228,9 +131533,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ไร้",
-      "ไข่",
-      "ไม่มีไข่"
+      "ร้านเบเกอ",
+      "รี่นี้ขายเค้ก",
+      "ปราศจากไข่",
+      "ที่อร่อยมาก"
     ],
     "extraExample": "She needs an eggless recipe for her son.",
     "extraExampleTranslation": "เธอต้องการสูตรอาหารปราศจากไข่สำหรับลูกชาย",
@@ -131256,9 +131562,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ไร้",
-      "แลค",
-      "โตส"
+      "ฉันซื้อนม",
+      "ปราศจากแลคโตส",
+      "สำหรับ",
+      "ใส่กาแฟเสมอ"
     ],
     "extraExample": "Is there a lactose-free yogurt option here?",
     "extraExampleTranslation": "ที่นี่มีโยเกิร์ตแบบปราศจากแลคโตสไหม",
@@ -131284,9 +131591,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "กิน",
-      "ทั้งพืช",
-      "และสัตว์"
+      "ในฐานะคน",
+      "ที่กินทั้งพืช",
+      "และสัตว์เขาชอบ",
+      "ทั้งสลัดและสเต็ก"
     ],
     "extraExample": "Humans are naturally omnivores with varied diets.",
     "extraExampleTranslation": "โดยธรรมชาติมนุษย์เป็นสิ่งมีชีวิตที่กินทั้งพืชและสัตว์",
@@ -131312,9 +131620,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ซัล",
-      "ไฟต์",
-      "สารกันบูด"
+      "บางคนปวดหัว",
+      "จากสาร",
+      "ซัลไฟต์",
+      "ในไวน์แดง"
     ],
     "extraExample": "The label clearly states that it contains sulfites.",
     "extraExampleTranslation": "ฉลากระบุไว้อย่างชัดเจนว่ามีสารซัลไฟต์",
@@ -131340,9 +131649,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "กิน",
-      "แต่",
-      "เนื้อ"
+      "พี่ชาย",
+      "ของฉันเป็นคนกิน",
+      "แต่เนื้อสัตว์",
+      "ที่เลี่ยงผัก"
     ],
     "extraExample": "A carnivore diet focuses heavily on animal protein.",
     "extraExampleTranslation": "การกินแบบเน้นเนื้อสัตว์จะเน้นโปรตีนจากสัตว์เป็นหลัก",
@@ -131368,9 +131678,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ฮีส",
-      "ตา",
-      "มีน"
+      "ชีสบ่มมีฮีส",
+      "ตามีนสูง",
+      "และอาจกระตุ้น",
+      "อาการแพ้ได้"
     ],
     "extraExample": "She follows a low-histamine diet to prevent rashes.",
     "extraExampleTranslation": "เธอกินอาหารที่มีฮีสตามีนต่ำเพื่อป้องกันผื่น",
@@ -131396,9 +131707,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ก่อ",
-      "แพ้",
-      "น้อย"
+      "เราใช้นมผงสูตร",
+      "ที่ก่อ",
+      "ให้เกิดอาการแพ้น้อย",
+      "สำหรับลูก"
     ],
     "extraExample": "Rice protein is often considered hypoallergenic.",
     "extraExampleTranslation": "โปรตีนจากข้าวมักถูกมองว่าก่อให้เกิดอาการแพ้น้อย",
@@ -131424,9 +131736,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ฟรัก",
-      "โทส",
-      "น้ำตาลผลไม้"
+      "ผู้ที่ดูดซึม",
+      "ฟรักโทส",
+      "ได้ไม่ดีจะเลี่ย",
+      "งแอปเปิลหวาน"
     ],
     "extraExample": "High-fructose corn syrup is common in sodas.",
     "extraExampleTranslation": "น้ำเชื่อมข้าวโพดฟรักโทสสูงพบได้ทั่วไปในน้ำอัดลม",
@@ -131452,9 +131765,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ไม่",
-      "แปร",
-      "รูป"
+      "การกินอาหาร",
+      "ไม่ผ่านการแปรรูป",
+      "ช่วยเลี่ยงสาร",
+      "ก่อภูมิแพ้แฝง"
     ],
     "extraExample": "She prefers whole, unprocessed grains for breakfast.",
     "extraExampleTranslation": "เธอชอบธัญพืชเต็มเมล็ดที่ไม่ผ่านการแปรรูปสำหรับมื้อเช้า",
@@ -131480,9 +131794,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "โพร",
-      "ไบ",
-      "โอติก"
+      "การกินโพรไบ",
+      "โอติกทุกวันช่วย",
+      "ให้การ",
+      "ย่อยอาหารดีขึ้น"
     ],
     "extraExample": "Fermented foods like kimchi are rich in probiotics.",
     "extraExampleTranslation": "อาหารหมักดองอย่างกิมจิอุดมไปด้วยโพรไบโอติก",
@@ -131508,9 +131823,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "เกร็ง",
-      "งอ",
-      "ยืดหยุ่น"
+      "งอเข่าเล็กน้อย",
+      "เมื่อ",
+      "คุณลงพื้น",
+      "จากการกระโดด"
     ],
     "extraExample": "He likes to flex his arms in front of the gym mirror.",
     "extraExampleTranslation": "เขาชอบเกร็งกล้ามแขนหน้ากระจกในยิม",
@@ -131536,9 +131852,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "อ่อนช้อย",
-      "ยืดหยุ่น",
-      "คล่องแคล่ว"
+      "การยืดเหยียดทุกวันช่วย",
+      "ให้กล้ามเนื้อ",
+      "ของคุณยืดหยุ่น",
+      "ดีและพร้อมใช้งาน"
     ],
     "extraExample": "Dancers need to stay limber to avoid injuries.",
     "extraExampleTranslation": "นักเต้นต้องรักษาความยืดหยุ่นของร่างกายเพื่อหลีกเลี่ยงอาการบาดเจ็บ",
@@ -131564,9 +131881,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ท่าครันช์",
-      "บริหารหน้าท้อง",
-      "เกร็งหน้าท้อง"
+      "ทำท่าครันช์ยี่สิบครั้ง",
+      "เพื่อเส",
+      "ริมสร้างกล้ามเนื้อ",
+      "หน้าท้องส่วนบน"
     ],
     "extraExample": "She added bicycle crunches to her morning routine.",
     "extraExampleTranslation": "เธอเพิ่มท่าปั่นจักรยานอากาศเข้าไปในกิจวัตรตอนเช้า",
@@ -131592,9 +131910,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ก้าวยาว",
-      "จังหวะก้าว",
-      "การเดิน"
+      "ก้าวขาให้ยาวขึ้น",
+      "เมื่อคุณ",
+      "เร่งความเร็ว",
+      "เข้าสู่เส้นชัย"
     ],
     "extraExample": "He found a steady stride during the five-kilometer jog.",
     "extraExampleTranslation": "เขาพบจังหวะการก้าวที่สม่ำเสมอระหว่างการวิ่งเหยาะๆ ระยะทางห้ากิโลเมตร",
@@ -131621,8 +131940,9 @@ const wordsData = [
     "topic": "body",
     "thTokens": [
       "หายใจออก",
-      "ผ่อนลม",
-      "ระบายลม"
+      "ช้าๆขณะ",
+      "ที่คุณก้มลงไป",
+      "แตะปลายเท้า"
     ],
     "extraExample": "Remember to exhale when you push the weights up.",
     "extraExampleTranslation": "อย่าลืมหายใจออกเมื่อคุณดันน้ำหนักขึ้น",
@@ -131649,8 +131969,9 @@ const wordsData = [
     "topic": "body",
     "thTokens": [
       "หายใจเข้า",
-      "สูดลม",
-      "รับออกซิเจน"
+      "ลึกๆทางจมูกก่อน",
+      "ที่คุณจะ",
+      "เริ่มยืดเหยียด"
     ],
     "extraExample": "Take a moment to inhale and calm your heart rate.",
     "extraExampleTranslation": "ใช้เวลาสักครู่เพื่อหายใจเข้าและทำให้อัตราการเต้นของหัวใจสงบลง",
@@ -131676,9 +131997,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "จำนวนครั้ง",
-      "รอบ",
-      "การทำซ้ำ"
+      "ทำท่าสควอ",
+      "ทสิบครั้ง",
+      "แล้วพักสาม",
+      "สิบวินาที"
     ],
     "extraExample": "Focus on good form rather than doing too many reps.",
     "extraExampleTranslation": "เน้นท่าทางที่ถูกต้องมากกว่าการทำจำนวนครั้งที่มากเกินไป",
@@ -131704,9 +132026,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "แอโรบิก",
-      "คาร์ดิโอ",
-      "การใช้ออกซิเจน"
+      "การเดินเร็วเป็น",
+      "กิจกรรม",
+      "แบบแอโรบิกง่ายๆ",
+      "ที่คุณทำได้ทุกที่"
     ],
     "extraExample": "Aerobic workouts help build heart and lung health.",
     "extraExampleTranslation": "การออกกำลังกายแบบแอโรบิกช่วยเสริมสร้างสุขภาพหัวใจและปอด",
@@ -131732,9 +132055,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "เพื่อนร่วมห้อง",
-      "แชร์อพาร์ตเมนต์",
-      "หารค่าเช่า"
+      "เพื่อนร่วมห้องเช่า",
+      "ของฉัน",
+      "รดน้ำต้นไม้ที่ระ",
+      "เบียงเสมอ"
     ],
     "extraExample": "We split the electricity bill with our flatmate every month.",
     "extraExampleTranslation": "เราหารค่าไฟฟ้ากับเพื่อนร่วมห้องเช่าทุกเดือน",
@@ -131760,9 +132084,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "บันไดหน้าประตู",
-      "หน้าห้อง",
-      "ทางเข้า"
+      "พนักงานส่ง",
+      "ของวางพัสดุไว้ที่",
+      "บันไดห",
+      "น้าประตูของฉัน"
     ],
     "extraExample": "I found a welcome note from my neighbor on the doorstep.",
     "extraExampleTranslation": "ฉันเจอโน้ตต้อนรับจากเพื่อนบ้านที่บันไดหน้าประตู",
@@ -131788,9 +132113,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "พรมเช็ดเท้า",
-      "หน้าประตู",
-      "เช็ดรองเท้า"
+      "กรุณาเช็ดรอง",
+      "เท้าที่เปื้อนโค",
+      "ลนบนพรมเช็ด",
+      "เท้าก่อนเข้าห้อง"
     ],
     "extraExample": "Our neighbor bought a funny doormat with a cat picture.",
     "extraExampleTranslation": "เพื่อนบ้านของเราซื้อพรมเช็ดเท้ารูปแมวสุดฮามาใช้",
@@ -131816,9 +132142,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "โถงทางเข้า",
-      "ล็อบบี้อาคาร",
-      "พื้นที่ส่วนกลาง"
+      "ลูกบ้านมัก",
+      "จะเช็กจดหมาย",
+      "ที่โถ",
+      "งทางเข้าหลัก"
     ],
     "extraExample": "Please wait in the foyer while I buzz you in.",
     "extraExampleTranslation": "กรุณารอที่โถงทางเข้าสักครู่ เดี๋ยวฉันกดเปิดประตูให้",
@@ -131844,9 +132171,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "กลอนประตู",
-      "ตัวล็อก",
-      "สลักประตู"
+      "ตรวจสอบ",
+      "ให้แน่ใจว่ากลอนประตู",
+      "ล็อกสนิทแล้ว",
+      "ตอนคุณออกไป"
     ],
     "extraExample": "The gate latch is loose, so the wind keeps blowing it open.",
     "extraExampleTranslation": "กลอนประตูรั้วหลวม ลมเลยพัดเปิดอยู่เรื่อย",
@@ -131872,9 +132200,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "ฉันต้องโทรเรียก",
       "ช่างทำกุญแจ",
-      "สะเดาะกลอน",
-      "เปลี่ยนแม่กุญแจ"
+      "หลัง",
+      "จากลืมกุญแจไว้ในห้อง"
     ],
     "extraExample": "The locksmith replaced our broken front door lock in twenty minutes.",
     "extraExampleTranslation": "ช่างทำกุญแจเปลี่ยนแม่กุญแจหน้าห้องที่พังให้เราในยี่สิบนาที",
@@ -131900,9 +132229,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "การนำคุกกี้ทำเอ",
+      "งมาฝากเป็นท่าทีที่",
       "เป็นมิตร",
-      "มีน้ำใจ",
-      "เพื่อนบ้านที่ดี"
+      "กับเพื่อนบ้านมาก"
     ],
     "extraExample": "Everyone on the fourth floor is polite and neighborly.",
     "extraExampleTranslation": "ทุกคนบนชั้นสี่สุภาพและเป็นมิตรกับเพื่อนบ้านมาก",
@@ -131928,9 +132258,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ถังขยะใหญ่",
-      "จุดทิ้งขยะ",
-      "ขยะส่วนกลาง"
+      "กรุณานำกล่องก",
+      "ระดาษใบใหญ่ลงไปทิ้ง",
+      "ที่ถังข",
+      "ยะรวมด้านล่าง"
     ],
     "extraExample": "The garbage truck empties the building's dumpster every Tuesday.",
     "extraExampleTranslation": "รถขยะมาเก็บถังขยะขนาดใหญ่ของตึกทุกวันอังคาร",
@@ -131957,8 +132288,9 @@ const wordsData = [
     "topic": "home",
     "thTokens": [
       "ผู้ดูแลอาคาร",
-      "คนเฝ้าตึก",
-      "ช่างประจำตึก"
+      "ซ่อมไฟ",
+      "ที่กะพริบตรงบัน",
+      "ไดหนีไฟให้แล้ว"
     ],
     "extraExample": "Ask the caretaker if you need a spare key for the bike room.",
     "extraExampleTranslation": "ถามผู้ดูแลอาคารได้เลยถ้าคุณต้องการกุญแจสำรองห้องจอดจักรยาน",
@@ -131984,9 +132316,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "ค่าส่วนกลาง",
+      "รายเดือนครอบคลุม",
       "การดูแลรักษา",
-      "ซ่อมบำรุง",
-      "ค่าส่วนกลาง"
+      "สวนและลิฟต์"
     ],
     "extraExample": "Regular upkeep prevents expensive plumbing problems later.",
     "extraExampleTranslation": "การดูแลรักษาอย่างสม่ำเสมอช่วยป้องกันปัญหาระบบประปาที่ต้องเสียเงินแพงในภายหลัง",
@@ -132012,9 +132345,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ลดเสียง",
-      "ซับเสียง",
-      "ทำให้เสียงเบาลง"
+      "ผ้าม่านหนาช่วย",
+      "ลดเสียงรบกวน",
+      "จากการจ",
+      "ราจรบนถนนได้"
     ],
     "extraExample": "Putting a rug down will muffle your footsteps for the people below.",
     "extraExampleTranslation": "การปูพรมจะช่วยลดเสียงฝีเท้าไม่ให้รบกวนคนที่อยู่ชั้นล่าง",
@@ -132040,9 +132374,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ข้อบังคับ",
-      "กฎระเบียบ",
-      "กฎอาคารชุด"
+      "ตามข้อบังคับอาคารชุด",
+      "ต้องใส่สายจูง",
+      "สัตว์เลี้ยง",
+      "เมื่ออยู่ในโถงทางเดิน"
     ],
     "extraExample": "The new bylaw prohibits smoking on all shared balconies.",
     "extraExampleTranslation": "ข้อบังคับใหม่ห้ามสูบบุหรี่บริเวณระเบียงส่วนกลางทั้งหมด",
@@ -132068,9 +132403,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "แปะมือ",
-      "แสดงความยินดี",
-      "ให้กำลังใจ"
+      "พวกเราแปะมือกัน",
+      "หลัง",
+      "จากทำโปร",
+      "เจกต์เสร็จ"
     ],
     "extraExample": "She offered a quick high-five to welcome the new teammate.",
     "extraExampleTranslation": "เธอแปะมือทักทายเพื่อนร่วมทีมคนใหม่อย่างเป็นกันเอง",
@@ -132096,9 +132432,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "จับมือ",
-      "ทักทาย",
-      "ตกลงกัน"
+      "การจับมือ",
+      "อย่างหนักแน่นแสดงถึง",
+      "ความมั่นใจและการ",
+      "ให้เกียรติกัน"
     ],
     "extraExample": "They sealed the partnership with a warm handshake.",
     "extraExampleTranslation": "พวกเขาตกลงเป็นพันธมิตรกันด้วยการจับมืออย่างอบอุ่น",
@@ -132124,9 +132461,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ร่วมมือกัน",
-      "จับมือทำ",
-      "ทำงานเป็นทีม"
+      "เรามาร่วมมือ",
+      "กับทีมดีไซน์",
+      "สำหรับการเปิดตัว",
+      "ครั้งนี้กันเถอะ"
     ],
     "extraExample": "Two rival departments decided to team up to solve the bug.",
     "extraExampleTranslation": "สองแผนกที่เคยแข่งกันตัดสินใจร่วมมือกันแก้บั๊ก",
@@ -132152,9 +132490,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "พึ่งพาได้",
-      "ไว้ใจได้",
-      "เชื่อใจ"
+      "คุณสามารถ",
+      "ไว้ใจมายาได้เส",
+      "มอว่าเธอจะ",
+      "ส่งงานตรงเวลา"
     ],
     "extraExample": "I knew I could count on my teammates during the crisis.",
     "extraExampleTranslation": "ฉันรู้ว่าฉันพึ่งพาเพื่อนร่วมทีมได้ในช่วงวิกฤต",
@@ -132180,9 +132519,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "เปิดใจ",
-      "เล่าความจริง",
-      "พูดคุยตรงๆ"
+      "ใช้เวลาสองสาม",
+      "สัปดาห์กว่าพ",
+      "นักงานใหม่จะเปิด",
+      "ใจคุยกับกลุ่ม"
     ],
     "extraExample": "Safe teams encourage members to open up about mistakes.",
     "extraExampleTranslation": "ทีมที่ปลอดภัยจะส่งเสริมให้สมาชิกกล้าเปิดใจเรื่องความผิดพลาด",
@@ -132208,9 +132548,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "สายสัมพันธ์",
-      "ความผูกพัน",
-      "เชื่อมโยง"
+      "การทำงานดึก",
+      "ด้วยกันสร้างสายสัมพันธ์",
+      "ที่ยั่งยืน",
+      "ในหมู่พวกเรา"
     ],
     "extraExample": "Shared challenges often strengthen the bond within a team.",
     "extraExampleTranslation": "อุปสรรคที่เผชิญร่วมกันมักทำให้ความผูกพันในทีมแน่นแฟ้นขึ้น",
@@ -132236,9 +132577,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "รับรอง",
-      "ยืนยัน",
-      "การันตี"
+      "ฉันสามารถรับรองจรรยาบรรณ",
+      "และความซื่อสัตย์",
+      "ในการทำงาน",
+      "ของเขาได้ด้วยตัวเอง"
     ],
     "extraExample": "She offered to vouch for her former teammate during hiring.",
     "extraExampleTranslation": "เธอเสนอตัวช่วยรับรองอดีตเพื่อนร่วมทีมระหว่างการสัมภาษณ์งาน",
@@ -132264,9 +132606,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ค่าธรรมเนียม",
-      "ตู้เอทีเอ็ม",
-      "การถอนเงิน"
+      "ธนาคารของฉันคิด",
+      "ค่าธรรมเนียมตู้เอทีเอ็ม",
+      "เล็กน้อย",
+      "เมื่ออยู่ต่างประเทศ"
     ],
     "extraExample": "Check the ATM fee before you withdraw money.",
     "extraExampleTranslation": "ตรวจสอบค่าธรรมเนียมตู้เอทีเอ็มก่อนถอนเงิน",
@@ -132292,9 +132635,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "บัตรเติมเงิน",
-      "ล่วงหน้า",
-      "คุมงบ"
+      "ฉันเติมเงินยูโรลง",
+      "ในบัตรเติม",
+      "เงินล่วงหน้า",
+      "สำหรับการเดินทาง"
     ],
     "extraExample": "A prepaid card helps me control my travel budget.",
     "extraExampleTranslation": "บัตรเติมเงินล่วงหน้าช่วยให้ฉันคุมงบเดินทางได้",
@@ -132320,9 +132664,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ประกัน",
-      "การเดินทาง",
-      "คุ้มครอง"
+      "ซื้อ",
+      "ประกันการเดินทาง",
+      "ทุกครั้ง",
+      "ก่อนขึ้นเครื่อง"
     ],
     "extraExample": "Our travel insurance covers lost passports.",
     "extraExampleTranslation": "ประกันการเดินทางของเราคุ้มครองหนังสือเดินทางหาย",
@@ -132348,9 +132693,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "แลกเปลี่ยน",
-      "เงินตรา",
-      "ต่างประเทศ"
+      "สนามบินมีเคาน์",
+      "เตอร์แลก",
+      "เปลี่ยนเงิน",
+      "ตราต่างประเทศ"
     ],
     "extraExample": "Foreign exchange rates change every day.",
     "extraExampleTranslation": "อัตราการแลกเปลี่ยนเงินตราต่างประเทศเปลี่ยนทุกวัน",
@@ -132376,9 +132722,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "สัมภาระ",
-      "ล่าช้า",
-      "ชดเชย"
+      "กรมธรรม์จ่าย",
+      "ค่าเสื้อผ้าให้เมื่อ",
+      "เกิด",
+      "ความล่าช้าของสัมภาระ"
     ],
     "extraExample": "Report any baggage delay at the airline desk.",
     "extraExampleTranslation": "แจ้งความล่าช้าของสัมภาระที่เคาน์เตอร์สายการบิน",
@@ -132404,9 +132751,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ยกเลิก",
+      "ประกันการยกเลิก",
       "การเดินทาง",
-      "คืนเงิน"
+      "ช่วยเราประหยัด",
+      "เงินได้หลายพัน"
     ],
     "extraExample": "Illness is a valid reason for trip cancellation.",
     "extraExampleTranslation": "การเจ็บป่วยเป็นเหตุผลที่ยอมรับได้สำหรับการยกเลิกการเดินทาง",
@@ -132432,9 +132780,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ไร้สัมผัส",
-      "แตะจ่าย",
-      "สะดวก"
+      "รถเมล์ส่วนให",
+      "ญ่ในลอนดอนรับ",
+      "เฉพาะการจ่าย",
+      "แบบไร้สัมผัส"
     ],
     "extraExample": "Tap your contactless card on the reader.",
     "extraExampleTranslation": "แตะบัตรแบบไร้สัมผัสของคุณบนเครื่องอ่าน",
@@ -132460,9 +132809,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ทำประกัน",
-      "คุ้มครอง",
-      "ความเสี่ยง"
+      "คุณควร",
+      "ทำประกันภัย",
+      "อุปกรณ์กล้อง",
+      "ก่อนเดินทาง"
     ],
     "extraExample": "We insured the rental car against theft.",
     "extraExampleTranslation": "เราทำประกันภัยรถเช่าคุ้มครองการโจรกรรม",
@@ -132488,9 +132838,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "อพยพ",
-      "การแพทย์",
-      "ฉุกเฉิน"
+      "การเดินป่าในพื้น",
+      "ที่ห่างไกลต้อง",
+      "มีประกัน",
+      "การอพยพทางการแพทย์ฉุกเฉิน"
     ],
     "extraExample": "Medical evacuation by helicopter is very expensive.",
     "extraExampleTranslation": "การอพยพทางการแพทย์ฉุกเฉินด้วยเฮลิคอปเตอร์แพงมาก",
@@ -132516,9 +132867,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ผู้รับประกัน",
-      "ประเมินเสี่ยง",
-      "กรมธรรม์"
+      "ผู้รับประกันภัย",
+      "อนุมัติกรมธ",
+      "รรม์สกีความ",
+      "เสี่ยงสูงของเรา"
     ],
     "extraExample": "An underwriter sets the terms of your coverage.",
     "extraExampleTranslation": "ผู้รับประกันภัยเป็นผู้กำหนดเงื่อนไขความคุ้มครองของคุณ",
@@ -132544,9 +132896,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ร้านแลกเงิน",
-      "สกุลเงิน",
-      "อัตราแลก"
+      "หลีกเลี่ยง",
+      "ร้านรับแลกเปลี่ย",
+      "นเงินตรา",
+      "ในอาคารผู้โดยสาร"
     ],
     "extraExample": "The town center bureau de change offered fair rates.",
     "extraExampleTranslation": "ร้านรับแลกเปลี่ยนเงินตราในตัวเมืองให้อัตราที่เป็นธรรม",
@@ -132572,9 +132925,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ชนิดราคา",
-      "ธนบัตร",
-      "เหรียญ"
+      "ขอธนบัตร",
+      "ชนิดราคาเล็ก",
+      "เมื่อ",
+      "แลกเงินสด"
     ],
     "extraExample": "Street vendors rarely accept large denominations.",
     "extraExampleTranslation": "ร้านค้าริมทางไม่ค่อยรับธนบัตรชนิดราคาใหญ่",
@@ -132600,9 +132954,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ฤดู",
-      "ใบไม้",
-      "ผลิ"
+      "ดอกไม้บาน",
+      "สะพรั่งไปทั่ว",
+      "ในช่วง",
+      "ฤดูใบไม้ผลิ"
     ],
     "extraExample": "Springtime brings warmer days and gentle rain.",
     "extraExampleTranslation": "ฤดูใบไม้ผลินำพาวันที่อบอุ่นขึ้นและฝนโปรยปราย",
@@ -132628,9 +132983,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ผิว",
-      "ไหม้",
-      "แดด"
+      "เธอ",
+      "ผิวไหม้แดด",
+      "อย่างหนัก",
+      "ที่ชายหาด"
     ],
     "extraExample": "Wear a hat to prevent sunburn in summer.",
     "extraExampleTranslation": "สวมหมวกเพื่อป้องกันผิวไหม้แดดในฤดูร้อน",
@@ -132656,9 +133012,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "หิมะ",
-      "ตก",
-      "หนัก"
+      "หิมะตก",
+      "หนักทำให้ถ",
+      "นนบน",
+      "ภูเขาถูกปิด"
     ],
     "extraExample": "We expect light snowfall later tonight.",
     "extraExampleTranslation": "เราคาดว่าจะมีหิมะตกเบาๆ คืนนี้",
@@ -132684,9 +133041,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "พายุ",
-      "ฝน",
-      "ตก"
+      "พายุฝน",
+      "ทำให้ถนนหลายสาย",
+      "ในตัว",
+      "เมืองน้ำท่วม"
     ],
     "extraExample": "We stayed indoors during the sudden rainstorm.",
     "extraExampleTranslation": "เราอยู่แต่ในบ้านระหว่างพายุฝนที่เกิดขึ้นกะทันหัน",
@@ -132712,9 +133070,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "พายุ",
-      "ไซ",
-      "โคลน"
+      "เมืองชายฝั่ง",
+      "เตรียมรับมือ",
+      "กับพายุไซโคลน",
+      "ที่กำลังเข้ามา"
     ],
     "extraExample": "A cyclone warning was issued for the region.",
     "extraExampleTranslation": "มีการประกาศเตือนภัยพายุไซโคลนสำหรับภูมิภาคนี้",
@@ -132740,9 +133099,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "พายุ",
-      "ไต้",
-      "ฝุ่น"
+      "พายุไต้ฝุ่น",
+      "ทำให้ต้องยก",
+      "เลิกเที่ยว",
+      "บินหลายเที่ยว"
     ],
     "extraExample": "Schools closed ahead of the approaching typhoon.",
     "extraExampleTranslation": "โรงเรียนปิดทำการล่วงหน้าก่อนพายุไต้ฝุ่นจะมาถึง",
@@ -132768,9 +133128,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "น้ำแข็ง",
-      "ใส",
-      "บนถนน"
+      "ผู้ขับขี่ค",
+      "วรระวัง",
+      "น้ำแข็งใสบนถนน",
+      "เช้านี้"
     ],
     "extraExample": "Black ice makes highways extremely slippery.",
     "extraExampleTranslation": "น้ำแข็งใสทำให้ทางหลวงลื่นมากเป็นพิเศษ",
@@ -132796,9 +133157,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "อุณหภูมิ",
-      "ลม",
-      "หนาว"
+      "อุณหภูมิลมหนาว",
+      "ทำให้อากาศ",
+      "รู้สึกเหมือน",
+      "ติดลบสิบองศา"
     ],
     "extraExample": "Check the windchill factor before going outside.",
     "extraExampleTranslation": "ตรวจสอบค่าอุณหภูมิลมหนาวก่อนออกไปข้างนอก",
@@ -132824,9 +133186,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ลม",
-      "หมุน",
-      "แรง"
+      "ลมหมุน",
+      "ขนาดเล็กพัด",
+      "ฝุ่นฟุ้ง",
+      "ในทุ่งนา"
     ],
     "extraExample": "Autumn winds can sometimes create a whirlwind.",
     "extraExampleTranslation": "ลมในฤดูใบไม้ร่วงบางครั้งอาจทำให้เกิดลมหมุนได้",
@@ -132852,9 +133215,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "วัน",
-      "เปลี่ยน",
-      "ฤดู"
+      "วันครีษมายัน",
+      "มีช่วงเวลาก",
+      "ลางวันยาวนาน",
+      "ที่สุดของปี"
     ],
     "extraExample": "People celebrate the winter solstice in December.",
     "extraExampleTranslation": "ผู้คนเฉลิมฉลองวันเหมายันในเดือนธันวาคม",
@@ -132880,9 +133244,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ฝนตก",
-      "หนัก",
-      "กะทันหัน"
+      "ฝนตกหนักกะทันหัน",
+      "ทำให้ทุกคน",
+      "ที่สวน",
+      "สาธารณะเปียกโชก"
     ],
     "extraExample": "The cloudburst lasted only fifteen minutes.",
     "extraExampleTranslation": "ฝนตกหนักกะทันหันเกิดขึ้นเพียงสิบห้านาที",
@@ -132908,9 +133273,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ทัศนวิสัย",
-      "ศูนย์",
-      "หิมะ"
+      "พายุหิมะ",
+      "ทำให้เกิดทัศน",
+      "วิสัยเป็นศูนย์",
+      "บนทางหลวง"
     ],
     "extraExample": "Do not drive during a whiteout.",
     "extraExampleTranslation": "อย่าขับรถในช่วงที่ทัศนวิสัยเป็นศูนย์จากหิมะ",
@@ -132936,9 +133302,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
+      "เธอมักจะ",
+      "มีทัศนคติที่",
       "สดใส",
-      "ร่าเริง",
-      "มองโลกในแง่ดี"
+      "เวลาทำงานเสมอ"
     ],
     "extraExample": "His sunny smile made everyone feel better.",
     "extraExampleTranslation": "รอยยิ้มที่สดใสของเขาทำให้ทุกคนรู้สึกดีขึ้น",
@@ -132964,9 +133331,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "สดชื่น",
-      "กระปรี้กระเปร่า",
-      "รู้สึกดีขึ้น"
+      "การเดินเล่น",
+      "ข้างนอกสั้น",
+      "ๆทำให้รู้สึก",
+      "สดชื่นจริงๆ"
     ],
     "extraExample": "His honest approach is very refreshing.",
     "extraExampleTranslation": "แนวทางที่ตรงไปตรงมาของเขาทำให้รู้สึกดีมาก",
@@ -132992,9 +133360,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ผ่อนคลาย",
-      "เลิกเครียด",
-      "สบายๆ"
+      "คุณควรผ่อนคลายลง",
+      "และสนุก",
+      "กับวันหยุด",
+      "สุดสัปดาห์นะ"
     ],
     "extraExample": "The mood began to lighten up after lunch.",
     "extraExampleTranslation": "บรรยากาศเริ่มผ่อนคลายลงหลังจากมื้อกลางวัน",
@@ -133020,9 +133389,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "คลายกังวล",
-      "ทำให้มั่นใจ",
-      "อุ่นใจ"
+      "น้ำเสียง",
+      "ที่สงบของเขาช่วย",
+      "ให้รู้สึก",
+      "คลายกังวล"
     ],
     "extraExample": "She gave me a reassuring smile before I spoke.",
     "extraExampleTranslation": "เธอยิ้มให้กำลังใจฉันก่อนที่ฉันจะพูด",
@@ -133048,9 +133418,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
+      "เช้านี้คุณดู",
       "ร่าเริง",
-      "กระปรี้กระเปร่า",
-      "อารมณ์ดี"
+      "จัง",
+      "เลยนะ!"
     ],
     "extraExample": "Even after a long day, he stayed chipper.",
     "extraExampleTranslation": "แม้จะผ่านวันที่ยาวนาน เขาก็ยังคงร่าเริงอยู่",
@@ -133076,9 +133447,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "โล่งอก",
-      "หายใจทั่วท้อง",
-      "หมดห่วง"
+      "ตอนนี้เราโล่ง",
+      "อกได้แล้ว",
+      "เมื่อโปรเจกต์",
+      "ได้รับการอนุมัติ"
     ],
     "extraExample": "Once the storm passed, everyone could breathe easy.",
     "extraExampleTranslation": "พอพายุผ่านไป ทุกคนก็หายใจได้ทั่วท้อง",
@@ -133104,9 +133476,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "น่าพึงพอใจ",
-      "ชื่นใจ",
-      "คุ้มค่า"
+      "มันน่าชื่นใจ",
+      "ที่ได้เห็นค",
+      "วามพยายาม",
+      "ของคุณออกดอกออกผล"
     ],
     "extraExample": "Receiving a thank-you note was deeply gratifying.",
     "extraExampleTranslation": "การได้รับข้อความขอบคุณเป็นเรื่องที่น่าพึงพอใจมาก",
@@ -133132,9 +133505,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "แบบทดสอบ",
-      "สั้นๆ",
-      "ออนไลน์"
+      "ฉันสอบผ่าน",
+      "แบบทดสอบสั้นๆ",
+      "ประจำสัปดาห์",
+      "ตั้งแต่ครั้งแรก"
     ],
     "extraExample": "Take this quick quiz to check your progress.",
     "extraExampleTranslation": "ทำแบบทดสอบสั้นๆ นี้เพื่อเช็กความคืบหน้าของคุณ",
@@ -133160,9 +133534,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "การเรียน",
-      "ออนไลน์",
-      "ระบบอิเล็กทรอนิกส์"
+      "หลายบริษัท",
+      "ใช้การเรียนออนไลน์",
+      "เพื่อฝึก",
+      "อบรมพนักงานใหม่"
     ],
     "extraExample": "E-learning lets you study from anywhere.",
     "extraExampleTranslation": "การเรียนออนไลน์ช่วยให้คุณเรียนได้จากทุกที่",
@@ -133188,9 +133563,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "เล่นซ้ำ",
-      "ดูย้อนหลัง",
-      "วิดีโอ"
+      "คุณสามารถดูวิดีโอ",
+      "บรรยายย้อน",
+      "หลังได้ถ้าพ",
+      "ลาดประเด็นไหนไป"
     ],
     "extraExample": "She had to replay the audio clip three times.",
     "extraExampleTranslation": "เธอต้องเล่นคลิปเสียงซ้ำถึงสามครั้ง",
@@ -133216,9 +133592,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ตราสัญลักษณ์",
-      "ดิจิทัล",
-      "ความสำเร็จ"
+      "เขาแชร์ตราสัญ",
+      "ลักษณ์การ",
+      "เขียนโค้ดให",
+      "ม่บนLinkedIn"
     ],
     "extraExample": "Earn a digital badge after finishing all five modules.",
     "extraExampleTranslation": "รับตราสัญลักษณ์ดิจิทัลหลังเรียนจบทั้งห้าบท",
@@ -133244,9 +133621,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "หน้าจอ",
-      "สรุปข้อมูล",
-      "บทเรียน"
+      "เช็กหน้าจอสรุป",
+      "ข้อมูลนักเรียน",
+      "เพื่อดูวันส่งงาน",
+      "ที่กำลังจะมาถึง"
     ],
     "extraExample": "The new dashboard makes it easy to track your lessons.",
     "extraExampleTranslation": "หน้าจอสรุปข้อมูลแบบใหม่ช่วยให้ติดตามบทเรียนได้ง่าย",
@@ -133272,9 +133650,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "แผนการเรียน",
-      "นำทาง",
-      "ทีละขั้น"
+      "คอร์สนี้มี",
+      "แผนการเรียนที่ชัดเจน",
+      "ตั้งแต่มือให",
+      "ม่จนถึงมืออาชีพ"
     ],
     "extraExample": "Follow this learning roadmap to prepare for the exam.",
     "extraExampleTranslation": "ทำตามแผนการเรียนนี้เพื่อเตรียมตัวสอบ",
@@ -133300,9 +133679,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ซิงค์",
-      "เชื่อมต่อ",
-      "ให้ตรงกัน"
+      "ความคืบหน้าบทเรียน",
+      "ของคุณจะซิงค์",
+      "อัตโนมัติระหว่างมือถือ",
+      "กับโน้ตบุ๊ก"
     ],
     "extraExample": "Click here to sync your study calendar.",
     "extraExampleTranslation": "คลิกที่นี่เพื่อซิงค์ปฏิทินการเรียนของคุณ",
@@ -133328,9 +133708,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "กลุ่มผู้เรียน",
-      "รุ่นเดียวกัน",
-      "เรียนพร้อมกัน"
+      "กลุ่มผู้เรียนรุ่น",
+      "ฤดูใบไม้ร่วง",
+      "ของเรามีผู้เรียน",
+      "จากสิบสองประเทศ"
     ],
     "extraExample": "Joining a live cohort keeps you motivated to finish.",
     "extraExampleTranslation": "การเข้าเรียนกับกลุ่มผู้เรียนรุ่นเดียวกันช่วยให้คุณมีแรงจูงใจเรียนจนจบ",
@@ -133356,9 +133737,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "การเรียนรู้",
-      "แบบสั้นๆ",
-      "กระชับ"
+      "การเรียนรู้แบ",
+      "บสั้นๆกระชับ",
+      "เข้ากับตารางงาน",
+      "ที่ยุ่งได้ง่าย"
     ],
     "extraExample": "Ten-minute daily videos are a great example of microlearning.",
     "extraExampleTranslation": "วิดีโอวันละสิบนาทีเป็นตัวอย่างที่ดีของการเรียนรู้แบบสั้นๆ",
@@ -133386,7 +133768,8 @@ const wordsData = [
     "thTokens": [
       "เราจะโพสต์",
       "ข้อมูลอัปเดต",
-      "ทุกชั่วโมง"
+      "ทุกชั่วโม",
+      "งบนเว็บไซต์"
     ],
     "extraExample": "Thank you for your patience while we share this update.",
     "extraExampleTranslation": "ขอบคุณสำหรับความอดทนระหว่างที่เราแจ้งข้อมูลอัปเดตนี้",
@@ -133412,9 +133795,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ผู้นำต้องแสดง",
       "ความรับผิดชอบ",
-      "เมื่อเกิดปัญหา"
+      "ที่ชัดเจนช่วยสร้างค",
+      "วามไว้วางใจอีกครั้ง",
+      "หลังความผิดพลาด"
     ],
     "extraExample": "Leaders must show accountability when things go wrong.",
     "extraExampleTranslation": "ผู้นำต้องแสดงความรับผิดชอบเมื่อเกิดความผิดพลาดขึ้น",
@@ -133440,9 +133824,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ดอกไม้ไฟ",
-      "พลุ",
-      "การจุดพลุ"
+      "เราดูการแสดง",
+      "ดอกไม้ไฟขนาดใหญ่เห",
+      "นือแม่น้ำใน",
+      "ช่วงเทศกาลปีใหม่"
     ],
     "extraExample": "Each firework lit up the night sky in red and gold.",
     "extraExampleTranslation": "ดอกไม้ไฟแต่ละลูกส่องสว่างบนท้องฟ้ายามค่ำคืนเป็นสีแดงและสีทอง",
@@ -133468,9 +133853,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "กองไฟกลางแจ้ง",
-      "กองไฟฉลอง",
-      "การก่อไฟ"
+      "ชาวบ้านมารวม",
+      "ตัวกันรอบกองไฟ",
+      "ขนาดใหญ่เพื่อ",
+      "ร้องเพลงพื้นบ้าน"
     ],
     "extraExample": "They lit a bright bonfire on the beach to mark the end of winter.",
     "extraExampleTranslation": "พวกเขาจุดกองไฟสว่างไสวบนชายหาดเพื่อเป็นสัญลักษณ์ของการสิ้นสุดฤดูหนาว",
@@ -133496,9 +133882,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "ครอบครัวเตรียม",
       "งานเลี้ยงฉลอง",
-      "อาหารมื้อใหญ่",
-      "การฉลอง"
+      "ใหญ่ด้วยอาหารพื้นเมือง",
+      "สำหรับวันหยุดเทศกาล"
     ],
     "extraExample": "The community shared a joyful feast in the town square.",
     "extraExampleTranslation": "ชุมชนร่วมกันรับประทานอาหารในงานเลี้ยงฉลองอย่างมีความสุขที่จัตุรัสกลางเมือง",
@@ -133524,9 +133911,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "เจดีย์",
-      "พระธาตุ",
-      "หอคอยโบราณ"
+      "นักท่องเที่ย",
+      "วเดินขึ้นบัน",
+      "ไดไปยังเจดีย์",
+      "โบราณบนยอดเขา"
     ],
     "extraExample": "The golden pagoda shone brightly under the morning sun.",
     "extraExampleTranslation": "เจดีย์สีทองส่องประกายเจิดจ้าภายใต้แสงแดดยามเช้า",
@@ -133552,9 +133940,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ธูป",
-      "เครื่องหอม",
-      "การจุดธูป"
+      "ผู้คนจุดธูป",
+      "ที่วัด",
+      "เพื่อแสดงความเคาร",
+      "พต่อบรรพบุรุษ"
     ],
     "extraExample": "The sweet scent of incense filled the quiet courtyard.",
     "extraExampleTranslation": "กลิ่นหอมของธูปอบอวลไปทั่วลานวัดอันเงียบสงบ",
@@ -133580,9 +133969,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "สวดมนต์",
-      "ร้องเป็นจังหวะ",
-      "ท่องซ้ำ"
+      "พระสงฆ์เริ่มส",
+      "วดมนต์เบาๆ",
+      "เมื่อพิธีกรรมยาม",
+      "เช้าเริ่มต้นขึ้น"
     ],
     "extraExample": "The crowd would chant traditional blessings during the festival.",
     "extraExampleTranslation": "ฝูงชนจะสวดคำอวยพรแบบดั้งเดิมเป็นจังหวะระหว่างเทศกาล",
@@ -133608,9 +133998,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "พิพิธภัณฑ์",
+      "จัดแสดงดนตรี",
       "พื้นบ้าน",
-      "ดั้งเดิม",
-      "ชาวบ้าน"
+      "ท้องถิ่นแบบสด"
     ],
     "extraExample": "She wore a colorful folk dress embroidered by her grandmother.",
     "extraExampleTranslation": "เธอสวมชุดพื้นบ้านสีสันสดใสที่ปักโดยคุณยายของเธอ",
@@ -133636,9 +134027,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "งานสวมหน้ากาก",
-      "งานเต้นรำ",
-      "การปลอมตัว"
+      "เมืองนี้จัด",
+      "งานเต้นรำสวมหน้ากาก",
+      "ประจำปีใน",
+      "พระราชวังเก่าแก่"
     ],
     "extraExample": "Guests arrived at the masquerade wearing hand-painted Venetian masks.",
     "extraExampleTranslation": "แขกเหรื่อเดินทางมาถึงงานเต้นรำสวมหน้ากากโดยสวมหน้ากากเวนิสที่วาดด้วยมือ",
@@ -133664,9 +134056,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "ชุดน้ำชาเงินชุดนี้เป็น",
       "มรดกตกทอด",
-      "ของเก่าแก่",
-      "สมบัติประจำตระกูล"
+      "ของครอบครัวตั้ง",
+      "แต่ศตวรรษที่สิบเก้า"
     ],
     "extraExample": "She wore an heirloom necklace to the traditional wedding.",
     "extraExampleTranslation": "เธอสวมสร้อยคอมรดกตกทอดไปร่วมงานแต่งงานแบบดั้งเดิม",
@@ -133692,9 +134085,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ฝีมือช่าง",
-      "งานฝีมือ",
-      "ความประณีต"
+      "ตลาดเทศกาลจัดแสดง",
+      "ฝีมือช่างอันประณีต",
+      "ในงานแกะสลักไม้และ",
+      "เครื่องปั้นดินเผา"
     ],
     "extraExample": "Visitors admired the intricate craftsmanship of the handwoven silk.",
     "extraExampleTranslation": "ผู้มาเยือนชื่นชมฝีมือช่างอันซับซ้อนของผ้าไหมทอมือ",
@@ -133720,9 +134114,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ตามธรรมเนียม",
-      "เป็นปกติ",
-      "ตามประเพณี"
+      "เป็นธรรมเนียมป",
+      "ฏิบัติที่จะต้องถ",
+      "อดรองเท้าก่อนเข้าไป",
+      "ในวัดเก่าแก่"
     ],
     "extraExample": "Exchanging sweet rice cakes is a customary greeting during the lunar holiday.",
     "extraExampleTranslation": "การแลกเปลี่ยนขนมข้าวเหนียวหวานเป็นคำทักทายตามธรรมเนียมในช่วงวันหยุดทางจันทรคติ",
@@ -133748,9 +134143,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ช่วยเหลือ",
-      "กรุณา",
-      "ทำให้เป็นพระคุณ"
+      "คุณช่วยก",
+      "รุณาเซ็นแบบฟอร์",
+      "มนี้ให้ฉัน",
+      "หน่อยได้ไหม"
     ],
     "extraExample": "We are always happy to oblige our regular guests.",
     "extraExampleTranslation": "เรายินดีเสมอที่จะให้บริการแขกประจำของเรา",
@@ -133776,9 +134172,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "เกรงว่า",
-      "เสียใจด้วย",
-      "ขออภัย"
+      "ฉันเกรงว่าคืน",
+      "นี้ห้องพัก",
+      "ของเราจะ",
+      "เต็มหมดแล้ว"
     ],
     "extraExample": "I am afraid I cannot make it to dinner.",
     "extraExampleTranslation": "ฉันเกรงว่าฉันจะไปทานมื้อเย็นด้วยไม่ได้",
@@ -133804,9 +134201,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "อาหารคีโต",
-      "คาร์บต่ำ",
-      "ไขมันสูง"
+      "ฉัน",
+      "กำลังกินคีโตเล",
+      "ยงดข้าว",
+      "และขนมปัง"
     ],
     "extraExample": "Does this cafe offer any keto desserts?",
     "extraExampleTranslation": "คาเฟ่นี้มีขนมคีโตบ้างไหม",
@@ -133832,9 +134230,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "อาหารพาลีโอ",
-      "ไม่แปรรูป",
-      "เลี่ยงน้ำตาล"
+      "เธอใช้ชีวิต",
+      "แบบพาลีโอ",
+      "และเลี่ยง",
+      "น้ำตาลขัดสี"
     ],
     "extraExample": "These paleo snacks are made only from fruits and seeds.",
     "extraExampleTranslation": "ขนมพาลีโอพวกนี้ทำจากผลไม้และเมล็ดพืชเท่านั้น",
@@ -133860,9 +134259,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "แมคโครไบโอติก",
-      "เน้นธัญพืช",
-      "สมดุลธรรมชาติ"
+      "เขาเปลี่ยนมากิน",
+      "อาหารแมคโคร",
+      "ไบโอติกเพื่อช่วย",
+      "ให้ย่อยดีขึ้น"
     ],
     "extraExample": "The restaurant serves macrobiotic meals with brown rice and miso.",
     "extraExampleTranslation": "ร้านอาหารเสิร์ฟเมนูแมคโครไบโอติกพร้อมข้าวกล้องและมิโซะ",
@@ -133888,9 +134288,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "โฮลเกรน",
-      "ธัญพืชเต็มเมล็ด",
-      "ใยอาหารสูง"
+      "เลือกขนม",
+      "ปังโฮลเกรนเสมอ",
+      "เพื่อ",
+      "เพิ่มใยอาหาร"
     ],
     "extraExample": "We switched from white pasta to wholegrain pasta.",
     "extraExampleTranslation": "เราเปลี่ยนจากพาสต้าขาวมาเป็นพาสต้าโฮลเกรน",
@@ -133916,9 +134317,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจากโซเดียม",
-      "ไม่เค็ม",
-      "ดีต่อความดัน"
+      "หมอแนะนำให้ฉัน",
+      "กินน้ำซุปปราศ",
+      "จากโซเดียม",
+      "เพื่อความดันโลหิต"
     ],
     "extraExample": "Check the label to see if the crackers are sodium-free.",
     "extraExampleTranslation": "ดูฉลากว่าแครกเกอร์นี้ปราศจากโซเดียมหรือไม่",
@@ -133944,9 +134346,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปลอดจีเอ็มโอ",
-      "ไม่ดัดแปลงพันธุกรรม",
-      "ปลอดภัย"
+      "ผู้ซื้อหลายคนช",
+      "อบผลิตภัณฑ์ข้าวโพด",
+      "และถั่วเห",
+      "ลืองปลอดจีเอ็มโอ"
     ],
     "extraExample": "This label certifies that the oil is 100% non-GMO.",
     "extraExampleTranslation": "ฉลากนี้รับรองว่าน้ำมันนี้ปลอดจีเอ็มโอ 100%",
@@ -133972,9 +134375,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ผงชูรส",
-      "สารปรุงรส",
-      "ไม่ใส่ผงชูรส"
+      "กรุณาผัด",
+      "จานนี้โด",
+      "ยไม่ใส่",
+      "ผงชูรส"
     ],
     "extraExample": "Some diners get headaches after eating food high in MSG.",
     "extraExampleTranslation": "ลูกค้าบางคนปวดหัวหลังจากกินอาหารที่มีผงชูรสสูง",
@@ -134000,9 +134404,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "เคซีน",
-      "โปรตีนในนม",
-      "สารก่อภูมิแพ้"
+      "เขาแพ้เคซีน",
+      "ดังนั้นแม้แต่นมปราศ",
+      "จากแลค",
+      "โตสก็ไม่ปลอดภัย"
     ],
     "extraExample": "Casein is often hidden in processed meats and protein bars.",
     "extraExampleTranslation": "เคซีนมักแฝงอยู่ในเนื้อสัตว์แปรรูปและโปรตีนบาร์",
@@ -134028,9 +134433,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ซอร์บิทอล",
-      "สารให้ความหวาน",
-      "อาจทำให้ท้องอืด"
+      "หมากฝรั่งปราศ",
+      "จากน้ำตาล",
+      "มักมีส่วนผสม",
+      "ของซอร์บิทอล"
     ],
     "extraExample": "Too much sorbitol can cause bloating for sensitive stomachs.",
     "extraExampleTranslation": "ซอร์บิทอลมากเกินไปอาจทำให้ท้องอืดสำหรับคนที่ท้องไส้ไว",
@@ -134056,9 +134462,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ถั่วลูปิน",
-      "แป้งถั่วลูปิน",
-      "สารก่อภูมิแพ้"
+      "แป้งถั่ว",
+      "ลูปินบางครั้ง",
+      "ถูกผสม",
+      "ในขนมอบไร้กลูเตน"
     ],
     "extraExample": "People with peanut allergies may also react to lupin.",
     "extraExampleTranslation": "คนที่แพ้ถั่วลิสงอาจมีอาการแพ้ถั่วลูปินด้วย",
@@ -134084,9 +134491,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "น้ำสลัดนี้มี",
       "มัสตาร์ด",
-      "เครื่องปรุงรส",
-      "สารก่อภูมิแพ้"
+      "ผสม",
+      "อยู่ไหม"
     ],
     "extraExample": "I am allergic to mustard seeds, so I avoid this sauce.",
     "extraExampleTranslation": "ฉันแพ้เมล็ดมัสตาร์ด เลยเลี่ยงซอสนี้",
@@ -134112,9 +134520,9 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ขึ้นฉ่ายฝรั่ง",
-      "ผักกรอบ",
-      "สารก่อภูมิแพ้"
+      "น้ำซุปนี้ทำจากแครอท",
+      "หัวหอม",
+      "และขึ้นฉ่ายฝรั่ง"
     ],
     "extraExample": "Celery must be listed clearly on allergen menus in Europe.",
     "extraExampleTranslation": "ขึ้นฉ่ายฝรั่งต้องระบุให้ชัดเจนในเมนูสารก่อภูมิแพ้ที่ยุโรป",
@@ -134140,9 +134548,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "เสื่อ",
-      "ออกกำลังกาย",
-      "กันลื่น"
+      "ปูเสื่อออก",
+      "กำลังกายของคุณ",
+      "ก่อนที่เราจะเริ่ม",
+      "ยืดเส้นตอนเช้า"
     ],
     "extraExample": "This non-slip mat keeps my hands steady during floor poses.",
     "extraExampleTranslation": "เสื่อกันลื่นผืนนี้ช่วยให้มือของฉันมั่นคงระหว่างทำท่าบนพื้น",
@@ -134168,9 +134577,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "โยคะ",
-      "ยืดเหยียด",
-      "หายใจ"
+      "เธอฝึกโยคะ",
+      "ทุกเช้าเพื่อ",
+      "ให้หลัง",
+      "ของเธอผ่อนคลาย"
     ],
     "extraExample": "Beginner yoga classes focus on gentle stretching and steady breathing.",
     "extraExampleTranslation": "คลาสโยคะสำหรับผู้เริ่มต้นเน้นการยืดเหยียดเบาๆ และการหายใจอย่างสม่ำเสมอ",
@@ -134197,8 +134607,9 @@ const wordsData = [
     "topic": "body",
     "thTokens": [
       "คาร์ดิโอ",
-      "หัวใจ",
-      "อบอุ่นร่างกาย"
+      "เบาๆยี่สิบนาทีช่ว",
+      "ยอบอุ่นร่าง",
+      "กายได้ทั้งตัว"
     ],
     "extraExample": "He mixes cardio with static stretching after every workout.",
     "extraExampleTranslation": "เขาผสมผสานคาร์ดิโอกับการยืดเหยียดแบบค้างท่าหลังออกกำลังกายทุกครั้ง",
@@ -134224,9 +134635,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ดัมเบล",
-      "ยกน้ำหนัก",
-      "แขน"
+      "ถือดัมเบล",
+      "น้ำหนักเบาไว้ในมือ",
+      "แต่ละข้างเพื่อยกแขน",
+      "อย่างควบคุม"
     ],
     "extraExample": "She switched to a heavier dumbbell after two weeks of training.",
     "extraExampleTranslation": "เธอเปลี่ยนไปใช้ดัมเบลที่หนักขึ้นหลังจากฝึกมาสองสัปดาห์",
@@ -134253,8 +134665,9 @@ const wordsData = [
     "topic": "body",
     "thTokens": [
       "คุกเข่า",
-      "รองเข่า",
-      "ยืดสะโพก"
+      "ลงบนผ้าขนหนูที่พับ",
+      "ไว้เพื่อรองรับเข่าระ",
+      "หว่างยืดสะโพก"
     ],
     "extraExample": "He had to kneel down to tie his running shoes before the jog.",
     "extraExampleTranslation": "เขาต้องคุกเข่าลงเพื่อผูกเชือกรองเท้าวิ่งก่อนออกวิ่งเหยาะๆ",
@@ -134280,9 +134693,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ดึงข้อ",
-      "โหนบาร์",
-      "หลังและแขน"
+      "การดึงข้อ",
+      "ที่ถูกต้องหนึ่งครั้งต้อ",
+      "งใช้กล้ามเนื้อหลัง",
+      "และแขนที่แข็งแรง"
     ],
     "extraExample": "Use a resistance band to assist your pull-up until you build strength.",
     "extraExampleTranslation": "ใช้ยางยืดช่วยในการดึงข้อจนกว่าคุณจะสร้างความแข็งแรงได้",
@@ -134308,9 +134722,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "อย่างกระฉับกระเฉง",
-      "รวดเร็ว",
-      "มีพลัง"
+      "เดินอย่างกระฉับกระเฉง",
+      "ห้านาทีเพื่อ",
+      "ให้เลือดสูบฉีด",
+      "ก่อนยืดเส้น"
     ],
     "extraExample": "She swung her arms briskly to loosen up tight shoulders.",
     "extraExampleTranslation": "เธอแกว่งแขนอย่างกระฉับกระเฉงเพื่อคลายหัวไหล่ที่ตึง",
@@ -134336,9 +134751,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "เกร็งแน่น",
-      "กำหมัด",
-      "คลายตึง"
+      "พยายามอย่ากัด",
+      "ฟันเกร็งกราม",
+      "เมื่อต้องค้างท่ายืด",
+      "ที่ท้าทาย"
     ],
     "extraExample": "Clench your fists for five seconds, then release to feel the tension drop.",
     "extraExampleTranslation": "กำหมัดแน่นห้าวินาทีแล้วปล่อยออกเพื่อรู้สึกถึงความตึงที่ลดลง",
@@ -134364,9 +134780,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ตึงกระชับ",
-      "กระชับ",
-      "ไม่หย่อน"
+      "เกร็งแกนกลางลำตัว",
+      "ให้ตึงกระชับ",
+      "เพื่อพยุง",
+      "หลังส่วนล่างไว้"
     ],
     "extraExample": "You should feel a mild pull along the taut muscle, never sharp pain.",
     "extraExampleTranslation": "คุณควรรู้สึกตึงเบาๆ ตามแนวกล้ามเนื้อที่ตึงกระชับ ไม่ใช่ความเจ็บแปลบ",
@@ -134392,9 +134809,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "อ่อนช้อย",
-      "ยืดหยุ่น",
-      "ไม่แข็งตึง"
+      "การฝึกความคล่องตัว",
+      "ทุกวันช่วยให้ข้อต่อ",
+      "ของคุณอ่อนช้อยยืดหยุ่น",
+      "เมื่ออายุมากขึ้น"
     ],
     "extraExample": "After a month of stretching, her spine felt much more supple.",
     "extraExampleTranslation": "หลังจากยืดเหยียดมาหนึ่งเดือน กระดูกสันหลังของเธอก็รู้สึกยืดหยุ่นขึ้นมาก",
@@ -134420,9 +134838,9 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "กริ่ง",
-      "ประตู",
-      "ไฟฟ้า"
+      "กดกริ่งประตูสำหรับห้อง",
+      "4B",
+      "ได้เลย"
     ],
     "extraExample": "The delivery driver rang our buzzer twice.",
     "extraExampleTranslation": "พนักงานส่งของกดกริ่งห้องเราสองครั้ง",
@@ -134448,9 +134866,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ย้าย",
-      "เข้า",
-      "อยู่ใหม่"
+      "เพื่อนบ้านให",
+      "ม่ของเราจะ",
+      "ย้ายเข้า",
+      "มาสุดสัปดาห์นี้"
     ],
     "extraExample": "We helped them move in their heavy furniture.",
     "extraExampleTranslation": "เราช่วยพวกเขาย้ายเฟอร์นิเจอร์หนักๆ เข้าบ้าน",
@@ -134476,9 +134895,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ย้าย",
-      "ออก",
-      "จากที่พัก"
+      "พวกเขาต้อง",
+      "ย้ายออก",
+      "ภาย",
+      "ในสิ้นเดือนนี้"
     ],
     "extraExample": "When did the previous tenant move out?",
     "extraExampleTranslation": "ผู้เช่าคนก่อนย้ายออกไปเมื่อไหร่",
@@ -134504,9 +134924,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ห้อง",
-      "เพดาน",
-      "สูง"
+      "เขาเช่าห้อ",
+      "งเพดานสูง",
+      "ที่สว่างโป",
+      "ร่งใกล้แม่น้ำ"
     ],
     "extraExample": "They turned the old warehouse into a modern loft.",
     "extraExampleTranslation": "พวกเขาเปลี่ยนโกดังเก่าเป็นห้องลอฟท์ทันสมัย",
@@ -134532,9 +134953,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "อาคาร",
-      "สูง",
-      "หลายชั้น"
+      "การอยู่ใน",
+      "อาคารสูง",
+      "ทำให้คุณเห็นวิวเมือง",
+      "ที่สวยงาม"
     ],
     "extraExample": "That high-rise has twenty-five residential floors.",
     "extraExampleTranslation": "อาคารสูงแห่งนั้นมีชั้นพักอาศัยยี่สิบห้าชั้น",
@@ -134560,9 +134982,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "บังเอิญ",
-      "ได้",
-      "ยิน"
+      "ฉันบังเอิญได้ยิน",
+      "พวก",
+      "เขาเถียงกัน",
+      "ผ่านผนังบางๆ"
     ],
     "extraExample": "Did you overhear what the manager said?",
     "extraExampleTranslation": "คุณบังเอิญได้ยินสิ่งที่ผู้จัดการพูดไหม",
@@ -134588,9 +135011,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ส่วน",
-      "กลาง",
-      "ร่วมกัน"
+      "สวนบนดาดฟ้าเป็น",
+      "พื้น",
+      "ที่ส่วนกลาง",
+      "สำหรับลูกบ้านทุกคน"
     ],
     "extraExample": "We share a communal laundry room on the ground floor.",
     "extraExampleTranslation": "เราใช้ห้องซักผ้าส่วนกลางร่วมกันที่ชั้นล่าง",
@@ -134616,9 +135040,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ทะเลาะ",
-      "เรื่อง",
-      "เล็กน้อย"
+      "เพื่อนบ้าน",
+      "มักทะเลาะกันเรื่อง",
+      "ที่จอ",
+      "ดรถเป็นประจำ"
     ],
     "extraExample": "Stop squabbling about who takes out the trash.",
     "extraExampleTranslation": "หยุดเถียงกันเรื่องใครจะเอาขยะไปทิ้งเสียที",
@@ -134645,8 +135070,9 @@ const wordsData = [
     "topic": "people",
     "thTokens": [
       "เพื่อนร่วมชั้น",
-      "คนในห้องเดียวกัน",
-      "เพื่อนเรียน"
+      "ของฉัน",
+      "ช่วยฉันถือ",
+      "หนังสือหนักๆ"
     ],
     "extraExample": "I always study with my classmate before exams.",
     "extraExampleTranslation": "ฉันอ่านหนังสือกับเพื่อนร่วมชั้นก่อนสอบเสมอ",
@@ -134672,9 +135098,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ผู้ช่วย",
-      "คนช่วยงาน",
-      "ผู้สนับสนุน"
+      "เธอเป็นผู้ช่วย",
+      "ที่ยอดเยี่ย",
+      "มเวลาเราทำค",
+      "วามสะอาดห้อง"
     ],
     "extraExample": "Every team needs a reliable helper.",
     "extraExampleTranslation": "ทุกทีมต้องการผู้ช่วยที่พึ่งพาได้",
@@ -134700,9 +135127,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "สมาชิกใหม่ในทีม",
+      "ของเรา",
       "เข้ากันได้",
-      "ปรองดอง",
-      "อยู่ร่วมกันได้ดี"
+      "ดีมาก"
     ],
     "extraExample": "It is easy to get along with people who listen.",
     "extraExampleTranslation": "การเข้ากับคนที่รู้จักรับฟังเป็นเรื่องง่าย",
@@ -134728,9 +135156,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ถามไถ่",
-      "ติดตามอาการ",
-      "แวะทักทาย"
+      "ผู้จัดการ",
+      "ของเราชอบมาถาม",
+      "ไถ่พวกเราทุก",
+      "วันจันทร์"
     ],
     "extraExample": "I called to check in on my teammate after she fell sick.",
     "extraExampleTranslation": "ฉันโทรไปถามอาการเพื่อนร่วมทีมหลังจากเธอป่วย",
@@ -134756,9 +135185,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ร่วมแรงร่วมใจ",
-      "ผนึกกำลัง",
-      "ช่วยกันทำ"
+      "เราต้อง",
+      "ร่วมแรงร่วมใจกัน",
+      "เพื่อ",
+      "ให้งานเสร็จทันเวลา"
     ],
     "extraExample": "When things get hard, true teams pull together.",
     "extraExampleTranslation": "เมื่อเจอเรื่องยาก ทีมที่แท้จริงจะร่วมมือกัน",
@@ -134784,9 +135214,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "ความเชื่อใจ",
+      "และความเคารพ",
       "ซึ่งกันและกัน",
-      "ร่วมกัน",
-      "ต่างฝ่ายต่างมี"
+      "ทำให้ทีมแข็งแกร่ง"
     ],
     "extraExample": "They have a mutual understanding of the goal.",
     "extraExampleTranslation": "พวกเขามีความเข้าใจในเป้าหมายตรงกัน",
@@ -134812,9 +135243,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "เพื่อนสนิทที่ไว้ใจได้",
-      "ผู้กุมความลับ",
-      "ที่ปรึกษาใกล้ชิด"
+      "เธอเป็น",
+      "เพื่อนสนิท",
+      "ที่ฉันไว้ใจมาก",
+      "ว่าสิบปีแล้ว"
     ],
     "extraExample": "Having a confidant at work reduces stress.",
     "extraExampleTranslation": "การมีคนที่ไว้ใจได้ในที่ทำงานช่วยลดความเครียด",
@@ -134840,9 +135272,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "ทีมมีมติ",
       "เป็นเอกฉันท์",
-      "เห็นพ้องต้องกัน",
-      "เสียงเดียวกัน"
+      "ให้เลื่อนการ",
+      "เปิดตัวออกไป"
     ],
     "extraExample": "She received unanimous support from her colleagues.",
     "extraExampleTranslation": "เธอได้รับการสนับสนุนอย่างเป็นเอกฉันท์จากเพื่อนร่วมงาน",
@@ -134868,9 +135301,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "พนักงาน",
+      "ถามพนักงาน",
       "เก็บเงิน",
-      "เคาน์เตอร์"
+      "ว่าพวกเขารับบัต",
+      "รแบบแตะจ่ายไหม"
     ],
     "extraExample": "The cashier counted the foreign notes carefully.",
     "extraExampleTranslation": "พนักงานเก็บเงินนับธนบัตรต่างประเทศอย่างระมัดระวัง",
@@ -134896,9 +135330,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
+      "คุณสามารถขอ",
       "เงินคืน",
-      "ชดเชย",
-      "ยกเลิก"
+      "เต็มจำนวนได้หากเที่ย",
+      "วบินถูกยกเลิก"
     ],
     "extraExample": "It took two weeks for the travel refund to appear on my card.",
     "extraExampleTranslation": "ใช้เวลาสองสัปดาห์กว่าเงินคืนค่าเดินทางจะเข้าบัตรของฉัน",
@@ -134924,9 +135359,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "คิดเงิน",
-      "เกินจริง",
-      "ตรวจสอบ"
+      "ตรวจสอบบิล",
+      "ให้ดีเพื่อ",
+      "ที่ร้านอาหารจะได้ไม่คิด",
+      "เงินคุณเกิน"
     ],
     "extraExample": "The taxi driver tried to overcharge us for the short ride.",
     "extraExampleTranslation": "คนขับแท็กซี่พยายามคิดเงินเราเกินจริงสำหรับการเดินทางระยะสั้น",
@@ -134952,9 +135388,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
+      "สายการบินเสนอ",
       "ค่าชดเชย",
-      "ความเสียหาย",
-      "เรียกร้อง"
+      "สำหรับความ",
+      "ล่าช้าหกชั่วโมง"
     ],
     "extraExample": "Travel insurance provides compensation if your bag is lost.",
     "extraExampleTranslation": "ประกันการเดินทางมอบค่าชดเชยหากกระเป๋าของคุณสูญหาย",
@@ -134980,9 +135417,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ของปลอม",
-      "ธนบัตร",
-      "ตรวจจับ"
+      "ตรวจสอบธนบัตร",
+      "ของคุณอย่างละเอียด",
+      "เพื่อหลีก",
+      "เลี่ยงธนบัตรปลอม"
     ],
     "extraExample": "The moneychanger used a machine to detect counterfeit notes.",
     "extraExampleTranslation": "ร้านแลกเงินใช้เครื่องตรวจจับธนบัตรปลอม",
@@ -135008,9 +135446,10 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ยกเว้น",
-      "สละสิทธิ์",
-      "ค่าธรรมเนียม"
+      "รถเช่าของเราร",
+      "วมการยกเว้น",
+      "ความเสียหาย",
+      "จากการชนแล้ว"
     ],
     "extraExample": "Ask the bank for a foreign transaction fee waiver.",
     "extraExampleTranslation": "ขอให้ธนาคารยกเว้นค่าธรรมเนียมการใช้จ่ายสกุลเงินต่างประเทศ",
@@ -135036,13 +135475,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ผู้รับ",
-      "ผลประโยชน์",
-      "กรมธรรม์"
+      "ตรวจสอบให้แน่ใจ",
+      "ว่าคุณระบุชื่อ",
+      "ผู้รับผลประโยชน์",
+      "ในกรมธรรม์เดินทาง"
     ],
     "extraExample": "She named her mother as the sole beneficiary.",
     "extraExampleTranslation": "เธอระบุชื่อแม่เป็นผู้รับผลประโยชน์แต่เพียงผู้เดียว",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "beneficiary (คำนาม) = ผู้รับผลประโยชน์ · มักใช้ในวลี: policy beneficiary, sole beneficiary · คำใกล้เคียง: recipient, heir"
   },
   {
     "word": "liability",
@@ -135063,13 +135504,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ความรับผิด",
-      "กฎหมาย",
-      "คุ้มครอง"
+      "ประกันการเดินทางคุ้ม",
+      "ครองความรับผิดส่ว",
+      "นบุคคลหากคุณทำร้ายใคร",
+      "โดยไม่ได้ตั้งใจ"
     ],
     "extraExample": "Read the liability limits before signing the rental agreement.",
     "extraExampleTranslation": "อ่านวงเงินความรับผิดชอบก่อนเซ็นสัญญาเช่า",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "liability (คำนาม) = ความรับผิดชอบทางกฎหมาย · มักใช้ในวลี: personal liability, liability coverage · คำใกล้เคียง: responsibility, accountability"
   },
   {
     "word": "repatriation",
@@ -135090,13 +135533,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ส่งตัวกลับ",
-      "ประเทศ",
-      "ฉุกเฉิน"
+      "การส่งตัวกลับประเทศ",
+      "เพื่อรักษาพยาบาล",
+      "ฉุกเฉินคุ้มครอง",
+      "ภายใต้แผนโกลด์ของเรา"
     ],
     "extraExample": "Without insurance, medical repatriation can cost tens of thousands of dollars.",
     "extraExampleTranslation": "หากไม่มีประกัน การส่งตัวกลับประเทศอาจมีค่าใช้จ่ายหลายหมื่นดอลลาร์",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "repatriation (คำนาม) = การส่งตัวกลับประเทศ · มักใช้ในวลี: medical repatriation, repatriation coverage · คำใกล้เคียง: return home, evacuation"
   },
   {
     "word": "sunshine",
@@ -135117,9 +135562,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "แสงแดด",
-      "ความอบอุ่น",
-      "กลางแจ้ง"
+      "พวกเราเพลิดเพลิน",
+      "กับ",
+      "แสงแดดอุ่นๆ",
+      "ในสวนสาธารณะ"
     ],
     "extraExample": "The plants need plenty of sunshine to grow.",
     "extraExampleTranslation": "ต้นไม้ต้องการแสงแดดมากเพื่อที่จะเติบโต",
@@ -135145,9 +135591,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ฝนตก",
-      "หน้าฝน",
-      "เปียกชื้น"
+      "บ่ายนี้ฝ",
+      "นตกดังนั้น",
+      "อยู่ข้าง",
+      "ในเถอะ"
     ],
     "extraExample": "I always carry a bag on rainy days.",
     "extraExampleTranslation": "ฉันพกกระเป๋าเสมอในวันที่ฝนตก",
@@ -135173,9 +135620,9 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "หิมะตก",
-      "ฤดูหนาว",
-      "สีขาว"
+      "เด็กๆชอบเล่น",
+      "ในสนาม",
+      "ที่มีหิมะตก"
     ],
     "extraExample": "Be careful driving on snowy roads tonight.",
     "extraExampleTranslation": "ระวังการขับรถบนถนนที่มีหิมะคืนนี้",
@@ -135201,9 +135648,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ลมแรง",
-      "พัดแรง",
-      "อากาศแปรปรวน"
+      "วันนี้ล",
+      "มแรงเกินไป",
+      "ที่จะ",
+      "เล่นว่าว"
     ],
     "extraExample": "Hold onto your hat on windy streets.",
     "extraExampleTranslation": "จับหมวกไว้ให้ดีบนถนนที่ลมแรง",
@@ -135229,9 +135677,10 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
+      "มีการออกคำเตือน",
       "พายุทอร์นาโด",
-      "พายุหมุน",
-      "เตือนภัย"
+      "สำหรับพื้น",
+      "ที่หุบเขา"
     ],
     "extraExample": "Everyone moved to the basement during the tornado.",
     "extraExampleTranslation": "ทุกคนย้ายไปที่ห้องใต้ดินระหว่างเกิดพายุทอร์นาโด",
@@ -135258,8 +135707,9 @@ const wordsData = [
     "topic": "nature",
     "thTokens": [
       "ความชื้น",
-      "อบอ้าว",
-      "ไอน้ำ"
+      "สูงทำให้ความร้อน",
+      "ในฤดูร้อน",
+      "รู้สึกแย่ลง"
     ],
     "extraExample": "The humidity drops quickly after the cold front passes.",
     "extraExampleTranslation": "ความชื้นลดลงอย่างรวดเร็วหลังแนวปะทะอากาศเย็นผ่านไป",
@@ -135285,13 +135735,15 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "หยาดน้ำฟ้า",
-      "ปริมาณฝน",
-      "สภาพอากาศ"
+      "เรดาร์แสดง",
+      "ให้เห็นหยาดน้ำฟ้าหนัก",
+      "กำลังเคลื่อ",
+      "นไปทางตะวันออก"
     ],
     "extraExample": "Annual precipitation varies greatly across the region.",
     "extraExampleTranslation": "ปริมาณหยาดน้ำฟ้าต่อปีแตกต่างกันมากในแต่ละภูมิภาค",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "precipitation (คำนาม) = หยาดน้ำฟ้า (ฝน หิมะ ลูกเห็บ) · มักใช้ในวลี: heavy precipitation, annual precipitation · คำใกล้เคียง: rainfall, downfall"
   },
   {
     "word": "frostbite",
@@ -135312,13 +135764,15 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ความเย็นจัด",
-      "หิมะกัด",
-      "เตือนภัยหนาว"
+      "นักปีนเขาเสี่ยงต่อ",
+      "แผลจากความเย็นจัด",
+      "หากไม่มีถุงมือ",
+      "ที่เหมาะสม"
     ],
     "extraExample": "The cold weather alert warned hikers about frostbite.",
     "extraExampleTranslation": "ประกาศเตือนอากาศหนาวเตือนนักเดินป่าเรื่องแผลจากความเย็นจัด",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "frostbite (คำนาม) = แผลจากความเย็นจัด · มักใช้ในวลี: severe frostbite, prevent frostbite · คำใกล้เคียง: cold injury, freezing"
   },
   {
     "word": "comfy",
@@ -135339,9 +135793,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
+      "ในที่สุดฉันก็รู้สึก",
       "สบายใจ",
-      "ผ่อนคลาย",
-      "ไม่อึดอัด"
+      "หลังจากทำงานเส",
+      "ร็จทั้งหมดแล้ว"
     ],
     "extraExample": "This corner feels really comfy on a rainy day.",
     "extraExampleTranslation": "มุมนี้ให้ความรู้สึกสบายใจจริงๆ ในวันที่ฝนตก",
@@ -135367,9 +135822,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
+      "เธอรู้สึก",
       "อบอุ่น",
-      "ปลอดภัย",
-      "สบายใจ"
+      "และปลอดภัย",
+      "ใต้ผ้าห่ม"
     ],
     "extraExample": "Everything is snug and settled for the night.",
     "extraExampleTranslation": "ทุกอย่างเรียบร้อยและสบายใจสำหรับคืนนี้แล้ว",
@@ -135395,9 +135851,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "สงบลง",
-      "เข้าที่เข้าทาง",
-      "คลายกังวล"
+      "ความกังวล",
+      "ของฉันเริ่มสงบลง",
+      "เมื่อการประ",
+      "ชุมเริ่มต้นขึ้น"
     ],
     "extraExample": "Give yourself a moment to settle down and breathe.",
     "extraExampleTranslation": "ให้เวลาตัวเองสักครู่เพื่อสงบใจและหายใจลึกๆ",
@@ -135423,9 +135880,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ประกายความหวัง",
-      "ความรู้สึกดีๆ",
-      "แรงบันดาลใจเล็กๆ"
+      "การได้ยินคำพูดดีๆ",
+      "ของเธอ",
+      "ทำให้ฉันมี",
+      "ประกายความหวังขึ้นมา"
     ],
     "extraExample": "There is still a spark of optimism in the team.",
     "extraExampleTranslation": "ยังคงมีประกายความหวังเล็กๆ อยู่ในทีม",
@@ -135451,9 +135909,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ความอิ่มเอมใจ",
-      "ความอบอุ่นใจ",
-      "ความสุขสงบ"
+      "เธอรู้สึกอิ่มเอมใจ",
+      "อย่างเงียบๆ",
+      "ด้วยความโล่งอก",
+      "หลังจากส่งโปรเจกต์"
     ],
     "extraExample": "The compliment left him with a warm glow all afternoon.",
     "extraExampleTranslation": "คำชมนั้นทำให้เขารู้สึกอบอุ่นใจไปตลอดช่วงบ่าย",
@@ -135479,9 +135938,10 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ทำให้เบาใจ",
-      "ลดความกังวล",
-      "คลี่คลายบรรยากาศ"
+      "มุกตลก",
+      "ของเขาช่วยทำให้บ",
+      "รรยากาศ",
+      "ในห้องเบาใจขึ้น"
     ],
     "extraExample": "The good news seemed to lighten her heart immediately.",
     "extraExampleTranslation": "ข่าวดีนั้นดูเหมือนจะทำให้ใจของเธอเบาขึ้นทันที",
@@ -135507,13 +135967,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ผ่อนคลาย",
-      "นุ่มนวล",
-      "สบายๆ"
+      "เขาดูผ่อนคลาย",
+      "ขึ้นมากหลัง",
+      "จากวันหยุด",
+      "สุดสัปดาห์"
     ],
     "extraExample": "The evening took on a mellow, hopeful tone.",
     "extraExampleTranslation": "ค่ำคืนนั้นเต็มไปด้วยบรรยากาศที่ผ่อนคลายและมีความหวัง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "mellow (คำคุณศัพท์) = ผ่อนคลาย, นุ่มนวล, ไม่เครียด · มักใช้ในวลี: mellow mood, mellow tone · คำใกล้เคียง: relaxed, gentle"
   },
   {
     "word": "untangle",
@@ -135534,13 +135996,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "คลี่คลายปัญหา",
-      "จัดระเบียบความคิด",
-      "แก้ไขเรื่องยุ่งยาก"
+      "การพูดคุยกันช่วย",
+      "ให้เราค",
+      "ลี่คลายปัญ",
+      "หาทั้งหมดได้"
     ],
     "extraExample": "She took time to untangle her thoughts before replying.",
     "extraExampleTranslation": "เธอใช้เวลาคลี่คลายความคิดของตัวเองก่อนที่จะตอบกลับ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "untangle (คำกริยา) = คลี่คลาย (ปัญหาหรือความกังวล) · มักใช้ในวลี: untangle a problem, untangle thoughts · คำใกล้เคียง: resolve, clarify"
   },
   {
     "word": "console",
@@ -135561,13 +136025,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ปลอบโยน",
-      "ทำให้สบายใจ",
-      "ให้กำลังใจ"
+      "เพื่อนๆ",
+      "ของเธอพยายามปลอบโยน",
+      "เธอด้วย",
+      "กำลังใจที่อ่อนโยน"
     ],
     "extraExample": "It consoled me to know that everyone makes mistakes.",
     "extraExampleTranslation": "การรู้ว่าทุกคนต่างก็ทำผิดพลาดได้ช่วยปลอบใจฉันมาก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "console (คำกริยา) = ปลอบโยน, ทำให้สบายใจขึ้น · มักใช้ในวลี: console someone, console oneself · คำใกล้เคียง: comfort, soothe"
   },
   {
     "word": "ease off",
@@ -135588,13 +136054,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ทุเลาลง",
-      "เบาบางลง",
-      "ลดความตึงเครียด"
+      "ความกดดันใน",
+      "ที่ทำงานเริ่ม",
+      "ทุเลาลงแล้ว",
+      "ในสัปดาห์นี้"
     ],
     "extraExample": "Wait for the rain to ease off before we walk home.",
     "extraExampleTranslation": "รอให้ฝนซาลงก่อนแล้วเราค่อยเดินกลับบ้าน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "ease off (คำกริยา) = ทุเลาลง, เบาบางลง · มักใช้ในวลี: pressure eases off, ease off a bit · คำใกล้เคียง: subside, lessen"
   },
   {
     "word": "workbook",
@@ -135615,9 +136083,9 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "สมุด",
-      "แบบ",
-      "ฝึกหัด"
+      "ดาวน์โหลดสมุดแบบฝึกหัด",
+      "PDF",
+      "ก่อนดูบทเรียนแรก"
     ],
     "extraExample": "She completed every page in her digital workbook.",
     "extraExampleTranslation": "เธอทำแบบฝึกหัดทุกหน้าในสมุดแบบฝึกหัดดิจิทัลจนครบ",
@@ -135643,9 +136111,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "รายการ",
-      "วิดีโอ",
-      "เรียน"
+      "ผู้สอนแชร์",
+      "รายการวิดีโอ",
+      "ทบท",
+      "วนสั้นๆ"
     ],
     "extraExample": "Watch the entire playlist to prepare for the final test.",
     "extraExampleTranslation": "ดูรายการวิดีโอทั้งหมดเพื่อเตรียมตัวสอบปลายภาค",
@@ -135671,9 +136140,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "รหัส",
-      "ผ่าน",
-      "เข้าห้อง"
+      "ใส่รหัสผ่าน",
+      "เพื่อเข้าร่ว",
+      "มการทบทวนใบ",
+      "รับรองแบบสด"
     ],
     "extraExample": "The tutor emailed a new passcode for today's webinar.",
     "extraExampleTranslation": "ติวเตอร์ส่งรหัสผ่านใหม่สำหรับเว็บบินาร์วันนี้ทางอีเมล",
@@ -135699,9 +136169,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "สอบ",
-      "ซ่อม",
-      "ใหม่"
+      "คุณสามารถ",
+      "สอบซ่อม",
+      "ใบรับรองได้หลัง",
+      "จากผ่านไปเจ็ดวัน"
     ],
     "extraExample": "She decided to retake the module to improve her grade.",
     "extraExampleTranslation": "เธอตัดสินใจเรียนโมดูลนี้ซ้ำเพื่อปรับปรุงเกรดของเธอ",
@@ -135727,9 +136198,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "หัวข้อ",
-      "ย่อย",
-      "บทเรียน"
+      "แต่ละโมดูล",
+      "ถูกแบ่งออกเป็นสาม",
+      "หัวข้อย่อย",
+      "ที่ชัดเจน"
     ],
     "extraExample": "Click a subtopic on the left menu to start reading.",
     "extraExampleTranslation": "คลิกหัวข้อย่อยที่เมนูด้านซ้ายเพื่อเริ่มอ่าน",
@@ -135755,9 +136227,10 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "เกณฑ์",
-      "ให้",
-      "คะแนน"
+      "ตรวจสอบเกณฑ์การ",
+      "ให้คะแนน",
+      "ก่อนอัปโหลดเรียง",
+      "ความฉบับสมบูรณ์"
     ],
     "extraExample": "The rubric explains how many points each section is worth.",
     "extraExampleTranslation": "เกณฑ์การให้คะแนนอธิบายว่าแต่ละส่วนมีกี่คะแนน",
@@ -135783,13 +136256,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ทำเป็น",
-      "รูป",
-      "แบบเกม"
+      "แพลตฟอร์มใช้เห",
+      "รียญตราเพื่อ",
+      "ทำให้การฝึกภาษาทุก",
+      "วันเหมือนเกม"
     ],
     "extraExample": "Teachers gamify quizzes to keep online students engaged.",
     "extraExampleTranslation": "ครูทำให้ควิซเป็นรูปแบบเกมเพื่อให้นักเรียนออนไลน์มีส่วนร่วม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "gamify (คำกริยา) = ทำให้เป็นรูปแบบเกม · มักใช้ในวลี: gamify learning, gamify a course · คำใกล้เคียง: turn into a game, make playful"
   },
   {
     "word": "memo",
@@ -135810,9 +136285,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "บันทึกข้อความ",
-      "ภายในองค์กร",
-      "แจ้งข่าวด่วน"
+      "ซีอีโอส่งบันทึก",
+      "ข้อความเร่งด่วน",
+      "ถึงพนักงานทุกคน",
+      "เกี่ยวกับปัญหาระบบ"
     ],
     "extraExample": "Please read the morning memo before joining the client call.",
     "extraExampleTranslation": "กรุณาอ่านบันทึกข้อความตอนเช้าก่อนเข้าร่วมการโทรกับลูกค้า",
@@ -135838,9 +136314,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "สายด่วน",
-      "รับเรื่อง",
-      "ช่วยเหลือเร่งด่วน"
+      "เราเปิดสายด่วน",
+      "ลูกค้าเพื่อต",
+      "อบคำถามระหว่าง",
+      "ที่บริการล่าช้า"
     ],
     "extraExample": "Call the support hotline if you notice any account problems.",
     "extraExampleTranslation": "โทรหาสายด่วนฝ่ายสนับสนุนหากคุณสังเกตเห็นปัญหาบัญชีใดๆ",
@@ -135866,9 +136343,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ลำดับเวลา",
-      "กำหนดการ",
-      "ความคืบหน้า"
+      "แชร์ไทม์ไลน์",
+      "ที่ชัดเจนเพื่อ",
+      "ให้พาร์ทเนอร์รู้ว่าการ",
+      "แก้ไขจะเสร็จเมื่อไร"
     ],
     "extraExample": "The PR team updated the incident timeline for the board.",
     "extraExampleTranslation": "ทีมประชาสัมพันธ์อัปเดตลำดับเวลาเหตุการณ์สำหรับคณะกรรมการ",
@@ -135894,9 +136372,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ติดตามผล",
-      "แจ้งต่อเนื่อง",
-      "อัปเดตซ้ำ"
+      "ส่งข้อความติด",
+      "ตามผลอย่างสุภาพถึง",
+      "พาร์ทเนอร์ทุกคน",
+      "ที่เข้าร่วมสาย"
     ],
     "extraExample": "Our follow-up report will include the final root cause.",
     "extraExampleTranslation": "รายงานติดตามผลของเราจะระบุสาเหตุหลักขั้นสุดท้าย",
@@ -135922,9 +136401,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "เปิดเผย",
-      "แจ้งข้อเท็จจริง",
-      "ไม่ปิดบัง"
+      "บริษัทต้องเปิดเผ",
+      "ยเหตุการณ์ด้าน",
+      "ความปลอดภัยครั้ง",
+      "ใหญ่โดยไม่ล่าช้า"
     ],
     "extraExample": "We decided to disclose the full test results to regulators.",
     "extraExampleTranslation": "เราตัดสินใจเปิดเผยผลการทดสอบทั้งหมดต่อหน่วยงานกำกับดูแล",
@@ -135950,9 +136430,10 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "บรรเทา",
-      "ลดผลกระทบ",
-      "ทำให้เบาลง"
+      "การสื่อสารตั้ง",
+      "แต่เนิ่นๆช่วย",
+      "บรรเทาความเสีย",
+      "หายต่อชื่อเสียง"
     ],
     "extraExample": "They offered free credits to mitigate customer frustration.",
     "extraExampleTranslation": "พวกเขาเสนอเครดิตฟรีเพื่อลดความไม่พอใจของลูกค้า",
@@ -135978,13 +136459,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ถอนคำพูด",
-      "ยกเลิกข้อความ",
-      "แก้ไขข่าวผิด"
+      "สำนักข่าวตกลง",
+      "ที่จะถอน",
+      "พาดหัวข่าว",
+      "ที่ไม่ถูกต้องออก"
     ],
     "extraExample": "We had to retract our initial estimate once new data arrived.",
     "extraExampleTranslation": "เราต้องถอนตัวเลขประมาณการแรกเมื่อมีข้อมูลใหม่เข้ามา",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "retract (คำกริยา) = ถอนคำพูด, ถอนแถลงการณ์ · มักใช้ในวลี: retract statement, retract claim · คำใกล้เคียง: withdraw, take back"
   },
   {
     "word": "de-escalate",
@@ -136005,13 +136488,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ลดความตึงเครียด",
-      "คลี่คลาย",
-      "ทำให้สงบลง"
+      "น้ำเสียงที่จริงใจ",
+      "สามารถลดความตึงเครียด",
+      "ในกระทู้ที่กำลัง",
+      "โกรธได้อย่างรวดเร็ว"
     ],
     "extraExample": "Support leads are trained to de-escalate tense client calls.",
     "extraExampleTranslation": "หัวหน้าฝ่ายสนับสนุนได้รับการฝึกให้ลดความตึงเครียดในการโทรกับลูกค้า",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "de-escalate (คำกริยา) = ลดระดับความตึงเครียด · มักใช้ในวลี: de-escalate tension, de-escalate conflict · คำใกล้เคียง: calm down, defuse"
   },
   {
     "word": "damage control",
@@ -136032,13 +136517,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "ควบคุมความเสียหาย",
-      "กู้ภาพลักษณ์",
-      "จัดการวิกฤต"
+      "ทีมประชาสัมพันธ์",
+      "เริ่มควบคุมความเสีย",
+      "หายทันทีหลัง",
+      "จากบันทึกข้อความหลุดออกไป"
     ],
     "extraExample": "Good damage control focuses on facts and fast solutions.",
     "extraExampleTranslation": "การควบคุมความเสียหายที่ดีเน้นข้อเท็จจริงและทางออกที่รวดเร็ว",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "damage control (คำนาม) = การควบคุมความเสียหาย · มักใช้ในวลี: do damage control, crisis damage control · คำใกล้เคียง: crisis management, containment"
   },
   {
     "word": "carol",
@@ -136059,9 +136546,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "เพลงเทศกาล",
-      "ร้องเพลงฉลอง",
-      "เพลงประเพณี"
+      "ครอบครัวมารวมตัวกัน",
+      "ที่จัตุรัส",
+      "เพื่อร้อง",
+      "เพลงเทศกาลแบบดั้งเดิม"
     ],
     "extraExample": "The children practiced a cheerful carol for the winter festival.",
     "extraExampleTranslation": "เด็กๆ ฝึกซ้อมร้องเพลงเทศกาลที่ร่าเริงสำหรับงานเทศกาลฤดูหนาว",
@@ -136087,9 +136575,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "พวงมาลัย",
-      "มาลัยดอกไม้",
-      "เครื่องแขวนประดับ"
+      "แขกได้รับ",
+      "การต้อนรับ",
+      "ด้วยพวงมาลัย",
+      "ดอกมะลิสด"
     ],
     "extraExample": "Brightly colored garlands hung above the temple entrance.",
     "extraExampleTranslation": "พวงมาลัยสีสันสดใสแขวนอยู่เหนือทางเข้าวัด",
@@ -136115,9 +136604,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "คุณยายเล่าเรื่อง",
       "นิทานพื้นบ้าน",
-      "เรื่องเล่าโบราณ",
-      "ตำนานท้องถิ่น"
+      "ให้เราฟัง",
+      "ในช่วงเทศกาลไหว้พระจันทร์"
     ],
     "extraExample": "The puppet show brought an ancient folktale to life.",
     "extraExampleTranslation": "การแสดงหุ่นกระบอกทำให้นิทานพื้นบ้านโบราณกลับมามีชีวิตชีวา",
@@ -136143,9 +136633,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ภาพจิตรกรรมฝาผนัง",
-      "ภาพวาดบนกำแพง",
-      "งานศิลปะฝาผนัง"
+      "ศิลปินวาด",
+      "ภาพจิตรกรรมฝาผนังสีสันสดใส",
+      "ที่ถ่ายทอดประ",
+      "วัติศาสตร์ของเมือง"
     ],
     "extraExample": "The museum restored a centuries-old mural in the main hall.",
     "extraExampleTranslation": "พิพิธภัณฑ์บูรณะภาพจิตรกรรมฝาผนังอายุหลายร้อยปีในห้องโถงใหญ่",
@@ -136171,9 +136662,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "เมืองได้ออกเหรียญ",
       "ที่ระลึก",
-      "เพื่อรำลึกถึง",
-      "เฉลิมฉลองวาระสำคัญ"
+      "สำหรับเทศกาลคร",
+      "บรอบหนึ่งร้อยปี"
     ],
     "extraExample": "Visitors bought commemorative stamps at the heritage pavilion.",
     "extraExampleTranslation": "ผู้เข้าชมซื้อแสตมป์ที่ระลึกที่ศาลาอนุรักษ์มรดก",
@@ -136199,9 +136691,10 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ขบวนแห่",
-      "การแสดงเฉลิมฉลอง",
-      "งานมหรสพ"
+      "ขบวนแห่ทางประ",
+      "วัติศาสตร์มีนัก",
+      "แสดงหลายร้อยคน",
+      "ในชุดย้อนยุค"
     ],
     "extraExample": "Tourists lined the streets to watch the annual lantern pageant.",
     "extraExampleTranslation": "นักท่องเที่ยวเรียงรายตามถนนเพื่อชมขบวนแห่โคมไฟประจำปี",
@@ -136227,13 +136720,14 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "งานฉลองครบรอบ",
-      "กาญจนาภิเษก",
-      "วาระครบรอบสำคัญ"
+      "คนทั้งชาติร่วมเฉลิมฉลองงานฉลองครบรอบ",
+      "50",
+      "ปีด้วยงานออกร้านตามถนน"
     ],
     "extraExample": "Fireworks lit up the harbor during the city's silver jubilee.",
     "extraExampleTranslation": "ดอกไม้ไฟส่องสว่างเหนือท่าเรือระหว่างงานฉลองครบรอบ 25 ปีของเมือง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "jubilee (คำนาม) = งานฉลองครบรอบปีสำคัญ · มักใช้ในวลี: golden jubilee, silver jubilee · คำใกล้เคียง: anniversary, celebration"
   },
   {
     "word": "revelry",
@@ -136255,12 +136749,14 @@ const wordsData = [
     "topic": "society",
     "thTokens": [
       "การเฉลิมฉลอง",
-      "ความรื่นเริง",
-      "งานเลี้ยงฉลอง"
+      "อย่างสนุกสนานบนท้องถนน",
+      "ดำเนินต่อไปจนเลยเที่ยงคืน",
+      "ในช่วงคาร์นิวัล"
     ],
     "extraExample": "Sounds of laughter and revelry filled the old town square.",
     "extraExampleTranslation": "เสียงหัวเราะและการเฉลิมฉลองอย่างครึกครื้นดังก้องไปทั่วจัตุรัสเมืองเก่า",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "revelry (คำนาม) = การเฉลิมฉลองอย่างสนุกสนาน · มักใช้ในวลี: street revelry, festive revelry · คำใกล้เคียง: festivity, merrymaking"
   },
   {
     "word": "homage",
@@ -136281,13 +136777,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "แสดงความเคารพ",
-      "การเทิดทูน",
-      "ความกตัญญู"
+      "นักเต้นแสดง",
+      "รำไทยโบราณ",
+      "เพื่อแสดงความเคาร",
+      "พต่อบรรพบุรุษ"
     ],
     "extraExample": "The monument stands in homage to the founders of the village.",
     "extraExampleTranslation": "อนุสาวรีย์นี้ตั้งขึ้นเพื่อแสดงความเคารพต่อผู้ก่อตั้งหมู่บ้าน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "homage (คำนาม) = การแสดงความเคารพ · มักใช้ในวลี: pay homage, in homage to · คำใกล้เคียง: tribute, respect"
   },
   {
     "word": "patrimony",
@@ -136308,13 +136806,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "มรดกบรรพบุรุษ",
-      "มรดกทางวัฒนธรรม",
-      "สมบัติตกทอด"
+      "การอนุรักษ์มรดกทาง",
+      "สถาปัตยกรรมต้อง",
+      "อาศัยการสนับสนุน",
+      "อย่างต่อเนื่องจากชุมชน"
     ],
     "extraExample": "Folk songs are an essential part of the region's living patrimony.",
     "extraExampleTranslation": "เพลงพื้นบ้านเป็นส่วนสำคัญของมรดกทางวัฒนธรรมที่ยังมีชีวิตของภูมิภาคนี้",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "patrimony (คำนาม) = มรดกทางวัฒนธรรมจากบรรพบุรุษ · มักใช้ในวลี: cultural patrimony, national patrimony · คำใกล้เคียง: heritage, legacy"
   },
   {
     "word": "regalia",
@@ -136335,13 +136835,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "เครื่องทรง",
-      "ชุดพิธีการ",
-      "เครื่องราชอิสริยาภรณ์"
+      "ผู้อาวุโสสวม",
+      "ชุดประจำตำแหน่ง",
+      "เต็มยศ",
+      "สำหรับพิธีเปิดและอวยพร"
     ],
     "extraExample": "Royal regalia from the 18th century is displayed in the palace.",
     "extraExampleTranslation": "เครื่องทรงกษัตริย์จากศตวรรษที่ 18 ถูกจัดแสดงไว้ในพระราชวัง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "regalia (คำนาม) = เครื่องทรงหรือชุดประจำตำแหน่ง · มักใช้ในวลี: ceremonial regalia, royal regalia · คำใกล้เคียง: attire, insignia"
   },
   {
     "word": "effigy",
@@ -136362,13 +136864,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "ชาวบ้านแห่",
       "หุ่นจำลอง",
-      "รูปปั้นจำลอง",
-      "หุ่นฟาง"
+      "ฟางขนาดยักษ์",
+      "ก่อนจะจุดกองไฟ"
     ],
     "extraExample": "The museum houses a wooden effigy carved by early settlers.",
     "extraExampleTranslation": "พิพิธภัณฑ์เก็บรักษาหุ่นจำลองไม้ที่แกะสลักโดยผู้ตั้งถิ่นฐานยุคแรก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "effigy (คำนาม) = หุ่นจำลอง · มักใช้ในวลี: straw effigy, burn in effigy · คำใกล้เคียง: figure, statue"
   },
   {
     "word": "zoom in",
@@ -136389,9 +136893,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ซูมเข้า",
-      "ขยายดู",
-      "เพ่งดูใกล้ๆ"
+      "ซูมเข้าไป",
+      "ที่มุมล่าง",
+      "เพื่ออ่านหมายเล",
+      "ขเครื่องสิ"
     ],
     "novaBatch": true,
     "extraExample": "Could you zoom in on the map so we can see the street name?",
@@ -136417,9 +136922,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ตรวจดู",
-      "ดูผ่านๆ",
-      "เช็กคร่าวๆ"
+      "คุณช่วยตร",
+      "วจดูรายงาน",
+      "ของฉัน",
+      "ก่อนส่งได้ไหม"
     ],
     "novaBatch": true,
     "extraExample": "Please look over the contract before you sign it.",
@@ -136445,9 +136951,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "บันทึกลงระบบ",
-      "จดบันทึก",
-      "ลงทะเบียน"
+      "เจ้าหน้าที่รักษาค",
+      "วามปลอดภัยบันทึก",
+      "ข้อมูลผู้มาติดต่อทุกคน",
+      "ที่โต๊ะหน้า"
     ],
     "extraExample": "Remember to log the temperature readings every two hours.",
     "extraExampleTranslation": "อย่าลืมบันทึกค่าอุณหภูมิทุกๆ สองชั่วโมงนะ",
@@ -136473,9 +136980,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "หรี่ตามอง",
-      "เพ่งมอง",
-      "หยีตา"
+      "เธอหรี่ตามอง",
+      "ตัวห",
+      "นังสือเล็ก",
+      "ๆบนขวดยา"
     ],
     "extraExample": "I had to squint to read the street sign in the fog.",
     "extraExampleTranslation": "ฉันต้องหรี่ตาเพื่ออ่านป้ายถนนในหมอก",
@@ -136501,9 +137009,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ตรวจทาน",
-      "ตรวจคำผิด",
-      "ปรู๊ฟงาน"
+      "ตรวจทานอีเมล",
+      "ของ",
+      "คุณเสมอ",
+      "ก่อนกดส่ง"
     ],
     "extraExample": "She was hired to proofread the final manuscript.",
     "extraExampleTranslation": "เธอถูกจ้างมาเพื่อตรวจทานต้นฉบับขั้นสุดท้าย",
@@ -136529,9 +137038,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
+      "ผู้จัดการ",
       "สุ่มตรวจ",
-      "ตรวจเป็นจุดๆ",
-      "เช็กแบบสุ่ม"
+      "กล่องสิบเปอร์เซ็นต์",
+      "ก่อนจัดส่ง"
     ],
     "extraExample": "The auditor decided to spot-check the travel receipts.",
     "extraExampleTranslation": "ผู้ตรวจสอบบัญชีตัดสินใจสุ่มตรวจใบเสร็จค่าเดินทาง",
@@ -136557,9 +137067,10 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ตรวจสอบของแท้",
-      "ยืนยันตัวตน",
-      "รับรองความถูกต้อง"
+      "ผู้เชี่ยวชาญ",
+      "ถูกเรียกมาเพื่อ",
+      "ตรวจสอบความ",
+      "แท้ของภาพวาดโบราณ"
     ],
     "extraExample": "The system uses a code to authenticate your identity.",
     "extraExampleTranslation": "ระบบใช้รหัสเพื่อยืนยันตัวตนของคุณ",
@@ -136585,9 +137096,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ด้วยความเต็มใจ",
-      "อย่างยินดี",
-      "เต็มใจ"
+      "เขายอมสลับกะ",
+      "กับฉัน",
+      "ด้วยค",
+      "วามเต็มใจ"
     ],
     "extraExample": "I will willingly help you prepare the slides.",
     "extraExampleTranslation": "ฉันยินดีช่วยคุณเตรียมสไลด์ด้วยความเต็มใจ",
@@ -136613,9 +137125,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
+      "เรายินดี",
       "อำนวยความสะดวก",
-      "จัดให้",
-      "ปรับให้เข้ากับ"
+      "เรื่องอาหาร",
+      "ให้คุณอย่างเต็มที่"
     ],
     "extraExample": "Could you accommodate a last-minute schedule change?",
     "extraExampleTranslation": "คุณพอจะปรับตารางเวลาในนาทีสุดท้ายให้ได้ไหม",
@@ -136641,9 +137154,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ความสำนึกผิด",
-      "เสียใจอย่างสุดซึ้ง",
-      "รู้สึกผิด"
+      "เขารู้สึกสำนึกผิด",
+      "อย่าง",
+      "ลึกซึ้ง",
+      "ที่พูดจาแรงๆออกไป"
     ],
     "extraExample": "She showed genuine remorse and apologized immediately.",
     "extraExampleTranslation": "เธอแสดงความสำนึกผิดอย่างแท้จริงและขอโทษทันที",
@@ -136669,9 +137183,10 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "อดทนรอ",
-      "รอสักครู่",
-      "ใจเย็นๆ"
+      "กรุณาอดทนรอ",
+      "สักครู่ระหว่าง",
+      "ที่ฉัน",
+      "ตรวจสอบระบบ"
     ],
     "novaBatch": true,
     "extraExample": "Please bear with us while we update the system.",
@@ -136697,9 +137212,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจาก",
-      "ไข่",
-      "ปลอดภัย"
+      "เราสั่งเค้ก",
+      "วันเกิดแบบ",
+      "ปราศ",
+      "จากไข่ให้มีอา"
     ],
     "extraExample": "Many bakeries now offer egg-free muffins.",
     "extraExampleTranslation": "ร้านเบเกอรี่หลายแห่งมีมัฟฟินปราศจากไข่ขายแล้ว",
@@ -136725,9 +137241,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจาก",
-      "นม",
-      "วัว"
+      "เขาต้องกินอาหาร",
+      "ปราศ",
+      "จากนม",
+      "เพราะอาการแพ้"
     ],
     "extraExample": "This chocolate bar is completely milk-free.",
     "extraExampleTranslation": "ช็อกโกแลตแท่งนี้ปราศจากนมโดยสิ้นเชิง",
@@ -136753,9 +137270,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ถั่ว",
-      "เปลือกแข็ง",
-      "ต้นไม้"
+      "กรุณาตรวจสอบ",
+      "ว่าซอสมีส่วนผสม",
+      "ของ",
+      "ถั่วเปลือกแข็งหรือไม่"
     ],
     "extraExample": "Tree nut allergies can be very severe.",
     "extraExampleTranslation": "อาการแพ้ถั่วเปลือกแข็งอาจรุนแรงมาก",
@@ -136781,9 +137299,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจาก",
-      "ถั่วเหลือง",
-      "ซอส"
+      "พวกเขาทำผัดผักแบบ",
+      "ปราศ",
+      "จากถั่วเหลือง",
+      "สำหรับมื้อเย็น"
     ],
     "extraExample": "I always look for soy-free salad dressings.",
     "extraExampleTranslation": "ฉันมองหาน้ำสลัดที่ปราศจากถั่วเหลืองเสมอ",
@@ -136809,9 +137328,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "โซเดียม",
-      "ต่ำ",
-      "เกลือน้อย"
+      "หมอแนะนำแผ",
+      "นมื้อ",
+      "อาหารแบบ",
+      "โซเดียมต่ำ"
     ],
     "extraExample": "We bought low-sodium soup for my grandfather.",
     "extraExampleTranslation": "เราซื้อซุปโซเดียมต่ำให้คุณปู่",
@@ -136837,9 +137357,10 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "เลี้ยงปล่อย",
-      "อิสระ",
-      "ธรรมชาติ"
+      "เธอชอบซื้อ",
+      "ไข่ไก่ที่",
+      "เลี้ยงแบบปล่อยอิสระ",
+      "ที่ตลาด"
     ],
     "extraExample": "Free-range chicken often has a richer taste.",
     "extraExampleTranslation": "ไก่เลี้ยงแบบปล่อยอิสระมักมีรสชาติเข้มข้นกว่า",
@@ -136865,13 +137386,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "เลี้ยงด้วยหญ้า",
-      "ธรรมชาติ",
-      "โค"
+      "เนื้อวัวเลี้ยง",
+      "ด้วยหญ้า",
+      "เป็นที่นิยม",
+      "ในกลุ่มคนรักสุขภาพ"
     ],
     "extraExample": "This butter comes from grass-fed cows.",
     "extraExampleTranslation": "เนยนี้มาจากวัวที่เลี้ยงด้วยหญ้า",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "grass-fed (คำคุณศัพท์) = เลี้ยงด้วยหญ้า · มักใช้ในวลี: grass-fed beef, grass-fed dairy · คำใกล้เคียง: pasture-fed, forage-fed"
   },
   {
     "word": "crustacean",
@@ -136892,13 +137415,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "สัตว์น้ำ",
-      "มีเปลือก",
-      "กุ้งปู"
+      "อาการแพ้",
+      "สัตว์น้ำมีเปลือก",
+      "มักเกิดขึ้น",
+      "เมื่อโตเป็นผู้ใหญ่"
     ],
     "extraExample": "The menu clearly marks dishes containing crustacean.",
     "extraExampleTranslation": "เมนูระบุอาหารที่มีสัตว์น้ำมีเปลือกไว้อย่างชัดเจน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "crustacean (คำนาม) = สัตว์น้ำมีเปลือก · มักใช้ในวลี: crustacean allergy, crustacean shellfish · คำใกล้เคียง: shellfish, crab"
   },
   {
     "word": "mollusk",
@@ -136919,13 +137444,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "หอย",
-      "หมึก",
-      "สัตว์ทะเล"
+      "เขาไม่สามารถกิน",
+      "สัตว์จำพวกหอย",
+      "และหมึก",
+      "ได้โดยไม่ป่วย"
     ],
     "extraExample": "Oysters and mussels belong to the mollusk group.",
     "extraExampleTranslation": "หอยนางรมและหอยแมลงภู่จัดอยู่ในกลุ่มหอย",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "mollusk (คำนาม) = สัตว์จำพวกหอยและหมึก · มักใช้ในวลี: mollusk allergy, marine mollusk · คำใกล้เคียง: shellfish, bivalve"
   },
   {
     "word": "elimination diet",
@@ -136946,13 +137473,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "งดเว้น",
-      "ตรวจภูมิแพ้",
-      "อาหาร"
+      "เธอเริ่มกิน",
+      "อาหารงดเว้น",
+      "เพื่อหาตัวก",
+      "ระตุ้นอาการแพ้"
     ],
     "extraExample": "An elimination diet should be guided by a dietitian.",
     "extraExampleTranslation": "การงดเว้นอาหารเพื่อตรวจภูมิแพ้ควรอยู่ภายใต้คำแนะนำของนักโภชนาการ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "elimination diet (คำนาม) = อาหารงดเว้นเพื่อตรวจภูมิแพ้ · มักใช้ในวลี: follow an elimination diet, strict elimination diet · คำใกล้เคียง: exclusion diet, food trial"
   },
   {
     "word": "plant-forward",
@@ -136973,13 +137502,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "เน้นพืช",
-      "เป็นหลัก",
-      "สุขภาพ"
+      "คาเฟ่ของเราเป",
+      "ลี่ยนมาใช้เม",
+      "นูมื้อเที่ยงที่",
+      "เน้นพืชเป็นหลัก"
     ],
     "extraExample": "Plant-forward meals are both filling and sustainable.",
     "extraExampleTranslation": "มื้ออาหารที่เน้นพืชเป็นหลักทั้งอิ่มท้องและยั่งยืน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "plant-forward (คำคุณศัพท์) = เน้นพืชเป็นหลัก · มักใช้ในวลี: plant-forward menu, plant-forward diet · คำใกล้เคียง: plant-rich, veg-centric"
   },
   {
     "word": "fruitarian",
@@ -137000,13 +137531,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "กินผลไม้",
-      "เป็นหลัก",
-      "มังสวิรัติ"
+      "การเป็นผู้กินผล",
+      "ไม้เป็นหลัก",
+      "อย่างเคร่งครัดต้องวางแผ",
+      "นโภชนาการอย่างดี"
     ],
     "extraExample": "He tried a fruitarian lifestyle for two weeks.",
     "extraExampleTranslation": "เขาลองใช้ชีวิตแบบกินผลไม้เป็นหลักเป็นเวลาสองสัปดาห์",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "fruitarian (คำนาม) = ผู้กินผลไม้เป็นหลัก · มักใช้ในวลี: strict fruitarian, fruitarian diet · คำใกล้เคียง: fruit-based eater, raw fruit eater"
   },
   {
     "word": "thigh",
@@ -137027,9 +137560,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "ยืดกล้ามเนื้อ",
       "ต้นขา",
-      "กล้ามเนื้อต้นขา",
-      "ส่วนบนของขา"
+      "ด้านห",
+      "น้าหลังวิ่ง"
     ],
     "extraExample": "Keep your thighs parallel during the squat.",
     "extraExampleTranslation": "ให้ต้นขาทั้งสองข้างขนานกันระหว่างทำสควอต",
@@ -137055,9 +137589,10 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "ขยาย",
       "โครงซี่โครง",
-      "ซี่โครง",
-      "ช่วงอก"
+      "เมื่อคุณหายใจ",
+      "เข้าลึกๆ"
     ],
     "extraExample": "Keep your ribcage down during overhead stretches.",
     "extraExampleTranslation": "เก็บโครงซี่โครงลงระหว่างยืดแขนเหนือศีรษะ",
@@ -137083,13 +137618,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ท่อนแขนล่าง",
-      "แขนท่อนล่าง",
-      "ช่วงแขน"
+      "วางท่อนแขนล่าง",
+      "ลงบนเสื่อ",
+      "เพื่อ",
+      "ทำท่าแพลงก์ต่ำ"
     ],
     "extraExample": "She felt a gentle stretch in her right forearm.",
     "extraExampleTranslation": "เธอรู้สึกถึงการยืดเบาๆ ที่ท่อนแขนล่างข้างขวา",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "forearm (คำนาม) = ท่อนแขนล่าง · มักใช้ในวลี: forearm plank, forearm stretch · คำใกล้เคียง: lower arm, arm"
   },
   {
     "word": "arch",
@@ -137110,13 +137647,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "แอ่น",
-      "โก่งหลัง",
-      "โค้งตัว"
+      "ค่อยๆโก่ง",
+      "หลังขึ้นเหมือนแมว",
+      "ระห",
+      "ว่างเล่นโยคะ"
     ],
     "extraExample": "Do not arch your lower back when lifting weights.",
     "extraExampleTranslation": "อย่าแอ่นหลังส่วนล่างเวลายกน้ำหนัก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "arch (คำกริยา) = แอ่น / โก่ง · มักใช้ในวลี: arch your back, arch the spine · คำใกล้เคียง: curve, bend"
   },
   {
     "word": "tuck",
@@ -137138,12 +137677,14 @@ const wordsData = [
     "topic": "body",
     "thTokens": [
       "เก็บ",
-      "ห่อตัว",
-      "พับเข้า"
+      "คาง",
+      "เข้าหาอก",
+      "เล็กน้อย"
     ],
     "extraExample": "Tuck your knees in to release tension in your hips.",
     "extraExampleTranslation": "ห่อเข่าเข้ามาเพื่อคลายความตึงที่สะโพก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "tuck (คำกริยา) = เก็บ / ห่อ · มักใช้ในวลี: tuck your chin, tuck your knees · คำใกล้เคียง: pull in, fold"
   },
   {
     "word": "rotation",
@@ -137165,12 +137706,14 @@ const wordsData = [
     "topic": "body",
     "thTokens": [
       "การหมุน",
-      "หมุนข้อต่อ",
-      "การบิดตัว"
+      "ไหล่เบาๆช่ว",
+      "ยป้องกัน",
+      "อาการตึงแข็ง"
     ],
     "extraExample": "Do ten hip rotations on each side before jogging.",
     "extraExampleTranslation": "หมุนสะโพกข้างละสิบครั้งก่อนออกไปจ็อกกิ้ง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "rotation (คำนาม) = การหมุน · มักใช้ในวลี: shoulder rotation, hip rotation · คำใกล้เคียง: turning, circling"
   },
   {
     "word": "resistance band",
@@ -137191,13 +137734,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ยางยืดออกกำลังกาย",
-      "สายยางยืด",
-      "อุปกรณ์แรงต้าน"
+      "ใช้ยางยืดออก",
+      "กำลังกาย",
+      "ช่วยยืดกล้าม",
+      "เนื้อแฮมสตริง"
     ],
     "extraExample": "Resistance bands are easy to pack for travel workouts.",
     "extraExampleTranslation": "ยางยืดออกกำลังกายพกพาสะดวกสำหรับออกกำลังกายตอนเดินทาง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "resistance band (คำนาม) = ยางยืดออกกำลังกาย · มักใช้ในวลี: light resistance band, band stretch · คำใกล้เคียง: exercise band, elastic band"
   },
   {
     "word": "alignment",
@@ -137218,13 +137763,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "การจัดแนวร่างกาย",
-      "แนวกระดูกสันหลัง",
-      "ท่าทางที่ถูกต้อง"
+      "การจัดแนวกระดูกสัน",
+      "หลัง",
+      "ที่ดีช่วยลดอาการปวด",
+      "หลังขณะออกกำลังกาย"
     ],
     "extraExample": "Check your knee alignment in the mirror.",
     "extraExampleTranslation": "เช็กการจัดแนวเข่าของคุณในกระจก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "alignment (คำนาม) = การจัดแนวร่างกาย · มักใช้ในวลี: spine alignment, proper alignment · คำใกล้เคียง: posture, positioning"
   },
   {
     "word": "deepen",
@@ -137245,13 +137792,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ยืดให้ลึกขึ้น",
-      "เพิ่มความลึก",
-      "ยืดมากขึ้น"
+      "หายใจออก",
+      "เพื่อยืดก้มตัวไปข้าง",
+      "หน้าให้ลึกขึ้น",
+      "อย่างปลอดภัย"
     ],
     "extraExample": "You can deepen the lunge by sliding your back foot further.",
     "extraExampleTranslation": "คุณสามารถยืดท่าลันจ์ให้ลึกขึ้นได้โดยถอยเท้าหลังไปอีก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "deepen (คำกริยา) = ยืดให้ลึกขึ้น · มักใช้ในวลี: deepen the stretch, deepen a pose · คำใกล้เคียง: intensify, extend"
   },
   {
     "word": "collarbone",
@@ -137272,13 +137821,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "เปิดอก",
+      "และผายช่วง",
       "กระดูกไหปลาร้า",
-      "ไหปลาร้า",
-      "ช่วงบ่า"
+      "ให้กว้าง"
     ],
     "extraExample": "Keep your shoulders relaxed away from your collarbone.",
     "extraExampleTranslation": "ปล่อยไหล่ให้ผ่อนคลายห่างจากกระดูกไหปลาร้า",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "collarbone (คำนาม) = กระดูกไหปลาร้า · มักใช้ในวลี: broaden collarbone, collarbone area · คำใกล้เคียง: clavicle, shoulder bone"
   },
   {
     "word": "keypad",
@@ -137299,9 +137850,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "กดรหัสสี่หลัก",
-      "บนแป้นกดรหัส",
-      "เพื่อเปิดประตู"
+      "กดรหัสสี่หลักบน",
+      "แป้นกดรหัส",
+      "เพื่อเปิดประ",
+      "ตูโถงทางเข้า"
     ],
     "extraExample": "The building's keypad stopped working during the power outage.",
     "extraExampleTranslation": "แป้นกดรหัสของอาคารใช้งานไม่ได้ระหว่างที่ไฟดับ",
@@ -137327,7 +137879,8 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "มัดถุงขยะให้แน่น",
+      "กรุณามัดถุงขยะ",
+      "ให้แน่น",
       "ก่อนทิ้งลงใน",
       "ช่องทิ้งขยะ"
     ],
@@ -137355,13 +137908,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ลงชื่อที่เคาน์เตอร์",
-      "เพื่อรับ",
+      "แขกต้องลงชื่อ",
+      "ที่เคาน์เตอร์ด้าน",
+      "หน้าเพื่อรับ",
       "บัตรผู้มาติดต่อ"
     ],
     "extraExample": "Remember to return your visitor pass before leaving the complex.",
     "extraExampleTranslation": "อย่าลืมคืนบัตรผู้มาติดต่อก่อนออกจากโครงการ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "visitor pass (คำนาม) = บัตรผู้มาติดต่อ · มักใช้ในวลี: issue a visitor pass, wear a visitor pass · คำใกล้เคียง: guest badge, entry pass"
   },
   {
     "word": "quiet hours",
@@ -137382,13 +137937,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "บังคับใช้",
-      "ช่วงเวลางดใช้เสียง",
-      "ตั้งแต่สี่ทุ่ม"
+      "อาคารอพาร์ตเมนต์",
+      "ของเราบังคับใช้",
+      "ช่วงเวลางดใช้เสียงตั้ง",
+      "แต่สี่ทุ่มถึงเจ็ดโมงเช้า"
     ],
     "extraExample": "Please use headphones during quiet hours so you don't wake the neighbors.",
     "extraExampleTranslation": "กรุณาใช้หูฟังในช่วงเวลางดใช้เสียงเพื่อไม่ให้รบกวนเพื่อนบ้าน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "quiet hours (คำนาม) = ช่วงเวลางดใช้เสียง · มักใช้ในวลี: enforce quiet hours, during quiet hours · คำใกล้เคียง: curfew, noise-free hours"
   },
   {
     "word": "parcel locker",
@@ -137409,13 +137966,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ถูกนำมาใส่ไว้",
-      "ในตู้รับพัสดุ",
+      "คำสั่งซื้อออนไลน์",
+      "ของฉันถูก",
+      "นำมาใส่ไว้ในตู้รับพัสดุ",
       "ด้านล่างแล้ว"
     ],
     "extraExample": "Scan the QR code on your phone to open the parcel locker.",
     "extraExampleTranslation": "สแกนคิวอาร์โค้ดบนโทรศัพท์ของคุณเพื่อเปิดตู้รับพัสดุ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "parcel locker (คำนาม) = ตู้รับพัสดุ · มักใช้ในวลี: smart parcel locker, pick up from the parcel locker · คำใกล้เคียง: package locker, delivery box"
   },
   {
     "word": "knock on",
@@ -137436,9 +137995,10 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "เคาะประตู",
-      "บ้านเพื่อนบ้าน",
-      "เพื่อถามว่า"
+      "ฉันจะไปเคาะประ",
+      "ตูบ้านเพื่อนบ้าน",
+      "เพื่อถาม",
+      "ว่าพอมีน้ำตาลไหม"
     ],
     "novaBatch": true,
     "extraExample": "Don't forget to knock on the door before entering.",
@@ -137492,13 +138052,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "อพาร์ตเมนต์ที่",
-      "ผนังบาง",
-      "ได้ยินทุกบทสนทนา"
+      "ในอพาร์ตเมนต์",
+      "ที่ผนังบาง",
+      "คุณจะได้ยินทุกบทสนท",
+      "นาของห้องข้างๆ"
     ],
     "extraExample": "Living in a thin-walled building taught me to walk softly at night.",
     "extraExampleTranslation": "การอยู่ในอาคารที่ผนังบางสอนให้ฉันเดินเบาๆ ในตอนกลางคืน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "thin-walled (คำคุณศัพท์) = ผนังบาง · มักใช้ในวลี: thin-walled apartment, thin-walled building · คำใกล้เคียง: poorly insulated, echoey"
   },
   {
     "word": "well-lit",
@@ -137521,11 +138083,13 @@ const wordsData = [
     "thTokens": [
       "โรงจอดรถใต้ดิน",
       "มีแสงสว่างเพียงพอ",
-      "และมีกล้องวงจรปิด"
+      "และมีกล้อ",
+      "งวงจรปิดดูแล"
     ],
     "extraExample": "I prefer apartments with well-lit hallways for safety at night.",
     "extraExampleTranslation": "ฉันชอบอพาร์ตเมนต์ที่มีโถงทางเดินมีแสงสว่างเพียงพอเพื่อความปลอดภัยตอนกลางคืน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "well-lit (คำคุณศัพท์) = มีแสงสว่างเพียงพอ · มักใช้ในวลี: well-lit hallway, well-lit courtyard · คำใกล้เคียง: brightly lit, illuminated"
   },
   {
     "word": "pet-friendly",
@@ -137546,13 +138110,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "เจาะจงหา",
-      "อาคารที่อนุญาตให้เลี้ยงสัตว์",
-      "สำหรับสุนัขของเรา"
+      "เราเจาะจงหาอาคาร",
+      "ที่อนุญาตให้เลี้ยงสัตว์",
+      "สำหรับสุนัข",
+      "พันธุ์โกลเด้นของเรา"
     ],
     "extraExample": "Even in a pet-friendly condo, dogs must stay on a leash in the elevator.",
     "extraExampleTranslation": "แม้ในคอนโดที่อนุญาตให้เลี้ยงสัตว์ สุนัขก็ต้องใส่สายจูงในลิฟต์",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "pet-friendly (คำคุณศัพท์) = อนุญาตให้เลี้ยงสัตว์ · มักใช้ในวลี: pet-friendly condo, pet-friendly policy · คำใกล้เคียง: animal-friendly, pet-welcoming"
   },
   {
     "word": "rent-free",
@@ -137573,13 +138139,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "พักอยู่แบบ",
+      "เธอพักอยู่ฟรี",
       "ไม่เสียค่าเช่า",
-      "ที่ห้องสตูดิโอของป้า"
+      "ที่ห้องสตูดิโอ",
+      "ของป้าตอนที่กำลังหางาน"
     ],
     "extraExample": "The building manager gets a rent-free apartment as part of his salary.",
     "extraExampleTranslation": "ผู้จัดการอาคารได้ห้องพักแบบไม่เสียค่าเช่าเป็นส่วนหนึ่งของเงินเดือน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "rent-free (คำคุณศัพท์) = ไม่เสียค่าเช่า · มักใช้ในวลี: live rent-free, rent-free studio · คำใกล้เคียง: without rent, complimentary"
   },
   {
     "word": "buddy up",
@@ -137600,9 +138168,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "จับคู่",
-      "เป็นเพื่อน",
-      "ด้วยกัน"
+      "เรามาจับคู่กัน",
+      "ก่อนเดิน",
+      "เข้าไป",
+      "ในพิพิธภัณฑ์นะ"
     ],
     "extraExample": "New students often buddy up during the first week.",
     "extraExampleTranslation": "นักเรียนใหม่มักจะจับคู่เป็นเพื่อนกันในช่วงสัปดาห์แรก",
@@ -137628,9 +138197,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ความพยายาม",
-      "ร่วมกัน",
-      "ของกลุ่ม"
+      "การทำความสะอาด",
+      "สวนเป็นความพ",
+      "ยายามร่วมกัน",
+      "ที่ยอดเยี่ยมของกลุ่ม"
     ],
     "extraExample": "Success here requires a real group effort.",
     "extraExampleTranslation": "ความสำเร็จที่นี่ต้องอาศัยความร่วมมือร่วมใจของกลุ่มจริงๆ",
@@ -137656,9 +138226,10 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "จับคู่",
-      "ทำงาน",
-      "ร่วมกัน"
+      "กรุณาจับ",
+      "คู่ทำงาน",
+      "กับคน",
+      "ที่นั่งข้างๆคุณ"
     ],
     "extraExample": "We decided to partner up for the science project.",
     "extraExampleTranslation": "เราตัดสินใจจับคู่กันทำโครงงานวิทยาศาสตร์",
@@ -137684,13 +138255,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "คนที่",
-      "ทำงานร่วมกับ",
-      "ผู้อื่นได้ดี"
+      "เมียเป็นคน",
+      "ที่ทำงานร่วมกับผู้อื่นได้ดี",
+      "และแบ่งปันค",
+      "วามดีความชอบเสมอ"
     ],
     "extraExample": "Companies love hiring a reliable team player.",
     "extraExampleTranslation": "บริษัทต่างๆ ชอบจ้างคนที่ทำงานเป็นทีมได้ดีและไว้ใจได้",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "team player (คำนาม) = คนที่ทำงานร่วมกับผู้อื่นได้ดี · มักใช้ในวลี: true team player, great team player · คำใกล้เคียง: collaborator, cooperator"
   },
   {
     "word": "stand by",
@@ -137711,13 +138284,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ยืนหยัด",
-      "เคียงข้าง",
-      "ไม่ทิ้งกัน"
+      "เพื่อนที่ดีจะ",
+      "ยืนหยัดเคียงข้าง",
+      "กันในช่วงเว",
+      "ลาที่ยากลำบาก"
     ],
     "extraExample": "She promised to stand by her team no matter what.",
     "extraExampleTranslation": "เธอสัญญาว่าจะอยู่เคียงข้างทีมของเธอไม่ว่าจะเกิดอะไรขึ้น",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "stand by (คำกริยา) = ยืนหยัดเคียงข้าง, สนับสนุน · มักใช้ในวลี: stand by someone, stand by a friend · คำใกล้เคียง: support, back up"
   },
   {
     "word": "lean on",
@@ -137738,13 +138313,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "พึ่งพา",
-      "อาศัย",
-      "ยามลำบาก"
+      "คุณพึ่งพา",
+      "ฉันได้เสมอ",
+      "เมื่อเรื่องงาน",
+      "เริ่มตึงเครียด"
     ],
     "extraExample": "Teammates lean on each other to meet tight goals.",
     "extraExampleTranslation": "เพื่อนร่วมทีมพึ่งพาอาศัยกันเพื่อบรรลุเป้าหมายที่เร่งด่วน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "lean on (คำกริยา) = พึ่งพา, อาศัย · มักใช้ในวลี: lean on someone, lean on each other · คำใกล้เคียง: rely on, depend on"
   },
   {
     "word": "step up",
@@ -137765,12 +138342,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
+      "มีคนต้อง",
       "ก้าวขึ้นมา",
-      "อาสา",
-      "รับผิดชอบ"
+      "เป็นผู้นำกะ",
+      "เช้าแล้วล่ะ"
     ],
     "novaBatch": true,
-    "usageTip": "ใช้เมื่อมีคนก้าวขึ้นมาอาสารับผิดชอบงานสำคัญในเวลาที่จำเป็น"
+    "usageTip": "ใช้เมื่อมีคนก้าวขึ้นมาอาสารับผิดชอบงานสำคัญในเวลาที่จำเป็น",
+    "extraExample": "We need someone to step up and lead the team.",
+    "extraExampleTranslation": "เราต้องการใครสักคนก้าวขึ้นมาเป็นผู้นำทีม"
   },
   {
     "word": "icebreaker",
@@ -137791,13 +138371,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "กิจกรรม",
-      "ละลาย",
-      "พฤติกรรม"
+      "เราเล่นเกมละ",
+      "ลายพฤติกรรมสั้นๆ",
+      "ก่อน",
+      "เริ่มเวิร์กชอป"
     ],
     "extraExample": "A good icebreaker builds instant trust in a new group.",
     "extraExampleTranslation": "กิจกรรมละลายพฤติกรรมที่ดีช่วยสร้างความไว้วางใจในกลุ่มใหม่ได้ทันที",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "icebreaker (คำนาม) = กิจกรรมละลายพฤติกรรม · มักใช้ในวลี: quick icebreaker, fun icebreaker · คำใกล้เคียง: warm-up, opener"
   },
   {
     "word": "collaborator",
@@ -137818,13 +138400,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ผู้ร่วมงาน",
-      "ที่ร่วมมือ",
-      "กันได้ดี"
+      "เธอเป็นผู้ร่วมงาน",
+      "ที่ใส่ใจ",
+      "และรับฟังทุก",
+      "ความคิดเห็น"
     ],
     "extraExample": "Finding a trustworthy collaborator makes big projects easier.",
     "extraExampleTranslation": "การหาผู้ร่วมงานที่ไว้ใจได้ทำให้โปรเจกต์ใหญ่ๆ ง่ายขึ้นมาก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "collaborator (คำนาม) = ผู้ร่วมงาน, ผู้ร่วมมือ · มักใช้ในวลี: close collaborator, trusted collaborator · คำใกล้เคียง: partner, teammate"
   },
   {
     "word": "go-to",
@@ -137845,13 +138429,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ที่พึ่งพา",
-      "และไว้ใจ",
-      "ได้เสมอ"
+      "นิรันดร์เป็นคน",
+      "ที่เราพึ่ง",
+      "พาได้เสมอเวลาคอ",
+      "มพิวเตอร์มีปัญหา"
     ],
     "extraExample": "Every strong team has a go-to expert they trust.",
     "extraExampleTranslation": "ทุกทีมที่แข็งแกร่งจะมีผู้เชี่ยวชาญที่ไว้ใจและพึ่งพาได้",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "go-to (คำคุณศัพท์) = ที่พึ่งพาได้, ที่ไว้วางใจ · มักใช้ในวลี: go-to person, go-to expert · คำใกล้เคียง: reliable, trusted"
   },
   {
     "word": "sidekick",
@@ -137872,13 +138458,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "คู่หู",
-      "ผู้ช่วย",
-      "คนสนิท"
+      "แซมเป็นคู่หู",
+      "ที่ไว้ใจได้ข",
+      "องฉัน",
+      "ในทุกทริปเดินทาง"
     ],
     "extraExample": "Every hero needs a loyal sidekick by their side.",
     "extraExampleTranslation": "ฮีโร่ทุกคนต้องการคู่หูที่ซื่อสัตย์อยู่เคียงข้าง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "sidekick (คำนาม) = คู่หู, ผู้ช่วยคนสนิท · มักใช้ในวลี: trusted sidekick, loyal sidekick · คำใกล้เคียง: partner, companion"
   },
   {
     "word": "cash machine",
@@ -137899,13 +138487,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ตู้กดเงินสด",
+      "ฉันต้องหา",
       "ตู้เอทีเอ็ม",
-      "เครื่องถอนเงิน"
+      "ก่อน",
+      "ที่เราจะขึ้นแท็กซี่"
     ],
     "extraExample": "Does this cash machine accept foreign debit cards?",
     "extraExampleTranslation": "ตู้เอทีเอ็มนี้รับบัตรเดบิตต่างประเทศไหม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "cash machine (คำนาม) = ตู้เอทีเอ็ม, ตู้กดเงินสด · มักใช้ในวลี: use a cash machine, nearest cash machine · คำใกล้เคียง: ATM, cashpoint"
   },
   {
     "word": "small change",
@@ -137926,13 +138516,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "เงินย่อย",
-      "เศษสตางค์",
-      "เงินทอน"
+      "พกเงินย่อย",
+      "ติดตัวไว้เสมอ",
+      "สำหรับค่ารถเมล์",
+      "และทิป"
     ],
     "extraExample": "The shopkeeper didn't have enough small change for a large bill.",
     "extraExampleTranslation": "เจ้าของร้านไม่มีเงินทอนพอสำหรับธนบัตรใบใหญ่",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "small change (คำนาม) = เงินทอน, เศษสตางค์, เงินย่อย · มักใช้ในวลี: keep small change, have small change · คำใกล้เคียง: loose change, coins"
   },
   {
     "word": "money belt",
@@ -137953,13 +138545,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "กระเป๋าคาดเอว",
-      "ที่ซ่อนเงิน",
-      "เข็มขัดเก็บเงิน"
+      "เธอสวมกระเป๋าคาดเอ",
+      "วซ่อนเงิน",
+      "ไว้ใต้เสื้อขณะเดินทางผ่านตลาด",
+      "ที่คนพลุกพล่าน"
     ],
     "extraExample": "A money belt helps protect your cash from pickpockets.",
     "extraExampleTranslation": "กระเป๋าคาดเอวซ่อนเงินช่วยปกป้องเงินสดของคุณจากมิจฉาชีพล้วงกระเป๋า",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "money belt (คำนาม) = กระเป๋าคาดเอวซ่อนเงิน · มักใช้ในวลี: wear a money belt, hidden money belt · คำใกล้เคียง: security pouch, travel belt"
   },
   {
     "word": "traveler's check",
@@ -137980,13 +138574,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "เช็คเดินทาง",
-      "ตั๋วแลกเงิน",
-      "เช็คท่องเที่ยว"
+      "แม้ว่าบัตรจะใช้กันทั่วไป",
+      "ในปัจจุบัน",
+      "แต่นักท่องเที่ยวบางคนยังพก",
+      "เช็คเดินทางเผื่อฉุกเฉิน"
     ],
     "extraExample": "You need to show your passport to cash a traveler's check.",
     "extraExampleTranslation": "คุณต้องแสดงหนังสือเดินทางเพื่อขึ้นเงินเช็คเดินทาง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "traveler's check (คำนาม) = เช็คเดินทาง · มักใช้ในวลี: cash a traveler's check, buy traveler's checks · คำใกล้เคียง: travel check, bank draft"
   },
   {
     "word": "wire transfer",
@@ -138007,13 +138603,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "การโอนเงิน",
-      "โอนข้ามธนาคาร",
-      "ส่งเงินด่วน"
+      "โรงแรมขอ",
+      "ให้โอนเงินผ่านธนาคาร",
+      "เพื่อยืนยันการ",
+      "จองแบบกลุ่มของเรา"
     ],
     "extraExample": "An international wire transfer usually takes one to three business days.",
     "extraExampleTranslation": "การโอนเงินระหว่างประเทศมักใช้เวลาหนึ่งถึงสามวันทำการ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "wire transfer (คำนาม) = การโอนเงินผ่านธนาคารระหว่างประเทศ · มักใช้ในวลี: send a wire transfer, wire transfer fee · คำใกล้เคียง: bank transfer, electronic transfer"
   },
   {
     "word": "exchangeable",
@@ -138034,13 +138632,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "แลกเปลี่ยนได้",
-      "เปลี่ยนคืนได้",
-      "ใช้แทนกันได้"
+      "ตรวจสอบให้แน่ใจว่าธ",
+      "นบัตรท้องถิ่น",
+      "ที่ไม่ได้ใช้ของคุณสามารถแล",
+      "กเปลี่ยนได้ที่สนามบิน"
     ],
     "extraExample": "Torn or heavily damaged banknotes are often not exchangeable.",
     "extraExampleTranslation": "ธนบัตรที่ฉีกขาดหรือชำรุดมากมักไม่สามารถแลกเปลี่ยนได้",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "exchangeable (คำคุณศัพท์) = ที่สามารถแลกเปลี่ยนได้ · มักใช้ในวลี: easily exchangeable, exchangeable currency · คำใกล้เคียง: convertible, tradable"
   },
   {
     "word": "insurer",
@@ -138061,13 +138661,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "บริษัทประกัน",
-      "ผู้รับประกัน",
-      "องค์กรประกันภัย"
+      "ติดต่อบริษัทประกันภัย",
+      "ของคุณทันทีหากเที่ย",
+      "วบินถูกยกเลิกเนื่อง",
+      "จากสภาพอากาศเลวร้าย"
     ],
     "extraExample": "Our insurer covered all the hospital bills during our trip abroad.",
     "extraExampleTranslation": "บริษัทประกันภัยของเราจ่ายค่ารักษาพยาบาลทั้งหมดระหว่างทริปต่างประเทศ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "insurer (คำนาม) = บริษัทประกันภัย, ผู้รับประกัน · มักใช้ในวลี: contact your insurer, major insurer · คำใกล้เคียง: insurance company, provider"
   },
   {
     "word": "remittance",
@@ -138088,13 +138690,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "การส่งเงิน",
-      "การโอนเงิน",
-      "เงินโอน"
+      "นักเดินทางหลายคนใช้แอปมือถือ",
+      "เพื่อโอนเงินข้ามประเทศ",
+      "อย่างรวดเร็ว",
+      "เมื่อต้องการเงินเพิ่ม"
     ],
     "extraExample": "The bank charges a flat fee for each foreign remittance.",
     "extraExampleTranslation": "ธนาคารคิดค่าธรรมเนียมคงที่สำหรับการโอนเงินไปต่างประเทศแต่ละครั้ง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "remittance (คำนาม) = การโอนเงินข้ามประเทศ, เงินที่ส่งไปให้ · มักใช้ในวลี: foreign remittance, send a remittance · คำใกล้เคียง: payment, transfer"
   },
   {
     "word": "claimant",
@@ -138115,13 +138719,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "ผู้เรียกร้อง",
-      "ผู้ยื่นคำร้อง",
-      "ผู้ขอรับสินไหม"
+      "ผู้เรียกร้องค่าสินไหมทดแทน",
+      "ทุกคนต้อง",
+      "ส่งใบเสร็จตัวจริง",
+      "สำหรับสัมภาระที่สูญหาย"
     ],
     "extraExample": "The insurance company reviewed the claimant's medical report before paying.",
     "extraExampleTranslation": "บริษัทประกันภัยตรวจสอบรายงานทางการแพทย์ของผู้เรียกร้องค่าสินไหมก่อนจ่ายเงิน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "claimant (คำนาม) = ผู้เรียกร้องค่าสินไหมทดแทน · มักใช้ในวลี: insurance claimant, eligible claimant · คำใกล้เคียง: applicant, petitioner"
   },
   {
     "word": "copayment",
@@ -138142,13 +138748,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "การร่วมจ่าย",
-      "ส่วนที่จ่ายเอง",
-      "ค่าบริการร่วม"
+      "กรมธรรม์เดินทาง",
+      "ของฉันมีการร่วมจ่าย",
+      "ยี่สิบดอลลาร์",
+      "สำหรับการไปคลินิกแต่ละครั้ง"
     ],
     "extraExample": "Check if your plan requires a copayment for emergency dental care.",
     "extraExampleTranslation": "ตรวจสอบว่าแผนของคุณต้องมีการร่วมจ่ายสำหรับการทำฟันฉุกเฉินหรือไม่",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "copayment (คำนาม) = การร่วมจ่ายค่ารักษาพยาบาล · มักใช้ในวลี: small copayment, pay a copayment · คำใกล้เคียง: copay, shared cost"
   },
   {
     "word": "out-of-pocket",
@@ -138169,13 +138777,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "จ่ายเอง",
-      "ควักกระเป๋าเอง",
-      "นอกเหนือประกัน"
+      "เก็บใบเสร็จแท็กซี่ทั้ง",
+      "หมดไว้เพื่อ",
+      "ที่คุณจะได้ไม่ต้องมีค่าใช้จ่าย",
+      "ที่ต้องจ่ายเองสูง"
     ],
     "extraExample": "Insurance helps reduce your out-of-pocket costs during a medical emergency.",
     "extraExampleTranslation": "ประกันภัยช่วยลดค่าใช้จ่ายที่ต้องจ่ายเองของคุณในช่วงฉุกเฉินทางการแพทย์",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "out-of-pocket (คำคุณศัพท์) = ที่ต้องจ่ายด้วยเงินตัวเอง · มักใช้ในวลี: out-of-pocket expenses, out-of-pocket costs · คำใกล้เคียง: self-funded, direct"
   },
   {
     "word": "reimbursement",
@@ -138196,13 +138806,15 @@ const wordsData = [
     ],
     "topic": "travel",
     "thTokens": [
-      "การจ่ายคืน",
-      "เงินชดเชย",
-      "การคืนเงิน"
+      "ใช้เวลาสองสัปดาห์ก",
+      "ว่าจะได้รับเงินคืน",
+      "สำหรับค่าที่พักโรงแรม",
+      "จากเที่ยวบินล่าช้า"
     ],
     "extraExample": "You need a police report to apply for reimbursement of stolen items.",
     "extraExampleTranslation": "คุณต้องมีใบแจ้งความเพื่อยื่นขอรับเงินชดเชยสำหรับสิ่งของที่ถูกขโมย",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "reimbursement (คำนาม) = การจ่ายเงินคืน, การชดเชยค่าใช้จ่าย · มักใช้ในวลี: claim reimbursement, full reimbursement · คำใกล้เคียง: repayment, refunding"
   },
   {
     "word": "wintertime",
@@ -138223,13 +138835,15 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ในช่วงฤดูหนาว",
-      "ฤดูหนาว",
-      "หน้าหนาว"
+      "พวกเราชอ",
+      "บดื่มโกโก้ร้อน",
+      "ในช่วง",
+      "ฤดูหนาว"
     ],
     "extraExample": "Days get much shorter in wintertime.",
     "extraExampleTranslation": "กลางวันจะสั้นลงมากในฤดูหนาว",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "wintertime (คำนาม) = ฤดูหนาว · มักใช้ในวลี: during wintertime, cold wintertime · คำใกล้เคียง: winter, cold season"
   },
   {
     "word": "summertime",
@@ -138250,13 +138864,15 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "ในช่วงฤดูร้อน",
-      "ฤดูร้อน",
-      "หน้าร้อน"
+      "เด็กๆสนุก",
+      "กับการว่าย",
+      "น้ำในสระในช่วง",
+      "ฤดูร้อน"
     ],
     "extraExample": "Summertime brings long sunny afternoons.",
     "extraExampleTranslation": "ฤดูร้อนนำมาซึ่งช่วงบ่ายที่มีแดดจ้ายาวนาน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "summertime (คำนาม) = ฤดูร้อน · มักใช้ในวลี: during summertime, warm summertime · คำใกล้เคียง: summer, warm season"
   },
   {
     "word": "thunder",
@@ -138278,12 +138894,14 @@ const wordsData = [
     "topic": "nature",
     "thTokens": [
       "เสียงฟ้าร้อง",
-      "ฟ้าร้อง",
-      "พายุฝน"
+      "ดังทำให้สุนัข",
+      "ของพวกเราตกใจ",
+      "เมื่อคืน"
     ],
     "extraExample": "We heard distant thunder before the rain started.",
     "extraExampleTranslation": "พวกเราได้ยินเสียงฟ้าร้องอยู่ไกลๆ ก่อนฝนจะตก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "thunder (คำนาม) = ฟ้าร้อง · มักใช้ในวลี: loud thunder, distant thunder · คำใกล้เคียง: rumble, boom"
   },
   {
     "word": "heatstroke",
@@ -138304,13 +138922,15 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "โรคลมแดด",
-      "ป้องกันโรคลมแดด",
-      "อากาศร้อนจัด"
+      "ดื่มน้ำให้มาก",
+      "เพื่อป้องกันโรคลมแดด",
+      "ระหว่าง",
+      "ที่มีประกาศเตือนอากาศร้อน"
     ],
     "extraExample": "Workers were warned about the risk of heatstroke.",
     "extraExampleTranslation": "คนงานได้รับคำเตือนเกี่ยวกับความเสี่ยงของโรคลมแดด",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "heatstroke (คำนาม) = โรคลมแดด · มักใช้ในวลี: prevent heatstroke, risk of heatstroke · คำใกล้เคียง: heat exhaustion, sunstroke"
   },
   {
     "word": "sandstorm",
@@ -138332,12 +138952,14 @@ const wordsData = [
     "topic": "nature",
     "thTokens": [
       "พายุทราย",
-      "เตือนภัยพายุทราย",
-      "ฝุ่นทราย"
+      "รุนแรงทำให้ค",
+      "นขับรถต้อง",
+      "จอดข้างทาง"
     ],
     "extraExample": "The weather agency issued a sandstorm warning for the desert.",
     "extraExampleTranslation": "กรมอุตุนิยมวิทยาออกประกาศเตือนพายุทรายสำหรับพื้นที่ทะเลทราย",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "sandstorm (คำนาม) = พายุทราย · มักใช้ในวลี: severe sandstorm, sandstorm warning · คำใกล้เคียง: dust storm, haboob"
   },
   {
     "word": "mudslide",
@@ -138358,13 +138980,15 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
+      "ฝนตกหนัก",
+      "ตามฤดูกาลทำให้เกิด",
       "ดินโคลนถล่ม",
-      "แจ้งเตือนดินถล่ม",
-      "โคลนถล่ม"
+      "ที่อันตราย"
     ],
     "extraExample": "Residents near the mountain received a mudslide alert.",
     "extraExampleTranslation": "ผู้อยู่อาศัยใกล้ภูเขาได้รับแจ้งเตือนดินโคลนถล่ม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "mudslide (คำนาม) = ดินโคลนถล่ม · มักใช้ในวลี: dangerous mudslide, mudslide alert · คำใกล้เคียง: landslide, earthflow"
   },
   {
     "word": "microclimate",
@@ -138385,13 +139009,15 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
+      "หุบเขานี้มี",
       "ภูมิอากาศจุลภาค",
-      "สภาพอากาศเฉพาะถิ่น",
-      "อากาศเฉพาะจุด"
+      "ที่เย็นสบาย",
+      "แม้ในเดือนสิงหาคม"
     ],
     "extraExample": "Urban parks create a cooler microclimate for nearby streets.",
     "extraExampleTranslation": "สวนสาธารณะในเมืองสร้างภูมิอากาศจุลภาคที่เย็นลงให้ถนนใกล้เคียง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "microclimate (คำนาม) = ภูมิอากาศจุลภาค · มักใช้ในวลี: cool microclimate, local microclimate · คำใกล้เคียง: local climate, pocket climate"
   },
   {
     "word": "permafrost",
@@ -138412,13 +139038,15 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
+      "ฤดูกาลที่อุ่นขึ้น",
+      "กำลังทำให้",
       "ชั้นดินเยือกแข็งคงตัว",
-      "ดินเยือกแข็ง",
-      "ละลายตามฤดูกาล"
+      "ในอาร์กติกละลาย"
     ],
     "extraExample": "Scientists monitor permafrost temperatures every summer.",
     "extraExampleTranslation": "นักวิทยาศาสตร์เฝ้าติดตามอุณหภูมิชั้นดินเยือกแข็งคงตัวทุกฤดูร้อน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "permafrost (คำนาม) = ชั้นดินเยือกแข็งคงตัว · มักใช้ในวลี: Arctic permafrost, melting permafrost · คำใกล้เคียง: frozen ground, permanently frozen soil"
   },
   {
     "word": "landfall",
@@ -138439,13 +139067,15 @@ const wordsData = [
     ],
     "topic": "nature",
     "thTokens": [
-      "พายุขึ้นฝั่ง",
-      "ขึ้นฝั่ง",
-      "ก่อนพายุเข้า"
+      "พายุโซน",
+      "ร้อนคาด",
+      "ว่าจะขึ้น",
+      "ฝั่งคืนนี้"
     ],
     "extraExample": "Coastal towns prepared before the storm made landfall.",
     "extraExampleTranslation": "เมืองชายฝั่งเตรียมตัวรับมือก่อนพายุจะขึ้นฝั่ง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "landfall (คำนาม) = การขึ้นฝั่งของพายุ · มักใช้ในวลี: make landfall, before landfall · คำใกล้เคียง: storm arrival, touchdown"
   },
   {
     "word": "meteorology",
@@ -138467,12 +139097,14 @@ const wordsData = [
     "topic": "nature",
     "thTokens": [
       "อุตุนิยมวิทยา",
-      "พยากรณ์อากาศ",
-      "วิทยาศาสตร์บรรยากาศ"
+      "สมัยใหม่ช่วยออก",
+      "ประกาศเตือน",
+      "พายุได้อย่างแม่นยำ"
     ],
     "extraExample": "She studied meteorology to predict seasonal weather patterns.",
     "extraExampleTranslation": "เธอเรียนอุตุนิยมวิทยาเพื่อพยากรณ์รูปแบบอากาศตามฤดูกาล",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "meteorology (คำนาม) = อุตุนิยมวิทยา · มักใช้ในวลี: modern meteorology, study meteorology · คำใกล้เคียง: weather science, atmospheric science"
   },
   {
     "word": "chill",
@@ -138494,12 +139126,14 @@ const wordsData = [
     "topic": "feelings",
     "thTokens": [
       "บรรยากาศ",
+      "ที่คาเฟ่วันนี้",
       "ผ่อนคลาย",
-      "สบายๆ"
+      "มาก"
     ],
     "extraExample": "I feel chill now that the exams are over.",
     "extraExampleTranslation": "ตอนนี้ฉันรู้สึกสบายๆ แล้วเพราะสอบเสร็จสักที",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "chill (คำคุณศัพท์) = ผ่อนคลาย, สบายๆ · มักใช้ในวลี: chill vibe, stay chill · คำใกล้เคียง: relaxed, laid-back"
   },
   {
     "word": "gladly",
@@ -138520,13 +139154,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "อย่างยินดี",
-      "ด้วยความเต็มใจ",
-      "รับข่าวดี"
+      "ฉันยิน",
+      "ดีช่วยคุณ",
+      "ถือกระเป๋าพ",
+      "วกนั้นนะ"
     ],
     "extraExample": "She gladly accepted the good news.",
     "extraExampleTranslation": "เธอรับข่าวดีนั้นด้วยความยินดี",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "gladly (คำกริยาวิเศษณ์) = อย่างยินดี, ด้วยความเต็มใจ · มักใช้ในวลี: gladly accept, gladly help · คำใกล้เคียง: happily, willingly"
   },
   {
     "word": "cozy up",
@@ -138547,11 +139183,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ทำตัวให้สบาย",
-      "ขดตัวให้อบอุ่น",
-      "ใต้ผ้าห่มนุ่มๆ"
+      "มานอนขดตัว",
+      "สบายๆบนโซ",
+      "ฟาแล้วดูห",
+      "นังกันเถอะ"
     ],
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "cozy up (คำกริยา) = ทำตัวให้สบาย, ขดตัวให้อบอุ่น · มักใช้ในวลี: cozy up on the couch, cozy up with a book · คำใกล้เคียง: snuggle, settle in",
+    "extraExample": "I love to cozy up in the corner booth with a hot latte.",
+    "extraExampleTranslation": "ฉันชอบไปขดตัวนั่งสบายๆ ที่บูธมุมร้านพร้อมลาเต้ร้อน"
   },
   {
     "word": "uplifting",
@@ -138572,13 +139212,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ทำให้ใจชื้น",
-      "ให้กำลังใจ",
-      "เรื่องราวที่ดี"
+      "เราได้ยินเรื่องราว",
+      "ที่ทำให้ใจชื้น",
+      "เกี่ยว",
+      "กับการช่วยเหลือ"
     ],
     "extraExample": "The music had a calm and uplifting tone.",
     "extraExampleTranslation": "ดนตรีมีท่วงทำนองที่สงบและให้กำลังใจ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "uplifting (คำคุณศัพท์) = ที่ทำให้ใจชื้น, ที่ให้กำลังใจ · มักใช้ในวลี: uplifting message, uplifting story · คำใกล้เคียง: encouraging, inspiring"
   },
   {
     "word": "sigh of relief",
@@ -138599,13 +139241,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ถอนหายใจ",
-      "ความโล่งอก",
-      "ผ่านพ้นไปได้"
+      "ฉันถอนหายใจ",
+      "ด้วยความโล่งอก",
+      "เมื่อเครื่องบินลงจอด",
+      "อย่างปลอดภัย"
     ],
     "extraExample": "Everyone breathed a sigh of relief after the storm passed.",
     "extraExampleTranslation": "ทุกคนถอนหายใจด้วยความโล่งอกหลังจากพายุผ่านไป",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "sigh of relief (คำนาม) = การถอนหายใจด้วยความโล่งอก · มักใช้ในวลี: breathe a sigh of relief, let out a sigh of relief · คำใกล้เคียง: relief, release"
   },
   {
     "word": "easygoing",
@@ -138626,13 +139270,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
+      "เจ้านายคนให",
+      "ม่ของฉันเป็นคน",
       "สบายๆ",
-      "ไม่เครียด",
-      "ใจเย็นมาก"
+      "และใจเย็นมาก"
     ],
     "extraExample": "Having an easygoing attitude helps reduce daily stress.",
     "extraExampleTranslation": "การมีทัศนคติที่สบายๆ ช่วยลดความเครียดในแต่ละวันได้",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "easygoing (คำคุณศัพท์) = สบายๆ, ไม่เครียด · มักใช้ในวลี: easygoing nature, easygoing attitude · คำใกล้เคียง: relaxed, calm"
   },
   {
     "word": "rosy",
@@ -138653,13 +139299,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "สดใส",
-      "มองโลกในแง่ดี",
-      "อนาคตที่ดี"
+      "อนาคตดู",
+      "สดใสขึ้น",
+      "หลัง",
+      "จากข้อตกลงใหม่"
     ],
     "extraExample": "He always paints a rosy picture of the project.",
     "extraExampleTranslation": "เขามักจะมองภาพของโปรเจกต์ในแง่ดีเสมอ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "rosy (คำคุณศัพท์) = สดใส, มองโลกในแง่ดี · มักใช้ในวลี: rosy outlook, rosy picture · คำใกล้เคียง: bright, hopeful"
   },
   {
     "word": "peace of mind",
@@ -138680,13 +139328,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "ความสบายใจ",
-      "หมดห่วง",
-      "ความสงบทางใจ"
+      "การสำรอง",
+      "ข้อมูลช่วย",
+      "ให้ฉันสบาย",
+      "ใจขึ้นมาก"
     ],
     "extraExample": "Knowing she arrived home safely brought me peace of mind.",
     "extraExampleTranslation": "การรู้ว่าเธอกลับถึงบ้านอย่างปลอดภัยทำให้ฉันหมดห่วง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "peace of mind (คำนาม) = ความสบายใจ, ความสงบทางใจ · มักใช้ในวลี: give peace of mind, for peace of mind · คำใกล้เคียง: serenity, calmness"
   },
   {
     "word": "take heart",
@@ -138707,13 +139357,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
-      "มีกำลังใจขึ้น",
-      "ใจชื้นขึ้น",
-      "ความคืบหน้า"
+      "ใจชื้นขึ้นเถอะช่วง",
+      "ที่หนัก",
+      "ที่สุด",
+      "ของสัปดาห์ผ่านไปแล้ว"
     ],
     "extraExample": "We can take heart from the steady progress we made.",
     "extraExampleTranslation": "เราสามารถมีกำลังใจขึ้นได้จากความคืบหน้าที่ทำมาอย่างต่อเนื่อง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "take heart (คำกริยา) = มีกำลังใจขึ้น, ใจชื้นขึ้น · มักใช้ในวลี: take heart from, take heart in · คำใกล้เคียง: be encouraged, stay hopeful"
   },
   {
     "word": "simmer down",
@@ -138734,13 +139386,15 @@ const wordsData = [
     ],
     "topic": "feelings",
     "thTokens": [
+      "ทุกอย่างจะ",
       "สงบลง",
-      "เย็นลง",
-      "ผ่อนคลาย"
+      "เมื่อชั่วโมง",
+      "เร่งด่วนจบลง"
     ],
     "extraExample": "Give him a few minutes to simmer down and relax.",
     "extraExampleTranslation": "ให้เวลาเขาสักสองสามนาทีเพื่อใจเย็นลงและผ่อนคลาย",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "simmer down (คำกริยา) = สงบลง, เย็นลง · มักใช้ในวลี: let things simmer down, simmer down a bit · คำใกล้เคียง: calm down, cool off"
   },
   {
     "word": "e-book",
@@ -138761,13 +139415,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "หนังสือ",
-      "อิเล็กทรอนิกส์",
-      "บนหน้าจอ"
+      "คุณสามารถดาวน์โหลด",
+      "หนังสืออิเล็กทรอนิกส์",
+      "ของคอร์ส",
+      "ก่อนเริ่มเรียนคาบแรกได้"
     ],
     "extraExample": "She prefers reading an e-book on her tablet.",
     "extraExampleTranslation": "เธอชอบอ่านหนังสืออิเล็กทรอนิกส์บนแท็บเล็ตของเธอ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "e-book (คำนาม) = หนังสืออิเล็กทรอนิกส์ · มักใช้ในวลี: download an e-book, read an e-book · คำใกล้เคียง: digital book, electronic book"
   },
   {
     "word": "webpage",
@@ -138788,13 +139444,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "หน้าเว็บ",
-      "บน",
-      "อินเทอร์เน็ต"
+      "ตารางเรียน",
+      "ของคอร์สถูกโพสต์",
+      "ไว้บนหน้าเว็บ",
+      "หลักของเรา"
     ],
     "extraExample": "Bookmark this webpage so you can find the videos easily.",
     "extraExampleTranslation": "บุ๊กมาร์กหน้าเว็บนี้ไว้เพื่อที่คุณจะได้หาวิดีโอได้ง่าย",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "webpage (คำนาม) = หน้าเว็บ · มักใช้ในวลี: visit a webpage, course webpage · คำใกล้เคียง: web document, site page"
   },
   {
     "word": "log out",
@@ -138815,13 +139473,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ออก",
-      "จาก",
-      "ระบบ"
+      "ออกจากระบบเสมอ",
+      "หลังจากใช้คอ",
+      "มพิวเตอร์ส่วนกลาง",
+      "ของห้องสมุด"
     ],
     "extraExample": "Click the profile icon to log out of the course app.",
     "extraExampleTranslation": "คลิกที่ไอคอนโปรไฟล์เพื่อออกจากระบบของแอปเรียน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "log out (คำกริยา) = ออกจากระบบ · มักใช้ในวลี: log out of, remember to log out · คำใกล้เคียง: sign out, exit"
   },
   {
     "word": "handout",
@@ -138842,13 +139502,14 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "เอกสาร",
-      "ประกอบ",
-      "การเรียน"
+      "ผู้สอนแชร์เอกสารประกอบการเรียนแบบ",
+      "PDF",
+      "สำหรับบทเรียนวันนี้"
     ],
     "extraExample": "Please review the handout before taking the short test.",
     "extraExampleTranslation": "กรุณาทบทวนเอกสารประกอบการเรียนก่อนทำแบบทดสอบสั้นๆ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "handout (คำนาม) = เอกสารประกอบการเรียน · มักใช้ในวลี: PDF handout, distribute a handout · คำใกล้เคียง: worksheet, study sheet"
   },
   {
     "word": "note-taking",
@@ -138869,13 +139530,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "การจด",
-      "บันทึก",
-      "ใจความสำคัญ"
+      "การจดบันทึก",
+      "ที่ดีช่วยให้คุณ",
+      "จำเนื้อหาจากการบ",
+      "รรยายออนไลน์ได้"
     ],
     "extraExample": "Digital note-taking apps make organizing topics much faster.",
     "extraExampleTranslation": "แอปจดบันทึกดิจิทัลช่วยให้การจัดระเบียบหัวข้อเร็วขึ้นมาก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "note-taking (คำนาม) = การจดบันทึก · มักใช้ในวลี: digital note-taking, note-taking skills · คำใกล้เคียง: jotting down, recording notes"
   },
   {
     "word": "self-study",
@@ -138896,13 +139559,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "การเรียน",
-      "ด้วย",
-      "ตนเอง"
+      "หลักสูตรออนไลน์",
+      "นี้ผสมผสานการเรีย",
+      "นสดเข้ากับ",
+      "การเรียนรู้ด้วยตนเอง"
     ],
     "extraExample": "Self-study requires strong discipline and a clear weekly plan.",
     "extraExampleTranslation": "การเรียนรู้ด้วยตนเองต้องอาศัยวินัยที่เข้มแข็งและแผนรายสัปดาห์ที่ชัดเจน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "self-study (คำนาม) = การเรียนรู้ด้วยตนเอง · มักใช้ในวลี: independent self-study, self-study hours · คำใกล้เคียง: independent study, autonomous learning"
   },
   {
     "word": "workload",
@@ -138923,13 +139588,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ภาระงาน",
-      "ที่ต้อง",
-      "ทำ"
+      "ภาระงานรายสัปดาห์",
+      "สำหรับใบรับ",
+      "รองนี้อยู่ที่ป",
+      "ระมาณห้าชั่วโมง"
     ],
     "extraExample": "She chose a part-time track to manage her study workload.",
     "extraExampleTranslation": "เธอเลือกเรียนแบบพาร์ทไทม์เพื่อจัดการภาระงานการเรียนของเธอ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "workload (คำนาม) = ภาระงาน · มักใช้ในวลี: weekly workload, manageable workload · คำใกล้เคียง: study load, task volume"
   },
   {
     "word": "open-book",
@@ -138950,13 +139617,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "เปิดตำรา",
-      "ได้",
-      "ระหว่างสอบ"
+      "การประเมินผลสุด",
+      "ท้ายเป็นการสอ",
+      "บออนไลน์ที่อนุญาต",
+      "ให้เปิดตำราได้"
     ],
     "extraExample": "Even in an open-book test, you still need to manage your time.",
     "extraExampleTranslation": "แม้ในการสอบที่เปิดตำราได้ คุณก็ยังต้องบริหารเวลาให้ดี",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "open-book (คำคุณศัพท์) = ที่อนุญาตให้เปิดตำราได้ · มักใช้ในวลี: open-book exam, open-book test · คำใกล้เคียง: unrestricted, reference-allowed"
   },
   {
     "word": "screencast",
@@ -138977,13 +139646,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "วิดีโอ",
-      "บันทึก",
-      "หน้าจอ"
+      "ผู้สอนเขียนโค้ด",
+      "อัปโหลด",
+      "วิดีโอบันทึกหน้าจอ",
+      "ที่แสดงแต่ละขั้นตอน"
     ],
     "extraExample": "Watching a short screencast is often clearer than reading a manual.",
     "extraExampleTranslation": "การดูวิดีโอบันทึกหน้าจอสั้นๆ มักจะชัดเจนกว่าการอ่านคู่มือ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "screencast (คำนาม) = วิดีโอบันทึกหน้าจอ · มักใช้ในวลี: record a screencast, tutorial screencast · คำใกล้เคียง: screen recording, video walkthrough"
   },
   {
     "word": "pedagogy",
@@ -139004,13 +139675,15 @@ const wordsData = [
     ],
     "topic": "education",
     "thTokens": [
-      "ศาสตร์",
-      "การสอน",
-      "สมัยใหม่"
+      "ศาสตร์การสอน",
+      "ออนไลน์มุ่งเน้นไปที่การ",
+      "ทำให้ผู้เรียนทางไกลมีส่วนร่วม",
+      "อย่างกระตือรือร้น"
     ],
     "extraExample": "Modern pedagogy blends multimedia tools with practical exercises.",
     "extraExampleTranslation": "ศาสตร์การสอนสมัยใหม่ผสมผสานเครื่องมือมัลติมีเดียเข้ากับแบบฝึกหัดภาคปฏิบัติ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "pedagogy (คำนาม) = ศาสตร์การสอน · มักใช้ในวลี: online pedagogy, effective pedagogy · คำใกล้เคียง: teaching method, instructional theory"
   },
   {
     "word": "team lead",
@@ -139032,12 +139705,14 @@ const wordsData = [
     "topic": "work",
     "thTokens": [
       "หัวหน้าทีม",
-      "ผู้ดูแลทีม",
-      "คนนำทีม"
+      "ของเราจะส่งอัปเดต",
+      "ให้ลูก",
+      "ค้าก่อนเที่ยง"
     ],
     "extraExample": "Ask the team lead if we can publish this note.",
     "extraExampleTranslation": "ถามหัวหน้าทีมว่าเราสามารถเผยแพร่บันทึกนี้ได้ไหม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "team lead (คำนาม) = หัวหน้าทีม · มักใช้ในวลี: team lead meeting, ask the team lead · คำใกล้เคียง: supervisor, manager"
   },
   {
     "word": "help desk",
@@ -139058,13 +139733,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
+      "ลูกค้าสามารถติดต่อ",
       "ฝ่ายช่วยเหลือ",
-      "ศูนย์บริการ",
-      "ทีมซัพพอร์ต"
+      "เพื่อขอรับการส",
+      "นับสนุนบัญชีได้"
     ],
     "extraExample": "The help desk received fifty calls during the outage.",
     "extraExampleTranslation": "ฝ่ายช่วยเหลือได้รับสายห้าสิบสายระหว่างที่ระบบล่ม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "help desk (คำนาม) = ฝ่ายช่วยเหลือ · มักใช้ในวลี: contact the help desk, help desk ticket · คำใกล้เคียง: support desk, service desk"
   },
   {
     "word": "status page",
@@ -139085,13 +139762,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "หน้าแสดงสถานะ",
-      "กระดานสถานะ",
-      "เว็บแจ้งเหตุ"
+      "ตรวจสอบ",
+      "หน้าแสดงสถานะระบบ",
+      "เพื่อดูอัปเด",
+      "ตแบบเรียลไทม์"
     ],
     "extraExample": "We posted a clear notice on the status page.",
     "extraExampleTranslation": "เราได้โพสต์ประกาศที่ชัดเจนบนหน้าแสดงสถานะระบบ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "status page (คำนาม) = หน้าแสดงสถานะระบบ · มักใช้ในวลี: official status page, update the status page · คำใกล้เคียง: service status, system board"
   },
   {
     "word": "press release",
@@ -139112,13 +139791,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
+      "บริษัทออก",
       "ข่าวประชาสัมพันธ์",
-      "แถลงการณ์สื่อ",
-      "ประกาศทางการ"
+      "เกี่ยว",
+      "กับปัญหาข้อมูล"
     ],
     "extraExample": "Our PR team drafted the press release in an hour.",
     "extraExampleTranslation": "ทีมประชาสัมพันธ์ร่างข่าวประชาสัมพันธ์เสร็จในหนึ่งชั่วโมง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "press release (คำนาม) = ข่าวประชาสัมพันธ์ · มักใช้ในวลี: issue a press release, draft a press release · คำใกล้เคียง: media statement, official notice"
   },
   {
     "word": "fact-check",
@@ -139140,12 +139821,14 @@ const wordsData = [
     "topic": "work",
     "thTokens": [
       "ตรวจสอบข้อเท็จจริง",
-      "เช็กความถูกต้อง",
-      "ยืนยันข้อมูล"
+      "ของตัวเล",
+      "ขทุกตัว",
+      "ก่อนการบรรยายสรุปเสมอ"
     ],
     "extraExample": "We need to fact-check the timeline with engineering.",
     "extraExampleTranslation": "เราต้องตรวจสอบข้อเท็จจริงของไทม์ไลน์กับทีมวิศวกรรม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "fact-check (คำกริยา) = ตรวจสอบข้อเท็จจริง · มักใช้ในวลี: fact-check the data, fact-check a claim · คำใกล้เคียง: verify, confirm"
   },
   {
     "word": "workaround",
@@ -139166,13 +139849,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
+      "ฝ่ายสนับสนุนแชร์",
       "วิธีแก้ไขเฉพาะหน้า",
-      "ทางแก้ชั่วคราว",
-      "วิธีแก้ขัด"
+      "อย่างรวดเร็ว",
+      "ให้ลูกค้าที่ได้รับผลกระทบ"
     ],
     "extraExample": "This workaround keeps the dashboard running for now.",
     "extraExampleTranslation": "วิธีแก้ไขเฉพาะหน้านี้ช่วยให้แดชบอร์ดทำงานได้ไปก่อน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "workaround (คำนาม) = วิธีแก้ไขเฉพาะหน้า · มักใช้ในวลี: temporary workaround, share a workaround · คำใกล้เคียง: quick fix, bypass"
   },
   {
     "word": "town hall",
@@ -139193,13 +139878,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "การประชุมใหญ่",
-      "ประชุมรวมพนักงาน",
-      "ทาวน์ฮอลล์"
+      "ซีอีโอจัด",
+      "การประชุมใหญ่พนักงาน",
+      "เพื่อตอบข้อกังวล",
+      "ของพนักงาน"
     ],
     "extraExample": "Questions from the town hall were summarized in an email.",
     "extraExampleTranslation": "คำถามจากการประชุมใหญ่พนักงานถูกสรุปไว้ในอีเมล",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "town hall (คำนาม) = การประชุมใหญ่พนักงาน · มักใช้ในวลี: company town hall, host a town hall · คำใกล้เคียง: all-hands meeting, staff briefing"
   },
   {
     "word": "sign-off",
@@ -139220,13 +139907,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "การอนุมัติ",
-      "การเซ็นรับรอง",
-      "ไฟเขียว"
+      "ต้องได้รับการอนุมัติขั้นสุดท้าย",
+      "จากฝ่ายกฎหมาย",
+      "ก่อนที่เราจะส่งอีเม",
+      "ลถึงผู้มีส่วนได้ส่วนเสีย"
     ],
     "extraExample": "We are waiting for executive sign-off on the statement.",
     "extraExampleTranslation": "เรากำลังรอการอนุมัติขั้นสุดท้ายจากผู้บริหารสำหรับแถลงการณ์",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "sign-off (คำนาม) = การอนุมัติขั้นสุดท้าย · มักใช้ในวลี: final sign-off, legal sign-off · คำใกล้เคียง: approval, clearance"
   },
   {
     "word": "contingency",
@@ -139247,13 +139936,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "แผนสำรอง",
-      "มาตรการฉุกเฉิน",
-      "ทางเลือกสำรอง"
+      "เราเปิดใช้",
+      "แผนสำรองฉุกเฉิน",
+      "เมื่อเซิร์ฟ",
+      "เวอร์หลักล่ม"
     ],
     "extraExample": "Every crisis playbook needs a clear contingency for media calls.",
     "extraExampleTranslation": "คู่มือรับมือวิกฤตทุกเล่มต้องมีแผนสำรองฉุกเฉินที่ชัดเจนสำหรับสายจากสื่อ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "contingency (คำนาม) = แผนสำรองฉุกเฉิน · มักใช้ในวลี: contingency plan, crisis contingency · คำใกล้เคียง: backup plan, fallback"
   },
   {
     "word": "rectify",
@@ -139274,13 +139965,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "แก้ไขให้ถูกต้อง",
-      "ปรับแก้",
-      "เยียวยา"
+      "เรากำลังทำงานตลอด",
+      "เวลาเพื่อแก้ไขข้อ",
+      "ผิดพลาดด้านการเรีย",
+      "กเก็บเงินให้ถูกต้อง"
     ],
     "extraExample": "The team acted quickly to rectify the service disruption.",
     "extraExampleTranslation": "ทีมงานดำเนินการอย่างรวดเร็วเพื่อแก้ไขการหยุดชะงักของบริการให้ถูกต้อง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "rectify (คำกริยา) = แก้ไขให้ถูกต้อง · มักใช้ในวลี: rectify an error, rectify the situation · คำใกล้เคียง: correct, remedy"
   },
   {
     "word": "escalation",
@@ -139301,13 +139994,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "การยกระดับปัญหา",
-      "การส่งต่อระดับสูง",
-      "การแจ้งผู้บริหาร"
+      "กฎการยกระดับปัญหา",
+      "ที่ชัดเจนช่วย",
+      "ให้ทีมตอบสนองได้เร็วขึ้น",
+      "ในยามวิกฤต"
     ],
     "extraExample": "The customer requested an immediate escalation to a director.",
     "extraExampleTranslation": "ลูกค้าขอให้ยกระดับปัญหาไปยังผู้อำนวยการทันที",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "escalation (คำนาม) = การยกระดับปัญหา · มักใช้ในวลี: escalation path, immediate escalation · คำใกล้เคียง: hand-off, elevation"
   },
   {
     "word": "postmortem",
@@ -139328,13 +140023,15 @@ const wordsData = [
     ],
     "topic": "work",
     "thTokens": [
-      "สรุปบทเรียน",
-      "ทบทวนหลังเหตุการณ์",
-      "วิเคราะห์สาเหตุ"
+      "เราจะจัดการสรุปบทเรียน",
+      "หลังเหตุการณ์",
+      "แบบไม่โทษกัน",
+      "ในเช้าวันพรุ่งนี้"
     ],
     "extraExample": "The postmortem highlighted three gaps in our alert system.",
     "extraExampleTranslation": "การสรุปบทเรียนหลังเหตุการณ์ชี้ให้เห็นช่องโหว่สามจุดในระบบแจ้งเตือนของเรา",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "postmortem (คำนาม) = การสรุปบทเรียนหลังเหตุการณ์ · มักใช้ในวลี: blameless postmortem, incident postmortem · คำใกล้เคียง: incident review, retrospective"
   },
   {
     "word": "gong",
@@ -139355,13 +140052,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ตีฆ้อง",
-      "เสียงกังวาน",
-      "พิธีเปิด"
+      "พระตีฆ้อง",
+      "ทองเหลือง",
+      "เพื่อ",
+      "เปิดพิธี"
     ],
     "extraExample": "A deep gong echoed across the temple courtyard.",
     "extraExampleTranslation": "เสียงฆ้องทุ้มกังวานไปทั่วลานวัด",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "gong (คำนาม) = ฆ้อง · มักใช้ในวลี: brass gong, strike a gong · คำใกล้เคียง: chime, bell"
   },
   {
     "word": "confetti",
@@ -139382,13 +140081,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "โปรยกระดาษสี",
-      "งานเฉลิมฉลอง",
-      "ขบวนแห่"
+      "ผู้ร่วมงานโป",
+      "รยกระดาษสีขณะ",
+      "ที่ขบวน",
+      "แห่เทศกาลผ่านไป"
     ],
     "extraExample": "Colorful confetti covered the street after the countdown.",
     "extraExampleTranslation": "กระดาษสีหลากสีเกลื่อนถนนหลังการนับถอยหลัง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "confetti (คำนาม) = กระดาษสีโปรย · มักใช้ในวลี: throw confetti, colorful confetti · คำใกล้เคียง: streamers, paper scraps"
   },
   {
     "word": "sparkler",
@@ -139409,13 +140110,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ถือไฟเย็น",
-      "จุดไฟเย็น",
-      "เทศกาลกลางคืน"
+      "เด็กๆโบก",
+      "ไฟเย็นในสวน",
+      "ระหว่างเทศ",
+      "กาลยามค่ำคืน"
     ],
     "extraExample": "The sparkler glowed brightly against the dark sky.",
     "extraExampleTranslation": "ไฟเย็นส่องแสงสว่างไสวตัดกับท้องฟ้ายามค่ำคืน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "sparkler (คำนาม) = ไฟเย็น · มักใช้ในวลี: hold a sparkler, light a sparkler · คำใกล้เคียง: firework, flare"
   },
   {
     "word": "ribbon",
@@ -139436,13 +140139,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ผูกริบบิ้น",
-      "ริบบิ้นผ้าไหม",
-      "เครื่องประดับ"
+      "นักเต้นผูก",
+      "ริบบิ้นสีแดงรอบข้อมือ",
+      "เพื่อความ",
+      "เป็นสิริมงคล"
     ],
     "extraExample": "Bright ribbons hung from the traditional maypole.",
     "extraExampleTranslation": "ริบบิ้นสีสดใสห้อยลงมาจากเสาเทศกาลแบบดั้งเดิม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "ribbon (คำนาม) = ริบบิ้น · มักใช้ในวลี: silk ribbon, tie a ribbon · คำใกล้เคียง: strip, band"
   },
   {
     "word": "wreath",
@@ -139463,13 +140168,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "วางพวงมาลา",
-      "พวงดอกไม้",
-      "วันรำลึก"
+      "เจ้าหน้าที่วาง",
+      "พวงมาลา",
+      "ที่อนุสาวรีย์",
+      "ในวันรำลึก"
     ],
     "extraExample": "Families hung evergreen wreaths on their front doors.",
     "extraExampleTranslation": "ครอบครัวต่างๆ แขวนพวงมาลัยใบไม้เขียวไว้ที่หน้าประตูบ้าน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "wreath (คำนาม) = พวงมาลา · มักใช้ในวลี: lay a wreath, floral wreath · คำใกล้เคียง: garland, ring"
   },
   {
     "word": "anthem",
@@ -139490,13 +140197,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "เพลงชาติ",
-      "ร้องเพลงสรรเสริญ",
-      "เพลงประจำถิ่น"
+      "ทุกคนยืนขึ้น",
+      "ขณะเพลงชาติบ",
+      "รรเลง",
+      "ก่อนเริ่มเทศกาล"
     ],
     "extraExample": "The folk song became an unofficial anthem for the region.",
     "extraExampleTranslation": "เพลงพื้นบ้านเพลงนี้กลายเป็นเพลงประจำภูมิภาคอย่างไม่เป็นทางการ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "anthem (คำนาม) = เพลงประจำชาติหรือเพลงสำคัญ · มักใช้ในวลี: national anthem, sing an anthem · คำใกล้เคียง: hymn, song"
   },
   {
     "word": "bunting",
@@ -139517,13 +140226,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ธงราวประดับ",
-      "แขวนธงราว",
-      "งานเฉลิมฉลอง"
+      "ถนนหนทางประดับ",
+      "ด้วยธงราวหลากสีสัน",
+      "สำหรับงานฉ",
+      "ลองสิริราชสมบัติ"
     ],
     "extraExample": "Volunteers hung bunting between the market stalls.",
     "extraExampleTranslation": "อาสาสมัครแขวนธงราวระหว่างแผงขายของในตลาด",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "bunting (คำนาม) = ธงราวประดับ · มักใช้ในวลี: colorful bunting, hang bunting · คำใกล้เคียง: flags, streamers"
   },
   {
     "word": "altar",
@@ -139544,13 +140255,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "ชาวบ้านวาง",
+      "ผลไม้และดอกไม้บน",
       "แท่นบูชา",
-      "แท่นบูชาบรรพบุรุษ",
-      "เครื่องเซ่นไหว้"
+      "บรรพบุรุษ"
     ],
     "extraExample": "Candles flickered softly beside the temple altar.",
     "extraExampleTranslation": "แสงเทียนริบหรี่อย่างอ่อนโยนข้างแท่นบูชาในวัด",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "altar (คำนาม) = แท่นบูชา · มักใช้ในวลี: ancestral altar, temple altar · คำใกล้เคียง: shrine, pedestal"
   },
   {
     "word": "mythology",
@@ -139571,13 +140284,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "ตำนานโบราณ",
-      "เรื่องเล่าพื้นบ้าน",
-      "ความเชื่อดั้งเดิม"
+      "การร่ายรำพื้น",
+      "เมืองมัก",
+      "เล่าฉาก",
+      "จากตำนานโบราณ"
     ],
     "extraExample": "Greek mythology has inspired many European festivals.",
     "extraExampleTranslation": "ตำนานกรีกเป็นแรงบันดาลใจให้กับเทศกาลในยุโรปหลายแห่ง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "mythology (คำนาม) = ตำนานเทพเจ้าและเรื่องเล่าโบราณ · มักใช้ในวลี: ancient mythology, local mythology · คำใกล้เคียง: folklore, legend"
   },
   {
     "word": "talisman",
@@ -139598,13 +140313,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
-      "เครื่องรางของขลัง",
-      "พกเครื่องราง",
-      "นำโชค"
+      "เขาสวมเค",
+      "รื่องรางเงิน",
+      "ที่ตกทอ",
+      "ดมาจากคุณปู่"
     ],
     "extraExample": "Many travelers carry a talisman during the new year pilgrimage.",
     "extraExampleTranslation": "นักเดินทางหลายคนพกเครื่องรางระหว่างการแสวงบุญปีใหม่",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "talisman (คำนาม) = เครื่องรางของขลัง · มักใช้ในวลี: lucky talisman, wear a talisman · คำใกล้เคียง: amulet, charm"
   },
   {
     "word": "fresco",
@@ -139625,13 +140342,15 @@ const wordsData = [
     ],
     "topic": "society",
     "thTokens": [
+      "ผู้บูรณะทำความสะอาด",
       "ภาพเขียนปูนเปียก",
-      "จิตรกรรมฝาผนัง",
-      "การบูรณะ"
+      "อายุหลายศตวรรษ",
+      "ในวิหารอย่างระมัดระวัง"
     ],
     "extraExample": "The vibrant fresco depicts a medieval harvest celebration.",
     "extraExampleTranslation": "ภาพเขียนปูนเปียกสีสดใสแสดงภาพงานฉลองการเก็บเกี่ยวในยุคกลาง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "fresco (คำนาม) = ภาพเขียนปูนเปียก · มักใช้ในวลี: ancient fresco, wall fresco · คำใกล้เคียง: mural, painting"
   },
   {
     "word": "check out",
@@ -139652,11 +140371,15 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ตรวจสอบ",
-      "ดูรายละเอียด",
-      "ก่อนออก"
+      "ช่วยตรวจสอบ",
+      "ใบเสร็จ",
+      "ก่อนเราออก",
+      "จากร้านกาแฟได้ไหม"
     ],
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "check out (คำกริยา) = ตรวจสอบดู, ลองดู · มักใช้ในวลี: check out the details, check out the price · คำใกล้เคียง: examine, look at",
+    "extraExample": "You should check out the new specialty cafe on Main Street.",
+    "extraExampleTranslation": "คุณน่าจะไปลองดูคาเฟ่เปิดใหม่บนถนนเมนนะ"
   },
   {
     "word": "note down",
@@ -139677,11 +140400,15 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "จดบันทึก",
-      "รายละเอียด",
-      "กันลืม"
+      "กรุณาจดหมาย",
+      "เลขซีเรียล",
+      "ที่ด้าน",
+      "หลังกล่องไว้ด้วย"
     ],
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "note down (คำกริยา) = จดบันทึกไว้ · มักใช้ในวลี: note down the time, note down details · คำใกล้เคียง: jot down, record",
+    "extraExample": "Note down the brewing time so you can repeat the recipe.",
+    "extraExampleTranslation": "จดบันทึกเวลาชงไว้ จะได้ทำตามสูตรเดิมได้อีก"
   },
   {
     "word": "read over",
@@ -139703,12 +140430,14 @@ const wordsData = [
     "topic": "actions",
     "thTokens": [
       "อ่านทวน",
-      "ตรวจสอบ",
-      "ก่อนส่ง"
+      "อีเมล",
+      "ของคุณอีกครั้ง",
+      "ก่อนกดส่งนะ"
     ],
     "extraExample": "She read over the contract to make sure the dates matched.",
     "extraExampleTranslation": "เธออ่านทวนสัญญาเพื่อให้แน่ใจว่าวันที่ตรงกัน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "read over (คำกริยา) = อ่านทวน · มักใช้ในวลี: read over the text, read over carefully · คำใกล้เคียง: review, check"
   },
   {
     "word": "zoom out",
@@ -139730,10 +140459,14 @@ const wordsData = [
     "topic": "actions",
     "thTokens": [
       "ซูมออก",
-      "ดูภาพรวม",
-      "แผนที่"
+      "บนแผน",
+      "ที่เพื่อดูถ",
+      "นนทั้งสาย"
     ],
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "zoom out (คำกริยา) = ซูมออก, ย่อภาพ · มักใช้ในวลี: zoom out on the map, zoom out slightly · คำใกล้เคียง: pull back, widen view",
+    "extraExample": "Let's zoom out and look at the whole map.",
+    "extraExampleTranslation": "เรามาซูมออกเพื่อดูแผนที่ทั้งหมดกันเถอะ"
   },
   {
     "word": "scan",
@@ -139754,13 +140487,15 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "กวาดสายตา",
-      "หาข้อมูล",
-      "ตรวจดู"
+      "กวาดสายตาดูรายชื่อ",
+      "เพื่อหาชื่อ",
+      "ของคุณ",
+      "และตรวจตัวสะกด"
     ],
     "extraExample": "The guard scanned the room for any open doors.",
     "extraExampleTranslation": "เจ้าหน้าที่กวาดสายตามองไปรอบห้องเพื่อดูว่ามีประตูเปิดอยู่ไหม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "scan (คำกริยา) = กวาดสายตาอ่าน, สแกน · มักใช้ในวลี: scan the list, scan the room · คำใกล้เคียง: skim, browse"
   },
   {
     "word": "skim",
@@ -139781,13 +140516,14 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "อ่านผ่านๆ",
-      "ดูคร่าวๆ",
-      "จับใจความ"
+      "อ่านรายงานผ่านๆ",
+      "ก่อน",
+      "แล้วค่อยตรวจตัวเลขในตารางที่สอง"
     ],
     "extraExample": "I only had time to skim the instructions.",
     "extraExampleTranslation": "ฉันมีเวลาแค่อ่านคำแนะนำผ่านๆ เท่านั้น",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "skim (คำกริยา) = อ่านผ่านๆ, ดูคร่าวๆ · มักใช้ในวลี: skim the report, skim through pages · คำใกล้เคียง: scan, glimpse"
   },
   {
     "word": "check up on",
@@ -139808,11 +140544,15 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ตรวจเช็ก",
-      "ดูความคืบหน้า",
-      "ให้แน่ใจ"
+      "อีกห้านาทีฉัน",
+      "จะไป",
+      "ดูเตาอบ",
+      "สักหน่อย"
     ],
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "check up on (คำกริยา) = แวะดู, ตรวจเช็กความคืบหน้า · มักใช้ในวลี: check up on progress, check up on the count · คำใกล้เคียง: monitor, check on",
+    "extraExample": "I'll check up on the oven in five minutes.",
+    "extraExampleTranslation": "อีกห้านาทีฉันจะไปแวะดูเตาอบสักหน่อย"
   },
   {
     "word": "pinpoint",
@@ -139833,13 +140573,15 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "ระบุให้ชัด",
-      "ชี้เป้า",
-      "แม่นยำ"
+      "ช่างเทคนิคระ",
+      "บุตำแหน่งสายไฟ",
+      "ที่หลวมได้ใน",
+      "ไม่กี่วินาที"
     ],
     "extraExample": "It is hard to pinpoint which step caused the delay.",
     "extraExampleTranslation": "มันยากที่จะระบุให้ชัดว่าขั้นตอนไหนที่ทำให้ล่าช้า",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "pinpoint (คำกริยา) = ระบุตำแหน่งหรือสาเหตุให้แม่นยำ · มักใช้ในวลี: pinpoint the cause, pinpoint the location · คำใกล้เคียง: identify, locate"
   },
   {
     "word": "sift through",
@@ -139860,11 +140602,15 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "คัดแยก",
-      "ตรวจค้น",
-      "อย่างละเอียด"
+      "เราต้องค้น",
+      "ดูใบเสร็จห้าสิบใบ",
+      "เพื่อหาใบ",
+      "ที่ถูกต้อง"
     ],
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "sift through (คำกริยา) = คัดแยก, ตรวจค้นอย่างละเอียด · มักใช้ในวลี: sift through receipts, sift through data · คำใกล้เคียง: sort through, comb through",
+    "extraExample": "I had to sift through dozens of emails this morning.",
+    "extraExampleTranslation": "เมื่อเช้าฉันต้องมานั่งคัดแยกอีเมลหลายสิบฉบับ"
   },
   {
     "word": "tally",
@@ -139885,13 +140631,15 @@ const wordsData = [
     ],
     "topic": "actions",
     "thTokens": [
-      "นับรวม",
-      "ตรวจยอด",
-      "ให้ตรงกัน"
+      "มานับคะแนนร",
+      "วมสองครั้ง",
+      "ก่อนประกาศผู้ช",
+      "นะกันเถอะ"
     ],
     "extraExample": "The cash in the drawer did not tally with the sales log.",
     "extraExampleTranslation": "เงินสดในลิ้นชักไม่ตรงกับบันทึกการขาย",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "tally (คำกริยา) = นับรวม, ตรวจยอดให้ตรง · มักใช้ในวลี: tally the votes, tally with the log · คำใกล้เคียง: count up, match"
   },
   {
     "word": "hold on",
@@ -139912,13 +140660,15 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "รอสักครู่",
-      "คอยแป๊บ",
-      "หยุดรอ"
+      "กรุณารอสักครู่",
+      "ระหว่าง",
+      "ที่ฉันตรวจสอบการจอง",
+      "ของคุณได้ไหม"
     ],
     "extraExample": "Hold on a second, I will grab a pen for you.",
     "extraExampleTranslation": "รอสักครู่นะ ฉันจะไปหยิบปากกาให้คุณ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "hold on (คำกริยา) = รอสักครู่ · มักใช้ในวลี: hold on a second, hold on please · คำใกล้เคียง: wait, hang on"
   },
   {
     "word": "respectful",
@@ -139939,13 +140689,15 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ที่เคารพ",
-      "สุภาพ",
-      "ให้เกียรติ"
+      "กรุณาใช้น้ำเสียง",
+      "ที่สุภาพ",
+      "เมื่อ",
+      "เขียนถึงลูกค้า"
     ],
     "extraExample": "She was very respectful when asking for a day off.",
     "extraExampleTranslation": "เธอสุภาพมากตอนที่ขอลางานหนึ่งวัน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "respectful (คำคุณศัพท์) = ที่เคารพ, สุภาพ · มักใช้ในวลี: respectful tone, be respectful · คำใกล้เคียง: polite, courteous"
   },
   {
     "word": "troublesome",
@@ -139966,13 +140718,15 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ที่รบกวน",
-      "ยุ่งยาก",
-      "น่ารำคาญ"
+      "หวังว่าคำถาม",
+      "เพิ่มเติม",
+      "ของฉันจะไม่รบกว",
+      "นมากเกินไปนะ"
     ],
     "extraExample": "It was troublesome to reschedule at the last minute.",
     "extraExampleTranslation": "มันค่อนข้างยุ่งยากที่ต้องเลื่อนนัดในนาทีสุดท้าย",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "troublesome (คำคุณศัพท์) = ที่รบกวน, น่ารำคาญ · มักใช้ในวลี: troublesome issue, too troublesome · คำใกล้เคียง: inconvenient, bothersome"
   },
   {
     "word": "apologetic",
@@ -139993,13 +140747,15 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ที่ขอโทษ",
-      "รู้สึกผิด",
-      "สำนึกผิด"
+      "เขาฟังดูรู้สึก",
+      "เสียใจจริงๆ",
+      "ที่ไม่ได้รับ",
+      "สาย"
     ],
     "extraExample": "She gave an apologetic smile after bumping into me.",
     "extraExampleTranslation": "เธอยิ้มแบบขอโทษหลังจากเดินชนฉัน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "apologetic (คำคุณศัพท์) = ที่รู้สึกเสียใจและขอโทษ · มักใช้ในวลี: apologetic tone, apologetic smile · คำใกล้เคียง: remorseful, regretful"
   },
   {
     "word": "appreciative",
@@ -140020,13 +140776,15 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ที่ซาบซึ้ง",
-      "เห็นคุณค่า",
-      "รู้สึกขอบคุณ"
+      "แขกผู้มาเยือ",
+      "นซาบซึ้งใจมาก",
+      "กับการต้อนรับ",
+      "ที่อบอุ่น"
     ],
     "extraExample": "I am appreciative of your honest feedback.",
     "extraExampleTranslation": "ฉันซาบซึ้งในคำติชมที่ตรงไปตรงมาของคุณ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "appreciative (คำคุณศัพท์) = ที่ซาบซึ้งและเห็นคุณค่า · มักใช้ในวลี: deeply appreciative, appreciative of · คำใกล้เคียง: grateful, thankful"
   },
   {
     "word": "diplomatic",
@@ -140047,13 +140805,15 @@ const wordsData = [
     ],
     "topic": "basics",
     "thTokens": [
-      "ที่มีวาทศิลป์",
-      "นุ่มนวล",
-      "มีชั้นเชิง"
+      "เธอปฏิเสธ",
+      "อย่างนุ่มนวล",
+      "เพื่อไม่ให้ทำร้ายค",
+      "วามรู้สึกของเขา"
     ],
     "extraExample": "Being diplomatic helps resolve complaints smoothly.",
     "extraExampleTranslation": "การพูดจาอย่างนุ่มนวลช่วยให้จัดการข้อร้องเรียนได้ราบรื่น",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "diplomatic (คำคุณศัพท์) = ที่มีวาทศิลป์, นุ่มนวล · มักใช้ในวลี: diplomatic response, diplomatic approach · คำใกล้เคียง: tactful, polite"
   },
   {
     "word": "peanut-free",
@@ -140074,13 +140834,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจาก",
-      "ถั่ว",
-      "ลิสง"
+      "โรงอาหารของโรงเรียนนี้",
+      "ปราศจากถั่วลิสง",
+      "อย่างสิ้นเชิง",
+      "เพื่อความปลอดภัยของนักเรียน"
     ],
     "extraExample": "We ordered a peanut-free birthday cake for the party.",
     "extraExampleTranslation": "เราสั่งเค้กวันเกิดที่ปราศจากถั่วลิสงสำหรับงานปาร์ตี้",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "peanut-free (คำคุณศัพท์) = ปราศจากถั่วลิสง · มักใช้ในวลี: peanut-free zone, peanut-free snacks · คำใกล้เคียง: nutless, safe for allergies"
   },
   {
     "word": "oat milk",
@@ -140101,13 +140863,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "นม",
-      "ข้าว",
-      "โอ๊ต"
+      "ฉันชอบใส่",
+      "นมข้าวโอ๊ต",
+      "ในกาแฟเย็น",
+      "ตอนเช้า"
     ],
     "extraExample": "Oat milk is a popular choice for people who avoid dairy.",
     "extraExampleTranslation": "นมข้าวโอ๊ตเป็นตัวเลือกยอดนิยมสำหรับคนที่หลีกเลี่ยงผลิตภัณฑ์นม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "oat milk (คำนาม) = นมข้าวโอ๊ต · มักใช้ในวลี: steamed oat milk, unsweetened oat milk · คำใกล้เคียง: plant milk, dairy alternative"
   },
   {
     "word": "low-fat",
@@ -140128,13 +140892,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ไขมัน",
-      "ต่ำ",
-      "เบา"
+      "คุณหมอแนะ",
+      "นำให้เลือกโยเกิร์ต",
+      "ไขมันต่ำ",
+      "สำหรับมื้อเช้า"
     ],
     "extraExample": "Low-fat dressings are available on the salad bar.",
     "extraExampleTranslation": "น้ำสลัดไขมันต่ำมีให้บริการอยู่ที่บาร์สลัด",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "low-fat (คำคุณศัพท์) = ไขมันต่ำ · มักใช้ในวลี: low-fat milk, low-fat option · คำใกล้เคียง: reduced-fat, light"
   },
   {
     "word": "high-protein",
@@ -140155,13 +140921,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "โปรตีน",
-      "สูง",
-      "เข้มข้น"
+      "นักกีฬามัก",
+      "กินอาหาร",
+      "โปรตีนสูง",
+      "หลังการฝึกซ้อม"
     ],
     "extraExample": "Lentils and beans are great high-protein foods for vegetarians.",
     "extraExampleTranslation": "ถั่วเลนทิลและถั่วต่างๆ เป็นอาหารโปรตีนสูงที่ดีเยี่ยมสำหรับผู้กินมังสวิรัติ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "high-protein (คำคุณศัพท์) = โปรตีนสูง · มักใช้ในวลี: high-protein snack, high-protein diet · คำใกล้เคียง: protein-rich, muscle-building"
   },
   {
     "word": "preservative-free",
@@ -140182,13 +140950,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ปราศจาก",
-      "สาร",
-      "กันบูด"
+      "ผู้ปกครองมักชอบขนม",
+      "ที่ปราศ",
+      "จากสารกันบูด",
+      "สำหรับเด็กเล็ก"
     ],
     "extraExample": "Because it is preservative-free, this bread spoils within three days.",
     "extraExampleTranslation": "เพราะมันปราศจากสารกันบูด ขนมปังนี้จึงเสียภายในสามวัน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "preservative-free (คำคุณศัพท์) = ปราศจากสารกันบูด · มักใช้ในวลี: preservative-free juice, fresh and preservative-free · คำใกล้เคียง: all-natural, additive-free"
   },
   {
     "word": "whole-food",
@@ -140209,13 +140979,14 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ไม่ผ่าน",
-      "การ",
-      "แปรรูป"
+      "อาหารที่ไม่ผ่านการแปรรูปเน้นผักสด",
+      "ผลไม้",
+      "และธัญพืช"
     ],
     "extraExample": "She prefers whole-food ingredients over packaged meals.",
     "extraExampleTranslation": "เธอชอบวัตถุดิบที่ไม่ผ่านการแปรรูปมากกว่าอาหารสำเร็จรูป",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "whole-food (คำคุณศัพท์) = อาหารที่ไม่ผ่านการแปรรูป · มักใช้ในวลี: whole-food nutrition, whole-food approach · คำใกล้เคียง: unrefined, natural"
   },
   {
     "word": "artificial sweetener",
@@ -140236,13 +141007,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "สารให้",
-      "ความหวาน",
-      "เทียม"
+      "น้ำอัดลมสูตร",
+      "ไม่มีน้ำตาลมักมี",
+      "สารให้ความหวานเทียม",
+      "แทนน้ำตาล"
     ],
     "extraExample": "Some people avoid artificial sweeteners due to headaches.",
     "extraExampleTranslation": "บางคนหลีกเลี่ยงสารให้ความหวานเทียมเพราะทำให้ปวดหัว",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "artificial sweetener (คำนาม) = สารให้ความหวานเทียม · มักใช้ในวลี: zero-calorie artificial sweetener, avoid artificial sweeteners · คำใกล้เคียง: sugar substitute, synthetic sweetener"
   },
   {
     "word": "foodborne",
@@ -140263,13 +141036,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
+      "การล้างมือ",
+      "อย่างถูกวิธีช่วยป้องกันโรค",
       "ที่เกิด",
-      "จาก",
-      "อาหาร"
+      "จากอาหารในร้านอาหาร"
     ],
     "extraExample": "Undercooked poultry can cause serious foodborne infections.",
     "extraExampleTranslation": "เนื้อสัตว์ปีกที่ปรุงไม่สุกอาจทำให้เกิดการติดเชื้อที่เกิดจากอาหารอย่างรุนแรงได้",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "foodborne (คำคุณศัพท์) = ที่เกิดจากอาหาร · มักใช้ในวลี: foodborne illness, foodborne bacteria · คำใกล้เคียง: food-related, contaminated"
   },
   {
     "word": "epinephrine",
@@ -140290,13 +141065,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ยา",
-      "อะดรี",
-      "นาลีน"
+      "ผู้ที่แพ้ถั่ว",
+      "อย่างรุนแรงคว",
+      "รพกยาอะดรีนาลีน",
+      "ติดตัวไว้เสมอ"
     ],
     "extraExample": "The paramedics administered epinephrine immediately after the reaction started.",
     "extraExampleTranslation": "เจ้าหน้าที่กู้ภัยฉีดยาอะดรีนาลีนทันทีหลังจากอาการแพ้เริ่มต้นขึ้น",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "epinephrine (คำนาม) = อะดรีนาลีน (ยาแก้แพ้รุนแรง) · มักใช้ในวลี: epinephrine auto-injector, carry epinephrine · คำใกล้เคียง: adrenaline, emergency shot"
   },
   {
     "word": "malnutrition",
@@ -140317,13 +141094,15 @@ const wordsData = [
     ],
     "topic": "food",
     "thTokens": [
-      "ภาวะ",
-      "ทุพ",
-      "โภชนาการ"
+      "การจำกัดอาหาร",
+      "โดยไม่วางแผน",
+      "ให้ดีอาจนำไปสู่",
+      "ภาวะทุพโภชนาการได้"
     ],
     "extraExample": "The clinic provides supplements to children suffering from malnutrition.",
     "extraExampleTranslation": "คลินิกแจกอาหารเสริมให้เด็กที่กำลังประสบภาวะทุพโภชนาการ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "malnutrition (คำนาม) = ภาวะทุพโภชนาการ · มักใช้ในวลี: severe malnutrition, prevent malnutrition · คำใกล้เคียง: undernourishment, nutritional deficiency"
   },
   {
     "word": "toe touch",
@@ -140344,13 +141123,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "เริ่มต้นกิจ",
+      "วัตรยามเช้าด้วย",
       "ท่าก้ม",
-      "แตะ",
-      "ปลายเท้า"
+      "แตะปลายเท้าเบาๆ"
     ],
     "extraExample": "Do ten toe touches to warm up your lower back.",
     "extraExampleTranslation": "ทำท่าก้มแตะปลายเท้าสิบครั้งเพื่ออบอุ่นหลังส่วนล่างของคุณ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "toe touch (คำนาม) = ท่าก้มแตะปลายเท้า · มักใช้ในวลี: gentle toe touch, standing toe touch · คำใกล้เคียง: forward fold, hamstring stretch"
   },
   {
     "word": "shin",
@@ -140371,13 +141152,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "หน้า",
-      "แข้ง",
-      "ขา"
+      "เขารู้สึกเจ็บแปลบ",
+      "ที่หน้าแข้ง",
+      "หลังจากวิ่ง",
+      "บนพื้นคอนกรีต"
     ],
     "extraExample": "Stretch your calves to relieve tension along the shin.",
     "extraExampleTranslation": "ยืดกล้ามเนื้อน่องเพื่อลดความตึงบริเวณหน้าแข้ง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "shin (คำนาม) = หน้าแข้ง · มักใช้ในวลี: shin splint, front of the shin · คำใกล้เคียง: tibia, lower leg"
   },
   {
     "word": "knuckle",
@@ -140398,13 +141181,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ข้อ",
-      "นิ้ว",
-      "มือ"
+      "การหักข้อนิ้วมือ",
+      "ไม่ได้ช่วย",
+      "ให้ข้อนิ้วยืด",
+      "หยุ่นขึ้นจริง"
     ],
     "extraExample": "Keep your knuckles relaxed when holding light weights.",
     "extraExampleTranslation": "ผ่อนคลายข้อนิ้วมือเมื่อถือดัมเบลน้ำหนักเบา",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "knuckle (คำนาม) = ข้อนิ้วมือ · มักใช้ในวลี: crack your knuckles, knuckle joint · คำใกล้เคียง: finger joint, articulation"
   },
   {
     "word": "loosen up",
@@ -140425,13 +141210,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "คลาย",
-      "กล้าม",
-      "เนื้อ"
+      "ใช้เวลาห้านาทีเพื่อ",
+      "คลายก",
+      "ล้ามเนื้อ",
+      "ไหล่ก่อนยกน้ำหนัก"
     ],
     "extraExample": "A quick walk helps my legs loosen up after sitting all day.",
     "extraExampleTranslation": "การเดินเร็วๆ ช่วยให้ขาของฉันคลายความตึงหลังจากนั่งมาทั้งวัน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "loosen up (คำกริยา) = คลายกล้ามเนื้อ · มักใช้ในวลี: loosen up muscles, loosen up before exercise · คำใกล้เคียง: warm up, limber up"
   },
   {
     "word": "groin",
@@ -140452,13 +141239,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ขา",
-      "หนีบ",
-      "ล่าง"
+      "ควรยืดกล้ามเนื้อ",
+      "ขาหนีบ",
+      "เบาๆเสมอ",
+      "ก่อนวิ่งสปรินต์"
     ],
     "extraExample": "A butterfly stretch targets the inner thigh and groin.",
     "extraExampleTranslation": "ท่าผีเสื้อช่วยยืดกล้ามเนื้อต้นขาด้านในและขาหนีบ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "groin (คำนาม) = ขาหนีบ · มักใช้ในวลี: groin pull, groin stretch · คำใกล้เคียง: inguinal area, inner thigh"
   },
   {
     "word": "oblique",
@@ -140479,13 +141268,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กล้าม",
-      "ข้าง",
-      "ลำตัว"
+      "ท่าแพลงก์ด้านข้างดีมาก",
+      "สำหรับการ",
+      "เสริมสร้าง",
+      "กล้ามเนื้อข้างลำตัว"
     ],
     "extraExample": "Twist your torso gently to stretch the oblique muscles.",
     "extraExampleTranslation": "บิดลำตัวเบาๆ เพื่อยืดกล้ามเนื้อข้างลำตัว",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "oblique (คำนาม) = กล้ามเนื้อข้างลำตัว · มักใช้ในวลี: side oblique, oblique crunch · คำใกล้เคียง: side abs, lateral core"
   },
   {
     "word": "backbend",
@@ -140506,13 +141297,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "ท่า",
-      "แอ่น",
-      "หลัง"
+      "ท่าแอ่นหลัง",
+      "เบาๆช่วยเปิดหน้าอก",
+      "หลังจากนั่งทำงาน",
+      "ที่โต๊ะหลายชั่วโมง"
     ],
     "extraExample": "Support your lower back when attempting a deep backbend.",
     "extraExampleTranslation": "พยุงหลังส่วนล่างของคุณเมื่อลองทำท่าแอ่นหลังลึกๆ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "backbend (คำนาม) = ท่าแอ่นหลัง · มักใช้ในวลี: gentle backbend, deep backbend · คำใกล้เคียง: spinal extension, bridge pose"
   },
   {
     "word": "trapezius",
@@ -140533,13 +141326,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กล้าม",
-      "บ่า",
-      "บน"
+      "เอียงศีรษะไป",
+      "ด้านข้าง",
+      "เพื่อยืดกล้าม",
+      "เนื้อบ่าส่วนบน"
     ],
     "extraExample": "Stress often causes tightness in the trapezius muscle.",
     "extraExampleTranslation": "ความเครียดมักทำให้เกิดอาการตึงที่กล้ามเนื้อบ่า",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "trapezius (คำนาม) = กล้ามเนื้อบ่าและหลังส่วนบน · มักใช้ในวลี: upper trapezius, tight trapezius · คำใกล้เคียง: trap muscle, upper back muscle"
   },
   {
     "word": "rotator cuff",
@@ -140560,13 +141355,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
-      "กล้าม",
-      "หมุน",
-      "ไหล่"
+      "การออกกำลังกาย",
+      "ด้วยยางยืดเบาๆช่วย",
+      "ให้กล้ามเนื้อ",
+      "หมุนข้อไหล่แข็งแรง"
     ],
     "extraExample": "Overhead athletes must warm up the rotator cuff carefully.",
     "extraExampleTranslation": "นักกีฬาที่ใช้แขนเหนือศีรษะต้องอบอุ่นกล้ามเนื้อหมุนข้อไหล่อย่างระมัดระวัง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "rotator cuff (คำนาม) = กล้ามเนื้อหมุนข้อไหล่ · มักใช้ในวลี: rotator cuff tear, rotator cuff stretch · คำใกล้เคียง: shoulder stabilizers, shoulder tendons"
   },
   {
     "word": "hip flexor",
@@ -140587,13 +141384,15 @@ const wordsData = [
     ],
     "topic": "body",
     "thTokens": [
+      "การนั่งทั้งวันทำให้",
       "กล้าม",
-      "สะโพก",
-      "หน้า"
+      "เนื้อสะโพกด้านหน้า",
+      "หดสั้นและตึง"
     ],
     "extraExample": "Kneeling lunges provide a deep stretch for the hip flexors.",
     "extraExampleTranslation": "ท่าลันจ์คุกเข่าช่วยยืดกล้ามเนื้อสะโพกด้านหน้าได้อย่างล้ำลึก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "hip flexor (คำนาม) = กล้ามเนื้อสะโพกด้านหน้า · มักใช้ในวลี: tight hip flexor, hip flexor stretch · คำใกล้เคียง: iliopsoas, front hip muscle"
   },
   {
     "word": "keycard",
@@ -140615,12 +141414,14 @@ const wordsData = [
     "topic": "home",
     "thTokens": [
       "แตะคีย์การ์ด",
-      "เข้าอาคาร",
-      "ลืมไว้ในห้อง"
+      "ของคุณ",
+      "ที่เครื่องสแกน",
+      "เพื่อเข้าอาคาร"
     ],
     "extraExample": "I left my keycard inside the apartment.",
     "extraExampleTranslation": "ฉันลืมคีย์การ์ดไว้ในอพาร์ตเมนต์",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "keycard (คำนาม) = คีย์การ์ด · มักใช้ในวลี: tap a keycard, lost keycard · คำใกล้เคียง: access card, entry card"
   },
   {
     "word": "mailroom",
@@ -140641,13 +141442,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "พัสดุของ",
+      "คุณรออยู่ที่",
       "ห้องจดหมาย",
-      "พัสดุรออยู่",
       "ชั้นล่าง"
     ],
     "extraExample": "Let's check the mailroom before going upstairs.",
     "extraExampleTranslation": "ไปเช็กห้องจดหมายก่อนขึ้นข้างบนกันเถอะ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "mailroom (คำนาม) = ห้องจดหมาย · มักใช้ในวลี: check the mailroom, building mailroom · คำใกล้เคียง: post room, package room"
   },
   {
     "word": "basement",
@@ -140668,13 +141471,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ชั้นใต้ดิน",
-      "เก็บจักรยาน",
-      "เครื่องซักผ้า"
+      "เราเก็บ",
+      "จักรยานไว้ที่",
+      "ชั้น",
+      "ใต้ดิน"
     ],
     "extraExample": "The laundry machines are located in the basement.",
     "extraExampleTranslation": "เครื่องซักผ้าตั้งอยู่ที่ชั้นใต้ดิน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "basement (คำนาม) = ชั้นใต้ดิน · มักใช้ในวลี: in the basement, basement storage · คำใกล้เคียง: cellar, lower level"
   },
   {
     "word": "housemate",
@@ -140696,12 +141501,14 @@ const wordsData = [
     "topic": "home",
     "thTokens": [
       "เพื่อนร่วมบ้าน",
-      "ทำอาหารเย็น",
-      "เรียบร้อยมาก"
+      "ของฉัน",
+      "ทำอาหารเย็นทุก",
+      "วันอาทิตย์"
     ],
     "extraExample": "I'm lucky to have a very tidy housemate.",
     "extraExampleTranslation": "ฉันโชคดีที่มีเพื่อนร่วมบ้านที่เรียบร้อยมาก",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "housemate (คำนาม) = เพื่อนร่วมบ้าน · มักใช้ในวลี: new housemate, tidy housemate · คำใกล้เคียง: flatmate, roommate"
   },
   {
     "word": "handyman",
@@ -140722,13 +141529,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "อาคารจ้าง",
       "ช่างซ่อมบำรุง",
-      "ซ่อมราวบันได",
-      "บานประตูหลวม"
+      "มาซ่อมราวบันได",
+      "ที่พัง"
     ],
     "extraExample": "Call the handyman if the cabinet door comes loose.",
     "extraExampleTranslation": "เรียกช่างซ่อมบำรุงถ้าบานประตูตู้หลวม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "handyman (คำนาม) = ช่างซ่อมบำรุง · มักใช้ในวลี: call a handyman, building handyman · คำใกล้เคียง: repairman, maintenance worker"
   },
   {
     "word": "corridor",
@@ -140749,13 +141558,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "ทางเดินในอาคาร",
-      "อย่าเกะกะ",
-      "เปิดอัตโนมัติ"
+      "กรุณาวางรอง",
+      "เท้าไว้ในห้อง",
+      "อย่าเกะกะทาง",
+      "เดินส่วนกลาง"
     ],
     "extraExample": "The corridor lights turn on automatically at night.",
     "extraExampleTranslation": "ไฟทางเดินจะเปิดอัตโนมัติในตอนกลางคืน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "corridor (คำนาม) = ทางเดินในอาคาร · มักใช้ในวลี: shared corridor, corridor lights · คำใกล้เคียง: hallway, passageway"
   },
   {
     "word": "landlady",
@@ -140776,13 +141587,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
-      "เจ้าของบ้านเช่าหญิง",
-      "อบคุกกี้",
-      "ก๊อกน้ำรั่ว"
+      "เจ้าของหอ",
+      "พักหญิงอบ",
+      "คุก",
+      "กี้ให้ผู้เช่าทุกคน"
     ],
     "extraExample": "I texted the landlady about the leaking faucet.",
     "extraExampleTranslation": "ฉันส่งข้อความบอกเจ้าของบ้านเช่าเรื่องก๊อกน้ำรั่ว",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "landlady (คำนาม) = เจ้าของบ้านเช่าหญิง · มักใช้ในวลี: kind landlady, text the landlady · คำใกล้เคียง: property owner, hostess"
   },
   {
     "word": "noise-canceling",
@@ -140803,13 +141616,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "ฉันใส่หูฟัง",
       "ตัดเสียงรบกวน",
-      "เพื่อนบ้านรีโนเวท",
-      "กันเสียงรถ"
+      "เวลาเพื่อนบ้าน",
+      "รีโนเวทห้อง"
     ],
     "extraExample": "Noise-canceling curtains can help block street traffic.",
     "extraExampleTranslation": "ผ้าม่านตัดเสียงรบกวนช่วยกันเสียงรถบนถนนได้",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "noise-canceling (คำคุณศัพท์) = ตัดเสียงรบกวน · มักใช้ในวลี: noise-canceling headphones, noise-canceling curtains · คำใกล้เคียง: sound-blocking, quiet-tech"
   },
   {
     "word": "ventilation",
@@ -140831,12 +141646,14 @@ const wordsData = [
     "topic": "home",
     "thTokens": [
       "การระบายอากาศ",
-      "ป้องกันเชื้อรา",
-      "ขณะทำอาหาร"
+      "ที่ดีช่วย",
+      "ป้องกันเชื้อ",
+      "ราในห้องน้ำ"
     ],
     "extraExample": "Open the balcony door for better ventilation while cooking.",
     "extraExampleTranslation": "เปิดประตูระเบียงเพื่อการระบายอากาศที่ดีขึ้นขณะทำอาหาร",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "ventilation (คำนาม) = การระบายอากาศ · มักใช้ในวลี: good ventilation, ventilation fan · คำใกล้เคียง: airflow, air circulation"
   },
   {
     "word": "curfew",
@@ -140857,13 +141674,15 @@ const wordsData = [
     ],
     "topic": "home",
     "thTokens": [
+      "หอพักนักศึกษามี",
       "เวลาห้ามเข้าออก",
-      "อย่างเคร่งครัด",
-      "ก่อนห้าทุ่ม"
+      "ตอนเที่ยงคืน",
+      "อย่างเคร่งครัด"
     ],
     "extraExample": "Guests must leave before the building's 11 p.m. curfew.",
     "extraExampleTranslation": "แขกต้องกลับก่อนเวลาห้ามเข้าออกของอาคารตอนห้าทุ่ม",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "curfew (คำนาม) = เวลาห้ามเข้าออก · มักใช้ในวลี: midnight curfew, strict curfew · คำใกล้เคียง: time limit, quiet cutoff"
   },
   {
     "word": "work together",
@@ -140884,13 +141703,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ทำงาน",
-      "ร่วมกัน",
-      "เป็นทีม"
+      "เราต้อง",
+      "ทำงานร่วมกันเพื่อ",
+      "ให้งานนี้เส",
+      "ร็จทันเวลา"
     ],
     "extraExample": "When people work together, big problems become smaller.",
     "extraExampleTranslation": "เมื่อผู้คนทำงานร่วมกัน ปัญหาใหญ่ก็จะเล็กลง",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "work together (คำกริยา) = ทำงานร่วมกัน · มักใช้ในวลี: work together closely, work together well · คำใกล้เคียง: cooperate, collaborate"
   },
   {
     "word": "help each other",
@@ -140911,13 +141732,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ช่วยเหลือ",
-      "ซึ่งกัน",
-      "และกัน"
+      "เพื่อนร่วมทีม",
+      "ที่ดีจะช่วยเหลือซึ่งกัน",
+      "และกันเสมอ",
+      "เมื่อมีงานยุ่ง"
     ],
     "extraExample": "We should help each other learn new skills.",
     "extraExampleTranslation": "เราควรช่วยเหลือซึ่งกันและกันในการเรียนรู้ทักษะใหม่ๆ",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "help each other (คำกริยา) = ช่วยเหลือซึ่งกันและกัน · มักใช้ในวลี: help each other out, always help each other · คำใกล้เคียง: support one another, assist each other"
   },
   {
     "word": "team spirit",
@@ -140938,13 +141761,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ความสามัคคี",
-      "ในทีม",
-      "ร่วมใจ"
+      "โค้ชของเราชื่นชม",
+      "ความสามัคคีในทีม",
+      "ที่แข็งแกร่ง",
+      "หลังจบการแข่งขัน"
     ],
     "extraExample": "Having great team spirit makes every workday more enjoyable.",
     "extraExampleTranslation": "การมีความสามัคคีในทีมที่ดีทำให้ทุกวันทำงานสนุกขึ้น",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "team spirit (คำนาม) = ความสามัคคีในทีม · มักใช้ในวลี: strong team spirit, build team spirit · คำใกล้เคียง: camaraderie, unity"
   },
   {
     "word": "build trust",
@@ -140965,13 +141790,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "สร้าง",
-      "ความไว้",
-      "วางใจ"
+      "การสื่อสาร",
+      "อย่างตรงไปตรงมาคือวิธีที่เร็ว",
+      "ที่สุดในการ",
+      "สร้างความไว้วางใจ"
     ],
     "extraExample": "It takes time to build trust with a new partner.",
     "extraExampleTranslation": "ต้องใช้เวลาในการสร้างความไว้วางใจกับหุ้นส่วนคนใหม่",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "build trust (คำกริยา) = สร้างความไว้วางใจ · มักใช้ในวลี: build trust quickly, build trust with · คำใกล้เคียง: earn confidence, establish faith"
   },
   {
     "word": "stand together",
@@ -140992,13 +141819,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ยืนหยัด",
-      "ร่วมกัน",
-      "สามัคคี"
+      "เราต้อง",
+      "ยืนหยัดร่วมกัน",
+      "หากต้องการเอาชนะ",
+      "ความท้าทายนี้"
     ],
     "extraExample": "The neighbors decided to stand together to protect their park.",
     "extraExampleTranslation": "เพื่อนบ้านตัดสินใจยืนหยัดร่วมกันเพื่อปกป้องสวนสาธารณะของพวกเขา",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "stand together (คำกริยา) = ยืนหยัดร่วมกัน · มักใช้ในวลี: stand together strongly, stand together as one · คำใกล้เคียง: unite, stick together"
   },
   {
     "word": "rely on",
@@ -141019,13 +141848,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "พึ่งพา",
-      "ไว้วางใจ",
-      "เชื่อใจ"
+      "คุณสามารถพึ่งพา",
+      "ซาร่าห์ได้เส",
+      "มอเรื่องการส่งงาน",
+      "ให้ทันเวลา"
     ],
     "extraExample": "In a crisis, we rely on each other's strengths.",
     "extraExampleTranslation": "ในยามวิกฤต เราพึ่งพาจุดแข็งของกันและกัน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "rely on (คำกริยา) = พึ่งพา, ไว้วางใจ · มักใช้ในวลี: rely on someone, rely on heavily · คำใกล้เคียง: depend on, count on"
   },
   {
     "word": "share the load",
@@ -141046,13 +141877,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "แบ่งเบา",
-      "ภาระ",
-      "ร่วมกัน"
+      "เรามาแบ่งเบาภาระ",
+      "กันเถอะ",
+      "เพื่อจะได้ไม่มีใครเห",
+      "นื่อยล้าเกินไป"
     ],
     "extraExample": "Good leaders know how to share the load with their staff.",
     "extraExampleTranslation": "ผู้นำที่ดีรู้วิธีแบ่งเบาภาระงานกับพนักงานของตน",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "share the load (คำกริยา) = แบ่งเบาภาระ · มักใช้ในวลี: share the load evenly, share the load together · คำใกล้เคียง: split the work, divide tasks"
   },
   {
     "word": "dependability",
@@ -141073,13 +141906,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ความน่า",
-      "เชื่อถือ",
-      "ไว้วางใจได้"
+      "ความน่าเชื่อถือ",
+      "ของเธอทำให้เธอเป็น",
+      "ตัวเลือกแรก",
+      "สำหรับตำแหน่งหัวหน้าทีม"
     ],
     "extraExample": "Employers value dependability just as much as technical skill.",
     "extraExampleTranslation": "นายจ้างให้ความสำคัญกับความไว้วางใจได้พอๆ กับทักษะทางเทคนิค",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "dependability (คำนาม) = ความน่าเชื่อถือ, ความไว้วางใจได้ · มักใช้ในวลี: high dependability, prove dependability · คำใกล้เคียง: reliability, trustworthiness"
   },
   {
     "word": "transparently",
@@ -141100,13 +141935,15 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "อย่างโปร่งใส",
-      "เปิดเผย",
-      "ตรงไปตรงมา"
+      "ผู้จัดการพูด",
+      "อย่างโปร่งใสเกี่ยว",
+      "กับการตัดงบประมาณ",
+      "ของบริษัท"
     ],
     "extraExample": "Teams perform better when leaders communicate transparently.",
     "extraExampleTranslation": "ทีมจะทำงานได้ดีขึ้นเมื่อผู้นำสื่อสารอย่างโปร่งใส",
-    "novaBatch": true
+    "novaBatch": true,
+    "usageTip": "transparently (คำกริยาวิเศษณ์) = อย่างโปร่งใส · มักใช้ในวลี: communicate transparently, operate transparently · คำใกล้เคียง: openly, honestly"
   },
   {
     "word": "altruism",
@@ -141127,12 +141964,9687 @@ const wordsData = [
     ],
     "topic": "people",
     "thTokens": [
-      "ความเสียสละ",
-      "เพื่อ",
-      "ส่วนรวม"
+      "ความเสียสละเพื่อส่วนรวม",
+      "ของเขาเป็นแรงบันดาลใจ",
+      "ให้ทั้งทีมไป",
+      "เป็นอาสาสมัครในวันหยุด"
     ],
     "extraExample": "True teamwork often requires a bit of altruism.",
     "extraExampleTranslation": "การทำงานเป็นทีมที่แท้จริงมักต้องอาศัยความเสียสละอยู่บ้าง",
+    "novaBatch": true,
+    "usageTip": "altruism (คำนาม) = ความเสียสละเพื่อส่วนรวม · มักใช้ในวลี: act of altruism, pure altruism · คำใกล้เคียง: selflessness, generosity"
+  },
+  {
+    "word": "espresso",
+    "partOfSpeech": "noun",
+    "translation": "เอสเปรสโซ",
+    "definition": "strong black coffee made with steam",
+    "example": "I ordered a double espresso to wake up.",
+    "exampleTranslation": "ฉันสั่งเอสเปรสโซดับเบิลเพื่อปลุกตัวเองให้ตื่น",
+    "phonetic": "/ɛˈsprɛsoʊ/",
+    "cefr": "A2",
+    "collocations": [
+      "double espresso",
+      "espresso shot"
+    ],
+    "synonyms": [
+      "strong coffee",
+      "black coffee"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ฉันสั่ง",
+      "เอสเปรสโซดับเบิล",
+      "เพื่อปลุกตัวเอง",
+      "ให้ตื่น"
+    ],
+    "extraExample": "This espresso has a rich crema on top.",
+    "extraExampleTranslation": "เอสเปรสโซแก้วนี้มีครีมาเข้มข้นอยู่ด้านบน",
+    "usageTip": "espresso (คำนาม) = เอสเปรสโซ · มักใช้ในวลี: double espresso, espresso shot · คำใกล้เคียง: strong coffee, black coffee",
+    "novaBatch": true
+  },
+  {
+    "word": "latte",
+    "partOfSpeech": "noun",
+    "translation": "ลาเต้",
+    "definition": "coffee with steamed milk",
+    "example": "She drinks an iced latte every morning.",
+    "exampleTranslation": "เธอดื่มลาเต้เย็นทุกเช้า",
+    "phonetic": "/ˈlɑːteɪ/",
+    "cefr": "A1",
+    "collocations": [
+      "iced latte",
+      "oat latte"
+    ],
+    "synonyms": [
+      "milk coffee",
+      "cafe latte"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เธอดื่ม",
+      "ลาเต้",
+      "เย็น",
+      "ทุกเช้า"
+    ],
+    "extraExample": "Can I get a vanilla latte, please?",
+    "extraExampleTranslation": "ขอลาเต้วานิลลาแก้วนึงได้ไหมครับ",
+    "usageTip": "latte (คำนาม) = ลาเต้ · มักใช้ในวลี: iced latte, oat latte · คำใกล้เคียง: milk coffee, cafe latte",
+    "novaBatch": true
+  },
+  {
+    "word": "cappuccino",
+    "partOfSpeech": "noun",
+    "translation": "คาปูชิโน",
+    "definition": "espresso with steamed milk foam",
+    "example": "He enjoys a hot cappuccino with cinnamon.",
+    "exampleTranslation": "เขาชอบคาปูชิโนร้อนโรยผงอบเชย",
+    "phonetic": "/ˌkæpəˈtʃiːnoʊ/",
+    "cefr": "A2",
+    "collocations": [
+      "hot cappuccino",
+      "dry cappuccino"
+    ],
+    "synonyms": [
+      "foamy coffee",
+      "milk espresso"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เขาชอบ",
+      "คาปูชิโน",
+      "ร้อนโรย",
+      "ผงอบเชย"
+    ],
+    "extraExample": "The cappuccino foam was thick and creamy.",
+    "extraExampleTranslation": "ฟองนมคาปูชิโนหนานุ่มมาก",
+    "usageTip": "cappuccino (คำนาม) = คาปูชิโน · มักใช้ในวลี: hot cappuccino, dry cappuccino · คำใกล้เคียง: foamy coffee, milk espresso",
+    "novaBatch": true
+  },
+  {
+    "word": "roast",
+    "partOfSpeech": "verb",
+    "translation": "คั่ว",
+    "definition": "cook coffee beans with dry heat",
+    "example": "They roast their own beans in the shop.",
+    "exampleTranslation": "ทางร้านคั่วเมล็ดกาแฟเองในร้าน",
+    "phonetic": "/roʊst/",
+    "cefr": "B1",
+    "collocations": [
+      "roast beans",
+      "dark roast"
+    ],
+    "synonyms": [
+      "toast",
+      "bake"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ทางร้าน",
+      "คั่ว",
+      "เมล็ดกาแฟเอง",
+      "ในร้าน"
+    ],
+    "extraExample": "Lightly roasted beans taste more fruity.",
+    "extraExampleTranslation": "เมล็ดกาแฟคั่วอ่อนจะมีรสผลไม้มากกว่า",
+    "usageTip": "roast (คำกริยา) = คั่ว · มักใช้ในวลี: roast beans, dark roast · คำใกล้เคียง: toast, bake",
+    "novaBatch": true
+  },
+  {
+    "word": "grind",
+    "partOfSpeech": "verb",
+    "translation": "บด",
+    "definition": "crush coffee beans into powder",
+    "example": "Always grind the beans right before brewing.",
+    "exampleTranslation": "ควรบดเมล็ดกาแฟก่อนชงเสมอ",
+    "phonetic": "/ɡraɪnd/",
+    "cefr": "B1",
+    "collocations": [
+      "grind beans",
+      "coarse grind"
+    ],
+    "synonyms": [
+      "crush",
+      "mill"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ควรบด",
+      "เมล็ดกาแฟ",
+      "ก่อน",
+      "ชงเสมอ"
+    ],
+    "extraExample": "How fine should I grind these beans?",
+    "extraExampleTranslation": "ฉันควรบดเมล็ดกาแฟพวกนี้ให้ละเอียดแค่ไหน",
+    "usageTip": "grind (คำกริยา) = บด · มักใช้ในวลี: grind beans, coarse grind · คำใกล้เคียง: crush, mill",
+    "novaBatch": true
+  },
+  {
+    "word": "brew",
+    "partOfSpeech": "verb",
+    "translation": "ชง",
+    "definition": "make coffee by soaking in hot water",
+    "example": "Let the coffee brew for four minutes.",
+    "exampleTranslation": "ปล่อยให้กาแฟชงทิ้งไว้สี่นาที",
+    "phonetic": "/bruː/",
+    "cefr": "B1",
+    "collocations": [
+      "brew coffee",
+      "cold brew"
+    ],
+    "synonyms": [
+      "steep",
+      "infuse"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ปล่อย",
+      "ให้กาแฟชง",
+      "ทิ้ง",
+      "ไว้สี่นาที"
+    ],
+    "extraExample": "We brew fresh filter coffee all day.",
+    "extraExampleTranslation": "เราชงกาแฟดริปสดใหม่ตลอดทั้งวัน",
+    "usageTip": "brew (คำกริยา) = ชง · มักใช้ในวลี: brew coffee, cold brew · คำใกล้เคียง: steep, infuse",
+    "novaBatch": true
+  },
+  {
+    "word": "aroma",
+    "partOfSpeech": "noun",
+    "translation": "กลิ่นหอม",
+    "definition": "a pleasant smell",
+    "example": "The aroma of fresh coffee filled the cafe.",
+    "exampleTranslation": "กลิ่นหอมของกาแฟสดอบอวลไปทั่วร้าน",
+    "phonetic": "/əˈroʊmə/",
+    "cefr": "B2",
+    "collocations": [
+      "rich aroma",
+      "coffee aroma"
+    ],
+    "synonyms": [
+      "scent",
+      "fragrance"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "กลิ่นหอม",
+      "ของกาแฟส",
+      "ดอบอวลไป",
+      "ทั่วร้าน"
+    ],
+    "extraExample": "I love the nutty aroma of this blend.",
+    "extraExampleTranslation": "ฉันชอบกลิ่นหอมถั่วของกาแฟเบลนด์นี้",
+    "usageTip": "aroma (คำนาม) = กลิ่นหอม · มักใช้ในวลี: rich aroma, coffee aroma · คำใกล้เคียง: scent, fragrance",
+    "novaBatch": true
+  },
+  {
+    "word": "foam",
+    "partOfSpeech": "noun",
+    "translation": "ฟองนม",
+    "definition": "light bubbles on top of a drink",
+    "example": "She likes extra foam on her cappuccino.",
+    "exampleTranslation": "เธอชอบฟองนมเยอะๆ บนคาปูชิโน",
+    "phonetic": "/foʊm/",
+    "cefr": "B1",
+    "collocations": [
+      "milk foam",
+      "micro foam"
+    ],
+    "synonyms": [
+      "froth",
+      "bubbles"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เธอชอบ",
+      "ฟองนม",
+      "เยอะๆบน",
+      "คาปูชิโน"
+    ],
+    "extraExample": "Use cold milk to make smooth foam.",
+    "extraExampleTranslation": "ใช้นมเย็นเพื่อตีฟองนมให้เนียน",
+    "usageTip": "foam (คำนาม) = ฟองนม · มักใช้ในวลี: milk foam, micro foam · คำใกล้เคียง: froth, bubbles",
+    "novaBatch": true
+  },
+  {
+    "word": "froth",
+    "partOfSpeech": "noun",
+    "translation": "ฟอง",
+    "definition": "small bubbles in a liquid",
+    "example": "The barista poured the milk froth gently.",
+    "exampleTranslation": "บาริสต้าเทฟองนมลงไปอย่างเบามือ",
+    "phonetic": "/frɔːθ/",
+    "cefr": "B2",
+    "collocations": [
+      "thick froth",
+      "milk froth"
+    ],
+    "synonyms": [
+      "foam",
+      "head"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "บาริสต้าเท",
+      "ฟอง",
+      "นมลงไป",
+      "อย่างเบามือ"
+    ],
+    "extraExample": "Spoon the froth onto the espresso.",
+    "extraExampleTranslation": "ตักฟองนมใส่ลงบนเอสเปรสโซ",
+    "usageTip": "froth (คำนาม) = ฟอง · มักใช้ในวลี: thick froth, milk froth · คำใกล้เคียง: foam, head",
+    "novaBatch": true
+  },
+  {
+    "word": "sip",
+    "partOfSpeech": "verb",
+    "translation": "จิบ",
+    "definition": "drink slowly in small amounts",
+    "example": "Take a sip and tell me what you think.",
+    "exampleTranslation": "ลองจิบดูแล้วบอกฉันว่าคุณคิดยังไง",
+    "phonetic": "/sɪp/",
+    "cefr": "A2",
+    "collocations": [
+      "take a sip",
+      "sip slowly"
+    ],
+    "synonyms": [
+      "taste",
+      "sample"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ลองจิบ",
+      "ดูแล้วบอก",
+      "ฉันว่าคุณ",
+      "คิดยังไง"
+    ],
+    "extraExample": "He sipped his hot coffee by the window.",
+    "extraExampleTranslation": "เขาจิบกาแฟร้อนๆ ริมหน้าต่าง",
+    "usageTip": "sip (คำกริยา) = จิบ · มักใช้ในวลี: take a sip, sip slowly · คำใกล้เคียง: taste, sample",
+    "novaBatch": true
+  },
+  {
+    "word": "mug",
+    "partOfSpeech": "noun",
+    "translation": "แก้วมัค",
+    "definition": "a large cup with a handle",
+    "example": "I bought a ceramic mug from the cafe.",
+    "exampleTranslation": "ฉันซื้อแก้วมัคเซรามิกมาจากร้านกาแฟ",
+    "phonetic": "/mʌɡ/",
+    "cefr": "A1",
+    "collocations": [
+      "ceramic mug",
+      "travel mug"
+    ],
+    "synonyms": [
+      "cup",
+      "tumbler"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ฉันซื้อ",
+      "แก้วมัค",
+      "เซรามิกมาจาก",
+      "ร้านกาแฟ"
+    ],
+    "extraExample": "Pour the hot coffee into your favorite mug.",
+    "extraExampleTranslation": "เทกาแฟร้อนลงในแก้วมัคใบโปรดของคุณ",
+    "usageTip": "mug (คำนาม) = แก้วมัค · มักใช้ในวลี: ceramic mug, travel mug · คำใกล้เคียง: cup, tumbler",
+    "novaBatch": true
+  },
+  {
+    "word": "cafe",
+    "partOfSpeech": "noun",
+    "translation": "คาเฟ่",
+    "definition": "a small shop selling coffee and snacks",
+    "example": "Let us meet at the corner cafe at ten.",
+    "exampleTranslation": "เจอกันที่คาเฟ่มุมถนนตอนสิบโมงนะ",
+    "phonetic": "/kæˈfeɪ/",
+    "cefr": "A1",
+    "collocations": [
+      "local cafe",
+      "cozy cafe"
+    ],
+    "synonyms": [
+      "coffee shop",
+      "bistro"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เจอกัน",
+      "ที่คาเฟ่",
+      "มุมถนน",
+      "ตอนสิบโมงนะ"
+    ],
+    "extraExample": "This quiet cafe has great Wi-Fi.",
+    "extraExampleTranslation": "คาเฟ่เงียบๆ แห่งนี้มีไวไฟดีมาก",
+    "usageTip": "cafe (คำนาม) = คาเฟ่ · มักใช้ในวลี: local cafe, cozy cafe · คำใกล้เคียง: coffee shop, bistro",
+    "novaBatch": true
+  },
+  {
+    "word": "syrup",
+    "partOfSpeech": "noun",
+    "translation": "น้ำเชื่อม",
+    "definition": "sweet thick liquid added to drinks",
+    "example": "Do you want caramel syrup in your latte?",
+    "exampleTranslation": "คุณอยากใส่ไซรัปคาราเมลในลาเต้ไหม",
+    "phonetic": "/ˈsɪrəp/",
+    "cefr": "B1",
+    "collocations": [
+      "caramel syrup",
+      "sugar syrup"
+    ],
+    "synonyms": [
+      "sweetener",
+      "nectar"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "คุณอยาก",
+      "ใส่ไซรัปคาราเมล",
+      "ในลาเต้ไหม"
+    ],
+    "extraExample": "They make their own vanilla syrup.",
+    "extraExampleTranslation": "ทางร้านทำน้ำเชื่อมวานิลลาเอง",
+    "usageTip": "syrup (คำนาม) = น้ำเชื่อม · มักใช้ในวลี: caramel syrup, sugar syrup · คำใกล้เคียง: sweetener, nectar",
+    "novaBatch": true
+  },
+  {
+    "word": "decaf",
+    "partOfSpeech": "adjective",
+    "translation": "ไม่มีคาเฟอีน",
+    "definition": "having most caffeine removed",
+    "example": "I only drink decaf coffee after 4 p.m.",
+    "exampleTranslation": "ฉันดื่มแค่กาแฟดีแคฟหลังสี่โมงเย็น",
+    "phonetic": "/ˈdiːkæf/",
+    "cefr": "B1",
+    "collocations": [
+      "decaf coffee",
+      "decaf latte"
+    ],
+    "synonyms": [
+      "caffeine-free",
+      "decaffeinated"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ฉันดื่ม",
+      "แค่กาแฟดีแคฟ",
+      "หลัง",
+      "สี่โมงเย็น"
+    ],
+    "extraExample": "Is this decaf espresso still rich?",
+    "extraExampleTranslation": "เอสเปรสโซดีแคฟแก้วนี้ยังเข้มข้นอยู่ไหม",
+    "usageTip": "decaf (คำคุณศัพท์) = ไม่มีคาเฟอีน · มักใช้ในวลี: decaf coffee, decaf latte · คำใกล้เคียง: caffeine-free, decaffeinated",
+    "novaBatch": true
+  },
+  {
+    "word": "iced",
+    "partOfSpeech": "adjective",
+    "translation": "ใส่น้ำแข็ง, เย็น",
+    "definition": "cooled with ice",
+    "example": "An iced Americano is refreshing today.",
+    "exampleTranslation": "อเมริกาโน่เย็นสดชื่นมากในวันนี้",
+    "phonetic": "/aɪst/",
+    "cefr": "A2",
+    "collocations": [
+      "iced coffee",
+      "iced tea"
+    ],
+    "synonyms": [
+      "chilled",
+      "cold"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "อเม",
+      "ริกาโน่เย็น",
+      "สดชื่นมาก",
+      "ในวันนี้"
+    ],
+    "extraExample": "Do you prefer hot or iced coffee?",
+    "extraExampleTranslation": "คุณชอบกาแฟร้อนหรือกาแฟเย็น",
+    "usageTip": "iced (คำคุณศัพท์) = ใส่น้ำแข็ง, เย็น · มักใช้ในวลี: iced coffee, iced tea · คำใกล้เคียง: chilled, cold",
+    "novaBatch": true
+  },
+  {
+    "word": "blend",
+    "partOfSpeech": "noun",
+    "translation": "กาแฟผสม",
+    "definition": "a mix of different coffee beans",
+    "example": "Our house blend is smooth and chocolatey.",
+    "exampleTranslation": "เฮาส์เบลนด์ของร้านเรานุ่มนวลและมีกลิ่นช็อกโกแลต",
+    "phonetic": "/blɛnd/",
+    "cefr": "B2",
+    "collocations": [
+      "house blend",
+      "espresso blend"
+    ],
+    "synonyms": [
+      "mixture",
+      "mix"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เฮาส์เบลนด์",
+      "ของร้านเรานุ่มนวล",
+      "และมีก",
+      "ลิ่นช็อกโกแลต"
+    ],
+    "extraExample": "This blend combines Brazilian and Ethiopian beans.",
+    "extraExampleTranslation": "เบลนด์นี้ผสมเมล็ดกาแฟบราซิลและเอธิโอเปีย",
+    "usageTip": "blend (คำนาม) = กาแฟผสม · มักใช้ในวลี: house blend, espresso blend · คำใกล้เคียง: mixture, mix",
+    "novaBatch": true
+  },
+  {
+    "word": "single-origin",
+    "partOfSpeech": "adjective",
+    "translation": "แหล่งปลูกเดียว",
+    "definition": "from one specific farm or region",
+    "example": "We serve single-origin beans from Colombia.",
+    "exampleTranslation": "เราเสิร์ฟเมล็ดกาแฟซิงเกิลออริจินจากโคลอมเบีย",
+    "phonetic": "/ˌsɪŋɡəl ˈɔːrɪdʒɪn/",
+    "cefr": "B2",
+    "collocations": [
+      "single-origin beans",
+      "single-origin brew"
+    ],
+    "synonyms": [
+      "pure-origin",
+      "estate-grown"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เราเสิร์ฟเม",
+      "ล็ดกาแฟซิง",
+      "เกิลออริจิน",
+      "จากโคลอมเบีย"
+    ],
+    "extraExample": "Single-origin coffee highlights unique local flavors.",
+    "extraExampleTranslation": "กาแฟซิงเกิลออริจินชูรสชาติเฉพาะตัวของท้องถิ่น",
+    "usageTip": "single-origin (คำคุณศัพท์) = แหล่งปลูกเดียว · มักใช้ในวลี: single-origin beans, single-origin brew · คำใกล้เคียง: pure-origin, estate-grown",
+    "novaBatch": true
+  },
+  {
+    "word": "pour-over",
+    "partOfSpeech": "noun",
+    "translation": "กาแฟดริป",
+    "definition": "coffee made by pouring hot water over grounds",
+    "example": "A pour-over takes a few minutes to make.",
+    "exampleTranslation": "กาแฟดริปใช้เวลาชงสองสามนาที",
+    "phonetic": "/ˈpɔːr oʊvər/",
+    "cefr": "B2",
+    "collocations": [
+      "hand pour-over",
+      "pour-over coffee"
+    ],
+    "synonyms": [
+      "drip coffee",
+      "filter brew"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "กาแฟดริป",
+      "ใช้เว",
+      "ลาชงส",
+      "องสามนาที"
+    ],
+    "extraExample": "The pour-over tastes clean and bright.",
+    "extraExampleTranslation": "กาแฟดริปรสชาติสะอาดและสดใส",
+    "usageTip": "pour-over (คำนาม) = กาแฟดริป · มักใช้ในวลี: hand pour-over, pour-over coffee · คำใกล้เคียง: drip coffee, filter brew",
+    "novaBatch": true
+  },
+  {
+    "word": "filter",
+    "partOfSpeech": "noun",
+    "translation": "ตัวกรอง",
+    "definition": "a paper or mesh used to strain coffee",
+    "example": "Put a paper filter inside the dripper.",
+    "exampleTranslation": "ใส่กระดาษกรองลงในดริปเปอร์",
+    "phonetic": "/ˈfɪltər/",
+    "cefr": "B1",
+    "collocations": [
+      "paper filter",
+      "coffee filter"
+    ],
+    "synonyms": [
+      "strainer",
+      "screen"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ใส่กระ",
+      "ดาษกรองลง",
+      "ในด",
+      "ริปเปอร์"
+    ],
+    "extraExample": "Rinse the filter with hot water first.",
+    "extraExampleTranslation": "ล้างกระดาษกรองด้วยน้ำร้อนก่อน",
+    "usageTip": "filter (คำนาม) = ตัวกรอง · มักใช้ในวลี: paper filter, coffee filter · คำใกล้เคียง: strainer, screen",
+    "novaBatch": true
+  },
+  {
+    "word": "kettle",
+    "partOfSpeech": "noun",
+    "translation": "กาต้มน้ำ",
+    "definition": "a pot used for boiling water",
+    "example": "Use a gooseneck kettle for better control.",
+    "exampleTranslation": "ใช้กาต้มน้ำคอห่านเพื่อการควบคุมที่ดียิ่งขึ้น",
+    "phonetic": "/ˈkɛtəl/",
+    "cefr": "A2",
+    "collocations": [
+      "gooseneck kettle",
+      "electric kettle"
+    ],
+    "synonyms": [
+      "pot",
+      "boiler"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ใช้กาต้มน้ำ",
+      "คอห่าน",
+      "เพื่อการควบคุม",
+      "ที่ดียิ่งขึ้น"
+    ],
+    "extraExample": "The kettle is boiling, so we can brew now.",
+    "extraExampleTranslation": "กาต้มน้ำเดือดแล้ว เราเริ่มชงได้เลย",
+    "usageTip": "kettle (คำนาม) = กาต้มน้ำ · มักใช้ในวลี: gooseneck kettle, electric kettle · คำใกล้เคียง: pot, boiler",
+    "novaBatch": true
+  },
+  {
+    "word": "croissant",
+    "partOfSpeech": "noun",
+    "translation": "ครัวซองต์",
+    "definition": "a flaky crescent-shaped pastry",
+    "example": "I always order a butter croissant with coffee.",
+    "exampleTranslation": "ฉันสั่งครัวซองต์เนยคู่กับกาแฟเสมอ",
+    "phonetic": "/krəˈsɑːnt/",
+    "cefr": "A2",
+    "collocations": [
+      "butter croissant",
+      "almond croissant"
+    ],
+    "synonyms": [
+      "pastry",
+      "roll"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ฉันสั่ง",
+      "ครัวซองต์",
+      "เนยคู่กับ",
+      "กาแฟเสมอ"
+    ],
+    "extraExample": "The croissants are still warm from the oven.",
+    "extraExampleTranslation": "ครัวซองต์ยังอุ่นๆ จากเตาอบอยู่เลย",
+    "usageTip": "croissant (คำนาม) = ครัวซองต์ · มักใช้ในวลี: butter croissant, almond croissant · คำใกล้เคียง: pastry, roll",
+    "novaBatch": true
+  },
+  {
+    "word": "wifi",
+    "partOfSpeech": "noun",
+    "translation": "อินเทอร์เน็ตไร้สาย",
+    "definition": "wireless internet connection",
+    "example": "The cafe offers free wifi for all customers.",
+    "exampleTranslation": "ร้านกาแฟมีบริการไวไฟฟรีสำหรับลูกค้าทุกคน",
+    "phonetic": "/ˈwaɪ faɪ/",
+    "cefr": "A1",
+    "collocations": [
+      "free wifi",
+      "wifi password"
+    ],
+    "synonyms": [
+      "wireless",
+      "internet"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ร้านกาแฟมีบ",
+      "ริการไวไฟ",
+      "ฟรีสำหรับ",
+      "ลูกค้าทุกคน"
+    ],
+    "extraExample": "My phone cannot connect to the hotel wifi.",
+    "extraExampleTranslation": "โทรศัพท์ของฉันไม่สามารถเชื่อมต่อไวไฟของโรงแรมได้",
+    "usageTip": "wifi (คำนาม) = อินเทอร์เน็ตไร้สาย · มักใช้ในวลี: free wifi, wifi password · คำใกล้เคียง: wireless, internet",
+    "novaBatch": true
+  },
+  {
+    "word": "unsubscribe",
+    "partOfSpeech": "verb",
+    "translation": "ยกเลิกการรับข่าวสาร",
+    "definition": "to stop receiving emails or services",
+    "example": "Click the link below to unsubscribe from our newsletter.",
+    "exampleTranslation": "คลิกลิงก์ด้านล่างเพื่อยกเลิกการรับจดหมายข่าวของเรา",
+    "phonetic": "/ˌʌnsəbˈskraɪb/",
+    "cefr": "B2",
+    "collocations": [
+      "unsubscribe from emails",
+      "click unsubscribe"
+    ],
+    "synonyms": [
+      "opt out",
+      "cancel"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "คลิกลิงก์ด้านล่าง",
+      "เพื่อยก",
+      "เลิกการรับจด",
+      "หมายข่าวของเรา"
+    ],
+    "extraExample": "I always unsubscribe from promotional emails I never read.",
+    "extraExampleTranslation": "ฉันมักจะยกเลิกการรับอีเมลโฆษณาที่ฉันไม่เคยอ่านเสมอ",
+    "usageTip": "unsubscribe (คำกริยา) = ยกเลิกการรับข่าวสาร · มักใช้ในวลี: unsubscribe from emails, click unsubscribe · คำใกล้เคียง: opt out, cancel",
+    "novaBatch": true
+  },
+  {
+    "word": "troubleshoot",
+    "partOfSpeech": "verb",
+    "translation": "แก้ไขปัญหา",
+    "definition": "to find and fix problems in a system",
+    "example": "IT support helped me troubleshoot the network error.",
+    "exampleTranslation": "ฝ่ายไอทีช่วยฉันแก้ไขปัญหาข้อผิดพลาดของเครือข่าย",
+    "phonetic": "/ˈtrʌbəlʃuːt/",
+    "cefr": "B2",
+    "collocations": [
+      "troubleshoot an issue",
+      "troubleshoot errors"
+    ],
+    "synonyms": [
+      "debug",
+      "diagnose"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ฝ่ายไอทีช่วยฉัน",
+      "แก้ไขปัญหา",
+      "ข้อผิดพลาด",
+      "ของเครือข่าย"
+    ],
+    "extraExample": "Let us troubleshoot the printer before buying a new one.",
+    "extraExampleTranslation": "เรามาลองแก้ไขปัญหาเครื่องพิมพ์ก่อนที่จะซื้อเครื่องใหม่กันเถอะ",
+    "usageTip": "troubleshoot (คำกริยา) = แก้ไขปัญหา · มักใช้ในวลี: troubleshoot an issue, troubleshoot errors · คำใกล้เคียง: debug, diagnose",
+    "novaBatch": true
+  },
+  {
+    "word": "adapter",
+    "partOfSpeech": "noun",
+    "translation": "ตัวแปลงไฟ",
+    "definition": "device for connecting plugs or power",
+    "example": "Do you have a travel adapter for Europe?",
+    "exampleTranslation": "คุณมีตัวแปลงไฟสำหรับยุโรปไหม",
+    "phonetic": "/əˈdæptər/",
+    "cefr": "A2",
+    "collocations": [
+      "power adapter",
+      "travel adapter"
+    ],
+    "synonyms": [
+      "converter",
+      "plug"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "คุณมี",
+      "ตัวแปลงไฟ",
+      "สำหรับ",
+      "ยุโรปไหม"
+    ],
+    "extraExample": "Plug the charger into the power adapter.",
+    "extraExampleTranslation": "เสียบสายชาร์จเข้ากับตัวแปลงไฟ",
+    "usageTip": "adapter (คำนาม) = ตัวแปลงไฟ · มักใช้ในวลี: power adapter, travel adapter · คำใกล้เคียง: converter, plug",
+    "novaBatch": true
+  },
+  {
+    "word": "power bank",
+    "partOfSpeech": "noun",
+    "translation": "แบตสำรอง",
+    "definition": "portable battery for charging devices",
+    "example": "Always carry a power bank when traveling.",
+    "exampleTranslation": "พกแบตสำรองติดตัวเสมอเวลาเดินทาง",
+    "phonetic": "/ˈpaʊər bæŋk/",
+    "cefr": "A2",
+    "collocations": [
+      "portable power bank",
+      "charge a power bank"
+    ],
+    "synonyms": [
+      "battery pack",
+      "portable charger"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "พกแบตสำรอง",
+      "ติด",
+      "ตัวเสมอเว",
+      "ลาเดินทาง"
+    ],
+    "extraExample": "My phone died, so I used a power bank.",
+    "extraExampleTranslation": "แบตมือถือฉันหมด ฉันเลยใช้แบตสำรอง",
+    "usageTip": "power bank (คำนาม) = แบตสำรอง · มักใช้ในวลี: portable power bank, charge a power bank · คำใกล้เคียง: battery pack, portable charger",
+    "novaBatch": true
+  },
+  {
+    "word": "log in",
+    "partOfSpeech": "verb",
+    "translation": "เข้าสู่ระบบ",
+    "definition": "enter credentials to access an account",
+    "example": "Use your email to log in to the site.",
+    "exampleTranslation": "ใช้อีเมลของคุณเพื่อเข้าสู่ระบบเว็บไซต์",
+    "phonetic": "/lɔːɡ ɪn/",
+    "cefr": "A2",
+    "collocations": [
+      "log in to an account",
+      "fail to log in"
+    ],
+    "synonyms": [
+      "sign in",
+      "access"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ใช้อีเมล",
+      "ของคุณเพื่อ",
+      "เข้าสู่ระบบ",
+      "เว็บไซต์"
+    ],
+    "extraExample": "I cannot log in because I forgot my code.",
+    "extraExampleTranslation": "ฉันเข้าสู่ระบบไม่ได้เพราะลืมรหัส",
+    "usageTip": "log in (คำกริยา) = เข้าสู่ระบบ · มักใช้ในวลี: log in to an account, fail to log in · คำใกล้เคียง: sign in, access",
+    "novaBatch": true
+  },
+  {
+    "word": "digestive",
+    "partOfSpeech": "adjective",
+    "translation": "เกี่ยวกับระบบย่อยอาหาร",
+    "definition": "relating to the process of digesting food",
+    "example": "Yogurt is good for your digestive health.",
+    "exampleTranslation": "โยเกิร์ตดีต่อสุขภาพระบบย่อยอาหารของคุณ",
+    "phonetic": "/daɪˈdʒestɪv/",
+    "cefr": "B2",
+    "collocations": [
+      "digestive health",
+      "digestive system"
+    ],
+    "synonyms": [
+      "stomach",
+      "intestinal"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "โยเกิร์ต",
+      "ดีต่อสุขภาพ",
+      "ระบบย่อยอาหาร",
+      "ของคุณ"
+    ],
+    "extraExample": "Lactose can cause digestive problems for some.",
+    "extraExampleTranslation": "แลคโตสอาจทำให้เกิดปัญหาระบบย่อยอาหารในบางคน",
+    "usageTip": "digestive (คำคุณศัพท์) = เกี่ยวกับระบบย่อยอาหาร · มักใช้ในวลี: digestive health, digestive system · คำใกล้เคียง: stomach, intestinal",
+    "novaBatch": true
+  },
+  {
+    "word": "modify",
+    "partOfSpeech": "verb",
+    "translation": "ปรับเปลี่ยน",
+    "definition": "to change something slightly",
+    "example": "Can we modify this order to be dairy-free?",
+    "exampleTranslation": "เราขอปรับเปลี่ยนเมนูนี้ให้ไม่มีนมได้ไหม",
+    "phonetic": "/ˈmɑːdɪfaɪ/",
+    "cefr": "B2",
+    "collocations": [
+      "modify a recipe",
+      "modify an order"
+    ],
+    "synonyms": [
+      "adjust",
+      "adapt"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เราขอ",
+      "ปรับเปลี่ยน",
+      "เมนูนี้ให้ไม่มีน",
+      "มได้ไหม"
+    ],
+    "extraExample": "The chef can modify the recipe for allergies.",
+    "extraExampleTranslation": "เชฟสามารถปรับเปลี่ยนสูตรอาหารสำหรับคนแพ้ได้",
+    "usageTip": "modify (คำกริยา) = ปรับเปลี่ยน · มักใช้ในวลี: modify a recipe, modify an order · คำใกล้เคียง: adjust, adapt",
+    "novaBatch": true
+  },
+  {
+    "word": "trigger",
+    "partOfSpeech": "verb",
+    "translation": "กระตุ้น, ทำให้เกิด",
+    "definition": "to cause a reaction to start",
+    "example": "Certain spices can trigger her asthma.",
+    "exampleTranslation": "เครื่องเทศบางชนิดสามารถกระตุ้นโรคหอบหืดของเธอได้",
+    "phonetic": "/ˈtrɪɡər/",
+    "cefr": "B2",
+    "collocations": [
+      "trigger a reaction",
+      "trigger symptoms"
+    ],
+    "synonyms": [
+      "cause",
+      "spark"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เครื่องเทศบาง",
+      "ชนิดสามารถ",
+      "กระตุ้นโรคหอบหืด",
+      "ของเธอได้"
+    ],
+    "extraExample": "Eating dairy triggers his stomach pain.",
+    "extraExampleTranslation": "การกินผลิตภัณฑ์จากนมกระตุ้นอาการปวดท้องของเขา",
+    "usageTip": "trigger (คำกริยา) = กระตุ้น, ทำให้เกิด · มักใช้ในวลี: trigger a reaction, trigger symptoms · คำใกล้เคียง: cause, spark",
+    "novaBatch": true
+  },
+  {
+    "word": "coconut",
+    "partOfSpeech": "noun",
+    "translation": "มะพร้าว",
+    "definition": "a large brown nut with white flesh and milk",
+    "example": "I use coconut milk instead of regular cream.",
+    "exampleTranslation": "ฉันใช้นมมะพร้าวแทนครีมปกติ",
+    "phonetic": "/ˈkoʊkənʌt/",
+    "cefr": "A2",
+    "collocations": [
+      "coconut milk",
+      "coconut oil"
+    ],
+    "synonyms": [
+      "palm fruit",
+      "tropical nut"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ฉันใช้นม",
+      "มะพร้าว",
+      "แทน",
+      "ครีมปกติ"
+    ],
+    "extraExample": "Coconut oil is popular in vegan baking.",
+    "extraExampleTranslation": "น้ำมันมะพร้าวเป็นที่นิยมในการทำขนมวีแกน",
+    "usageTip": "coconut (คำนาม) = มะพร้าว · มักใช้ในวลี: coconut milk, coconut oil · คำใกล้เคียง: palm fruit, tropical nut",
+    "novaBatch": true
+  },
+  {
+    "word": "edible",
+    "partOfSpeech": "adjective",
+    "translation": "กินได้",
+    "definition": "safe and fit to be eaten",
+    "example": "Are these flowers on the cake edible?",
+    "exampleTranslation": "ดอกไม้บนเค้กนี้กินได้ไหม",
+    "phonetic": "/ˈedəbəl/",
+    "cefr": "B2",
+    "collocations": [
+      "edible flowers",
+      "completely edible"
+    ],
+    "synonyms": [
+      "eatable",
+      "consumable"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ดอกไม้บ",
+      "นเค้กนี้",
+      "กินได้",
+      "ไหม"
+    ],
+    "extraExample": "Make sure the wild mushrooms are edible.",
+    "extraExampleTranslation": "ตรวจสอบให้แน่ใจว่าเห็ดป่านั้นกินได้",
+    "usageTip": "edible (คำคุณศัพท์) = กินได้ · มักใช้ในวลี: edible flowers, completely edible · คำใกล้เคียง: eatable, consumable",
+    "novaBatch": true
+  },
+  {
+    "word": "active",
+    "partOfSpeech": "adjective",
+    "translation": "กระฉับกระเฉง",
+    "definition": "moving and doing things regularly",
+    "example": "She stays active by stretching every morning.",
+    "exampleTranslation": "เธอกระฉับกระเฉงอยู่เสมอด้วยการยืดเส้นทุกเช้า",
+    "phonetic": "/ˈæktɪv/",
+    "cefr": "A2",
+    "collocations": [
+      "stay active",
+      "active lifestyle"
+    ],
+    "synonyms": [
+      "energetic",
+      "lively"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เธอกระฉับกระเฉง",
+      "อยู่เสมอ",
+      "ด้วยการยืด",
+      "เส้นทุกเช้า"
+    ],
+    "extraExample": "An active lifestyle helps keep your body strong.",
+    "extraExampleTranslation": "การใช้ชีวิตที่กระฉับกระเฉงช่วยให้ร่างกายแข็งแรง",
+    "usageTip": "active (คำคุณศัพท์) = กระฉับกระเฉง · มักใช้ในวลี: stay active, active lifestyle · คำใกล้เคียง: energetic, lively",
+    "novaBatch": true
+  },
+  {
+    "word": "palm",
+    "partOfSpeech": "noun",
+    "translation": "ฝ่ามือ",
+    "definition": "the flat inner surface of the hand",
+    "example": "Press your palms flat against the floor.",
+    "exampleTranslation": "กดฝ่ามือให้แบนราบกับพื้น",
+    "phonetic": "/pɑːm/",
+    "cefr": "B1",
+    "collocations": [
+      "flat palm",
+      "palms up"
+    ],
+    "synonyms": [
+      "hand",
+      "inner hand"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กดฝ่ามือ",
+      "ให้แบนราบ",
+      "กับ",
+      "พื้น"
+    ],
+    "extraExample": "Turn your palms upward to open your chest.",
+    "extraExampleTranslation": "หงายฝ่ามือขึ้นเพื่อเปิดหน้าอกของคุณ",
+    "usageTip": "palm (คำนาม) = ฝ่ามือ · มักใช้ในวลี: flat palm, palms up · คำใกล้เคียง: hand, inner hand",
+    "novaBatch": true
+  },
+  {
+    "word": "jaw",
+    "partOfSpeech": "noun",
+    "translation": "ขากรรไกร",
+    "definition": "the lower part of the face that holds teeth",
+    "example": "Unclench your jaw while you hold the plank.",
+    "exampleTranslation": "คลายขากรรไกรขณะที่คุณค้างท่าแพลงก์",
+    "phonetic": "/dʒɔː/",
+    "cefr": "B1",
+    "collocations": [
+      "unclench jaw",
+      "tight jaw"
+    ],
+    "synonyms": [
+      "mandible",
+      "chin"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "คลาย",
+      "ขากรรไกรขณะ",
+      "ที่คุณค้าง",
+      "ท่าแพลงก์"
+    ],
+    "extraExample": "People often hold stress in their jaw without noticing.",
+    "extraExampleTranslation": "คนเรามักเกร็งขากรรไกรโดยไม่รู้ตัว",
+    "usageTip": "jaw (คำนาม) = ขากรรไกร · มักใช้ในวลี: unclench jaw, tight jaw · คำใกล้เคียง: mandible, chin",
+    "novaBatch": true
+  },
+  {
+    "word": "pulse",
+    "partOfSpeech": "noun",
+    "translation": "ชีพจร",
+    "definition": "the regular beat of blood pumped by the heart",
+    "example": "Check your pulse after a brisk walk.",
+    "exampleTranslation": "ตรวจชีพจรของคุณหลังเดินเร็ว",
+    "phonetic": "/pʌls/",
+    "cefr": "B1",
+    "collocations": [
+      "check pulse",
+      "steady pulse"
+    ],
+    "synonyms": [
+      "heartbeat",
+      "beat"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ตรวจ",
+      "ชีพจร",
+      "ของคุณ",
+      "หลังเดินเร็ว"
+    ],
+    "extraExample": "My pulse slows down quickly during cool-down.",
+    "extraExampleTranslation": "ชีพจรของฉันช้าลงอย่างรวดเร็วระหว่างคูลดาวน์",
+    "usageTip": "pulse (คำนาม) = ชีพจร · มักใช้ในวลี: check pulse, steady pulse · คำใกล้เคียง: heartbeat, beat",
+    "novaBatch": true
+  },
+  {
+    "word": "energetic",
+    "partOfSpeech": "adjective",
+    "translation": "มีพลัง",
+    "definition": "full of energy and ready to move",
+    "example": "I feel more energetic after a ten-minute stretch.",
+    "exampleTranslation": "ฉันรู้สึกมีพลังมากขึ้นหลังยืดเส้นสิบนาที",
+    "phonetic": "/ˌɛnərˈdʒɛtɪk/",
+    "cefr": "B1",
+    "collocations": [
+      "feel energetic",
+      "energetic class"
+    ],
+    "synonyms": [
+      "lively",
+      "vigorous"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ฉันรู้สึก",
+      "มีพลังมากขึ้น",
+      "หลังยืด",
+      "เส้นสิบนาที"
+    ],
+    "extraExample": "She stays energetic throughout the whole fitness class.",
+    "extraExampleTranslation": "เธอดูมีพลังตลอดทั้งคลาสออกกำลังกาย",
+    "usageTip": "energetic (คำคุณศัพท์) = มีพลัง · มักใช้ในวลี: feel energetic, energetic class · คำใกล้เคียง: lively, vigorous",
+    "novaBatch": true
+  },
+  {
+    "word": "upright",
+    "partOfSpeech": "adjective",
+    "translation": "ตัวตรง",
+    "definition": "straight up and not bent over",
+    "example": "Sit upright on the mat with both feet flat.",
+    "exampleTranslation": "นั่งตัวตรงบนเสื่อโดยวางเท้าราบทั้งสองข้าง",
+    "phonetic": "/ˈʌpraɪt/",
+    "cefr": "B2",
+    "collocations": [
+      "sit upright",
+      "upright posture"
+    ],
+    "synonyms": [
+      "erect",
+      "straight"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "นั่งตัวตรง",
+      "บนเสื่อ",
+      "โดยวางเท้าราบ",
+      "ทั้งสองข้าง"
+    ],
+    "extraExample": "An upright posture helps you breathe more deeply.",
+    "extraExampleTranslation": "ท่าทางที่ตัวตรงช่วยให้คุณหายใจได้ลึกขึ้น",
+    "usageTip": "upright (คำคุณศัพท์) = ตัวตรง · มักใช้ในวลี: sit upright, upright posture · คำใกล้เคียง: erect, straight",
+    "novaBatch": true
+  },
+  {
+    "word": "adjacent",
+    "partOfSpeech": "adjective",
+    "translation": "ที่อยู่ติดกัน",
+    "definition": "next to or very close to something",
+    "example": "My apartment is adjacent to the elevator.",
+    "exampleTranslation": "ห้องพักของฉันอยู่ติดกับลิฟต์",
+    "phonetic": "/əˈdʒeɪsənt/",
+    "cefr": "B2",
+    "collocations": [
+      "adjacent unit",
+      "adjacent building"
+    ],
+    "synonyms": [
+      "next-door",
+      "neighboring"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ห้องพัก",
+      "ของฉันอยู่ติด",
+      "กับ",
+      "ลิฟต์"
+    ],
+    "extraExample": "We share a wall with the adjacent unit.",
+    "extraExampleTranslation": "เราใช้ผนังร่วมกับห้องที่อยู่ติดกัน",
+    "usageTip": "adjacent (คำคุณศัพท์) = ที่อยู่ติดกัน · มักใช้ในวลี: adjacent unit, adjacent building · คำใกล้เคียง: next-door, neighboring",
+    "novaBatch": true
+  },
+  {
+    "word": "greet",
+    "partOfSpeech": "verb",
+    "translation": "ทักทาย",
+    "definition": "to say hello or welcome someone",
+    "example": "I always greet my neighbors in the morning.",
+    "exampleTranslation": "ฉันทักทายเพื่อนบ้านตอนเช้าเสมอ",
+    "phonetic": "/ɡriːt/",
+    "cefr": "A2",
+    "collocations": [
+      "greet neighbors",
+      "warmly greet"
+    ],
+    "synonyms": [
+      "welcome",
+      "salute"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ฉันทักทาย",
+      "เพื่อนบ้าน",
+      "ตอน",
+      "เช้าเสมอ"
+    ],
+    "extraExample": "The security guard greeted us at the gate.",
+    "extraExampleTranslation": "พนักงานรักษาความปลอดภัยทักทายเราที่ประตูรั้ว",
+    "usageTip": "greet (คำกริยา) = ทักทาย · มักใช้ในวลี: greet neighbors, warmly greet · คำใกล้เคียง: welcome, salute",
+    "novaBatch": true
+  },
+  {
+    "word": "harmony",
+    "partOfSpeech": "noun",
+    "translation": "ความสามัคคี, ความสงบสุข",
+    "definition": "a state of peaceful agreement and cooperation",
+    "example": "Neighbors should try to live in harmony.",
+    "exampleTranslation": "เพื่อนบ้านควรพยายามอยู่ร่วมกันอย่างสงบสุข",
+    "phonetic": "/ˈhɑːrməni/",
+    "cefr": "B2",
+    "collocations": [
+      "live in harmony",
+      "maintain harmony"
+    ],
+    "synonyms": [
+      "peace",
+      "accord"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "เพื่อนบ้าน",
+      "ควรพยายามอ",
+      "ยู่ร่วมกัน",
+      "อย่างสงบสุข"
+    ],
+    "extraExample": "Good communication helps maintain harmony in the building.",
+    "extraExampleTranslation": "การสื่อสารที่ดีช่วยรักษาความสงบสุขในอาคาร",
+    "usageTip": "harmony (คำนาม) = ความสามัคคี, ความสงบสุข · มักใช้ในวลี: live in harmony, maintain harmony · คำใกล้เคียง: peace, accord",
+    "novaBatch": true
+  },
+  {
+    "word": "occupant",
+    "partOfSpeech": "noun",
+    "translation": "ผู้อยู่อาศัย",
+    "definition": "a person who lives or works in a space",
+    "example": "Each occupant receives one mailbox key.",
+    "exampleTranslation": "ผู้อยู่อาศัยแต่ละคนจะได้รับกุญแจตู้จดหมายหนึ่งดอก",
+    "phonetic": "/ˈɑːkjəpənt/",
+    "cefr": "B2",
+    "collocations": [
+      "previous occupant",
+      "single occupant"
+    ],
+    "synonyms": [
+      "resident",
+      "tenant"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ผู้อยู่อาศัย",
+      "แต่ละคนจะได้รับ",
+      "กุญแจตู้จ",
+      "ดหมายหนึ่งดอก"
+    ],
+    "extraExample": "The previous occupant left the place very clean.",
+    "extraExampleTranslation": "ผู้อยู่อาศัยคนก่อนทิ้งห้องไว้สะอาดมาก",
+    "usageTip": "occupant (คำนาม) = ผู้อยู่อาศัย · มักใช้ในวลี: previous occupant, single occupant · คำใกล้เคียง: resident, tenant",
+    "novaBatch": true
+  },
+  {
+    "word": "slouch",
+    "partOfSpeech": "verb",
+    "translation": "นั่งหลังค่อม, ยืนหลังค่อม",
+    "definition": "to sit, stand, or walk with your shoulders hanging forward and your head bent",
+    "example": "Try not to slouch when you sit at your desk all day.",
+    "exampleTranslation": "พยายามอย่านั่งหลังค่อมเมื่อคุณนั่งอยู่ที่โต๊ะทำงานทั้งวัน",
+    "phonetic": "/slaʊtʃ/",
+    "cefr": "B2",
+    "collocations": [
+      "slouch forward",
+      "stop slouching"
+    ],
+    "synonyms": [
+      "hunch",
+      "droop"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "พยายามอย่านั่ง",
+      "หลังค่อม",
+      "เมื่อคุณนั่งอยู่ที่โต๊ะ",
+      "ทำงานทั้งวัน"
+    ],
+    "extraExample": "He tends to slouch whenever he feels tired.",
+    "extraExampleTranslation": "เขามักจะนั่งหลังค่อมทุกครั้งที่รู้สึกเหนื่อย",
+    "usageTip": "slouch (คำกริยา) = นั่งหลังค่อม, ยืนหลังค่อม · มักใช้ในวลี: slouch forward, stop slouching · คำใกล้เคียง: hunch, droop",
+    "novaBatch": true
+  },
+  {
+    "word": "hunch",
+    "partOfSpeech": "verb",
+    "translation": "งอหลัง, ก้มตัว",
+    "definition": "to bend the top of your body forward and raise your shoulders",
+    "example": "Don't hunch over your laptop; raise the screen instead.",
+    "exampleTranslation": "อย่าก้มตัวงอหลังเหนือแล็ปท็อป ให้ยกหน้าจอขึ้นแทน",
+    "phonetic": "/hʌntʃ/",
+    "cefr": "B2",
+    "collocations": [
+      "hunch over",
+      "hunch your shoulders"
+    ],
+    "synonyms": [
+      "slouch",
+      "stoop"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "อย่าก้มตัว",
+      "งอหลัง",
+      "เหนือแล็ปท็อป",
+      "ให้ยกหน้าจอขึ้นแทน"
+    ],
+    "extraExample": "She was hunched over her notebook, writing quickly.",
+    "extraExampleTranslation": "เธอก้มตัวงอหลังอยู่เหนือสมุดบันทึกและเขียนอย่างรวดเร็ว",
+    "usageTip": "hunch (คำกริยา) = งอหลัง, ก้มตัว · มักใช้ในวลี: hunch over, hunch your shoulders · คำใกล้เคียง: slouch, stoop",
+    "novaBatch": true
+  },
+  {
+    "word": "ergonomic",
+    "partOfSpeech": "adjective",
+    "translation": "ที่ออกแบบตามหลักสรีรศาสตร์",
+    "definition": "designed to improve comfort, efficiency, and safety for the human body",
+    "example": "We invested in ergonomic chairs to reduce back pain in the office.",
+    "exampleTranslation": "เราลงทุนซื้อเก้าอี้ที่ออกแบบตามหลักสรีรศาสตร์เพื่อลดอาการปวดหลังในออฟฟิศ",
+    "phonetic": "/ˌɜːrɡəˈnɑːmɪk/",
+    "cefr": "B2",
+    "collocations": [
+      "ergonomic chair",
+      "ergonomic design"
+    ],
+    "synonyms": [
+      "comfortable",
+      "supportive"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เราลงทุนซื้อเก้าอี้",
+      "ที่ออกแบบ",
+      "ตามหลักสรีรศาสตร์เพื่อลดอาการปวด",
+      "หลังในออฟฟิศ"
+    ],
+    "extraExample": "An ergonomic keyboard helps prevent wrist fatigue.",
+    "extraExampleTranslation": "คีย์บอร์ดตามหลักสรีรศาสตร์ช่วยป้องกันอาการเมื่อยล้าของข้อมือ",
+    "usageTip": "ergonomic (คำคุณศัพท์) = ที่ออกแบบตามหลักสรีรศาสตร์ · มักใช้ในวลี: ergonomic chair, ergonomic design · คำใกล้เคียง: comfortable, supportive",
+    "novaBatch": true
+  },
+  {
+    "word": "lumbar",
+    "partOfSpeech": "adjective",
+    "translation": "เกี่ยวกับบริเวณเอวหรือหลังส่วนล่าง",
+    "definition": "relating to the lower part of the back",
+    "example": "This office chair has adjustable lumbar support.",
+    "exampleTranslation": "เก้าอี้สำนักงานตัวนี้มีที่รองรับหลังส่วนล่างแบบปรับได้",
+    "phonetic": "/ˈlʌmbɑːr/",
+    "cefr": "B2",
+    "collocations": [
+      "lumbar support",
+      "lumbar spine"
+    ],
+    "synonyms": [
+      "lower-back",
+      "spinal"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เก้าอี้สำนัก",
+      "งานตัวนี้มีที่รองรับ",
+      "หลังส่ว",
+      "นล่างแบบปรับได้"
+    ],
+    "extraExample": "Lower back exercises strengthen the lumbar region.",
+    "extraExampleTranslation": "การออกกำลังกายหลังส่วนล่างช่วยเสริมสร้างความแข็งแรงให้บริเวณเอว",
+    "usageTip": "lumbar (คำคุณศัพท์) = เกี่ยวกับบริเวณเอวหรือหลังส่วนล่าง · มักใช้ในวลี: lumbar support, lumbar spine · คำใกล้เคียง: lower-back, spinal",
+    "novaBatch": true
+  },
+  {
+    "word": "cervical",
+    "partOfSpeech": "adjective",
+    "translation": "เกี่ยวกับกระดูกต้นคอ",
+    "definition": "relating to the neck or the top part of the spine",
+    "example": "Looking down at your phone puts stress on your cervical spine.",
+    "exampleTranslation": "การก้มมองโทรศัพท์สร้างแรงกดทับต่อกระดูกต้นคอของคุณ",
+    "phonetic": "/ˈsɜːrvɪkl/",
+    "cefr": "B2",
+    "collocations": [
+      "cervical spine",
+      "cervical pillow"
+    ],
+    "synonyms": [
+      "neck-related",
+      "upper-spinal"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การก้มมองโทร",
+      "ศัพท์สร้างแร",
+      "งกดทับต่อกระ",
+      "ดูกต้นคอของคุณ"
+    ],
+    "extraExample": "A good pillow keeps your cervical area aligned while you sleep.",
+    "extraExampleTranslation": "หมอนที่ดีจะช่วยให้บริเวณต้นคอของคุณอยู่ในแนวตรงขณะนอนหลับ",
+    "usageTip": "cervical (คำคุณศัพท์) = เกี่ยวกับกระดูกต้นคอ · มักใช้ในวลี: cervical spine, cervical pillow · คำใกล้เคียง: neck-related, upper-spinal",
+    "novaBatch": true
+  },
+  {
+    "word": "posture brace",
+    "partOfSpeech": "noun",
+    "translation": "สายรัดพยุงหลังและไหล่",
+    "definition": "a wearable support designed to keep the back straight and shoulders pulled back",
+    "example": "She wears a posture brace for an hour a day to remind herself to sit straight.",
+    "exampleTranslation": "เธอใส่สายรัดพยุงหลังวันละหนึ่งชั่วโมงเพื่อเตือนตัวเองให้นั่งตัวตรง",
+    "phonetic": "/ˈpɑːstʃər breɪs/",
+    "cefr": "B1",
+    "collocations": [
+      "wear a posture brace",
+      "adjustable posture brace"
+    ],
+    "synonyms": [
+      "back support",
+      "shoulder brace"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เธอใส่สายรัดพยุง",
+      "หลังวันละหนึ่งชั่วโมง",
+      "เพื่อเตือนตัวเอง",
+      "ให้นั่งตัวตรง"
+    ],
+    "extraExample": "A posture brace can help, but strengthening your muscles is also important.",
+    "extraExampleTranslation": "สายรัดพยุงหลังช่วยได้ แต่การเสริมสร้างกล้ามเนื้อก็สำคัญเช่นกัน",
+    "usageTip": "posture brace (คำนาม) = สายรัดพยุงหลังและไหล่ · มักใช้ในวลี: wear a posture brace, adjustable posture brace · คำใกล้เคียง: back support, shoulder brace",
+    "novaBatch": true
+  },
+  {
+    "word": "standing desk",
+    "partOfSpeech": "noun",
+    "translation": "โต๊ะทำงานแบบยืน",
+    "definition": "a desk designed to allow you to work comfortably while standing up",
+    "example": "Using a standing desk for part of the day boosts my energy.",
+    "exampleTranslation": "การใช้โต๊ะทำงานแบบยืนในช่วงหนึ่งของวันช่วยเพิ่มพลังงานให้ฉัน",
+    "phonetic": "/ˈstændɪŋ desk/",
+    "cefr": "B1",
+    "collocations": [
+      "adjustable standing desk",
+      "work at a standing desk"
+    ],
+    "synonyms": [
+      "sit-stand desk",
+      "elevated desk"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การใช้โต๊ะทำงานแบบยืน",
+      "ในช่วงหนึ่ง",
+      "ของวันช่วยเพิ่ม",
+      "พลังงานให้ฉัน"
+    ],
+    "extraExample": "You can adjust this standing desk from sitting to standing height.",
+    "extraExampleTranslation": "คุณสามารถปรับโต๊ะทำงานแบบยืนนี้จากระดับนั่งเป็นระดับยืนได้",
+    "usageTip": "standing desk (คำนาม) = โต๊ะทำงานแบบยืน · มักใช้ในวลี: adjustable standing desk, work at a standing desk · คำใกล้เคียง: sit-stand desk, elevated desk",
+    "novaBatch": true
+  },
+  {
+    "word": "footrest",
+    "partOfSpeech": "noun",
+    "translation": "ที่วางเท้า",
+    "definition": "a support placed under a desk to rest your feet on while sitting",
+    "example": "If your feet don't reach the floor, use a footrest.",
+    "exampleTranslation": "หากเท้าของคุณวางไม่ถึงพื้น ให้ใช้ที่วางเท้า",
+    "phonetic": "/ˈfʊtrest/",
+    "cefr": "B1",
+    "collocations": [
+      "under-desk footrest",
+      "angled footrest"
+    ],
+    "synonyms": [
+      "foot support",
+      "footstool"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "หากเท้าของ",
+      "คุณวางไม่ถึงพื้น",
+      "ให้ใช้",
+      "ที่วางเท้า"
+    ],
+    "extraExample": "A footrest helps keep your knees at a comfortable angle.",
+    "extraExampleTranslation": "ที่วางเท้าช่วยให้เข่าของคุณอยู่ในมุมที่สบาย",
+    "usageTip": "footrest (คำนาม) = ที่วางเท้า · มักใช้ในวลี: under-desk footrest, angled footrest · คำใกล้เคียง: foot support, footstool",
+    "novaBatch": true
+  },
+  {
+    "word": "armrest",
+    "partOfSpeech": "noun",
+    "translation": "ที่วางแขน",
+    "definition": "a part of a chair that supports your arms",
+    "example": "Adjust the armrest so your shoulders stay relaxed.",
+    "exampleTranslation": "ปรับที่วางแขนเพื่อให้ไหล่ของคุณผ่อนคลาย",
+    "phonetic": "/ˈɑːrmrest/",
+    "cefr": "B1",
+    "collocations": [
+      "padded armrest",
+      "adjustable armrest"
+    ],
+    "synonyms": [
+      "arm support",
+      "chair arm"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ปรับที่วางแขน",
+      "เพื่อ",
+      "ให้ไหล่ขอ",
+      "งคุณผ่อนคลาย"
+    ],
+    "extraExample": "The chair's padded armrests make long meetings more comfortable.",
+    "extraExampleTranslation": "ที่วางแขนบุนวมของเก้าอี้ช่วยให้การประชุมยาวๆ สบายขึ้น",
+    "usageTip": "armrest (คำนาม) = ที่วางแขน · มักใช้ในวลี: padded armrest, adjustable armrest · คำใกล้เคียง: arm support, chair arm",
+    "novaBatch": true
+  },
+  {
+    "word": "backrest",
+    "partOfSpeech": "noun",
+    "translation": "พนักพิงหลัง",
+    "definition": "the upright part of a chair that supports your back",
+    "example": "Lean against the backrest instead of sitting on the edge of your chair.",
+    "exampleTranslation": "พิงพนักพิงหลังแทนที่จะนั่งที่ขอบเก้าอี้",
+    "phonetic": "/ˈbækrest/",
+    "cefr": "B1",
+    "collocations": [
+      "recline the backrest",
+      "high backrest"
+    ],
+    "synonyms": [
+      "chair back",
+      "back support"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "พิงพนักพิง",
+      "หลังแทน",
+      "ที่จะนั่ง",
+      "ที่ขอบเก้าอี้"
+    ],
+    "extraExample": "You can tilt the backrest slightly to relieve pressure on your spine.",
+    "extraExampleTranslation": "คุณสามารถเอนพนักพิงหลังเล็กน้อยเพื่อลดแรงกดที่กระดูกสันหลังได้",
+    "usageTip": "backrest (คำนาม) = พนักพิงหลัง · มักใช้ในวลี: recline the backrest, high backrest · คำใกล้เคียง: chair back, back support",
+    "novaBatch": true
+  },
+  {
+    "word": "headrest",
+    "partOfSpeech": "noun",
+    "translation": "พนักพิงศีรษะ",
+    "definition": "a support for the head on a chair or car seat",
+    "example": "Make sure the headrest is aligned with the back of your head.",
+    "exampleTranslation": "ตรวจสอบให้แน่ใจว่าพนักพิงศีรษะอยู่ในแนวเดียวกับด้านหลังศีรษะของคุณ",
+    "phonetic": "/ˈhedrest/",
+    "cefr": "B1",
+    "collocations": [
+      "adjust the headrest",
+      "neck headrest"
+    ],
+    "synonyms": [
+      "head support",
+      "cushion"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ตรวจสอบให้แน่ใจว่า",
+      "พนักพิงศีรษะ",
+      "อยู่ในแนวเดียวกับด้าน",
+      "หลังศีรษะของคุณ"
+    ],
+    "extraExample": "A supportive headrest reduces neck tension during long drives.",
+    "extraExampleTranslation": "พนักพิงศีรษะที่รองรับได้ดีช่วยลดความตึงเครียดที่คอระหว่างขับรถทางไกล",
+    "usageTip": "headrest (คำนาม) = พนักพิงศีรษะ · มักใช้ในวลี: adjust the headrest, neck headrest · คำใกล้เคียง: head support, cushion",
+    "novaBatch": true
+  },
+  {
+    "word": "wrist rest",
+    "partOfSpeech": "noun",
+    "translation": "แผ่นรองข้อมือ",
+    "definition": "a soft pad placed in front of a keyboard or mouse to support the wrists",
+    "example": "A gel wrist rest keeps my hands level with the keyboard.",
+    "exampleTranslation": "แผ่นรองข้อมือแบบเจลช่วยให้มือของฉันอยู่ในระดับเดียวกับคีย์บอร์ด",
+    "phonetic": "/ˈrɪst rest/",
+    "cefr": "B1",
+    "collocations": [
+      "keyboard wrist rest",
+      "gel wrist rest"
+    ],
+    "synonyms": [
+      "wrist pad",
+      "palm rest"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "แผ่นรองข้อมือ",
+      "แบบเจลช่วยให้มือ",
+      "ของฉันอยู่ในระดับเดียว",
+      "กับคีย์บอร์ด"
+    ],
+    "extraExample": "Don't press your wrists hard against the wrist rest while typing.",
+    "extraExampleTranslation": "อย่ากดข้อมือแรงๆ กับแผ่นรองข้อมือขณะพิมพ์",
+    "usageTip": "wrist rest (คำนาม) = แผ่นรองข้อมือ · มักใช้ในวลี: keyboard wrist rest, gel wrist rest · คำใกล้เคียง: wrist pad, palm rest",
+    "novaBatch": true
+  },
+  {
+    "word": "eye level",
+    "partOfSpeech": "noun",
+    "translation": "ระดับสายตา",
+    "definition": "the height at which your eyes naturally look straight ahead",
+    "example": "Position the top of your monitor at eye level.",
+    "exampleTranslation": "จัดวางขอบบนของจอภาพให้อยู่ในระดับสายตา",
+    "phonetic": "/ˈaɪ levl/",
+    "cefr": "B1",
+    "collocations": [
+      "at eye level",
+      "above eye level"
+    ],
+    "synonyms": [
+      "line of sight",
+      "eye height"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "จัดวางขอบบน",
+      "ของจอภาพ",
+      "ให้อยู่ใน",
+      "ระดับสายตา"
+    ],
+    "extraExample": "Keeping the screen at eye level prevents you from tilting your head down.",
+    "extraExampleTranslation": "การวางหน้าจอให้อยู่ในระดับสายตาช่วยป้องกันไม่ให้คุณก้มหน้า",
+    "usageTip": "eye level (คำนาม) = ระดับสายตา · มักใช้ในวลี: at eye level, above eye level · คำใกล้เคียง: line of sight, eye height",
+    "novaBatch": true
+  },
+  {
+    "word": "neck strain",
+    "partOfSpeech": "noun",
+    "translation": "อาการปวดตึงคอ",
+    "definition": "pain or stiffness in the neck caused by holding it in an awkward position",
+    "example": "Reading in bed without proper pillows can cause neck strain.",
+    "exampleTranslation": "การอ่านหนังสือบนเตียงโดยไม่มีหมอนที่เหมาะสมอาจทำให้เกิดอาการปวดตึงคอ",
+    "phonetic": "/nek streɪn/",
+    "cefr": "B1",
+    "collocations": [
+      "prevent neck strain",
+      "relieve neck strain"
+    ],
+    "synonyms": [
+      "neck tension",
+      "stiff neck"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การอ่านหนังสือบนเตียง",
+      "โดยไม่มีหมอน",
+      "ที่เหมาะสมอาจทำให้เกิด",
+      "อาการปวดตึงคอ"
+    ],
+    "extraExample": "Take breaks every hour to avoid neck strain.",
+    "extraExampleTranslation": "พักทุกๆ หนึ่งชั่วโมงเพื่อหลีกเลี่ยงอาการปวดตึงคอ",
+    "usageTip": "neck strain (คำนาม) = อาการปวดตึงคอ · มักใช้ในวลี: prevent neck strain, relieve neck strain · คำใกล้เคียง: neck tension, stiff neck",
+    "novaBatch": true
+  },
+  {
+    "word": "backache",
+    "partOfSpeech": "noun",
+    "translation": "อาการปวดหลัง",
+    "definition": "a continuous pain in your back",
+    "example": "Sitting on an unsupportive stool gave me a terrible backache.",
+    "exampleTranslation": "การนั่งบนเก้าอี้ไม่มีพนักพิงทำให้ฉันปวดหลังอย่างมาก",
+    "phonetic": "/ˈbækeɪk/",
+    "cefr": "B1",
+    "collocations": [
+      "suffer from backache",
+      "relieve a backache"
+    ],
+    "synonyms": [
+      "back pain",
+      "lower back pain"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การนั่งบน",
+      "เก้าอี้ไม่มีพนัก",
+      "พิงทำให้ฉันปวด",
+      "หลังอย่างมาก"
+    ],
+    "extraExample": "Regular stretching can help prevent chronic backache.",
+    "extraExampleTranslation": "การยืดเหยียดเป็นประจำช่วยป้องกันอาการปวดหลังเรื้อรังได้",
+    "usageTip": "backache (คำนาม) = อาการปวดหลัง · มักใช้ในวลี: suffer from backache, relieve a backache · คำใกล้เคียง: back pain, lower back pain",
+    "novaBatch": true
+  },
+  {
+    "word": "stiffen",
+    "partOfSpeech": "verb",
+    "translation": "ตึง, แข็งตัว",
+    "definition": "to become less flexible and harder to move",
+    "example": "My shoulders stiffen up when I type for hours without a break.",
+    "exampleTranslation": "ไหล่ของฉันจะตึงขึ้นมาเมื่อฉันพิมพ์งานหลายชั่วโมงโดยไม่พัก",
+    "phonetic": "/ˈstɪfn/",
+    "cefr": "B2",
+    "collocations": [
+      "stiffen up",
+      "muscles stiffen"
+    ],
+    "synonyms": [
+      "tighten",
+      "tense up"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ไหล่ของฉันจะตึง",
+      "ขึ้นมาเมื่อฉัน",
+      "พิมพ์งานหลายชั่วโมง",
+      "โดยไม่พัก"
+    ],
+    "extraExample": "Stand up and walk around before your muscles stiffen.",
+    "extraExampleTranslation": "ลุกขึ้นยืนและเดินไปมาสักหน่อยก่อนที่กล้ามเนื้อของคุณจะตึง",
+    "usageTip": "stiffen (คำกริยา) = ตึง, แข็งตัว · มักใช้ในวลี: stiffen up, muscles stiffen · คำใกล้เคียง: tighten, tense up",
+    "novaBatch": true
+  },
+  {
+    "word": "stiffness",
+    "partOfSpeech": "noun",
+    "translation": "อาการตึงแข็งของกล้ามเนื้อหรือข้อต่อ",
+    "definition": "the condition of being difficult to move or bend without pain",
+    "example": "Morning stiffness in the lower back is common if your mattress is too soft.",
+    "exampleTranslation": "อาการตึงหลังส่วนล่างในตอนเช้าเป็นเรื่องปกติหากที่นอนของคุณนิ่มเกินไป",
+    "phonetic": "/ˈstɪfnəs/",
+    "cefr": "B2",
+    "collocations": [
+      "joint stiffness",
+      "relieve stiffness"
+    ],
+    "synonyms": [
+      "tightness",
+      "rigidity"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "อาการตึงหลังส่วนล่าง",
+      "ในตอนเช้าเป็น",
+      "เรื่องปกติหากที่นอน",
+      "ของคุณนิ่มเกินไป"
+    ],
+    "extraExample": "Gentle yoga helps reduce stiffness in the neck and shoulders.",
+    "extraExampleTranslation": "โยคะเบาๆ ช่วยลดอาการตึงที่คอและไหล่",
+    "usageTip": "stiffness (คำนาม) = อาการตึงแข็งของกล้ามเนื้อหรือข้อต่อ · มักใช้ในวลี: joint stiffness, relieve stiffness · คำใกล้เคียง: tightness, rigidity",
+    "novaBatch": true
+  },
+  {
+    "word": "repetitive strain",
+    "partOfSpeech": "noun",
+    "translation": "อาการบาดเจ็บจากการใช้งานซ้ำๆ",
+    "definition": "pain or injury caused by doing the same small physical movement many times",
+    "example": "Using a mouse all day without breaks can lead to repetitive strain.",
+    "exampleTranslation": "การใช้เมาส์ทั้งวันโดยไม่พักอาจนำไปสู่อาการบาดเจ็บจากการใช้งานซ้ำๆ",
+    "phonetic": "/rɪˈpetətɪv streɪn/",
+    "cefr": "B2",
+    "collocations": [
+      "repetitive strain injury",
+      "avoid repetitive strain"
+    ],
+    "synonyms": [
+      "overuse injury",
+      "strain"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การใช้เมาส์ทั้งวัน",
+      "โดยไม่พักอาจนำไปสู่",
+      "อาการบาดเจ็บ",
+      "จากการใช้งานซ้ำๆ"
+    ],
+    "extraExample": "Ergonomic tools are designed to minimize repetitive strain.",
+    "extraExampleTranslation": "อุปกรณ์ตามหลักสรีรศาสตร์ถูกออกแบบมาเพื่อลดอาการบาดเจ็บจากการใช้งานซ้ำๆ",
+    "usageTip": "repetitive strain (คำนาม) = อาการบาดเจ็บจากการใช้งานซ้ำๆ · มักใช้ในวลี: repetitive strain injury, avoid repetitive strain · คำใกล้เคียง: overuse injury, strain",
+    "novaBatch": true
+  },
+  {
+    "word": "carpal tunnel",
+    "partOfSpeech": "noun",
+    "translation": "โพรงข้อมือ (มักใช้เรียกกลุ่มอาการกดทับเส้นประสาทข้อมือ)",
+    "definition": "a narrow passage in the wrist where nerves pass, often associated with pain from typing",
+    "example": "She wore a wrist splint to manage her carpal tunnel symptoms.",
+    "exampleTranslation": "เธอใส่เฝือกอ่อนพยุงข้อมือเพื่อจัดการกับอาการโพรงข้อมืออักเสบ",
+    "phonetic": "/ˈkɑːrpl ˈtʌnl/",
+    "cefr": "B2",
+    "collocations": [
+      "carpal tunnel syndrome",
+      "carpal tunnel pain"
+    ],
+    "synonyms": [
+      "wrist nerve compression",
+      "wrist strain"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เธอใส่เฝือกอ่อน",
+      "พยุงข้อมือ",
+      "เพื่อจัดการกับอาการโพ",
+      "รงข้อมืออักเสบ"
+    ],
+    "extraExample": "Keeping your wrists straight while typing helps prevent carpal tunnel syndrome.",
+    "extraExampleTranslation": "การวางข้อมือให้ตรงขณะพิมพ์ช่วยป้องกันกลุ่มอาการกดทับเส้นประสาทข้อมือ",
+    "usageTip": "carpal tunnel (คำนาม) = โพรงข้อมือ (มักใช้เรียกกลุ่มอาการกดทับเส้นประสาทข้อมือ) · มักใช้ในวลี: carpal tunnel syndrome, carpal tunnel pain · คำใกล้เคียง: wrist nerve compression, wrist strain",
+    "novaBatch": true
+  },
+  {
+    "word": "sedentary",
+    "partOfSpeech": "adjective",
+    "translation": "ที่นั่งอยู่กับที่เป็นเวลานาน",
+    "definition": "involving a lot of sitting and very little physical exercise",
+    "example": "A sedentary lifestyle can weaken your core and hurt your posture.",
+    "exampleTranslation": "วิถีชีวิตที่นั่งอยู่กับที่เป็นเวลานานอาจทำให้แกนกลางลำตัวอ่อนแอและส่งผลเสียต่อบุคลิกภาพ",
+    "phonetic": "/ˈsednteri/",
+    "cefr": "B2",
+    "collocations": [
+      "sedentary lifestyle",
+      "sedentary job"
+    ],
+    "synonyms": [
+      "inactive",
+      "desk-bound"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "วิถีชีวิตที่นั่งอยู่กับ",
+      "ที่เป็นเวลานาน",
+      "อาจทำให้แกนกลางลำตัวอ่อนแอ",
+      "และส่งผลเสียต่อบุคลิกภาพ"
+    ],
+    "extraExample": "Office workers with sedentary jobs should take short walking breaks.",
+    "extraExampleTranslation": "พนักงานออฟฟิศที่ทำงานนั่งโต๊ะเป็นประจำควรลุกเดินพักสั้นๆ",
+    "usageTip": "sedentary (คำคุณศัพท์) = ที่นั่งอยู่กับที่เป็นเวลานาน · มักใช้ในวลี: sedentary lifestyle, sedentary job · คำใกล้เคียง: inactive, desk-bound",
+    "novaBatch": true
+  },
+  {
+    "word": "sit up straight",
+    "partOfSpeech": "verb",
+    "translation": "นั่งตัวตรง",
+    "definition": "to sit with your back vertical and shoulders back, not slouched",
+    "example": "Remember to sit up straight during the video call.",
+    "exampleTranslation": "อย่าลืมนั่งตัวตรงระหว่างการประชุมทางวิดีโอ",
+    "phonetic": "/sɪt ʌp streɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "remember to sit up straight",
+      "sit up straight at your desk"
+    ],
+    "synonyms": [
+      "sit upright",
+      "straighten up"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "อย่าลืม",
+      "นั่งตัวตรง",
+      "ระหว่างการประ",
+      "ชุมทางวิดีโอ"
+    ],
+    "usageTip": "sit up straight (คำกริยา) = นั่งตัวตรง · มักใช้ในวลี: remember to sit up straight, sit up straight at your desk · คำใกล้เคียง: sit upright, straighten up",
+    "novaBatch": true,
+    "extraExample": "The teacher reminded the students to sit up straight during the assembly.",
+    "extraExampleTranslation": "คุณครูเตือนให้นักเรียนนั่งตัวตรงระหว่างการเข้าแถว"
+  },
+  {
+    "word": "lean forward",
+    "partOfSpeech": "verb",
+    "translation": "โน้มตัวไปข้างหน้า",
+    "definition": "to bend the upper part of your body toward the front",
+    "example": "Try not to lean forward toward the monitor when reading small text.",
+    "exampleTranslation": "พยายามอย่าโน้มตัวไปข้างหน้าเข้าหาจอภาพเวลาอ่านตัวหนังสือเล็กๆ",
+    "phonetic": "/liːn ˈfɔːrwərd/",
+    "cefr": "B1",
+    "collocations": [
+      "lean forward toward",
+      "avoid leaning forward"
+    ],
+    "synonyms": [
+      "bend forward",
+      "stoop"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "พยายามอย่า",
+      "โน้มตัวไปข้างหน้า",
+      "เข้าหาจอภาพเวลาอ่าน",
+      "ตัวหนังสือเล็กๆ"
+    ],
+    "extraExample": "If you have to lean forward, try increasing the font size.",
+    "extraExampleTranslation": "หากคุณต้องโน้มตัวไปข้างหน้า ลองเพิ่มขนาดตัวอักษรดู",
+    "usageTip": "lean forward (คำกริยา) = โน้มตัวไปข้างหน้า · มักใช้ในวลี: lean forward toward, avoid leaning forward · คำใกล้เคียง: bend forward, stoop",
+    "novaBatch": true
+  },
+  {
+    "word": "lean back",
+    "partOfSpeech": "verb",
+    "translation": "เอนตัวไปข้างหลัง",
+    "definition": "to rest the upper part of your body backward against a support",
+    "example": "Lean back into your chair so the backrest supports your weight.",
+    "exampleTranslation": "เอนตัวไปข้างหลังพิงเก้าอี้เพื่อให้พนักพิงช่วยรับน้ำหนักของคุณ",
+    "phonetic": "/liːn bæk/",
+    "cefr": "B1",
+    "collocations": [
+      "lean back in your chair",
+      "lean back slightly"
+    ],
+    "synonyms": [
+      "recline",
+      "rest back"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เอนตัวไปข้างหลัง",
+      "พิงเก้าอี้เพื่อ",
+      "ให้พนักพิงช่วย",
+      "รับน้ำหนักของคุณ"
+    ],
+    "extraExample": "It's healthy to lean back slightly for a few minutes to rest your spine.",
+    "extraExampleTranslation": "การเอนตัวไปข้างหลังเล็กน้อยสักสองสามนาทีเพื่อพักกระดูกสันหลังเป็นเรื่องที่ดีต่อสุขภาพ",
+    "usageTip": "lean back (คำกริยา) = เอนตัวไปข้างหลัง · มักใช้ในวลี: lean back in your chair, lean back slightly · คำใกล้เคียง: recline, rest back",
+    "novaBatch": true
+  },
+  {
+    "word": "cross-legged",
+    "partOfSpeech": "adjective",
+    "translation": "ที่นั่งขัดสมาธิหรือไขว่ห้าง",
+    "definition": "sitting with one leg crossed over the other or both legs folded under you",
+    "example": "Sitting cross-legged at your desk can twist your pelvis over time.",
+    "exampleTranslation": "การนั่งไขว่ห้างที่โต๊ะทำงานอาจทำให้เชิงกรานบิดเบี้ยวได้เมื่อเวลาผ่านไป",
+    "phonetic": "/ˌkrɔːs ˈleɡɪd/",
+    "cefr": "B2",
+    "collocations": [
+      "sit cross-legged",
+      "cross-legged position"
+    ],
+    "synonyms": [
+      "with legs crossed",
+      "folded-leg"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การนั่งไขว่ห้าง",
+      "ที่โต๊ะทำงานอาจ",
+      "ทำให้เชิงกรานบิดเบี้ย",
+      "วได้เมื่อเวลาผ่านไป"
+    ],
+    "extraExample": "He sat cross-legged on the floor mat to stretch his hips.",
+    "extraExampleTranslation": "เขานั่งขัดสมาธิบนเสื่อเพื่อยืดเหยียดสะโพก",
+    "usageTip": "cross-legged (คำคุณศัพท์) = ที่นั่งขัดสมาธิหรือไขว่ห้าง · มักใช้ในวลี: sit cross-legged, cross-legged position · คำใกล้เคียง: with legs crossed, folded-leg",
+    "novaBatch": true
+  },
+  {
+    "word": "symmetry",
+    "partOfSpeech": "noun",
+    "translation": "ความสมมาตร, ความสมดุลทั้งสองข้าง",
+    "definition": "the state of having two halves that match each other in shape and position",
+    "example": "Good posture relies on symmetry between your left and right shoulders.",
+    "exampleTranslation": "บุคลิกภาพที่ดีอาศัยความสมมาตรระหว่างไหล่ซ้ายและไหล่ขวาของคุณ",
+    "phonetic": "/ˈsɪmətri/",
+    "cefr": "B2",
+    "collocations": [
+      "postural symmetry",
+      "body symmetry"
+    ],
+    "synonyms": [
+      "balance",
+      "evenness"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "บุคลิกภาพที่ดีอาศัย",
+      "ความสมมาตร",
+      "ระหว่างไหล่ซ้าย",
+      "และไหล่ขวาของคุณ"
+    ],
+    "extraExample": "Carrying a heavy bag on one side ruins your body's natural symmetry.",
+    "extraExampleTranslation": "การสะพายกระเป๋าหนักๆ ข้างเดียวทำลายความสมมาตรตามธรรมชาติของร่างกาย",
+    "usageTip": "symmetry (คำนาม) = ความสมมาตร, ความสมดุลทั้งสองข้าง · มักใช้ในวลี: postural symmetry, body symmetry · คำใกล้เคียง: balance, evenness",
+    "novaBatch": true
+  },
+  {
+    "word": "imbalance",
+    "partOfSpeech": "noun",
+    "translation": "ความไม่สมดุล",
+    "definition": "a situation in which two things are not equal or balanced",
+    "example": "Weak back muscles and tight chest muscles create a posture imbalance.",
+    "exampleTranslation": "กล้ามเนื้อหลังที่อ่อนแอและกล้ามเนื้อหน้าอกที่ตึงทำให้เกิดความไม่สมดุลของท่าทาง",
+    "phonetic": "/ɪmˈbæləns/",
+    "cefr": "B2",
+    "collocations": [
+      "muscle imbalance",
+      "postural imbalance"
+    ],
+    "synonyms": [
+      "unevenness",
+      "asymmetry"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "กล้ามเนื้อหลังที่อ่อนแอ",
+      "และกล้ามเนื้อหน้าอก",
+      "ที่ตึงทำให้เกิด",
+      "ความไม่สมดุลของท่าทาง"
+    ],
+    "extraExample": "A physical therapist can help correct a muscle imbalance.",
+    "extraExampleTranslation": "นักกายภาพบำบัดสามารถช่วยแก้ไขความไม่สมดุลของกล้ามเนื้อได้",
+    "usageTip": "imbalance (คำนาม) = ความไม่สมดุล · มักใช้ในวลี: muscle imbalance, postural imbalance · คำใกล้เคียง: unevenness, asymmetry",
+    "novaBatch": true
+  },
+  {
+    "word": "compress",
+    "partOfSpeech": "verb",
+    "translation": "กดทับ, บีบอัด",
+    "definition": "to press or squeeze something into a smaller space",
+    "example": "Slouching can compress the discs in your lower spine.",
+    "exampleTranslation": "การนั่งหลังค่อมสามารถกดทับหมอนรองกระดูกสันหลังส่วนล่างของคุณได้",
+    "phonetic": "/kəmˈpres/",
+    "cefr": "B2",
+    "collocations": [
+      "compress the spine",
+      "compress nerves"
+    ],
+    "synonyms": [
+      "squeeze",
+      "press"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การนั่งหลังค่อมสามารถ",
+      "กดทับ",
+      "หมอนรองกระดูกสัน",
+      "หลังส่วนล่างของคุณได้"
+    ],
+    "extraExample": "Sitting for too long tends to compress the vertebrae.",
+    "extraExampleTranslation": "การนั่งนานเกินไปมักจะทำให้กระดูกสันหลังถูกกดทับ",
+    "usageTip": "compress (คำกริยา) = กดทับ, บีบอัด · มักใช้ในวลี: compress the spine, compress nerves · คำใกล้เคียง: squeeze, press",
+    "novaBatch": true
+  },
+  {
+    "word": "decompress",
+    "partOfSpeech": "verb",
+    "translation": "คลายแรงกดทับ",
+    "definition": "to relieve pressure on something, such as the spine",
+    "example": "Hanging from a bar for a few seconds helps decompress the spine.",
+    "exampleTranslation": "การโหนบาร์สักสองสามวินาทีช่วยคลายแรงกดทับที่กระดูกสันหลัง",
+    "phonetic": "/ˌdiːkəmˈpres/",
+    "cefr": "B2",
+    "collocations": [
+      "decompress the spine",
+      "decompress your back"
+    ],
+    "synonyms": [
+      "relieve pressure",
+      "uncompress"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การโหนบาร์สักส",
+      "องสามวินาทีช่วย",
+      "คลายแรงกดทับ",
+      "ที่กระดูกสันหลัง"
+    ],
+    "extraExample": "Lying flat on your back with knees bent can decompress your lower back.",
+    "extraExampleTranslation": "การนอนหงายราบโดยชันเข่าขึ้นสามารถช่วยคลายแรงกดทับที่หลังส่วนล่างได้",
+    "usageTip": "decompress (คำกริยา) = คลายแรงกดทับ · มักใช้ในวลี: decompress the spine, decompress your back · คำใกล้เคียง: relieve pressure, uncompress",
+    "novaBatch": true
+  },
+  {
+    "word": "tilt",
+    "partOfSpeech": "verb",
+    "translation": "เอียง, เอน",
+    "definition": "to move or cause something to move into a sloping position",
+    "example": "Tilt your screen slightly upward to reduce glare and neck strain.",
+    "exampleTranslation": "เอียงหน้าจอขึ้นเล็กน้อยเพื่อลดแสงสะท้อนและอาการปวดตึงคอ",
+    "phonetic": "/tɪlt/",
+    "cefr": "B2",
+    "collocations": [
+      "tilt your head",
+      "tilt the seat"
+    ],
+    "synonyms": [
+      "angle",
+      "incline"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เอียงหน้าจอขึ้น",
+      "เล็กน้อย",
+      "เพื่อลดแสงสะท้อน",
+      "และอาการปวดตึงคอ"
+    ],
+    "extraExample": "Avoid tilting your head to hold your phone against your shoulder.",
+    "extraExampleTranslation": "หลีกเลี่ยงการเอียงศีรษะเพื่อหนีบโทรศัพท์ไว้กับไหล่",
+    "usageTip": "tilt (คำกริยา) = เอียง, เอน · มักใช้ในวลี: tilt your head, tilt the seat · คำใกล้เคียง: angle, incline",
+    "novaBatch": true
+  },
+  {
+    "word": "swivel",
+    "partOfSpeech": "verb",
+    "translation": "หมุนรอบแกน",
+    "definition": "to turn around a central point, like an office chair",
+    "example": "Swivel your whole chair to face someone instead of twisting your back.",
+    "exampleTranslation": "หมุนเก้าอี้ทั้งตัวไปหาคู่สนทนาแทนที่จะบิดหลัง",
+    "phonetic": "/ˈswɪvl/",
+    "cefr": "B2",
+    "collocations": [
+      "swivel chair",
+      "swivel around"
+    ],
+    "synonyms": [
+      "rotate",
+      "pivot"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "หมุนเก้าอี้ทั้ง",
+      "ตัวไป",
+      "หาคู่สนทนาแทน",
+      "ที่จะบิดหลัง"
+    ],
+    "extraExample": "A chair that can swivel smoothly makes reaching items much safer.",
+    "extraExampleTranslation": "เก้าอี้ที่หมุนได้อย่างลื่นไหลช่วยให้การเอื้อมหยิบของปลอดภัยขึ้นมาก",
+    "usageTip": "swivel (คำกริยา) = หมุนรอบแกน · มักใช้ในวลี: swivel chair, swivel around · คำใกล้เคียง: rotate, pivot",
+    "novaBatch": true
+  },
+  {
+    "word": "forgiveness",
+    "partOfSpeech": "noun",
+    "translation": "การให้อภัย",
+    "definition": "the act of forgiving someone",
+    "example": "He asked for her forgiveness after the argument.",
+    "exampleTranslation": "เขาขอการให้อภัยจากเธอหลังจากการทะเลาะกัน",
+    "phonetic": "/fərˈɡɪvnəs/",
+    "cefr": "B2",
+    "collocations": [
+      "ask for forgiveness",
+      "seek forgiveness"
+    ],
+    "synonyms": [
+      "mercy",
+      "pardon"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "เขาขอการ",
+      "ให้อภัยจากเธอ",
+      "หลัง",
+      "จากการทะเลาะกัน"
+    ],
+    "extraExample": "True forgiveness takes time and understanding.",
+    "extraExampleTranslation": "การให้อภัยที่แท้จริงต้องใช้เวลาและความเข้าใจ",
+    "usageTip": "forgiveness (คำนาม) = การให้อภัย · มักใช้ในวลี: ask for forgiveness, seek forgiveness · คำใกล้เคียง: mercy, pardon",
+    "novaBatch": true
+  },
+  {
+    "word": "regrettable",
+    "partOfSpeech": "adjective",
+    "translation": "น่าเสียใจ",
+    "definition": "causing sadness or disappointment",
+    "example": "The delay was a regrettable mistake on our part.",
+    "exampleTranslation": "ความล่าช้าเป็นความผิดพลาดที่น่าเสียใจในส่วนของเรา",
+    "phonetic": "/rɪˈɡretəbl/",
+    "cefr": "B2",
+    "collocations": [
+      "regrettable mistake",
+      "deeply regrettable"
+    ],
+    "synonyms": [
+      "unfortunate",
+      "sad"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ความล่าช้าเป็น",
+      "ความผิดพลาด",
+      "ที่น่าเสียใจ",
+      "ในส่วนของเรา"
+    ],
+    "extraExample": "It is regrettable that we cannot attend the event.",
+    "extraExampleTranslation": "น่าเสียใจที่เราไม่สามารถเข้าร่วมงานได้",
+    "usageTip": "regrettable (คำคุณศัพท์) = น่าเสียใจ · มักใช้ในวลี: regrettable mistake, deeply regrettable · คำใกล้เคียง: unfortunate, sad",
+    "novaBatch": true
+  },
+  {
+    "word": "gratitude",
+    "partOfSpeech": "noun",
+    "translation": "ความกตัญญู, ความขอบคุณ",
+    "definition": "the feeling of being thankful",
+    "example": "She expressed her gratitude with a warm smile.",
+    "exampleTranslation": "เธอแสดงความขอบคุณด้วยรอยยิ้มที่อบอุ่น",
+    "phonetic": "/ˈɡrætɪtuːd/",
+    "cefr": "B2",
+    "collocations": [
+      "express gratitude",
+      "debt of gratitude"
+    ],
+    "synonyms": [
+      "thanks",
+      "appreciation"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "เธอแสดงค",
+      "วามขอบคุณ",
+      "ด้วยรอยยิ้ม",
+      "ที่อบอุ่น"
+    ],
+    "extraExample": "We owe him a debt of gratitude for his kindness.",
+    "extraExampleTranslation": "เราเป็นหนี้บุญคุณเขาสำหรับความใจดีของเขา",
+    "usageTip": "gratitude (คำนาม) = ความกตัญญู, ความขอบคุณ · มักใช้ในวลี: express gratitude, debt of gratitude · คำใกล้เคียง: thanks, appreciation",
+    "novaBatch": true
+  },
+  {
+    "word": "appreciation",
+    "partOfSpeech": "noun",
+    "translation": "ความซาบซึ้ง, การเห็นคุณค่า",
+    "definition": "a feeling of being grateful for something",
+    "example": "Please accept this gift as a token of our appreciation.",
+    "exampleTranslation": "โปรดรับของขวัญชิ้นนี้ไว้เป็นเครื่องหมายแทนคำขอบคุณของเรา",
+    "phonetic": "/əˌpriːʃiˈeɪʃn/",
+    "cefr": "B2",
+    "collocations": [
+      "token of appreciation",
+      "show appreciation"
+    ],
+    "synonyms": [
+      "gratitude",
+      "thanks"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "โปรดรับ",
+      "ของขวัญชิ้นนี้ไว้เป็น",
+      "เครื่องหมายแทน",
+      "คำขอบคุณของเรา"
+    ],
+    "extraExample": "He showed little appreciation for their hard work.",
+    "extraExampleTranslation": "เขาแสดงความซาบซึ้งเพียงเล็กน้อยต่อการทำงานหนักของพวกเขา",
+    "usageTip": "appreciation (คำนาม) = ความซาบซึ้ง, การเห็นคุณค่า · มักใช้ในวลี: token of appreciation, show appreciation · คำใกล้เคียง: gratitude, thanks",
+    "novaBatch": true
+  },
+  {
+    "word": "hesitation",
+    "partOfSpeech": "noun",
+    "translation": "ความลังเล",
+    "definition": "a pause because of uncertainty",
+    "example": "He agreed to help us without any hesitation.",
+    "exampleTranslation": "เขาตกลงที่จะช่วยเราโดยไม่มีความลังเลใดๆ",
+    "phonetic": "/ˌhezɪˈteɪʃn/",
+    "cefr": "B2",
+    "collocations": [
+      "without hesitation",
+      "brief hesitation"
+    ],
+    "synonyms": [
+      "doubt",
+      "uncertainty"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "เขาตกลง",
+      "ที่จะช่วย",
+      "เราโดยไม่มี",
+      "ความลังเลใดๆ"
+    ],
+    "extraExample": "After a brief hesitation, she accepted the apology.",
+    "extraExampleTranslation": "หลังจากลังเลอยู่ครู่หนึ่ง เธอก็ยอมรับคำขอโทษ",
+    "usageTip": "hesitation (คำนาม) = ความลังเล · มักใช้ในวลี: without hesitation, brief hesitation · คำใกล้เคียง: doubt, uncertainty",
+    "novaBatch": true
+  },
+  {
+    "word": "accept",
+    "partOfSpeech": "verb",
+    "translation": "ยอมรับ",
+    "definition": "to agree to take something offered",
+    "example": "She graciously accepted his apology.",
+    "exampleTranslation": "เธอยอมรับคำขอโทษของเขาอย่างเต็มใจ",
+    "phonetic": "/əkˈsept/",
+    "cefr": "B1",
+    "collocations": [
+      "accept an apology",
+      "accept an invitation"
+    ],
+    "synonyms": [
+      "receive",
+      "agree to"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "เธอยอมรับ",
+      "คำขอโทษ",
+      "ของเขาอ",
+      "ย่างเต็มใจ"
+    ],
+    "extraExample": "Thank you, I gladly accept your kind invitation.",
+    "extraExampleTranslation": "ขอบคุณ ฉันยินดีรับคำเชิญอันแสนดีของคุณ",
+    "usageTip": "accept (คำกริยา) = ยอมรับ · มักใช้ในวลี: accept an apology, accept an invitation · คำใกล้เคียง: receive, agree to",
+    "novaBatch": true
+  },
+  {
+    "word": "misunderstanding",
+    "partOfSpeech": "noun",
+    "translation": "ความเข้าใจผิด",
+    "definition": "a failure to understand something correctly",
+    "example": "There was a slight misunderstanding about the time.",
+    "exampleTranslation": "มีความเข้าใจผิดเล็กน้อยเกี่ยวกับเวลานัด",
+    "phonetic": "/ˌmɪsʌndərˈstændɪŋ/",
+    "cefr": "B2",
+    "collocations": [
+      "slight misunderstanding",
+      "clear up a misunderstanding"
+    ],
+    "synonyms": [
+      "confusion",
+      "mix-up"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "มีความเข้าใจผิด",
+      "เล็กน้อย",
+      "เกี่ยว",
+      "กับเวลานัด"
+    ],
+    "extraExample": "I apologize for the misunderstanding earlier.",
+    "extraExampleTranslation": "ฉันขอโทษสำหรับความเข้าใจผิดก่อนหน้านี้",
+    "usageTip": "misunderstanding (คำนาม) = ความเข้าใจผิด · มักใช้ในวลี: slight misunderstanding, clear up a misunderstanding · คำใกล้เคียง: confusion, mix-up",
+    "novaBatch": true
+  },
+  {
+    "word": "make up for",
+    "partOfSpeech": "verb",
+    "translation": "ชดเชย",
+    "definition": "to do something good to fix a bad situation",
+    "example": "How can I make up for missing your party?",
+    "exampleTranslation": "ฉันจะชดเชยเรื่องที่ไม่ได้ไปงานปาร์ตี้ของคุณได้อย่างไร",
+    "phonetic": "/meɪk ʌp fɔːr/",
+    "cefr": "B1",
+    "collocations": [
+      "make up for being late",
+      "make up for a mistake"
+    ],
+    "synonyms": [
+      "compensate for",
+      "fix"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ฉันจะชดเชยเรื่อง",
+      "ที่ไม่ได้ไป",
+      "งานปาร์ตี้ขอ",
+      "งคุณได้อย่างไร"
+    ],
+    "extraExample": "He bought flowers to make up for being late.",
+    "extraExampleTranslation": "เขาซื้อดอกไม้เพื่อชดเชยการมาสาย",
+    "usageTip": "make up for (คำกริยา) = ชดเชย · มักใช้ในวลี: make up for being late, make up for a mistake · คำใกล้เคียง: compensate for, fix",
+    "novaBatch": true
+  },
+  {
+    "word": "follow up",
+    "partOfSpeech": "verb",
+    "translation": "ติดตามผล",
+    "definition": "to check on something or continue an action",
+    "example": "I am writing to follow up on my earlier request.",
+    "exampleTranslation": "ฉันเขียนมาเพื่อติดตามผลคำขอก่อนหน้านี้ของฉัน",
+    "phonetic": "/ˈfɑːloʊ ʌp/",
+    "cefr": "B2",
+    "collocations": [
+      "follow up on",
+      "follow up with"
+    ],
+    "synonyms": [
+      "check on",
+      "pursue"
+    ],
+    "topic": "basics",
+    "thTokens": [
+      "ฉันเขียนมาเพื่อ",
+      "ติดตามผล",
+      "คำขอ",
+      "ก่อนหน้านี้ของฉัน"
+    ],
+    "extraExample": "She promised to follow up with an email tomorrow.",
+    "extraExampleTranslation": "เธอสัญญาว่าจะติดตามผลด้วยอีเมลในวันพรุ่งนี้",
+    "usageTip": "follow up (คำกริยา) = ติดตามผล · มักใช้ในวลี: follow up on, follow up with · คำใกล้เคียง: check on, pursue",
+    "novaBatch": true
+  },
+  {
+    "word": "allergic reaction",
+    "partOfSpeech": "noun",
+    "translation": "อาการแพ้",
+    "definition": "an immune system response to a substance",
+    "example": "Eating peanuts caused a severe allergic reaction.",
+    "exampleTranslation": "การกินถั่วลิสงทำให้เกิดอาการแพ้อย่างรุนแรง",
+    "phonetic": "/əˈlɜːrdʒɪk riˈækʃən/",
+    "cefr": "B1",
+    "collocations": [
+      "severe allergic reaction",
+      "mild allergic reaction"
+    ],
+    "synonyms": [
+      "allergy response",
+      "hypersensitivity"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "การกินถั่ว",
+      "ลิสงทำให้เกิด",
+      "อาการแพ้",
+      "อย่างรุนแรง"
+    ],
+    "extraExample": "She carries medication in case of an allergic reaction.",
+    "extraExampleTranslation": "เธอพกยาติดตัวเผื่อเกิดอาการแพ้",
+    "usageTip": "allergic reaction (คำนาม) = อาการแพ้ · มักใช้ในวลี: severe allergic reaction, mild allergic reaction · คำใกล้เคียง: allergy response, hypersensitivity",
+    "novaBatch": true
+  },
+  {
+    "word": "trace amount",
+    "partOfSpeech": "noun",
+    "translation": "ปริมาณเล็กน้อยมาก",
+    "definition": "a very small quantity of a substance",
+    "example": "This snack may contain a trace amount of sesame.",
+    "exampleTranslation": "ขนมนี้อาจมีงาปนเปื้อนในปริมาณเล็กน้อยมาก",
+    "phonetic": "/treɪs əˈmaʊnt/",
+    "cefr": "B2",
+    "collocations": [
+      "contain a trace amount",
+      "detect a trace amount"
+    ],
+    "synonyms": [
+      "tiny quantity",
+      "residual bit"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ขนมนี้อาจ",
+      "มีงาปนเปื้อน",
+      "ในปริมาณ",
+      "เล็กน้อยมาก"
+    ],
+    "extraExample": "Even a trace amount of gluten can trigger symptoms.",
+    "extraExampleTranslation": "แม้แต่กลูเตนในปริมาณเล็กน้อยมากก็สามารถกระตุ้นอาการได้",
+    "usageTip": "trace amount (คำนาม) = ปริมาณเล็กน้อยมาก · มักใช้ในวลี: contain a trace amount, detect a trace amount · คำใกล้เคียง: tiny quantity, residual bit",
+    "novaBatch": true
+  },
+  {
+    "word": "auto-injector",
+    "partOfSpeech": "noun",
+    "translation": "เข็มฉีดยาอัตโนมัติ",
+    "definition": "a medical device for injecting a single dose of medicine",
+    "example": "He always keeps an auto-injector in his backpack.",
+    "exampleTranslation": "เขาพกเข็มฉีดยาอัตโนมัติไว้ในกระเป๋าเป้เสมอ",
+    "phonetic": "/ˈɔːtoʊ ɪnˈdʒɛktər/",
+    "cefr": "B2",
+    "collocations": [
+      "epinephrine auto-injector",
+      "carry an auto-injector"
+    ],
+    "synonyms": [
+      "injector pen",
+      "emergency syringe"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เขาพก",
+      "เข็มฉีดยาอัตโนมัติ",
+      "ไว้ในกระ",
+      "เป๋าเป้เสมอ"
+    ],
+    "extraExample": "Show your friends how to use the auto-injector.",
+    "extraExampleTranslation": "สอนเพื่อนของคุณถึงวิธีใช้เข็มฉีดยาอัตโนมัติ",
+    "usageTip": "auto-injector (คำนาม) = เข็มฉีดยาอัตโนมัติ · มักใช้ในวลี: epinephrine auto-injector, carry an auto-injector · คำใกล้เคียง: injector pen, emergency syringe",
+    "novaBatch": true
+  },
+  {
+    "word": "gluten-sensitive",
+    "partOfSpeech": "adjective",
+    "translation": "ไวต่อกลูเตน",
+    "definition": "experiencing discomfort after eating gluten",
+    "example": "My sister is gluten-sensitive, so she avoids regular pasta.",
+    "exampleTranslation": "น้องสาวของฉันไวต่อกลูเตน เธอจึงเลี่ยงพาสต้าทั่วไป",
+    "phonetic": "/ˈɡluːtən ˈsɛnsətɪv/",
+    "cefr": "B2",
+    "collocations": [
+      "gluten-sensitive guest",
+      "gluten-sensitive diet"
+    ],
+    "synonyms": [
+      "gluten-intolerant",
+      "wheat-sensitive"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "น้องสาวของฉัน",
+      "ไวต่อกลูเตน",
+      "เธอจึงเลี่ยง",
+      "พาสต้าทั่วไป"
+    ],
+    "extraExample": "We offer several options for gluten-sensitive guests.",
+    "extraExampleTranslation": "เรามีตัวเลือกหลายอย่างสำหรับแขกที่ไวต่อกลูเตน",
+    "usageTip": "gluten-sensitive (คำคุณศัพท์) = ไวต่อกลูเตน · มักใช้ในวลี: gluten-sensitive guest, gluten-sensitive diet · คำใกล้เคียง: gluten-intolerant, wheat-sensitive",
+    "novaBatch": true
+  },
+  {
+    "word": "nut-allergic",
+    "partOfSpeech": "adjective",
+    "translation": "แพ้ถั่ว",
+    "definition": "having an allergy to nuts",
+    "example": "The school cafeteria has a table for nut-allergic students.",
+    "exampleTranslation": "โรงอาหารของโรงเรียนมีโต๊ะสำหรับนักเรียนที่แพ้ถั่ว",
+    "phonetic": "/nʌt əˈlɜːrdʒɪk/",
+    "cefr": "B2",
+    "collocations": [
+      "nut-allergic child",
+      "nut-allergic diner"
+    ],
+    "synonyms": [
+      "allergic to nuts",
+      "nut-sensitive"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "โรงอาหาร",
+      "ของโรงเรียนมีโต๊ะ",
+      "สำหรับนักเรียน",
+      "ที่แพ้ถั่ว"
+    ],
+    "extraExample": "Please label desserts clearly for nut-allergic diners.",
+    "extraExampleTranslation": "กรุณาติดป้ายขนมให้ชัดเจนสำหรับผู้รับประทานที่แพ้ถั่ว",
+    "usageTip": "nut-allergic (คำคุณศัพท์) = แพ้ถั่ว · มักใช้ในวลี: nut-allergic child, nut-allergic diner · คำใกล้เคียง: allergic to nuts, nut-sensitive",
+    "novaBatch": true
+  },
+  {
+    "word": "lactase",
+    "partOfSpeech": "noun",
+    "translation": "เอนไซม์แลคเทส",
+    "definition": "an enzyme that breaks down milk sugar",
+    "example": "Taking a lactase pill helps me digest ice cream.",
+    "exampleTranslation": "การกินยาเอนไซม์แลคเทสช่วยให้ฉันย่อยไอศกรีมได้",
+    "phonetic": "/ˈlækteɪs/",
+    "cefr": "B2",
+    "collocations": [
+      "lactase enzyme",
+      "lactase tablet"
+    ],
+    "synonyms": [
+      "digestive enzyme",
+      "milk-sugar enzyme"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "การกินยา",
+      "เอนไซม์แลคเทส",
+      "ช่วยให้ฉันย่อ",
+      "ยไอศกรีมได้"
+    ],
+    "extraExample": "Some people do not produce enough lactase naturally.",
+    "extraExampleTranslation": "บางคนไม่ได้ผลิตเอนไซม์แลคเทสตามธรรมชาติอย่างเพียงพอ",
+    "usageTip": "lactase (คำนาม) = เอนไซม์แลคเทส · มักใช้ในวลี: lactase enzyme, lactase tablet · คำใกล้เคียง: digestive enzyme, milk-sugar enzyme",
+    "novaBatch": true
+  },
+  {
+    "word": "whey",
+    "partOfSpeech": "noun",
+    "translation": "เวย์โปรตีน/หางนม",
+    "definition": "the watery part of milk remaining after curdling",
+    "example": "Check the protein bar for whey if you avoid dairy.",
+    "exampleTranslation": "ตรวจสอบโปรตีนบาร์ว่ามีเวย์หรือไม่หากคุณเลี่ยงผลิตภัณฑ์นม",
+    "phonetic": "/weɪ/",
+    "cefr": "B2",
+    "collocations": [
+      "whey protein",
+      "whey powder"
+    ],
+    "synonyms": [
+      "milk protein",
+      "dairy byproduct"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ตรวจสอบโปรตีน",
+      "บาร์ว่ามีเวย์ห",
+      "รือไม่หากคุณเลี่ย",
+      "งผลิตภัณฑ์นม"
+    ],
+    "extraExample": "Whey powder is common in many baked goods.",
+    "extraExampleTranslation": "ผงเวย์พบได้ทั่วไปในขนมอบหลายชนิด",
+    "usageTip": "whey (คำนาม) = เวย์โปรตีน/หางนม · มักใช้ในวลี: whey protein, whey powder · คำใกล้เคียง: milk protein, dairy byproduct",
+    "novaBatch": true
+  },
+  {
+    "word": "gelatin",
+    "partOfSpeech": "noun",
+    "translation": "เจลาติน",
+    "definition": "a protein substance from animal collagen used to thicken food",
+    "example": "Many gummy candies contain gelatin, so they are not vegan.",
+    "exampleTranslation": "ลูกอมเยลลี่หลายชนิดมีเจลาติน จึงไม่ใช่อาหารวีแกน",
+    "phonetic": "/ˈdʒɛlətən/",
+    "cefr": "B2",
+    "collocations": [
+      "beef gelatin",
+      "gelatin-free dessert"
+    ],
+    "synonyms": [
+      "gelling agent",
+      "collagen thickener"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ลูกอมเยลลี่ห",
+      "ลายชนิดมี",
+      "เจลาติน",
+      "จึงไม่ใช่อาหารวีแกน"
+    ],
+    "extraExample": "She uses agar instead of gelatin to make fruit jelly.",
+    "extraExampleTranslation": "เธอใช้วุ้นแทนเจลาตินในการทำเยลลี่ผลไม้",
+    "usageTip": "gelatin (คำนาม) = เจลาติน · มักใช้ในวลี: beef gelatin, gelatin-free dessert · คำใกล้เคียง: gelling agent, collagen thickener",
+    "novaBatch": true
+  },
+  {
+    "word": "lard",
+    "partOfSpeech": "noun",
+    "translation": "น้ำมันหมู",
+    "definition": "fat from pigs used in cooking and baking",
+    "example": "Traditional pie crusts often use lard for flakiness.",
+    "exampleTranslation": "แป้งพายแบบดั้งเดิมมักใช้น้ำมันหมูเพื่อให้กรอบร่วน",
+    "phonetic": "/lɑːrd/",
+    "cefr": "B2",
+    "collocations": [
+      "rendered lard",
+      "cook with lard"
+    ],
+    "synonyms": [
+      "pork fat",
+      "animal shortening"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "แป้งพายแบบดั้ง",
+      "เดิมมักใช้",
+      "น้ำมันหมูเพื่อ",
+      "ให้กรอบร่วน"
+    ],
+    "extraExample": "Ask the chef if the beans were cooked with lard.",
+    "extraExampleTranslation": "ถามเชฟว่าถั่วถูกปรุงด้วยน้ำมันหมูหรือไม่",
+    "usageTip": "lard (คำนาม) = น้ำมันหมู · มักใช้ในวลี: rendered lard, cook with lard · คำใกล้เคียง: pork fat, animal shortening",
+    "novaBatch": true
+  },
+  {
+    "word": "rennet",
+    "partOfSpeech": "noun",
+    "translation": "เรนเน็ต (เอนไซม์ทำชีส)",
+    "definition": "enzymes used to curdle milk when making cheese",
+    "example": "Strict vegetarians look for cheese made without animal rennet.",
+    "exampleTranslation": "ผู้กินมังสวิรัติอย่างเคร่งครัดจะมองหาชีสที่ทำโดยไม่ใช้เรนเน็ตจากสัตว์",
+    "phonetic": "/ˈrɛnɪt/",
+    "cefr": "B2",
+    "collocations": [
+      "animal rennet",
+      "vegetarian rennet"
+    ],
+    "synonyms": [
+      "curdling enzyme",
+      "cheese enzyme"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ผู้กินมังสวิรัติอ",
+      "ย่างเคร่งครัดจะมองหาชีส",
+      "ที่ทำโดย",
+      "ไม่ใช้เรนเน็ตจากสัตว์"
+    ],
+    "extraExample": "Microbial rennet is a popular plant-friendly alternative.",
+    "extraExampleTranslation": "เรนเน็ตจากจุลินทรีย์เป็นทางเลือกที่เป็นมิตรต่อพืชซึ่งได้รับความนิยม",
+    "usageTip": "rennet (คำนาม) = เรนเน็ต (เอนไซม์ทำชีส) · มักใช้ในวลี: animal rennet, vegetarian rennet · คำใกล้เคียง: curdling enzyme, cheese enzyme",
+    "novaBatch": true
+  },
+  {
+    "word": "anchovy",
+    "partOfSpeech": "noun",
+    "translation": "ปลาแอนโชวี",
+    "definition": "a small salty fish often used in sauces",
+    "example": "Caesar dressing usually contains anchovy paste.",
+    "exampleTranslation": "น้ำสลัดซีซาร์มักมีซอสปลาแอนโชวีเป็นส่วนผสม",
+    "phonetic": "/ˈæntʃoʊvi/",
+    "cefr": "B1",
+    "collocations": [
+      "anchovy paste",
+      "anchovy fillet"
+    ],
+    "synonyms": [
+      "small salty fish",
+      "cured fish"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "น้ำสลัดซีซาร์",
+      "มักมีซอส",
+      "ปลาแอนโชวี",
+      "เป็นส่วนผสม"
+    ],
+    "extraExample": "He asked for his pizza without anchovy fillets.",
+    "extraExampleTranslation": "เขาสั่งพิซซ่าโดยไม่ใส่เนื้อปลาแอนโชวี",
+    "usageTip": "anchovy (คำนาม) = ปลาแอนโชวี · มักใช้ในวลี: anchovy paste, anchovy fillet · คำใกล้เคียง: small salty fish, cured fish",
+    "novaBatch": true
+  },
+  {
+    "word": "buckwheat",
+    "partOfSpeech": "noun",
+    "translation": "บัควีท",
+    "definition": "a gluten-free grain-like seed used for flour and noodles",
+    "example": "Soba noodles are traditionally made from buckwheat.",
+    "exampleTranslation": "เส้นโซบะแบบดั้งเดิมทำมาจากบัควีท",
+    "phonetic": "/ˈbʌkwiːt/",
+    "cefr": "B2",
+    "collocations": [
+      "buckwheat flour",
+      "buckwheat noodles"
+    ],
+    "synonyms": [
+      "kasha",
+      "gluten-free grain"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เส้นโซบะ",
+      "แบบดั้ง",
+      "เดิมทำมาจาก",
+      "บัควีท"
+    ],
+    "extraExample": "Despite its name, buckwheat is completely gluten-free.",
+    "extraExampleTranslation": "แม้จะมีชื่อว่าวีท แต่บัควีทปราศจากกลูเตนโดยสิ้นเชิง",
+    "usageTip": "buckwheat (คำนาม) = บัควีท · มักใช้ในวลี: buckwheat flour, buckwheat noodles · คำใกล้เคียง: kasha, gluten-free grain",
+    "novaBatch": true
+  },
+  {
+    "word": "spelt",
+    "partOfSpeech": "noun",
+    "translation": "ข้าวสเปลต์",
+    "definition": "an ancient type of wheat grain",
+    "example": "Spelt bread has a slightly nutty flavor.",
+    "exampleTranslation": "ขนมปังข้าวสเปลต์มีรสชาติคล้ายถั่วเล็กน้อย",
+    "phonetic": "/spɛlt/",
+    "cefr": "B2",
+    "collocations": [
+      "spelt flour",
+      "spelt bread"
+    ],
+    "synonyms": [
+      "ancient wheat",
+      "dinkel wheat"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ขนมปัง",
+      "ข้าวสเปลต์",
+      "มีรสชาติคล้าย",
+      "ถั่วเล็กน้อย"
+    ],
+    "extraExample": "People with celiac disease must avoid spelt.",
+    "extraExampleTranslation": "ผู้ที่เป็นโรคเซลิแอคต้องหลีกเลี่ยงข้าวสเปลต์",
+    "usageTip": "spelt (คำนาม) = ข้าวสเปลต์ · มักใช้ในวลี: spelt flour, spelt bread · คำใกล้เคียง: ancient wheat, dinkel wheat",
+    "novaBatch": true
+  },
+  {
+    "word": "tahini",
+    "partOfSpeech": "noun",
+    "translation": "ทาฮินี (ซอสงาบด)",
+    "definition": "a thick paste made from ground sesame seeds",
+    "example": "Tahini is a key ingredient in hummus.",
+    "exampleTranslation": "ทาฮินีเป็นส่วนผสมสำคัญในฮัมมัส",
+    "phonetic": "/təˈhiːni/",
+    "cefr": "B2",
+    "collocations": [
+      "tahini sauce",
+      "sesame tahini"
+    ],
+    "synonyms": [
+      "sesame paste",
+      "ground sesame"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ทาฮินีเป็น",
+      "ส่วน",
+      "ผสมสำคัญ",
+      "ในฮัมมัส"
+    ],
+    "extraExample": "People with sesame allergies should avoid tahini.",
+    "extraExampleTranslation": "ผู้ที่แพ้งาควรหลีกเลี่ยงทาฮินี",
+    "usageTip": "tahini (คำนาม) = ทาฮินี (ซอสงาบด) · มักใช้ในวลี: tahini sauce, sesame tahini · คำใกล้เคียง: sesame paste, ground sesame",
+    "novaBatch": true
+  },
+  {
+    "word": "tempeh",
+    "partOfSpeech": "noun",
+    "translation": "เทมเป้",
+    "definition": "a firm fermented soybean cake used as a meat substitute",
+    "example": "Grilled tempeh is rich in protein and fiber.",
+    "exampleTranslation": "เทมเป้ย่างอุดมไปด้วยโปรตีนและใยอาหาร",
+    "phonetic": "/ˈtɛmpeɪ/",
+    "cefr": "B2",
+    "collocations": [
+      "fermented tempeh",
+      "marinated tempeh"
+    ],
+    "synonyms": [
+      "soy cake",
+      "plant protein"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เทมเป้",
+      "ย่างอุดมไป",
+      "ด้วยโปรตีน",
+      "และใยอาหาร"
+    ],
+    "extraExample": "She marinated the tempeh in soy sauce and garlic.",
+    "extraExampleTranslation": "เธอหมักเทมเป้ในซีอิ๊วและกระเทียม",
+    "usageTip": "tempeh (คำนาม) = เทมเป้ · มักใช้ในวลี: fermented tempeh, marinated tempeh · คำใกล้เคียง: soy cake, plant protein",
+    "novaBatch": true
+  },
+  {
+    "word": "seitan",
+    "partOfSpeech": "noun",
+    "translation": "เซตัน (โปรตีนกลูเตน)",
+    "definition": "a meat substitute made from wheat gluten",
+    "example": "Seitan has a chewy texture similar to meat.",
+    "exampleTranslation": "เซตันมีเนื้อสัมผัสเหนียวนุ่มคล้ายเนื้อสัตว์",
+    "phonetic": "/ˈseɪtæn/",
+    "cefr": "B2",
+    "collocations": [
+      "seitan strips",
+      "wheat seitan"
+    ],
+    "synonyms": [
+      "wheat meat",
+      "gluten protein"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เซตันมีเนื้อ",
+      "สัมผัสเห",
+      "นียวนุ่มค",
+      "ล้ายเนื้อสัตว์"
+    ],
+    "extraExample": "Because seitan is pure wheat gluten, it is unsafe for celiacs.",
+    "extraExampleTranslation": "เนื่องจากเซตันเป็นกลูเตนข้าวสาลีล้วน จึงไม่ปลอดภัยสำหรับผู้ป่วยโรคเซลิแอค",
+    "usageTip": "seitan (คำนาม) = เซตัน (โปรตีนกลูเตน) · มักใช้ในวลี: seitan strips, wheat seitan · คำใกล้เคียง: wheat meat, gluten protein",
+    "novaBatch": true
+  },
+  {
+    "word": "nutritional yeast",
+    "partOfSpeech": "noun",
+    "translation": "นิวทริชันแนลยีสต์",
+    "definition": "inactive yeast flakes with a cheesy flavor",
+    "example": "Vegans sprinkle nutritional yeast on popcorn for a cheesy taste.",
+    "exampleTranslation": "ชาววีแกนโรยนิวทริชันแนลยีสต์บนป๊อปคอร์นเพื่อให้ได้รสชาติเหมือนชีส",
+    "phonetic": "/nuːˈtrɪʃənəl jiːst/",
+    "cefr": "B2",
+    "collocations": [
+      "nutritional yeast flakes",
+      "fortified nutritional yeast"
+    ],
+    "synonyms": [
+      "nooch",
+      "vegan cheese seasoning"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ชาววีแกนโรย",
+      "นิวทริชันแนลยีสต์",
+      "บนป๊อปคอร์นเพื่อ",
+      "ให้ได้รสชาติเหมือนชีส"
+    ],
+    "extraExample": "Nutritional yeast is often fortified with vitamin B12.",
+    "extraExampleTranslation": "นิวทริชันแนลยีสต์มักเสริมด้วยวิตามินบี 12",
+    "usageTip": "nutritional yeast (คำนาม) = นิวทริชันแนลยีสต์ · มักใช้ในวลี: nutritional yeast flakes, fortified nutritional yeast · คำใกล้เคียง: nooch, vegan cheese seasoning",
+    "novaBatch": true
+  },
+  {
+    "word": "almond milk",
+    "partOfSpeech": "noun",
+    "translation": "นมอัลมอนด์",
+    "definition": "a plant-based milk made from ground almonds",
+    "example": "I prefer unsweetened almond milk in my morning cereal.",
+    "exampleTranslation": "ฉันชอบใส่นมอัลมอนด์สูตรไม่หวานในซีเรียลตอนเช้า",
+    "phonetic": "/ˈɑːmənd mɪlk/",
+    "cefr": "B1",
+    "collocations": [
+      "unsweetened almond milk",
+      "vanilla almond milk"
+    ],
+    "synonyms": [
+      "nut milk",
+      "dairy alternative"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ฉันชอบใส่",
+      "นมอัลมอนด์",
+      "สูตรไม่หวาน",
+      "ในซีเรียลตอนเช้า"
+    ],
+    "extraExample": "Almond milk is dairy-free, but not safe for nut allergies.",
+    "extraExampleTranslation": "นมอัลมอนด์ไม่มีส่วนผสมของนมวัว แต่ไม่ปลอดภัยสำหรับผู้แพ้ถั่ว",
+    "usageTip": "almond milk (คำนาม) = นมอัลมอนด์ · มักใช้ในวลี: unsweetened almond milk, vanilla almond milk · คำใกล้เคียง: nut milk, dairy alternative",
+    "novaBatch": true
+  },
+  {
+    "word": "coconut milk",
+    "partOfSpeech": "noun",
+    "translation": "กะทิ/นมมะพร้าว",
+    "definition": "a creamy liquid pressed from coconut meat",
+    "example": "Thai curries often use rich coconut milk.",
+    "exampleTranslation": "แกงไทยมักใช้กะทิที่เข้มข้น",
+    "phonetic": "/ˈkoʊkənʌt mɪlk/",
+    "cefr": "B1",
+    "collocations": [
+      "canned coconut milk",
+      "light coconut milk"
+    ],
+    "synonyms": [
+      "coconut cream",
+      "plant milk"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "แกงไทยมักใช้",
+      "กะทิ",
+      "ที่เข้ม",
+      "ข้น"
+    ],
+    "extraExample": "We can swap cream for coconut milk in this soup.",
+    "extraExampleTranslation": "เราสามารถเปลี่ยนจากครีมเป็นกะทิในซุปนี้ได้",
+    "usageTip": "coconut milk (คำนาม) = กะทิ/นมมะพร้าว · มักใช้ในวลี: canned coconut milk, light coconut milk · คำใกล้เคียง: coconut cream, plant milk",
+    "novaBatch": true
+  },
+  {
+    "word": "soy milk",
+    "partOfSpeech": "noun",
+    "translation": "นมถั่วเหลือง",
+    "definition": "a plant-based drink made from soaked soybeans",
+    "example": "The cafe offers soy milk at no extra charge.",
+    "exampleTranslation": "คาเฟ่มีบริการนมถั่วเหลืองโดยไม่คิดค่าใช้จ่ายเพิ่ม",
+    "phonetic": "/sɔɪ mɪlk/",
+    "cefr": "B1",
+    "collocations": [
+      "organic soy milk",
+      "steamed soy milk"
+    ],
+    "synonyms": [
+      "soya milk",
+      "bean milk"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "คาเฟ่มีบริการ",
+      "นมถั่วเหลือง",
+      "โดยไม่คิด",
+      "ค่าใช้จ่ายเพิ่ม"
+    ],
+    "extraExample": "Soy milk steams well for lattes and cappuccinos.",
+    "extraExampleTranslation": "นมถั่วเหลืองตีฟองได้ดีสำหรับลาเต้และคาปูชิโน",
+    "usageTip": "soy milk (คำนาม) = นมถั่วเหลือง · มักใช้ในวลี: organic soy milk, steamed soy milk · คำใกล้เคียง: soya milk, bean milk",
+    "novaBatch": true
+  },
+  {
+    "word": "rice milk",
+    "partOfSpeech": "noun",
+    "translation": "นมข้าว",
+    "definition": "a dairy-free milk made from milled rice",
+    "example": "Rice milk is a gentle option for people with multiple allergies.",
+    "exampleTranslation": "นมข้าวเป็นทางเลือกที่อ่อนโยนสำหรับผู้ที่แพ้อาหารหลายชนิด",
+    "phonetic": "/raɪs mɪlk/",
+    "cefr": "B1",
+    "collocations": [
+      "enriched rice milk",
+      "cold rice milk"
+    ],
+    "synonyms": [
+      "grain milk",
+      "hypoallergenic milk"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "นมข้าวเป็นทางเลือก",
+      "ที่อ่อนโยน",
+      "สำหรับผู้ที่แพ้อาหาร",
+      "หลายชนิด"
+    ],
+    "extraExample": "Rice milk has a naturally sweet and light taste.",
+    "extraExampleTranslation": "นมข้าวมีรสชาติหวานอ่อนๆ ตามธรรมชาติ",
+    "usageTip": "rice milk (คำนาม) = นมข้าว · มักใช้ในวลี: enriched rice milk, cold rice milk · คำใกล้เคียง: grain milk, hypoallergenic milk",
+    "novaBatch": true
+  },
+  {
+    "word": "plant-milk",
+    "partOfSpeech": "noun",
+    "translation": "นมพืช",
+    "definition": "any non-dairy milk made from plants",
+    "example": "Sales of plant-milk have grown rapidly this year.",
+    "exampleTranslation": "ยอดขายนมพืชเติบโตอย่างรวดเร็วในปีนี้",
+    "phonetic": "/plænt mɪlk/",
+    "cefr": "B2",
+    "collocations": [
+      "barista plant-milk",
+      "fortified plant-milk"
+    ],
+    "synonyms": [
+      "non-dairy milk",
+      "vegan milk"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ยอดขายนมพืช",
+      "เติบโต",
+      "อย่างรวดเร็ว",
+      "ในปีนี้"
+    ],
+    "extraExample": "Which plant-milk do you like best in iced coffee?",
+    "extraExampleTranslation": "คุณชอบนมพืชชนิดไหนมากที่สุดในกาแฟเย็น",
+    "usageTip": "plant-milk (คำนาม) = นมพืช · มักใช้ในวลี: barista plant-milk, fortified plant-milk · คำใกล้เคียง: non-dairy milk, vegan milk",
+    "novaBatch": true
+  },
+  {
+    "word": "food label",
+    "partOfSpeech": "noun",
+    "translation": "ฉลากอาหาร",
+    "definition": "the printed information on food packaging",
+    "example": "Always read the food label before buying packaged snacks.",
+    "exampleTranslation": "อ่านฉลากอาหารเสมอ ก่อนซื้อขนมบรรจุซอง",
+    "phonetic": "/fuːd ˈleɪbəl/",
+    "cefr": "B1",
+    "collocations": [
+      "read the food label",
+      "nutrition food label"
+    ],
+    "synonyms": [
+      "packaging label",
+      "nutrition tag"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "อ่านฉลากอาหาร",
+      "เสมอ",
+      "ก่อนซื้อขน",
+      "มบรรจุซอง"
+    ],
+    "extraExample": "The food label clearly lists all eight major allergens.",
+    "extraExampleTranslation": "ฉลากอาหารระบุสารก่อภูมิแพ้หลักทั้งแปดชนิดไว้อย่างชัดเจน",
+    "usageTip": "food label (คำนาม) = ฉลากอาหาร · มักใช้ในวลี: read the food label, nutrition food label · คำใกล้เคียง: packaging label, nutrition tag",
+    "novaBatch": true
+  },
+  {
+    "word": "ingredient list",
+    "partOfSpeech": "noun",
+    "translation": "รายการส่วนผสม",
+    "definition": "the complete list of items used to make a food product",
+    "example": "Check the ingredient list for hidden milk powder.",
+    "exampleTranslation": "ตรวจสอบรายการส่วนผสมเพื่อหานมผงที่ซ่อนอยู่",
+    "phonetic": "/ɪnˈɡriːdiənt lɪst/",
+    "cefr": "B1",
+    "collocations": [
+      "short ingredient list",
+      "scan the ingredient list"
+    ],
+    "synonyms": [
+      "contents list",
+      "recipe list"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ตรวจสอบ",
+      "รายการส่วนผสม",
+      "เพื่อหานมผง",
+      "ที่ซ่อนอยู่"
+    ],
+    "extraExample": "A shorter ingredient list often means less processed food.",
+    "extraExampleTranslation": "รายการส่วนผสมที่สั้นกว่ามักหมายถึงอาหารที่ผ่านการแปรรูปน้อยกว่า",
+    "usageTip": "ingredient list (คำนาม) = รายการส่วนผสม · มักใช้ในวลี: short ingredient list, scan the ingredient list · คำใกล้เคียง: contents list, recipe list",
+    "novaBatch": true
+  },
+  {
+    "word": "cross-contact",
+    "partOfSpeech": "noun",
+    "translation": "การปนเปื้อนข้ามของสารก่อภูมิแพ้",
+    "definition": "when an allergen accidentally transfers to an allergen-free food",
+    "example": "Using separate cutting boards prevents cross-contact.",
+    "exampleTranslation": "การใช้เขียงแยกกันช่วยป้องกันการปนเปื้อนข้ามของสารก่อภูมิแพ้",
+    "phonetic": "/krɔːs ˈkɑːntækt/",
+    "cefr": "B2",
+    "collocations": [
+      "prevent cross-contact",
+      "risk of cross-contact"
+    ],
+    "synonyms": [
+      "allergen transfer",
+      "accidental mixing"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "การใช้เขียงแยก",
+      "กันช่วยป้องกัน",
+      "การปนเปื้อนข้าม",
+      "ของสารก่อภูมิแพ้"
+    ],
+    "extraExample": "Shared fryers create a high risk of cross-contact.",
+    "extraExampleTranslation": "การใช้หม้อทอดร่วมกันสร้างความเสี่ยงสูงต่อการปนเปื้อนข้าม",
+    "usageTip": "cross-contact (คำนาม) = การปนเปื้อนข้ามของสารก่อภูมิแพ้ · มักใช้ในวลี: prevent cross-contact, risk of cross-contact · คำใกล้เคียง: allergen transfer, accidental mixing",
+    "novaBatch": true
+  },
+  {
+    "word": "omit",
+    "partOfSpeech": "verb",
+    "translation": "ตัดออก/ไม่ใส่",
+    "definition": "to leave out an ingredient intentionally",
+    "example": "Please omit the peanuts from my noodle dish.",
+    "exampleTranslation": "กรุณาไม่ใส่ถั่วลิสงในจานก๋วยเตี๋ยวของฉัน",
+    "phonetic": "/oʊˈmɪt/",
+    "cefr": "B2",
+    "collocations": [
+      "omit the nuts",
+      "omit entirely"
+    ],
+    "synonyms": [
+      "leave out",
+      "exclude"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "กรุณาไม่ใส่ถั่ว",
+      "ลิสง",
+      "ในจานก๋วยเตี๋ยว",
+      "ของฉัน"
+    ],
+    "extraExample": "You can omit the sugar without ruining the sauce.",
+    "extraExampleTranslation": "คุณสามารถตัดน้ำตาลออกได้โดยไม่ทำให้ซอสเสียรสชาติ",
+    "usageTip": "omit (คำกริยา) = ตัดออก/ไม่ใส่ · มักใช้ในวลี: omit the nuts, omit entirely · คำใกล้เคียง: leave out, exclude",
+    "novaBatch": true
+  },
+  {
+    "word": "dietary restriction",
+    "partOfSpeech": "noun",
+    "translation": "ข้อจำกัดด้านอาหาร",
+    "definition": "a rule about what foods someone cannot or will not eat",
+    "example": "Please list any dietary restriction on the RSVP form.",
+    "exampleTranslation": "กรุณาระบุข้อจำกัดด้านอาหารในแบบฟอร์มตอบรับ",
+    "phonetic": "/ˈdaɪətɛri rɪˈstrɪkʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "have a dietary restriction",
+      "note dietary restriction"
+    ],
+    "synonyms": [
+      "food limitation",
+      "eating rule"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "กรุณาระบุ",
+      "ข้อจำกัดด้านอาหาร",
+      "ในแบ",
+      "บฟอร์มตอบรับ"
+    ],
+    "extraExample": "Religious beliefs can also shape a dietary restriction.",
+    "extraExampleTranslation": "ความเชื่อทางศาสนาก็สามารถกำหนดข้อจำกัดด้านอาหารได้เช่นกัน",
+    "usageTip": "dietary restriction (คำนาม) = ข้อจำกัดด้านอาหาร · มักใช้ในวลี: have a dietary restriction, note dietary restriction · คำใกล้เคียง: food limitation, eating rule",
+    "novaBatch": true
+  },
+  {
+    "word": "food sensitivity",
+    "partOfSpeech": "noun",
+    "translation": "ภาวะไวต่ออาหาร",
+    "definition": "a non-allergic negative reaction to a specific food",
+    "example": "A food sensitivity often causes bloating rather than hives.",
+    "exampleTranslation": "ภาวะไวต่ออาหารมักทำให้ท้องอืดมากกว่าจะเป็นลมพิษ",
+    "phonetic": "/fuːd ˌsɛnsəˈtɪvəti/",
+    "cefr": "B2",
+    "collocations": [
+      "mild food sensitivity",
+      "test for food sensitivity"
+    ],
+    "synonyms": [
+      "food intolerance",
+      "digestive sensitivity"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "ภาวะไวต่ออาหาร",
+      "มักทำให้ท้อ",
+      "งอืดมากก",
+      "ว่าจะเป็นลมพิษ"
+    ],
+    "extraExample": "Keeping a food diary helps identify a food sensitivity.",
+    "extraExampleTranslation": "การจดบันทึกอาหารช่วยระบุภาวะไวต่ออาหารได้",
+    "usageTip": "food sensitivity (คำนาม) = ภาวะไวต่ออาหาร · มักใช้ในวลี: mild food sensitivity, test for food sensitivity · คำใกล้เคียง: food intolerance, digestive sensitivity",
+    "novaBatch": true
+  },
+  {
+    "word": "hives",
+    "partOfSpeech": "noun",
+    "translation": "ลมพิษ",
+    "definition": "itchy, raised red bumps on the skin from an allergy",
+    "example": "She broke out in hives after eating strawberries.",
+    "exampleTranslation": "เธอมีผื่นลมพิษขึ้นหลังจากกินสตรอว์เบอร์รี",
+    "phonetic": "/haɪvz/",
+    "cefr": "B2",
+    "collocations": [
+      "break out in hives",
+      "itchy hives"
+    ],
+    "synonyms": [
+      "urticaria",
+      "skin welts"
+    ],
+    "topic": "food",
+    "thTokens": [
+      "เธอมีผื่น",
+      "ลมพิษขึ้น",
+      "หลังจากกินสต",
+      "รอว์เบอร์รี"
+    ],
+    "extraExample": "Hives are a common early sign of a food allergy.",
+    "extraExampleTranslation": "ลมพิษเป็นสัญญาณเริ่มต้นที่พบบ่อยของการแพ้อาหาร",
+    "usageTip": "hives (คำนาม) = ลมพิษ · มักใช้ในวลี: break out in hives, itchy hives · คำใกล้เคียง: urticaria, skin welts",
+    "novaBatch": true
+  },
+  {
+    "word": "dynamic stretching",
+    "partOfSpeech": "noun",
+    "translation": "การยืดเหยียดแบบเคลื่อนไหว",
+    "definition": "active movements that warm up muscles before exercise",
+    "example": "We always do dynamic stretching before our morning run.",
+    "exampleTranslation": "พวกเรามักจะยืดเหยียดแบบเคลื่อนไหวก่อนออกไปวิ่งตอนเช้าเสมอ",
+    "phonetic": "/daɪˈnæmɪk ˈstrɛtʃɪŋ/",
+    "cefr": "B1",
+    "collocations": [
+      "do dynamic stretching",
+      "before a workout"
+    ],
+    "synonyms": [
+      "active warm-up",
+      "moving stretch"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "พวกเรามักจะยืด",
+      "เหยียดแบบเคลื่อนไหว",
+      "ก่อนออกไปวิ่ง",
+      "ตอนเช้าเสมอ"
+    ],
+    "extraExample": "Dynamic stretching helps increase blood flow to your muscles.",
+    "extraExampleTranslation": "การยืดเหยียดแบบเคลื่อนไหวช่วยเพิ่มการไหลเวียนของเลือดไปยังกล้ามเนื้อ",
+    "usageTip": "dynamic stretching (คำนาม) = การยืดเหยียดแบบเคลื่อนไหว · มักใช้ในวลี: do dynamic stretching, before a workout · คำใกล้เคียง: active warm-up, moving stretch",
+    "novaBatch": true
+  },
+  {
+    "word": "static stretching",
+    "partOfSpeech": "noun",
+    "translation": "การยืดเหยียดแบบค้างท่า",
+    "definition": "holding a stretch in one position to cool down",
+    "example": "Static stretching is best done after your muscles are warm.",
+    "exampleTranslation": "การยืดเหยียดแบบค้างท่าควรทำหลังจากที่กล้ามเนื้ออุ่นตัวแล้ว",
+    "phonetic": "/ˈstætɪk ˈstrɛtʃɪŋ/",
+    "cefr": "B1",
+    "collocations": [
+      "hold static stretching",
+      "after exercise"
+    ],
+    "synonyms": [
+      "passive stretch",
+      "cool-down stretch"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การยืดเหยียดแบ",
+      "บค้างท่าควรทำหลัง",
+      "จากที่กล้าม",
+      "เนื้ออุ่นตัวแล้ว"
+    ],
+    "extraExample": "Hold each static stretching pose for at least twenty seconds.",
+    "extraExampleTranslation": "ค้างท่าการยืดเหยียดแบบค้างท่าแต่ละท่าไว้อย่างน้อยยี่สิบวินาที",
+    "usageTip": "static stretching (คำนาม) = การยืดเหยียดแบบค้างท่า · มักใช้ในวลี: hold static stretching, after exercise · คำใกล้เคียง: passive stretch, cool-down stretch",
+    "novaBatch": true
+  },
+  {
+    "word": "calf raise",
+    "partOfSpeech": "noun",
+    "translation": "การเขย่งปลายเท้าบริหารน่อง",
+    "definition": "an exercise where you lift your heels off the ground",
+    "example": "Do twenty calf raises on the edge of the step.",
+    "exampleTranslation": "ทำท่าเขย่งปลายเท้าบริหารน่องยี่สิบครั้งที่ขอบบันได",
+    "phonetic": "/kæf reɪz/",
+    "cefr": "B1",
+    "collocations": [
+      "do calf raises",
+      "single-leg calf raise"
+    ],
+    "synonyms": [
+      "heel raise",
+      "calf exercise"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ทำท่าเขย่งป",
+      "ลายเท้าบริหาร",
+      "น่องยี่สิบครั้ง",
+      "ที่ขอบบันได"
+    ],
+    "extraExample": "Calf raises strengthen the lower leg and improve ankle stability.",
+    "extraExampleTranslation": "การเขย่งปลายเท้าช่วยเสริมสร้างความแข็งแรงของขาท่อนล่างและข้อเท้า",
+    "usageTip": "calf raise (คำนาม) = การเขย่งปลายเท้าบริหารน่อง · มักใช้ในวลี: do calf raises, single-leg calf raise · คำใกล้เคียง: heel raise, calf exercise",
+    "novaBatch": true
+  },
+  {
+    "word": "bridge pose",
+    "partOfSpeech": "noun",
+    "translation": "ท่าสะพาน",
+    "definition": "a yoga pose where you lift your hips while lying on your back",
+    "example": "Bridge pose is great for strengthening your glutes and lower back.",
+    "exampleTranslation": "ท่าสะพานดีมากสำหรับการเสริมสร้างกล้ามเนื้อสะโพกและหลังส่วนล่าง",
+    "phonetic": "/brɪdʒ poʊz/",
+    "cefr": "B1",
+    "collocations": [
+      "lift into bridge pose",
+      "hold bridge pose"
+    ],
+    "synonyms": [
+      "glute bridge",
+      "backbend pose"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ท่าสะพานดีมาก",
+      "สำหรับการเสริมสร้าง",
+      "กล้ามเนื้อสะโพก",
+      "และหลังส่วนล่าง"
+    ],
+    "extraExample": "Press your feet into the mat as you lift into bridge pose.",
+    "extraExampleTranslation": "กดเท้าลงบนเสื่อขณะที่คุณยกตัวขึ้นสู่ท่าสะพาน",
+    "usageTip": "bridge pose (คำนาม) = ท่าสะพาน · มักใช้ในวลี: lift into bridge pose, hold bridge pose · คำใกล้เคียง: glute bridge, backbend pose",
+    "novaBatch": true
+  },
+  {
+    "word": "child's pose",
+    "partOfSpeech": "noun",
+    "translation": "ท่าเด็กหมอบ",
+    "definition": "a resting yoga pose kneeling with your forehead on the floor",
+    "example": "Take a rest in child's pose whenever you feel tired.",
+    "exampleTranslation": "พักในท่าเด็กหมอบได้ทุกเมื่อที่คุณรู้สึกเหนื่อย",
+    "phonetic": "/tʃaɪldz poʊz/",
+    "cefr": "B1",
+    "collocations": [
+      "rest in child's pose",
+      "sink into child's pose"
+    ],
+    "synonyms": [
+      "resting pose",
+      "balasana"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "พักในท่าเด็กหมอบ",
+      "ได้ทุก",
+      "เมื่อ",
+      "ที่คุณรู้สึกเหนื่อย"
+    ],
+    "extraExample": "Child's pose gently stretches the hips, thighs, and lower back.",
+    "extraExampleTranslation": "ท่าเด็กหมอบช่วยยืดสะโพก ต้นขา และหลังส่วนล่างอย่างอ่อนโยน",
+    "usageTip": "child's pose (คำนาม) = ท่าเด็กหมอบ · มักใช้ในวลี: rest in child's pose, sink into child's pose · คำใกล้เคียง: resting pose, balasana",
+    "novaBatch": true
+  },
+  {
+    "word": "downward dog",
+    "partOfSpeech": "noun",
+    "translation": "ท่าสุนัขก้มหน้า",
+    "definition": "a yoga pose forming an inverted V shape with your body",
+    "example": "Downward dog stretches the entire back of your body.",
+    "exampleTranslation": "ท่าสุนัขก้มหน้าช่วยยืดกล้ามเนื้อด้านหลังของร่างกายทั้งหมด",
+    "phonetic": "/ˈdaʊnwərd dɔːɡ/",
+    "cefr": "B1",
+    "collocations": [
+      "push back into downward dog",
+      "hold downward dog"
+    ],
+    "synonyms": [
+      "inverted V pose",
+      "adho mukha svanasana"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ท่าสุนัขก้มหน้า",
+      "ช่วยยืดกล้าม",
+      "เนื้อด้านหลัง",
+      "ของร่างกายทั้งหมด"
+    ],
+    "extraExample": "Pedal your heels gently while holding downward dog.",
+    "extraExampleTranslation": "ขยับส้นเท้าขึ้นลงเบาๆ ขณะค้างท่าสุนัขก้มหน้า",
+    "usageTip": "downward dog (คำนาม) = ท่าสุนัขก้มหน้า · มักใช้ในวลี: push back into downward dog, hold downward dog · คำใกล้เคียง: inverted V pose, adho mukha svanasana",
+    "novaBatch": true
+  },
+  {
+    "word": "cobra stretch",
+    "partOfSpeech": "noun",
+    "translation": "ท่างูเห่า",
+    "definition": "a stretch lying face down and lifting your chest with your hands",
+    "example": "The cobra stretch opens up your chest and abdominal muscles.",
+    "exampleTranslation": "ท่างูเห่าช่วยเปิดหน้าอกและยืดกล้ามเนื้อหน้าท้อง",
+    "phonetic": "/ˈkoʊbrə strɛtʃ/",
+    "cefr": "B1",
+    "collocations": [
+      "do the cobra stretch",
+      "gentle cobra stretch"
+    ],
+    "synonyms": [
+      "cobra pose",
+      "bhujangasana"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ท่างูเห่า",
+      "ช่วยเปิดหน้าอก",
+      "และยืดกล้าม",
+      "เนื้อหน้าท้อง"
+    ],
+    "extraExample": "Keep your shoulders away from your ears during the cobra stretch.",
+    "extraExampleTranslation": "ดึงไหล่ให้ห่างจากใบหูขณะทำท่างูเห่า",
+    "usageTip": "cobra stretch (คำนาม) = ท่างูเห่า · มักใช้ในวลี: do the cobra stretch, gentle cobra stretch · คำใกล้เคียง: cobra pose, bhujangasana",
+    "novaBatch": true
+  },
+  {
+    "word": "cat-cow",
+    "partOfSpeech": "noun",
+    "translation": "ท่าแมว-วัว",
+    "definition": "a gentle flow between arching and rounding your back on all fours",
+    "example": "Start your morning routine with five rounds of cat-cow.",
+    "exampleTranslation": "เริ่มต้นกิจวัตรตอนเช้าด้วยท่าแมว-วัวห้ารอบ",
+    "phonetic": "/kæt kaʊ/",
+    "cefr": "B1",
+    "collocations": [
+      "cat-cow stretch",
+      "cat-cow flow"
+    ],
+    "synonyms": [
+      "spinal warm-up",
+      "marjaryasana-bitilasana"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เริ่มต้นกิจวัตร",
+      "ตอนเช้าด้วย",
+      "ท่าแมว-วัว",
+      "ห้ารอบ"
+    ],
+    "extraExample": "Cat-cow warms up the spine and relieves back tension.",
+    "extraExampleTranslation": "ท่าแมว-วัวช่วยวอร์มกระดูกสันหลังและบรรเทาอาการตึงที่หลัง",
+    "usageTip": "cat-cow (คำนาม) = ท่าแมว-วัว · มักใช้ในวลี: cat-cow stretch, cat-cow flow · คำใกล้เคียง: spinal warm-up, marjaryasana-bitilasana",
+    "novaBatch": true
+  },
+  {
+    "word": "butterfly stretch",
+    "partOfSpeech": "noun",
+    "translation": "ท่ายืดผีเสื้อ",
+    "definition": "a seated stretch with the soles of your feet pressed together",
+    "example": "The butterfly stretch targets your inner thighs and hips.",
+    "exampleTranslation": "ท่ายืดผีเสื้อเน้นยืดกล้ามเนื้อต้นขาด้านในและสะโพก",
+    "phonetic": "/ˈbʌtərflaɪ strɛtʃ/",
+    "cefr": "B1",
+    "collocations": [
+      "sit in butterfly stretch",
+      "deepen the butterfly stretch"
+    ],
+    "synonyms": [
+      "bound angle pose",
+      "groin stretch"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ท่ายืดผีเสื้อ",
+      "เน้นยืดกล้าม",
+      "เนื้อต้นขาด้าน",
+      "ในและสะโพก"
+    ],
+    "extraExample": "Sit tall and gently press your knees down in the butterfly stretch.",
+    "extraExampleTranslation": "นั่งตัวตรงแล้วค่อยๆ กดเข่าลงเบาๆ ในท่ายืดผีเสื้อ",
+    "usageTip": "butterfly stretch (คำนาม) = ท่ายืดผีเสื้อ · มักใช้ในวลี: sit in butterfly stretch, deepen the butterfly stretch · คำใกล้เคียง: bound angle pose, groin stretch",
+    "novaBatch": true
+  },
+  {
+    "word": "quad stretch",
+    "partOfSpeech": "noun",
+    "translation": "ท่ายืดหน้าขา",
+    "definition": "a stretch pulling your heel toward your glutes to stretch the front thigh",
+    "example": "Hold onto a wall for balance during a standing quad stretch.",
+    "exampleTranslation": "จับกำแพงเพื่อทรงตัวระหว่างทำท่ายืดหน้าขาแบบยืน",
+    "phonetic": "/kwɑːd strɛtʃ/",
+    "cefr": "B1",
+    "collocations": [
+      "standing quad stretch",
+      "lying quad stretch"
+    ],
+    "synonyms": [
+      "quadriceps stretch",
+      "thigh stretch"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "จับกำแพง",
+      "เพื่อทรงตัว",
+      "ระหว่างทำ",
+      "ท่ายืดหน้าขาแบบยืน"
+    ],
+    "extraExample": "A good quad stretch prevents knee pain after cycling.",
+    "extraExampleTranslation": "การยืดหน้าขาที่ดีช่วยป้องกันอาการปวดเข่าหลังปั่นจักรยาน",
+    "usageTip": "quad stretch (คำนาม) = ท่ายืดหน้าขา · มักใช้ในวลี: standing quad stretch, lying quad stretch · คำใกล้เคียง: quadriceps stretch, thigh stretch",
+    "novaBatch": true
+  },
+  {
+    "word": "shoulder roll",
+    "partOfSpeech": "noun",
+    "translation": "การหมุนหัวไหล่",
+    "definition": "a simple movement rotating your shoulders in circles to release tension",
+    "example": "Do a few shoulder rolls at your desk every hour.",
+    "exampleTranslation": "หมุนหัวไหล่สักสองสามครั้งที่โต๊ะทำงานทุกๆ ชั่วโมง",
+    "phonetic": "/ˈʃoʊldər roʊl/",
+    "cefr": "A2",
+    "collocations": [
+      "do shoulder rolls",
+      "backward shoulder roll"
+    ],
+    "synonyms": [
+      "shoulder circle",
+      "shoulder shrug"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "หมุนหัวไหล่สัก",
+      "สองสามครั้ง",
+      "ที่โต๊ะทำงาน",
+      "ทุกๆชั่วโมง"
+    ],
+    "extraExample": "Backward shoulder rolls help improve your upper body posture.",
+    "extraExampleTranslation": "การหมุนหัวไหล่ไปด้านหลังช่วยปรับบุคลิกภาพช่วงบนให้ดีขึ้น",
+    "usageTip": "shoulder roll (คำนาม) = การหมุนหัวไหล่ · มักใช้ในวลี: do shoulder rolls, backward shoulder roll · คำใกล้เคียง: shoulder circle, shoulder shrug",
+    "novaBatch": true
+  },
+  {
+    "word": "neck roll",
+    "partOfSpeech": "noun",
+    "translation": "การหมุนคอ",
+    "definition": "a slow circular movement of the head to loosen neck muscles",
+    "example": "Perform slow neck rolls to relieve stiffness from staring at a screen.",
+    "exampleTranslation": "หมุนคอช้าๆ เพื่อบรรเทาอาการตึงจากการจ้องหน้าจอ",
+    "phonetic": "/nɛk roʊl/",
+    "cefr": "A2",
+    "collocations": [
+      "slow neck roll",
+      "gentle neck roll"
+    ],
+    "synonyms": [
+      "neck stretch",
+      "head circle"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "หมุนคอช้าๆ",
+      "เพื่อบรรเทาอาการ",
+      "ตึง",
+      "จากการจ้องหน้าจอ"
+    ],
+    "extraExample": "Avoid rolling your head too far back during a neck roll.",
+    "extraExampleTranslation": "หลีกเลี่ยงการเงยศีรษะไปด้านหลังมากเกินไปขณะหมุนคอ",
+    "usageTip": "neck roll (คำนาม) = การหมุนคอ · มักใช้ในวลี: slow neck roll, gentle neck roll · คำใกล้เคียง: neck stretch, head circle",
+    "novaBatch": true
+  },
+  {
+    "word": "torso twist",
+    "partOfSpeech": "noun",
+    "translation": "การบิดลำตัว",
+    "definition": "a stretch rotating your upper body from side to side",
+    "example": "Seated torso twists feel amazing after sitting all day.",
+    "exampleTranslation": "การบิดลำตัวในท่านั่งช่วยให้รู้สึกสบายมากหลังจากนั่งมาทั้งวัน",
+    "phonetic": "/ˈtɔːrsoʊ twɪst/",
+    "cefr": "B1",
+    "collocations": [
+      "seated torso twist",
+      "supine torso twist"
+    ],
+    "synonyms": [
+      "spinal twist",
+      "trunk rotation"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การบิดลำตัว",
+      "ในท่านั่งช่วย",
+      "ให้รู้สึกสบายมากหลัง",
+      "จากนั่งมาทั้งวัน"
+    ],
+    "extraExample": "Exhale as you deepen into the torso twist.",
+    "extraExampleTranslation": "หายใจออกขณะที่คุณบิดลำตัวให้ลึกขึ้น",
+    "usageTip": "torso twist (คำนาม) = การบิดลำตัว · มักใช้ในวลี: seated torso twist, supine torso twist · คำใกล้เคียง: spinal twist, trunk rotation",
+    "novaBatch": true
+  },
+  {
+    "word": "side stretch",
+    "partOfSpeech": "noun",
+    "translation": "การยืดสีข้าง",
+    "definition": "a stretch reaching one arm overhead to lengthen the side of the body",
+    "example": "Reach your right arm up for a deep side stretch.",
+    "exampleTranslation": "เหยียดแขนขวาขึ้นด้านบนเพื่อยืดสีข้างให้ลึกขึ้น",
+    "phonetic": "/saɪd strɛtʃ/",
+    "cefr": "A2",
+    "collocations": [
+      "standing side stretch",
+      "overhead side stretch"
+    ],
+    "synonyms": [
+      "lateral stretch",
+      "oblique stretch"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "เหยียดแขนข",
+      "วาขึ้นด้านบน",
+      "เพื่อยืดสีข้าง",
+      "ให้ลึกขึ้น"
+    ],
+    "extraExample": "A standing side stretch opens up your ribcage for better breathing.",
+    "extraExampleTranslation": "การยืนยืดสีข้างช่วยเปิดซี่โครงเพื่อให้หายใจได้ดีขึ้น",
+    "usageTip": "side stretch (คำนาม) = การยืดสีข้าง · มักใช้ในวลี: standing side stretch, overhead side stretch · คำใกล้เคียง: lateral stretch, oblique stretch",
+    "novaBatch": true
+  },
+  {
+    "word": "chest opener",
+    "partOfSpeech": "noun",
+    "translation": "ท่าเปิดหน้าอก",
+    "definition": "a stretch that expands the chest and pulls the shoulders back",
+    "example": "Clasp your hands behind your back for an easy chest opener.",
+    "exampleTranslation": "ประสานมือไว้ด้านหลังเพื่อทำท่าเปิดหน้าอกอย่างง่าย",
+    "phonetic": "/tʃɛst ˈoʊpənər/",
+    "cefr": "B2",
+    "collocations": [
+      "standing chest opener",
+      "doorway chest opener"
+    ],
+    "synonyms": [
+      "pectoral stretch",
+      "heart opener"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ประสานมือไว้ด้าน",
+      "หลังเพื่อทำ",
+      "ท่าเปิดหน้าอก",
+      "อย่างง่าย"
+    ],
+    "extraExample": "Chest openers are essential for people who work on laptops.",
+    "extraExampleTranslation": "ท่าเปิดหน้าอกจำเป็นมากสำหรับคนที่ทำงานบนแล็ปท็อป",
+    "usageTip": "chest opener (คำนาม) = ท่าเปิดหน้าอก · มักใช้ในวลี: standing chest opener, doorway chest opener · คำใกล้เคียง: pectoral stretch, heart opener",
+    "novaBatch": true
+  },
+  {
+    "word": "hip opener",
+    "partOfSpeech": "noun",
+    "translation": "ท่าเปิดสะโพก",
+    "definition": "a stretch designed to increase flexibility in the hip joints",
+    "example": "Pigeon pose is a very popular hip opener in yoga.",
+    "exampleTranslation": "ท่านกพิราบเป็นท่าเปิดสะโพกที่ได้รับความนิยมมากในโยคะ",
+    "phonetic": "/hɪp ˈoʊpənər/",
+    "cefr": "B2",
+    "collocations": [
+      "deep hip opener",
+      "gentle hip opener"
+    ],
+    "synonyms": [
+      "hip stretch",
+      "hip mobility pose"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ท่านกพิราบเป็น",
+      "ท่าเปิดสะโพก",
+      "ที่ได้รับความ",
+      "นิยมมากในโยคะ"
+    ],
+    "extraExample": "Tight hips can cause lower back pain, so try a daily hip opener.",
+    "extraExampleTranslation": "สะโพกที่ตึงอาจทำให้ปวดหลังส่วนล่างได้ ลองทำท่าเปิดสะโพกทุกวันดูสิ",
+    "usageTip": "hip opener (คำนาม) = ท่าเปิดสะโพก · มักใช้ในวลี: deep hip opener, gentle hip opener · คำใกล้เคียง: hip stretch, hip mobility pose",
+    "novaBatch": true
+  },
+  {
+    "word": "core strength",
+    "partOfSpeech": "noun",
+    "translation": "ความแข็งแรงของแกนกลางลำตัว",
+    "definition": "the power and stability of the abdominal and lower back muscles",
+    "example": "Good core strength protects your spine during heavy lifting.",
+    "exampleTranslation": "ความแข็งแรงของแกนกลางลำตัวที่ดีช่วยปกป้องกระดูกสันหลังขณะยกของหนัก",
+    "phonetic": "/kɔːr strɛŋθ/",
+    "cefr": "B1",
+    "collocations": [
+      "build core strength",
+      "improve core strength"
+    ],
+    "synonyms": [
+      "abdominal strength",
+      "trunk stability"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ความแข็งแรง",
+      "ของแกนกลางลำตัว",
+      "ที่ดีช่วยปกป้องกระดูกสัน",
+      "หลังขณะยกของหนัก"
+    ],
+    "extraExample": "Planks and Pilates are great for building core strength.",
+    "extraExampleTranslation": "ท่าแพลงก์และพิลาทิสช่วยสร้างความแข็งแรงของแกนกลางลำตัวได้ดีมาก",
+    "usageTip": "core strength (คำนาม) = ความแข็งแรงของแกนกลางลำตัว · มักใช้ในวลี: build core strength, improve core strength · คำใกล้เคียง: abdominal strength, trunk stability",
+    "novaBatch": true
+  },
+  {
+    "word": "muscle tension",
+    "partOfSpeech": "noun",
+    "translation": "ความตึงเครียดของกล้ามเนื้อ",
+    "definition": "a condition where muscles remain semi-contracted and tight",
+    "example": "Stress often leads to muscle tension in the neck and shoulders.",
+    "exampleTranslation": "ความเครียดมักนำไปสู่ความตึงเครียดของกล้ามเนื้อบริเวณคอและไหล่",
+    "phonetic": "/ˈmʌsəl ˈtɛnʃən/",
+    "cefr": "B1",
+    "collocations": [
+      "relieve muscle tension",
+      "reduce muscle tension"
+    ],
+    "synonyms": [
+      "muscle tightness",
+      "stiffness"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ความเครียดมักนำไปสู่",
+      "ความตึงเครียด",
+      "ของกล้ามเนื้อ",
+      "บริเวณคอและไหล่"
+    ],
+    "extraExample": "A warm bath and light stretching can ease muscle tension.",
+    "extraExampleTranslation": "การอาบน้ำอุ่นและการยืดเหยียดเบาๆ ช่วยลดความตึงเครียดของกล้ามเนื้อได้",
+    "usageTip": "muscle tension (คำนาม) = ความตึงเครียดของกล้ามเนื้อ · มักใช้ในวลี: relieve muscle tension, reduce muscle tension · คำใกล้เคียง: muscle tightness, stiffness",
+    "novaBatch": true
+  },
+  {
+    "word": "muscle fiber",
+    "partOfSpeech": "noun",
+    "translation": "ใยกล้ามเนื้อ",
+    "definition": "a single cylindrical cell that makes up skeletal muscle tissue",
+    "example": "Strength training creates tiny tears in your muscle fibers.",
+    "exampleTranslation": "การฝึกความแข็งแรงทำให้เกิดการฉีกขาดเล็กๆ ในใยกล้ามเนื้อของคุณ",
+    "phonetic": "/ˈmʌsəl ˈfaɪbər/",
+    "cefr": "B2",
+    "collocations": [
+      "repair muscle fibers",
+      "tear muscle fibers"
+    ],
+    "synonyms": [
+      "muscle cell",
+      "myofiber"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การฝึกความแข็งแร",
+      "งทำให้เกิดการ",
+      "ฉีกขาดเล็กๆใน",
+      "ใยกล้ามเนื้อของคุณ"
+    ],
+    "extraExample": "Proper rest allows damaged muscle fibers to repair and grow.",
+    "extraExampleTranslation": "การพักผ่อนที่เหมาะสมช่วยให้ใยกล้ามเนื้อที่เสียหายซ่อมแซมและเติบโต",
+    "usageTip": "muscle fiber (คำนาม) = ใยกล้ามเนื้อ · มักใช้ในวลี: repair muscle fibers, tear muscle fibers · คำใกล้เคียง: muscle cell, myofiber",
+    "novaBatch": true
+  },
+  {
+    "word": "lactic acid",
+    "partOfSpeech": "noun",
+    "translation": "กรดแลคติก",
+    "definition": "a substance produced in muscles during intense exercise",
+    "example": "The burning feeling in your legs is caused by lactic acid buildup.",
+    "exampleTranslation": "อาการแสบร้อนที่ขาเกิดจากการสะสมของกรดแลคติก",
+    "phonetic": "/ˈlæktɪk ˈæsɪd/",
+    "cefr": "B2",
+    "collocations": [
+      "lactic acid buildup",
+      "clear lactic acid"
+    ],
+    "synonyms": [
+      "lactate",
+      "metabolic byproduct"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "อาการแสบร้อน",
+      "ที่ขาเกิด",
+      "จากการสะสม",
+      "ของกรดแลคติก"
+    ],
+    "extraExample": "Light jogging helps clear lactic acid from your muscles faster.",
+    "extraExampleTranslation": "การวิ่งเหยาะๆ เบาๆ ช่วยขจัดกรดแลคติกออกจากกล้ามเนื้อได้เร็วขึ้น",
+    "usageTip": "lactic acid (คำนาม) = กรดแลคติก · มักใช้ในวลี: lactic acid buildup, clear lactic acid · คำใกล้เคียง: lactate, metabolic byproduct",
+    "novaBatch": true
+  },
+  {
+    "word": "overtrain",
+    "partOfSpeech": "verb",
+    "translation": "ฝึกซ้อมหนักเกินไป",
+    "definition": "to exercise too much without giving the body enough time to recover",
+    "example": "If you overtrain, your performance will actually start to drop.",
+    "exampleTranslation": "หากคุณฝึกซ้อมหนักเกินไป ประสิทธิภาพของคุณจะเริ่มลดลง",
+    "phonetic": "/ˌoʊvərˈtreɪn/",
+    "cefr": "B2",
+    "collocations": [
+      "avoid overtraining",
+      "symptoms of overtraining"
+    ],
+    "synonyms": [
+      "overwork",
+      "burn out"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "หากคุณ",
+      "ฝึกซ้อมหนักเกินไป",
+      "ประสิทธิภาพ",
+      "ของคุณจะเริ่มลดลง"
+    ],
+    "extraExample": "Listen to your body so you don't overtrain and get injured.",
+    "extraExampleTranslation": "ฟังเสียงร่างกายของคุณเพื่อไม่ให้ฝึกซ้อมหนักเกินไปจนบาดเจ็บ",
+    "usageTip": "overtrain (คำกริยา) = ฝึกซ้อมหนักเกินไป · มักใช้ในวลี: avoid overtraining, symptoms of overtraining · คำใกล้เคียง: overwork, burn out",
+    "novaBatch": true
+  },
+  {
+    "word": "overstretch",
+    "partOfSpeech": "verb",
+    "translation": "ยืดเหยียดมากเกินไป",
+    "definition": "to stretch a muscle or joint beyond its safe limit",
+    "example": "Be careful not to overstretch your hamstrings when they are cold.",
+    "exampleTranslation": "ระวังอย่าฝืนยืดกล้ามเนื้อแฮมสตริงมากเกินไปขณะที่กล้ามเนื้อยังเย็นอยู่",
+    "phonetic": "/ˌoʊvərˈstrɛtʃ/",
+    "cefr": "B2",
+    "collocations": [
+      "overstretch a muscle",
+      "never overstretch"
+    ],
+    "synonyms": [
+      "strain",
+      "hyperextend"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ระวังอย่าฝืนยืดก",
+      "ล้ามเนื้อแฮมสตริง",
+      "มากเกินไปขณะ",
+      "ที่กล้ามเนื้อยังเย็นอยู่"
+    ],
+    "extraExample": "You can pull a muscle if you bounce and overstretch.",
+    "extraExampleTranslation": "คุณอาจทำให้กล้ามเนื้อฉีกได้หากเด้งตัวและยืดเหยียดมากเกินไป",
+    "usageTip": "overstretch (คำกริยา) = ยืดเหยียดมากเกินไป · มักใช้ในวลี: overstretch a muscle, never overstretch · คำใกล้เคียง: strain, hyperextend",
+    "novaBatch": true
+  },
+  {
+    "word": "hyperextend",
+    "partOfSpeech": "verb",
+    "translation": "เหยียดข้อต่อเกินองศา",
+    "definition": "to extend a joint beyond its normal range of motion",
+    "example": "Don't lock or hyperextend your knees when standing in mountain pose.",
+    "exampleTranslation": "อย่าล็อกหรือเหยียดเข่าเกินองศาขณะยืนในท่าภูเขา",
+    "phonetic": "/ˌhaɪpərɪkˈstɛnd/",
+    "cefr": "B2",
+    "collocations": [
+      "hyperextend a knee",
+      "hyperextend the elbow"
+    ],
+    "synonyms": [
+      "overextend",
+      "lock out"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "อย่าล็อกหรือ",
+      "เหยียดเข่าเกิน",
+      "องศาขณะยืน",
+      "ในท่าภูเขา"
+    ],
+    "extraExample": "She hyperextended her elbow while catching herself from a fall.",
+    "extraExampleTranslation": "เธอเหยียดข้อศอกเกินองศาขณะใช้มือยันพื้นตอนล้ม",
+    "usageTip": "hyperextend (คำกริยา) = เหยียดข้อต่อเกินองศา · มักใช้ในวลี: hyperextend a knee, hyperextend the elbow · คำใกล้เคียง: overextend, lock out",
+    "novaBatch": true
+  },
+  {
+    "word": "elongate",
+    "partOfSpeech": "verb",
+    "translation": "ยืดยาวออก",
+    "definition": "to make a muscle or the spine longer through stretching",
+    "example": "Inhale and elongate your spine toward the ceiling.",
+    "exampleTranslation": "หายใจเข้าและยืดกระดูกสันหลังให้ยาวขึ้นไปหาเพดาน",
+    "phonetic": "/ɪˈlɔːŋɡeɪt/",
+    "cefr": "B2",
+    "collocations": [
+      "elongate the spine",
+      "elongate muscles"
+    ],
+    "synonyms": [
+      "lengthen",
+      "stretch out"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "หายใจเข้าและ",
+      "ยืดกระดูกสัน",
+      "หลัง",
+      "ให้ยาวขึ้นไปหาเพดาน"
+    ],
+    "extraExample": "Pilates exercises help elongate tight muscles.",
+    "extraExampleTranslation": "การออกกำลังกายแบบพิลาทิสช่วยยืดกล้ามเนื้อที่ตึงให้ยาวออก",
+    "usageTip": "elongate (คำกริยา) = ยืดยาวออก · มักใช้ในวลี: elongate the spine, elongate muscles · คำใกล้เคียง: lengthen, stretch out",
+    "novaBatch": true
+  },
+  {
+    "word": "stabilize",
+    "partOfSpeech": "verb",
+    "translation": "สร้างความมั่นคง",
+    "definition": "to hold a joint or body part steady during exercise",
+    "example": "Use your core to stabilize your pelvis during leg raises.",
+    "exampleTranslation": "ใช้แกนกลางลำตัวเพื่อสร้างความมั่นคงให้เชิงกรานระหว่างยกขา",
+    "phonetic": "/ˈsteɪbəlaɪz/",
+    "cefr": "B2",
+    "collocations": [
+      "stabilize the core",
+      "stabilize a joint"
+    ],
+    "synonyms": [
+      "steady",
+      "support"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "ใช้แกนกลางลำตัว",
+      "เพื่อสร้างความมั่นคง",
+      "ให้เชิงกราน",
+      "ระหว่างยกขา"
+    ],
+    "extraExample": "Small muscles around the shoulder help stabilize the joint.",
+    "extraExampleTranslation": "กล้ามเนื้อมัดเล็กรอบหัวไหล่ช่วยสร้างความมั่นคงให้ข้อต่อ",
+    "usageTip": "stabilize (คำกริยา) = สร้างความมั่นคง · มักใช้ในวลี: stabilize the core, stabilize a joint · คำใกล้เคียง: steady, support",
+    "novaBatch": true
+  },
+  {
+    "word": "tightness",
+    "partOfSpeech": "noun",
+    "translation": "อาการตึง",
+    "definition": "the feeling of muscles being stiff and hard to stretch",
+    "example": "Stretching every morning reduces tightness in my calves.",
+    "exampleTranslation": "การยืดเหยียดทุกเช้าช่วยลดอาการตึงที่น่องของฉันได้",
+    "phonetic": "/ˈtaɪtnəs/",
+    "cefr": "B1",
+    "collocations": [
+      "hamstring tightness",
+      "relieve tightness"
+    ],
+    "synonyms": [
+      "stiffness",
+      "tension"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การยืดเหยียด",
+      "ทุกเช้าช่วยลด",
+      "อาการตึง",
+      "ที่น่องของฉันได้"
+    ],
+    "extraExample": "Runner's knee is often caused by tightness in the outer thigh.",
+    "extraExampleTranslation": "อาการปวดเข่าของนักวิ่งมักเกิดจากอาการตึงที่ต้นขาด้านนอก",
+    "usageTip": "tightness (คำนาม) = อาการตึง · มักใช้ในวลี: hamstring tightness, relieve tightness · คำใกล้เคียง: stiffness, tension",
+    "novaBatch": true
+  },
+  {
+    "word": "trigger point",
+    "partOfSpeech": "noun",
+    "translation": "จุดกดเจ็บ",
+    "definition": "a sensitive spot in a muscle that causes pain when pressed",
+    "example": "Pressing on a trigger point can refer pain to another area.",
+    "exampleTranslation": "การกดลงบนจุดกดเจ็บอาจทำให้รู้สึกปวดร้าวไปยังบริเวณอื่นได้",
+    "phonetic": "/ˈtrɪɡər pɔɪnt/",
+    "cefr": "B2",
+    "collocations": [
+      "release a trigger point",
+      "painful trigger point"
+    ],
+    "synonyms": [
+      "muscle knot",
+      "tender spot"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "การกดลงบนจุดกดเจ็บ",
+      "อาจทำให้รู้สึก",
+      "ปวดร้าวไป",
+      "ยังบริเวณอื่นได้"
+    ],
+    "extraExample": "Foam rolling targets trigger points in your quads and back.",
+    "extraExampleTranslation": "การใช้โฟมโรลเลอร์ช่วยจัดการจุดกดเจ็บที่หน้าขาและหลัง",
+    "usageTip": "trigger point (คำนาม) = จุดกดเจ็บ · มักใช้ในวลี: release a trigger point, painful trigger point · คำใกล้เคียง: muscle knot, tender spot",
+    "novaBatch": true
+  },
+  {
+    "word": "yoga block",
+    "partOfSpeech": "noun",
+    "translation": "บล็อกโยคะ",
+    "definition": "a firm foam or cork brick used to support yoga poses",
+    "example": "Place a yoga block under your hand if you can't reach the floor.",
+    "exampleTranslation": "วางบล็อกโยคะไว้ใต้ฝ่ามือหากคุณเอื้อมไม่ถึงพื้น",
+    "phonetic": "/ˈjoʊɡə blɑːk/",
+    "cefr": "A2",
+    "collocations": [
+      "use a yoga block",
+      "rest on a yoga block"
+    ],
+    "synonyms": [
+      "yoga brick",
+      "support block"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "วางบล็อกโยคะ",
+      "ไว้ใต้ฝ่ามือ",
+      "หากคุณเอื้อ",
+      "มไม่ถึงพื้น"
+    ],
+    "extraExample": "A yoga block helps beginners maintain proper alignment.",
+    "extraExampleTranslation": "บล็อกโยคะช่วยให้ผู้เริ่มต้นรักษาแนวร่างกายที่ถูกต้องได้",
+    "usageTip": "yoga block (คำนาม) = บล็อกโยคะ · มักใช้ในวลี: use a yoga block, rest on a yoga block · คำใกล้เคียง: yoga brick, support block",
+    "novaBatch": true
+  },
+  {
+    "word": "yoga strap",
+    "partOfSpeech": "noun",
+    "translation": "สายรัดโยคะ",
+    "definition": "a long fabric band used to extend your reach during stretches",
+    "example": "Loop a yoga strap around your foot to stretch your hamstring safely.",
+    "exampleTranslation": "คล้องสายรัดโยคะรอบเท้าเพื่อยืดกล้ามเนื้อแฮมสตริงอย่างปลอดภัย",
+    "phonetic": "/ˈjoʊɡə stræp/",
+    "cefr": "B1",
+    "collocations": [
+      "loop a yoga strap",
+      "pull on a yoga strap"
+    ],
+    "synonyms": [
+      "stretching strap",
+      "yoga belt"
+    ],
+    "topic": "body",
+    "thTokens": [
+      "คล้องสายรัดโยคะ",
+      "รอบเท้าเพื่อยืด",
+      "กล้ามเนื้อแฮมสตริง",
+      "อย่างปลอดภัย"
+    ],
+    "extraExample": "A yoga strap is very helpful if you have tight shoulders.",
+    "extraExampleTranslation": "สายรัดโยคะมีประโยชน์มากหากคุณมีอาการไหล่ตึง",
+    "usageTip": "yoga strap (คำนาม) = สายรัดโยคะ · มักใช้ในวลี: loop a yoga strap, pull on a yoga strap · คำใกล้เคียง: stretching strap, yoga belt",
+    "novaBatch": true
+  },
+  {
+    "word": "acoustics",
+    "partOfSpeech": "noun",
+    "translation": "ระบบเสียง/การสะท้อนเสียง",
+    "definition": "the way sound travels in a room",
+    "example": "The acoustics in this stairwell carry every footstep.",
+    "exampleTranslation": "ระบบเสียงในปล่องบันไดนี้สะท้อนเสียงฝีเท้าทุกก้าว",
+    "phonetic": "/əˈkuːstɪks/",
+    "cefr": "B2",
+    "collocations": [
+      "room acoustics",
+      "poor acoustics"
+    ],
+    "synonyms": [
+      "sound quality",
+      "resonance"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ระบบเสียง",
+      "ในปล่องบันไดนี้สะ",
+      "ท้อนเสียง",
+      "ฝีเท้าทุกก้าว"
+    ],
+    "extraExample": "Good acoustics matter when you play music in an apartment.",
+    "extraExampleTranslation": "ระบบเสียงที่ดีสำคัญมากเวลาคุณเปิดเพลงในอพาร์ตเมนต์",
+    "usageTip": "acoustics (คำนาม) = ระบบเสียง/การสะท้อนเสียง · มักใช้ในวลี: room acoustics, poor acoustics · คำใกล้เคียง: sound quality, resonance",
+    "novaBatch": true
+  },
+  {
+    "word": "amenity",
+    "partOfSpeech": "noun",
+    "translation": "สิ่งอำนวยความสะดวก",
+    "definition": "a useful feature or facility in a building",
+    "example": "The gym is my favorite amenity in this complex.",
+    "exampleTranslation": "ฟิตเนสเป็นสิ่งอำนวยความสะดวกที่ฉันชอบที่สุดในโครงการนี้",
+    "phonetic": "/əˈmenəti/",
+    "cefr": "B2",
+    "collocations": [
+      "building amenity",
+      "shared amenity"
+    ],
+    "synonyms": [
+      "facility",
+      "convenience"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ฟิตเนสเป็น",
+      "สิ่งอำนวยความสะดวก",
+      "ที่ฉันชอบ",
+      "ที่สุดในโครงการนี้"
+    ],
+    "extraExample": "Rent is higher because of every shared amenity.",
+    "extraExampleTranslation": "ค่าเช่าสูงขึ้นเพราะมีสิ่งอำนวยความสะดวกส่วนกลางครบ",
+    "usageTip": "amenity (คำนาม) = สิ่งอำนวยความสะดวก · มักใช้ในวลี: building amenity, shared amenity · คำใกล้เคียง: facility, convenience",
+    "novaBatch": true
+  },
+  {
+    "word": "bicker",
+    "partOfSpeech": "verb",
+    "translation": "ทะเลาะเรื่องเล็กน้อย",
+    "definition": "to argue about petty things",
+    "example": "They bicker over who left trash in the hall.",
+    "exampleTranslation": "พวกเขาทะเลาะกันเรื่องเล็กน้อยว่าใครทิ้งขยะไว้ตรงโถงทางเดิน",
+    "phonetic": "/ˈbɪkər/",
+    "cefr": "B2",
+    "collocations": [
+      "bicker over",
+      "constantly bicker"
+    ],
+    "synonyms": [
+      "squabble",
+      "argue"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "พวกเขาทะเลาะกัน",
+      "เรื่องเล็กน้อ",
+      "ยว่าใครทิ้งขยะ",
+      "ไว้ตรงโถงทางเดิน"
+    ],
+    "extraExample": "Neighbors shouldn't bicker about parking spots.",
+    "extraExampleTranslation": "เพื่อนบ้านไม่ควรทะเลาะกันเรื่องที่จอดรถ",
+    "usageTip": "bicker (คำกริยา) = ทะเลาะเรื่องเล็กน้อย · มักใช้ในวลี: bicker over, constantly bicker · คำใกล้เคียง: squabble, argue",
+    "novaBatch": true
+  },
+  {
+    "word": "check in on",
+    "partOfSpeech": "verb",
+    "translation": "แวะดู/ถามไถ่สารทุกข์สุกดิบ",
+    "definition": "to visit or contact someone to see if they are okay",
+    "example": "I check in on my elderly neighbor every weekend.",
+    "exampleTranslation": "ฉันแวะไปดูเพื่อนบ้านสูงอายุทุกสุดสัปดาห์",
+    "phonetic": "/tʃek ɪn ɑːn/",
+    "cefr": "B1",
+    "collocations": [
+      "check in on a neighbor",
+      "regularly check in on"
+    ],
+    "synonyms": [
+      "look after",
+      "visit"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ฉันแวะไป",
+      "ดูเพื่อนบ้าน",
+      "สูงอายุทุก",
+      "สุดสัปดาห์"
+    ],
+    "extraExample": "Could you check in on my cat while I'm away?",
+    "extraExampleTranslation": "ช่วยแวะมาดูแมวให้หน่อยได้ไหมตอนฉันไม่อยู่",
+    "usageTip": "check in on (คำกริยา) = แวะดู/ถามไถ่สารทุกข์สุกดิบ · มักใช้ในวลี: check in on a neighbor, regularly check in on · คำใกล้เคียง: look after, visit",
+    "novaBatch": true
+  },
+  {
+    "word": "common area",
+    "partOfSpeech": "noun",
+    "translation": "พื้นที่ส่วนกลาง",
+    "definition": "shared space in a building for all residents",
+    "example": "Please keep the common area clean after your party.",
+    "exampleTranslation": "กรุณารักษาความสะอาดพื้นที่ส่วนกลางหลังจบปาร์ตี้",
+    "phonetic": "/ˈkɑːmən ˈeriə/",
+    "cefr": "B1",
+    "collocations": [
+      "clean the common area",
+      "shared common area"
+    ],
+    "synonyms": [
+      "shared space",
+      "public area"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "กรุณารักษาค",
+      "วามสะอาดพื้น",
+      "ที่ส่วนกลาง",
+      "หลังจบปาร์ตี้"
+    ],
+    "extraExample": "No smoking is allowed in any common area.",
+    "extraExampleTranslation": "ห้ามสูบบุหรี่ในพื้นที่ส่วนกลางทุกจุด",
+    "usageTip": "common area (คำนาม) = พื้นที่ส่วนกลาง · มักใช้ในวลี: clean the common area, shared common area · คำใกล้เคียง: shared space, public area",
+    "novaBatch": true
+  },
+  {
+    "word": "cordial",
+    "partOfSpeech": "adjective",
+    "translation": "เป็นมิตรและสุภาพ",
+    "definition": "warm and friendly in a polite way",
+    "example": "We keep a cordial relationship with everyone on our floor.",
+    "exampleTranslation": "เรารักษาความสัมพันธ์ที่เป็นมิตรและสุภาพกับทุกคนในชั้น",
+    "phonetic": "/ˈkɔːrdʒəl/",
+    "cefr": "B2",
+    "collocations": [
+      "cordial relationship",
+      "cordial greeting"
+    ],
+    "synonyms": [
+      "friendly",
+      "polite"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "เรารักษาความ",
+      "สัมพันธ์ที่",
+      "เป็นมิตรและสุภาพ",
+      "กับทุกคนในชั้น"
+    ],
+    "extraExample": "A cordial greeting in the elevator makes a difference.",
+    "extraExampleTranslation": "การทักทายอย่างสุภาพในลิฟต์สร้างความรู้สึกที่ดีได้",
+    "usageTip": "cordial (คำคุณศัพท์) = เป็นมิตรและสุภาพ · มักใช้ในวลี: cordial relationship, cordial greeting · คำใกล้เคียง: friendly, polite",
+    "novaBatch": true
+  },
+  {
+    "word": "dampen",
+    "partOfSpeech": "verb",
+    "translation": "ลดทอน/ซับเสียง",
+    "definition": "to make sound or impact less strong",
+    "example": "Thick rugs help dampen footsteps from above.",
+    "exampleTranslation": "พรมหนาๆ ช่วยซับเสียงฝีเท้าจากชั้นบนได้",
+    "phonetic": "/ˈdæmpən/",
+    "cefr": "B2",
+    "collocations": [
+      "dampen noise",
+      "dampen footsteps"
+    ],
+    "synonyms": [
+      "muffle",
+      "reduce"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "พรมหนาๆช่ว",
+      "ยซับเสีย",
+      "งฝีเท้าจาก",
+      "ชั้นบนได้"
+    ],
+    "extraExample": "Foam panels dampen the echo in this room.",
+    "extraExampleTranslation": "แผ่นโฟมช่วยลดเสียงสะท้อนในห้องนี้",
+    "usageTip": "dampen (คำกริยา) = ลดทอน/ซับเสียง · มักใช้ในวลี: dampen noise, dampen footsteps · คำใกล้เคียง: muffle, reduce",
+    "novaBatch": true
+  },
+  {
+    "word": "eavesdrop",
+    "partOfSpeech": "verb",
+    "translation": "แอบฟัง",
+    "definition": "to secretly listen to a private conversation",
+    "example": "It's rude to eavesdrop through thin apartment walls.",
+    "exampleTranslation": "การแอบฟังผ่านผนังห้องที่บางเป็นเรื่องเสียมารยาท",
+    "phonetic": "/ˈiːvzdrɑːp/",
+    "cefr": "B2",
+    "collocations": [
+      "eavesdrop on",
+      "eavesdrop through"
+    ],
+    "synonyms": [
+      "listen in",
+      "spy"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "การแอบฟัง",
+      "ผ่านผนังห้อง",
+      "ที่บางเป็น",
+      "เรื่องเสียมารยาท"
+    ],
+    "extraExample": "I didn't mean to eavesdrop on their argument.",
+    "extraExampleTranslation": "ฉันไม่ได้ตั้งใจจะแอบฟังพวกเขาเถียงกัน",
+    "usageTip": "eavesdrop (คำกริยา) = แอบฟัง · มักใช้ในวลี: eavesdrop on, eavesdrop through · คำใกล้เคียง: listen in, spy",
+    "novaBatch": true
+  },
+  {
+    "word": "etiquette",
+    "partOfSpeech": "noun",
+    "translation": "มารยาททางสังคม",
+    "definition": "the rules of polite behavior in a group",
+    "example": "Trash room etiquette means breaking down boxes.",
+    "exampleTranslation": "มารยาทการใช้ห้องทิ้งขยะคือการพับกล่องให้แบน",
+    "phonetic": "/ˈetɪkət/",
+    "cefr": "B2",
+    "collocations": [
+      "apartment etiquette",
+      "elevator etiquette"
+    ],
+    "synonyms": [
+      "manners",
+      "protocol"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "มารยาทการ",
+      "ใช้ห้องทิ้ง",
+      "ขยะคือการ",
+      "พับกล่องให้แบน"
+    ],
+    "extraExample": "Good elevator etiquette includes letting people exit first.",
+    "extraExampleTranslation": "มารยาทการใช้ลิฟต์ที่ดีคือให้คนข้างในออกก่อน",
+    "usageTip": "etiquette (คำนาม) = มารยาททางสังคม · มักใช้ในวลี: apartment etiquette, elevator etiquette · คำใกล้เคียง: manners, protocol",
+    "novaBatch": true
+  },
+  {
+    "word": "fuse box",
+    "partOfSpeech": "noun",
+    "translation": "ตู้ควบคุมไฟ/กล่องฟิวส์",
+    "definition": "a box containing electrical switches for a home",
+    "example": "Check the fuse box if the kitchen outlets stop working.",
+    "exampleTranslation": "เช็กตู้ควบคุมไฟถ้าปลั๊กในครัวไฟดับ",
+    "phonetic": "/ˈfjuːz bɑːks/",
+    "cefr": "B1",
+    "collocations": [
+      "check the fuse box",
+      "main fuse box"
+    ],
+    "synonyms": [
+      "breaker box",
+      "electrical panel"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "เช็ก",
+      "ตู้ควบคุมไฟ",
+      "ถ้าปลั๊ก",
+      "ในครัวไฟดับ"
+    ],
+    "extraExample": "The fuse box is hidden behind the hallway mirror.",
+    "extraExampleTranslation": "กล่องฟิวส์ซ่อนอยู่หลังกระจกตรงโถงทางเดิน",
+    "usageTip": "fuse box (คำนาม) = ตู้ควบคุมไฟ/กล่องฟิวส์ · มักใช้ในวลี: check the fuse box, main fuse box · คำใกล้เคียง: breaker box, electrical panel",
+    "novaBatch": true
+  },
+  {
+    "word": "grievance",
+    "partOfSpeech": "noun",
+    "translation": "ข้อร้องเรียน/ความไม่พอใจ",
+    "definition": "a formal complaint about unfair treatment or a problem",
+    "example": "Residents filed a grievance about the broken heater.",
+    "exampleTranslation": "ลูกบ้านยื่นข้อร้องเรียนเรื่องเครื่องทำความร้อนเสีย",
+    "phonetic": "/ˈɡriːvəns/",
+    "cefr": "B2",
+    "collocations": [
+      "file a grievance",
+      "air a grievance"
+    ],
+    "synonyms": [
+      "complaint",
+      "objection"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ลูกบ้านยื่น",
+      "ข้อร้องเรียน",
+      "เรื่องเครื่อง",
+      "ทำความร้อนเสีย"
+    ],
+    "extraExample": "Bring your grievance to the building board.",
+    "extraExampleTranslation": "นำข้อร้องเรียนของคุณไปแจ้งคณะกรรมการอาคาร",
+    "usageTip": "grievance (คำนาม) = ข้อร้องเรียน/ความไม่พอใจ · มักใช้ในวลี: file a grievance, air a grievance · คำใกล้เคียง: complaint, objection",
+    "novaBatch": true
+  },
+  {
+    "word": "guest parking",
+    "partOfSpeech": "noun",
+    "translation": "ที่จอดรถสำหรับผู้มาติดต่อ",
+    "definition": "parking spaces reserved for visitors",
+    "example": "Guest parking is limited to four hours.",
+    "exampleTranslation": "ที่จอดรถสำหรับผู้มาติดต่อจอดได้ไม่เกินสี่ชั่วโมง",
+    "phonetic": "/ɡest ˈpɑːrkɪŋ/",
+    "cefr": "B1",
+    "collocations": [
+      "guest parking pass",
+      "use guest parking"
+    ],
+    "synonyms": [
+      "visitor parking",
+      "temporary parking"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ที่จอดรถ",
+      "สำหรับผู้มาติดต่อ",
+      "จอดได้ไม่เกิน",
+      "สี่ชั่วโมง"
+    ],
+    "extraExample": "Register your friend's plate for guest parking.",
+    "extraExampleTranslation": "ลงทะเบียนป้ายทะเบียนรถเพื่อนเพื่อใช้ที่จอดรถผู้มาติดต่อ",
+    "usageTip": "guest parking (คำนาม) = ที่จอดรถสำหรับผู้มาติดต่อ · มักใช้ในวลี: guest parking pass, use guest parking · คำใกล้เคียง: visitor parking, temporary parking",
+    "novaBatch": true
+  },
+  {
+    "word": "house-sit",
+    "partOfSpeech": "verb",
+    "translation": "เฝ้าบ้านให้ตอนเจ้าของไม่อยู่",
+    "definition": "to stay in someone's home to care for it while they are away",
+    "example": "Can you house-sit for us next week?",
+    "exampleTranslation": "ช่วยมาเฝ้าบ้านให้เราสัปดาห์หน้าได้ไหม",
+    "phonetic": "/ˈhaʊs sɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "house-sit for",
+      "agree to house-sit"
+    ],
+    "synonyms": [
+      "watch the house",
+      "caretake"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ช่วยมาเฝ้าบ้าน",
+      "ให้เราสัป",
+      "ดาห์",
+      "หน้าได้ไหม"
+    ],
+    "extraExample": "She loves to house-sit because she gets to water the plants.",
+    "extraExampleTranslation": "เธอชอบรับเฝ้าบ้านเพราะได้รดน้ำต้นไม้ด้วย",
+    "usageTip": "house-sit (คำกริยา) = เฝ้าบ้านให้ตอนเจ้าของไม่อยู่ · มักใช้ในวลี: house-sit for, agree to house-sit · คำใกล้เคียง: watch the house, caretake",
+    "novaBatch": true
+  },
+  {
+    "word": "noise ordinance",
+    "partOfSpeech": "noun",
+    "translation": "ข้อบัญญัติเรื่องเสียงรบกวน",
+    "definition": "a local law limiting loud noise at certain hours",
+    "example": "The city noise ordinance starts at 10 p.m.",
+    "exampleTranslation": "ข้อบัญญัติเรื่องเสียงรบกวนของเมืองเริ่มเวลา 4 ทุ่ม",
+    "phonetic": "/nɔɪz ˈɔːrdɪnəns/",
+    "cefr": "B2",
+    "collocations": [
+      "violate the noise ordinance",
+      "local noise ordinance"
+    ],
+    "synonyms": [
+      "noise law",
+      "quiet regulation"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ข้อบัญญัติเรื่องเสียงรบกวนของเมืองเริ่มเวลา",
+      "4",
+      "ทุ่ม"
+    ],
+    "extraExample": "Loud construction violates the noise ordinance.",
+    "extraExampleTranslation": "งานก่อสร้างเสียงดังฝ่าฝืนข้อบัญญัติเรื่องเสียงรบกวน",
+    "usageTip": "noise ordinance (คำนาม) = ข้อบัญญัติเรื่องเสียงรบกวน · มักใช้ในวลี: violate the noise ordinance, local noise ordinance · คำใกล้เคียง: noise law, quiet regulation",
+    "novaBatch": true
+  },
+  {
+    "word": "pet peeve",
+    "partOfSpeech": "noun",
+    "translation": "เรื่องที่รำคาญใจเป็นพิเศษ",
+    "definition": "something that annoys a person very much",
+    "example": "Leaving wet umbrellas in the hall is my pet peeve.",
+    "exampleTranslation": "การวางร่มเปียกไว้ที่โถงทางเดินเป็นเรื่องที่ฉันรำคาญที่สุด",
+    "phonetic": "/pet piːv/",
+    "cefr": "B2",
+    "collocations": [
+      "biggest pet peeve",
+      "personal pet peeve"
+    ],
+    "synonyms": [
+      "annoyance",
+      "irritation"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "การวางร่มเปียก",
+      "ไว้ที่โถงทางเดิน",
+      "เป็นเรื่อง",
+      "ที่ฉันรำคาญที่สุด"
+    ],
+    "extraExample": "My neighbor's pet peeve is slamming doors.",
+    "extraExampleTranslation": "เรื่องที่เพื่อนบ้านฉันรำคาญที่สุดคือการปิดประตูเสียงดัง",
+    "usageTip": "pet peeve (คำนาม) = เรื่องที่รำคาญใจเป็นพิเศษ · มักใช้ในวลี: biggest pet peeve, personal pet peeve · คำใกล้เคียง: annoyance, irritation",
+    "novaBatch": true
+  },
+  {
+    "word": "remodel",
+    "partOfSpeech": "verb",
+    "translation": "ปรับปรุงตกแต่งใหม่",
+    "definition": "to change the structure or appearance of a room",
+    "example": "They plan to remodel the kitchen this summer.",
+    "exampleTranslation": "พวกเขาวางแผนจะปรับปรุงครัวใหม่ช่วงฤดูร้อนนี้",
+    "phonetic": "/ˌriːˈmɑːdl/",
+    "cefr": "B2",
+    "collocations": [
+      "remodel a kitchen",
+      "remodel the unit"
+    ],
+    "synonyms": [
+      "renovate",
+      "redesign"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "พวกเขาวางแผ",
+      "นจะปรับปรุง",
+      "ครัวใหม่ช่ว",
+      "งฤดูร้อนนี้"
+    ],
+    "extraExample": "You need approval before you remodel an apartment.",
+    "extraExampleTranslation": "คุณต้องขออนุญาตก่อนปรับปรุงห้องชุด",
+    "usageTip": "remodel (คำกริยา) = ปรับปรุงตกแต่งใหม่ · มักใช้ในวลี: remodel a kitchen, remodel the unit · คำใกล้เคียง: renovate, redesign",
+    "novaBatch": true
+  },
+  {
+    "word": "reside",
+    "partOfSpeech": "verb",
+    "translation": "อาศัยอยู่",
+    "definition": "to live in a particular place",
+    "example": "Over two hundred families reside in this tower.",
+    "exampleTranslation": "มีมากกว่าสองร้อยครอบครัวอาศัยอยู่ในอาคารนี้",
+    "phonetic": "/rɪˈzaɪd/",
+    "cefr": "B2",
+    "collocations": [
+      "reside in",
+      "reside on the floor"
+    ],
+    "synonyms": [
+      "live",
+      "dwell"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "มีมากกว่าส",
+      "องร้อยครอบครัว",
+      "อาศัยอยู่",
+      "ในอาคารนี้"
+    ],
+    "extraExample": "He has resided on the fifth floor for ten years.",
+    "extraExampleTranslation": "เขาอาศัยอยู่บนชั้นห้ามาสิบปีแล้ว",
+    "usageTip": "reside (คำกริยา) = อาศัยอยู่ · มักใช้ในวลี: reside in, reside on the floor · คำใกล้เคียง: live, dwell",
+    "novaBatch": true
+  },
+  {
+    "word": "security deposit",
+    "partOfSpeech": "noun",
+    "translation": "เงินประกันความเสียหาย",
+    "definition": "money paid in advance to cover possible damage",
+    "example": "You get your security deposit back if nothing is broken.",
+    "exampleTranslation": "คุณจะได้เงินประกันคืนหากไม่มีอะไรเสียหาย",
+    "phonetic": "/sɪˈkjʊrəti dɪˈpɑːzɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "refund a security deposit",
+      "pay a security deposit"
+    ],
+    "synonyms": [
+      "damage deposit",
+      "bond"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "คุณจะได้เงิน",
+      "ประกันคืน",
+      "หากไม่มีอะ",
+      "ไรเสียหาย"
+    ],
+    "extraExample": "The landlord kept part of the security deposit for cleaning.",
+    "extraExampleTranslation": "เจ้าของห้องหักเงินประกันบางส่วนเป็นค่าทำความสะอาด",
+    "usageTip": "security deposit (คำนาม) = เงินประกันความเสียหาย · มักใช้ในวลี: refund a security deposit, pay a security deposit · คำใกล้เคียง: damage deposit, bond",
+    "novaBatch": true
+  },
+  {
+    "word": "shared wall",
+    "partOfSpeech": "noun",
+    "translation": "ผนังที่ใช้ร่วมกัน",
+    "definition": "a wall separating two adjacent apartments",
+    "example": "Our TV hangs on the shared wall, so keep it low.",
+    "exampleTranslation": "ทีวีเราแขวนบนผนังที่ใช้ร่วมกัน เลยต้องเปิดเสียงเบาๆ",
+    "phonetic": "/ʃerd wɔːl/",
+    "cefr": "B1",
+    "collocations": [
+      "along the shared wall",
+      "thin shared wall"
+    ],
+    "synonyms": [
+      "party wall",
+      "common wall"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ทีวีเราแขวนบน",
+      "ผนังที่ใช้ร่วมกัน",
+      "เลยต้อ",
+      "งเปิดเสียงเบาๆ"
+    ],
+    "extraExample": "You can hear muffled voices through a shared wall.",
+    "extraExampleTranslation": "คุณจะได้ยินเสียงอู้อี้ผ่านผนังที่ใช้ร่วมกัน",
+    "usageTip": "shared wall (คำนาม) = ผนังที่ใช้ร่วมกัน · มักใช้ในวลี: along the shared wall, thin shared wall · คำใกล้เคียง: party wall, common wall",
+    "novaBatch": true
+  },
+  {
+    "word": "spare key",
+    "partOfSpeech": "noun",
+    "translation": "กุญแจสำรอง",
+    "definition": "an extra key kept in case the main one is lost",
+    "example": "I left a spare key with my trusted neighbor.",
+    "exampleTranslation": "ฉันฝากกุญแจสำรองไว้กับเพื่อนบ้านที่ไว้ใจได้",
+    "phonetic": "/sper kiː/",
+    "cefr": "B1",
+    "collocations": [
+      "leave a spare key",
+      "hide a spare key"
+    ],
+    "synonyms": [
+      "extra key",
+      "backup key"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ฉันฝาก",
+      "กุญแจสำรองไว้กับ",
+      "เพื่อนบ้าน",
+      "ที่ไว้ใจได้"
+    ],
+    "extraExample": "Always keep a spare key in a safe place.",
+    "extraExampleTranslation": "ควรเก็บกุญแจสำรองไว้ในที่ปลอดภัยเสมอ",
+    "usageTip": "spare key (คำนาม) = กุญแจสำรอง · มักใช้ในวลี: leave a spare key, hide a spare key · คำใกล้เคียง: extra key, backup key",
+    "novaBatch": true
+  },
+  {
+    "word": "stairwell",
+    "partOfSpeech": "noun",
+    "translation": "ปล่องบันได",
+    "definition": "the vertical space containing a staircase",
+    "example": "The stairwell is well-lit in case of a power outage.",
+    "exampleTranslation": "ปล่องบันไดมีไฟส่องสว่างดีเผื่อกรณีไฟดับ",
+    "phonetic": "/ˈsterwel/",
+    "cefr": "B1",
+    "collocations": [
+      "emergency stairwell",
+      "echoing stairwell"
+    ],
+    "synonyms": [
+      "stairway",
+      "staircase shaft"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "ปล่องบันได",
+      "มีไฟส่อง",
+      "สว่างดีเผื่อ",
+      "กรณีไฟดับ"
+    ],
+    "extraExample": "Don't store bicycles in the emergency stairwell.",
+    "extraExampleTranslation": "ห้ามวางจักรยานในปล่องบันไดหนีไฟ",
+    "usageTip": "stairwell (คำนาม) = ปล่องบันได · มักใช้ในวลี: emergency stairwell, echoing stairwell · คำใกล้เคียง: stairway, staircase shaft",
+    "novaBatch": true
+  },
+  {
+    "word": "storage unit",
+    "partOfSpeech": "noun",
+    "translation": "ห้องเก็บของส่วนบุคคล",
+    "definition": "a small locked space for keeping extra belongings",
+    "example": "We rent a storage unit in the basement for winter gear.",
+    "exampleTranslation": "เราเช่าห้องเก็บของชั้นใต้ดินไว้เก็บอุปกรณ์หน้าหนาว",
+    "phonetic": "/ˈstɔːrɪdʒ ˈjuːnɪt/",
+    "cefr": "B1",
+    "collocations": [
+      "basement storage unit",
+      "rent a storage unit"
+    ],
+    "synonyms": [
+      "locker",
+      "storage room"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "เราเช่าห้องเก็บ",
+      "ของชั้น",
+      "ใต้ดินไว้เก็บ",
+      "อุปกรณ์หน้าหนาว"
+    ],
+    "extraExample": "Each apartment comes with one storage unit.",
+    "extraExampleTranslation": "แต่ละห้องชุดมีห้องเก็บของให้หนึ่งห้อง",
+    "usageTip": "storage unit (คำนาม) = ห้องเก็บของส่วนบุคคล · มักใช้ในวลี: basement storage unit, rent a storage unit · คำใกล้เคียง: locker, storage room",
+    "novaBatch": true
+  },
+  {
+    "word": "superintendent",
+    "partOfSpeech": "noun",
+    "translation": "ผู้ดูแลอาคาร",
+    "definition": "a person who manages and maintains a building",
+    "example": "Call the superintendent if the radiator leaks.",
+    "exampleTranslation": "โทรหาผู้ดูแลอาคารถ้าเครื่องทำความร้อนรั่ว",
+    "phonetic": "/ˌsuːpərɪnˈtendənt/",
+    "cefr": "B2",
+    "collocations": [
+      "building superintendent",
+      "call the superintendent"
+    ],
+    "synonyms": [
+      "caretaker",
+      "manager"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "โทรหา",
+      "ผู้ดูแลอาคาร",
+      "ถ้าเครื่องทำค",
+      "วามร้อนรั่ว"
+    ],
+    "extraExample": "The superintendent lives on the ground floor.",
+    "extraExampleTranslation": "ผู้ดูแลอาคารพักอยู่บนชั้นหนึ่ง",
+    "usageTip": "superintendent (คำนาม) = ผู้ดูแลอาคาร · มักใช้ในวลี: building superintendent, call the superintendent · คำใกล้เคียง: caretaker, manager",
+    "novaBatch": true
+  },
+  {
+    "word": "townhouse",
+    "partOfSpeech": "noun",
+    "translation": "ทาวน์เฮาส์",
+    "definition": "a tall narrow house joined to others in a row",
+    "example": "They moved from a studio to a three-story townhouse.",
+    "exampleTranslation": "พวกเขาย้ายจากห้องสตูดิโอไปอยู่ทาวน์เฮาส์สามชั้น",
+    "phonetic": "/ˈtaʊnhaʊs/",
+    "cefr": "B1",
+    "collocations": [
+      "three-story townhouse",
+      "corner townhouse"
+    ],
+    "synonyms": [
+      "row house",
+      "terraced house"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "พวกเขาย้าย",
+      "จากห้องสตูดิโอ",
+      "ไปอยู่",
+      "ทาวน์เฮาส์สามชั้น"
+    ],
+    "extraExample": "Living in a townhouse means sharing side walls.",
+    "extraExampleTranslation": "การอยู่ทาวน์เฮาส์หมายถึงต้องใช้ผนังด้านข้างร่วมกัน",
+    "usageTip": "townhouse (คำนาม) = ทาวน์เฮาส์ · มักใช้ในวลี: three-story townhouse, corner townhouse · คำใกล้เคียง: row house, terraced house",
+    "novaBatch": true
+  },
+  {
+    "word": "walk-up",
+    "partOfSpeech": "noun",
+    "translation": "อพาร์ตเมนต์ที่ไม่มีลิฟต์",
+    "definition": "an apartment building without an elevator",
+    "example": "Carrying groceries up a fourth-floor walk-up is exhausting.",
+    "exampleTranslation": "การหิ้วของขึ้นอพาร์ตเมนต์ไม่มีลิฟต์ชั้นสี่เหนื่อยมาก",
+    "phonetic": "/ˈwɔːk ʌp/",
+    "cefr": "B2",
+    "collocations": [
+      "fourth-floor walk-up",
+      "old walk-up"
+    ],
+    "synonyms": [
+      "stair-only building",
+      "low-rise"
+    ],
+    "topic": "home",
+    "thTokens": [
+      "การหิ้ว",
+      "ของขึ้นอพาร์ตเมนต์",
+      "ไม่มีลิฟต์ชั้น",
+      "สี่เหนื่อยมาก"
+    ],
+    "extraExample": "A walk-up usually has lower rent than a high-rise.",
+    "extraExampleTranslation": "อพาร์ตเมนต์ไม่มีลิฟต์มักค่าเช่าถูกกว่าตึกสูง",
+    "usageTip": "walk-up (คำนาม) = อพาร์ตเมนต์ที่ไม่มีลิฟต์ · มักใช้ในวลี: fourth-floor walk-up, old walk-up · คำใกล้เคียง: stair-only building, low-rise",
+    "novaBatch": true
+  },
+  {
+    "word": "align",
+    "partOfSpeech": "verb",
+    "translation": "ปรับให้สอดคล้องกัน",
+    "definition": "to bring into agreement or cooperation",
+    "example": "We need to align our goals before the project starts.",
+    "exampleTranslation": "เราต้องปรับเป้าหมายให้สอดคล้องกันก่อนเริ่มโปรเจกต์",
+    "phonetic": "/əˈlaɪn/",
+    "cefr": "B2",
+    "collocations": [
+      "align goals",
+      "align with"
+    ],
+    "synonyms": [
+      "coordinate",
+      "match"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "เราต้องปรับ",
+      "เป้าหมาย",
+      "ให้สอดคล้องกัน",
+      "ก่อนเริ่มโปรเจกต์"
+    ],
+    "extraExample": "The team aligned quickly on the new strategy.",
+    "extraExampleTranslation": "ทีมปรับตัวให้สอดคล้องกับกลยุทธ์ใหม่ได้อย่างรวดเร็ว",
+    "usageTip": "align (คำกริยา) = ปรับให้สอดคล้องกัน · มักใช้ในวลี: align goals, align with · คำใกล้เคียง: coordinate, match",
+    "novaBatch": true
+  },
+  {
+    "word": "alliance",
+    "partOfSpeech": "noun",
+    "translation": "พันธมิตร",
+    "definition": "a union or association formed for mutual benefit",
+    "example": "The two departments formed a strong alliance.",
+    "exampleTranslation": "ทั้งสองแผนกได้สร้างพันธมิตรที่แข็งแกร่งร่วมกัน",
+    "phonetic": "/əˈlaɪəns/",
+    "cefr": "B2",
+    "collocations": [
+      "strategic alliance",
+      "form an alliance"
+    ],
+    "synonyms": [
+      "partnership",
+      "coalition"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ทั้งสองแผนก",
+      "ได้สร้าง",
+      "พันธมิตร",
+      "ที่แข็งแกร่งร่วมกัน"
+    ],
+    "extraExample": "Trust is the foundation of any lasting alliance.",
+    "extraExampleTranslation": "ความไว้วางใจคือรากฐานของพันธมิตรที่ยั่งยืน",
+    "usageTip": "alliance (คำนาม) = พันธมิตร · มักใช้ในวลี: strategic alliance, form an alliance · คำใกล้เคียง: partnership, coalition",
+    "novaBatch": true
+  },
+  {
+    "word": "backbone",
+    "partOfSpeech": "noun",
+    "translation": "เสาหลัก, แกนหลัก",
+    "definition": "the chief support of a system or organization",
+    "example": "Our engineering team is the backbone of this company.",
+    "exampleTranslation": "ทีมวิศวกรของเราคือเสาหลักของบริษัทนี้",
+    "phonetic": "/ˈbækboʊn/",
+    "cefr": "B2",
+    "collocations": [
+      "the backbone of",
+      "strong backbone"
+    ],
+    "synonyms": [
+      "foundation",
+      "core"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ทีมวิศวกร",
+      "ของเราคือ",
+      "เสาหลัก",
+      "ของบริษัทนี้"
+    ],
+    "extraExample": "Mutual trust forms the backbone of effective teamwork.",
+    "extraExampleTranslation": "ความไว้วางใจซึ่งกันและกันเป็นแกนหลักของการทำงานเป็นทีมที่มีประสิทธิภาพ",
+    "usageTip": "backbone (คำนาม) = เสาหลัก, แกนหลัก · มักใช้ในวลี: the backbone of, strong backbone · คำใกล้เคียง: foundation, core",
+    "novaBatch": true
+  },
+  {
+    "word": "blind spot",
+    "partOfSpeech": "noun",
+    "translation": "จุดบอด, จุดที่มองไม่เห็น",
+    "definition": "an area where a person's view or understanding is obstructed",
+    "example": "Feedback from peers helps us see our blind spots.",
+    "exampleTranslation": "คำติชมจากเพื่อนร่วมงานช่วยให้เราเห็นจุดบอดของตัวเอง",
+    "phonetic": "/ˈblaɪnd spɑːt/",
+    "cefr": "B2",
+    "collocations": [
+      "have a blind spot",
+      "reveal a blind spot"
+    ],
+    "synonyms": [
+      "weakness",
+      "oversight"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "คำติชมจาก",
+      "เพื่อนร่วมงานช่วย",
+      "ให้เราเห็น",
+      "จุดบอดของตัวเอง"
+    ],
+    "extraExample": "Every leader has a blind spot that a diverse team can cover.",
+    "extraExampleTranslation": "ผู้นำทุกคนมีจุดบอดที่ทีมที่มีความหลากหลายสามารถช่วยเติมเต็มได้",
+    "usageTip": "blind spot (คำนาม) = จุดบอด, จุดที่มองไม่เห็น · มักใช้ในวลี: have a blind spot, reveal a blind spot · คำใกล้เคียง: weakness, oversight",
+    "novaBatch": true
+  },
+  {
+    "word": "collaboration",
+    "partOfSpeech": "noun",
+    "translation": "ความร่วมมือ",
+    "definition": "the action of working with someone to produce something",
+    "example": "This success is the result of great collaboration.",
+    "exampleTranslation": "ความสำเร็จนี้เป็นผลมาจากความร่วมมือที่ยอดเยี่ยม",
+    "phonetic": "/kəˌlæbəˈreɪʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "close collaboration",
+      "in collaboration with"
+    ],
+    "synonyms": [
+      "teamwork",
+      "cooperation"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ความสำเร็จ",
+      "นี้เป็นผลมาจาก",
+      "ความร่วมมือ",
+      "ที่ยอดเยี่ยม"
+    ],
+    "extraExample": "Open communication encourages better collaboration.",
+    "extraExampleTranslation": "การสื่อสารที่เปิดกว้างช่วยส่งเสริมความร่วมมือที่ดีขึ้น",
+    "usageTip": "collaboration (คำนาม) = ความร่วมมือ · มักใช้ในวลี: close collaboration, in collaboration with · คำใกล้เคียง: teamwork, cooperation",
+    "novaBatch": true
+  },
+  {
+    "word": "collective",
+    "partOfSpeech": "adjective",
+    "translation": "ร่วมกัน, ส่วนรวม",
+    "definition": "done by people acting as a group",
+    "example": "We made a collective decision to postpone the release.",
+    "exampleTranslation": "เราตัดสินใจร่วมกันที่จะเลื่อนการเปิดตัวออกไป",
+    "phonetic": "/kəˈlektɪv/",
+    "cefr": "B2",
+    "collocations": [
+      "collective effort",
+      "collective decision"
+    ],
+    "synonyms": [
+      "joint",
+      "shared"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "เราตัดสินใจ",
+      "ร่วมกัน",
+      "ที่จะเลื่อนการ",
+      "เปิดตัวออกไป"
+    ],
+    "extraExample": "Success depends on our collective effort, not just one person.",
+    "extraExampleTranslation": "ความสำเร็จขึ้นอยู่กับความพยายามร่วมกันของเรา ไม่ใช่แค่คนคนเดียว",
+    "usageTip": "collective (คำคุณศัพท์) = ร่วมกัน, ส่วนรวม · มักใช้ในวลี: collective effort, collective decision · คำใกล้เคียง: joint, shared",
+    "novaBatch": true
+  },
+  {
+    "word": "common ground",
+    "partOfSpeech": "noun",
+    "translation": "จุดร่วม, ความเห็นพ้อง",
+    "definition": "opinions or interests shared by each of two or more parties",
+    "example": "Despite our differences, we found common ground.",
+    "exampleTranslation": "แม้จะมีความแตกต่างกัน แต่เราก็หาจุดร่วมจนเจอ",
+    "phonetic": "/ˈkɑːmən ɡraʊnd/",
+    "cefr": "B2",
+    "collocations": [
+      "find common ground",
+      "share common ground"
+    ],
+    "synonyms": [
+      "consensus",
+      "agreement"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "แม้จะมีความ",
+      "แตกต่างกัน",
+      "แต่เราก็หา",
+      "จุดร่วมจนเจอ"
+    ],
+    "extraExample": "Finding common ground is the first step to resolving conflict.",
+    "extraExampleTranslation": "การหาจุดร่วมเป็นก้าวแรกในการแก้ไขความขัดแย้ง",
+    "usageTip": "common ground (คำนาม) = จุดร่วม, ความเห็นพ้อง · มักใช้ในวลี: find common ground, share common ground · คำใกล้เคียง: consensus, agreement",
+    "novaBatch": true
+  },
+  {
+    "word": "confidential",
+    "partOfSpeech": "adjective",
+    "translation": "ที่เป็นความลับ",
+    "definition": "intended to be kept secret",
+    "example": "Please keep this client feedback strictly confidential.",
+    "exampleTranslation": "โปรดเก็บคำติชมของลูกค้านี้ไว้เป็นความลับอย่างเคร่งครัด",
+    "phonetic": "/ˌkɑːnfɪˈdenʃəl/",
+    "cefr": "B2",
+    "collocations": [
+      "strictly confidential",
+      "confidential information"
+    ],
+    "synonyms": [
+      "private",
+      "secret"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "โปรดเก็บคำติชม",
+      "ของลูก",
+      "ค้านี้ไว้เป็นความลับ",
+      "อย่างเคร่งครัด"
+    ],
+    "extraExample": "Sharing confidential information breaks team trust immediately.",
+    "extraExampleTranslation": "การเปิดเผยข้อมูลที่เป็นความลับทำลายความไว้วางใจในทีมทันที",
+    "usageTip": "confidential (คำคุณศัพท์) = ที่เป็นความลับ · มักใช้ในวลี: strictly confidential, confidential information · คำใกล้เคียง: private, secret",
+    "novaBatch": true
+  },
+  {
+    "word": "constructively",
+    "partOfSpeech": "adverb",
+    "translation": "อย่างสร้างสรรค์",
+    "definition": "in a way that is useful and intended to help or improve",
+    "example": "She criticized the proposal constructively.",
+    "exampleTranslation": "เธอวิจารณ์ข้อเสนออย่างสร้างสรรค์",
+    "phonetic": "/kənˈstrʌktɪvli/",
+    "cefr": "B2",
+    "collocations": [
+      "criticize constructively",
+      "work constructively"
+    ],
+    "synonyms": [
+      "positively",
+      "helpfully"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "เธอวิจารณ์",
+      "ข้อเสนอ",
+      "อย่างส",
+      "ร้างสรรค์"
+    ],
+    "extraExample": "We should discuss our mistakes constructively to learn from them.",
+    "extraExampleTranslation": "เราควรพูดคุยถึงความผิดพลาดอย่างสร้างสรรค์เพื่อเรียนรู้จากมัน",
+    "usageTip": "constructively (คำกริยาวิเศษณ์) = อย่างสร้างสรรค์ · มักใช้ในวลี: criticize constructively, work constructively · คำใกล้เคียง: positively, helpfully",
+    "novaBatch": true
+  },
+  {
+    "word": "cooperation",
+    "partOfSpeech": "noun",
+    "translation": "ความร่วมมือ",
+    "definition": "the process of working together to the same end",
+    "example": "Thank you for your cooperation during the audit.",
+    "exampleTranslation": "ขอบคุณสำหรับความร่วมมือของคุณระหว่างการตรวจสอบ",
+    "phonetic": "/koʊˌɑːpəˈreɪʃən/",
+    "cefr": "B1",
+    "collocations": [
+      "full cooperation",
+      "international cooperation"
+    ],
+    "synonyms": [
+      "collaboration",
+      "teamwork"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ขอบคุณสำหรับ",
+      "ความร่วมมือ",
+      "ของคุณ",
+      "ระหว่างการตรวจสอบ"
+    ],
+    "extraExample": "Smooth cooperation between shifts prevents costly errors.",
+    "extraExampleTranslation": "ความร่วมมือที่ราบรื่นระหว่างกะช่วยป้องกันข้อผิดพลาดที่มีค่าใช้จ่ายสูง",
+    "usageTip": "cooperation (คำนาม) = ความร่วมมือ · มักใช้ในวลี: full cooperation, international cooperation · คำใกล้เคียง: collaboration, teamwork",
+    "novaBatch": true
+  },
+  {
+    "word": "credibility",
+    "partOfSpeech": "noun",
+    "translation": "ความน่าเชื่อถือ",
+    "definition": "the quality of being trusted and believed in",
+    "example": "Keeping your promises builds credibility with your peers.",
+    "exampleTranslation": "การรักษาสัญญาช่วยสร้างความน่าเชื่อถือกับเพื่อนร่วมงาน",
+    "phonetic": "/ˌkredəˈbɪləti/",
+    "cefr": "B2",
+    "collocations": [
+      "build credibility",
+      "lose credibility"
+    ],
+    "synonyms": [
+      "trustworthiness",
+      "reliability"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "การรักษาสัญ",
+      "ญาช่วยสร้าง",
+      "ความน่าเชื่อถือกับ",
+      "เพื่อนร่วมงาน"
+    ],
+    "extraExample": "Honesty is essential for maintaining credibility as a leader.",
+    "extraExampleTranslation": "ความซื่อสัตย์เป็นสิ่งสำคัญในการรักษาความน่าเชื่อถือในฐานะผู้นำ",
+    "usageTip": "credibility (คำนาม) = ความน่าเชื่อถือ · มักใช้ในวลี: build credibility, lose credibility · คำใกล้เคียง: trustworthiness, reliability",
+    "novaBatch": true
+  },
+  {
+    "word": "dedicated",
+    "partOfSpeech": "adjective",
+    "translation": "ทุ่มเท, อุทิศตน",
+    "definition": "devoted to a task or purpose",
+    "example": "We have a dedicated team working around the clock.",
+    "exampleTranslation": "เรามีทีมที่ทุ่มเททำงานตลอด 24 ชั่วโมง",
+    "phonetic": "/ˈdedɪkeɪtɪd/",
+    "cefr": "B2",
+    "collocations": [
+      "dedicated team",
+      "deeply dedicated"
+    ],
+    "synonyms": [
+      "committed",
+      "devoted"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "เรามีทีมที่ทุ่มเททำงานตลอด",
+      "24",
+      "ชั่วโมง"
+    ],
+    "extraExample": "She is deeply dedicated to helping her teammates succeed.",
+    "extraExampleTranslation": "เธอทุ่มเทอย่างยิ่งในการช่วยให้เพื่อนร่วมทีมประสบความสำเร็จ",
+    "usageTip": "dedicated (คำคุณศัพท์) = ทุ่มเท, อุทิศตน · มักใช้ในวลี: dedicated team, deeply dedicated · คำใกล้เคียง: committed, devoted",
+    "novaBatch": true
+  },
+  {
+    "word": "empower",
+    "partOfSpeech": "verb",
+    "translation": "เสริมพลัง, มอบอำนาจ",
+    "definition": "to give someone the authority or confidence to do something",
+    "example": "Great managers empower their staff to make decisions.",
+    "exampleTranslation": "ผู้จัดการที่เก่งจะเสริมพลังให้พนักงานตัดสินใจด้วยตัวเอง",
+    "phonetic": "/ɪmˈpaʊər/",
+    "cefr": "B2",
+    "collocations": [
+      "empower employees",
+      "feel empowered"
+    ],
+    "synonyms": [
+      "enable",
+      "authorize"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ผู้จัดการ",
+      "ที่เก่งจะเสริมพลัง",
+      "ให้พนักงานตัดสินใจ",
+      "ด้วยตัวเอง"
+    ],
+    "extraExample": "Trusting your team empowers them to do their best work.",
+    "extraExampleTranslation": "การไว้วางใจทีมช่วยเสริมพลังให้พวกเขาทำงานได้ดีที่สุด",
+    "usageTip": "empower (คำกริยา) = เสริมพลัง, มอบอำนาจ · มักใช้ในวลี: empower employees, feel empowered · คำใกล้เคียง: enable, authorize",
+    "novaBatch": true
+  },
+  {
+    "word": "foster",
+    "partOfSpeech": "verb",
+    "translation": "ส่งเสริม, บ่มเพาะ",
+    "definition": "to encourage the development of something desirable",
+    "example": "Weekly lunches help foster a sense of belonging.",
+    "exampleTranslation": "การทานอาหารกลางวันร่วมกันทุกสัปดาห์ช่วยส่งเสริมความรู้สึกเป็นส่วนหนึ่ง",
+    "phonetic": "/ˈfɔːstər/",
+    "cefr": "B2",
+    "collocations": [
+      "foster trust",
+      "foster collaboration"
+    ],
+    "synonyms": [
+      "encourage",
+      "promote"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "การทานอาหารกลางวัน",
+      "ร่วมกันทุกสัปดาห์ช่วย",
+      "ส่งเสริม",
+      "ความรู้สึกเป็นส่วนหนึ่ง"
+    ],
+    "extraExample": "Leaders must foster an environment of psychological safety.",
+    "extraExampleTranslation": "ผู้นำต้องบ่มเพาะสภาพแวดล้อมที่ปลอดภัยทางใจ",
+    "usageTip": "foster (คำกริยา) = ส่งเสริม, บ่มเพาะ · มักใช้ในวลี: foster trust, foster collaboration · คำใกล้เคียง: encourage, promote",
+    "novaBatch": true
+  },
+  {
+    "word": "friction",
+    "partOfSpeech": "noun",
+    "translation": "ความขัดแย้ง, ความตึงเครียด",
+    "definition": "conflict or animosity caused by a clash of wills or temperaments",
+    "example": "Clear roles reduce friction between team members.",
+    "exampleTranslation": "บทบาทที่ชัดเจนช่วยลดความขัดแย้งระหว่างสมาชิกในทีม",
+    "phonetic": "/ˈfrɪkʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "reduce friction",
+      "cause friction"
+    ],
+    "synonyms": [
+      "tension",
+      "conflict"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "บทบาทที่ชัดเจ",
+      "นช่วยลด",
+      "ความขัดแย้ง",
+      "ระหว่างสมาชิกในทีม"
+    ],
+    "extraExample": "There was some initial friction, but they soon learned to work together.",
+    "extraExampleTranslation": "มีความตึงเครียดในช่วงแรก แต่ไม่นานพวกเขาก็เรียนรู้ที่จะทำงานร่วมกัน",
+    "usageTip": "friction (คำนาม) = ความขัดแย้ง, ความตึงเครียด · มักใช้ในวลี: reduce friction, cause friction · คำใกล้เคียง: tension, conflict",
+    "novaBatch": true
+  },
+  {
+    "word": "give-and-take",
+    "partOfSpeech": "noun",
+    "translation": "การถ้อยทีถ้อยอาศัย",
+    "definition": "mutual concessions and compromises",
+    "example": "Every healthy partnership relies on a bit of give-and-take.",
+    "exampleTranslation": "ความร่วมมือที่ดีทุกอย่างล้วนอาศัยการถ้อยทีถ้อยอาศัยกัน",
+    "phonetic": "/ˌɡɪv ən ˈteɪk/",
+    "cefr": "B2",
+    "collocations": [
+      "a bit of give-and-take",
+      "spirit of give-and-take"
+    ],
+    "synonyms": [
+      "compromise",
+      "reciprocity"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ความร่วมมือ",
+      "ที่ดีทุกอย่างล้ว",
+      "นอาศัย",
+      "การถ้อยทีถ้อยอาศัยกัน"
+    ],
+    "extraExample": "There has to be some give-and-take when sharing resources.",
+    "extraExampleTranslation": "ต้องมีการถ้อยทีถ้อยอาศัยกันบ้างเมื่อต้องแบ่งปันทรัพยากร",
+    "usageTip": "give-and-take (คำนาม) = การถ้อยทีถ้อยอาศัย · มักใช้ในวลี: a bit of give-and-take, spirit of give-and-take · คำใกล้เคียง: compromise, reciprocity",
+    "novaBatch": true
+  },
+  {
+    "word": "integrity",
+    "partOfSpeech": "noun",
+    "translation": "ความซื่อสัตย์สุจริต",
+    "definition": "the quality of being honest and having strong moral principles",
+    "example": "We value integrity above all else in our team.",
+    "exampleTranslation": "เราให้ความสำคัญกับความซื่อสัตย์สุจริตเหนือสิ่งอื่นใดในทีมของเรา",
+    "phonetic": "/ɪnˈteɡrəti/",
+    "cefr": "B2",
+    "collocations": [
+      "act with integrity",
+      "personal integrity"
+    ],
+    "synonyms": [
+      "honesty",
+      "uprightness"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "เราให้ความสำคัญ",
+      "กับความซื่อสัตย์สุจริต",
+      "เหนือสิ่งอื่นใด",
+      "ในทีมของเรา"
+    ],
+    "extraExample": "Acting with integrity earns long-term respect.",
+    "extraExampleTranslation": "การกระทำด้วยความซื่อสัตย์สุจริตจะได้รับความเคารพในระยะยาว",
+    "usageTip": "integrity (คำนาม) = ความซื่อสัตย์สุจริต · มักใช้ในวลี: act with integrity, personal integrity · คำใกล้เคียง: honesty, uprightness",
+    "novaBatch": true
+  },
+  {
+    "word": "joint effort",
+    "partOfSpeech": "noun",
+    "translation": "ความพยายามร่วมกัน",
+    "definition": "an activity or project done by two or more people together",
+    "example": "Finishing the report on time was a true joint effort.",
+    "exampleTranslation": "การทำรายงานให้เสร็จทันเวลาเป็นความพยายามร่วมกันอย่างแท้จริง",
+    "phonetic": "/ˈdʒɔɪnt ˈefərt/",
+    "cefr": "B1",
+    "collocations": [
+      "a true joint effort",
+      "through a joint effort"
+    ],
+    "synonyms": [
+      "team effort",
+      "collaboration"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "การทำรายงาน",
+      "ให้เสร็จทันเวลาเป็น",
+      "ความพยายามร่วมกัน",
+      "อย่างแท้จริง"
+    ],
+    "extraExample": "The event succeeded thanks to a joint effort by all volunteers.",
+    "extraExampleTranslation": "งานนี้สำเร็จได้ด้วยความพยายามร่วมกันของอาสาสมัครทุกคน",
+    "usageTip": "joint effort (คำนาม) = ความพยายามร่วมกัน · มักใช้ในวลี: a true joint effort, through a joint effort · คำใกล้เคียง: team effort, collaboration",
+    "novaBatch": true
+  },
+  {
+    "word": "morale",
+    "partOfSpeech": "noun",
+    "translation": "ขวัญกำลังใจ",
+    "definition": "the confidence, enthusiasm, and discipline of a person or group",
+    "example": "Celebrating small wins boosts team morale.",
+    "exampleTranslation": "การฉลองชัยชนะเล็กๆ ช่วยเพิ่มขวัญกำลังใจของทีม",
+    "phonetic": "/məˈræl/",
+    "cefr": "B2",
+    "collocations": [
+      "boost morale",
+      "team morale"
+    ],
+    "synonyms": [
+      "spirit",
+      "confidence"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "การฉลองชัยช",
+      "นะเล็กๆช่วยเพิ่ม",
+      "ขวัญ",
+      "กำลังใจของทีม"
+    ],
+    "extraExample": "Poor communication can quickly damage staff morale.",
+    "extraExampleTranslation": "การสื่อสารที่แย่อาจทำลายขวัญกำลังใจของพนักงานได้อย่างรวดเร็ว",
+    "usageTip": "morale (คำนาม) = ขวัญกำลังใจ · มักใช้ในวลี: boost morale, team morale · คำใกล้เคียง: spirit, confidence",
+    "novaBatch": true
+  },
+  {
+    "word": "openness",
+    "partOfSpeech": "noun",
+    "translation": "ความเปิดกว้าง, ความจริงใจ",
+    "definition": "lack of secrecy or concealment; frankness",
+    "example": "Openness about mistakes helps the whole team learn.",
+    "exampleTranslation": "ความเปิดกว้างเกี่ยวกับความผิดพลาดช่วยให้ทั้งทีมได้เรียนรู้",
+    "phonetic": "/ˈoʊpənnəs/",
+    "cefr": "B2",
+    "collocations": [
+      "culture of openness",
+      "encourage openness"
+    ],
+    "synonyms": [
+      "honesty",
+      "candor"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ความเปิดกว้าง",
+      "เกี่ยวกับความผิด",
+      "พลาดช่วย",
+      "ให้ทั้งทีมได้เรียนรู้"
+    ],
+    "extraExample": "I appreciate your openness during today's retrospective.",
+    "extraExampleTranslation": "ฉันซาบซึ้งในความจริงใจของคุณระหว่างการทบทวนงานวันนี้",
+    "usageTip": "openness (คำนาม) = ความเปิดกว้าง, ความจริงใจ · มักใช้ในวลี: culture of openness, encourage openness · คำใกล้เคียง: honesty, candor",
+    "novaBatch": true
+  },
+  {
+    "word": "ownership",
+    "partOfSpeech": "noun",
+    "translation": "ความเป็นเจ้าของ, ความรับผิดชอบ",
+    "definition": "the act of taking responsibility for a task or problem",
+    "example": "Taking ownership of your tasks builds trust with your manager.",
+    "exampleTranslation": "การรับผิดชอบต่องานของคุณช่วยสร้างความไว้วางใจกับผู้จัดการ",
+    "phonetic": "/ˈoʊnərʃɪp/",
+    "cefr": "B2",
+    "collocations": [
+      "take ownership",
+      "sense of ownership"
+    ],
+    "synonyms": [
+      "responsibility",
+      "accountability"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "การรับผิดชอบต่องาน",
+      "ของคุณช่วย",
+      "สร้างความไว้วางใจ",
+      "กับผู้จัดการ"
+    ],
+    "extraExample": "Every member should feel a sense of ownership over the project.",
+    "extraExampleTranslation": "สมาชิกทุกคนควรรู้สึกถึงความเป็นเจ้าของในโปรเจกต์นี้",
+    "usageTip": "ownership (คำนาม) = ความเป็นเจ้าของ, ความรับผิดชอบ · มักใช้ในวลี: take ownership, sense of ownership · คำใกล้เคียง: responsibility, accountability",
+    "novaBatch": true
+  },
+  {
+    "word": "reciprocity",
+    "partOfSpeech": "noun",
+    "translation": "การตอบแทนซึ่งกันและกัน",
+    "definition": "the practice of exchanging things with others for mutual benefit",
+    "example": "Trust grows through reciprocity when teammates help each other out.",
+    "exampleTranslation": "ความไว้วางใจเติบโตผ่านการตอบแทนซึ่งกันและกันเมื่อเพื่อนร่วมทีมช่วยเหลือกัน",
+    "phonetic": "/ˌresəˈprɑːsəti/",
+    "cefr": "B2",
+    "collocations": [
+      "principle of reciprocity",
+      "mutual reciprocity"
+    ],
+    "synonyms": [
+      "exchange",
+      "give-and-take"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ความไว้วางใจเติบโตผ่าน",
+      "การตอบแทนซึ่งกัน",
+      "และกันเมื่อ",
+      "เพื่อนร่วมทีมช่วยเหลือกัน"
+    ],
+    "extraExample": "Reciprocity keeps professional relationships balanced and fair.",
+    "extraExampleTranslation": "การตอบแทนซึ่งกันและกันช่วยให้ความสัมพันธ์ในการทำงานสมดุลและเป็นธรรม",
+    "usageTip": "reciprocity (คำนาม) = การตอบแทนซึ่งกันและกัน · มักใช้ในวลี: principle of reciprocity, mutual reciprocity · คำใกล้เคียง: exchange, give-and-take",
+    "novaBatch": true
+  },
+  {
+    "word": "reliability",
+    "partOfSpeech": "noun",
+    "translation": "ความน่าเชื่อถือ, ความไว้วางใจได้",
+    "definition": "the quality of being trustworthy or of performing consistently well",
+    "example": "Her reliability makes her the first choice for critical tasks.",
+    "exampleTranslation": "ความไว้วางใจได้ของเธอทำให้เธอเป็นตัวเลือกแรกสำหรับงานสำคัญ",
+    "phonetic": "/rɪˌlaɪəˈbɪləti/",
+    "cefr": "B2",
+    "collocations": [
+      "prove reliability",
+      "known for reliability"
+    ],
+    "synonyms": [
+      "dependability",
+      "trustworthiness"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ความไว้วางใจได้ข",
+      "องเธอทำให้เธ",
+      "อเป็นตัวเลือกแรก",
+      "สำหรับงานสำคัญ"
+    ],
+    "extraExample": "Consistency is the key to proving your reliability.",
+    "extraExampleTranslation": "ความสม่ำเสมอคือกุญแจสำคัญในการพิสูจน์ความน่าเชื่อถือของคุณ",
+    "usageTip": "reliability (คำนาม) = ความน่าเชื่อถือ, ความไว้วางใจได้ · มักใช้ในวลี: prove reliability, known for reliability · คำใกล้เคียง: dependability, trustworthiness",
+    "novaBatch": true
+  },
+  {
+    "word": "unity",
+    "partOfSpeech": "noun",
+    "translation": "ความเป็นหนึ่งเดียว",
+    "definition": "the state of being united or joined as a whole",
+    "example": "Team unity is essential when facing tight deadlines.",
+    "exampleTranslation": "ความเป็นหนึ่งเดียวของทีมเป็นสิ่งสำคัญเมื่อต้องเผชิญกับกำหนดส่งที่กระชั้นชิด",
+    "phonetic": "/ˈjuːnəti/",
+    "cefr": "B2",
+    "collocations": [
+      "team unity",
+      "sense of unity"
+    ],
+    "synonyms": [
+      "solidarity",
+      "harmony"
+    ],
+    "topic": "people",
+    "thTokens": [
+      "ความเป็นหนึ่งเดียว",
+      "ของทีมเป็นสิ่งสำคัญ",
+      "เมื่อต้องเผชิญ",
+      "กับกำหนดส่งที่กระชั้นชิด"
+    ],
+    "extraExample": "Shared goals create a strong sense of unity.",
+    "extraExampleTranslation": "เป้าหมายร่วมกันสร้างความรู้สึกเป็นหนึ่งเดียวที่แข็งแกร่ง",
+    "usageTip": "unity (คำนาม) = ความเป็นหนึ่งเดียว · มักใช้ในวลี: team unity, sense of unity · คำใกล้เคียง: solidarity, harmony",
+    "novaBatch": true
+  },
+  {
+    "word": "excess",
+    "partOfSpeech": "noun",
+    "translation": "ค่าเสียหายส่วนแรก",
+    "definition": "the amount you must pay yourself before the insurer pays the rest",
+    "example": "The policy has a one-hundred-dollar excess for medical claims.",
+    "exampleTranslation": "กรมธรรม์มีค่าเสียหายส่วนแรกหนึ่งร้อยดอลลาร์สำหรับการเคลมค่ารักษาพยาบาล",
+    "phonetic": "/ˈekses/",
+    "cefr": "B2",
+    "collocations": [
+      "pay an excess",
+      "zero excess"
+    ],
+    "synonyms": [
+      "deductible",
+      "share"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "กรมธรรม์มี",
+      "ค่าเสียหายส่วนแรก",
+      "หนึ่งร้อยดอลลาร์",
+      "สำหรับการเคลมค่ารักษาพยาบาล"
+    ],
+    "extraExample": "You can pay a higher premium to reduce the excess to zero.",
+    "extraExampleTranslation": "คุณสามารถจ่ายเบี้ยประกันที่สูงขึ้นเพื่อลดค่าเสียหายส่วนแรกให้เป็นศูนย์",
+    "usageTip": "excess (คำนาม) = ค่าเสียหายส่วนแรก · มักใช้ในวลี: pay an excess, zero excess · คำใกล้เคียง: deductible, share",
+    "novaBatch": true
+  },
+  {
+    "word": "comprehensive",
+    "partOfSpeech": "adjective",
+    "translation": "ครอบคลุมทั้งหมด",
+    "definition": "including everything or nearly everything",
+    "example": "We bought comprehensive travel insurance for our two-week tour.",
+    "exampleTranslation": "เราซื้อประกันการเดินทางแบบครอบคลุมทั้งหมดสำหรับทัวร์สองสัปดาห์",
+    "phonetic": "/ˌkɑːmprɪˈhensɪv/",
+    "cefr": "B2",
+    "collocations": [
+      "comprehensive cover",
+      "comprehensive plan"
+    ],
+    "synonyms": [
+      "complete",
+      "thorough"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "เราซื้อประกันการ",
+      "เดินทางแบบ",
+      "ครอบคลุมทั้งหมด",
+      "สำหรับทัวร์สองสัปดาห์"
+    ],
+    "extraExample": "A comprehensive plan protects you against theft, illness, and delays.",
+    "extraExampleTranslation": "แผนแบบครอบคลุมช่วยคุ้มครองคุณจากการโจรกรรม การเจ็บป่วย และความล่าช้า",
+    "usageTip": "comprehensive (คำคุณศัพท์) = ครอบคลุมทั้งหมด · มักใช้ในวลี: comprehensive cover, comprehensive plan · คำใกล้เคียง: complete, thorough",
+    "novaBatch": true
+  },
+  {
+    "word": "exclusion",
+    "partOfSpeech": "noun",
+    "translation": "ข้อยกเว้นความคุ้มครอง",
+    "definition": "something that is not covered by an insurance policy",
+    "example": "Extreme sports are listed as an exclusion in this standard plan.",
+    "exampleTranslation": "กีฬาผาดโผนถูกระบุเป็นข้อยกเว้นความคุ้มครองในแผนมาตรฐานนี้",
+    "phonetic": "/ɪkˈskluːʒən/",
+    "cefr": "B2",
+    "collocations": [
+      "policy exclusion",
+      "list of exclusions"
+    ],
+    "synonyms": [
+      "exception",
+      "omission"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "กีฬาผาดโผนถูกระบุเป็น",
+      "ข้อยกเว้น",
+      "ความคุ้มครอง",
+      "ในแผนมาตรฐานนี้"
+    ],
+    "extraExample": "Always check the exclusions section before buying travel cover.",
+    "extraExampleTranslation": "ตรวจสอบส่วนข้อยกเว้นความคุ้มครองเสมอ ก่อนซื้อประกันการเดินทาง",
+    "usageTip": "exclusion (คำนาม) = ข้อยกเว้นความคุ้มครอง · มักใช้ในวลี: policy exclusion, list of exclusions · คำใกล้เคียง: exception, omission",
+    "novaBatch": true
+  },
+  {
+    "word": "expire",
+    "partOfSpeech": "verb",
+    "translation": "หมดอายุ",
+    "definition": "to come to an end or stop being valid",
+    "example": "My travel insurance will expire at midnight on Sunday.",
+    "exampleTranslation": "ประกันการเดินทางของฉันจะหมดอายุในเวลาเที่ยงคืนวันอาทิตย์",
+    "phonetic": "/ɪkˈspaɪər/",
+    "cefr": "B2",
+    "collocations": [
+      "expire soon",
+      "policy expires"
+    ],
+    "synonyms": [
+      "end",
+      "lapse"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ประกันการเดินทาง",
+      "ของฉันจะหมดอายุ",
+      "ในเวลาเที่ย",
+      "งคืนวันอาทิตย์"
+    ],
+    "extraExample": "Do not forget to use your foreign currency before the notes expire.",
+    "extraExampleTranslation": "อย่าลืมใช้เงินตราต่างประเทศของคุณก่อนที่ธนบัตรจะหมดอายุ",
+    "usageTip": "expire (คำกริยา) = หมดอายุ · มักใช้ในวลี: expire soon, policy expires · คำใกล้เคียง: end, lapse",
+    "novaBatch": true
+  },
+  {
+    "word": "renew",
+    "partOfSpeech": "verb",
+    "translation": "ต่ออายุ",
+    "definition": "to make something valid for a further period of time",
+    "example": "I need to renew my annual travel insurance before next month.",
+    "exampleTranslation": "ฉันต้องต่ออายุประกันการเดินทางรายปีก่อนเดือนหน้า",
+    "phonetic": "/rɪˈnuː/",
+    "cefr": "B2",
+    "collocations": [
+      "renew a policy",
+      "renew cover"
+    ],
+    "synonyms": [
+      "extend",
+      "refresh"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ฉันต้องต่ออายุ",
+      "ประกันการ",
+      "เดินทางรายปีก่อ",
+      "นเดือนหน้า"
+    ],
+    "extraExample": "Can I renew the policy online while I am still abroad?",
+    "extraExampleTranslation": "ฉันสามารถต่ออายุกรมธรรม์ออนไลน์ขณะที่ยังอยู่ต่างประเทศได้ไหม",
+    "usageTip": "renew (คำกริยา) = ต่ออายุ · มักใช้ในวลี: renew a policy, renew cover · คำใกล้เคียง: extend, refresh",
+    "novaBatch": true
+  },
+  {
+    "word": "hospitalization",
+    "partOfSpeech": "noun",
+    "translation": "การเข้ารับการรักษาในโรงพยาบาล",
+    "definition": "the act of being admitted to a hospital for treatment",
+    "example": "The policy covers up to fifty thousand dollars for hospitalization.",
+    "exampleTranslation": "กรมธรรม์คุ้มครองค่ารักษาตัวในโรงพยาบาลสูงสุดห้าหมื่นดอลลาร์",
+    "phonetic": "/ˌhɑːspɪtəlaɪˈzeɪʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "cover hospitalization",
+      "hospitalization costs"
+    ],
+    "synonyms": [
+      "admission",
+      "inpatient care"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "กรมธรรม์คุ้มคร",
+      "องค่ารักษาตัว",
+      "ในโรงพยาบาลสูง",
+      "สุดห้าหมื่นดอลลาร์"
+    ],
+    "extraExample": "Unexpected hospitalization abroad can be extremely expensive without insurance.",
+    "extraExampleTranslation": "การต้องเข้าโรงพยาบาลในต่างประเทศโดยไม่คาดคิดอาจมีค่าใช้จ่ายสูงมากหากไม่มีประกัน",
+    "usageTip": "hospitalization (คำนาม) = การเข้ารับการรักษาในโรงพยาบาล · มักใช้ในวลี: cover hospitalization, hospitalization costs · คำใกล้เคียง: admission, inpatient care",
+    "novaBatch": true
+  },
+  {
+    "word": "pre-existing",
+    "partOfSpeech": "adjective",
+    "translation": "ที่เป็นอยู่ก่อนแล้ว",
+    "definition": "already present before a particular time, such as before buying insurance",
+    "example": "Does this plan cover pre-existing medical conditions?",
+    "exampleTranslation": "แผนนี้คุ้มครองโรคประจำตัวที่เป็นอยู่ก่อนแล้วหรือไม่",
+    "phonetic": "/ˌpriːɪɡˈzɪstɪŋ/",
+    "cefr": "B2",
+    "collocations": [
+      "pre-existing condition",
+      "pre-existing illness"
+    ],
+    "synonyms": [
+      "prior",
+      "existing"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "แผนนี้คุ้มคร",
+      "องโรคประจำตัว",
+      "ที่เป็นอยู่ก่อ",
+      "นแล้วหรือไม่"
+    ],
+    "extraExample": "You must declare any pre-existing illness when applying for cover.",
+    "extraExampleTranslation": "คุณต้องแจ้งโรคที่เป็นอยู่ก่อนแล้วเมื่อสมัครทำประกัน",
+    "usageTip": "pre-existing (คำคุณศัพท์) = ที่เป็นอยู่ก่อนแล้ว · มักใช้ในวลี: pre-existing condition, pre-existing illness · คำใกล้เคียง: prior, existing",
+    "novaBatch": true
+  },
+  {
+    "word": "theft",
+    "partOfSpeech": "noun",
+    "translation": "การโจรกรรม, การลักทรัพย์",
+    "definition": "the crime of stealing something",
+    "example": "Report any theft to the local police within twenty-four hours.",
+    "exampleTranslation": "แจ้งความการโจรกรรมต่อตำรวจท้องถิ่นภายในยี่สิบสี่ชั่วโมง",
+    "phonetic": "/θeft/",
+    "cefr": "B1",
+    "collocations": [
+      "report a theft",
+      "theft cover"
+    ],
+    "synonyms": [
+      "robbery",
+      "stealing"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "แจ้งความ",
+      "การโจรกรรมต่อตำรวจ",
+      "ท้องถิ่นภาย",
+      "ในยี่สิบสี่ชั่วโมง"
+    ],
+    "extraExample": "Our travel insurance includes cover for cash theft up to five hundred dollars.",
+    "extraExampleTranslation": "ประกันการเดินทางของเรารวมความคุ้มครองการถูกขโมยเงินสดสูงสุดห้าร้อยดอลลาร์",
+    "usageTip": "theft (คำนาม) = การโจรกรรม, การลักทรัพย์ · มักใช้ในวลี: report a theft, theft cover · คำใกล้เคียง: robbery, stealing",
+    "novaBatch": true
+  },
+  {
+    "word": "stolen",
+    "partOfSpeech": "adjective",
+    "translation": "ที่ถูกขโมย",
+    "definition": "taken illegally without permission",
+    "example": "A police report is required to claim for stolen belongings.",
+    "exampleTranslation": "ต้องใช้ใบแจ้งความเพื่อเคลมทรัพย์สินที่ถูกขโมย",
+    "phonetic": "/ˈstoʊlən/",
+    "cefr": "B1",
+    "collocations": [
+      "stolen wallet",
+      "stolen passport"
+    ],
+    "synonyms": [
+      "taken",
+      "robbed"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ต้องใช้ใบแจ้งความ",
+      "เพื่อ",
+      "เคลมทรัพย์สิน",
+      "ที่ถูกขโมย"
+    ],
+    "extraExample": "My wallet was stolen on the train, so I froze my cards immediately.",
+    "extraExampleTranslation": "กระเป๋าสตางค์ของฉันถูกขโมยบนรถไฟ ฉันจึงอายัดบัตรทันที",
+    "usageTip": "stolen (คำคุณศัพท์) = ที่ถูกขโมย · มักใช้ในวลี: stolen wallet, stolen passport · คำใกล้เคียง: taken, robbed",
+    "novaBatch": true
+  },
+  {
+    "word": "transaction",
+    "partOfSpeech": "noun",
+    "translation": "ธุรกรรม",
+    "definition": "an instance of buying, selling, or exchanging money",
+    "example": "My bank charges a three percent fee on every foreign transaction.",
+    "exampleTranslation": "ธนาคารของฉันคิดค่าธรรมเนียมสามเปอร์เซ็นต์สำหรับทุกธุรกรรมต่างประเทศ",
+    "phonetic": "/trænˈzækʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "foreign transaction",
+      "card transaction"
+    ],
+    "synonyms": [
+      "deal",
+      "payment"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ธนาคารของฉันคิด",
+      "ค่าธรรมเนียมสาม",
+      "เปอร์เซ็นต์สำหรับทุก",
+      "ธุรกรรมต่างประเทศ"
+    ],
+    "extraExample": "Check your app to verify that the currency transaction went through.",
+    "extraExampleTranslation": "ตรวจสอบแอปของคุณเพื่อยืนยันว่าธุรกรรมแลกเปลี่ยนเงินสำเร็จแล้ว",
+    "usageTip": "transaction (คำนาม) = ธุรกรรม · มักใช้ในวลี: foreign transaction, card transaction · คำใกล้เคียง: deal, payment",
+    "novaBatch": true
+  },
+  {
+    "word": "fluctuate",
+    "partOfSpeech": "verb",
+    "translation": "ผันผวน",
+    "definition": "to rise and fall irregularly in number or amount",
+    "example": "Exchange rates fluctuate daily depending on the global market.",
+    "exampleTranslation": "อัตราแลกเปลี่ยนผันผวนทุกวันขึ้นอยู่กับตลาดโลก",
+    "phonetic": "/ˈflʌktʃueɪt/",
+    "cefr": "B2",
+    "collocations": [
+      "rates fluctuate",
+      "fluctuate widely"
+    ],
+    "synonyms": [
+      "vary",
+      "shift"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "อัตราแลกเปลี่ยน",
+      "ผันผวน",
+      "ทุกวันขึ้นอ",
+      "ยู่กับตลาดโลก"
+    ],
+    "extraExample": "Because rates fluctuate, many travelers lock in a rate early.",
+    "extraExampleTranslation": "เนื่องจากเรตผันผวน นักเดินทางหลายคนจึงล็อกเรตไว้ล่วงหน้า",
+    "usageTip": "fluctuate (คำกริยา) = ผันผวน · มักใช้ในวลี: rates fluctuate, fluctuate widely · คำใกล้เคียง: vary, shift",
+    "novaBatch": true
+  },
+  {
+    "word": "devalue",
+    "partOfSpeech": "verb",
+    "translation": "ลดค่า (เงิน)",
+    "definition": "to reduce the value of a currency",
+    "example": "If the currency devalues, your money will buy less abroad.",
+    "exampleTranslation": "หากค่าเงินลดลง เงินของคุณจะซื้อของในต่างประเทศได้น้อยลง",
+    "phonetic": "/diːˈvæljuː/",
+    "cefr": "B2",
+    "collocations": [
+      "devalue currency",
+      "devalue rapidly"
+    ],
+    "synonyms": [
+      "lower",
+      "weaken"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "หากค่าเงินลดลงเงิน",
+      "ของคุณจะซื้อ",
+      "ของ",
+      "ในต่างประเทศได้น้อยลง"
+    ],
+    "extraExample": "The government decided not to devalue the national currency.",
+    "extraExampleTranslation": "รัฐบาลตัดสินใจที่จะไม่ลดค่าเงินตราของประเทศ",
+    "usageTip": "devalue (คำกริยา) = ลดค่า (เงิน) · มักใช้ในวลี: devalue currency, devalue rapidly · คำใกล้เคียง: lower, weaken",
+    "novaBatch": true
+  },
+  {
+    "word": "afford",
+    "partOfSpeech": "verb",
+    "translation": "มีกำลังจ่าย",
+    "definition": "to have enough money to pay for something",
+    "example": "I cannot afford to pay for an emergency flight home myself.",
+    "exampleTranslation": "ฉันไม่มีกำลังจ่ายค่าตั๋วเครื่องบินฉุกเฉินกลับบ้านด้วยตัวเอง",
+    "phonetic": "/əˈfɔːrd/",
+    "cefr": "B1",
+    "collocations": [
+      "afford insurance",
+      "afford to pay"
+    ],
+    "synonyms": [
+      "manage",
+      "pay for"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "ฉันไม่มีกำลังจ่าย",
+      "ค่าตั๋วเครื่อ",
+      "งบินฉุกเฉินกลับบ้าน",
+      "ด้วยตัวเอง"
+    ],
+    "extraExample": "Compare plans to find solid cover that you can easily afford.",
+    "extraExampleTranslation": "เปรียบเทียบแผนต่างๆ เพื่อหาความคุ้มครองที่ดีที่คุณสามารถจ่ายได้สบายๆ",
+    "usageTip": "afford (คำกริยา) = มีกำลังจ่าย · มักใช้ในวลี: afford insurance, afford to pay · คำใกล้เคียง: manage, pay for",
+    "novaBatch": true
+  },
+  {
+    "word": "authorize",
+    "partOfSpeech": "verb",
+    "translation": "อนุมัติ, อนุญาต",
+    "definition": "to give official permission for something",
+    "example": "The insurer must authorize any major surgery in advance.",
+    "exampleTranslation": "บริษัทประกันต้องอนุมัติการผ่าตัดใหญ่ใดๆ ล่วงหน้า",
+    "phonetic": "/ˈɔːθəraɪz/",
+    "cefr": "B2",
+    "collocations": [
+      "authorize payment",
+      "authorize treatment"
+    ],
+    "synonyms": [
+      "approve",
+      "permit"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "บริษัทประกันต้อง",
+      "อนุมัติ",
+      "การผ่าตัดให",
+      "ญ่ใดๆล่วงหน้า"
+    ],
+    "extraExample": "I called my bank to authorize overseas card payments.",
+    "extraExampleTranslation": "ฉันโทรหาธนาคารเพื่ออนุมัติการชำระเงินด้วยบัตรในต่างประเทศ",
+    "usageTip": "authorize (คำกริยา) = อนุมัติ, อนุญาต · มักใช้ในวลี: authorize payment, authorize treatment · คำใกล้เคียง: approve, permit",
+    "novaBatch": true
+  },
+  {
+    "word": "repay",
+    "partOfSpeech": "verb",
+    "translation": "จ่ายคืน, ชดใช้คืน",
+    "definition": "to pay back money that was borrowed or spent",
+    "example": "The insurance company will repay your medical costs within two weeks.",
+    "exampleTranslation": "บริษัทประกันจะจ่ายคืนค่ารักษาพยาบาลของคุณภายในสองสัปดาห์",
+    "phonetic": "/rɪˈpeɪ/",
+    "cefr": "B2",
+    "collocations": [
+      "repay costs",
+      "repay a loan"
+    ],
+    "synonyms": [
+      "reimburse",
+      "pay back"
+    ],
+    "topic": "travel",
+    "thTokens": [
+      "บริษัทประกันจะ",
+      "จ่ายคืนค่ารักษาพยาบาล",
+      "ของคุณภาย",
+      "ในสองสัปดาห์"
+    ],
+    "extraExample": "I will repay you in local currency as soon as we find an ATM.",
+    "extraExampleTranslation": "ฉันจะจ่ายคืนคุณเป็นเงินสกุลท้องถิ่นทันทีที่เราเจอตู้เอทีเอ็ม",
+    "usageTip": "repay (คำกริยา) = จ่ายคืน, ชดใช้คืน · มักใช้ในวลี: repay costs, repay a loan · คำใกล้เคียง: reimburse, pay back",
+    "novaBatch": true
+  },
+  {
+    "word": "weather warning",
+    "partOfSpeech": "noun",
+    "translation": "คำเตือนสภาพอากาศ",
+    "definition": "official alert about dangerous weather",
+    "example": "The city issued a weather warning before the storm.",
+    "exampleTranslation": "เมืองออกคำเตือนสภาพอากาศก่อนพายุเข้า",
+    "phonetic": "/ˈwɛðər ˈwɔrnɪŋ/",
+    "cefr": "B1",
+    "collocations": [
+      "severe weather warning",
+      "issue a weather warning"
+    ],
+    "synonyms": [
+      "weather alert",
+      "storm advisory"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "เมืองออก",
+      "คำเตือนสภาพอากาศ",
+      "ก่อ",
+      "นพายุเข้า"
+    ],
+    "extraExample": "Check your phone for any weather warning tonight.",
+    "extraExampleTranslation": "เช็กโทรศัพท์ของคุณเผื่อมีคำเตือนสภาพอากาศคืนนี้",
+    "usageTip": "weather warning (คำนาม) = คำเตือนสภาพอากาศ · มักใช้ในวลี: severe weather warning, issue a weather warning · คำใกล้เคียง: weather alert, storm advisory",
+    "novaBatch": true
+  },
+  {
+    "word": "flash flood",
+    "partOfSpeech": "noun",
+    "translation": "น้ำท่วมฉับพลัน",
+    "definition": "sudden local flood from heavy rain",
+    "example": "Heavy rain triggered a flash flood in the valley.",
+    "exampleTranslation": "ฝนตกหนักทำให้เกิดน้ำท่วมฉับพลันในหุบเขา",
+    "phonetic": "/flæʃ flʌd/",
+    "cefr": "B2",
+    "collocations": [
+      "flash flood warning",
+      "trigger a flash flood"
+    ],
+    "synonyms": [
+      "sudden flood",
+      "deluge"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ฝนตกหนัก",
+      "ทำให้เกิด",
+      "น้ำท่วมฉับพลัน",
+      "ในหุบเขา"
+    ],
+    "extraExample": "Never drive through a flash flood.",
+    "extraExampleTranslation": "อย่าขับรถลุยน้ำท่วมฉับพลันเด็ดขาด",
+    "usageTip": "flash flood (คำนาม) = น้ำท่วมฉับพลัน · มักใช้ในวลี: flash flood warning, trigger a flash flood · คำใกล้เคียง: sudden flood, deluge",
+    "novaBatch": true
+  },
+  {
+    "word": "storm surge",
+    "partOfSpeech": "noun",
+    "translation": "คลื่นพายุซัดฝั่ง",
+    "definition": "abnormal rise of water during a storm",
+    "example": "The coastal town prepared for a massive storm surge.",
+    "exampleTranslation": "เมืองชายฝั่งเตรียมรับมือคลื่นพายุซัดฝั่งขนาดใหญ่",
+    "phonetic": "/stɔrm sɜrdʒ/",
+    "cefr": "B2",
+    "collocations": [
+      "coastal storm surge",
+      "dangerous storm surge"
+    ],
+    "synonyms": [
+      "tidal surge",
+      "sea surge"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "เมืองชายฝั่ง",
+      "เตรียมรับมือ",
+      "คลื่นพายุซัดฝั่ง",
+      "ขนาดใหญ่"
+    ],
+    "extraExample": "A storm surge can flood streets miles inland.",
+    "extraExampleTranslation": "คลื่นพายุซัดฝั่งสามารถท่วมถนนลึกเข้าไปในแผ่นดินได้หลายไมล์",
+    "usageTip": "storm surge (คำนาม) = คลื่นพายุซัดฝั่ง · มักใช้ในวลี: coastal storm surge, dangerous storm surge · คำใกล้เคียง: tidal surge, sea surge",
+    "novaBatch": true
+  },
+  {
+    "word": "cold snap",
+    "partOfSpeech": "noun",
+    "translation": "ช่วงอากาศหนาวจัดฉับพลัน",
+    "definition": "sudden brief period of very cold weather",
+    "example": "An unexpected cold snap ruined the early blossoms.",
+    "exampleTranslation": "ช่วงอากาศหนาวจัดฉับพลันทำให้ดอกไม้ที่บานเร็วเสียหาย",
+    "phonetic": "/koʊld snæp/",
+    "cefr": "B2",
+    "collocations": [
+      "sudden cold snap",
+      "winter cold snap"
+    ],
+    "synonyms": [
+      "cold spell",
+      "freeze"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ช่วงอากาศหนาว",
+      "จัดฉับพลัน",
+      "ทำให้ดอกไม้ที่บาน",
+      "เร็วเสียหาย"
+    ],
+    "extraExample": "Pipes can freeze during a winter cold snap.",
+    "extraExampleTranslation": "ท่อน้ำอาจแข็งตัวได้ในช่วงอากาศหนาวจัดฉับพลันในฤดูหนาว",
+    "usageTip": "cold snap (คำนาม) = ช่วงอากาศหนาวจัดฉับพลัน · มักใช้ในวลี: sudden cold snap, winter cold snap · คำใกล้เคียง: cold spell, freeze",
+    "novaBatch": true
+  },
+  {
+    "word": "warm front",
+    "partOfSpeech": "noun",
+    "translation": "แนวอากาศอุ่น",
+    "definition": "advancing mass of warm air",
+    "example": "A warm front will bring milder temperatures tomorrow.",
+    "exampleTranslation": "แนวอากาศอุ่นจะทำให้อุณหภูมิอุ่นขึ้นในวันพรุ่งนี้",
+    "phonetic": "/wɔrm frʌnt/",
+    "cefr": "B2",
+    "collocations": [
+      "approaching warm front",
+      "bring a warm front"
+    ],
+    "synonyms": [
+      "warm air mass",
+      "mild front"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "แนวอากาศอุ่น",
+      "จะทำให้อุณห",
+      "ภูมิอุ่นขึ้น",
+      "ในวันพรุ่งนี้"
+    ],
+    "extraExample": "Light rain often arrives ahead of a warm front.",
+    "extraExampleTranslation": "ฝนปรอยมักมาถึงก่อนแนวอากาศอุ่นจะเคลื่อนผ่าน",
+    "usageTip": "warm front (คำนาม) = แนวอากาศอุ่น · มักใช้ในวลี: approaching warm front, bring a warm front · คำใกล้เคียง: warm air mass, mild front",
+    "novaBatch": true
+  },
+  {
+    "word": "cold front",
+    "partOfSpeech": "noun",
+    "translation": "แนวอากาศเย็น",
+    "definition": "advancing mass of cold air",
+    "example": "A sharp cold front is moving across the region.",
+    "exampleTranslation": "แนวอากาศเย็นกำลังเคลื่อนผ่านภูมิภาคอย่างรวดเร็ว",
+    "phonetic": "/koʊld frʌnt/",
+    "cefr": "B2",
+    "collocations": [
+      "sharp cold front",
+      "passing cold front"
+    ],
+    "synonyms": [
+      "cold air mass",
+      "arctic front"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "แนวอากาศเย็น",
+      "กำลังเคลื่อ",
+      "นผ่านภูมิภาค",
+      "อย่างรวดเร็ว"
+    ],
+    "extraExample": "Temperatures dropped ten degrees behind the cold front.",
+    "extraExampleTranslation": "อุณหภูมิลดลงสิบองศาหลังแนวอากาศเย็นเคลื่อนผ่าน",
+    "usageTip": "cold front (คำนาม) = แนวอากาศเย็น · มักใช้ในวลี: sharp cold front, passing cold front · คำใกล้เคียง: cold air mass, arctic front",
+    "novaBatch": true
+  },
+  {
+    "word": "high-pressure",
+    "partOfSpeech": "adjective",
+    "translation": "ความกดอากาศสูง",
+    "definition": "relating to an area of high atmospheric pressure",
+    "example": "A high-pressure system is keeping the skies clear.",
+    "exampleTranslation": "ระบบความกดอากาศสูงทำให้ท้องฟ้าแจ่มใส",
+    "phonetic": "/ˈhaɪˌprɛʃər/",
+    "cefr": "B2",
+    "collocations": [
+      "high-pressure system",
+      "high-pressure ridge"
+    ],
+    "synonyms": [
+      "anticyclonic",
+      "fair-weather"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ระบบ",
+      "ความกดอากาศสูง",
+      "ทำให้ท้อง",
+      "ฟ้าแจ่มใส"
+    ],
+    "extraExample": "High-pressure weather usually means calm winds.",
+    "extraExampleTranslation": "สภาพอากาศความกดอากาศสูงมักหมายถึงลมสงบ",
+    "usageTip": "high-pressure (คำคุณศัพท์) = ความกดอากาศสูง · มักใช้ในวลี: high-pressure system, high-pressure ridge · คำใกล้เคียง: anticyclonic, fair-weather",
+    "novaBatch": true
+  },
+  {
+    "word": "tropical depression",
+    "partOfSpeech": "noun",
+    "translation": "พายุดีเปรสชันเขตร้อน",
+    "definition": "weak tropical cyclone with organized thunderstorms",
+    "example": "The tropical depression may strengthen into a storm.",
+    "exampleTranslation": "พายุดีเปรสชันเขตร้อนอาจทวีกำลังแรงขึ้นเป็นพายุ",
+    "phonetic": "/ˈtrɑpɪkəl dɪˈprɛʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "form a tropical depression",
+      "track a tropical depression"
+    ],
+    "synonyms": [
+      "tropical disturbance",
+      "weak cyclone"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "พายุดีเปรส",
+      "ชันเขตร้อน",
+      "อาจทวีกำลังแร",
+      "งขึ้นเป็นพายุ"
+    ],
+    "extraExample": "Forecasters are tracking a tropical depression offshore.",
+    "extraExampleTranslation": "นักพยากรณ์อากาศกำลังติดตามพายุดีเปรสชันเขตร้อนนอกชายฝั่ง",
+    "usageTip": "tropical depression (คำนาม) = พายุดีเปรสชันเขตร้อน · มักใช้ในวลี: form a tropical depression, track a tropical depression · คำใกล้เคียง: tropical disturbance, weak cyclone",
+    "novaBatch": true
+  },
+  {
+    "word": "supercell",
+    "partOfSpeech": "noun",
+    "translation": "พายุซูเปอร์เซลล์",
+    "definition": "severe thunderstorm with a rotating updraft",
+    "example": "The supercell produced giant hail and strong winds.",
+    "exampleTranslation": "พายุซูเปอร์เซลล์ก่อให้เกิดลูกเห็บขนาดใหญ่และลมแรง",
+    "phonetic": "/ˈsupərˌsɛl/",
+    "cefr": "B2",
+    "collocations": [
+      "severe supercell",
+      "rotating supercell"
+    ],
+    "synonyms": [
+      "severe thunderstorm",
+      "mesocyclone"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "พายุซูเปอร์เซลล์",
+      "ก่อ",
+      "ให้เกิดลูกเห็บขนาด",
+      "ใหญ่และลมแรง"
+    ],
+    "extraExample": "Storm chasers followed the supercell across the plains.",
+    "extraExampleTranslation": "นักล่าพายุติดตามพายุซูเปอร์เซลล์ข้ามที่ราบ",
+    "usageTip": "supercell (คำนาม) = พายุซูเปอร์เซลล์ · มักใช้ในวลี: severe supercell, rotating supercell · คำใกล้เคียง: severe thunderstorm, mesocyclone",
+    "novaBatch": true
+  },
+  {
+    "word": "hailstorm",
+    "partOfSpeech": "noun",
+    "translation": "พายุลูกเห็บ",
+    "definition": "storm that drops balls of ice",
+    "example": "A sudden hailstorm dented dozens of parked cars.",
+    "exampleTranslation": "พายุลูกเห็บฉับพลันทำให้รถที่จอดอยู่หลายสิบคันบุบ",
+    "phonetic": "/ˈheɪlˌstɔrm/",
+    "cefr": "B1",
+    "collocations": [
+      "sudden hailstorm",
+      "severe hailstorm"
+    ],
+    "synonyms": [
+      "ice storm",
+      "pelting hail"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "พายุลูกเห็บ",
+      "ฉับพลันทำให้รถ",
+      "ที่จอดอยู่ห",
+      "ลายสิบคันบุบ"
+    ],
+    "extraExample": "Farmers worry about a hailstorm damaging their crops.",
+    "extraExampleTranslation": "เกษตรกรกังวลว่าพายุลูกเห็บจะทำลายพืชผล",
+    "usageTip": "hailstorm (คำนาม) = พายุลูกเห็บ · มักใช้ในวลี: sudden hailstorm, severe hailstorm · คำใกล้เคียง: ice storm, pelting hail",
+    "novaBatch": true
+  },
+  {
+    "word": "ice storm",
+    "partOfSpeech": "noun",
+    "translation": "พายุน้ำแข็ง",
+    "definition": "storm of freezing rain coating surfaces in ice",
+    "example": "The ice storm snapped power lines across town.",
+    "exampleTranslation": "พายุน้ำแข็งทำให้สายไฟขาดทั่วเมือง",
+    "phonetic": "/aɪs stɔrm/",
+    "cefr": "B1",
+    "collocations": [
+      "severe ice storm",
+      "crippling ice storm"
+    ],
+    "synonyms": [
+      "freezing rainstorm",
+      "glaze storm"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "พายุน้ำแข็ง",
+      "ทำให้สาย",
+      "ไฟขาด",
+      "ทั่วเมือง"
+    ],
+    "extraExample": "Driving becomes treacherous after an ice storm.",
+    "extraExampleTranslation": "การขับรถอันตรายมากหลังพายุน้ำแข็ง",
+    "usageTip": "ice storm (คำนาม) = พายุน้ำแข็ง · มักใช้ในวลี: severe ice storm, crippling ice storm · คำใกล้เคียง: freezing rainstorm, glaze storm",
+    "novaBatch": true
+  },
+  {
+    "word": "dust storm",
+    "partOfSpeech": "noun",
+    "translation": "พายุฝุ่น",
+    "definition": "strong wind carrying clouds of dust",
+    "example": "A massive dust storm reduced visibility to zero.",
+    "exampleTranslation": "พายุฝุ่นขนาดใหญ่ทำให้ทัศนวิสัยลดลงเหลือศูนย์",
+    "phonetic": "/dʌst stɔrm/",
+    "cefr": "B1",
+    "collocations": [
+      "massive dust storm",
+      "blinding dust storm"
+    ],
+    "synonyms": [
+      "haboob",
+      "sandstorm"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "พายุฝุ่น",
+      "ขนาดใหญ่ทำให้ทัศ",
+      "นวิสัยลดล",
+      "งเหลือศูนย์"
+    ],
+    "extraExample": "The dust storm swept through the desert highway.",
+    "extraExampleTranslation": "พายุฝุ่นพัดถล่มทางหลวงกลางทะเลทราย",
+    "usageTip": "dust storm (คำนาม) = พายุฝุ่น · มักใช้ในวลี: massive dust storm, blinding dust storm · คำใกล้เคียง: haboob, sandstorm",
+    "novaBatch": true
+  },
+  {
+    "word": "snowdrift",
+    "partOfSpeech": "noun",
+    "translation": "กองหิมะที่ถูกลมพัดมาทับถม",
+    "definition": "bank of deep snow piled up by wind",
+    "example": "Our car got stuck in a deep snowdrift.",
+    "exampleTranslation": "รถของเราติดอยู่ในกองหิมะที่ลมพัดมาทับถมจนลึก",
+    "phonetic": "/ˈsnoʊˌdrɪft/",
+    "cefr": "B2",
+    "collocations": [
+      "deep snowdrift",
+      "clear a snowdrift"
+    ],
+    "synonyms": [
+      "snowbank",
+      "snow pile"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "รถของเราติด",
+      "อยู่ในกองหิมะ",
+      "ที่ลมพัด",
+      "มาทับถมจนลึก"
+    ],
+    "extraExample": "Shoveling the snowdrift took over an hour.",
+    "extraExampleTranslation": "การตักกองหิมะที่ทับถมใช้เวลานานกว่าหนึ่งชั่วโมง",
+    "usageTip": "snowdrift (คำนาม) = กองหิมะที่ถูกลมพัดมาทับถม · มักใช้ในวลี: deep snowdrift, clear a snowdrift · คำใกล้เคียง: snowbank, snow pile",
+    "novaBatch": true
+  },
+  {
+    "word": "slush",
+    "partOfSpeech": "noun",
+    "translation": "หิมะละลายปนโคลน",
+    "definition": "partially melted snow on the ground",
+    "example": "The sidewalks were covered in gray slush.",
+    "exampleTranslation": "ทางเท้าเต็มไปด้วยหิมะละลายปนโคลนสีเทา",
+    "phonetic": "/slʌʃ/",
+    "cefr": "B2",
+    "collocations": [
+      "icy slush",
+      "melted slush"
+    ],
+    "synonyms": [
+      "wet snow",
+      "mush"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ทางเท้าเต็มไป",
+      "ด้วย",
+      "หิมะละลายปนโคลน",
+      "สีเทา"
+    ],
+    "extraExample": "Wear waterproof boots when walking through slush.",
+    "extraExampleTranslation": "สวมรองเท้าบูทกันน้ำเวลาเดินลุยหิมะละลายปนโคลน",
+    "usageTip": "slush (คำนาม) = หิมะละลายปนโคลน · มักใช้ในวลี: icy slush, melted slush · คำใกล้เคียง: wet snow, mush",
+    "novaBatch": true
+  },
+  {
+    "word": "blackout",
+    "partOfSpeech": "noun",
+    "translation": "ไฟฟ้าดับทั่วบริเวณ",
+    "definition": "total loss of electrical power",
+    "example": "The summer storm caused a citywide blackout.",
+    "exampleTranslation": "พายุฤดูร้อนทำให้เกิดไฟฟ้าดับทั่วเมือง",
+    "phonetic": "/ˈblækˌaʊt/",
+    "cefr": "B2",
+    "collocations": [
+      "citywide blackout",
+      "rolling blackout"
+    ],
+    "synonyms": [
+      "power failure",
+      "outage"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "พายุฤดูร้อ",
+      "นทำให้เกิด",
+      "ไฟฟ้าดับ",
+      "ทั่วเมือง"
+    ],
+    "extraExample": "Keep flashlights ready in case of a blackout.",
+    "extraExampleTranslation": "เตรียมไฟฉายไว้ให้พร้อมเผื่อเกิดไฟฟ้าดับ",
+    "usageTip": "blackout (คำนาม) = ไฟฟ้าดับทั่วบริเวณ · มักใช้ในวลี: citywide blackout, rolling blackout · คำใกล้เคียง: power failure, outage",
+    "novaBatch": true
+  },
+  {
+    "word": "power outage",
+    "partOfSpeech": "noun",
+    "translation": "ไฟฟ้าดับ",
+    "definition": "interruption in the supply of electricity",
+    "example": "A fallen tree caused a three-hour power outage.",
+    "exampleTranslation": "ต้นไม้ล้มทำให้ไฟฟ้าดับนานสามชั่วโมง",
+    "phonetic": "/ˈpaʊər ˈaʊtɪdʒ/",
+    "cefr": "B1",
+    "collocations": [
+      "widespread power outage",
+      "report a power outage"
+    ],
+    "synonyms": [
+      "blackout",
+      "power cut"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ต้นไม้ล้มทำให้",
+      "ไฟฟ้าดับ",
+      "นาน",
+      "สามชั่วโมง"
+    ],
+    "extraExample": "Report any power outage to the utility company.",
+    "extraExampleTranslation": "แจ้งเหตุไฟฟ้าดับให้การไฟฟ้าทราบทันที",
+    "usageTip": "power outage (คำนาม) = ไฟฟ้าดับ · มักใช้ในวลี: widespread power outage, report a power outage · คำใกล้เคียง: blackout, power cut",
+    "novaBatch": true
+  },
+  {
+    "word": "shelter in place",
+    "partOfSpeech": "verb",
+    "translation": "หลบภัยอยู่กับที่",
+    "definition": "stay indoors until danger passes",
+    "example": "Residents were told to shelter in place during the tornado.",
+    "exampleTranslation": "ผู้อยู่อาศัยได้รับแจ้งให้หลบภัยอยู่กับที่ระหว่างเกิดทอร์นาโด",
+    "phonetic": "/ˈʃɛltər ɪn pleɪs/",
+    "cefr": "B2",
+    "collocations": [
+      "ordered to shelter in place",
+      "shelter in place safely"
+    ],
+    "synonyms": [
+      "stay indoors",
+      "take cover"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ผู้อยู่อาศัยได้รับแจ้ง",
+      "ให้",
+      "หลบภัยอยู่กับที่",
+      "ระหว่างเกิดทอร์นาโด"
+    ],
+    "extraExample": "It is safer to shelter in place than to drive.",
+    "extraExampleTranslation": "การหลบภัยอยู่กับที่ปลอดภัยกว่าการขับรถออกไป",
+    "usageTip": "shelter in place (คำกริยา) = หลบภัยอยู่กับที่ · มักใช้ในวลี: ordered to shelter in place, shelter in place safely · คำใกล้เคียง: stay indoors, take cover",
+    "novaBatch": true
+  },
+  {
+    "word": "batten down",
+    "partOfSpeech": "verb",
+    "translation": "ปิดยึดให้แน่นหนา",
+    "definition": "secure doors and windows before a storm",
+    "example": "We need to batten down the shutters before nightfall.",
+    "exampleTranslation": "เราต้องปิดยึดบานหน้าต่างให้แน่นหนาก่อนค่ำ",
+    "phonetic": "/ˈbætən daʊn/",
+    "cefr": "B2",
+    "collocations": [
+      "batten down the hatches",
+      "batten down windows"
+    ],
+    "synonyms": [
+      "secure",
+      "fasten"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "เราต้องปิด",
+      "ยึดบานหน้าต่าง",
+      "ให้แน่น",
+      "หนาก่อนค่ำ"
+    ],
+    "extraExample": "Shop owners began to batten down ahead of the gale.",
+    "extraExampleTranslation": "เจ้าของร้านเริ่มปิดยึดร้านให้แน่นหนาก่อนพายุลมแรงจะมา",
+    "usageTip": "batten down (คำกริยา) = ปิดยึดให้แน่นหนา · มักใช้ในวลี: batten down the hatches, batten down windows · คำใกล้เคียง: secure, fasten",
+    "novaBatch": true
+  },
+  {
+    "word": "clear up",
+    "partOfSpeech": "verb",
+    "translation": "ท้องฟ้าแจ่มใสขึ้น",
+    "definition": "become bright and free of clouds or rain",
+    "example": "The sky should clear up by late afternoon.",
+    "exampleTranslation": "ท้องฟ้าน่าจะแจ่มใสขึ้นในช่วงบ่ายแก่ๆ",
+    "phonetic": "/klɪr ʌp/",
+    "cefr": "B1",
+    "collocations": [
+      "weather clears up",
+      "skies clear up"
+    ],
+    "synonyms": [
+      "brighten",
+      "improve"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ท้องฟ้าน่าจะ",
+      "แจ่มใสขึ้น",
+      "ในช่ว",
+      "งบ่ายแก่ๆ"
+    ],
+    "usageTip": "clear up (คำกริยา) = ท้องฟ้าแจ่มใสขึ้น · มักใช้ในวลี: weather clears up, skies clear up · คำใกล้เคียง: brighten, improve",
+    "novaBatch": true,
+    "extraExample": "The sky began to clear up just as we arrived at the beach.",
+    "extraExampleTranslation": "ท้องฟ้าเริ่มแจ่มใสขึ้นพอดีตอนที่เรามาถึงชายหาด"
+  },
+  {
+    "word": "die down",
+    "partOfSpeech": "verb",
+    "translation": "สงบลง/เบาลง",
+    "definition": "gradually become less strong",
+    "example": "Wait for the wind to die down before sailing.",
+    "exampleTranslation": "รอให้ลมสงบลงก่อนค่อยออกเรือ",
+    "phonetic": "/daɪ daʊn/",
+    "cefr": "B1",
+    "collocations": [
+      "winds die down",
+      "storm dies down"
+    ],
+    "synonyms": [
+      "subside",
+      "ease off"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "รอให้ลม",
+      "สงบลง",
+      "ก่อนค่อ",
+      "ยออกเรือ"
+    ],
+    "usageTip": "die down (คำกริยา) = สงบลง/เบาลง · มักใช้ในวลี: winds die down, storm dies down · คำใกล้เคียง: subside, ease off",
+    "novaBatch": true,
+    "extraExample": "Wait for the wind to die down before setting up the tent.",
+    "extraExampleTranslation": "รอให้ลมสงบลงก่อนค่อยกางเต็นท์นะ"
+  },
+  {
+    "word": "roll in",
+    "partOfSpeech": "verb",
+    "translation": "เคลื่อนตัวเข้ามา",
+    "definition": "arrive steadily, especially fog or clouds",
+    "example": "Thick fog began to roll in from the sea.",
+    "exampleTranslation": "หมอกหนาเริ่มเคลื่อนตัวเข้ามาจากทะเล",
+    "phonetic": "/roʊl ɪn/",
+    "cefr": "B1",
+    "collocations": [
+      "fog rolls in",
+      "clouds roll in"
+    ],
+    "synonyms": [
+      "drift in",
+      "sweep in"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "หมอกหนาเริ่ม",
+      "เคลื่อ",
+      "นตัวเข้ามา",
+      "จากทะเล"
+    ],
+    "usageTip": "roll in (คำกริยา) = เคลื่อนตัวเข้ามา · มักใช้ในวลี: fog rolls in, clouds roll in · คำใกล้เคียง: drift in, sweep in",
+    "novaBatch": true,
+    "extraExample": "Dark clouds started to roll in from the west.",
+    "extraExampleTranslation": "เมฆดำเริ่มเคลื่อนตัวเข้ามาจากทางทิศตะวันตก"
+  },
+  {
+    "word": "pour down",
+    "partOfSpeech": "verb",
+    "translation": "ฝนตกกระหน่ำลงมา",
+    "definition": "rain heavily and continuously",
+    "example": "Rain started to pour down just as we left.",
+    "exampleTranslation": "ฝนเริ่มตกกระหน่ำลงมาพอดีตอนเราออกจากบ้าน",
+    "phonetic": "/pɔr daʊn/",
+    "cefr": "B1",
+    "collocations": [
+      "rain pours down",
+      "start to pour down"
+    ],
+    "synonyms": [
+      "bucketing down",
+      "rain heavily"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ฝนเริ่มตกก",
+      "ระหน่ำลงมาพ",
+      "อดีตอนเราออก",
+      "จากบ้าน"
+    ],
+    "usageTip": "pour down (คำกริยา) = ฝนตกกระหน่ำลงมา · มักใช้ในวลี: rain pours down, start to pour down · คำใกล้เคียง: bucketing down, rain heavily",
+    "novaBatch": true,
+    "extraExample": "It began to pour down right after we stepped outside.",
+    "extraExampleTranslation": "ฝนเริ่มตกกระหน่ำลงมาทันทีหลังจากที่เราเดินออกมาข้างนอก"
+  },
+  {
+    "word": "bundle up",
+    "partOfSpeech": "verb",
+    "translation": "สวมเสื้อผ้าหนาๆ ให้อบอุ่น",
+    "definition": "dress in warm layers against the cold",
+    "example": "Bundle up well before going out in the snow.",
+    "exampleTranslation": "สวมเสื้อผ้าหนาๆ ให้อบอุ่นก่อนออกไปข้างนอกท่ามกลางหิมะ",
+    "phonetic": "/ˈbʌndəl ʌp/",
+    "cefr": "B1",
+    "collocations": [
+      "bundle up warm",
+      "bundle up in layers"
+    ],
+    "synonyms": [
+      "wrap up",
+      "dress warmly"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "สวมเสื้อผ้าหนาๆ",
+      "ให้อบอุ่น",
+      "ก่อนออกไปข้างนอ",
+      "กท่ามกลางหิมะ"
+    ],
+    "usageTip": "bundle up (คำกริยา) = สวมเสื้อผ้าหนาๆ ให้อบอุ่น · มักใช้ในวลี: bundle up warm, bundle up in layers · คำใกล้เคียง: wrap up, dress warmly",
+    "novaBatch": true,
+    "extraExample": "Bundle up before walking to campus because it is freezing today.",
+    "extraExampleTranslation": "สวมเสื้อผ้าหนาๆ ให้อบอุ่นก่อนเดินไปมหาวิทยาลัยนะ เพราะวันนี้อากาศหนาวจัด"
+  },
+  {
+    "word": "sweltering",
+    "partOfSpeech": "adjective",
+    "translation": "ร้อนอบอ้าว",
+    "definition": "uncomfortably hot and humid",
+    "example": "We stayed indoors during the sweltering afternoon.",
+    "exampleTranslation": "เราอยู่แต่ในบ้านในช่วงบ่ายที่ร้อนอบอ้าว",
+    "phonetic": "/ˈswɛltərɪŋ/",
+    "cefr": "B2",
+    "collocations": [
+      "sweltering heat",
+      "sweltering afternoon"
+    ],
+    "synonyms": [
+      "scorching",
+      "stifling"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "เราอยู่แต่ใน",
+      "บ้าน",
+      "ในช่วงบ่าย",
+      "ที่ร้อนอบอ้าว"
+    ],
+    "extraExample": "August brings sweltering heat to the city.",
+    "extraExampleTranslation": "เดือนสิงหาคมนำความร้อนอบอ้าวมาสู่เมือง",
+    "usageTip": "sweltering (คำคุณศัพท์) = ร้อนอบอ้าว · มักใช้ในวลี: sweltering heat, sweltering afternoon · คำใกล้เคียง: scorching, stifling",
+    "novaBatch": true
+  },
+  {
+    "word": "blistering",
+    "partOfSpeech": "adjective",
+    "translation": "ร้อนจัดราวกับแผดเผา",
+    "definition": "extremely hot and intense",
+    "example": "The blistering sun dried out the soil.",
+    "exampleTranslation": "แดดที่ร้อนจัดแผดเผาทำให้ดินแห้งผาก",
+    "phonetic": "/ˈblɪstərɪŋ/",
+    "cefr": "B2",
+    "collocations": [
+      "blistering heat",
+      "blistering sun"
+    ],
+    "synonyms": [
+      "searing",
+      "baking"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "แดด",
+      "ที่ร้อนจัดแผด",
+      "เผาทำให้ดิน",
+      "แห้งผาก"
+    ],
+    "extraExample": "They worked under blistering summer temperatures.",
+    "extraExampleTranslation": "พวกเขาทำงานภายใต้ความร้อนจัดของฤดูร้อน",
+    "usageTip": "blistering (คำคุณศัพท์) = ร้อนจัดราวกับแผดเผา · มักใช้ในวลี: blistering heat, blistering sun · คำใกล้เคียง: searing, baking",
+    "novaBatch": true
+  },
+  {
+    "word": "frigid",
+    "partOfSpeech": "adjective",
+    "translation": "หนาวเหน็บ",
+    "definition": "extremely cold",
+    "example": "Frigid air swept down from the north.",
+    "exampleTranslation": "อากาศหนาวเหน็บพัดลงมาจากทางเหนือ",
+    "phonetic": "/ˈfrɪdʒɪd/",
+    "cefr": "B2",
+    "collocations": [
+      "frigid air",
+      "frigid temperatures"
+    ],
+    "synonyms": [
+      "freezing",
+      "icy"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "อากาศ",
+      "หนาวเหน็บ",
+      "พัดลงมาจาก",
+      "ทางเหนือ"
+    ],
+    "extraExample": "The lake was frozen solid in the frigid weather.",
+    "extraExampleTranslation": "ทะเลสาบกลายเป็นน้ำแข็งสนิทในสภาพอากาศหนาวเหน็บ",
+    "usageTip": "frigid (คำคุณศัพท์) = หนาวเหน็บ · มักใช้ในวลี: frigid air, frigid temperatures · คำใกล้เคียง: freezing, icy",
+    "novaBatch": true
+  },
+  {
+    "word": "subzero",
+    "partOfSpeech": "adjective",
+    "translation": "ต่ำกว่าศูนย์องศา",
+    "definition": "below zero degrees",
+    "example": "Subzero temperatures are expected overnight.",
+    "exampleTranslation": "คาดว่าอุณหภูมิจะต่ำกว่าศูนย์องศาตลอดคืน",
+    "phonetic": "/ˌsʌbˈzɪroʊ/",
+    "cefr": "B2",
+    "collocations": [
+      "subzero temperatures",
+      "subzero windchill"
+    ],
+    "synonyms": [
+      "below freezing",
+      "glacial"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "คาดว่าอุณ",
+      "หภูมิจะ",
+      "ต่ำกว่าศูนย์องศา",
+      "ตลอดคืน"
+    ],
+    "extraExample": "Few plants can survive subzero conditions.",
+    "extraExampleTranslation": "พืชไม่กี่ชนิดสามารถรอดชีวิตในสภาพอากาศต่ำกว่าศูนย์องศา",
+    "usageTip": "subzero (คำคุณศัพท์) = ต่ำกว่าศูนย์องศา · มักใช้ในวลี: subzero temperatures, subzero windchill · คำใกล้เคียง: below freezing, glacial",
+    "novaBatch": true
+  },
+  {
+    "word": "torrential",
+    "partOfSpeech": "adjective",
+    "translation": "ตกหนักมาก/เชี่ยวกราก",
+    "definition": "falling rapidly in huge amounts",
+    "example": "Torrential rain flooded the subway station.",
+    "exampleTranslation": "ฝนที่ตกหนักมากทำให้น้ำท่วมสถานีรถไฟใต้ดิน",
+    "phonetic": "/təˈrɛnʃəl/",
+    "cefr": "B2",
+    "collocations": [
+      "torrential rain",
+      "torrential downpour"
+    ],
+    "synonyms": [
+      "pouring",
+      "relentless"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ฝนที่ตกหนักมาก",
+      "ทำให้น้ำท่ว",
+      "มสถานีร",
+      "ถไฟใต้ดิน"
+    ],
+    "extraExample": "The region faced torrential downpours all week.",
+    "extraExampleTranslation": "ภูมิภาคนี้เผชิญกับฝนตกหนักมากตลอดทั้งสัปดาห์",
+    "usageTip": "torrential (คำคุณศัพท์) = ตกหนักมาก/เชี่ยวกราก · มักใช้ในวลี: torrential rain, torrential downpour · คำใกล้เคียง: pouring, relentless",
+    "novaBatch": true
+  },
+  {
+    "word": "blustery",
+    "partOfSpeech": "adjective",
+    "translation": "ลมกระโชกแรง",
+    "definition": "blowing in strong, uneven gusts",
+    "example": "It was a cold and blustery autumn day.",
+    "exampleTranslation": "มันเป็นวันฤดูใบไม้ร่วงที่หนาวและมีลมกระโชกแรง",
+    "phonetic": "/ˈblʌstəri/",
+    "cefr": "B2",
+    "collocations": [
+      "blustery winds",
+      "blustery day"
+    ],
+    "synonyms": [
+      "gusty",
+      "windy"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "มันเป็นวันฤ",
+      "ดูใบไม้ร่วง",
+      "ที่หนาวและมี",
+      "ลมกระโชกแรง"
+    ],
+    "extraExample": "Blustery winds blew leaves across the yard.",
+    "extraExampleTranslation": "ลมกระโชกแรงพัดใบไม้ปลิวไปทั่วสนาม",
+    "usageTip": "blustery (คำคุณศัพท์) = ลมกระโชกแรง · มักใช้ในวลี: blustery winds, blustery day · คำใกล้เคียง: gusty, windy",
+    "novaBatch": true
+  },
+  {
+    "word": "balmy",
+    "partOfSpeech": "adjective",
+    "translation": "อบอุ่นสบาย",
+    "definition": "pleasantly warm and gentle",
+    "example": "We enjoyed a balmy evening on the patio.",
+    "exampleTranslation": "เราเพลิดเพลินกับค่ำคืนที่อบอุ่นสบายบนลานบ้าน",
+    "phonetic": "/ˈbɑmi/",
+    "cefr": "B2",
+    "collocations": [
+      "balmy evening",
+      "balmy breeze"
+    ],
+    "synonyms": [
+      "mild",
+      "pleasant"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "เราเพลิดเพลิน",
+      "กับค่ำคืน",
+      "ที่อบอุ่นสบาย",
+      "บนลานบ้าน"
+    ],
+    "extraExample": "Spring brought balmy breezes from the coast.",
+    "extraExampleTranslation": "ฤดูใบไม้ผลินำสายลมอุ่นสบายมาจากชายฝั่ง",
+    "usageTip": "balmy (คำคุณศัพท์) = อบอุ่นสบาย · มักใช้ในวลี: balmy evening, balmy breeze · คำใกล้เคียง: mild, pleasant",
+    "novaBatch": true
+  },
+  {
+    "word": "autumnal",
+    "partOfSpeech": "adjective",
+    "translation": "เกี่ยวกับฤดูใบไม้ร่วง",
+    "definition": "characteristic of autumn",
+    "example": "The park had a lovely autumnal glow.",
+    "exampleTranslation": "สวนสาธารณะมีแสงสีของฤดูใบไม้ร่วงที่งดงาม",
+    "phonetic": "/ɔˈtʌmnəl/",
+    "cefr": "B2",
+    "collocations": [
+      "autumnal colors",
+      "autumnal chill"
+    ],
+    "synonyms": [
+      "fall-like",
+      "seasonal"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "สวนสาธารณะ",
+      "มีแสงสีของ",
+      "ฤดูใบไม้ร่วง",
+      "ที่งดงาม"
+    ],
+    "extraExample": "Cooler nights bring an autumnal feel.",
+    "extraExampleTranslation": "คืนที่เย็นลงให้ความรู้สึกเหมือนฤดูใบไม้ร่วง",
+    "usageTip": "autumnal (คำคุณศัพท์) = เกี่ยวกับฤดูใบไม้ร่วง · มักใช้ในวลี: autumnal colors, autumnal chill · คำใกล้เคียง: fall-like, seasonal",
+    "novaBatch": true
+  },
+  {
+    "word": "vernal",
+    "partOfSpeech": "adjective",
+    "translation": "เกี่ยวกับฤดูใบไม้ผลิ",
+    "definition": "relating to spring",
+    "example": "Vernal showers help the wildflowers bloom.",
+    "exampleTranslation": "ฝนในฤดูใบไม้ผลิช่วยให้ดอกไม้ป่าบาน",
+    "phonetic": "/ˈvɜrnəl/",
+    "cefr": "B2",
+    "collocations": [
+      "vernal equinox",
+      "vernal showers"
+    ],
+    "synonyms": [
+      "springtime",
+      "springlike"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ฝนในฤดูใบ",
+      "ไม้ผลิช่วย",
+      "ให้ดอ",
+      "กไม้ป่าบาน"
+    ],
+    "extraExample": "The vernal equinox marks the start of spring.",
+    "extraExampleTranslation": "วันวสันตวิษุวัตเป็นจุดเริ่มต้นของฤดูใบไม้ผลิ",
+    "usageTip": "vernal (คำคุณศัพท์) = เกี่ยวกับฤดูใบไม้ผลิ · มักใช้ในวลี: vernal equinox, vernal showers · คำใกล้เคียง: springtime, springlike",
+    "novaBatch": true
+  },
+  {
+    "word": "unseasonable",
+    "partOfSpeech": "adjective",
+    "translation": "ผิดฤดูกาล",
+    "definition": "unusual for the time of year",
+    "example": "Unseasonable warmth melted the snow early.",
+    "exampleTranslation": "ความอบอุ่นที่ผิดฤดูกาลทำให้หิมะละลายเร็วกว่าปกติ",
+    "phonetic": "/ʌnˈsizənəbəl/",
+    "cefr": "B2",
+    "collocations": [
+      "unseasonable warmth",
+      "unseasonable weather"
+    ],
+    "synonyms": [
+      "uncharacteristic",
+      "atypical"
+    ],
+    "topic": "nature",
+    "thTokens": [
+      "ความอบอุ่นที่",
+      "ผิดฤดูกาล",
+      "ทำให้หิมะละลาย",
+      "เร็วกว่าปกติ"
+    ],
+    "extraExample": "Farmers worried about the unseasonable frost.",
+    "extraExampleTranslation": "เกษตรกรกังวลเรื่องน้ำค้างแข็งที่ผิดฤดูกาล",
+    "usageTip": "unseasonable (คำคุณศัพท์) = ผิดฤดูกาล · มักใช้ในวลี: unseasonable warmth, unseasonable weather · คำใกล้เคียง: uncharacteristic, atypical",
+    "novaBatch": true
+  },
+  {
+    "word": "alleviate",
+    "partOfSpeech": "verb",
+    "translation": "บรรเทา",
+    "definition": "to make pain or a problem less severe",
+    "example": "The medicine helped alleviate her headache.",
+    "exampleTranslation": "ยาช่วยบรรเทาอาการปวดหัวของเธอ",
+    "phonetic": "/əˈliːvieɪt/",
+    "cefr": "B2",
+    "collocations": [
+      "alleviate pain",
+      "alleviate stress"
+    ],
+    "synonyms": [
+      "ease",
+      "relieve"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "ยาช่วย",
+      "บรรเทา",
+      "อาการปวดหัว",
+      "ของเธอ"
+    ],
+    "extraExample": "Talking to a friend can alleviate stress.",
+    "extraExampleTranslation": "การคุยกับเพื่อนช่วยบรรเทาความเครียดได้",
+    "usageTip": "alleviate (คำกริยา) = บรรเทา · มักใช้ในวลี: alleviate pain, alleviate stress · คำใกล้เคียง: ease, relieve",
+    "novaBatch": true
+  },
+  {
+    "word": "subside",
+    "partOfSpeech": "verb",
+    "translation": "ค่อยๆ สงบลง",
+    "definition": "to become less intense or severe",
+    "example": "The storm began to subside after midnight.",
+    "exampleTranslation": "พายุเริ่มสงบลงหลังเที่ยงคืน",
+    "phonetic": "/səbˈsaɪd/",
+    "cefr": "B2",
+    "collocations": [
+      "subside gradually",
+      "pain subsides"
+    ],
+    "synonyms": [
+      "fade",
+      "lessen"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "พายุเริ่ม",
+      "สงบลง",
+      "หลัง",
+      "เที่ยงคืน"
+    ],
+    "extraExample": "Her nervousness subsided once she started speaking.",
+    "extraExampleTranslation": "ความประหม่าของเธอค่อยๆ ลดลงเมื่อเริ่มพูด",
+    "usageTip": "subside (คำกริยา) = ค่อยๆ สงบลง · มักใช้ในวลี: subside gradually, pain subsides · คำใกล้เคียง: fade, lessen",
+    "novaBatch": true
+  },
+  {
+    "word": "abate",
+    "partOfSpeech": "verb",
+    "translation": "ซาลง / เบาบางลง",
+    "definition": "to become less strong or widespread",
+    "example": "The heavy rain finally abated.",
+    "exampleTranslation": "ฝนที่ตกหนักซาลงในที่สุด",
+    "phonetic": "/əˈbeɪt/",
+    "cefr": "B2",
+    "collocations": [
+      "storm abates",
+      "anger abates"
+    ],
+    "synonyms": [
+      "subside",
+      "diminish"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "ฝนที่ตกหนัก",
+      "ซาลง",
+      "ในที่สุด"
+    ],
+    "extraExample": "His anger abated after hearing the truth.",
+    "extraExampleTranslation": "ความโกรธของเขาเบาลงหลังได้ยินความจริง",
+    "usageTip": "abate (คำกริยา) = ซาลง / เบาบางลง · มักใช้ในวลี: storm abates, anger abates · คำใกล้เคียง: subside, diminish",
+    "novaBatch": true
+  },
+  {
+    "word": "tranquil",
+    "partOfSpeech": "adjective",
+    "translation": "เงียบสงบ",
+    "definition": "calm, quiet, and peaceful",
+    "example": "The lake looked tranquil at dawn.",
+    "exampleTranslation": "ทะเลสาบดูเงียบสงบในยามรุ่งสาง",
+    "phonetic": "/ˈtræŋkwɪl/",
+    "cefr": "B2",
+    "collocations": [
+      "tranquil scene",
+      "tranquil mind"
+    ],
+    "synonyms": [
+      "peaceful",
+      "calm"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "ทะเลสาบดู",
+      "เงียบสงบ",
+      "ในยาม",
+      "รุ่งสาง"
+    ],
+    "extraExample": "She enjoys spending time in tranquil places.",
+    "extraExampleTranslation": "เธอชอบใช้เวลาในสถานที่ที่เงียบสงบ",
+    "usageTip": "tranquil (คำคุณศัพท์) = เงียบสงบ · มักใช้ในวลี: tranquil scene, tranquil mind · คำใกล้เคียง: peaceful, calm",
+    "novaBatch": true
+  },
+  {
+    "word": "tranquility",
+    "partOfSpeech": "noun",
+    "translation": "ความสงบสุข",
+    "definition": "a state of calm and peace",
+    "example": "He found tranquility in the mountains.",
+    "exampleTranslation": "เขาพบความสงบสุขในหุบเขา",
+    "phonetic": "/træŋˈkwɪləti/",
+    "cefr": "B2",
+    "collocations": [
+      "inner tranquility",
+      "sense of tranquility"
+    ],
+    "synonyms": [
+      "serenity",
+      "peace"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "เขาพบ",
+      "ความสงบสุข",
+      "ในหุบ",
+      "เขา"
+    ],
+    "extraExample": "The garden offers a sense of tranquility.",
+    "extraExampleTranslation": "สวนแห่งนี้ให้ความรู้สึกสงบสุข",
+    "usageTip": "tranquility (คำนาม) = ความสงบสุข · มักใช้ในวลี: inner tranquility, sense of tranquility · คำใกล้เคียง: serenity, peace",
+    "novaBatch": true
+  },
+  {
+    "word": "composed",
+    "partOfSpeech": "adjective",
+    "translation": "สุขุม เยือกเย็น",
+    "definition": "calm and in control of your emotions",
+    "example": "She remained composed during the crisis.",
+    "exampleTranslation": "เธอยังคงสุขุมเยือกเย็นระหว่างวิกฤต",
+    "phonetic": "/kəmˈpoʊzd/",
+    "cefr": "B2",
+    "collocations": [
+      "stay composed",
+      "composed manner"
+    ],
+    "synonyms": [
+      "calm",
+      "collected"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "เธอยังคง",
+      "สุขุมเยือกเย็น",
+      "ระห",
+      "ว่างวิกฤต"
+    ],
+    "extraExample": "He gave a very composed speech.",
+    "extraExampleTranslation": "เขากล่าวสุนทรพจน์ได้อย่างสงบนิ่งมาก",
+    "usageTip": "composed (คำคุณศัพท์) = สุขุม เยือกเย็น · มักใช้ในวลี: stay composed, composed manner · คำใกล้เคียง: calm, collected",
+    "novaBatch": true
+  },
+  {
+    "word": "unruffled",
+    "partOfSpeech": "adjective",
+    "translation": "ไม่สะทกสะท้าน",
+    "definition": "calm and not worried by problems",
+    "example": "He seemed unruffled by the sudden delay.",
+    "exampleTranslation": "เขาดูไม่สะทกสะท้านกับความล่าช้ากะทันหัน",
+    "phonetic": "/ʌnˈrʌfəld/",
+    "cefr": "B2",
+    "collocations": [
+      "stay unruffled",
+      "unruffled calm"
+    ],
+    "synonyms": [
+      "calm",
+      "unfazed"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "เขาดู",
+      "ไม่สะทกสะท้าน",
+      "กับความ",
+      "ล่าช้ากะทันหัน"
+    ],
+    "extraExample": "She kept an unruffled expression.",
+    "extraExampleTranslation": "เธอรักษาสีหน้าให้ดูสงบนิ่งไว้ได้",
+    "usageTip": "unruffled (คำคุณศัพท์) = ไม่สะทกสะท้าน · มักใช้ในวลี: stay unruffled, unruffled calm · คำใกล้เคียง: calm, unfazed",
+    "novaBatch": true
+  },
+  {
+    "word": "favorable",
+    "partOfSpeech": "adjective",
+    "translation": "เอื้ออำนวย / เป็นใจ",
+    "definition": "positive and likely to bring good results",
+    "example": "The weather is favorable for a hike.",
+    "exampleTranslation": "สภาพอากาศเป็นใจสำหรับการเดินป่า",
+    "phonetic": "/ˈfeɪvərəbəl/",
+    "cefr": "B2",
+    "collocations": [
+      "favorable outcome",
+      "favorable conditions"
+    ],
+    "synonyms": [
+      "positive",
+      "advantageous"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "สภาพอากาศ",
+      "เป็นใจ",
+      "สำหรับ",
+      "การเดินป่า"
+    ],
+    "extraExample": "We received a favorable response.",
+    "extraExampleTranslation": "เราได้รับการตอบรับที่ดี",
+    "usageTip": "favorable (คำคุณศัพท์) = เอื้ออำนวย / เป็นใจ · มักใช้ในวลี: favorable outcome, favorable conditions · คำใกล้เคียง: positive, advantageous",
+    "novaBatch": true
+  },
+  {
+    "word": "optimism",
+    "partOfSpeech": "noun",
+    "translation": "การมองโลกในแง่ดี",
+    "definition": "a feeling that good things will happen",
+    "example": "There is growing optimism about the economy.",
+    "exampleTranslation": "มีความหวังเกี่ยวกับเศรษฐกิจมากขึ้นเรื่อยๆ",
+    "phonetic": "/ˈɑːptɪmɪzəm/",
+    "cefr": "B2",
+    "collocations": [
+      "cautious optimism",
+      "sense of optimism"
+    ],
+    "synonyms": [
+      "hope",
+      "positivity"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "มีความหวัง",
+      "เกี่ยว",
+      "กับเศรษฐกิจมาก",
+      "ขึ้นเรื่อยๆ"
+    ],
+    "extraExample": "Her optimism helped the whole team.",
+    "extraExampleTranslation": "การมองโลกในแง่ดีของเธอช่วยทีมได้มาก",
+    "usageTip": "optimism (คำนาม) = การมองโลกในแง่ดี · มักใช้ในวลี: cautious optimism, sense of optimism · คำใกล้เคียง: hope, positivity",
+    "novaBatch": true
+  },
+  {
+    "word": "serenity",
+    "partOfSpeech": "noun",
+    "translation": "ความสงบทางใจ",
+    "definition": "the quality of being peaceful and calm",
+    "example": "Yoga brings a sense of serenity.",
+    "exampleTranslation": "โยคะนำมาซึ่งความสงบทางใจ",
+    "phonetic": "/səˈrenəti/",
+    "cefr": "B2",
+    "collocations": [
+      "inner serenity",
+      "find serenity"
+    ],
+    "synonyms": [
+      "peace",
+      "tranquility"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "โยคะนำมาซึ่ง",
+      "ความ",
+      "สงบ",
+      "ทางใจ"
+    ],
+    "extraExample": "She faced the future with serenity.",
+    "extraExampleTranslation": "เธอเผชิญหน้ากับอนาคตอย่างสงบสุข",
+    "usageTip": "serenity (คำนาม) = ความสงบทางใจ · มักใช้ในวลี: inner serenity, find serenity · คำใกล้เคียง: peace, tranquility",
+    "novaBatch": true
+  },
+  {
+    "word": "rebound",
+    "partOfSpeech": "verb",
+    "translation": "ฟื้นตัวกลับมา",
+    "definition": "to recover in value, strength, or mood",
+    "example": "She rebounded quickly from the setback.",
+    "exampleTranslation": "เธอฟื้นตัวจากความผิดหวังได้อย่างรวดเร็ว",
+    "phonetic": "/rɪˈbaʊnd/",
+    "cefr": "B2",
+    "collocations": [
+      "rebound quickly",
+      "rebound from"
+    ],
+    "synonyms": [
+      "recover",
+      "bounce back"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "เธอฟื้นตัว",
+      "จากความ",
+      "ผิดหวังได้อ",
+      "ย่างรวดเร็ว"
+    ],
+    "extraExample": "Sales began to rebound in the spring.",
+    "extraExampleTranslation": "ยอดขายเริ่มฟื้นตัวในช่วงฤดูใบไม้ผลิ",
+    "usageTip": "rebound (คำกริยา) = ฟื้นตัวกลับมา · มักใช้ในวลี: rebound quickly, rebound from · คำใกล้เคียง: recover, bounce back",
+    "novaBatch": true
+  },
+  {
+    "word": "revive",
+    "partOfSpeech": "verb",
+    "translation": "ฟื้นคืน / ทำให้สดชื่น",
+    "definition": "to bring back to life, strength, or freshness",
+    "example": "A cup of tea revived my spirits.",
+    "exampleTranslation": "ชาหนึ่งถ้วยช่วยให้ฉันรู้สึกสดชื่นขึ้น",
+    "phonetic": "/rɪˈvaɪv/",
+    "cefr": "B2",
+    "collocations": [
+      "revive spirits",
+      "revive hopes"
+    ],
+    "synonyms": [
+      "refresh",
+      "restore"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "ชาหนึ่งถ้วยช่วย",
+      "ให้ฉัน",
+      "รู้สึก",
+      "สดชื่นขึ้น"
+    ],
+    "extraExample": "They hope to revive the old tradition.",
+    "extraExampleTranslation": "พวกเขาหวังจะฟื้นฟูประเพณีเก่าแก่",
+    "usageTip": "revive (คำกริยา) = ฟื้นคืน / ทำให้สดชื่น · มักใช้ในวลี: revive spirits, revive hopes · คำใกล้เคียง: refresh, restore",
+    "novaBatch": true
+  },
+  {
+    "word": "restorative",
+    "partOfSpeech": "adjective",
+    "translation": "ที่ช่วยฟื้นฟู",
+    "definition": "having the ability to restore health or strength",
+    "example": "I need a restorative weekend at home.",
+    "exampleTranslation": "ฉันต้องการวันหยุดสุดสัปดาห์ที่ช่วยฟื้นฟูพลังที่บ้าน",
+    "phonetic": "/rɪˈstɔːrətɪv/",
+    "cefr": "B2",
+    "collocations": [
+      "restorative sleep",
+      "restorative effect"
+    ],
+    "synonyms": [
+      "healing",
+      "refreshing"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "ฉันต้องการวัน",
+      "หยุดสุดสัปดาห์",
+      "ที่ช่วยฟื้นฟู",
+      "พลังที่บ้าน"
+    ],
+    "extraExample": "Sleep has a restorative effect on the mind.",
+    "extraExampleTranslation": "การนอนหลับมีผลช่วยฟื้นฟูจิตใจ",
+    "usageTip": "restorative (คำคุณศัพท์) = ที่ช่วยฟื้นฟู · มักใช้ในวลี: restorative sleep, restorative effect · คำใกล้เคียง: healing, refreshing",
+    "novaBatch": true
+  },
+  {
+    "word": "appease",
+    "partOfSpeech": "verb",
+    "translation": "ทำให้สงบลง",
+    "definition": "to make someone feel less angry or worried",
+    "example": "He tried to appease the upset customer.",
+    "exampleTranslation": "เขาพยายามทำให้ลูกค้าที่โกรธสงบลง",
+    "phonetic": "/əˈpiːz/",
+    "cefr": "B2",
+    "collocations": [
+      "appease anger",
+      "appease concerns"
+    ],
+    "synonyms": [
+      "calm",
+      "soothe"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "เขาพยายาม",
+      "ทำให้ลูก",
+      "ค้าที่โก",
+      "รธสงบลง"
+    ],
+    "extraExample": "A warm meal helped appease his hunger.",
+    "extraExampleTranslation": "อาหารอุ่นๆ ช่วยบรรเทาความหิวของเขา",
+    "usageTip": "appease (คำกริยา) = ทำให้สงบลง · มักใช้ในวลี: appease anger, appease concerns · คำใกล้เคียง: calm, soothe",
+    "novaBatch": true
+  },
+  {
+    "word": "bounce back",
+    "partOfSpeech": "verb",
+    "translation": "ฟื้นตัวกลับมาได้",
+    "definition": "to recover quickly from a difficult situation",
+    "example": "Kids bounce back from colds very fast.",
+    "exampleTranslation": "เด็กๆ ฟื้นตัวจากไข้หวัดได้เร็วมาก",
+    "phonetic": "/baʊns bæk/",
+    "cefr": "B2",
+    "collocations": [
+      "bounce back quickly",
+      "bounce back from"
+    ],
+    "synonyms": [
+      "recover",
+      "rebound"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "เด็กๆฟื้นตัว",
+      "จาก",
+      "ไข้หวัด",
+      "ได้เร็วมาก"
+    ],
+    "extraExample": "I know you will bounce back from this.",
+    "extraExampleTranslation": "ฉันรู้ว่าคุณจะผ่านเรื่องนี้ไปได้",
+    "usageTip": "bounce back (คำกริยา) = ฟื้นตัวกลับมาได้ · มักใช้ในวลี: bounce back quickly, bounce back from · คำใกล้เคียง: recover, rebound",
+    "novaBatch": true
+  },
+  {
+    "word": "pull through",
+    "partOfSpeech": "verb",
+    "translation": "ผ่านพ้นวิกฤตมาได้",
+    "definition": "to survive or succeed despite great difficulty",
+    "example": "The doctors say he will pull through.",
+    "exampleTranslation": "หมอบอกว่าเขาจะผ่านพ้นวิกฤตนี้ไปได้",
+    "phonetic": "/pʊl θruː/",
+    "cefr": "B2",
+    "collocations": [
+      "pull through safely",
+      "help pull through"
+    ],
+    "synonyms": [
+      "survive",
+      "recover"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "หมอบอก",
+      "ว่าเขาจะผ่าน",
+      "พ้นวิก",
+      "ฤตนี้ไปได้"
+    ],
+    "extraExample": "With teamwork, we managed to pull through.",
+    "extraExampleTranslation": "ด้วยการทำงานเป็นทีม เราจึงผ่านมันมาได้",
+    "usageTip": "pull through (คำกริยา) = ผ่านพ้นวิกฤตมาได้ · มักใช้ในวลี: pull through safely, help pull through · คำใกล้เคียง: survive, recover",
+    "novaBatch": true
+  },
+  {
+    "word": "wear off",
+    "partOfSpeech": "verb",
+    "translation": "ค่อยๆ จางหายไป",
+    "definition": "to gradually disappear or stop having an effect",
+    "example": "The shock will wear off soon.",
+    "exampleTranslation": "ความตกใจจะค่อยๆ จางหายไปในไม่ช้า",
+    "phonetic": "/wer ɔːf/",
+    "cefr": "B2",
+    "collocations": [
+      "wear off slowly",
+      "effect wears off"
+    ],
+    "synonyms": [
+      "fade",
+      "disappear"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "ความตกใจจะ",
+      "ค่อย",
+      "ๆจางหายไป",
+      "ในไม่ช้า"
+    ],
+    "extraExample": "The painkiller is starting to wear off.",
+    "extraExampleTranslation": "ยาแก้ปวดกำลังเริ่มหมดฤทธิ์",
+    "usageTip": "wear off (คำกริยา) = ค่อยๆ จางหายไป · มักใช้ในวลี: wear off slowly, effect wears off · คำใกล้เคียง: fade, disappear",
+    "novaBatch": true
+  },
+  {
+    "word": "let up",
+    "partOfSpeech": "verb",
+    "translation": "เบาบางลง / หยุดลง",
+    "definition": "to become less intense or stop",
+    "example": "The rain finally began to let up.",
+    "exampleTranslation": "ฝนเริ่มซาลงในที่สุด",
+    "phonetic": "/let ʌp/",
+    "cefr": "B2",
+    "collocations": [
+      "rain lets up",
+      "pressure lets up"
+    ],
+    "synonyms": [
+      "ease",
+      "subside"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "ฝนเริ่ม",
+      "ซาลง",
+      "ในที่สุด"
+    ],
+    "extraExample": "The pressure at work hasn't let up.",
+    "extraExampleTranslation": "ความกดดันในที่ทำงานยังไม่ลดลงเลย",
+    "usageTip": "let up (คำกริยา) = เบาบางลง / หยุดลง · มักใช้ในวลี: rain lets up, pressure lets up · คำใกล้เคียง: ease, subside",
+    "novaBatch": true
+  },
+  {
+    "word": "smooth over",
+    "partOfSpeech": "verb",
+    "translation": "คลี่คลายให้ราบรื่น",
+    "definition": "to make a problem or disagreement less serious",
+    "example": "She helped smooth over the argument.",
+    "exampleTranslation": "เธอช่วยคลี่คลายการโต้เถียงให้ราบรื่น",
+    "phonetic": "/smuːð ˈoʊvər/",
+    "cefr": "B2",
+    "collocations": [
+      "smooth over differences",
+      "smooth over issues"
+    ],
+    "synonyms": [
+      "resolve",
+      "settle"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "เธอช่วยค",
+      "ลี่คลายการ",
+      "โต้เถียง",
+      "ให้ราบรื่น"
+    ],
+    "extraExample": "We need to smooth over any misunderstandings.",
+    "extraExampleTranslation": "เราต้องเคลียร์ความเข้าใจผิดให้เรียบร้อย",
+    "usageTip": "smooth over (คำกริยา) = คลี่คลายให้ราบรื่น · มักใช้ในวลี: smooth over differences, smooth over issues · คำใกล้เคียง: resolve, settle",
+    "novaBatch": true
+  },
+  {
+    "word": "iron out",
+    "partOfSpeech": "verb",
+    "translation": "แก้ไขปัญหาให้เรียบร้อย",
+    "definition": "to resolve small problems or difficulties",
+    "example": "We still have a few details to iron out.",
+    "exampleTranslation": "เรายังมีรายละเอียดเล็กๆ น้อยๆ ที่ต้องแก้ไข",
+    "phonetic": "/ˈaɪərn aʊt/",
+    "cefr": "B2",
+    "collocations": [
+      "iron out details",
+      "iron out problems"
+    ],
+    "synonyms": [
+      "resolve",
+      "fix"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "เรายังมีรายละเอียดเล็กๆ",
+      "น้อยๆ",
+      "ที่ต้องแก้ไข"
+    ],
+    "extraExample": "They met to iron out their differences.",
+    "extraExampleTranslation": "พวกเขามาพบกันเพื่อปรับความเข้าใจ",
+    "usageTip": "iron out (คำกริยา) = แก้ไขปัญหาให้เรียบร้อย · มักใช้ในวลี: iron out details, iron out problems · คำใกล้เคียง: resolve, fix",
+    "novaBatch": true
+  },
+  {
+    "word": "get over",
+    "partOfSpeech": "verb",
+    "translation": "ทำใจได้ / หายจาก",
+    "definition": "to recover from an illness or an emotional shock",
+    "example": "It took him months to get over the breakup.",
+    "exampleTranslation": "เขาใช้เวลาหลายเดือนกว่าจะทำใจเรื่องเลิกกันได้",
+    "phonetic": "/ɡet ˈoʊvər/",
+    "cefr": "B1",
+    "collocations": [
+      "get over a shock",
+      "get over an illness"
+    ],
+    "synonyms": [
+      "recover",
+      "overcome"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "เขาใช้เวลาห",
+      "ลายเดือนก",
+      "ว่าจะทำใจเรื่อ",
+      "งเลิกกันได้"
+    ],
+    "usageTip": "get over (คำกริยา) = ทำใจได้ / หายจาก · มักใช้ในวลี: get over a shock, get over an illness · คำใกล้เคียง: recover, overcome",
+    "novaBatch": true,
+    "extraExample": "It took her a few weeks to get over failing the certification exam.",
+    "extraExampleTranslation": "เธอใช้เวลาหลายสัปดาห์กว่าจะทำใจได้เรื่องที่สอบใบรับรองไม่ผ่าน"
+  },
+  {
+    "word": "look on the bright side",
+    "partOfSpeech": "verb",
+    "translation": "มองโลกในแง่ดี",
+    "definition": "to find the good part of a bad situation",
+    "example": "Try to look on the bright side of things.",
+    "exampleTranslation": "พยายามมองในแง่ดีของเรื่องต่างๆ เข้าไว้",
+    "phonetic": "/lʊk ɑːn ðə braɪt saɪd/",
+    "cefr": "B1",
+    "collocations": [
+      "always look on the bright side",
+      "try to look on the bright side"
+    ],
+    "synonyms": [
+      "stay positive",
+      "be hopeful"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "พยายามมอง",
+      "ในแง่ดีขอ",
+      "งเรื่องต่าง",
+      "ๆเข้าไว้"
+    ],
+    "usageTip": "look on the bright side (คำกริยา) = มองโลกในแง่ดี · มักใช้ในวลี: always look on the bright side, try to look on the bright side · คำใกล้เคียง: stay positive, be hopeful",
+    "novaBatch": true,
+    "extraExample": "Look on the bright side: retaking the quiz helped you master the topic.",
+    "extraExampleTranslation": "มองโลกในแง่ดีนะ การสอบซ่อมช่วยให้คุณเชี่ยวชาญหัวข้อนี้มากขึ้น"
+  },
+  {
+    "word": "hang in there",
+    "partOfSpeech": "verb",
+    "translation": "อดทนสู้ต่อไป",
+    "definition": "to stay strong and not give up",
+    "example": "Hang in there, the weekend is almost here.",
+    "exampleTranslation": "อดทนไว้นะ ใกล้จะถึงวันหยุดสุดสัปดาห์แล้ว",
+    "phonetic": "/hæŋ ɪn ðer/",
+    "cefr": "B1",
+    "collocations": [
+      "just hang in there",
+      "hang in there!"
+    ],
+    "synonyms": [
+      "persevere",
+      "keep going"
+    ],
+    "topic": "feelings",
+    "thTokens": [
+      "อดทนไว้นะ",
+      "ใกล้จะถึง",
+      "วันหยุดสุด",
+      "สัปดาห์แล้ว"
+    ],
+    "extraExample": "Just hang in there a little longer.",
+    "extraExampleTranslation": "อดทนอีกนิดเดียวนะ",
+    "usageTip": "hang in there (คำกริยา) = อดทนสู้ต่อไป · มักใช้ในวลี: just hang in there, hang in there! · คำใกล้เคียง: persevere, keep going",
+    "novaBatch": true
+  },
+  {
+    "word": "accreditation",
+    "partOfSpeech": "noun",
+    "translation": "การรับรองมาตรฐาน",
+    "definition": "official approval that a course meets quality standards",
+    "example": "Check if the online program has proper accreditation.",
+    "exampleTranslation": "ตรวจสอบดูว่าหลักสูตรออนไลน์นี้ได้รับการรับรองมาตรฐานอย่างถูกต้องหรือไม่",
+    "phonetic": "/əˌkred.ɪˈteɪ.ʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "official accreditation",
+      "gain accreditation"
+    ],
+    "synonyms": [
+      "approval",
+      "certification"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ตรวจสอบดูว่าหลัก",
+      "สูตรออนไลน์นี้ได้รับ",
+      "การรับรองมาตรฐาน",
+      "อย่างถูกต้องหรือไม่"
+    ],
+    "extraExample": "Employers value degrees from institutions with recognized accreditation.",
+    "extraExampleTranslation": "นายจ้างให้ความสำคัญกับปริญญาจากสถาบันที่ได้รับการรับรองมาตรฐาน",
+    "usageTip": "accreditation (คำนาม) = การรับรองมาตรฐาน · มักใช้ในวลี: official accreditation, gain accreditation · คำใกล้เคียง: approval, certification",
+    "novaBatch": true
+  },
+  {
+    "word": "benchmark",
+    "partOfSpeech": "noun",
+    "translation": "เกณฑ์มาตรฐาน",
+    "definition": "a standard used to measure or compare performance",
+    "example": "The final exam serves as a benchmark for your skills.",
+    "exampleTranslation": "การสอบปลายภาคทำหน้าที่เป็นเกณฑ์มาตรฐานสำหรับทักษะของคุณ",
+    "phonetic": "/ˈbentʃ.mɑːrk/",
+    "cefr": "B2",
+    "collocations": [
+      "industry benchmark",
+      "set a benchmark"
+    ],
+    "synonyms": [
+      "standard",
+      "criterion"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "การสอบปลายภาค",
+      "ทำหน้าที่เป็น",
+      "เกณฑ์มาตรฐาน",
+      "สำหรับทักษะของคุณ"
+    ],
+    "extraExample": "We use industry benchmarks to design our certification tests.",
+    "extraExampleTranslation": "เราใช้เกณฑ์มาตรฐานอุตสาหกรรมในการออกแบบข้อสอบรับรอง",
+    "usageTip": "benchmark (คำนาม) = เกณฑ์มาตรฐาน · มักใช้ในวลี: industry benchmark, set a benchmark · คำใกล้เคียง: standard, criterion",
+    "novaBatch": true
+  },
+  {
+    "word": "blended learning",
+    "partOfSpeech": "noun",
+    "translation": "การเรียนรู้แบบผสมผสาน",
+    "definition": "a mix of online digital media and traditional classroom methods",
+    "example": "Our university uses blended learning for most business courses.",
+    "exampleTranslation": "มหาวิทยาลัยของเราใช้การเรียนรู้แบบผสมผสานสำหรับวิชาธุรกิจส่วนใหญ่",
+    "phonetic": "/ˈblen.dɪd ˈlɜːr.nɪŋ/",
+    "cefr": "B2",
+    "collocations": [
+      "blended learning model",
+      "adopt blended learning"
+    ],
+    "synonyms": [
+      "hybrid learning",
+      "mixed-mode"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "มหาวิทยาลัยของเราใช้",
+      "การเรียนรู้แบ",
+      "บผสมผสาน",
+      "สำหรับวิชาธุรกิจส่วนใหญ่"
+    ],
+    "extraExample": "Blended learning gives students both flexibility and face-to-face support.",
+    "extraExampleTranslation": "การเรียนรู้แบบผสมผสานช่วยให้นักเรียนมีความยืดหยุ่นและการดูแลแบบตัวต่อตัว",
+    "usageTip": "blended learning (คำนาม) = การเรียนรู้แบบผสมผสาน · มักใช้ในวลี: blended learning model, adopt blended learning · คำใกล้เคียง: hybrid learning, mixed-mode",
+    "novaBatch": true
+  },
+  {
+    "word": "bootcamp",
+    "partOfSpeech": "noun",
+    "translation": "ค่ายฝึกอบรมเข้มข้น",
+    "definition": "an intensive short-term training program to learn practical skills",
+    "example": "She completed a twelve-week coding bootcamp online.",
+    "exampleTranslation": "เธอเรียนจบค่ายฝึกอบรมเขียนโค้ดออนไลน์ระยะเวลา 12 สัปดาห์",
+    "phonetic": "/ˈbuːt.kæmp/",
+    "cefr": "B1",
+    "collocations": [
+      "coding bootcamp",
+      "intensive bootcamp"
+    ],
+    "synonyms": [
+      "workshop",
+      "crash course"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เธอเรียนจบค่ายฝึกอบรมเขียนโค้ดออนไลน์ระยะเวลา",
+      "12",
+      "สัปดาห์"
+    ],
+    "extraExample": "A tech bootcamp can prepare you for a new career quickly.",
+    "extraExampleTranslation": "ค่ายฝึกอบรมด้านเทคโนโลยีช่วยเตรียมความพร้อมสู่อาชีพใหม่ได้อย่างรวดเร็ว",
+    "usageTip": "bootcamp (คำนาม) = ค่ายฝึกอบรมเข้มข้น · มักใช้ในวลี: coding bootcamp, intensive bootcamp · คำใกล้เคียง: workshop, crash course",
+    "novaBatch": true
+  },
+  {
+    "word": "breakout room",
+    "partOfSpeech": "noun",
+    "translation": "ห้องย่อยออนไลน์",
+    "definition": "a smaller virtual room used for group discussions during an online class",
+    "example": "The instructor split us into breakout rooms to discuss the case.",
+    "exampleTranslation": "ผู้สอนแบ่งพวกเราเข้าห้องย่อยออนไลน์เพื่ออภิปรายกรณีศึกษา",
+    "phonetic": "/ˈbreɪk.aʊt ruːm/",
+    "cefr": "B1",
+    "collocations": [
+      "join a breakout room",
+      "assign breakout rooms"
+    ],
+    "synonyms": [
+      "small group",
+      "virtual room"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ผู้สอนแบ่งพวกเราเข้า",
+      "ห้องย่อยออนไลน์",
+      "เพื่ออ",
+      "ภิปรายกรณีศึกษา"
+    ],
+    "extraExample": "Please share your screen when you enter your breakout room.",
+    "extraExampleTranslation": "กรุณาแชร์หน้าจอเมื่อคุณเข้าไปในห้องย่อยออนไลน์",
+    "usageTip": "breakout room (คำนาม) = ห้องย่อยออนไลน์ · มักใช้ในวลี: join a breakout room, assign breakout rooms · คำใกล้เคียง: small group, virtual room",
+    "novaBatch": true
+  },
+  {
+    "word": "catch up on",
+    "partOfSpeech": "verb",
+    "translation": "ตามให้ทัน",
+    "definition": "to do work or study that you have fallen behind on",
+    "example": "I need the weekend to catch up on missed video lectures.",
+    "exampleTranslation": "ฉันต้องการเวลาช่วงสุดสัปดาห์เพื่อดูวิดีโอบรรยายที่พลาดไปให้ทัน",
+    "phonetic": "/kætʃ ʌp ɑːn/",
+    "cefr": "B1",
+    "collocations": [
+      "catch up on lectures",
+      "catch up on coursework"
+    ],
+    "synonyms": [
+      "make up",
+      "get current"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ฉันต้องการเวลาช่ว",
+      "งสุดสัปดาห์",
+      "เพื่อดูวิดีโอบรรยาย",
+      "ที่พลาดไปให้ทัน"
+    ],
+    "extraExample": "She stayed up late to catch up on her online assignments.",
+    "extraExampleTranslation": "เธอนอนดึกเพื่อทำงานออนไลน์ที่ค้างอยู่ให้ทัน",
+    "usageTip": "catch up on (คำกริยา) = ตามให้ทัน · มักใช้ในวลี: catch up on lectures, catch up on coursework · คำใกล้เคียง: make up, get current",
+    "novaBatch": true
+  },
+  {
+    "word": "certification",
+    "partOfSpeech": "noun",
+    "translation": "การรับรอง / ใบรับรองวิชาชีพ",
+    "definition": "an official document or status proving you have completed training",
+    "example": "He earned an IT certification to boost his resume.",
+    "exampleTranslation": "เขาได้รับใบรับรองด้านไอทีเพื่อเพิ่มความน่าเชื่อถือให้เรซูเม่",
+    "phonetic": "/ˌsɜːr.tɪ.fɪˈkeɪ.ʃən/",
+    "cefr": "B1",
+    "collocations": [
+      "professional certification",
+      "earn a certification"
+    ],
+    "synonyms": [
+      "credential",
+      "qualification"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เขาได้รับใบรับร",
+      "องด้านไอทีเพื่อ",
+      "เพิ่มความน่าเชื่อถือ",
+      "ให้เรซูเม่"
+    ],
+    "extraExample": "Many cloud platforms offer professional certification exams online.",
+    "extraExampleTranslation": "แพลตฟอร์มคลาวด์หลายแห่งเปิดสอบใบรับรองวิชาชีพทางออนไลน์",
+    "usageTip": "certification (คำนาม) = การรับรอง / ใบรับรองวิชาชีพ · มักใช้ในวลี: professional certification, earn a certification · คำใกล้เคียง: credential, qualification",
+    "novaBatch": true
+  },
+  {
+    "word": "competency",
+    "partOfSpeech": "noun",
+    "translation": "สมรรถนะ / ความสามารถ",
+    "definition": "the ability to do something successfully or efficiently",
+    "example": "The test measures your competency in digital marketing.",
+    "exampleTranslation": "แบบทดสอบนี้วัดสมรรถนะของคุณในด้านการตลาดดิจิทัล",
+    "phonetic": "/ˈkɑːm.pɪ.tən.si/",
+    "cefr": "B2",
+    "collocations": [
+      "core competency",
+      "digital competency"
+    ],
+    "synonyms": [
+      "proficiency",
+      "skill"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "แบบทดสอบนี้วัด",
+      "สมรรถนะ",
+      "ของคุณ",
+      "ในด้านการตลาดดิจิทัล"
+    ],
+    "extraExample": "Students must demonstrate core competencies to pass the module.",
+    "extraExampleTranslation": "ผู้เรียนต้องแสดงสมรรถนะหลักให้ได้จึงจะผ่านโมดูลนี้",
+    "usageTip": "competency (คำนาม) = สมรรถนะ / ความสามารถ · มักใช้ในวลี: core competency, digital competency · คำใกล้เคียง: proficiency, skill",
+    "novaBatch": true
+  },
+  {
+    "word": "completion rate",
+    "partOfSpeech": "noun",
+    "translation": "อัตราการเรียนจบ",
+    "definition": "the percentage of students who finish a course they started",
+    "example": "Interactive quizzes help improve the course completion rate.",
+    "exampleTranslation": "แบบทดสอบแบบโต้ตอบช่วยเพิ่มอัตราการเรียนจบหลักสูตร",
+    "phonetic": "/kəmˈpliː.ʃən reɪt/",
+    "cefr": "B2",
+    "collocations": [
+      "high completion rate",
+      "course completion rate"
+    ],
+    "synonyms": [
+      "graduation rate",
+      "finish rate"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "แบบทดสอบแบบ",
+      "โต้ตอบช่วยเพิ่ม",
+      "อัตราการเรียนจบ",
+      "หลักสูตร"
+    ],
+    "extraExample": "Self-paced courses often have a lower completion rate.",
+    "extraExampleTranslation": "หลักสูตรที่เรียนตามความสะดวกมักมีอัตราการเรียนจบที่ต่ำกว่า",
+    "usageTip": "completion rate (คำนาม) = อัตราการเรียนจบ · มักใช้ในวลี: high completion rate, course completion rate · คำใกล้เคียง: graduation rate, finish rate",
+    "novaBatch": true
+  },
+  {
+    "word": "continuing education",
+    "partOfSpeech": "noun",
+    "translation": "การศึกษาต่อเนื่อง",
+    "definition": "courses for adults who want to learn new skills after leaving school",
+    "example": "Nurses take continuing education classes to keep their licenses.",
+    "exampleTranslation": "พยาบาลเรียนหลักสูตรการศึกษาต่อเนื่องเพื่อรักษาใบอนุญาตประกอบวิชาชีพ",
+    "phonetic": "/kənˈtɪn.juː.ɪŋ ˌedʒ.uˈkeɪ.ʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "continuing education credits",
+      "pursue continuing education"
+    ],
+    "synonyms": [
+      "lifelong learning",
+      "adult education"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "พยาบาลเรียนหลักสูตร",
+      "การศึกษาต่อเนื่อง",
+      "เพื่อรักษาใบ",
+      "อนุญาตประกอบวิชาชีพ"
+    ],
+    "extraExample": "Online platforms make continuing education accessible to busy workers.",
+    "extraExampleTranslation": "แพลตฟอร์มออนไลน์ทำให้การศึกษาต่อเนื่องเข้าถึงได้ง่ายสำหรับคนทำงาน",
+    "usageTip": "continuing education (คำนาม) = การศึกษาต่อเนื่อง · มักใช้ในวลี: continuing education credits, pursue continuing education · คำใกล้เคียง: lifelong learning, adult education",
+    "novaBatch": true
+  },
+  {
+    "word": "coursework",
+    "partOfSpeech": "noun",
+    "translation": "งานที่ได้รับมอบหมายในรายวิชา",
+    "definition": "written or practical work done by a student during a course",
+    "example": "All coursework must be submitted through the portal by Friday.",
+    "exampleTranslation": "งานในรายวิชาทั้งหมดต้องส่งผ่านพอร์ทัลภายในวันศุกร์",
+    "phonetic": "/ˈkɔːrs.wɜːrk/",
+    "cefr": "B1",
+    "collocations": [
+      "submit coursework",
+      "complete coursework"
+    ],
+    "synonyms": [
+      "assignments",
+      "classwork"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "งานในรายวิชาทั้ง",
+      "หมดต้อง",
+      "ส่งผ่านพอร์ทัลภาย",
+      "ในวันศุกร์"
+    ],
+    "extraExample": "Your final grade depends on both exams and weekly coursework.",
+    "extraExampleTranslation": "เกรดสุดท้ายของคุณขึ้นอยู่กับทั้งการสอบและงานรายสัปดาห์",
+    "usageTip": "coursework (คำนาม) = งานที่ได้รับมอบหมายในรายวิชา · มักใช้ในวลี: submit coursework, complete coursework · คำใกล้เคียง: assignments, classwork",
+    "novaBatch": true
+  },
+  {
+    "word": "distance learning",
+    "partOfSpeech": "noun",
+    "translation": "การเรียนทางไกล",
+    "definition": "a way of studying where students learn online from home",
+    "example": "Distance learning allows people in rural areas to earn degrees.",
+    "exampleTranslation": "การเรียนทางไกลช่วยให้ผู้คนในพื้นที่ห่างไกลได้รับปริญญา",
+    "phonetic": "/ˈdɪs.təns ˈlɜːr.nɪŋ/",
+    "cefr": "B1",
+    "collocations": [
+      "distance learning program",
+      "via distance learning"
+    ],
+    "synonyms": [
+      "remote learning",
+      "online education"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "การเรียนทางไกล",
+      "ช่วยให้ผู้คน",
+      "ในพื้นที่ห่าง",
+      "ไกลได้รับปริญญา"
+    ],
+    "extraExample": "Good time management is essential for successful distance learning.",
+    "extraExampleTranslation": "การบริหารเวลาที่ดีเป็นสิ่งสำคัญสำหรับความสำเร็จในการเรียนทางไกล",
+    "usageTip": "distance learning (คำนาม) = การเรียนทางไกล · มักใช้ในวลี: distance learning program, via distance learning · คำใกล้เคียง: remote learning, online education",
+    "novaBatch": true
+  },
+  {
+    "word": "drop out",
+    "partOfSpeech": "verb",
+    "translation": "ลาออกกลางคัน / เลิกเรียน",
+    "definition": "to leave a course or program before finishing it",
+    "example": "He had to drop out of the course due to heavy work hours.",
+    "exampleTranslation": "เขาต้องเลิกเรียนกลางคันเพราะชั่วโมงทำงานที่หนักมาก",
+    "phonetic": "/drɑːp aʊt/",
+    "cefr": "B1",
+    "collocations": [
+      "drop out of a course",
+      "likely to drop out"
+    ],
+    "synonyms": [
+      "quit",
+      "withdraw"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เขาต้องเลิก",
+      "เรียนกลางคัน",
+      "เพราะชั่วโมงทำงาน",
+      "ที่หนักมาก"
+    ],
+    "extraExample": "Supportive mentors can reduce the number of students who drop out.",
+    "extraExampleTranslation": "ที่ปรึกษาที่คอยช่วยเหลือสามารถลดจำนวนผู้เรียนที่เลิกเรียนกลางคันได้",
+    "usageTip": "drop out (คำกริยา) = ลาออกกลางคัน / เลิกเรียน · มักใช้ในวลี: drop out of a course, likely to drop out · คำใกล้เคียง: quit, withdraw",
+    "novaBatch": true
+  },
+  {
+    "word": "endorsement",
+    "partOfSpeech": "noun",
+    "translation": "การรับรอง / การสนับสนุน",
+    "definition": "public approval or recommendation of a course or skill",
+    "example": "This certificate carries the endorsement of major tech companies.",
+    "exampleTranslation": "ใบรับรองนี้ได้รับการรับรองจากบริษัทเทคโนโลยีชั้นนำ",
+    "phonetic": "/ɪnˈdɔːrs.mənt/",
+    "cefr": "B2",
+    "collocations": [
+      "industry endorsement",
+      "official endorsement"
+    ],
+    "synonyms": [
+      "approval",
+      "backing"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ใบรับรองนี้ได้รับ",
+      "การรับรอง",
+      "จากบริษัทเท",
+      "คโนโลยีชั้นนำ"
+    ],
+    "extraExample": "Industry endorsement makes a certification much more valuable.",
+    "extraExampleTranslation": "การรับรองจากภาคอุตสาหกรรมทำให้ใบประกาศนียบัตรมีคุณค่ามากขึ้น",
+    "usageTip": "endorsement (คำนาม) = การรับรอง / การสนับสนุน · มักใช้ในวลี: industry endorsement, official endorsement · คำใกล้เคียง: approval, backing",
+    "novaBatch": true
+  },
+  {
+    "word": "enrollment",
+    "partOfSpeech": "noun",
+    "translation": "การลงทะเบียนเรียน",
+    "definition": "the act of officially joining a course or program",
+    "example": "Online enrollment for the autumn term opens next Monday.",
+    "exampleTranslation": "การลงทะเบียนเรียนออนไลน์สำหรับภาคฤดูใบไม้ร่วงจะเปิดวันจันทร์หน้า",
+    "phonetic": "/ɪnˈroʊl.mənt/",
+    "cefr": "B2",
+    "collocations": [
+      "open enrollment",
+      "course enrollment"
+    ],
+    "synonyms": [
+      "registration",
+      "sign-up"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "การลงทะเบียนเรียน",
+      "ออนไลน์",
+      "สำหรับภาคฤดูใบไม้ร่วงจะ",
+      "เปิดวันจันทร์หน้า"
+    ],
+    "extraExample": "Course enrollment has doubled since we added video subtitles.",
+    "extraExampleTranslation": "ยอดการลงทะเบียนเรียนเพิ่มขึ้นเป็นสองเท่าตั้งแต่เราเพิ่มคำบรรยายวิดีโอ",
+    "usageTip": "enrollment (คำนาม) = การลงทะเบียนเรียน · มักใช้ในวลี: open enrollment, course enrollment · คำใกล้เคียง: registration, sign-up",
+    "novaBatch": true
+  },
+  {
+    "word": "facilitator",
+    "partOfSpeech": "noun",
+    "translation": "ผู้เอื้ออำนวยการเรียนรู้",
+    "definition": "a person who helps a group learn and discuss effectively",
+    "example": "The facilitator kept the online discussion focused and lively.",
+    "exampleTranslation": "ผู้เอื้ออำนวยการเรียนรู้ช่วยให้การอภิปรายออนไลน์ตรงประเด็นและมีชีวิตชีวา",
+    "phonetic": "/fəˈsɪl.ɪ.teɪ.tər/",
+    "cefr": "B2",
+    "collocations": [
+      "course facilitator",
+      "online facilitator"
+    ],
+    "synonyms": [
+      "moderator",
+      "guide"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ผู้เอื้ออำนวยการเรียนรู้",
+      "ช่วย",
+      "ให้การอภิปรายออนไลน์ตรงประเด็น",
+      "และมีชีวิตชีวา"
+    ],
+    "extraExample": "Unlike a traditional lecturer, a facilitator guides students to find answers.",
+    "extraExampleTranslation": "ต่างจากผู้บรรยายแบบเดิม ผู้เอื้ออำนวยการเรียนรู้จะชี้แนะให้นักเรียนค้นหาคำตอบเอง",
+    "usageTip": "facilitator (คำนาม) = ผู้เอื้ออำนวยการเรียนรู้ · มักใช้ในวลี: course facilitator, online facilitator · คำใกล้เคียง: moderator, guide",
+    "novaBatch": true
+  },
+  {
+    "word": "fall behind",
+    "partOfSpeech": "verb",
+    "translation": "ตามไม่ทัน / ล้าหลัง",
+    "definition": "to fail to keep up with the pace of a course",
+    "example": "If you skip two weeks, you will quickly fall behind.",
+    "exampleTranslation": "ถ้าคุณข้ามไปสองสัปดาห์ คุณจะตามเนื้อหาไม่ทันอย่างรวดเร็ว",
+    "phonetic": "/fɔːl bɪˈhaɪnd/",
+    "cefr": "B1",
+    "collocations": [
+      "fall behind in class",
+      "fall behind schedule"
+    ],
+    "synonyms": [
+      "lag behind",
+      "slip back"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ถ้าคุณข้ามไปส",
+      "องสัปดาห์คุณจะ",
+      "ตามเนื้อหาไม่ทัน",
+      "อย่างรวดเร็ว"
+    ],
+    "extraExample": "She used a study planner so she wouldn't fall behind.",
+    "extraExampleTranslation": "เธอใช้ตารางวางแผนการเรียนเพื่อไม่ให้ตามเพื่อนไม่ทัน",
+    "usageTip": "fall behind (คำกริยา) = ตามไม่ทัน / ล้าหลัง · มักใช้ในวลี: fall behind in class, fall behind schedule · คำใกล้เคียง: lag behind, slip back",
+    "novaBatch": true
+  },
+  {
+    "word": "hands-on",
+    "partOfSpeech": "adjective",
+    "translation": "เน้นการปฏิบัติจริง",
+    "definition": "involving active participation and practical experience rather than theory",
+    "example": "The course includes hands-on labs where you build real apps.",
+    "exampleTranslation": "หลักสูตรนี้มีแล็บปฏิบัติจริงที่คุณจะได้สร้างแอปพลิเคชันจริง",
+    "phonetic": "/ˌhændzˈɑːn/",
+    "cefr": "B1",
+    "collocations": [
+      "hands-on experience",
+      "hands-on practice"
+    ],
+    "synonyms": [
+      "practical",
+      "applied"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "หลักสูตรนี้มีแล็บ",
+      "ปฏิบัติจริง",
+      "ที่คุณจะได้สร้าง",
+      "แอปพลิเคชันจริง"
+    ],
+    "extraExample": "Employers prefer candidates with hands-on experience in cloud tools.",
+    "extraExampleTranslation": "นายจ้างชอบผู้สมัครที่มีประสบการณ์ปฏิบัติจริงในเครื่องมือคลาวด์",
+    "usageTip": "hands-on (คำคุณศัพท์) = เน้นการปฏิบัติจริง · มักใช้ในวลี: hands-on experience, hands-on practice · คำใกล้เคียง: practical, applied",
+    "novaBatch": true
+  },
+  {
+    "word": "learning management system",
+    "partOfSpeech": "noun",
+    "translation": "ระบบจัดการการเรียนรู้",
+    "definition": "software used to deliver, track, and manage online courses",
+    "example": "All grades and lecture slides are hosted on our learning management system.",
+    "exampleTranslation": "เกรดและสไลด์บรรยายทั้งหมดอยู่ในระบบจัดการการเรียนรู้ของเรา",
+    "phonetic": "/ˈlɜːr.nɪŋ ˈmæn.ɪdʒ.mənt ˈsɪs.təm/",
+    "cefr": "B2",
+    "collocations": [
+      "cloud learning management system",
+      "access the LMS"
+    ],
+    "synonyms": [
+      "e-learning platform",
+      "course portal"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เกรดและสไลด์บร",
+      "รยายทั้งหมดอยู่ใน",
+      "ระบบจัดการ",
+      "การเรียนรู้ของเรา"
+    ],
+    "extraExample": "A user-friendly learning management system makes studying much easier.",
+    "extraExampleTranslation": "ระบบจัดการการเรียนรู้ที่ใช้งานง่ายช่วยให้การเรียนสะดวกขึ้นมาก",
+    "usageTip": "learning management system (คำนาม) = ระบบจัดการการเรียนรู้ · มักใช้ในวลี: cloud learning management system, access the LMS · คำใกล้เคียง: e-learning platform, course portal",
+    "novaBatch": true
+  },
+  {
+    "word": "learning path",
+    "partOfSpeech": "noun",
+    "translation": "เส้นทางการเรียนรู้",
+    "definition": "a structured sequence of courses designed to master a topic",
+    "example": "Follow this learning path to go from beginner to data analyst.",
+    "exampleTranslation": "ทำตามเส้นทางการเรียนรู้นี้เพื่อพัฒนาจากมือใหม่สู่นักวิเคราะห์ข้อมูล",
+    "phonetic": "/ˈlɜːr.nɪŋ pæθ/",
+    "cefr": "B1",
+    "collocations": [
+      "personalized learning path",
+      "structured learning path"
+    ],
+    "synonyms": [
+      "study track",
+      "curriculum map"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ทำตามเส้นทางการเรียนรู้",
+      "นี้เพื่อ",
+      "พัฒนาจากมือใหม่สู่นัก",
+      "วิเคราะห์ข้อมูล"
+    ],
+    "extraExample": "The platform recommends a personalized learning path based on your goals.",
+    "extraExampleTranslation": "แพลตฟอร์มแนะนำเส้นทางการเรียนรู้เฉพาะบุคคลตามเป้าหมายของคุณ",
+    "usageTip": "learning path (คำนาม) = เส้นทางการเรียนรู้ · มักใช้ในวลี: personalized learning path, structured learning path · คำใกล้เคียง: study track, curriculum map",
+    "novaBatch": true
+  },
+  {
+    "word": "lifelong learning",
+    "partOfSpeech": "noun",
+    "translation": "การเรียนรู้ตลอดชีวิต",
+    "definition": "the ongoing, voluntary pursuit of knowledge throughout life",
+    "example": "Online micro-courses make lifelong learning easy for professionals.",
+    "exampleTranslation": "คอร์สสั้นออนไลน์ทำให้การเรียนรู้ตลอดชีวิตเป็นเรื่องง่ายสำหรับคนทำงาน",
+    "phonetic": "/ˈlaɪf.lɔːŋ ˈlɜːr.nɪŋ/",
+    "cefr": "B2",
+    "collocations": [
+      "promote lifelong learning",
+      "commitment to lifelong learning"
+    ],
+    "synonyms": [
+      "continuous learning",
+      "ongoing education"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "คอร์สสั้นออนไลน์ทำให้",
+      "การเรียนรู้ตลอดชีวิต",
+      "เป็นเรื่องง่าย",
+      "สำหรับคนทำงาน"
+    ],
+    "extraExample": "Companies encourage lifelong learning to keep staff skills updated.",
+    "extraExampleTranslation": "บริษัทต่างๆ ส่งเสริมการเรียนรู้ตลอดชีวิตเพื่อให้ทักษะของพนักงานทันสมัย",
+    "usageTip": "lifelong learning (คำนาม) = การเรียนรู้ตลอดชีวิต · มักใช้ในวลี: promote lifelong learning, commitment to lifelong learning · คำใกล้เคียง: continuous learning, ongoing education",
+    "novaBatch": true
+  },
+  {
+    "word": "modular",
+    "partOfSpeech": "adjective",
+    "translation": "แบบแยกส่วน / เป็นโมดูล",
+    "definition": "designed with independent units that can be taken separately",
+    "example": "The modular format lets you study one skill at a time.",
+    "exampleTranslation": "รูปแบบแยกส่วนช่วยให้คุณเรียนทีละทักษะได้ตามต้องการ",
+    "phonetic": "/ˈmɑːdʒ.ə.lər/",
+    "cefr": "B2",
+    "collocations": [
+      "modular course",
+      "modular structure"
+    ],
+    "synonyms": [
+      "unit-based",
+      "flexible"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "รูปแบบแยกส่วน",
+      "ช่วยให้คุณ",
+      "เรียนทีละทักษะ",
+      "ได้ตามต้องการ"
+    ],
+    "extraExample": "We switched to a modular curriculum for greater flexibility.",
+    "extraExampleTranslation": "เราเปลี่ยนมาใช้หลักสูตรแบบแยกส่วนเพื่อความยืดหยุ่นที่มากขึ้น",
+    "usageTip": "modular (คำคุณศัพท์) = แบบแยกส่วน / เป็นโมดูล · มักใช้ในวลี: modular course, modular structure · คำใกล้เคียง: unit-based, flexible",
+    "novaBatch": true
+  },
+  {
+    "word": "orientation",
+    "partOfSpeech": "noun",
+    "translation": "การปฐมนิเทศ",
+    "definition": "an introductory session to help new students get started",
+    "example": "Watch the orientation video before starting week one.",
+    "exampleTranslation": "ดูวิดีโอปฐมนิเทศก่อนเริ่มเรียนสัปดาห์แรก",
+    "phonetic": "/ˌɔːr.i.enˈteɪ.ʃən/",
+    "cefr": "B1",
+    "collocations": [
+      "online orientation",
+      "orientation session"
+    ],
+    "synonyms": [
+      "introduction",
+      "briefing"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ดูวิดีโอปฐมนิเทศ",
+      "ก่อน",
+      "เริ่มเรียน",
+      "สัปดาห์แรก"
+    ],
+    "extraExample": "The online orientation explains how to use the discussion forums.",
+    "extraExampleTranslation": "การปฐมนิเทศออนไลน์อธิบายวิธีใช้งานกระดานสนทนา",
+    "usageTip": "orientation (คำนาม) = การปฐมนิเทศ · มักใช้ในวลี: online orientation, orientation session · คำใกล้เคียง: introduction, briefing",
+    "novaBatch": true
+  },
+  {
+    "word": "peer review",
+    "partOfSpeech": "noun",
+    "translation": "การประเมินโดยเพื่อนร่วมชั้น",
+    "definition": "evaluation of a student's work by other students in the same course",
+    "example": "You must complete three peer reviews to unlock your certificate.",
+    "exampleTranslation": "คุณต้องตรวจงานเพื่อนร่วมชั้นให้ครบสามคนเพื่อปลดล็อกใบรับรอง",
+    "phonetic": "/pɪr rɪˈvjuː/",
+    "cefr": "B2",
+    "collocations": [
+      "peer review assignment",
+      "complete a peer review"
+    ],
+    "synonyms": [
+      "peer assessment",
+      "peer evaluation"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "คุณต้องตรวจงาน",
+      "เพื่อนร่วมชั้น",
+      "ให้ครบสามคน",
+      "เพื่อปลดล็อกใบรับรอง"
+    ],
+    "extraExample": "Peer review helps learners see different approaches to the same problem.",
+    "extraExampleTranslation": "การประเมินโดยเพื่อนร่วมชั้นช่วยให้ผู้เรียนเห็นแนวทางที่หลากหลายในการแก้ปัญหา",
+    "usageTip": "peer review (คำนาม) = การประเมินโดยเพื่อนร่วมชั้น · มักใช้ในวลี: peer review assignment, complete a peer review · คำใกล้เคียง: peer assessment, peer evaluation",
+    "novaBatch": true
+  },
+  {
+    "word": "portfolio",
+    "partOfSpeech": "noun",
+    "translation": "แฟ้มสะสมผลงาน",
+    "definition": "a collection of work samples showing a person's skills",
+    "example": "Build a strong digital portfolio during the design course.",
+    "exampleTranslation": "สร้างแฟ้มสะสมผลงานดิจิทัลที่โดดเด่นระหว่างเรียนคอร์สออกแบบ",
+    "phonetic": "/pɔːrtˈfoʊ.li.oʊ/",
+    "cefr": "B1",
+    "collocations": [
+      "digital portfolio",
+      "build a portfolio"
+    ],
+    "synonyms": [
+      "work samples",
+      "showcase"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "สร้างแฟ้มสะสมผลงาน",
+      "ดิจิทัล",
+      "ที่โดดเด่น",
+      "ระหว่างเรียนคอร์สออกแบบ"
+    ],
+    "extraExample": "A verified portfolio often matters more than grades alone.",
+    "extraExampleTranslation": "แฟ้มสะสมผลงานที่ตรวจสอบได้มักสำคัญกว่าเกรดเพียงอย่างเดียว",
+    "usageTip": "portfolio (คำนาม) = แฟ้มสะสมผลงาน · มักใช้ในวลี: digital portfolio, build a portfolio · คำใกล้เคียง: work samples, showcase",
+    "novaBatch": true
+  },
+  {
+    "word": "proficiency",
+    "partOfSpeech": "noun",
+    "translation": "ความเชี่ยวชาญ / ความชำนาญ",
+    "definition": "a high degree of skill or expertise in a subject",
+    "example": "This exam certifies your proficiency in Python programming.",
+    "exampleTranslation": "การสอบนี้รับรองความเชี่ยวชาญของคุณในการเขียนโปรแกรม Python",
+    "phonetic": "/prəˈfɪʃ.ən.si/",
+    "cefr": "B2",
+    "collocations": [
+      "language proficiency",
+      "technical proficiency"
+    ],
+    "synonyms": [
+      "mastery",
+      "expertise"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "การสอบนี้รับรอง",
+      "ความเชี่ยวชาญ",
+      "ของคุณในการเขีย",
+      "นโปรแกรมPython"
+    ],
+    "extraExample": "Reach intermediate proficiency before taking the advanced track.",
+    "extraExampleTranslation": "ฝึกฝนจนถึงระดับความชำนาญปานกลางก่อนลงเรียนสายขั้นสูง",
+    "usageTip": "proficiency (คำนาม) = ความเชี่ยวชาญ / ความชำนาญ · มักใช้ในวลี: language proficiency, technical proficiency · คำใกล้เคียง: mastery, expertise",
+    "novaBatch": true
+  },
+  {
+    "word": "retention",
+    "partOfSpeech": "noun",
+    "translation": "การคงอยู่ / การจำได้",
+    "definition": "the ability to keep students enrolled or to remember information",
+    "example": "Short daily quizzes improve knowledge retention.",
+    "exampleTranslation": "แบบทดสอบสั้นๆ ทุกวันช่วยเพิ่มการจดจำความรู้ได้ดีขึ้น",
+    "phonetic": "/rɪˈten.ʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "knowledge retention",
+      "student retention"
+    ],
+    "synonyms": [
+      "recall",
+      "persistence"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "แบบทดสอบสั้น",
+      "ๆทุกวันช่วย",
+      "เพิ่มการจดจำค",
+      "วามรู้ได้ดีขึ้น"
+    ],
+    "extraExample": "High student retention is a sign of an engaging course.",
+    "extraExampleTranslation": "อัตราการคงอยู่ของผู้เรียนที่สูงเป็นสัญญาณของหลักสูตรที่น่าสนใจ",
+    "usageTip": "retention (คำนาม) = การคงอยู่ / การจำได้ · มักใช้ในวลี: knowledge retention, student retention · คำใกล้เคียง: recall, persistence",
+    "novaBatch": true
+  },
+  {
+    "word": "self-directed",
+    "partOfSpeech": "adjective",
+    "translation": "ที่กำกับตนเองได้",
+    "definition": "managed and motivated by the learner without constant supervision",
+    "example": "Online degrees require strong self-directed study habits.",
+    "exampleTranslation": "ปริญญาออนไลน์ต้องอาศัยนิสัยการเรียนแบบกำกับตนเองที่แข็งแกร่ง",
+    "phonetic": "/ˌself.daɪˈrek.tɪd/",
+    "cefr": "B2",
+    "collocations": [
+      "self-directed learning",
+      "self-directed learner"
+    ],
+    "synonyms": [
+      "independent",
+      "autonomous"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "ปริญญาออนไลน์ต้อ",
+      "งอาศัยนิสัยการ",
+      "เรียนแบบกำกับตนเอง",
+      "ที่แข็งแกร่ง"
+    ],
+    "extraExample": "Self-directed learners set their own goals and track progress.",
+    "extraExampleTranslation": "ผู้เรียนที่กำกับตนเองได้จะตั้งเป้าหมายและติดตามความคืบหน้าด้วยตัวเอง",
+    "usageTip": "self-directed (คำคุณศัพท์) = ที่กำกับตนเองได้ · มักใช้ในวลี: self-directed learning, self-directed learner · คำใกล้เคียง: independent, autonomous",
+    "novaBatch": true
+  },
+  {
+    "word": "specialization",
+    "partOfSpeech": "noun",
+    "translation": "ความเชี่ยวชาญเฉพาะทาง / ชุดวิชาเฉพาะทาง",
+    "definition": "a focused series of courses in a specific area of study",
+    "example": "She completed a five-course specialization in machine learning.",
+    "exampleTranslation": "เธอเรียนจบชุดวิชาเฉพาะทาง 5 คอร์สในด้านการเรียนรู้ของเครื่อง",
+    "phonetic": "/ˌspeʃ.əl.əˈzeɪ.ʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "earn a specialization",
+      "career specialization"
+    ],
+    "synonyms": [
+      "concentration",
+      "focus area"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เธอเรียนจบชุดวิชาเฉพาะทาง",
+      "5",
+      "คอร์สในด้านการเรียนรู้ของเครื่อง"
+    ],
+    "extraExample": "Choosing a specialization helps you stand out to recruiters.",
+    "extraExampleTranslation": "การเลือกความเชี่ยวชาญเฉพาะทางช่วยให้คุณโดดเด่นในสายตาฝ่ายบุคคล",
+    "usageTip": "specialization (คำนาม) = ความเชี่ยวชาญเฉพาะทาง / ชุดวิชาเฉพาะทาง · มักใช้ในวลี: earn a specialization, career specialization · คำใกล้เคียง: concentration, focus area",
+    "novaBatch": true
+  },
+  {
+    "word": "synchronous",
+    "partOfSpeech": "adjective",
+    "translation": "แบบเรียลไทม์ / พร้อมกัน",
+    "definition": "happening at the same time for all participants, like a live class",
+    "example": "We have one synchronous workshop every Thursday evening.",
+    "exampleTranslation": "เรามีเวิร์กช็อปแบบเรียลไทม์สัปดาห์ละครั้งทุกเย็นวันพฤหัสบดี",
+    "phonetic": "/ˈsɪŋ.krə.nəs/",
+    "cefr": "B2",
+    "collocations": [
+      "synchronous session",
+      "synchronous learning"
+    ],
+    "synonyms": [
+      "live",
+      "real-time"
+    ],
+    "topic": "education",
+    "thTokens": [
+      "เรามีเวิร์กช็อป",
+      "แบบเรียลไทม์",
+      "สัปดาห์ละครั้ง",
+      "ทุกเย็นวันพฤหัสบดี"
+    ],
+    "extraExample": "Synchronous sessions allow instant Q&A with the instructor.",
+    "extraExampleTranslation": "เซสชันแบบเรียลไทม์ช่วยให้ถาม-ตอบกับผู้สอนได้ทันที",
+    "usageTip": "synchronous (คำคุณศัพท์) = แบบเรียลไทม์ / พร้อมกัน · มักใช้ในวลี: synchronous session, synchronous learning · คำใกล้เคียง: live, real-time",
+    "novaBatch": true
+  },
+  {
+    "word": "address",
+    "partOfSpeech": "verb",
+    "translation": "จัดการกับ, กล่าวถึง",
+    "definition": "to deal with a problem or speak to an audience",
+    "example": "We must address the issue before it spreads.",
+    "exampleTranslation": "เราต้องจัดการกับปัญหานี้ก่อนที่มันจะลุกลาม",
+    "phonetic": "/əˈdres/",
+    "cefr": "B2",
+    "collocations": [
+      "address an issue",
+      "address the media"
+    ],
+    "synonyms": [
+      "tackle",
+      "confront"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "เราต้องจัดการ",
+      "กับ",
+      "ปัญหานี้ก่อน",
+      "ที่มันจะลุกลาม"
+    ],
+    "extraExample": "The director will address the media at noon.",
+    "extraExampleTranslation": "ผู้อำนวยการจะกล่าวต่อสื่อมวลชนในตอนเที่ยง",
+    "usageTip": "address (คำกริยา) = จัดการกับ, กล่าวถึง · มักใช้ในวลี: address an issue, address the media · คำใกล้เคียง: tackle, confront",
+    "novaBatch": true
+  },
+  {
+    "word": "outcry",
+    "partOfSpeech": "noun",
+    "translation": "เสียงประท้วง, ความไม่พอใจอย่างรุนแรง",
+    "definition": "a strong expression of anger from the public",
+    "example": "The sudden price hike caused a public outcry.",
+    "exampleTranslation": "การขึ้นราคาอย่างกะทันหันทำให้เกิดเสียงประท้วงจากสาธารณชน",
+    "phonetic": "/ˈaʊtkraɪ/",
+    "cefr": "B2",
+    "collocations": [
+      "public outcry",
+      "spark an outcry"
+    ],
+    "synonyms": [
+      "protest",
+      "uproar"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "การขึ้นราคาอย่าง",
+      "กะทันหันทำให้เกิด",
+      "เสียงประท้วง",
+      "จากสาธารณชน"
+    ],
+    "extraExample": "We need to respond to the outcry with empathy.",
+    "extraExampleTranslation": "เราต้องตอบสนองต่อความไม่พอใจด้วยความเห็นอกเห็นใจ",
+    "usageTip": "outcry (คำนาม) = เสียงประท้วง, ความไม่พอใจอย่างรุนแรง · มักใช้ในวลี: public outcry, spark an outcry · คำใกล้เคียง: protest, uproar",
+    "novaBatch": true
+  },
+  {
+    "word": "miscommunication",
+    "partOfSpeech": "noun",
+    "translation": "การสื่อสารที่ผิดพลาด",
+    "definition": "a failure to communicate ideas clearly",
+    "example": "The delay was caused by a simple miscommunication.",
+    "exampleTranslation": "ความล่าช้าเกิดจากการสื่อสารที่ผิดพลาดเล็กน้อย",
+    "phonetic": "/ˌmɪskəˌmjuːnɪˈkeɪʃn/",
+    "cefr": "B2",
+    "collocations": [
+      "avoid miscommunication",
+      "due to miscommunication"
+    ],
+    "synonyms": [
+      "misunderstanding",
+      "confusion"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ความล่าช้าเกิด",
+      "จาก",
+      "การสื่อสารที่ผิดพลาด",
+      "เล็กน้อย"
+    ],
+    "extraExample": "Let's send a clear email to avoid miscommunication.",
+    "extraExampleTranslation": "ส่งอีเมลให้ชัดเจนเพื่อหลีกเลี่ยงการสื่อสารที่ผิดพลาด",
+    "usageTip": "miscommunication (คำนาม) = การสื่อสารที่ผิดพลาด · มักใช้ในวลี: avoid miscommunication, due to miscommunication · คำใกล้เคียง: misunderstanding, confusion",
+    "novaBatch": true
+  },
+  {
+    "word": "speculation",
+    "partOfSpeech": "noun",
+    "translation": "การคาดเดา",
+    "definition": "guessing about something without knowing all the facts",
+    "example": "Official facts will stop the online speculation.",
+    "exampleTranslation": "ข้อเท็จจริงอย่างเป็นทางการจะหยุดการคาดเดาทางออนไลน์",
+    "phonetic": "/ˌspekjuˈleɪʃn/",
+    "cefr": "B2",
+    "collocations": [
+      "stop speculation",
+      "wild speculation"
+    ],
+    "synonyms": [
+      "guesswork",
+      "conjecture"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ข้อเท็จจริง",
+      "อย่างเป็นทาง",
+      "การจะหยุด",
+      "การคาดเดาทางออนไลน์"
+    ],
+    "extraExample": "We should not comment on market speculation.",
+    "extraExampleTranslation": "เราไม่ควรแสดงความคิดเห็นต่อการคาดเดาของตลาด",
+    "usageTip": "speculation (คำนาม) = การคาดเดา · มักใช้ในวลี: stop speculation, wild speculation · คำใกล้เคียง: guesswork, conjecture",
+    "novaBatch": true
+  },
+  {
+    "word": "forthcoming",
+    "partOfSpeech": "adjective",
+    "translation": "เปิดเผย, ที่กำลังจะมาถึง",
+    "definition": "willing to give information, or happening soon",
+    "example": "The team was very forthcoming about the technical error.",
+    "exampleTranslation": "ทีมงานเปิดเผยข้อมูลเกี่ยวกับข้อผิดพลาดทางเทคนิคอย่างตรงไปตรงมา",
+    "phonetic": "/ˌfɔːrθˈkʌmɪŋ/",
+    "cefr": "B2",
+    "collocations": [
+      "forthcoming report",
+      "be forthcoming"
+    ],
+    "synonyms": [
+      "open",
+      "upcoming"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ทีมงานเปิดเผย",
+      "ข้อมูลเกี่ยว",
+      "กับข้อผิดพลาดทางเทคนิค",
+      "อย่างตรงไปตรงมา"
+    ],
+    "extraExample": "Details will be shared in the forthcoming report.",
+    "extraExampleTranslation": "รายละเอียดจะถูกแบ่งปันในรายงานที่กำลังจะมาถึง",
+    "usageTip": "forthcoming (คำคุณศัพท์) = เปิดเผย, ที่กำลังจะมาถึง · มักใช้ในวลี: forthcoming report, be forthcoming · คำใกล้เคียง: open, upcoming",
+    "novaBatch": true
+  },
+  {
+    "word": "backup plan",
+    "partOfSpeech": "noun",
+    "translation": "แผนสำรอง",
+    "definition": "a secondary plan to use if the main one fails",
+    "example": "Always have a backup plan before launching a campaign.",
+    "exampleTranslation": "ควรมีแผนสำรองเสมอ ก่อนเปิดตัวแคมเปญ",
+    "phonetic": "/ˈbækʌp plæn/",
+    "cefr": "B1",
+    "collocations": [
+      "have a backup plan",
+      "activate a backup plan"
+    ],
+    "synonyms": [
+      "alternative",
+      "plan B"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ควรมี",
+      "แผนสำรองเสมอ",
+      "ก่อนเปิด",
+      "ตัวแคมเปญ"
+    ],
+    "extraExample": "Our backup plan kept the communication channels open.",
+    "extraExampleTranslation": "แผนสำรองของเราทำให้ช่องทางการสื่อสารยังคงเปิดอยู่",
+    "usageTip": "backup plan (คำนาม) = แผนสำรอง · มักใช้ในวลี: have a backup plan, activate a backup plan · คำใกล้เคียง: alternative, plan B",
+    "novaBatch": true
+  },
+  {
+    "word": "hold back",
+    "partOfSpeech": "verb",
+    "translation": "ยั้งไว้, ปิดบัง",
+    "definition": "to keep information secret or hesitate to act",
+    "example": "Do not hold back any bad news from the board.",
+    "exampleTranslation": "อย่าปิดบังข่าวร้ายใดๆ จากคณะกรรมการ",
+    "phonetic": "/hoʊld bæk/",
+    "cefr": "B2",
+    "collocations": [
+      "hold back information",
+      "hold back news"
+    ],
+    "synonyms": [
+      "withhold",
+      "conceal"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "อย่าปิด",
+      "บังข่าวร้ายใดๆ",
+      "จาก",
+      "คณะกรรมการ"
+    ],
+    "extraExample": "We should not hold back our apology any longer.",
+    "extraExampleTranslation": "เราไม่ควรยั้งคำขอโทษไว้อีกต่อไป",
+    "usageTip": "hold back (คำกริยา) = ยั้งไว้, ปิดบัง · มักใช้ในวลี: hold back information, hold back news · คำใกล้เคียง: withhold, conceal",
+    "novaBatch": true
+  },
+  {
+    "word": "own up",
+    "partOfSpeech": "verb",
+    "translation": "ยอมรับผิด",
+    "definition": "to admit that you have made a mistake",
+    "example": "It is better to own up to the error immediately.",
+    "exampleTranslation": "การยอมรับผิดต่อข้อผิดพลาดทันทีเป็นสิ่งที่ดีกว่า",
+    "phonetic": "/oʊn ʌp/",
+    "cefr": "B2",
+    "collocations": [
+      "own up to",
+      "own up immediately"
+    ],
+    "synonyms": [
+      "admit",
+      "confess"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "การยอมรับผิด",
+      "ต่อข้อผิดพ",
+      "ลาดทันทีเป็นสิ่ง",
+      "ที่ดีกว่า"
+    ],
+    "extraExample": "The company decided to own up and fix the bug.",
+    "extraExampleTranslation": "บริษัทตัดสินใจยอมรับผิดและแก้ไขข้อบกพร่อง",
+    "usageTip": "own up (คำกริยา) = ยอมรับผิด · มักใช้ในวลี: own up to, own up immediately · คำใกล้เคียง: admit, confess",
+    "novaBatch": true
+  },
+  {
+    "word": "follow through",
+    "partOfSpeech": "verb",
+    "translation": "ทำตามที่สัญญาไว้จนสำเร็จ",
+    "definition": "to complete a promise or plan",
+    "example": "We must follow through on our promise to refund users.",
+    "exampleTranslation": "เราต้องทำตามสัญญาที่จะคืนเงินให้ผู้ใช้จนสำเร็จ",
+    "phonetic": "/ˈfɑːloʊ θruː/",
+    "cefr": "B2",
+    "collocations": [
+      "follow through on",
+      "follow through with"
+    ],
+    "synonyms": [
+      "complete",
+      "fulfill"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "เราต้องทำตาม",
+      "สัญญาที่จะ",
+      "คืนเงิน",
+      "ให้ผู้ใช้จนสำเร็จ"
+    ],
+    "extraExample": "Trust grows when leaders follow through on their words.",
+    "extraExampleTranslation": "ความไว้วางใจจะเพิ่มขึ้นเมื่อผู้นำทำตามคำพูด",
+    "usageTip": "follow through (คำกริยา) = ทำตามที่สัญญาไว้จนสำเร็จ · มักใช้ในวลี: follow through on, follow through with · คำใกล้เคียง: complete, fulfill",
+    "novaBatch": true
+  },
+  {
+    "word": "step down",
+    "partOfSpeech": "verb",
+    "translation": "ลาออกจากตำแหน่ง",
+    "definition": "to resign from an important job or position",
+    "example": "The spokesperson decided to step down after the scandal.",
+    "exampleTranslation": "โฆษกตัดสินใจลาออกจากตำแหน่งหลังเกิดเรื่องอื้อฉาว",
+    "phonetic": "/step daʊn/",
+    "cefr": "B2",
+    "collocations": [
+      "step down from",
+      "agree to step down"
+    ],
+    "synonyms": [
+      "resign",
+      "quit"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "โฆษกตัดสินใจ",
+      "ลาออกจากตำแหน่ง",
+      "หลังเกิด",
+      "เรื่องอื้อฉาว"
+    ],
+    "extraExample": "He will step down at the end of the quarter.",
+    "extraExampleTranslation": "เขาจะลงจากตำแหน่งเมื่อสิ้นสุดไตรมาส",
+    "usageTip": "step down (คำกริยา) = ลาออกจากตำแหน่ง · มักใช้ในวลี: step down from, agree to step down · คำใกล้เคียง: resign, quit",
+    "novaBatch": true
+  },
+  {
+    "word": "reach out",
+    "partOfSpeech": "verb",
+    "translation": "ติดต่อสื่อสาร",
+    "definition": "to contact someone to offer help or information",
+    "example": "We will reach out to every affected client today.",
+    "exampleTranslation": "เราจะติดต่อลูกค้าที่ได้รับผลกระทบทุกคนในวันนี้",
+    "phonetic": "/riːtʃ aʊt/",
+    "cefr": "B1",
+    "collocations": [
+      "reach out to",
+      "reach out directly"
+    ],
+    "synonyms": [
+      "contact",
+      "connect"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "เราจะติดต่อ",
+      "ลูกค้าที่ได้รับ",
+      "ผลกระทบทุกคน",
+      "ในวันนี้"
+    ],
+    "extraExample": "Feel free to reach out if you have any questions.",
+    "extraExampleTranslation": "ติดต่อมาได้ทันทีหากคุณมีคำถามใดๆ",
+    "usageTip": "reach out (คำกริยา) = ติดต่อสื่อสาร · มักใช้ในวลี: reach out to, reach out directly · คำใกล้เคียง: contact, connect",
+    "novaBatch": true
+  },
+  {
+    "word": "headline",
+    "partOfSpeech": "noun",
+    "translation": "พาดหัวข่าว",
+    "definition": "the title of a news story printed in large letters",
+    "example": "The data breach made the front-page headline.",
+    "exampleTranslation": "เหตุข้อมูลรั่วไหลขึ้นพาดหัวข่าวหน้าหนึ่ง",
+    "phonetic": "/ˈhedlaɪn/",
+    "cefr": "B1",
+    "collocations": [
+      "front-page headline",
+      "negative headline"
+    ],
+    "synonyms": [
+      "title",
+      "heading"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "เหตุข้อมูล",
+      "รั่วไหลขึ้น",
+      "พาดหัวข่าว",
+      "หน้าหนึ่ง"
+    ],
+    "extraExample": "We want to avoid negative headlines tomorrow.",
+    "extraExampleTranslation": "เราต้องการหลีกเลี่ยงพาดหัวข่าวเชิงลบในวันพรุ่งนี้",
+    "usageTip": "headline (คำนาม) = พาดหัวข่าว · มักใช้ในวลี: front-page headline, negative headline · คำใกล้เคียง: title, heading",
+    "novaBatch": true
+  },
+  {
+    "word": "media outlet",
+    "partOfSpeech": "noun",
+    "translation": "สำนักข่าว, สื่อมวลชน",
+    "definition": "an organization that broadcasts or publishes news",
+    "example": "Several major media outlets requested an interview.",
+    "exampleTranslation": "สำนักข่าวใหญ่หลายแห่งขอสัมภาษณ์",
+    "phonetic": "/ˈmiːdiə ˈaʊtlet/",
+    "cefr": "B2",
+    "collocations": [
+      "major media outlet",
+      "local media outlet"
+    ],
+    "synonyms": [
+      "news organization",
+      "press"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "สำนักข่าว",
+      "ใหญ่ห",
+      "ลายแห่ง",
+      "ขอสัมภาษณ์"
+    ],
+    "extraExample": "Send the official statement to every media outlet.",
+    "extraExampleTranslation": "ส่งแถลงการณ์อย่างเป็นทางการไปยังสื่อทุกแห่ง",
+    "usageTip": "media outlet (คำนาม) = สำนักข่าว, สื่อมวลชน · มักใช้ในวลี: major media outlet, local media outlet · คำใกล้เคียง: news organization, press",
+    "novaBatch": true
+  },
+  {
+    "word": "press conference",
+    "partOfSpeech": "noun",
+    "translation": "การแถลงข่าว",
+    "definition": "a meeting where journalists ask questions",
+    "example": "The mayor held a press conference at 3 PM.",
+    "exampleTranslation": "นายกเทศมนตรีจัดงานแถลงข่าวเวลาบ่าย 3 โมง",
+    "phonetic": "/ˈpres ˈkɑːnfərəns/",
+    "cefr": "B1",
+    "collocations": [
+      "hold a press conference",
+      "attend a press conference"
+    ],
+    "synonyms": [
+      "media briefing",
+      "news conference"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "นายกเทศมนตรีจัดงานแถลงข่าวเวลาบ่าย",
+      "3",
+      "โมง"
+    ],
+    "extraExample": "We will answer all questions at the press conference.",
+    "extraExampleTranslation": "เราจะตอบทุกคำถามในงานแถลงข่าว",
+    "usageTip": "press conference (คำนาม) = การแถลงข่าว · มักใช้ในวลี: hold a press conference, attend a press conference · คำใกล้เคียง: media briefing, news conference",
+    "novaBatch": true
+  },
+  {
+    "word": "public relations",
+    "partOfSpeech": "noun",
+    "translation": "การประชาสัมพันธ์",
+    "definition": "the work of managing a company's public image",
+    "example": "She has ten years of experience in public relations.",
+    "exampleTranslation": "เธอมีประสบการณ์สิบปีในด้านการประชาสัมพันธ์",
+    "phonetic": "/ˌpʌblɪk rɪˈleɪʃnz/",
+    "cefr": "B2",
+    "collocations": [
+      "public relations team",
+      "public relations crisis"
+    ],
+    "synonyms": [
+      "PR",
+      "communications"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "เธอมีประสบ",
+      "การณ์สิบปีในด้าน",
+      "การป",
+      "ระชาสัมพันธ์"
+    ],
+    "extraExample": "Good public relations can save a brand in a crisis.",
+    "extraExampleTranslation": "การประชาสัมพันธ์ที่ดีสามารถกอบกู้แบรนด์ในยามวิกฤตได้",
+    "usageTip": "public relations (คำนาม) = การประชาสัมพันธ์ · มักใช้ในวลี: public relations team, public relations crisis · คำใกล้เคียง: PR, communications",
+    "novaBatch": true
+  },
+  {
+    "word": "damage limitation",
+    "partOfSpeech": "noun",
+    "translation": "การจำกัดความเสียหาย",
+    "definition": "actions taken to reduce the bad effects of a mistake",
+    "example": "The team is in damage limitation mode right now.",
+    "exampleTranslation": "ทีมงานกำลังอยู่ในโหมดจำกัดความเสียหายในตอนนี้",
+    "phonetic": "/ˈdæmɪdʒ ˌlɪmɪˈteɪʃn/",
+    "cefr": "B2",
+    "collocations": [
+      "damage limitation mode",
+      "damage limitation exercise"
+    ],
+    "synonyms": [
+      "crisis control",
+      "mitigation"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "ทีมงาน",
+      "กำลังอยู่ในโหมด",
+      "จำกัดความเสียหาย",
+      "ในตอนนี้"
+    ],
+    "extraExample": "Quick honesty is the best damage limitation strategy.",
+    "extraExampleTranslation": "ความซื่อสัตย์ที่รวดเร็วคือกลยุทธ์จำกัดความเสียหายที่ดีที่สุด",
+    "usageTip": "damage limitation (คำนาม) = การจำกัดความเสียหาย · มักใช้ในวลี: damage limitation mode, damage limitation exercise · คำใกล้เคียง: crisis control, mitigation",
+    "novaBatch": true
+  },
+  {
+    "word": "fact sheet",
+    "partOfSpeech": "noun",
+    "translation": "เอกสารข้อเท็จจริง",
+    "definition": "a short document giving key facts about a topic",
+    "example": "Attach a clear fact sheet to the press email.",
+    "exampleTranslation": "แนบเอกสารข้อเท็จจริงที่ชัดเจนไปกับอีเมลถึงสื่อ",
+    "phonetic": "/ˈfækt ʃiːt/",
+    "cefr": "B2",
+    "collocations": [
+      "clear fact sheet",
+      "distribute a fact sheet"
+    ],
+    "synonyms": [
+      "summary sheet",
+      "info sheet"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "แนบเอกสารข้อ",
+      "เท็จจริง",
+      "ที่ชัดเจนไป",
+      "กับอีเมลถึงสื่อ"
+    ],
+    "extraExample": "The fact sheet answers the most common questions.",
+    "extraExampleTranslation": "เอกสารข้อเท็จจริงตอบคำถามที่พบบ่อยที่สุด",
+    "usageTip": "fact sheet (คำนาม) = เอกสารข้อเท็จจริง · มักใช้ในวลี: clear fact sheet, distribute a fact sheet · คำใกล้เคียง: summary sheet, info sheet",
+    "novaBatch": true
+  },
+  {
+    "word": "dispute",
+    "partOfSpeech": "noun",
+    "translation": "ข้อพิพาท, การโต้แย้ง",
+    "definition": "a serious argument or disagreement",
+    "example": "We are working to settle the billing dispute quickly.",
+    "exampleTranslation": "เรากำลังดำเนินการยุติข้อพิพาทเรื่องการเรียกเก็บเงินโดยเร็ว",
+    "phonetic": "/dɪˈspjuːt/",
+    "cefr": "B2",
+    "collocations": [
+      "settle a dispute",
+      "billing dispute"
+    ],
+    "synonyms": [
+      "conflict",
+      "disagreement"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "เรากำลังดำเนินการยุติ",
+      "ข้อพิพาท",
+      "เรื่องการเรีย",
+      "กเก็บเงินโดยเร็ว"
+    ],
+    "extraExample": "The two partners resolved their dispute out of court.",
+    "extraExampleTranslation": "คู่ค้าทั้งสองฝ่ายยุติข้อพิพาทนอกศาล",
+    "usageTip": "dispute (คำนาม) = ข้อพิพาท, การโต้แย้ง · มักใช้ในวลี: settle a dispute, billing dispute · คำใกล้เคียง: conflict, disagreement",
+    "novaBatch": true
+  },
+  {
+    "word": "allegation",
+    "partOfSpeech": "noun",
+    "translation": "ข้อกล่าวหา",
+    "definition": "a claim that someone has done something wrong",
+    "example": "The company strongly denied the allegation.",
+    "exampleTranslation": "บริษัทปฏิเสธข้อกล่าวหาอย่างหนักแน่น",
+    "phonetic": "/ˌæləˈɡeɪʃn/",
+    "cefr": "B2",
+    "collocations": [
+      "deny an allegation",
+      "investigate an allegation"
+    ],
+    "synonyms": [
+      "accusation",
+      "claim"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "บริษัทปฏิเสธ",
+      "ข้อกล่าวหา",
+      "อย่าง",
+      "หนักแน่น"
+    ],
+    "extraExample": "We are investigating every allegation seriously.",
+    "extraExampleTranslation": "เรากำลังสอบสวนทุกข้อกล่าวหาอย่างจริงจัง",
+    "usageTip": "allegation (คำนาม) = ข้อกล่าวหา · มักใช้ในวลี: deny an allegation, investigate an allegation · คำใกล้เคียง: accusation, claim",
+    "novaBatch": true
+  },
+  {
+    "word": "inquiry",
+    "partOfSpeech": "noun",
+    "translation": "การสอบสวน, การสอบถาม",
+    "definition": "an official investigation or a request for information",
+    "example": "An independent inquiry is now underway.",
+    "exampleTranslation": "การสอบสวนอิสระกำลังดำเนินการอยู่ในขณะนี้",
+    "phonetic": "/ˈɪnkwəri/",
+    "cefr": "B2",
+    "collocations": [
+      "independent inquiry",
+      "media inquiry"
+    ],
+    "synonyms": [
+      "investigation",
+      "question"
+    ],
+    "topic": "work",
+    "thTokens": [
+      "การสอบสวน",
+      "อิสระ",
+      "กำลังดำเนินการอ",
+      "ยู่ในขณะนี้"
+    ],
+    "extraExample": "Direct all media inquiries to the communications desk.",
+    "extraExampleTranslation": "ส่งคำถามจากสื่อทั้งหมดไปที่ฝ่ายสื่อสารองค์กร",
+    "usageTip": "inquiry (คำนาม) = การสอบสวน, การสอบถาม · มักใช้ในวลี: independent inquiry, media inquiry · คำใกล้เคียง: investigation, question",
+    "novaBatch": true
+  },
+  {
+    "word": "sculpture",
+    "partOfSpeech": "noun",
+    "translation": "ประติมากรรม",
+    "definition": "the art of making three-dimensional works of art",
+    "example": "The museum displays an ancient stone sculpture.",
+    "exampleTranslation": "พิพิธภัณฑ์จัดแสดงประติมากรรมหินโบราณ",
+    "phonetic": "/ˈskʌlptʃər/",
+    "cefr": "B1",
+    "collocations": [
+      "bronze sculpture",
+      "modern sculpture"
+    ],
+    "synonyms": [
+      "statue",
+      "carving"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "พิพิธภัณฑ์",
+      "จัดแสดง",
+      "ประติมากรรม",
+      "หินโบราณ"
+    ],
+    "extraExample": "She studied sculpture in Florence.",
+    "extraExampleTranslation": "เธอเรียนด้านประติมากรรมที่เมืองฟลอเรนซ์",
+    "usageTip": "sculpture (คำนาม) = ประติมากรรม · มักใช้ในวลี: bronze sculpture, modern sculpture · คำใกล้เคียง: statue, carving",
+    "novaBatch": true
+  },
+  {
+    "word": "architecture",
+    "partOfSpeech": "noun",
+    "translation": "สถาปัตยกรรม",
+    "definition": "the art or practice of designing buildings",
+    "example": "The town is famous for its colonial architecture.",
+    "exampleTranslation": "เมืองนี้มีชื่อเสียงด้านสถาปัตยกรรมยุคอาณานิคม",
+    "phonetic": "/ˈɑːrkɪtɛktʃər/",
+    "cefr": "B1",
+    "collocations": [
+      "gothic architecture",
+      "modern architecture"
+    ],
+    "synonyms": [
+      "design",
+      "structure"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "เมืองนี้มีชื่อ",
+      "เสียงด้าน",
+      "สถาปัตยกรรม",
+      "ยุคอาณานิคม"
+    ],
+    "extraExample": "Traditional architecture uses local wood.",
+    "extraExampleTranslation": "สถาปัตยกรรมแบบดั้งเดิมใช้ไม้ในท้องถิ่น",
+    "usageTip": "architecture (คำนาม) = สถาปัตยกรรม · มักใช้ในวลี: gothic architecture, modern architecture · คำใกล้เคียง: design, structure",
+    "novaBatch": true
+  },
+  {
+    "word": "historian",
+    "partOfSpeech": "noun",
+    "translation": "นักประวัติศาสตร์",
+    "definition": "an expert in or student of history",
+    "example": "A local historian guided us through the ruins.",
+    "exampleTranslation": "นักประวัติศาสตร์ท้องถิ่นนำทางเราชมซากปรักหักพัง",
+    "phonetic": "/hɪˈstɔːriən/",
+    "cefr": "B1",
+    "collocations": [
+      "art historian",
+      "eminent historian"
+    ],
+    "synonyms": [
+      "scholar",
+      "chronicler"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "นักประวัติศาสตร์",
+      "ท้องถิ่น",
+      "นำทางเราช",
+      "มซากปรักหักพัง"
+    ],
+    "extraExample": "Historians study old letters to understand the past.",
+    "extraExampleTranslation": "นักประวัติศาสตร์ศึกษาจดหมายเก่าเพื่อเข้าใจอดีต",
+    "usageTip": "historian (คำนาม) = นักประวัติศาสตร์ · มักใช้ในวลี: art historian, eminent historian · คำใกล้เคียง: scholar, chronicler",
+    "novaBatch": true
+  },
+  {
+    "word": "symbolize",
+    "partOfSpeech": "verb",
+    "translation": "เป็นสัญลักษณ์ของ",
+    "definition": "to represent or stand for something else",
+    "example": "White doves symbolize peace in many cultures.",
+    "exampleTranslation": "นกพิราบขาวเป็นสัญลักษณ์ของสันติภาพในหลายวัฒนธรรม",
+    "phonetic": "/ˈsɪmbəlaɪz/",
+    "cefr": "B2",
+    "collocations": [
+      "symbolize hope",
+      "symbolize unity"
+    ],
+    "synonyms": [
+      "represent",
+      "signify"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "นกพิราบขาว",
+      "เป็นสัญลักษณ์",
+      "ของสันติภาพ",
+      "ในหลายวัฒนธรรม"
+    ],
+    "extraExample": "The lantern festival symbolizes letting go of the past.",
+    "extraExampleTranslation": "เทศกาลโคมไฟเป็นสัญลักษณ์ของการปล่อยวางอดีต",
+    "usageTip": "symbolize (คำกริยา) = เป็นสัญลักษณ์ของ · มักใช้ในวลี: symbolize hope, symbolize unity · คำใกล้เคียง: represent, signify",
+    "novaBatch": true
+  },
+  {
+    "word": "indigenous",
+    "partOfSpeech": "adjective",
+    "translation": "พื้นเมือง",
+    "definition": "originating or occurring naturally in a particular place",
+    "example": "Indigenous tribes perform dances during the harvest.",
+    "exampleTranslation": "ชนเผ่าพื้นเมืองแสดงการเต้นรำในช่วงเก็บเกี่ยว",
+    "phonetic": "/ɪnˈdɪdʒənəs/",
+    "cefr": "B2",
+    "collocations": [
+      "indigenous culture",
+      "indigenous peoples"
+    ],
+    "synonyms": [
+      "native",
+      "aboriginal"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ชนเผ่าพื้นเมือง",
+      "แสดงการ",
+      "เต้นรำในช่ว",
+      "งเก็บเกี่ยว"
+    ],
+    "extraExample": "The exhibit honors indigenous art forms.",
+    "extraExampleTranslation": "นิทรรศการนี้เชิดชูรูปแบบศิลปะพื้นเมือง",
+    "usageTip": "indigenous (คำคุณศัพท์) = พื้นเมือง · มักใช้ในวลี: indigenous culture, indigenous peoples · คำใกล้เคียง: native, aboriginal",
+    "novaBatch": true
+  },
+  {
+    "word": "lineage",
+    "partOfSpeech": "noun",
+    "translation": "เชื้อสาย, ตระกูล",
+    "definition": "direct descent from an ancestor",
+    "example": "The royal family can trace its lineage back centuries.",
+    "exampleTranslation": "ราชวงศ์สามารถสืบเชื้อสายย้อนกลับไปได้หลายศตวรรษ",
+    "phonetic": "/ˈlɪniɪdʒ/",
+    "cefr": "B2",
+    "collocations": [
+      "noble lineage",
+      "trace lineage"
+    ],
+    "synonyms": [
+      "ancestry",
+      "descent"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ราชวงศ์สามารถสืบ",
+      "เชื้อสาย",
+      "ย้อนกลับไป",
+      "ได้หลายศตวรรษ"
+    ],
+    "extraExample": "Craftspeople are proud of their artistic lineage.",
+    "extraExampleTranslation": "ช่างฝีมือภูมิใจในสายตระกูลทางศิลปะของตน",
+    "usageTip": "lineage (คำนาม) = เชื้อสาย, ตระกูล · มักใช้ในวลี: noble lineage, trace lineage · คำใกล้เคียง: ancestry, descent",
+    "novaBatch": true
+  },
+  {
+    "word": "patronage",
+    "partOfSpeech": "noun",
+    "translation": "การอุปถัมภ์",
+    "definition": "the support given by a patron to artists or events",
+    "example": "Royal patronage helped traditional opera survive.",
+    "exampleTranslation": "การอุปถัมภ์จากราชวงศ์ช่วยให้งิ้วโบราณอยู่รอดได้",
+    "phonetic": "/ˈpætrənɪdʒ/",
+    "cefr": "B2",
+    "collocations": [
+      "royal patronage",
+      "arts patronage"
+    ],
+    "synonyms": [
+      "sponsorship",
+      "backing"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "การอุปถัมภ์",
+      "จากราชวงศ์ช่วย",
+      "ให้งิ้วโบ",
+      "ราณอยู่รอดได้"
+    ],
+    "extraExample": "The festival relies on corporate patronage.",
+    "extraExampleTranslation": "เทศกาลนี้พึ่งพาการอุปถัมภ์จากภาคเอกชน",
+    "usageTip": "patronage (คำนาม) = การอุปถัมภ์ · มักใช้ในวลี: royal patronage, arts patronage · คำใกล้เคียง: sponsorship, backing",
+    "novaBatch": true
+  },
+  {
+    "word": "renaissance",
+    "partOfSpeech": "noun",
+    "translation": "ยุคฟื้นฟู",
+    "definition": "a revival of or renewed interest in something",
+    "example": "Folk music is enjoying a modern renaissance.",
+    "exampleTranslation": "ดนตรีพื้นบ้านกำลังได้รับความนิยมฟื้นคืนมาอีกครั้งในยุคใหม่",
+    "phonetic": "/ˈrɛnəsɑːns/",
+    "cefr": "B2",
+    "collocations": [
+      "cultural renaissance",
+      "artistic renaissance"
+    ],
+    "synonyms": [
+      "revival",
+      "rebirth"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ดนตรีพื้นบ้าน",
+      "กำลังได้รับความ",
+      "นิยมฟื้นคืนมาอีกครั้ง",
+      "ในยุคใหม่"
+    ],
+    "extraExample": "The city became a center of cultural renaissance.",
+    "extraExampleTranslation": "เมืองนี้กลายเป็นศูนย์กลางของยุคฟื้นฟูศิลปวัฒนธรรม",
+    "usageTip": "renaissance (คำนาม) = ยุคฟื้นฟู · มักใช้ในวลี: cultural renaissance, artistic renaissance · คำใกล้เคียง: revival, rebirth",
+    "novaBatch": true
+  },
+  {
+    "word": "spectacle",
+    "partOfSpeech": "noun",
+    "translation": "ภาพที่น่าตื่นตาตื่นใจ",
+    "definition": "a visually striking performance or display",
+    "example": "The dragon dance was a dazzling spectacle.",
+    "exampleTranslation": "การเชิดมังกรเป็นภาพที่น่าตื่นตาตื่นใจมาก",
+    "phonetic": "/ˈspɛktəkəl/",
+    "cefr": "B2",
+    "collocations": [
+      "grand spectacle",
+      "visual spectacle"
+    ],
+    "synonyms": [
+      "display",
+      "pageant"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "การเชิดมังกรเป็น",
+      "ภาพ",
+      "ที่น่าตื่น",
+      "ตาตื่นใจมาก"
+    ],
+    "extraExample": "Thousands gathered to watch the evening spectacle.",
+    "extraExampleTranslation": "ผู้คนนับพันมารวมตัวกันเพื่อชมการแสดงยามค่ำคืน",
+    "usageTip": "spectacle (คำนาม) = ภาพที่น่าตื่นตาตื่นใจ · มักใช้ในวลี: grand spectacle, visual spectacle · คำใกล้เคียง: display, pageant",
+    "novaBatch": true
+  },
+  {
+    "word": "reverence",
+    "partOfSpeech": "noun",
+    "translation": "ความเคารพอย่างสูง",
+    "definition": "deep respect for someone or something",
+    "example": "Visitors enter the ancient shrine with quiet reverence.",
+    "exampleTranslation": "ผู้มาเยือนเข้าสู่ศาลเจ้าโบราณด้วยความเคารพอย่างสงบ",
+    "phonetic": "/ˈrɛvərəns/",
+    "cefr": "B2",
+    "collocations": [
+      "deep reverence",
+      "show reverence"
+    ],
+    "synonyms": [
+      "respect",
+      "veneration"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ผู้มาเยือน",
+      "เข้าสู่ศาลเจ้าโบราณ",
+      "ด้วยความเคารพ",
+      "อย่างสงบ"
+    ],
+    "extraExample": "The elders are treated with great reverence.",
+    "extraExampleTranslation": "ผู้อาวุโสได้รับการปฏิบัติด้วยความเคารพอย่างสูง",
+    "usageTip": "reverence (คำนาม) = ความเคารพอย่างสูง · มักใช้ในวลี: deep reverence, show reverence · คำใกล้เคียง: respect, veneration",
+    "novaBatch": true
+  },
+  {
+    "word": "solemn",
+    "partOfSpeech": "adjective",
+    "translation": "เคร่งขรึม, ศักดิ์สิทธิ์",
+    "definition": "formal and dignified",
+    "example": "A solemn silence fell over the memorial hall.",
+    "exampleTranslation": "ความเงียบอันเคร่งขรึมปกคลุมหอรำลึก",
+    "phonetic": "/ˈsɑːləm/",
+    "cefr": "B2",
+    "collocations": [
+      "solemn occasion",
+      "solemn vow"
+    ],
+    "synonyms": [
+      "serious",
+      "dignified"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ความเงียบอัน",
+      "เคร่งขรึม",
+      "ปกค",
+      "ลุมหอรำลึก"
+    ],
+    "extraExample": "The ceremony had a solemn and respectful tone.",
+    "extraExampleTranslation": "พิธีการมีบรรยากาศที่เคร่งขรึมและเปี่ยมด้วยความเคารพ",
+    "usageTip": "solemn (คำคุณศัพท์) = เคร่งขรึม, ศักดิ์สิทธิ์ · มักใช้ในวลี: solemn occasion, solemn vow · คำใกล้เคียง: serious, dignified",
+    "novaBatch": true
+  },
+  {
+    "word": "vibrant",
+    "partOfSpeech": "adjective",
+    "translation": "มีชีวิตชีวา, สีสันสดใส",
+    "definition": "full of energy and enthusiasm",
+    "example": "The market was vibrant with music and colors.",
+    "exampleTranslation": "ตลาดเต็มไปด้วยความมีชีวิตชีวาของเสียงดนตรีและสีสัน",
+    "phonetic": "/ˈvaɪbrənt/",
+    "cefr": "B2",
+    "collocations": [
+      "vibrant culture",
+      "vibrant colors"
+    ],
+    "synonyms": [
+      "lively",
+      "vivid"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ตลาดเต็มไป",
+      "ด้วยความมีชีวิตชีวา",
+      "ของเสีย",
+      "งดนตรีและสีสัน"
+    ],
+    "extraExample": "We saw vibrant costumes at the spring parade.",
+    "extraExampleTranslation": "เราเห็นชุดแต่งกายสีสันสดใสในขบวนพาเหรดฤดูใบไม้ผลิ",
+    "usageTip": "vibrant (คำคุณศัพท์) = มีชีวิตชีวา, สีสันสดใส · มักใช้ในวลี: vibrant culture, vibrant colors · คำใกล้เคียง: lively, vivid",
+    "novaBatch": true
+  },
+  {
+    "word": "showcase",
+    "partOfSpeech": "verb",
+    "translation": "จัดแสดง, อวดโฉม",
+    "definition": "to exhibit the best qualities of something",
+    "example": "The fair will showcase regional handicrafts.",
+    "exampleTranslation": "งานแฟร์จะจัดแสดงงานหัตถกรรมประจำภูมิภาค",
+    "phonetic": "/ˈʃoʊkeɪs/",
+    "cefr": "B2",
+    "collocations": [
+      "showcase talent",
+      "showcase heritage"
+    ],
+    "synonyms": [
+      "display",
+      "highlight"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "งานแฟร์จะ",
+      "จัดแสดง",
+      "งานหัตถกรรม",
+      "ประจำภูมิภาค"
+    ],
+    "extraExample": "Local chefs showcase their heritage dishes.",
+    "extraExampleTranslation": "เชฟท้องถิ่นนำเสนออาหารประจำถิ่นของตน",
+    "usageTip": "showcase (คำกริยา) = จัดแสดง, อวดโฉม · มักใช้ในวลี: showcase talent, showcase heritage · คำใกล้เคียง: display, highlight",
+    "novaBatch": true
+  },
+  {
+    "word": "uphold",
+    "partOfSpeech": "verb",
+    "translation": "ยึดมั่น, รักษาไว้",
+    "definition": "to confirm or support a custom or law",
+    "example": "The community works to uphold its ancient values.",
+    "exampleTranslation": "ชุมชนร่วมกันรักษาคุณค่าดั้งเดิมของตนไว้",
+    "phonetic": "/ʌpˈhoʊld/",
+    "cefr": "B2",
+    "collocations": [
+      "uphold traditions",
+      "uphold values"
+    ],
+    "synonyms": [
+      "maintain",
+      "preserve"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ชุมชนร่วม",
+      "กันรักษาคุณ",
+      "ค่าดั้งเดิม",
+      "ของตนไว้"
+    ],
+    "extraExample": "Elders uphold the oral traditions of the village.",
+    "extraExampleTranslation": "ผู้อาวุโสยึดมั่นในประเพณีมุขปาฐะของหมู่บ้าน",
+    "usageTip": "uphold (คำกริยา) = ยึดมั่น, รักษาไว้ · มักใช้ในวลี: uphold traditions, uphold values · คำใกล้เคียง: maintain, preserve",
+    "novaBatch": true
+  },
+  {
+    "word": "pass down",
+    "partOfSpeech": "verb",
+    "translation": "สืบทอดต่อ",
+    "definition": "to transmit knowledge or traditions to younger generations",
+    "example": "Grandmothers pass down weaving skills to their granddaughters.",
+    "exampleTranslation": "คุณยายสืบทอดทักษะการทอผ้าให้หลานสาว",
+    "phonetic": "/pæs daʊn/",
+    "cefr": "B1",
+    "collocations": [
+      "pass down stories",
+      "pass down skills"
+    ],
+    "synonyms": [
+      "hand down",
+      "bequeath"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "คุณยายสืบ",
+      "ทอดทักษะ",
+      "การทอ",
+      "ผ้าให้หลานสาว"
+    ],
+    "usageTip": "pass down (คำกริยา) = สืบทอดต่อ · มักใช้ในวลี: pass down stories, pass down skills · คำใกล้เคียง: hand down, bequeath",
+    "novaBatch": true
+  },
+  {
+    "word": "dress up",
+    "partOfSpeech": "verb",
+    "translation": "แต่งตัวพิเศษ",
+    "definition": "to put on special clothes for a festival or event",
+    "example": "Children love to dress up in traditional silk.",
+    "exampleTranslation": "เด็กๆ ชอบแต่งตัวด้วยชุดผ้าไหมแบบดั้งเดิม",
+    "phonetic": "/drɛs ʌp/",
+    "cefr": "A2",
+    "collocations": [
+      "dress up in",
+      "dress up for"
+    ],
+    "synonyms": [
+      "costume",
+      "attire"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "เด็กๆชอบ",
+      "แต่งตัว",
+      "ด้วยชุดผ้าไห",
+      "มแบบดั้งเดิม"
+    ],
+    "usageTip": "dress up (คำกริยา) = แต่งตัวพิเศษ · มักใช้ในวลี: dress up in, dress up for · คำใกล้เคียง: costume, attire",
+    "novaBatch": true
+  },
+  {
+    "word": "handcraft",
+    "partOfSpeech": "verb",
+    "translation": "ประดิษฐ์ด้วยมือ",
+    "definition": "to make something skillfully by hand",
+    "example": "Artisans handcraft each wooden mask with care.",
+    "exampleTranslation": "ช่างฝีมือประดิษฐ์หน้ากากไม้แต่ละชิ้นด้วยมืออย่างประณีต",
+    "phonetic": "/ˈhændkræft/",
+    "cefr": "B2",
+    "collocations": [
+      "handcraft pottery",
+      "handcraft jewelry"
+    ],
+    "synonyms": [
+      "craft",
+      "fashion"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ช่างฝีมือประ",
+      "ดิษฐ์หน้ากาก",
+      "ไม้แต่ละชิ้น",
+      "ด้วยมืออย่างประณีต"
+    ],
+    "extraExample": "They handcraft pottery using ancient techniques.",
+    "extraExampleTranslation": "พวกเขาปั้นเครื่องปั้นดินเผาด้วยมือโดยใช้เทคนิคโบราณ",
+    "usageTip": "handcraft (คำกริยา) = ประดิษฐ์ด้วยมือ · มักใช้ในวลี: handcraft pottery, handcraft jewelry · คำใกล้เคียง: craft, fashion",
+    "novaBatch": true
+  },
+  {
+    "word": "curator",
+    "partOfSpeech": "noun",
+    "translation": "ภัณฑารักษ์",
+    "definition": "a keeper or custodian of a museum or collection",
+    "example": "The curator explained the history of the bronze vase.",
+    "exampleTranslation": "ภัณฑารักษ์อธิบายประวัติของแจกันสำริด",
+    "phonetic": "/ˈkjʊreɪtər/",
+    "cefr": "B2",
+    "collocations": [
+      "museum curator",
+      "chief curator"
+    ],
+    "synonyms": [
+      "keeper",
+      "custodian"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ภัณฑารักษ์",
+      "อธิบายประ",
+      "วัติของแจ",
+      "กันสำริด"
+    ],
+    "extraExample": "She works as a curator at the national gallery.",
+    "extraExampleTranslation": "เธอทำงานเป็นภัณฑารักษ์ที่หอศิลป์แห่งชาติ",
+    "usageTip": "curator (คำนาม) = ภัณฑารักษ์ · มักใช้ในวลี: museum curator, chief curator · คำใกล้เคียง: keeper, custodian",
+    "novaBatch": true
+  },
+  {
+    "word": "inscription",
+    "partOfSpeech": "noun",
+    "translation": "จารึก",
+    "definition": "words inscribed on a monument or in a book",
+    "example": "The stone tablet bears an ancient inscription.",
+    "exampleTranslation": "แผ่นหินมีจารึกโบราณสลักอยู่",
+    "phonetic": "/ɪnˈskrɪpʃən/",
+    "cefr": "B2",
+    "collocations": [
+      "stone inscription",
+      "faded inscription"
+    ],
+    "synonyms": [
+      "engraving",
+      "carving"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "แผ่นหินมี",
+      "จารึก",
+      "โบราณ",
+      "สลักอยู่"
+    ],
+    "extraExample": "Scholars translated the faded inscription.",
+    "extraExampleTranslation": "นักวิชาการแปลจารึกที่เลือนลางนั้น",
+    "usageTip": "inscription (คำนาม) = จารึก · มักใช้ในวลี: stone inscription, faded inscription · คำใกล้เคียง: engraving, carving",
+    "novaBatch": true
+  },
+  {
+    "word": "sanctuary",
+    "partOfSpeech": "noun",
+    "translation": "สถานที่ศักดิ์สิทธิ์",
+    "definition": "a sacred place, such as a church or temple",
+    "example": "The mountain temple serves as a peaceful sanctuary.",
+    "exampleTranslation": "วัดบนภูเขาเป็นสถานที่ศักดิ์สิทธิ์อันเงียบสงบ",
+    "phonetic": "/ˈsæŋktʃuˌɛri/",
+    "cefr": "B2",
+    "collocations": [
+      "inner sanctuary",
+      "ancient sanctuary"
+    ],
+    "synonyms": [
+      "shrine",
+      "temple"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "วัดบนภูเขาเป็น",
+      "สถาน",
+      "ที่ศักดิ์สิทธิ์",
+      "อันเงียบสงบ"
+    ],
+    "extraExample": "Pilgrims traveled far to reach the sanctuary.",
+    "extraExampleTranslation": "ผู้แสวงบุญเดินทางไกลเพื่อมายังสถานที่ศักดิ์สิทธิ์",
+    "usageTip": "sanctuary (คำนาม) = สถานที่ศักดิ์สิทธิ์ · มักใช้ในวลี: inner sanctuary, ancient sanctuary · คำใกล้เคียง: shrine, temple",
+    "novaBatch": true
+  },
+  {
+    "word": "festivity",
+    "partOfSpeech": "noun",
+    "translation": "งานรื่นเริง",
+    "definition": "the celebration of something in a joyful way",
+    "example": "The town was filled with holiday festivity.",
+    "exampleTranslation": "เมืองเต็มไปด้วยบรรยากาศงานรื่นเริงในวันหยุด",
+    "phonetic": "/fɛˈstɪvəti/",
+    "cefr": "B2",
+    "collocations": [
+      "holiday festivity",
+      "winter festivities"
+    ],
+    "synonyms": [
+      "celebration",
+      "revelry"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "เมืองเต็มไป",
+      "ด้วยบรรยากาศ",
+      "งานรื่นเริง",
+      "ในวันหยุด"
+    ],
+    "extraExample": "Winter festivities begin with the lighting of the tree.",
+    "extraExampleTranslation": "งานรื่นเริงฤดูหนาวเริ่มต้นด้วยการเปิดไฟต้นไม้",
+    "usageTip": "festivity (คำนาม) = งานรื่นเริง · มักใช้ในวลี: holiday festivity, winter festivities · คำใกล้เคียง: celebration, revelry",
+    "novaBatch": true
+  },
+  {
+    "word": "ethnic",
+    "partOfSpeech": "adjective",
+    "translation": "ทางชาติพันธุ์",
+    "definition": "relating to a population subgroup with a common cultural tradition",
+    "example": "The festival celebrates diverse ethnic backgrounds.",
+    "exampleTranslation": "เทศกาลนี้เฉลิมฉลองภูมิหลังทางชาติพันธุ์ที่หลากหลาย",
+    "phonetic": "/ˈɛθnɪk/",
+    "cefr": "B2",
+    "collocations": [
+      "ethnic group",
+      "ethnic heritage"
+    ],
+    "synonyms": [
+      "cultural",
+      "traditional"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "เทศกาลนี้เฉ",
+      "ลิมฉลองภูมิหลัง",
+      "ทางชาติพันธุ์",
+      "ที่หลากหลาย"
+    ],
+    "extraExample": "They performed an ethnic folk dance.",
+    "extraExampleTranslation": "พวกเขาแสดงการเต้นรำพื้นบ้านประจำชาติพันธุ์",
+    "usageTip": "ethnic (คำคุณศัพท์) = ทางชาติพันธุ์ · มักใช้ในวลี: ethnic group, ethnic heritage · คำใกล้เคียง: cultural, traditional",
+    "novaBatch": true
+  },
+  {
+    "word": "oral history",
+    "partOfSpeech": "noun",
+    "translation": "ประวัติศาสตร์มุขปาฐะ",
+    "definition": "the collection and study of historical information from interviews",
+    "example": "Oral history keeps the memories of elders alive.",
+    "exampleTranslation": "ประวัติศาสตร์มุขปาฐะช่วยรักษาความทรงจำของผู้อาวุโสให้คงอยู่",
+    "phonetic": "/ˈɔːrəl ˈhɪstəri/",
+    "cefr": "B2",
+    "collocations": [
+      "record oral history",
+      "village oral history"
+    ],
+    "synonyms": [
+      "spoken history",
+      "folklore"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ประวัติศาสตร์มุขปาฐะ",
+      "ช่วยรัก",
+      "ษาความทรงจำของ",
+      "ผู้อาวุโสให้คงอยู่"
+    ],
+    "extraExample": "The project records the oral history of the village.",
+    "extraExampleTranslation": "โครงการนี้บันทึกประวัติศาสตร์มุขปาฐะของหมู่บ้าน",
+    "usageTip": "oral history (คำนาม) = ประวัติศาสตร์มุขปาฐะ · มักใช้ในวลี: record oral history, village oral history · คำใกล้เคียง: spoken history, folklore",
+    "novaBatch": true
+  },
+  {
+    "word": "cultural identity",
+    "partOfSpeech": "noun",
+    "translation": "อัตลักษณ์ทางวัฒนธรรม",
+    "definition": "the feeling of belonging to a specific cultural group",
+    "example": "Language is vital to a community's cultural identity.",
+    "exampleTranslation": "ภาษามีความสำคัญอย่างยิ่งต่ออัตลักษณ์ทางวัฒนธรรมของชุมชน",
+    "phonetic": "/ˈkʌltʃərəl aɪˈdɛntɪti/",
+    "cefr": "B2",
+    "collocations": [
+      "preserve cultural identity",
+      "shared cultural identity"
+    ],
+    "synonyms": [
+      "heritage",
+      "sense of belonging"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ภาษามีความสำคัญ",
+      "อย่างยิ่งต่อ",
+      "อัตลักษณ์ทาง",
+      "วัฒนธรรมของชุมชน"
+    ],
+    "extraExample": "Festivals help strengthen our cultural identity.",
+    "extraExampleTranslation": "เทศกาลต่างๆ ช่วยเสริมสร้างอัตลักษณ์ทางวัฒนธรรมของเรา",
+    "usageTip": "cultural identity (คำนาม) = อัตลักษณ์ทางวัฒนธรรม · มักใช้ในวลี: preserve cultural identity, shared cultural identity · คำใกล้เคียง: heritage, sense of belonging",
+    "novaBatch": true
+  },
+  {
+    "word": "intangible",
+    "partOfSpeech": "adjective",
+    "translation": "จับต้องไม่ได้",
+    "definition": "unable to be touched; not having physical presence",
+    "example": "Music and dance are forms of intangible heritage.",
+    "exampleTranslation": "ดนตรีและการเต้นรำเป็นรูปแบบหนึ่งของมรดกที่จับต้องไม่ได้",
+    "phonetic": "/ɪnˈtændʒəbəl/",
+    "cefr": "B2",
+    "collocations": [
+      "intangible heritage",
+      "intangible value"
+    ],
+    "synonyms": [
+      "non-physical",
+      "abstract"
+    ],
+    "topic": "society",
+    "thTokens": [
+      "ดนตรีและการเต้น",
+      "รำเป็นรูปแบบหนึ่ง",
+      "ของมรดก",
+      "ที่จับต้องไม่ได้"
+    ],
+    "extraExample": "The museum focuses on intangible cultural traditions.",
+    "extraExampleTranslation": "พิพิธภัณฑ์มุ่งเน้นไปที่ประเพณีทางวัฒนธรรมที่จับต้องไม่ได้",
+    "usageTip": "intangible (คำคุณศัพท์) = จับต้องไม่ได้ · มักใช้ในวลี: intangible heritage, intangible value · คำใกล้เคียง: non-physical, abstract",
     "novaBatch": true
   }
 ];
