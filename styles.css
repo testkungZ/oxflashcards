@@ -359,6 +359,13 @@ body {
     transform: rotateY(180deg);
 }
 
+@media (hover: hover) and (pointer: fine) {
+    .flashcard.is-tilting:not(.is-flipped) {
+        transform: rotateX(var(--ox-tilt-x, 0deg)) rotateY(var(--ox-tilt-y, 0deg));
+        transition: transform 0.08s ease-out;
+    }
+}
+
 .glass-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.4) 100%);
     backdrop-filter: blur(12px);
@@ -3918,9 +3925,16 @@ select,
     gap: 1rem;
 }
 
+.quiz-options[data-opt-count="3"] {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 @media (max-width: 480px) {
     .quiz-options {
         grid-template-columns: 1fr;
+    }
+    .quiz-options[data-opt-count="2"] {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -15108,6 +15122,8 @@ body.dark-theme #lesson-screen .lesson-opt-num {
     font-weight: 700;
     color: #1e293b;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
 }
 
@@ -16395,8 +16411,9 @@ body.dark-theme #lesson-screen .lesson-angle-pill.is-colloc {
 
     #quiz-screen .quiz-panel[data-quiz-mode="cloze"] .quiz-word,
     #quiz-screen .quiz-panel[data-quiz-mode="listening"] .quiz-word,
-    #quiz-screen .quiz-panel[data-quiz-mode="spelling"] .quiz-word {
-        font-size: clamp(1.2rem, 4.5vw, 1.85rem) !important;
+    #quiz-screen .quiz-panel[data-quiz-mode="spelling"] .quiz-word,
+    #quiz-screen .quiz-panel[data-quiz-mode="confusables"] .quiz-word {
+        font-size: clamp(1.15rem, 4.2vw, 1.65rem) !important;
         line-height: 1.26 !important;
     }
 
@@ -16436,6 +16453,16 @@ body.dark-theme #lesson-screen .lesson-angle-pill.is-colloc {
         grid-template-rows: repeat(2, minmax(76px, clamp(86px, 14dvh, 126px)));
         gap: 10px;
         align-content: end;
+    }
+
+    #quiz-screen .quiz-options[data-opt-count="2"]:not([hidden]) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: minmax(76px, clamp(84px, 13dvh, 118px));
+    }
+
+    #quiz-screen .quiz-options[data-opt-count="3"]:not([hidden]) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: minmax(76px, clamp(84px, 13dvh, 118px));
     }
 
     #quiz-screen .quiz-btn {
@@ -16521,6 +16548,11 @@ body.dark-theme #lesson-screen .lesson-angle-pill.is-colloc {
     #quiz-screen .quiz-panel.is-answered .quiz-options:not([hidden]) {
         grid-template-rows: repeat(2, minmax(56px, clamp(60px, 10.2dvh, 92px)));
         gap: 7px;
+    }
+
+    #quiz-screen .quiz-panel.is-answered .quiz-options[data-opt-count="2"]:not([hidden]),
+    #quiz-screen .quiz-panel.is-answered .quiz-options[data-opt-count="3"]:not([hidden]) {
+        grid-template-rows: minmax(56px, clamp(60px, 10dvh, 88px));
     }
 
     #quiz-screen .quiz-panel.is-answered .quiz-spelling-box:not([hidden]) {
@@ -16961,6 +16993,16 @@ body.dark-theme #lesson-screen .lesson-angle-pill.is-colloc {
         gap: 8px;
     }
 
+    #quiz-screen .quiz-options[data-opt-count="2"]:not([hidden]) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: minmax(58px, clamp(64px, 11dvh, 90px));
+    }
+
+    #quiz-screen .quiz-options[data-opt-count="3"]:not([hidden]) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, minmax(48px, clamp(56px, 8.8dvh, 78px)));
+    }
+
     #quiz-screen .quiz-btn {
         padding: 8px 11px !important;
         border-radius: 14px;
@@ -16996,6 +17038,16 @@ body.dark-theme #lesson-screen .lesson-angle-pill.is-colloc {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(4, minmax(40px, clamp(44px, 6.8dvh, 58px)));
         gap: 5px;
+    }
+
+    #quiz-screen .quiz-panel.is-answered .quiz-options[data-opt-count="2"]:not([hidden]) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: minmax(46px, clamp(50px, 7.6dvh, 66px));
+    }
+
+    #quiz-screen .quiz-panel.is-answered .quiz-options[data-opt-count="3"]:not([hidden]) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, minmax(40px, clamp(44px, 6.8dvh, 58px)));
     }
 
     #quiz-screen .quiz-panel.is-answered .quiz-btn {
@@ -17066,8 +17118,9 @@ body.dark-theme #lesson-screen .lesson-angle-pill.is-colloc {
 
     #quiz-screen .quiz-panel[data-quiz-mode="cloze"] .quiz-word,
     #quiz-screen .quiz-panel[data-quiz-mode="listening"] .quiz-word,
-    #quiz-screen .quiz-panel[data-quiz-mode="spelling"] .quiz-word {
-        font-size: clamp(1.02rem, 3.8vw, 1.35rem) !important;
+    #quiz-screen .quiz-panel[data-quiz-mode="spelling"] .quiz-word,
+    #quiz-screen .quiz-panel[data-quiz-mode="confusables"] .quiz-word {
+        font-size: clamp(1.0rem, 3.6vw, 1.3rem) !important;
     }
 
     #quiz-screen .quiz-options:not([hidden]) {
@@ -17075,9 +17128,25 @@ body.dark-theme #lesson-screen .lesson-angle-pill.is-colloc {
         gap: 5px;
     }
 
+    #quiz-screen .quiz-options[data-opt-count="2"]:not([hidden]) {
+        grid-template-rows: minmax(52px, 66px);
+    }
+
+    #quiz-screen .quiz-options[data-opt-count="3"]:not([hidden]) {
+        grid-template-rows: repeat(3, minmax(40px, 56px));
+    }
+
     #quiz-screen .quiz-panel.is-answered .quiz-options:not([hidden]) {
         grid-template-rows: repeat(4, minmax(36px, 46px));
         gap: 4px;
+    }
+
+    #quiz-screen .quiz-panel.is-answered .quiz-options[data-opt-count="2"]:not([hidden]) {
+        grid-template-rows: minmax(44px, 56px);
+    }
+
+    #quiz-screen .quiz-panel.is-answered .quiz-options[data-opt-count="3"]:not([hidden]) {
+        grid-template-rows: repeat(3, minmax(36px, 46px));
     }
 
     #quiz-screen .quiz-btn {
@@ -17390,7 +17459,115 @@ body.dark-theme .quiz-blitz-pill {
     transition: width 0.12s linear;
 }
 
-/* Confusables Pair Tag & Feedback Nuance */
+/* Confusables Pair Tag, VS Header & Feedback Nuance */
+.quiz-panel[data-quiz-mode="confusables"] .quiz-word {
+    font-size: clamp(1.15rem, 2.8vw, 1.55rem);
+    margin: 4px 0 4px;
+    background: none;
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: currentColor;
+    text-shadow: none;
+}
+
+.quiz-panel[data-quiz-mode="confusables"] .quiz-meta-bar {
+    margin-top: 8px;
+    margin-bottom: 14px;
+}
+
+.quiz-panel[data-quiz-mode="confusables"].is-answered .quiz-meta-bar {
+    margin-bottom: 10px;
+}
+
+.quiz-panel[data-quiz-mode="confusables"] .quiz-context-box {
+    margin: 8px auto 2px;
+    padding: 11px 16px;
+}
+
+.cf-vs-row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.cf-word-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 13px;
+    border-radius: 999px;
+    font-size: 0.96rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.13), rgba(139, 92, 246, 0.13));
+    border: 1.5px solid rgba(236, 72, 153, 0.34);
+    color: var(--text-main);
+    -webkit-text-fill-color: currentColor;
+    letter-spacing: 0.01em;
+}
+
+body.dark-theme .cf-word-pill {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(139, 92, 246, 0.2));
+    border-color: rgba(244, 114, 182, 0.42);
+    color: #fdf2f8;
+    -webkit-text-fill-color: currentColor;
+}
+
+.cf-vs-sep {
+    font-size: 0.72rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #db2777;
+    -webkit-text-fill-color: currentColor;
+    letter-spacing: 0.06em;
+}
+
+body.dark-theme .cf-vs-sep {
+    color: #f472b6;
+}
+
+.quiz-context-hint-btn {
+    margin-top: 8px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px dashed rgba(99, 102, 241, 0.42);
+    background: rgba(99, 102, 241, 0.08);
+    color: var(--primary);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background-color 0.15s ease, transform 0.12s ease;
+}
+
+.quiz-context-hint-btn:hover {
+    background: rgba(99, 102, 241, 0.16);
+}
+
+.quiz-context-hint-btn[hidden],
+.quiz-context-trans[hidden],
+.qh-scope-note[hidden] {
+    display: none !important;
+}
+
+.qh-scope-note {
+    margin: -4px 0 14px;
+    padding: 9px 13px;
+    border-radius: 12px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: #9d174d;
+    background: rgba(236, 72, 153, 0.09);
+    border: 1px solid rgba(236, 72, 153, 0.28);
+}
+
+body.dark-theme .qh-scope-note {
+    color: #fbcfe8;
+    background: rgba(236, 72, 153, 0.16);
+    border-color: rgba(244, 114, 182, 0.34);
+}
+
 .quiz-confusable-pair-tag {
     display: inline-flex;
     align-items: center;
@@ -17404,20 +17581,34 @@ body.dark-theme .quiz-blitz-pill {
     color: #be185d;
     border: 1px solid rgba(236, 72, 153, 0.38);
 }
+
 body.dark-theme .quiz-confusable-pair-tag {
     color: #f472b6;
     background: rgba(236, 72, 153, 0.22);
 }
+
 .quiz-fb-nuance {
-    margin-top: 6px;
-    padding: 8px 11px;
-    border-radius: 10px;
+    margin-top: 7px;
+    padding: 9px 12px;
+    border-radius: 11px;
     font-size: 0.84rem;
     font-weight: 600;
-    line-height: 1.45;
-    background: rgba(245, 158, 11, 0.14);
+    line-height: 1.48;
+    background: rgba(245, 158, 11, 0.12);
     border-left: 3px solid #f59e0b;
     color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cf-nuance-why {
+    color: var(--text-main);
+}
+
+.cf-nuance-tip {
+    color: var(--text-muted);
+    font-size: 0.81rem;
 }
 
 /* Quiz Summary Special Banner */
@@ -17430,6 +17621,10 @@ body.dark-theme .quiz-confusable-pair-tag {
     border-radius: 16px;
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(168, 85, 247, 0.12));
     border: 1.5px solid rgba(245, 158, 11, 0.38);
+}
+.qss-blitz-card.is-confusables {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.13), rgba(139, 92, 246, 0.13));
+    border-color: rgba(236, 72, 153, 0.36);
 }
 .qss-blitz-top {
     display: flex;
@@ -18188,6 +18383,394 @@ body.dark-theme .xp-shop-buy-btn.is-equipped {
     }
     .xp-shop-buy-btn {
         width: 100%;
+    }
+}
+
+/* =========================================================
+ * OxMotion Pro v3: Living Scene Models, Chest 3D, Micro-Bursts & Responsive Motion (PC / Tablet / Mobile)
+ * ========================================================= */
+
+/* Sparkle Burst Particles (OxMotion.burst) */
+.ox-burst-mote {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    margin-top: -4px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.16);
+    animation: oxBurstFly 0.62s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity;
+}
+
+.ox-burst-mote.is-star {
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    margin-top: -5px;
+    clip-path: polygon(50% 0%, 64% 36%, 100% 50%, 64% 64%, 50% 100%, 36% 64%, 0% 50%, 36% 36%);
+}
+
+@keyframes oxBurstFly {
+    0% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(0.4) rotate(0deg);
+    }
+    45% {
+        opacity: 1;
+        transform: translate3d(calc(var(--bx, 0px) * 0.72), calc(var(--by, 0px) * 0.72), 0) scale(1.25) rotate(95deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(var(--bx, 0px), calc(var(--by, 0px) + 12px), 0) scale(0.25) rotate(190deg);
+    }
+}
+
+/* 7 Living Animated Cloze Scene Models */
+.ox-cloze-scene-svg {
+    overflow: visible;
+    display: block;
+}
+
+.ox-cloze-scene-svg .ox-scene-float {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: oxIdleBob 2.8s ease-in-out infinite;
+}
+
+.ox-cloze-scene-svg .ox-steam-wisp {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: oxSteamFloat 2.4s ease-in-out infinite;
+}
+
+.ox-cloze-scene-svg .ox-steam-wisp.is-delay {
+    animation-delay: 0.9s;
+}
+
+@keyframes oxSteamFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(4px) scale(0.85);
+    }
+    45% {
+        opacity: 0.85;
+        transform: translateY(-3px) scale(1.05);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-9px) scale(0.9);
+    }
+}
+
+.ox-cloze-scene-svg .ox-bubble-pop {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: oxBubbleRise 2s ease-in-out infinite;
+}
+
+.ox-cloze-scene-svg .ox-bubble-pop.is-delay {
+    animation-delay: 0.7s;
+}
+
+@keyframes oxBubbleRise {
+    0%, 100% {
+        transform: translateY(2px) scale(0.85);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(-6px) scale(1.15);
+        opacity: 1;
+    }
+}
+
+.ox-cloze-scene-svg .ox-car-bounce {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: oxCarBounce 0.68s ease-in-out infinite;
+}
+
+@keyframes oxCarBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2.4px);
+    }
+}
+
+.ox-cloze-scene-svg .ox-wheel-spin {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: oxWheelSpin 1.3s linear infinite;
+}
+
+@keyframes oxWheelSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ox-cloze-scene-svg .ox-road-dashes {
+    animation: oxRoadScroll 1.2s linear infinite;
+}
+
+@keyframes oxRoadScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-24px);
+    }
+}
+
+.ox-cloze-scene-svg .ox-sun-spin {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: oxSunSpin 14s linear infinite;
+}
+
+@keyframes oxSunSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ox-cloze-scene-svg .ox-cloud-drift {
+    animation: oxCloudDrift 3.8s ease-in-out infinite alternate;
+}
+
+@keyframes oxCloudDrift {
+    0% {
+        transform: translateX(-3px);
+    }
+    100% {
+        transform: translateX(5px);
+    }
+}
+
+.ox-cloze-scene-svg .ox-heart-beat {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: oxHeartBeat 1.45s ease-in-out infinite;
+}
+
+@keyframes oxHeartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    18% {
+        transform: scale(1.12);
+    }
+    34% {
+        transform: scale(0.98);
+    }
+    48% {
+        transform: scale(1.08);
+    }
+}
+
+.ox-cloze-scene-svg .ox-pulse-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: oxPulseRing 1.8s ease-out infinite;
+}
+
+@keyframes oxPulseRing {
+    0% {
+        transform: scale(0.76);
+        opacity: 0.72;
+    }
+    100% {
+        transform: scale(1.24);
+        opacity: 0;
+    }
+}
+
+.ox-cloze-scene-svg .ox-window-glow {
+    animation: oxWindowGlow 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes oxWindowGlow {
+    0% {
+        opacity: 0.72;
+    }
+    100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 4px rgba(250, 204, 21, 0.75));
+    }
+}
+
+/* Treasure Chest 3D Lid Open Model */
+.ox-chest-svg {
+    overflow: visible;
+}
+
+.ox-chest-svg .ox-chest-lid {
+    transform-box: fill-box;
+    transform-origin: 50% 90%;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#chest-modal.open .ox-chest-svg .ox-chest-lid {
+    animation: oxChestLidOpen 0.75s cubic-bezier(0.22, 1.4, 0.36, 1) forwards;
+}
+
+#chest-modal.open .ox-chest-svg .ox-chest-sparkles {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: oxSparklePop 0.85s ease-in-out infinite alternate;
+}
+
+#chest-modal.open .chest-xp-badge {
+    animation: oxPopReveal 0.48s 0.14s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes oxChestLidOpen {
+    0% {
+        transform: translateY(0) rotate(0deg) scaleY(1);
+    }
+    45% {
+        transform: translateY(-9px) rotate(-14deg) scaleY(0.92);
+    }
+    100% {
+        transform: translateY(-6px) rotate(-9deg) scaleY(0.95);
+    }
+}
+
+/* Quiz Option Cascade, Confusables VS Clash & Blitz Shimmer */
+.quiz-btn.is-opt-entering {
+    animation: quizOptIn 0.32s cubic-bezier(0.22, 1.32, 0.36, 1) calc(var(--opt-i, 0) * 45ms) both;
+}
+
+.quiz-panel[data-quiz-mode="confusables"] .cf-word-pill {
+    animation: oxVsPillIn 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.quiz-panel[data-quiz-mode="confusables"] .cf-word-pill:nth-of-type(3) {
+    animation-delay: 0.06s;
+}
+
+.quiz-panel[data-quiz-mode="confusables"] .cf-word-pill:nth-of-type(5) {
+    animation-delay: 0.12s;
+}
+
+@keyframes oxVsPillIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.84) translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.quiz-blitz-timer-fill {
+    position: relative;
+    overflow: hidden;
+}
+
+.quiz-blitz-timer-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    animation: oxProgressSweep 1.35s ease-in-out infinite;
+}
+
+/* Active Learn Path Node Breathing Halo */
+.path-node-btn.is-current {
+    position: relative;
+}
+
+.path-node-btn.is-current::after {
+    content: '';
+    position: absolute;
+    inset: -7px;
+    border-radius: 50%;
+    border: 2.5px solid currentColor;
+    opacity: 0;
+    pointer-events: none;
+    animation: oxNodeHalo 2.2s ease-out infinite;
+}
+
+@keyframes oxNodeHalo {
+    0% {
+        transform: scale(0.92);
+        opacity: 0.58;
+    }
+    100% {
+        transform: scale(1.24);
+        opacity: 0;
+    }
+}
+
+/* Tactile Press & Desktop Hover Lifts (Safe across PC, Tablet & Mobile) */
+.practice-hero-badge {
+    animation: oxIdleBob 3.6s ease-in-out infinite;
+}
+
+.word-card,
+.quiz-mode-card,
+.quiz-btn,
+.quick-btn,
+.learn-quick-btn,
+.lesson-opt-btn,
+.btn,
+.glass-btn-icon {
+    touch-action: manipulation;
+}
+
+.word-card:active,
+.quiz-mode-card:active,
+.quiz-btn:active:not(:disabled),
+.quick-btn:active,
+.learn-quick-btn:active,
+.lesson-opt-btn:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .word-card:hover,
+    .quiz-mode-card:hover,
+    .quick-btn:hover,
+    .learn-quick-btn:hover {
+        transform: translateY(-2px);
+    }
+    .lesson-opt-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+    }
+}
+
+/* Smooth Modal & Mobile Bottom-Sheet Entrance */
+.modal-overlay .modal-panel {
+    transform: translateY(14px) scale(0.96);
+    opacity: 0;
+    transition: transform 0.28s cubic-bezier(0.22, 1.32, 0.36, 1), opacity 0.22s ease;
+}
+
+.modal-overlay.open .modal-panel,
+.modal-overlay.show .modal-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+@media (max-width: 640px) {
+    .modal-overlay .modal-panel {
+        transform: translateY(28px) scale(0.98);
+    }
+    .modal-overlay.open .modal-panel,
+    .modal-overlay.show .modal-panel {
+        transform: translateY(0) scale(1);
     }
 }
 

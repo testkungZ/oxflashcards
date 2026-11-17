@@ -1300,6 +1300,7 @@
                         <h2 id="quiz-word" class="quiz-word">Loading...</h2>
                         <div id="quiz-context-box" class="quiz-context-box" hidden>
                             <p id="quiz-context-sentence" class="quiz-context-sentence"></p>
+                            <button type="button" id="btn-quiz-context-hint" class="quiz-context-hint-btn" hidden>💡 ดูคำแปลประโยค</button>
                             <p id="quiz-context-trans" class="quiz-context-trans"></p>
                         </div>
                         <div class="quiz-meta-bar">
@@ -1501,10 +1502,11 @@
                         </div>
                     </div>
 
-                    <div class="hub-form-row">
+                    <div class="hub-form-row" id="qh-topic-row">
                         <label class="hub-label" for="qh-topic-select">หัวข้อคำศัพท์ (Topic)</label>
                         <select id="qh-topic-select" class="glass-select"></select>
                     </div>
+                    <p id="qh-confusables-scope-note" class="qh-scope-note" hidden></p>
 
                     <div class="hub-form-row">
                         <div class="slider-header">
@@ -2155,11 +2157,23 @@
     <div id="chest-modal" class="modal-overlay" aria-hidden="true">
         <div class="glass-panel modal-panel chest-panel" role="dialog" aria-modal="true" aria-labelledby="chest-title">
             <div class="chest-emblem" aria-hidden="true">
-                <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
-                    <rect x="8" y="24" width="48" height="28" rx="7" fill="#f59e0b" stroke="#b45309" stroke-width="2.5"/>
-                    <path d="M8 26c0-8 8-14 24-14s24 6 24 14H8Z" fill="#fbbf24" stroke="#b45309" stroke-width="2.5"/>
-                    <rect x="27" y="22" width="10" height="12" rx="3" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
-                    <circle cx="32" cy="28" r="2" fill="#92400e"/>
+                <svg class="ox-chest-svg" width="84" height="84" viewBox="0 0 72 72" fill="none">
+                    <ellipse cx="36" cy="61" rx="22" ry="4.5" fill="rgba(245, 158, 11, 0.25)"/>
+                    <g class="ox-chest-sparkles">
+                        <path d="M16 18l2-5 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#facc15"/>
+                        <path d="M54 14l1.5-4 1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5Z" fill="#38bdf8"/>
+                        <circle cx="36" cy="11" r="2.6" fill="#f472b6"/>
+                    </g>
+                    <g class="ox-chest-base">
+                        <rect x="12" y="30" width="48" height="27" rx="7" fill="#f59e0b" stroke="#b45309" stroke-width="2.5"/>
+                        <rect x="14" y="32" width="44" height="6" rx="2" fill="#d97706" opacity="0.45"/>
+                        <rect x="31" y="28" width="10" height="12" rx="3" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+                        <circle cx="36" cy="34" r="2" fill="#92400e"/>
+                    </g>
+                    <g class="ox-chest-lid">
+                        <path d="M12 31c0-8.5 8-14.5 24-14.5s24 6 24 14.5H12Z" fill="#fbbf24" stroke="#b45309" stroke-width="2.5"/>
+                        <path d="M21 20.5h30" stroke="#fef3c7" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+                    </g>
                 </svg>
             </div>
             <h3 id="chest-title">ยินดีด้วย! เปิดหีบสมบัติสำเร็จ</h3>
