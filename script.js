@@ -1535,6 +1535,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lesson: $('lesson-screen'),
     welcome: $('welcome-screen'),
     'quiz-hub': $('quiz-hub-screen'),
+    'grammar-academy': $('grammar-academy-screen'),
     dictionary: $('dictionary-screen'),
     profile: $('profile-screen'),
     more: $('more-screen'),
@@ -1658,6 +1659,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const FOCUS_SCREENS = new Set(['app', 'quiz', 'lesson']);
   const screenScrollMap = Object.create(null);
 
+  function syncFocusMode() {
+    const isGrammarScreen = currentScreen === 'grammar-academy';
+    const isGrammarFocus = isGrammarScreen && (gaState.subView === 'study' || gaState.subView === 'drill');
+    const isFocus = FOCUS_SCREENS.has(currentScreen) || isGrammarFocus;
+    document.body.classList.toggle('in-focus-session', isFocus);
+    document.body.classList.toggle('ga-hub-active', isGrammarScreen && !isGrammarFocus);
+    return isFocus;
+  }
+
   function showScreen(name) {
     const prevScreen = currentScreen;
     if (prevScreen && prevScreen !== name && !FOCUS_SCREENS.has(prevScreen)) {
@@ -1679,8 +1689,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el.classList.toggle('active', on);
     });
     currentScreen = name;
-    const isFocus = FOCUS_SCREENS.has(name);
-    document.body.classList.toggle('in-focus-session', isFocus);
+    const isFocus = syncFocusMode();
 
     if (isFocus || typeof screenScrollMap[name] !== 'number') {
       window.scrollTo(0, 0);
@@ -4870,6 +4879,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedQuizCefr = cefrInput ? cefrInput.value : 'all';
             const modeInput = /** @type {HTMLInputElement|null} */ (document.getElementById('quiz-mode-input'));
             const selectedQuizMode = modeInput ? modeInput.value : 'choice';
+            if (selectedQuizMode === 'grammar') {
+                openGrammarAcademy();
+                return;
+            }
 
             let pool = [];
             for (let i = 0; i < totalWords; i++) {
@@ -8304,7 +8317,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (keys.length === 0) return;
         if (stageId) {
             const prev = Array.isArray(learnFreshness.recentStageWords[stageId]) ? learnFreshness.recentStageWords[stageId] : [];
-            learnFreshness.recentStageWords[stageId] = [...prev.filter(k => !keys.includes(k)), ...keys].slice(-24);
+            learnFreshness.recentStageWords[stageId] = [...prev.filter(k => !keys.includes(k)), ...keys].slice(-40);
         }
         learnFreshness.recentGlobalWords = [...learnFreshness.recentGlobalWords.filter(k => !keys.includes(k)), ...keys].slice(-180);
         if (learnFreshness.pendingNewWords.length > 0) {
@@ -12001,13 +12014,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return x || 1;
   }
 
-  function weaveRandomDataWords(basePool, stage, unit, targetLimit, difficultyTier = 1) {
+  function weaveRandomDataWords(basePool, stage, unit, targetLimit, difficultyTier = 1, roundNum = 1, replaySalt = 0) {
     if (!Array.isArray(basePool) || basePool.length === 0 || stage?.isVirtual) return basePool;
     ensureLearnFreshnessSynced();
     const picked = [...basePool];
     const pickedSet = new Set(picked);
     const unitCefr = unit?.cefr || 'A1';
-    const allowCrossTopic = Boolean(stage?.isBoss || stage?.nodeType === 'review');
+    const allowCrossTopic = Boolean(stage?.isBoss || stage?.nodeType === 'review' || roundNum >= 2 || replaySalt > 0);
     const stageRecentSet = new Set(Array.isArray(learnFreshness.recentStageWords[stage?.id]) ? learnFreshness.recentStageWords[stage.id] : []);
     const globalRecentSet = new Set(learnFreshness.recentGlobalWords);
     const pendingNewSet = new Set(learnFreshness.pendingNewWords);
@@ -12016,6 +12029,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const brandNewCrossCefr = [];
     const expandedExactFresh = [];
     const expandedCrossFresh = [];
+    const sameTopicDeckFresh = [];
+    const crossTopicDeckFresh = [];
     const expandedFallback = [];
 
     for (let i = 0; i < totalWords; i++) {
@@ -12024,20 +12039,23 @@ document.addEventListener('DOMContentLoaded', () => {
       // Strict CEFR match so A1 stages never pull B1/B2 words!
       if ((w.cefr || 'A1') !== unitCefr) continue;
       const k = keyOf(w);
-      if (wordStatus[k] === 'known' || pickedSet.has(i) || stageRecentSet.has(k)) continue;
+      if (pickedSet.has(i) || stageRecentSet.has(k)) continue;
+      const isKnown = wordStatus[k] === 'known';
       const isBrandNew = pendingNewSet.has(k);
       const isExpanded = Boolean(w.novaBatch) || i >= 3000;
-      if (!isBrandNew && !isExpanded) continue;
-
       const sameTopic = Boolean(unit && w.topic === unit.topicId);
       const notGlobalRecent = !globalRecentSet.has(k);
-      if (isBrandNew) {
+
+      if (isBrandNew && !isKnown) {
         if (sameTopic) brandNewExact.push(i);
         else brandNewCrossCefr.push(i);
-      } else if (notGlobalRecent) {
+      } else if (isExpanded && !isKnown && notGlobalRecent) {
         if (sameTopic) expandedExactFresh.push(i);
         else if (allowCrossTopic) expandedCrossFresh.push(i);
-      } else if (sameTopic) {
+      } else if (notGlobalRecent) {
+        if (sameTopic) sameTopicDeckFresh.push(i);
+        else if (allowCrossTopic) crossTopicDeckFresh.push(i);
+      } else if (isExpanded && !isKnown && sameTopic) {
         expandedFallback.push(i);
       }
     }
@@ -12045,14 +12063,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const novaCandidates = [
       ...shuffle(brandNewExact),
       ...shuffle(expandedExactFresh),
+      ...shuffle(sameTopicDeckFresh),
       ...shuffle(brandNewCrossCefr),
       ...shuffle(expandedCrossFresh),
+      ...shuffle(crossTopicDeckFresh),
       ...shuffle(expandedFallback)
     ];
     if (novaCandidates.length === 0) return shuffle(picked);
 
     const hasPendingTopic = brandNewExact.length > 0 || brandNewCrossCefr.length > 0;
-    const maxInject = Math.min(picked.length >= 6 ? (difficultyTier >= 3 ? 3 : 2) : 1, hasPendingTopic ? 3 : 2);
+    const isRepeatOrHigh = replaySalt > 0 || roundNum >= 2 || difficultyTier >= 3;
+    const maxInject = Math.min(
+      Math.max(1, picked.length - 3),
+      isRepeatOrHigh ? (hasPendingTopic ? 4 : 3) : (hasPendingTopic ? 3 : 2)
+    );
     const injectCount = Math.min(maxInject, novaCandidates.length);
     const keepCount = Math.max(1, Math.min(picked.length, targetLimit) - injectCount);
     const merged = picked.slice(0, keepCount);
@@ -12109,10 +12133,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isBrandNew && st !== 'known') weight += 18;
         else if (isExpanded && !st) weight += 9;
 
-        if (isStageRecent) weight *= 0.06;
-        else if (isGlobalRecent) weight *= 0.22;
+        if (isStageRecent) weight *= 0.015;
+        else if (isGlobalRecent) weight *= 0.10;
 
-        const randKey = (Math.random() * 0.9 + 0.55) * Math.max(1, weight);
+        const randKey = (Math.random() * 1.15 + 0.45) * Math.max(1, weight);
         return { idx, randKey };
       });
 
@@ -12122,21 +12146,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!stage.isBoss && stage.nodeType !== 'review') {
       const src = stage.wordIndices || [];
-      const targetLen = Math.min(qLimit, src.length);
-      let picked = sampleByDifficulty(src, targetLen);
-
-      // On replays or Tier 2+, mix in 1-2 CEFR-matched reinforcement words from the same unit
       const unitPool = Array.isArray(unit?.wordIndices) ? unit.wordIndices : [];
-      if ((replaySalt > 0 || difficultyTier >= 3) && unitPool.length > src.length && picked.length >= 5) {
+      const isRepeatRound = roundNum >= 2 || replaySalt > 0;
+      const freshCore = src.filter(idx => wordsData[idx] && !stageRecentSet.has(keyOf(wordsData[idx])));
+      const coreQuota = isRepeatRound
+        ? Math.min(src.length, Math.max(3, Math.min(Math.ceil(qLimit * 0.55), Math.max(3, freshCore.length))))
+        : Math.min(qLimit, src.length);
+
+      let picked = sampleByDifficulty(src, coreQuota);
+
+      // On Round 2+, replays, or Tier 2+, actively mix in non-recent words from the Unit and same-CEFR deck
+      if (unitPool.length > src.length && (picked.length < qLimit || replaySalt > 0 || roundNum >= 2 || difficultyTier >= 2)) {
         const seenPicked = new Set(picked);
-        const siblingPool = unitPool.filter(idx => !seenPicked.has(idx));
-        if (siblingPool.length > 0) {
-          const companions = sampleByDifficulty(siblingPool, Math.min(2, Math.max(1, difficultyTier - 1)));
-          const keepCore = Math.max(4, qLimit - companions.length);
+        const siblingPool = unitPool.filter(idx => !seenPicked.has(idx) && !stageRecentSet.has(keyOf(wordsData[idx])));
+        const fallbackSibling = siblingPool.length > 0 ? siblingPool : unitPool.filter(idx => !seenPicked.has(idx));
+        const needCount = Math.max(
+          (replaySalt > 0 || roundNum >= 2) ? Math.min(4, qLimit - 3) : (difficultyTier >= 2 ? 2 : 0),
+          qLimit - picked.length
+        );
+        if (fallbackSibling.length > 0 && needCount > 0) {
+          const companions = sampleByDifficulty(fallbackSibling, Math.min(needCount, fallbackSibling.length));
+          const keepCore = Math.max(3, qLimit - companions.length);
           picked = shuffle([...picked.slice(0, keepCore), ...companions]).slice(0, qLimit);
         }
       }
-      const finalPool = weaveRandomDataWords(picked, stage, unit, qLimit, difficultyTier);
+      const finalPool = weaveRandomDataWords(picked, stage, unit, qLimit, difficultyTier, roundNum, replaySalt);
       recordRecentStageWords(stage.id, finalPool);
       return finalPool;
     }
@@ -15169,12 +15203,25 @@ document.addEventListener('DOMContentLoaded', () => {
      * Quiz Hub Screen (แบบทดสอบ)
      * ========================================================= */
   let qhState = { mode: 'choice', cefr: 'all' };
+  const GRAMMAR_STORAGE_KEY = 'ox_grammar_progress_v1';
+  let gaState = {
+    filter: 'all',
+    phaseFilter: 'all',
+    subView: 'hub',
+    collapsedPhases: new Set(),
+    search: '',
+    activeLessonId: 'g01',
+    drill: null
+  };
 
   function refreshQuizHubSpecialRecords() {
     const blitzScoreEl = $('qh-blitz-best-score');
     const blitzComboEl = $('qh-blitz-best-combo');
     const cfMasteredEl = $('qh-confusables-mastered');
+    const grMasteredEl = $('qh-grammar-mastered');
+    const cefrRow = $('qh-cefr-row');
     const topicRow = $('qh-topic-row');
+    const countRow = $('qh-count-row');
     const cfNote = $('qh-confusables-scope-note');
     const countSlider = /** @type {HTMLInputElement|null} */ ($('qh-count-slider'));
     const countDisp = $('qh-count-display');
@@ -15186,11 +15233,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const totalSets = (typeof CONFUSABLE_SETS !== 'undefined' && Array.isArray(CONFUSABLE_SETS)) ? CONFUSABLE_SETS.length : 32;
       cfMasteredEl.textContent = `${mCnt} / ${totalSets} คู่`;
     }
+    if (grMasteredEl) {
+      const gp = loadGrammarProgress();
+      const totalLessons = (typeof GRAMMAR_LESSONS !== 'undefined' && Array.isArray(GRAMMAR_LESSONS)) ? GRAMMAR_LESSONS.length : 10;
+      const mLessons = gp.masteredIds.filter(id => Array.isArray(GRAMMAR_LESSONS) && GRAMMAR_LESSONS.some(l => l.id === id)).length;
+      grMasteredEl.textContent = `${mLessons} / ${totalLessons} บท`;
+    }
 
     const isCfMode = qhState.mode === 'confusables';
-    if (topicRow) topicRow.hidden = isCfMode;
+    const isGrammarMode = qhState.mode === 'grammar';
+    if (cefrRow) cefrRow.hidden = isGrammarMode;
+    if (topicRow) topicRow.hidden = isCfMode || isGrammarMode;
+    if (countRow) countRow.hidden = isGrammarMode;
     if (cfNote) {
-      if (isCfMode) {
+      if (isGrammarMode) {
+        const totalLessons = (typeof GRAMMAR_LESSONS !== 'undefined' && Array.isArray(GRAMMAR_LESSONS)) ? GRAMMAR_LESSONS.length : 10;
+        cfNote.textContent = `📘 เรียน Grammar ปูพื้นฐานจาก 0 (${totalLessons} บทพร้อมเรียน + โจทย์ 4 รูปแบบ) — อ่านสรุปสูตร ตาราง เสียงพูด แล้วลองทำโจทย์ทันที`;
+        cfNote.hidden = false;
+      } else if (isCfMode) {
         const sc = getConfusableScopeInfo(qhState.cefr);
         const lvlLabel = sc.cefr === 'all' ? 'ทุกระดับ A1–B2' : `ระดับ ${sc.cefr}`;
         cfNote.textContent = `⚔️ ${lvlLabel} มี ${sc.setCount} คู่คำสับสน (${sc.itemCount} ข้อ) — ระบบคัดคู่ที่ยังไม่พิชิต/เคยพลาดและยังไม่ซ้ำให้ก่อนอัตโนมัติ`;
@@ -15219,7 +15279,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const startBtn = $('btn-qh-start');
     if (startBtn) {
-      if (qhState.mode === 'blitz') startBtn.textContent = '⚡ เริ่มท้าความไว Speed Blitz (60 วินาที)';
+      if (isGrammarMode) startBtn.textContent = '📘 เข้าสู่ห้องเรียน Grammar จาก 0';
+      else if (qhState.mode === 'blitz') startBtn.textContent = '⚡ เริ่มท้าความไว Speed Blitz (60 วินาที)';
       else if (qhState.mode === 'confusables') {
         const sc = getConfusableScopeInfo(qhState.cefr);
         const qNum = countSlider ? Math.min(Number(countSlider.value) || 10, sc.itemCount) : 10;
@@ -15255,6 +15316,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (qhState.mode === 'confusables') refreshQuizHubSpecialRecords();
   });
   $('btn-qh-start')?.addEventListener('click', () => {
+    if (qhState.mode === 'grammar') {
+      openGrammarAcademy();
+      return;
+    }
     const topic = (/** @type {HTMLSelectElement|null} */ ($('qh-topic-select')))?.value || 'all';
     const qCount = parseInt(qhSlider ? qhSlider.value : '10', 10) || 10;
     const pool = [];
@@ -16178,7 +16243,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function navCategoryForScreen(screenName) {
     if (screenName === 'learn' || screenName === 'lesson') return 'learn';
     if (screenName === 'welcome' || screenName === 'app' || screenName === 'summary') return 'practice';
-    if (screenName === 'quiz-hub' || screenName === 'quiz' || screenName === 'quiz-summary') return 'quiz';
+    if (screenName === 'quiz-hub' || screenName === 'quiz' || screenName === 'quiz-summary' || screenName === 'grammar-academy') return 'quiz';
     if (screenName === 'dictionary') return 'dictionary';
     if (screenName === 'history') return 'dashboard';
     if (screenName === 'profile') return 'profile';
@@ -16525,6 +16590,875 @@ document.addEventListener('DOMContentLoaded', () => {
     getErrorLog: () => OxErrorGuard.getLog(),
     flushStorage: () => storage.flush()
   };
+
+  /* =========================================================
+   * Grammar Academy Engine (Zero to Mastery · inside Quiz Tab)
+   * ========================================================= */
+  function loadGrammarProgress() {
+    const raw = storage.get(GRAMMAR_STORAGE_KEY, null);
+    const obj = (raw && typeof raw === 'object') ? raw : {};
+    return {
+      masteredIds: Array.isArray(obj.masteredIds) ? Array.from(new Set(obj.masteredIds)) : [],
+      studiedIds: Array.isArray(obj.studiedIds) ? Array.from(new Set(obj.studiedIds)) : [],
+      missedKeys: Array.isArray(obj.missedKeys) ? Array.from(new Set(obj.missedKeys)).slice(-80) : [],
+      bestAccuracy: (obj.bestAccuracy && typeof obj.bestAccuracy === 'object') ? { ...obj.bestAccuracy } : {},
+      mixedRuns: Number(obj.mixedRuns || 0)
+    };
+  }
+
+  function saveGrammarProgress(gp) {
+    storage.set(GRAMMAR_STORAGE_KEY, gp);
+  }
+
+  function buildGrammarPeekHtml(lesson) {
+    if (!lesson) return '<p>ไม่พบข้อมูลบทเรียน</p>';
+    const formulasHtml = (lesson.formulas || []).map(f => `
+      <div class="ga-formula-card">
+        <div class="ga-formula-label">${escapeHtml(f.label)}</div>
+        <div class="ga-formula-parts">
+          ${(f.parts || []).map(p => p === '|'
+            ? `<span class="ga-fsep" aria-hidden="true"></span>`
+            : (p === '+' || p === '→')
+              ? `<span class="ga-fop">${escapeHtml(p)}</span>`
+              : `<span class="ga-fchip">${escapeHtml(p)}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    const tablesHtml = (lesson.tables || []).map(t => `
+      <div style="margin-top:10px;">
+        <div class="ga-section-title">📋 ${escapeHtml(t.title)}</div>
+        <div class="ga-table-wrap">
+          <table class="ga-ref-table">
+            <thead><tr>${(t.headers || []).map(h => `<th>${escapeHtml(h)}</th>`).join('')}</tr></thead>
+            <tbody>
+              ${(t.rows || []).map(r => `<tr>${r.map(cell => `<td>${String(cell || '')}</td>`).join('')}</tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `).join('');
+
+    return `
+      <p class="ga-study-summary" style="margin-bottom:12px;">${escapeHtml(lesson.summaryTh || '')}</p>
+      <div class="ga-formulas-grid">${formulasHtml}</div>
+      ${tablesHtml}
+    `;
+  }
+
+  function openGrammarPeekModal(lessonId) {
+    const lessons = (typeof GRAMMAR_LESSONS !== 'undefined' && Array.isArray(GRAMMAR_LESSONS)) ? GRAMMAR_LESSONS : [];
+    const lesson = lessons.find(l => l.id === lessonId) || lessons[0];
+    const modal = $('grammar-peek-modal');
+    const titleEl = $('ga-peek-title');
+    const bodyEl = $('ga-peek-body');
+    if (!modal || !lesson) return;
+    if (titleEl) titleEl.textContent = `บทที่ ${lesson.num}: ${lesson.titleTh}`;
+    if (bodyEl) bodyEl.innerHTML = buildGrammarPeekHtml(lesson);
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeGrammarPeekModal() {
+    const modal = $('grammar-peek-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  function setGrammarSubView(which) {
+    gaState.subView = which;
+    const hub = $('grammar-hub-view');
+    const study = $('grammar-study-view');
+    const drill = $('grammar-drill-view');
+    if (hub) hub.hidden = which !== 'hub';
+    if (study) study.hidden = which !== 'study';
+    if (drill) drill.hidden = which !== 'drill';
+    syncFocusMode();
+  }
+
+  function renderGrammarHub() {
+    setGrammarSubView('hub');
+    const gp = loadGrammarProgress();
+    const lessons = (typeof GRAMMAR_LESSONS !== 'undefined' && Array.isArray(GRAMMAR_LESSONS)) ? GRAMMAR_LESSONS : [];
+    const phases = (typeof GRAMMAR_PHASES !== 'undefined' && Array.isArray(GRAMMAR_PHASES)) ? GRAMMAR_PHASES : [];
+    const upcoming = (typeof GRAMMAR_UPCOMING_ROADMAP !== 'undefined' && Array.isArray(GRAMMAR_UPCOMING_ROADMAP)) ? GRAMMAR_UPCOMING_ROADMAP : [];
+
+    const masteredCnt = lessons.filter(l => gp.masteredIds.includes(l.id)).length;
+    const totalRoad = lessons.length + upcoming.filter(u => !lessons.some(l => l.id === u.id)).length;
+    const pillEl = $('ga-overall-pill');
+    if (pillEl) pillEl.textContent = `พิชิตแล้ว ${masteredCnt} / ${lessons.length} บท`;
+    const overallFill = $('ga-overall-bar-fill');
+    if (overallFill) {
+      const pct = lessons.length > 0 ? Math.round((masteredCnt / lessons.length) * 100) : 0;
+      overallFill.style.width = `${pct}%`;
+    }
+
+    const nextPending = lessons.find(l => !gp.masteredIds.includes(l.id)) || lessons[0];
+    const contBtn = $('btn-ga-continue');
+    if (contBtn && nextPending) {
+      contBtn.textContent = masteredCnt >= lessons.length
+        ? '🔁 ทบทวนบทที่ 1 ใหม่'
+        : `📖 ${gp.studiedIds.includes(nextPending.id) ? 'เรียนต่อ' : 'เริ่มเรียน'}บทที่ ${nextPending.num}: ${nextPending.titleTh.split('(')[0].trim()}`;
+      contBtn.dataset.targetLesson = nextPending.id;
+    }
+
+    const weakBtn = $('btn-ga-weak-drill');
+    if (weakBtn) {
+      const missedCnt = gp.missedKeys.length;
+      weakBtn.hidden = missedCnt === 0;
+      weakBtn.textContent = `🔥 ซ่อมข้อที่เคยพลาด (${missedCnt})`;
+    }
+
+    const qSearch = String(gaState.search || '').trim().toLowerCase();
+    const container = $('ga-phases-container');
+    if (!container) return;
+
+    const lessonByNum = new Map(lessons.map(l => [l.num, l]));
+    const upcomingByNum = new Map(upcoming.map(u => [u.num, u]));
+
+    container.innerHTML = phases.map(ph => {
+      const phaseKey = `phase${ph.number}`;
+      if (gaState.phaseFilter !== 'all' && gaState.phaseFilter !== phaseKey) return '';
+      const [startNum, endNum] = ph.lessonRange || [1, 10];
+      const cardsHtml = [];
+      let phaseLiveCount = 0;
+      let phaseMasteredCount = 0;
+      for (let n = startNum; n <= endNum; n++) {
+        const live = lessonByNum.get(n);
+        if (live) {
+          phaseLiveCount++;
+          const isMastered = gp.masteredIds.includes(live.id);
+          if (isMastered) phaseMasteredCount++;
+          if (gaState.filter === 'mastered' && !isMastered) continue;
+          if (gaState.filter === 'pending' && isMastered) continue;
+          if (qSearch) {
+            const hay = `บทที่ ${live.num} ${live.level} ${live.titleTh} ${live.titleEn} ${live.summaryTh}`.toLowerCase();
+            if (!hay.includes(qSearch)) continue;
+          }
+          const bestPct = gp.bestAccuracy[live.id];
+          const isStudied = gp.studiedIds.includes(live.id);
+          const statusClass = isMastered ? 'is-done' : (bestPct !== undefined || isStudied ? 'is-reading' : 'is-ready');
+          const statusLabel = isMastered
+            ? `✓ ผ่าน ${bestPct || 80}%`
+            : (bestPct !== undefined ? `ล่าสุด ${bestPct}%` : (isStudied ? 'กำลังเรียน' : 'พร้อมเรียน'));
+          cardsHtml.push(`
+            <button type="button" class="ga-lesson-card ${isMastered ? 'is-mastered' : ''}" data-ga-lesson-id="${escapeHtml(live.id)}">
+              <div class="ga-lesson-top">
+                <div class="ga-lesson-tags">
+                  <span class="ga-lesson-num">บทที่ ${live.num}</span>
+                  <span class="ga-lesson-cefr">${escapeHtml(live.level)}</span>
+                </div>
+                <span class="ga-lesson-state ${statusClass}">${escapeHtml(statusLabel)}</span>
+              </div>
+              <div class="ga-lesson-body">
+                <div class="ga-lesson-title">${escapeHtml(live.titleTh)}</div>
+                <p class="ga-lesson-desc">${escapeHtml(live.summaryTh)}</p>
+              </div>
+              <div class="ga-lesson-foot">
+                <span>${(live.exercises || []).length} โจทย์ · ~${live.estMinutes || 4} นาที</span>
+                <span class="ga-lesson-go">เปิดอ่าน →</span>
+              </div>
+            </button>
+          `);
+        } else {
+          const up = upcomingByNum.get(n);
+          if (!up || gaState.filter === 'mastered') continue;
+          cardsHtml.push(`
+            <div class="ga-lesson-card is-upcoming" aria-disabled="true">
+              <div class="ga-lesson-top">
+                <div class="ga-lesson-tags">
+                  <span class="ga-lesson-num">บทที่ ${up.num}</span>
+                  <span class="ga-lesson-cefr">${escapeHtml(up.level)}</span>
+                </div>
+                <span class="ga-lesson-state">เร็วๆ นี้</span>
+              </div>
+              <div class="ga-lesson-body">
+                <div class="ga-lesson-title">${escapeHtml(up.titleTh)}</div>
+                <p class="ga-lesson-desc">${escapeHtml(up.descTh)}</p>
+              </div>
+              <div class="ga-lesson-foot">
+                <span>แผนเฟส ${ph.number}</span>
+                <span>🔒</span>
+              </div>
+            </div>
+          `);
+        }
+      }
+
+      if (cardsHtml.length === 0) return '';
+      const isCollapsed = !qSearch && gaState.phaseFilter === 'all' && gaState.collapsedPhases.has(ph.number);
+      return `
+        <div class="ga-phase-block ${isCollapsed ? 'is-collapsed' : ''}">
+          <button type="button" class="ga-phase-head" data-ga-phase-toggle="${ph.number}" aria-expanded="${!isCollapsed}">
+            <div class="ga-phase-head-text">
+              <div class="ga-phase-meta-row">
+                <span class="ga-phase-badge">Phase ${ph.number} · ${escapeHtml(ph.badge)}</span>
+                <span class="ga-phase-count">ผ่านแล้ว ${phaseMasteredCount} / ${phaseLiveCount} บท</span>
+              </div>
+              <h3>${escapeHtml(ph.titleTh)}</h3>
+              <p>${escapeHtml(ph.subtitleTh)}</p>
+            </div>
+            <span class="ga-phase-chevron" aria-hidden="true">${isCollapsed ? '▸' : '▾'}</span>
+          </button>
+          <div class="ga-lessons-grid" ${isCollapsed ? 'hidden' : ''}>${cardsHtml.join('')}</div>
+        </div>
+      `;
+    }).join('') || `<p class="ga-empty-state">ไม่พบบทเรียนที่ตรงกับคำค้นหา (หลักสูตรมีทั้งหมด ${totalRoad} บท)</p>`;
+  }
+
+  function openGrammarStudy(lessonId) {
+    const lessons = (typeof GRAMMAR_LESSONS !== 'undefined' && Array.isArray(GRAMMAR_LESSONS)) ? GRAMMAR_LESSONS : [];
+    const lesson = lessons.find(l => l.id === lessonId) || lessons[0];
+    if (!lesson) return;
+    gaState.activeLessonId = lesson.id;
+
+    const gp = loadGrammarProgress();
+    if (!gp.studiedIds.includes(lesson.id)) {
+      gp.studiedIds.push(lesson.id);
+      saveGrammarProgress(gp);
+    }
+
+    setGrammarSubView('study');
+    const levelEl = $('ga-study-level');
+    const statusEl = $('ga-study-status');
+    const contentEl = $('ga-study-content');
+    const startBtn = $('btn-ga-start-drill');
+    const topDrillBtn = $('btn-ga-study-top-drill');
+    const prevBtn = $('btn-ga-study-prev');
+    const nextBtn = $('btn-ga-study-next');
+    const isMastered = gp.masteredIds.includes(lesson.id);
+    if (levelEl) levelEl.textContent = `บทที่ ${lesson.num} / ${lessons.length} · ${lesson.level}`;
+    if (statusEl) statusEl.textContent = isMastered ? `ผ่านแล้ว ${gp.bestAccuracy[lesson.id] || 80}% ✓` : 'กำลังอ่านสรุป';
+
+    const curIdx = lessons.findIndex(l => l.id === lesson.id);
+    const prevLesson = curIdx > 0 ? lessons[curIdx - 1] : null;
+    const nextLesson = curIdx >= 0 && curIdx < lessons.length - 1 ? lessons[curIdx + 1] : null;
+    if (prevBtn) {
+      prevBtn.hidden = !prevLesson;
+      if (prevLesson) {
+        prevBtn.dataset.targetLesson = prevLesson.id;
+        prevBtn.textContent = `← บทที่ ${prevLesson.num}`;
+      }
+    }
+    if (nextBtn) {
+      nextBtn.hidden = !nextLesson;
+      if (nextLesson) {
+        nextBtn.dataset.targetLesson = nextLesson.id;
+        nextBtn.textContent = `บทที่ ${nextLesson.num} →`;
+      }
+    }
+
+    if (contentEl) {
+      const examplesHtml = (lesson.examples || []).map((ex, idx) => `
+        <div class="ga-example-item">
+          <div style="flex:1; min-width:0;">
+            <div class="ga-example-en">${renderHintableSentenceHtml(ex.en)}</div>
+            <div class="ga-example-th">${escapeHtml(ex.th)}</div>
+            ${ex.focus ? `<span class="ga-example-focus">💡 ${escapeHtml(ex.focus)}</span>` : ''}
+          </div>
+          <button type="button" class="word-item-speak-btn speak-btn ga-ex-speak" data-ga-speak-ex="${idx}" aria-label="ฟังเสียงตัวอย่างประโยค">
+            <svg class="speak-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+        </div>
+      `).join('');
+
+      const mistakesHtml = (lesson.mistakes || []).map(m => `
+        <div class="ga-mistake-item">
+          <div class="ga-mistake-pair">
+            <div class="ga-mistake-line is-wrong">
+              <span class="ga-mistake-tag is-wrong">ผิด</span>
+              <span class="ga-wrong">${escapeHtml(m.wrong)}</span>
+            </div>
+            <div class="ga-mistake-line is-right">
+              <span class="ga-mistake-tag is-right">ถูก</span>
+              <span class="ga-right">${escapeHtml(m.right)}</span>
+            </div>
+          </div>
+          <div class="ga-mistake-why">${escapeHtml(m.whyTh)}</div>
+        </div>
+      `).join('');
+
+      contentEl.innerHTML = `
+        <div class="ga-study-header">
+          <span class="hub-page-eyebrow">${escapeHtml(lesson.titleEn)}</span>
+          <h2>บทที่ ${lesson.num}: ${escapeHtml(lesson.titleTh)}</h2>
+        </div>
+        ${buildGrammarPeekHtml(lesson)}
+        <section class="ga-study-section">
+          <div class="ga-section-title">🔊 ตัวอย่างประโยคจริง (กดปุ่มลำโพงเพื่อฟังทั้งประโยค หรือแตะที่คำเพื่อฟังรายคำ)</div>
+          <div class="ga-examples-list">${examplesHtml}</div>
+        </section>
+        <section class="ga-study-section">
+          <div class="ga-section-title">⚠️ จุดที่คนไทยมักใช้ผิด</div>
+          <div class="ga-mistakes-list">${mistakesHtml}</div>
+        </section>
+      `;
+
+      wireHintButtons(contentEl);
+      contentEl.querySelectorAll('.ga-ex-speak').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const exIdx = Number(/** @type {HTMLElement} */(btn).dataset.gaSpeakEx);
+          const item = (lesson.examples || [])[exIdx];
+          if (item?.en) speakWordOverride(item.en, btn);
+        });
+      });
+    }
+
+    const qCnt = Array.isArray(lesson.exercises) ? lesson.exercises.length : 10;
+    if (startBtn) {
+      startBtn.textContent = `✍️ เข้าใจแล้ว · ลองทำโจทย์บทนี้ (${qCnt} ข้อ)`;
+      startBtn.dataset.lessonId = lesson.id;
+    }
+    if (topDrillBtn) {
+      topDrillBtn.textContent = `✍️ ทำโจทย์ (${qCnt})`;
+      topDrillBtn.dataset.lessonId = lesson.id;
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function startGrammarDrill({ lessonId = 'g01', isMixed = false, mixedScope = 'all' } = {}) {
+    const lessons = (typeof GRAMMAR_LESSONS !== 'undefined' && Array.isArray(GRAMMAR_LESSONS)) ? GRAMMAR_LESSONS : [];
+    if (!lessons.length) return;
+
+    let queue = [];
+    let title = '';
+    if (isMixed) {
+      const gp = loadGrammarProgress();
+      let filteredLessons = lessons;
+      let scopeLabel = 'รวมทุกบท';
+      if (mixedScope === 'phase1' || mixedScope === 'phase2' || mixedScope === 'phase3') {
+        filteredLessons = lessons.filter(l => l.phase === mixedScope);
+        scopeLabel = `เฉพาะ Phase ${mixedScope.replace('phase', '')}`;
+      } else if (mixedScope === 'studied') {
+        const studiedSet = new Set([...gp.studiedIds, ...gp.masteredIds]);
+        filteredLessons = lessons.filter(l => studiedSet.has(l.id));
+        if (!filteredLessons.length) {
+          showToast('ยังไม่ได้เปิดอ่านบทเรียนใดเลย — ลองเปิดอ่านบทที่ 1 ก่อนนะ');
+          return;
+        }
+        scopeLabel = 'เฉพาะบทที่อ่านแล้ว';
+      }
+      const allQs = filteredLessons.flatMap(l => (l.exercises || []).map((ex, i) => ({
+        ...ex,
+        _lessonId: l.id,
+        _lessonNum: l.num,
+        _qKey: `${l.id}_${i}`
+      })));
+      if (mixedScope === 'weak') {
+        const missedSet = new Set(gp.missedKeys || []);
+        const weakQs = allQs.filter(q => missedSet.has(q._qKey));
+        if (!weakQs.length) {
+          showToast('ยังไม่มีข้อที่เคยตอบผิด สุดยอดมาก!');
+          return;
+        }
+        queue = shuffle(weakQs).slice(0, Math.min(12, weakQs.length));
+        title = `🔥 ซ่อมข้อที่เคยพลาด (${queue.length} ข้อ)`;
+      } else {
+        queue = shuffle(allQs).slice(0, Math.min(10, allQs.length));
+        title = `🎯 สุ่มทดสอบ Grammar (${scopeLabel})`;
+      }
+    } else {
+      const lesson = lessons.find(l => l.id === lessonId) || lessons[0];
+      gaState.activeLessonId = lesson.id;
+      queue = shuffle((lesson.exercises || []).map((ex, i) => ({
+        ...ex,
+        _lessonId: lesson.id,
+        _lessonNum: lesson.num,
+        _qKey: `${lesson.id}_${i}`
+      })));
+      title = `บทที่ ${lesson.num}: ${lesson.titleTh}`;
+    }
+
+    if (!queue.length) {
+      showToast('ยังไม่มีโจทย์ในบทเรียนนี้');
+      return;
+    }
+
+    gaState.drill = {
+      lessonId: isMixed ? lessons[0].id : lessonId,
+      isMixed,
+      title,
+      queue,
+      index: 0,
+      firstTryTotal: queue.length,
+      firstTryCorrect: 0,
+      seenKeys: new Set(),
+      requeuedKeys: new Set(),
+      answered: false,
+      currentChoiceOpts: [],
+      selectedOptIdx: null,
+      orderBank: [],
+      orderChosen: [],
+      selectedErrorIdx: null,
+      selectedCorrectionIdx: null
+    };
+
+    setGrammarSubView('drill');
+    $('ga-drill-stage').hidden = false;
+    $('ga-drill-actions').hidden = false;
+    $('ga-drill-feedback').hidden = true;
+    $('ga-drill-summary').hidden = true;
+    renderGrammarDrillQuestion();
+    window.scrollTo(0, 0);
+  }
+
+  function renderGrammarDrillQuestion() {
+    const d = gaState.drill;
+    if (!d) return;
+    const q = d.queue[d.index];
+    if (!q) {
+      finishGrammarDrill();
+      return;
+    }
+
+    d.answered = false;
+    d.selectedOptIdx = null;
+    d.selectedErrorIdx = null;
+    d.selectedCorrectionIdx = null;
+    d.orderChosen = [];
+
+    const titleEl = $('ga-drill-title');
+    const cntEl = $('ga-drill-counter');
+    const barEl = $('ga-drill-bar-fill');
+    const stageEl = $('ga-drill-stage');
+    const fbEl = $('ga-drill-feedback');
+    const checkBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-check'));
+    const nextBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-next'));
+    const peekBtn = $('btn-ga-peek-formula');
+
+    if (titleEl) titleEl.textContent = d.title;
+    if (cntEl) cntEl.textContent = `${Math.min(d.index + 1, d.queue.length)} / ${d.queue.length}`;
+    if (barEl) barEl.style.width = `${Math.round(((d.index) / Math.max(1, d.queue.length)) * 100)}%`;
+    if (peekBtn) peekBtn.dataset.peekLessonId = q._lessonId || d.lessonId;
+    if (fbEl) { fbEl.hidden = true; fbEl.innerHTML = ''; fbEl.className = 'ga-drill-feedback'; }
+    if (checkBtn) { checkBtn.hidden = false; checkBtn.disabled = true; }
+    if (nextBtn) { nextBtn.hidden = true; }
+    if (!stageEl) return;
+
+    const TYPE_LABELS = {
+      cloze: '✍️ เติมคำให้ถูกหลัก Grammar',
+      transform: '🔄 แปลง/เลือกโครงสร้างประโยค',
+      order: '🧩 แตะเรียงคำเป็นประโยคที่ถูกต้อง',
+      error: '🔍 จับจุดผิด Grammar แล้วเลือกคำแก้ไข'
+    };
+    const typeLabel = TYPE_LABELS[q.type] || TYPE_LABELS.cloze;
+    const requeueNote = q._requeued ? ' · (ทบทวนข้อที่เคยพลาด)' : '';
+
+    if (q.type === 'cloze' || q.type === 'transform') {
+      const mapped = (q.options || []).map((text, origIdx) => ({ text, origIdx }));
+      d.currentChoiceOpts = shuffle(mapped);
+      stageEl.innerHTML = `
+        <span class="ga-type-pill">${escapeHtml(typeLabel + requeueNote)}</span>
+        <p class="ga-drill-prompt">${escapeHtml(q.promptTh)}</p>
+        ${q.sentence ? `<div class="ga-drill-sentence">${escapeHtml(q.sentence)}</div>` : ''}
+        <div class="ga-options-grid">
+          ${d.currentChoiceOpts.map((opt, uiIdx) => `
+            <button type="button" class="ga-opt-btn" data-ga-opt="${uiIdx}">
+              <span class="ga-opt-key">${String.fromCharCode(65 + uiIdx)}. </span>
+              <span class="ga-opt-text">${escapeHtml(opt.text)}</span>
+            </button>
+          `).join('')}
+        </div>
+        <div class="ga-shortcut-hint">💡 คีย์ลัด: กด <b>1–4</b> หรือ <b>A–D</b> เลือกคำตอบ · <b>Enter</b> ตรวจ / ข้อถัดไป</div>
+      `;
+      stageEl.querySelectorAll('[data-ga-opt]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (d.answered) return;
+          const uiIdx = Number(/** @type {HTMLElement} */(btn).dataset.gaOpt);
+          d.selectedOptIdx = uiIdx;
+          SoundFX.tick();
+          stageEl.querySelectorAll('[data-ga-opt]').forEach((b, i) => b.classList.toggle('is-selected', i === uiIdx));
+          if (checkBtn) checkBtn.disabled = false;
+        });
+      });
+    } else if (q.type === 'order') {
+      d.orderBank = shuffle((q.tokens || []).map((text, id) => ({ id, text })));
+      stageEl.innerHTML = `
+        <span class="ga-type-pill">${escapeHtml(typeLabel + requeueNote)}</span>
+        <p class="ga-drill-prompt">${escapeHtml(q.promptTh)}</p>
+        <div class="ga-order-tray" id="ga-order-tray"><span style="color:var(--text-muted); font-size:0.86rem;">แตะคำด้านล่างเพื่อเรียงประโยค...</span></div>
+        <div class="ga-order-bank" id="ga-order-bank"></div>
+      `;
+      const syncOrderUI = () => {
+        const tray = $('ga-order-tray');
+        const bank = $('ga-order-bank');
+        if (!tray || !bank) return;
+        const usedIds = new Set(d.orderChosen.map(x => x.id));
+        tray.innerHTML = d.orderChosen.length > 0
+          ? d.orderChosen.map((item, pos) => `<button type="button" class="ga-token-chip" data-ga-tray-pos="${pos}">${escapeHtml(item.text)}</button>`).join('')
+          : '<span style="color:var(--text-muted); font-size:0.86rem;">แตะคำด้านล่างเพื่อเรียงประโยค...</span>';
+        bank.innerHTML = d.orderBank.map(item => `
+          <button type="button" class="ga-token-chip ${usedIds.has(item.id) ? 'is-used' : ''}" data-ga-bank-id="${item.id}">${escapeHtml(item.text)}</button>
+        `).join('');
+        tray.querySelectorAll('[data-ga-tray-pos]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (d.answered) return;
+            const pos = Number(/** @type {HTMLElement} */(btn).dataset.gaTrayPos);
+            d.orderChosen.splice(pos, 1);
+            SoundFX.tick();
+            syncOrderUI();
+          });
+        });
+        bank.querySelectorAll('[data-ga-bank-id]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (d.answered) return;
+            const id = Number(/** @type {HTMLElement} */(btn).dataset.gaBankId);
+            const found = d.orderBank.find(x => x.id === id);
+            if (!found || d.orderChosen.some(x => x.id === id)) return;
+            d.orderChosen.push(found);
+            speakWordBankTile(found.text);
+            syncOrderUI();
+          });
+        });
+        if (checkBtn) checkBtn.disabled = d.orderChosen.length < d.orderBank.length;
+      };
+      syncOrderUI();
+    } else if (q.type === 'error') {
+      const mappedCorr = (q.corrections || []).map((text, origIdx) => ({ text, origIdx }));
+      d.currentChoiceOpts = shuffle(mappedCorr);
+      stageEl.innerHTML = `
+        <span class="ga-type-pill">${escapeHtml(typeLabel + requeueNote)}</span>
+        <p class="ga-drill-prompt">${escapeHtml(q.promptTh)}</p>
+        <p class="ga-error-step-hint">1) แตะเลือกคำที่ผิดในประโยค:</p>
+        <div class="ga-error-tokens" id="ga-error-tokens">
+          ${(q.tokens || []).map((tok, i) => `<button type="button" class="ga-token-chip" data-ga-err-tok="${i}">${escapeHtml(tok)}</button>`).join('')}
+        </div>
+        <div id="ga-error-fix-wrap" hidden>
+          <p class="ga-error-step-hint">2) เลือกคำแก้ไขที่ถูกต้องแทนคำที่เลือก:</p>
+          <div class="ga-options-grid">
+            ${d.currentChoiceOpts.map((opt, uiIdx) => `
+              <button type="button" class="ga-opt-btn" data-ga-err-fix="${uiIdx}">${escapeHtml(opt.text)}</button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+      stageEl.querySelectorAll('[data-ga-err-tok]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (d.answered) return;
+          const idx = Number(/** @type {HTMLElement} */(btn).dataset.gaErrTok);
+          d.selectedErrorIdx = idx;
+          speakWordBankTile((q.tokens || [])[idx] || '');
+          stageEl.querySelectorAll('[data-ga-err-tok]').forEach((b, i) => b.classList.toggle('is-selected', i === idx));
+          const fixWrap = $('ga-error-fix-wrap');
+          if (fixWrap) fixWrap.hidden = false;
+          if (checkBtn) checkBtn.disabled = d.selectedCorrectionIdx === null;
+        });
+      });
+      stageEl.querySelectorAll('[data-ga-err-fix]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (d.answered) return;
+          const uiIdx = Number(/** @type {HTMLElement} */(btn).dataset.gaErrFix);
+          d.selectedCorrectionIdx = uiIdx;
+          SoundFX.tick();
+          stageEl.querySelectorAll('[data-ga-err-fix]').forEach((b, i) => b.classList.toggle('is-selected', i === uiIdx));
+          if (checkBtn) checkBtn.disabled = d.selectedErrorIdx === null;
+        });
+      });
+    }
+  }
+
+  function checkGrammarDrillAnswer() {
+    const d = gaState.drill;
+    if (!d || d.answered) return;
+    const q = d.queue[d.index];
+    if (!q) return;
+
+    let isCorrect = false;
+    let answerDisplay = '';
+    let spokenAnswerSentence = '';
+    const stageEl = $('ga-drill-stage');
+
+    if (q.type === 'cloze' || q.type === 'transform') {
+      if (d.selectedOptIdx === null) return;
+      const picked = d.currentChoiceOpts[d.selectedOptIdx];
+      isCorrect = Boolean(picked && picked.origIdx === q.answerIndex);
+      answerDisplay = (q.options || [])[q.answerIndex] || '';
+      if (q.type === 'cloze' && q.sentence && /_+/.test(q.sentence)) {
+        spokenAnswerSentence = q.sentence.replace(/_+/g, answerDisplay);
+      } else if (q.type === 'transform') {
+        spokenAnswerSentence = answerDisplay;
+      }
+      stageEl?.querySelectorAll('[data-ga-opt]').forEach((btn, i) => {
+        /** @type {HTMLButtonElement} */(btn).disabled = true;
+        const opt = d.currentChoiceOpts[i];
+        if (opt && opt.origIdx === q.answerIndex) btn.classList.add('is-correct');
+        else if (i === d.selectedOptIdx && !isCorrect) btn.classList.add('is-wrong');
+      });
+    } else if (q.type === 'order') {
+      const userSent = d.orderChosen.map(x => x.text).join(' ').trim();
+      const targetSent = (q.tokens || []).join(' ').trim();
+      isCorrect = userSent === targetSent;
+      answerDisplay = targetSent;
+      spokenAnswerSentence = targetSent;
+      if (isCorrect) speakWordOverride(targetSent, null);
+    } else if (q.type === 'error') {
+      if (d.selectedErrorIdx === null || d.selectedCorrectionIdx === null) return;
+      const pickedFix = d.currentChoiceOpts[d.selectedCorrectionIdx];
+      isCorrect = d.selectedErrorIdx === q.errorIndex && Boolean(pickedFix && pickedFix.origIdx === q.correctOptionIndex);
+      const wrongTok = (q.tokens || [])[q.errorIndex] || '';
+      const rightFix = (q.corrections || [])[q.correctOptionIndex] || '';
+      answerDisplay = `${wrongTok} → ${rightFix}`;
+      const fixedTokens = (q.tokens || []).map((t, i) => (i === q.errorIndex ? rightFix : t));
+      spokenAnswerSentence = fixedTokens.join(' ').trim();
+      stageEl?.querySelectorAll('[data-ga-err-tok]').forEach((btn, i) => {
+        /** @type {HTMLButtonElement} */(btn).disabled = true;
+        if (i === q.errorIndex) btn.classList.add('is-correct');
+        else if (i === d.selectedErrorIdx && d.selectedErrorIdx !== q.errorIndex) btn.classList.add('is-wrong');
+      });
+      stageEl?.querySelectorAll('[data-ga-err-fix]').forEach((btn, i) => {
+        /** @type {HTMLButtonElement} */(btn).disabled = true;
+        const opt = d.currentChoiceOpts[i];
+        if (opt && opt.origIdx === q.correctOptionIndex) btn.classList.add('is-correct');
+        else if (i === d.selectedCorrectionIdx && !isCorrect) btn.classList.add('is-wrong');
+      });
+    }
+
+    d.answered = true;
+    const isFirstAttempt = !d.seenKeys.has(q._qKey);
+    d.seenKeys.add(q._qKey);
+    const gpNow = loadGrammarProgress();
+    if (isFirstAttempt && isCorrect) {
+      d.firstTryCorrect++;
+      if (gpNow.missedKeys.includes(q._qKey)) {
+        gpNow.missedKeys = gpNow.missedKeys.filter(k => k !== q._qKey);
+        saveGrammarProgress(gpNow);
+      }
+    } else if (!isCorrect) {
+      if (!gpNow.missedKeys.includes(q._qKey)) {
+        gpNow.missedKeys.push(q._qKey);
+        if (gpNow.missedKeys.length > 80) gpNow.missedKeys = gpNow.missedKeys.slice(-80);
+        saveGrammarProgress(gpNow);
+      }
+      if (!d.requeuedKeys.has(q._qKey)) {
+        d.requeuedKeys.add(q._qKey);
+        d.queue.push({ ...q, _requeued: true });
+      }
+    }
+
+    if (isCorrect) SoundFX.known(Math.max(1, d.firstTryCorrect));
+    else SoundFX.error();
+
+    const fbEl = $('ga-drill-feedback');
+    if (fbEl) {
+      fbEl.hidden = false;
+      fbEl.className = `ga-drill-feedback ${isCorrect ? 'is-correct' : 'is-wrong'}`;
+      fbEl.innerHTML = `
+        <div class="ga-fb-head">
+          <strong>${isCorrect ? '✅ ถูกต้องยอดเยี่ยม!' : `❌ ยังไม่ถูก (เฉลย: ${escapeHtml(answerDisplay)})`}</strong>
+          ${spokenAnswerSentence ? `<button type="button" class="btn glass-btn btn-xs ga-fb-speak" id="btn-ga-fb-speak">🔊 ฟังประโยคเฉลย</button>` : ''}
+        </div>
+        <div class="ga-fb-explain">${escapeHtml(q.explanationTh || '')}</div>
+      `;
+      if (spokenAnswerSentence) {
+        $('btn-ga-fb-speak')?.addEventListener('click', (ev) => {
+          speakWordOverride(spokenAnswerSentence, /** @type {HTMLElement} */(ev.currentTarget));
+        });
+      }
+    }
+
+    const checkBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-check'));
+    const nextBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-next'));
+    if (checkBtn) checkBtn.hidden = true;
+    if (nextBtn) {
+      nextBtn.hidden = false;
+      nextBtn.textContent = d.index + 1 >= d.queue.length ? 'ดูผลคะแนนสรุป →' : 'ข้อถัดไป →';
+    }
+  }
+
+  function finishGrammarDrill() {
+    const d = gaState.drill;
+    if (!d) return;
+    const pct = Math.min(100, Math.round((d.firstTryCorrect / Math.max(1, d.firstTryTotal)) * 100));
+    const passed = pct >= 80;
+
+    const gp = loadGrammarProgress();
+    if (!d.isMixed) {
+      gp.bestAccuracy[d.lessonId] = Math.max(Number(gp.bestAccuracy[d.lessonId] || 0), pct);
+      if (passed && !gp.masteredIds.includes(d.lessonId)) {
+        gp.masteredIds.push(d.lessonId);
+      }
+    } else {
+      gp.mixedRuns = (gp.mixedRuns || 0) + 1;
+    }
+    saveGrammarProgress(gp);
+
+    const baseXp = Math.max(10, Math.round(d.firstTryCorrect * 4) + (passed ? 15 : 0));
+    const earnedXp = (typeof isXpBoostActive === 'function' && isXpBoostActive()) ? baseXp * 2 : baseXp;
+    ensureTodayQuests();
+    learnState.xp += earnedXp;
+    learnState.dailyQuests.xpToday += earnedXp;
+    saveLearnState(true);
+    refreshShellTelemetry();
+    refreshQuizHubSpecialRecords();
+
+    if (passed) {
+      SoundFX.quest();
+      OxConfetti.launch('good');
+    }
+
+    $('ga-drill-stage').hidden = true;
+    $('ga-drill-actions').hidden = true;
+    $('ga-drill-feedback').hidden = true;
+    const barEl = $('ga-drill-bar-fill');
+    if (barEl) barEl.style.width = '100%';
+
+    const lessons = (typeof GRAMMAR_LESSONS !== 'undefined' && Array.isArray(GRAMMAR_LESSONS)) ? GRAMMAR_LESSONS : [];
+    const curIdx = lessons.findIndex(l => l.id === d.lessonId);
+    const nextLesson = !d.isMixed && curIdx >= 0 ? lessons[curIdx + 1] : null;
+
+    const sumEl = $('ga-drill-summary');
+    if (sumEl) {
+      sumEl.hidden = false;
+      sumEl.innerHTML = `
+        <div style="font-size:2.6rem;">${passed ? '🏆' : '💪'}</div>
+        <h3>${passed ? 'ผ่านบทเรียนเรียบร้อย!' : 'ฝึกต่ออีกนิด เกือบผ่านแล้ว!'}</h3>
+        <div class="ga-summary-score">${pct}% (${d.firstTryCorrect} / ${d.firstTryTotal} ข้อ)</div>
+        <p style="color:var(--text-muted); margin:4px 0 0;">รับ +${earnedXp} XP · ${passed ? 'ปลดล็อกสถานะ "ผ่านแล้ว ✓" เรียบร้อย' : 'ทำให้ได้ 80%+ เพื่อพิชิตบทนี้'}</p>
+        <div class="ga-summary-actions">
+          ${nextLesson ? `<button type="button" class="btn btn-primary glass-btn" id="btn-ga-sum-next">▶ เรียนบทถัดไป (บทที่ ${nextLesson.num})</button>` : ''}
+          <button type="button" class="btn glass-btn" id="btn-ga-sum-retry">↻ ลองทำโจทย์ใหม่</button>
+          ${!d.isMixed ? `<button type="button" class="btn glass-btn" id="btn-ga-sum-study">📖 กลับไปอ่านสูตรบทนี้</button>` : ''}
+          <button type="button" class="btn glass-btn" id="btn-ga-sum-hub">🏠 หน้ารวมบทเรียน</button>
+        </div>
+      `;
+      $('btn-ga-sum-next')?.addEventListener('click', () => nextLesson && openGrammarStudy(nextLesson.id));
+      $('btn-ga-sum-retry')?.addEventListener('click', () => startGrammarDrill({ lessonId: d.lessonId, isMixed: d.isMixed }));
+      $('btn-ga-sum-study')?.addEventListener('click', () => openGrammarStudy(d.lessonId));
+      $('btn-ga-sum-hub')?.addEventListener('click', () => renderGrammarHub());
+    }
+  }
+
+  function openGrammarAcademy(lessonId = null) {
+    showScreen('grammar-academy');
+    if (lessonId) openGrammarStudy(lessonId);
+    else renderGrammarHub();
+  }
+
+  function initGrammarAcademyBindings() {
+    $('btn-ga-back-quiz')?.addEventListener('click', () => {
+      refreshQuizHubSpecialRecords();
+      showScreen('quiz-hub');
+    });
+    $('btn-ga-continue')?.addEventListener('click', (e) => {
+      const targetId = (/** @type {HTMLElement} */(e.currentTarget)).dataset.targetLesson || 'g01';
+      openGrammarStudy(targetId);
+    });
+    $('btn-ga-mixed-quiz')?.addEventListener('click', () => {
+      const scopeSel = /** @type {HTMLSelectElement|null} */ ($('ga-mixed-scope'));
+      startGrammarDrill({ isMixed: true, mixedScope: scopeSel ? scopeSel.value : 'all' });
+    });
+    $('btn-ga-weak-drill')?.addEventListener('click', () => {
+      startGrammarDrill({ isMixed: true, mixedScope: 'weak' });
+    });
+    $('ga-search-input')?.addEventListener('input', (e) => {
+      gaState.search = (/** @type {HTMLInputElement} */(e.currentTarget)).value || '';
+      renderGrammarHub();
+    });
+    $('ga-phase-tabs')?.addEventListener('click', (e) => {
+      if (!(e.target instanceof Element)) return;
+      const tab = e.target.closest('[data-ga-phase]');
+      if (!(tab instanceof HTMLElement)) return;
+      gaState.phaseFilter = tab.dataset.gaPhase || 'all';
+      $('ga-phase-tabs').querySelectorAll('.ga-phase-tab').forEach(t => t.classList.toggle('active', t === tab));
+      SoundFX.tick();
+      renderGrammarHub();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (currentScreen !== 'grammar-academy') return;
+      const peekModal = $('grammar-peek-modal');
+      if (peekModal?.classList.contains('open')) {
+        if (e.key === 'Escape') closeGrammarPeekModal();
+        return;
+      }
+      const drillView = $('grammar-drill-view');
+      const d = gaState.drill;
+      if (!drillView || drillView.hidden || !d || !$('ga-drill-summary')?.hidden) return;
+      const key = e.key;
+      if (key === 'Enter') {
+        const nextBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-next'));
+        const checkBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-check'));
+        if (d.answered && nextBtn && !nextBtn.hidden) {
+          e.preventDefault();
+          nextBtn.click();
+        } else if (!d.answered && checkBtn && !checkBtn.hidden && !checkBtn.disabled) {
+          e.preventDefault();
+          checkBtn.click();
+        }
+        return;
+      }
+      if (!d.answered) {
+        const idxMap = { '1': 0, '2': 1, '3': 2, '4': 3, 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
+        const pickIdx = idxMap[key.toLowerCase()];
+        if (pickIdx !== undefined) {
+          const btns = $('ga-drill-stage')?.querySelectorAll('[data-ga-opt]');
+          if (btns && btns[pickIdx]) {
+            e.preventDefault();
+            /** @type {HTMLElement} */(btns[pickIdx]).click();
+          }
+        }
+      }
+    });
+    $('ga-filter-bar')?.addEventListener('click', (e) => {
+      if (!(e.target instanceof Element)) return;
+      const pill = e.target.closest('[data-ga-filter]');
+      if (!(pill instanceof HTMLElement)) return;
+      gaState.filter = pill.dataset.gaFilter || 'all';
+      $('ga-filter-bar').querySelectorAll('.cefr-pill').forEach(p => p.classList.toggle('active', p === pill));
+      SoundFX.tick();
+      renderGrammarHub();
+    });
+    $('ga-phases-container')?.addEventListener('click', (e) => {
+      if (!(e.target instanceof Element)) return;
+      const toggleBtn = e.target.closest('[data-ga-phase-toggle]');
+      if (toggleBtn instanceof HTMLElement) {
+        const phNum = Number(toggleBtn.dataset.gaPhaseToggle);
+        if (gaState.collapsedPhases.has(phNum)) gaState.collapsedPhases.delete(phNum);
+        else gaState.collapsedPhases.add(phNum);
+        SoundFX.tick();
+        renderGrammarHub();
+        return;
+      }
+      const card = e.target.closest('[data-ga-lesson-id]');
+      if (!(card instanceof HTMLElement)) return;
+      SoundFX.tick();
+      openGrammarStudy(card.dataset.gaLessonId || 'g01');
+    });
+    $('btn-ga-study-back')?.addEventListener('click', () => renderGrammarHub());
+    const startStudyDrill = (e) => {
+      const lid = (/** @type {HTMLElement} */(e.currentTarget)).dataset.lessonId || gaState.activeLessonId;
+      startGrammarDrill({ lessonId: lid, isMixed: false });
+    };
+    $('btn-ga-start-drill')?.addEventListener('click', startStudyDrill);
+    $('btn-ga-study-top-drill')?.addEventListener('click', startStudyDrill);
+    const goNavLesson = (e) => {
+      const tid = (/** @type {HTMLElement} */(e.currentTarget)).dataset.targetLesson;
+      if (tid) { SoundFX.tick(); openGrammarStudy(tid); }
+    };
+    $('btn-ga-study-prev')?.addEventListener('click', goNavLesson);
+    $('btn-ga-study-next')?.addEventListener('click', goNavLesson);
+    $('btn-ga-drill-exit')?.addEventListener('click', () => {
+      if (gaState.drill && !gaState.drill.isMixed) openGrammarStudy(gaState.drill.lessonId);
+      else renderGrammarHub();
+    });
+    $('btn-ga-drill-check')?.addEventListener('click', () => checkGrammarDrillAnswer());
+    $('btn-ga-drill-next')?.addEventListener('click', () => {
+      if (!gaState.drill) return;
+      gaState.drill.index++;
+      renderGrammarDrillQuestion();
+    });
+    $('btn-ga-peek-formula')?.addEventListener('click', (e) => {
+      const lid = (/** @type {HTMLElement} */(e.currentTarget)).dataset.peekLessonId || gaState.activeLessonId;
+      openGrammarPeekModal(lid);
+    });
+    $('btn-ga-peek-close')?.addEventListener('click', closeGrammarPeekModal);
+    $('btn-ga-peek-done')?.addEventListener('click', closeGrammarPeekModal);
+    $('grammar-peek-modal')?.addEventListener('click', (e) => {
+      if (e.target === $('grammar-peek-modal')) closeGrammarPeekModal();
+    });
+  }
+  initGrammarAcademyBindings();
 
   // Expose Targeted Practice
   /** @type {any} */ (window).startTargetedPractice = function (category) {

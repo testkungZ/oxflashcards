@@ -1477,6 +1477,12 @@
                             <strong>ปราบคำสับสน</strong>
                             <small>แยกคำคู่แฝดที่คนไทยใช้ผิดบ่อย</small>
                         </button>
+                        <button type="button" class="quiz-mode-card is-special-grammar" data-qh-mode="grammar">
+                            <span class="qmc-badge">ครบวงจร</span>
+                            <span class="qmc-icon">📘</span>
+                            <strong>เรียน Grammar จาก 0</strong>
+                            <small>อ่านสูตรเข้าใจง่าย + ลองทำโจทย์</small>
+                        </button>
                     </div>
 
                     <div class="qh-records-strip" id="qh-special-records">
@@ -1489,9 +1495,13 @@
                             <span>⚔️ คำสับสนที่พิชิตแล้ว:</span>
                             <strong id="qh-confusables-mastered">0 / 32 คู่</strong>
                         </div>
+                        <div class="qh-record-chip">
+                            <span>📘 Grammar จากศูนย์:</span>
+                            <strong id="qh-grammar-mastered">0 / 30 บท</strong>
+                        </div>
                     </div>
 
-                    <div class="hub-form-row">
+                    <div class="hub-form-row" id="qh-cefr-row">
                         <label class="hub-label">ระดับ CEFR</label>
                         <div class="cefr-pills" id="qh-cefr-selector">
                             <button type="button" class="cefr-pill active" data-qh-cefr="all">ทุกระดับ</button>
@@ -1508,7 +1518,7 @@
                     </div>
                     <p id="qh-confusables-scope-note" class="qh-scope-note" hidden></p>
 
-                    <div class="hub-form-row">
+                    <div class="hub-form-row" id="qh-count-row">
                         <div class="slider-header">
                             <label class="hub-label" for="qh-count-slider">จำนวนข้อสอบ</label>
                             <span class="count-badge"><span id="qh-count-display">10</span> ข้อ</span>
@@ -1519,6 +1529,131 @@
                     <button type="button" id="btn-qh-start" class="btn btn-primary glass-btn btn-full">
                         เริ่มทำแบบทดสอบเลย
                     </button>
+                </div>
+            </section>
+
+            <!-- ===================== Grammar Academy Screen (ในหมวดแบบทดสอบ) ===================== -->
+            <section id="grammar-academy-screen" class="screen" aria-label="ห้องเรียน Grammar ครบวงจร">
+                <!-- Sub-view 1: Roadmap & Lesson Hub -->
+                <div id="grammar-hub-view" class="glass-panel ga-panel ga-hub-panel">
+                    <div class="ga-topbar">
+                        <button type="button" id="btn-ga-back-quiz" class="btn glass-btn btn-sm">← กลับแบบทดสอบ</button>
+                        <div class="ga-overall-wrap">
+                            <div class="ga-progress-pill" id="ga-overall-pill">พิชิตแล้ว 0 / 30 บท</div>
+                            <div class="ga-overall-bar" aria-hidden="true"><div id="ga-overall-bar-fill" class="ga-overall-bar-fill"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="ga-hero">
+                        <div class="ga-hero-text">
+                            <span class="hub-page-eyebrow">Grammar Academy · Zero to Mastery</span>
+                            <h2>เรียน Grammar ครบวงจรจาก 0</h2>
+                            <p>อ่านสรุปสูตรเข้าใจง่าย ฟังเสียงตัวอย่างจริง แล้วลองทำโจทย์ทีละบทแบบไม่สับสน</p>
+                        </div>
+                        <div class="ga-hero-actions">
+                            <button type="button" id="btn-ga-continue" class="btn btn-primary glass-btn">📖 เริ่มเรียนบทที่ 1</button>
+                            <div class="ga-mixed-control">
+                                <select id="ga-mixed-scope" class="glass-select ga-mixed-select" aria-label="ขอบเขตการสุ่มทดสอบ Grammar">
+                                    <option value="all">🎲 สุ่มทุกบท (30 บท · 10 ข้อ)</option>
+                                    <option value="phase1">🌱 Phase 1: พื้นฐานจาก 0</option>
+                                    <option value="phase2">⚡ Phase 2: 12 Tenses & กริยา</option>
+                                    <option value="phase3">🏆 Phase 3: กลาง–สูง & กับดักไทย</option>
+                                    <option value="studied">📘 เฉพาะบทที่อ่านแล้ว</option>
+                                </select>
+                                <button type="button" id="btn-ga-mixed-quiz" class="btn glass-btn">🎯 สุ่มทดสอบ</button>
+                            </div>
+                            <button type="button" id="btn-ga-weak-drill" class="btn glass-btn is-weak-btn" hidden>🔥 ซ่อมข้อที่เคยพลาด (0)</button>
+                        </div>
+                    </div>
+
+                    <div class="ga-phase-tabs" id="ga-phase-tabs" role="tablist" aria-label="เลือกดูตามระดับ">
+                        <button type="button" class="ga-phase-tab active" data-ga-phase="all">ทุกบท (30)</button>
+                        <button type="button" class="ga-phase-tab" data-ga-phase="phase1">Phase 1 · พื้นฐาน (1–10)</button>
+                        <button type="button" class="ga-phase-tab" data-ga-phase="phase2">Phase 2 · Tenses & กริยา (11–19)</button>
+                        <button type="button" class="ga-phase-tab" data-ga-phase="phase3">Phase 3 · กลาง–สูง (20–30)</button>
+                    </div>
+
+                    <div class="ga-toolbar">
+                        <div class="ga-filter-bar" id="ga-filter-bar">
+                            <button type="button" class="cefr-pill active" data-ga-filter="all">ทั้งหมด</button>
+                            <button type="button" class="cefr-pill" data-ga-filter="pending">ยังไม่ผ่าน</button>
+                            <button type="button" class="cefr-pill" data-ga-filter="mastered">ผ่านแล้ว ✓</button>
+                        </div>
+                        <input type="search" id="ga-search-input" class="glass-input ga-search-input" placeholder="🔍 ค้นหาบทเรียน เช่น Tense, Passive, If..." aria-label="ค้นหาบทเรียน Grammar">
+                    </div>
+
+                    <div id="ga-phases-container" class="ga-phases-container"></div>
+                </div>
+
+                <!-- Sub-view 2: Lesson Study Sheet (Full-Screen Focus Reading Studio) -->
+                <div id="grammar-study-view" class="ga-focus-view ga-study-view" hidden>
+                    <header class="ga-focus-topbar">
+                        <div class="ga-focus-topbar-inner">
+                            <button type="button" id="btn-ga-study-back" class="btn glass-btn btn-sm">← หน้ารวมบทเรียน</button>
+                            <div class="ga-topbar-right">
+                                <span class="ga-level-badge" id="ga-study-level">A0</span>
+                                <span class="ga-status-badge" id="ga-study-status">กำลังเรียน</span>
+                            </div>
+                            <button type="button" id="btn-ga-study-top-drill" class="btn btn-primary glass-btn btn-sm">✍️ ทำโจทย์</button>
+                        </div>
+                    </header>
+
+                    <div class="ga-study-container">
+                        <div id="ga-study-content" class="ga-study-content"></div>
+
+                        <footer class="ga-study-footer">
+                            <button type="button" id="btn-ga-study-prev" class="btn glass-btn ga-nav-lesson-btn" hidden>← บทก่อนหน้า</button>
+                            <button type="button" id="btn-ga-start-drill" class="btn btn-primary glass-btn ga-study-cta-btn">
+                                ✍️ เข้าใจแล้ว · ลองทำโจทย์บทนี้ (10 ข้อ)
+                            </button>
+                            <button type="button" id="btn-ga-study-next" class="btn glass-btn ga-nav-lesson-btn" hidden>บทถัดไป →</button>
+                        </footer>
+                    </div>
+                </div>
+
+                <!-- Sub-view 3: Interactive Grammar Drill & Summary (Full-Screen Focus Practice) -->
+                <div id="grammar-drill-view" class="ga-focus-view ga-drill-view" hidden>
+                    <header class="ga-drill-topbar">
+                        <button type="button" id="btn-ga-drill-exit" class="btn glass-btn btn-sm">✕ ออก</button>
+                        <div class="ga-drill-progress-wrap">
+                            <div class="ga-drill-meta">
+                                <span id="ga-drill-title">บทที่ 1</span>
+                                <strong id="ga-drill-counter">1 / 10</strong>
+                            </div>
+                            <div class="ga-drill-bar"><div id="ga-drill-bar-fill" class="ga-drill-bar-fill"></div></div>
+                        </div>
+                        <button type="button" id="btn-ga-peek-formula" class="btn glass-btn btn-sm" title="เปิดดูสูตรสรุปบทนี้ระหว่างทำโจทย์">📖 ดูสูตร</button>
+                    </header>
+
+                    <div class="ga-drill-workspace">
+                        <div id="ga-drill-stage" class="ga-drill-stage"></div>
+
+                        <div id="ga-drill-feedback" class="ga-drill-feedback" hidden></div>
+
+                        <div id="ga-drill-actions" class="ga-drill-actions">
+                            <button type="button" id="btn-ga-drill-check" class="btn btn-primary glass-btn" disabled>ตรวจคำตอบ</button>
+                            <button type="button" id="btn-ga-drill-next" class="btn btn-primary glass-btn" hidden>ข้อถัดไป →</button>
+                        </div>
+
+                        <div id="ga-drill-summary" class="ga-drill-summary" hidden></div>
+                    </div>
+                </div>
+
+                <!-- Quick-Peek Formula Drawer Modal -->
+                <div id="grammar-peek-modal" class="modal-overlay" aria-hidden="true">
+                    <div class="glass-panel modal-panel ga-peek-panel" role="dialog" aria-modal="true" aria-labelledby="ga-peek-title">
+                        <div class="wi-header">
+                            <div>
+                                <span class="hub-page-eyebrow">สรุปสูตรประจำบท</span>
+                                <h3 id="ga-peek-title" style="margin:2px 0 0;">สูตร & กฎสำคัญ</h3>
+                            </div>
+                            <button type="button" id="btn-ga-peek-close" class="dict-clear-btn" aria-label="ปิดหน้าต่างสูตร">✕</button>
+                        </div>
+                        <div id="ga-peek-body" class="ga-peek-body"></div>
+                        <div style="margin-top:14px; text-align:right;">
+                            <button type="button" id="btn-ga-peek-done" class="btn btn-primary glass-btn btn-sm">กลับไปทำโจทย์ต่อ</button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -2232,6 +2367,10 @@
                         <strong>⚔️ ปราบคำสับสน</strong>
                         <small>แยกคำคู่แฝดที่ใช้ผิดบ่อย</small>
                     </button>
+                    <button type="button" class="quiz-mode-card is-special-grammar" data-quiz-mode="grammar">
+                        <strong>📘 เรียน Grammar จาก 0</strong>
+                        <small>อ่านสูตร + ลองทำโจทย์จริง</small>
+                    </button>
                 </div>
                 <input type="hidden" id="quiz-mode-input" value="choice">
             </div>
@@ -2477,6 +2616,7 @@
     <div id="toast-stack" class="toast-stack" aria-live="polite" aria-label="การแจ้งเตือน"></div>
 
     <script defer src="data.js"></script>
+    <script defer src="grammar-data.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script defer src="script.js"></script>
 </body>
