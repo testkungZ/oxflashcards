@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oxflashcards-v375';
+const CACHE_NAME = 'oxflashcards-v376';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ const STATIC_ASSETS = [
   './script.js',
   './data.js',
   './grammar-data.js',
+  './grammar-curriculum-v2.js',
   './grammar-exam-data.js',
   './manifest.json'
 ];

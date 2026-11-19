@@ -1724,5 +1724,411 @@ const GRAMMAR_EXAM_BANK = [
     answerIndex: 2,
     spokenEn: 'According to the facility brochure, there are three charging stations in the underground garage.',
     explanationTh: 'การบอกว่า "มี..." (การมีอยู่ของสิ่งของในสถานที่) ในภาษาอังกฤษต้องใช้ There is / There are (ตามด้วยคำนามพหูพจน์ stations จึงใช้ there are) ไม่ใช่ it has หรือ there have'
+  },
+
+  /* ===================== 7 NEW BRIDGE LESSONS EXAM BANK (ex091–ex111 · 21 Questions) ===================== */
+
+  // --- g02b: Demonstratives & Quantifiers ---
+  {
+    id: 'ex091',
+    lessonId: 'g02b',
+    phase: 'phase1',
+    cefr: 'A2',
+    part: 'completion',
+    examStyle: 'TOEIC Part 5',
+    promptTh: 'เลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามหลักไวยากรณ์',
+    sentence: 'Because the logistics team had very ___ information about the delay, they could not estimate the arrival time.',
+    options: ['few', 'many', 'little', 'several'],
+    answerIndex: 2,
+    spokenEn: 'Because the logistics team had very little information about the delay, they could not estimate the arrival time.',
+    explanationTh: 'information เป็นคำนามนับไม่ได้ และบริบทแง่ลบ (จึงคาดคะเนเวลาไม่ได้) ต้องใช้ little ไม่ใช่ few/many/several'
+  },
+  {
+    id: 'ex092',
+    lessonId: 'g02b',
+    phase: 'phase1',
+    cefr: 'A1',
+    part: 'error_id',
+    examStyle: 'CU-TEP Error ID',
+    promptTh: 'ระบุส่วนที่ขีดเส้นใต้ (A, B, C หรือ D) ที่มีข้อผิดพลาดทางไวยากรณ์',
+    segments: [
+      { label: 'A', text: 'This' },
+      { text: ' ceramic mugs ' },
+      { label: 'B', text: 'on the display shelf' },
+      { text: ' were ' },
+      { label: 'C', text: 'handcrafted' },
+      { text: ' by artisans ' },
+      { label: 'D', text: 'in Lampang' },
+      { text: '.' }
+    ],
+    options: ['This', 'on the display shelf', 'handcrafted', 'in Lampang'],
+    answerIndex: 0,
+    correctionText: 'This → These',
+    spokenEn: 'These ceramic mugs on the display shelf were handcrafted by artisans in Lampang.',
+    explanationTh: 'ceramic mugs เป็นคำนามพหูพจน์และใช้กริยา were จึงต้องใช้คำชี้เฉพาะพหูพจน์คือ These แทน This'
+  },
+  {
+    id: 'ex093',
+    lessonId: 'g02b',
+    phase: 'phase1',
+    cefr: 'A2',
+    part: 'passage',
+    examStyle: 'TOEIC Part 6',
+    passageTitle: 'Catering Confirmation',
+    promptTh: 'อ่านข้อความสั้นด้านล่าง แล้วเลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามบริบท',
+    passageEn: 'We have prepared vegetarian sandwiches and pastries for the workshop. Would you like ___ herbal tea sent to the boardroom before the afternoon session starts?',
+    options: ['any', 'some', 'many', 'few'],
+    answerIndex: 1,
+    spokenEn: 'Would you like some herbal tea sent to the boardroom before the afternoon session starts?',
+    explanationTh: 'ประโยคเสนอ/เชิญชวนอย่างสุภาพ (Would you like...?) ใช้ some ไม่ใช่ any (และ herbal tea เป็นนามนับไม่ได้จึงใช้ many/few ไม่ได้)'
+  },
+
+  // --- g06b: Yes/No & Wh-Questions ---
+  {
+    id: 'ex094',
+    lessonId: 'g06b',
+    phase: 'phase1',
+    cefr: 'A2',
+    part: 'completion',
+    examStyle: 'TGAT Grammar',
+    promptTh: 'เลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามหลักไวยากรณ์',
+    sentence: '___ authorized the emergency maintenance shutdown last midnight?',
+    options: ['Who did', 'Who', 'Whom did', 'Whose'],
+    answerIndex: 1,
+    spokenEn: 'Who authorized the emergency maintenance shutdown last midnight?',
+    explanationTh: 'ถามหาตัวผู้กระทำ (ประธาน) โดยตามด้วยกริยาอดีต authorized ทันที จึงใช้ Who ตัวเดียวโดยไม่ต้องใส่ did'
+  },
+  {
+    id: 'ex095',
+    lessonId: 'g06b',
+    phase: 'phase1',
+    cefr: 'A2',
+    part: 'error_id',
+    examStyle: 'A-Level Error ID',
+    promptTh: 'ระบุส่วนที่ขีดเส้นใต้ (A, B, C หรือ D) ที่มีข้อผิดพลาดทางไวยากรณ์',
+    segments: [
+      { label: 'A', text: 'How often' },
+      { text: ' does the quality team ' },
+      { label: 'B', text: 'inspects' },
+      { text: ' the cold-storage units ' },
+      { label: 'C', text: 'at' },
+      { text: ' the ' },
+      { label: 'D', text: 'central depot' },
+      { text: '?' }
+    ],
+    options: ['How often', 'inspects', 'at', 'central depot'],
+    answerIndex: 1,
+    correctionText: 'inspects → inspect',
+    spokenEn: 'How often does the quality team inspect the cold-storage units at the central depot?',
+    explanationTh: 'มีกริยาช่วย does อยู่หน้าประธานแล้ว กริยาแท้ต้องกลับเป็นรูปฐาน V1 คือ inspect ไม่เติม -s'
+  },
+  {
+    id: 'ex096',
+    lessonId: 'g06b',
+    phase: 'phase1',
+    cefr: 'A2',
+    part: 'structure',
+    examStyle: 'TGAT Grammar',
+    promptTh: 'เลือกประโยคที่ถูกต้องตามหลักไวยากรณ์สมบูรณ์ที่สุด',
+    sentence: '',
+    options: [
+      'How long does it takes to reach the ferry pier from here?',
+      'How long does it take to reach the ferry pier from here?',
+      'How far does it take to reach the ferry pier from here?',
+      'How long it takes to reach the ferry pier from here?'
+    ],
+    answerIndex: 1,
+    spokenEn: 'How long does it take to reach the ferry pier from here?',
+    explanationTh: 'ถามระยะเวลาใช้ How long + does + it + take (V1 ไม่เติม -s) + to V1'
+  },
+
+  // --- g16b: 12 Tenses Contrast ---
+  {
+    id: 'ex097',
+    lessonId: 'g16b',
+    phase: 'phase2',
+    cefr: 'B1',
+    part: 'completion',
+    examStyle: 'TOEIC Part 5',
+    promptTh: 'เลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามหลักไวยากรณ์',
+    sentence: 'Our customer service desk ___ over three hundred tickets since the software upgrade went live.',
+    options: ['resolved', 'has resolved', 'resolves', 'was resolving'],
+    answerIndex: 1,
+    spokenEn: 'Our customer service desk has resolved over three hundred tickets since the software upgrade went live.',
+    explanationTh: 'มี since + อดีต (went live) และเน้นจำนวนงานที่ทำเสร็จจนถึงตอนนี้ จึงใช้ Present Perfect: has resolved'
+  },
+  {
+    id: 'ex098',
+    lessonId: 'g16b',
+    phase: 'phase2',
+    cefr: 'B2',
+    part: 'error_id',
+    examStyle: 'CU-TEP Error ID',
+    promptTh: 'ระบุส่วนที่ขีดเส้นใต้ (A, B, C หรือ D) ที่มีข้อผิดพลาดทางไวยากรณ์',
+    segments: [
+      { text: 'Our regional distributor ' },
+      { label: 'A', text: 'has signed' },
+      { text: ' the exclusive supply agreement ' },
+      { label: 'B', text: 'in' },
+      { text: ' ' },
+      { label: 'C', text: 'November 2022' },
+      { text: ' before expanding ' },
+      { label: 'D', text: 'nationwide' },
+      { text: '.' }
+    ],
+    options: ['has signed', 'in', 'November 2022', 'nationwide'],
+    answerIndex: 0,
+    correctionText: 'has signed → signed',
+    spokenEn: 'Our regional distributor signed the exclusive supply agreement in November 2022 before expanding nationwide.',
+    explanationTh: 'ระบุเวลาอดีตที่จบลงชัดเจน (in November 2022) จึงต้องใช้ Past Simple (signed) ห้ามใช้ Present Perfect (has signed)'
+  },
+  {
+    id: 'ex099',
+    lessonId: 'g16b',
+    phase: 'phase2',
+    cefr: 'B2',
+    part: 'passage',
+    examStyle: 'TOEIC Part 6',
+    passageTitle: 'Warehouse Relocation Schedule',
+    promptTh: 'อ่านข้อความสั้นด้านล่าง แล้วเลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามบริบท',
+    passageEn: 'The moving trucks are scheduled to arrive at dawn on Saturday. By 6:00 p.m. that evening, the crew ___ all shelving units to the new facility.',
+    options: ['relocates', 'will have relocated', 'has relocated', 'relocated'],
+    answerIndex: 1,
+    spokenEn: 'By 6:00 p.m. that evening, the crew will have relocated all shelving units to the new facility.',
+    explanationTh: 'By + เวลาในอนาคต (By 6:00 p.m. that evening) แสดงว่าการย้ายจะเสร็จสิ้นก่อนเวลานั้น ใช้ Future Perfect: will have relocated'
+  },
+
+  // --- g19b: Dependent Prepositions ---
+  {
+    id: 'ex100',
+    lessonId: 'g19b',
+    phase: 'phase2',
+    cefr: 'B1',
+    part: 'completion',
+    examStyle: 'TOEIC Part 5',
+    promptTh: 'เลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามหลักไวยากรณ์',
+    sentence: 'The final approval of the construction permit depends entirely ___ the environmental impact assessment.',
+    options: ['with', 'for', 'on', 'in'],
+    answerIndex: 2,
+    spokenEn: 'The final approval of the construction permit depends entirely on the environmental impact assessment.',
+    explanationTh: 'depend คู่กับบุพบท on เสมอ (depend on = ขึ้นอยู่กับ)'
+  },
+  {
+    id: 'ex101',
+    lessonId: 'g19b',
+    phase: 'phase2',
+    cefr: 'B2',
+    part: 'error_id',
+    examStyle: 'A-Level Error ID',
+    promptTh: 'ระบุส่วนที่ขีดเส้นใต้ (A, B, C หรือ D) ที่มีข้อผิดพลาดทางไวยากรณ์',
+    segments: [
+      { text: 'Several senior engineers ' },
+      { label: 'A', text: 'objected to' },
+      { text: ' ' },
+      { label: 'B', text: 'shorten' },
+      { text: ' the safety testing phase ' },
+      { label: 'C', text: 'by' },
+      { text: ' two ' },
+      { label: 'D', text: 'weeks' },
+      { text: '.' }
+    ],
+    options: ['objected to', 'shorten', 'by', 'weeks'],
+    answerIndex: 1,
+    correctionText: 'shorten → shortening',
+    spokenEn: 'Several senior engineers objected to shortening the safety testing phase by two weeks.',
+    explanationTh: 'to ใน object to เป็นบุพบท ต้องตามด้วย Gerund (V-ing) คือ shortening ไม่ใช่ V1'
+  },
+  {
+    id: 'ex102',
+    lessonId: 'g19b',
+    phase: 'phase2',
+    cefr: 'B1',
+    part: 'passage',
+    examStyle: 'TOEIC Part 6',
+    passageTitle: 'Onboarding Handbook',
+    promptTh: 'อ่านข้อความสั้นด้านล่าง แล้วเลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามบริบท',
+    passageEn: 'Every regional coordinator is responsible ___ submitting a weekly inventory summary before Friday noon. Late reports may delay restocking.',
+    options: ['to', 'with', 'for', 'at'],
+    answerIndex: 2,
+    spokenEn: 'Every regional coordinator is responsible for submitting a weekly inventory summary before Friday noon.',
+    explanationTh: 'responsible คู่กับบุพบท for + V-ing (รับผิดชอบในการทำ...)'
+  },
+
+  // --- g21b: Conjunctions & Transitions ---
+  {
+    id: 'ex103',
+    lessonId: 'g21b',
+    phase: 'phase3',
+    cefr: 'B2',
+    part: 'completion',
+    examStyle: 'TOEIC Part 5',
+    promptTh: 'เลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามหลักไวยากรณ์',
+    sentence: '___ the steep rise in raw material costs, the bakery kept its retail prices unchanged.',
+    options: ['Although', 'Even though', 'In spite of', 'Whereas'],
+    answerIndex: 2,
+    spokenEn: 'In spite of the steep rise in raw material costs, the bakery kept its retail prices unchanged.',
+    explanationTh: 'หลังช่องว่างเป็นวลีนาม (the steep rise in raw material costs — ไม่มีกริยาแท้) จึงต้องใช้ Prepositional Connector คือ In spite of'
+  },
+  {
+    id: 'ex104',
+    lessonId: 'g21b',
+    phase: 'phase3',
+    cefr: 'B2',
+    part: 'error_id',
+    examStyle: 'CU-TEP Error ID',
+    promptTh: 'ระบุส่วนที่ขีดเส้นใต้ (A, B, C หรือ D) ที่มีข้อผิดพลาดทางไวยากรณ์',
+    segments: [
+      { label: 'A', text: 'Because of' },
+      { text: ' the ferry schedule ' },
+      { label: 'B', text: 'was disrupted' },
+      { text: ' by strong winds, many tourists ' },
+      { label: 'C', text: 'stayed' },
+      { text: ' an extra night ' },
+      { label: 'D', text: 'on the island' },
+      { text: '.' }
+    ],
+    options: ['Because of', 'was disrupted', 'stayed', 'on the island'],
+    answerIndex: 0,
+    correctionText: 'Because of → Because',
+    spokenEn: 'Because the ferry schedule was disrupted by strong winds, many tourists stayed an extra night on the island.',
+    explanationTh: 'ข้างหลังมีประธานและกริยาแท้ (the ferry schedule was disrupted) จึงต้องใช้ Conjunction คือ Because ไม่ใช่ Because of'
+  },
+  {
+    id: 'ex105',
+    lessonId: 'g21b',
+    phase: 'phase3',
+    cefr: 'B2',
+    part: 'structure',
+    examStyle: 'A-Level Structure',
+    promptTh: 'เลือกประโยคที่ถูกต้องตามหลักไวยากรณ์สมบูรณ์ที่สุด',
+    sentence: '',
+    options: [
+      'The new train is quiet, however, tickets sell out quickly.',
+      'The new train is quiet; however, tickets sell out quickly.',
+      'Despite the new train is quiet, tickets sell out quickly.',
+      'Although the new train is quiet, but tickets sell out quickly.'
+    ],
+    answerIndex: 1,
+    spokenEn: 'The new train is quiet; however, tickets sell out quickly.',
+    explanationTh: 'however เป็น Transition Adverb ต้องคั่นประโยคอิสระสองประโยคด้วยอัฒภาค (;) หรือมหัพภาค (.) ตามด้วย comma'
+  },
+
+  // --- g27b: Participle Clauses & Reduced Clauses ---
+  {
+    id: 'ex106',
+    lessonId: 'g27b',
+    phase: 'phase3',
+    cefr: 'B2',
+    part: 'completion',
+    examStyle: 'TOEIC Part 5',
+    promptTh: 'เลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามหลักไวยากรณ์',
+    sentence: '___ in 2012 as a small family workshop, the studio now exports ceramics to thirty countries.',
+    options: ['Establishing', 'Established', 'To establish', 'Having establishing'],
+    answerIndex: 1,
+    spokenEn: 'Established in 2012 as a small family workshop, the studio now exports ceramics to thirty countries.',
+    explanationTh: 'ประธานหลัง comma คือ the studio ซึ่ง "ถูกก่อตั้งขึ้น" (Passive) จึงต้องลดรูป Participle Clause ด้วย V3 คือ Established'
+  },
+  {
+    id: 'ex107',
+    lessonId: 'g27b',
+    phase: 'phase3',
+    cefr: 'C1',
+    part: 'error_id',
+    examStyle: 'CU-TEP Error ID',
+    promptTh: 'ระบุส่วนที่ขีดเส้นใต้ (A, B, C หรือ D) ที่มีข้อผิดพลาดทางไวยากรณ์',
+    segments: [
+      { text: 'All invoices ' },
+      { label: 'A', text: 'approving' },
+      { text: ' by the finance controller ' },
+      { label: 'B', text: 'are processed' },
+      { text: ' ' },
+      { label: 'C', text: 'automatically' },
+      { text: ' every ' },
+      { label: 'D', text: 'Wednesday' },
+      { text: '.' }
+    ],
+    options: ['approving', 'are processed', 'automatically', 'Wednesday'],
+    answerIndex: 0,
+    correctionText: 'approving → approved',
+    spokenEn: 'All invoices approved by the finance controller are processed automatically every Wednesday.',
+    explanationTh: 'ใบแจ้งหนี้ (invoices) เป็นผู้ "ถูกอนุมัติ" (มี by the finance controller) จึงต้องลดรูป Relative Clause ด้วย V3 คือ approved'
+  },
+  {
+    id: 'ex108',
+    lessonId: 'g27b',
+    phase: 'phase3',
+    cefr: 'C1',
+    part: 'structure',
+    examStyle: 'IELTS Grammar',
+    promptTh: 'เลือกประโยคที่ถูกต้องตามหลักไวยากรณ์สมบูรณ์ที่สุด',
+    sentence: '',
+    options: [
+      'Reviewing the final blueprints, a critical measurement error was noticed.',
+      'Reviewing the final blueprints, the lead architect noticed a critical measurement error.',
+      'Having reviewed the final blueprints, the construction budget became clearer.',
+      'Reviewed the final blueprints, the lead architect spotted a measurement error.'
+    ],
+    answerIndex: 1,
+    spokenEn: 'Reviewing the final blueprints, the lead architect noticed a critical measurement error.',
+    explanationTh: 'ประธานหลัง comma ต้องเป็นผู้ที่กำลังตรวจแบบแปลนจริง (the lead architect) เพื่อหลีกเลี่ยง Dangling Participle'
+  },
+
+  // --- g29b: Subjunctive, Cleft Sentences & Inversion ---
+  {
+    id: 'ex109',
+    lessonId: 'g29b',
+    phase: 'phase3',
+    cefr: 'C1',
+    part: 'completion',
+    examStyle: 'A-Level Structure',
+    promptTh: 'เลือกคำหรือวลีที่เติมลงในช่องว่างได้ถูกต้องตามหลักไวยากรณ์',
+    sentence: 'The safety committee insisted that every contractor ___ the updated protocol before entering the site.',
+    options: ['signs', 'signed', 'sign', 'signing'],
+    answerIndex: 2,
+    spokenEn: 'The safety committee insisted that every contractor sign the updated protocol before entering the site.',
+    explanationTh: 'หลัง insist that + ประธาน ใช้ Mandative Subjunctive กริยารูปฐาน V1 เสมอคือ sign (ไม่เติม -s แม้ประธานเป็นเอกพจน์)'
+  },
+  {
+    id: 'ex110',
+    lessonId: 'g29b',
+    phase: 'phase3',
+    cefr: 'C1',
+    part: 'error_id',
+    examStyle: 'CU-TEP Error ID',
+    promptTh: 'ระบุส่วนที่ขีดเส้นใต้ (A, B, C หรือ D) ที่มีข้อผิดพลาดทางไวยากรณ์',
+    segments: [
+      { label: 'A', text: 'Seldom' },
+      { text: ' ' },
+      { label: 'B', text: 'the museum has' },
+      { text: ' displayed such a ' },
+      { label: 'C', text: 'well-preserved' },
+      { text: ' collection of ' },
+      { label: 'D', text: 'ancient textiles' },
+      { text: '.' }
+    ],
+    options: ['Seldom', 'the museum has', 'well-preserved', 'ancient textiles'],
+    answerIndex: 1,
+    correctionText: 'the museum has → has the museum',
+    spokenEn: 'Seldom has the museum displayed such a well-preserved collection of ancient textiles.',
+    explanationTh: 'ขึ้นต้นประโยคด้วยคำเชิงปฏิเสธ Seldom ต้องใช้ Negative Inversion สลับกริยาช่วยไว้หน้าประธาน: has the museum'
+  },
+  {
+    id: 'ex111',
+    lessonId: 'g29b',
+    phase: 'phase3',
+    cefr: 'C1',
+    part: 'structure',
+    examStyle: 'IELTS Grammar',
+    promptTh: 'เลือกประโยคที่ถูกต้องตามหลักไวยากรณ์สมบูรณ์ที่สุด',
+    sentence: '',
+    options: [
+      'No sooner the keynote ended than the delegates rushed to the exhibition hall.',
+      'No sooner had the keynote ended when the delegates rushed to the exhibition hall.',
+      'No sooner had the keynote ended than the delegates rushed to the exhibition hall.',
+      'Hardly had the keynote ended than the delegates rushed to the exhibition hall.'
+    ],
+    answerIndex: 2,
+    spokenEn: 'No sooner had the keynote ended than the delegates rushed to the exhibition hall.',
+    explanationTh: 'สูตร Inversion ที่ถูกต้องคือ No sooner + had + S + V3 + than + S + V2 (ส่วน Hardly คู่กับ when)'
   }
 ];

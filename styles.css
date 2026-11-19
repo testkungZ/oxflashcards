@@ -21407,6 +21407,167 @@ body.dark-theme .ga-exam-rev-user.is-err strong { color: #f87171; }
 .ga-sum-review-item.is-exam-ok { border-left: 3.5px solid #10b981; }
 .ga-sum-review-item.is-exam-err { border-left: 3.5px solid #ef4444; }
 
+/* =========================================================
+ * Grammar Study 2.0: Concept, Step-by-Step, Compare & Checklist
+ * ========================================================= */
+.ga-concept-card {
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.06));
+    border: 1px solid rgba(37, 99, 235, 0.22);
+    border-left: 4px solid #2563eb;
+}
+body.dark-theme .ga-concept-card {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(14, 165, 233, 0.1));
+    border-color: rgba(96, 165, 250, 0.28);
+    border-left-color: #60a5fa;
+}
+.ga-concept-body {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: var(--text-primary);
+}
+
+.ga-steps-card {
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.76);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+}
+body.dark-theme .ga-steps-card {
+    background: rgba(30, 41, 59, 0.68);
+    border-color: rgba(148, 163, 184, 0.18);
+}
+.ga-steps-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.ga-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(148, 163, 184, 0.08);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+}
+body.dark-theme .ga-step-item {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(148, 163, 184, 0.16);
+}
+.ga-step-num {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #2563eb, #0ea5e9);
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+}
+.ga-step-body {
+    flex: 1;
+    min-width: 0;
+}
+.ga-step-title {
+    display: block;
+    font-size: 0.96rem;
+    margin-bottom: 4px;
+}
+.ga-step-detail {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+.ga-step-mini-ex {
+    margin-top: 6px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    background: rgba(37, 99, 235, 0.08);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+body.dark-theme .ga-step-mini-ex {
+    background: rgba(59, 130, 246, 0.16);
+}
+
+.ga-compare-box {
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.76);
+    border: 1px solid rgba(139, 92, 246, 0.26);
+}
+body.dark-theme .ga-compare-box {
+    background: rgba(30, 41, 59, 0.68);
+    border-color: rgba(167, 139, 250, 0.28);
+}
+.ga-compare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+.ga-compare-col {
+    padding: 13px 14px;
+    border-radius: 14px;
+    background: rgba(139, 92, 246, 0.07);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+}
+body.dark-theme .ga-compare-col {
+    background: rgba(139, 92, 246, 0.14);
+    border-color: rgba(167, 139, 250, 0.22);
+}
+.ga-compare-head {
+    font-size: 0.94rem;
+    font-weight: 800;
+    color: #6d28d9;
+    margin-bottom: 6px;
+}
+body.dark-theme .ga-compare-head { color: #c4b5fd; }
+.ga-compare-desc {
+    margin: 0 0 8px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+.ga-compare-ex {
+    padding: 6px 9px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.72);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+body.dark-theme .ga-compare-ex {
+    background: rgba(15, 23, 42, 0.58);
+}
+
+.ga-checklist-card {
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.06));
+    border: 1px solid rgba(16, 185, 129, 0.28);
+}
+body.dark-theme .ga-checklist-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(5, 150, 105, 0.1));
+    border-color: rgba(52, 211, 153, 0.3);
+}
+.ga-checklist-items {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.94rem;
+    line-height: 1.65;
+}
+
 @media (max-width: 760px) {
     .modal-overlay.ga-peek-overlay {
         align-items: flex-end;
