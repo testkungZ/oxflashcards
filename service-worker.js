@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oxflashcards-v372';
+const CACHE_NAME = 'oxflashcards-v375';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ const STATIC_ASSETS = [
   './script.js',
   './data.js',
   './grammar-data.js',
+  './grammar-exam-data.js',
   './manifest.json'
 ];
 const CHART_JS_URL = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js';

@@ -1545,24 +1545,53 @@
                     </div>
 
                     <div class="ga-hero">
-                        <div class="ga-hero-text">
-                            <span class="hub-page-eyebrow">Grammar Academy · Zero to Mastery</span>
-                            <h2>เรียน Grammar ครบวงจรจาก 0</h2>
-                            <p>อ่านสรุปสูตรเข้าใจง่าย ฟังเสียงตัวอย่างจริง แล้วลองทำโจทย์ทีละบทแบบไม่สับสน</p>
-                        </div>
-                        <div class="ga-hero-actions">
-                            <button type="button" id="btn-ga-continue" class="btn btn-primary glass-btn">📖 เริ่มเรียนบทที่ 1</button>
-                            <div class="ga-mixed-control">
-                                <select id="ga-mixed-scope" class="glass-select ga-mixed-select" aria-label="ขอบเขตการสุ่มทดสอบ Grammar">
-                                    <option value="all">🎲 สุ่มทุกบท (30 บท · 10 ข้อ)</option>
-                                    <option value="phase1">🌱 Phase 1: พื้นฐานจาก 0</option>
-                                    <option value="phase2">⚡ Phase 2: 12 Tenses & กริยา</option>
-                                    <option value="phase3">🏆 Phase 3: กลาง–สูง & กับดักไทย</option>
-                                    <option value="studied">📘 เฉพาะบทที่อ่านแล้ว</option>
-                                </select>
-                                <button type="button" id="btn-ga-mixed-quiz" class="btn glass-btn">🎯 สุ่มทดสอบ</button>
+                        <div class="ga-hero-main">
+                            <div class="ga-hero-text">
+                                <span class="hub-page-eyebrow">Grammar Academy · Zero to Mastery</span>
+                                <h2>เรียน Grammar ครบวงจรจาก 0</h2>
+                                <p>อ่านสรุปสูตรเข้าใจง่าย ฟังเสียงตัวอย่างจริง แล้วลองทำโจทย์ทีละบทแบบไม่สับสน</p>
                             </div>
-                            <button type="button" id="btn-ga-weak-drill" class="btn glass-btn is-weak-btn" hidden>🔥 ซ่อมข้อที่เคยพลาด (0)</button>
+                            <div class="ga-hero-actions">
+                                <button type="button" id="btn-ga-continue" class="btn btn-primary glass-btn">📖 เริ่มเรียนบทที่ 1</button>
+                                <div class="ga-mixed-control">
+                                    <select id="ga-mixed-scope" class="glass-select ga-mixed-select" aria-label="ขอบเขตการสุ่มทดสอบ Grammar">
+                                        <option value="all">🎲 สุ่มทุกบท (30 บท · 10 ข้อ)</option>
+                                        <option value="phase1">🌱 Phase 1: พื้นฐานจาก 0</option>
+                                        <option value="phase2">⚡ Phase 2: 12 Tenses & กริยา</option>
+                                        <option value="phase3">🏆 Phase 3: กลาง–สูง & กับดักไทย</option>
+                                        <option value="studied">📘 เฉพาะบทที่อ่านแล้ว</option>
+                                    </select>
+                                    <button type="button" id="btn-ga-mixed-quiz" class="btn glass-btn">🎯 สุ่มทดสอบ</button>
+                                </div>
+                                <button type="button" id="btn-ga-open-exam-modal" class="btn glass-btn ga-exam-launch-btn">📝 สอบจริง (Exam)</button>
+                                <button type="button" id="btn-ga-weak-drill" class="btn glass-btn is-weak-btn" hidden>🔥 ซ่อมข้อที่เคยพลาด (0)</button>
+                            </div>
+                        </div>
+                        <div class="ga-hero-telemetry" id="ga-hero-telemetry" aria-label="ภาพรวมความคืบหน้า">
+                            <div class="ga-hero-ring-wrap">
+                                <svg class="ga-hero-ring" viewBox="0 0 84 84" aria-hidden="true">
+                                    <circle class="ga-ring-track" cx="42" cy="42" r="35"></circle>
+                                    <circle class="ga-ring-fill" id="ga-hero-ring-fill" cx="42" cy="42" r="35" stroke-dasharray="219.91" stroke-dashoffset="219.91"></circle>
+                                </svg>
+                                <div class="ga-hero-ring-label">
+                                    <strong id="ga-hero-ring-pct">0%</strong>
+                                    <span>สำเร็จ</span>
+                                </div>
+                            </div>
+                            <div class="ga-hero-stats">
+                                <div class="ga-hero-stat">
+                                    <span class="ga-stat-label">ความแม่นยำเฉลี่ย</span>
+                                    <strong id="ga-hero-avg-acc">—</strong>
+                                </div>
+                                <div class="ga-hero-stat">
+                                    <span class="ga-stat-label">อ่านสรุปแล้ว</span>
+                                    <strong id="ga-hero-studied-cnt">0 / 30 บท</strong>
+                                </div>
+                                <div class="ga-hero-stat" id="ga-hero-exam-stat" hidden>
+                                    <span class="ga-stat-label">คะแนนสอบสูงสุด</span>
+                                    <strong id="ga-hero-exam-best">—</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1596,6 +1625,7 @@
                             </div>
                             <button type="button" id="btn-ga-study-top-drill" class="btn btn-primary glass-btn btn-sm">✍️ ทำโจทย์</button>
                         </div>
+                        <div class="ga-study-read-track" aria-hidden="true"><div id="ga-study-read-fill" class="ga-study-read-fill"></div></div>
                     </header>
 
                     <div class="ga-study-container">
@@ -1622,8 +1652,11 @@
                             </div>
                             <div class="ga-drill-bar"><div id="ga-drill-bar-fill" class="ga-drill-bar-fill"></div></div>
                         </div>
+                        <div id="ga-exam-timer" class="ga-exam-timer" hidden aria-live="off">⏱ 25:00</div>
                         <button type="button" id="btn-ga-peek-formula" class="btn glass-btn btn-sm" title="เปิดดูสูตรสรุปบทนี้ระหว่างทำโจทย์">📖 ดูสูตร</button>
                     </header>
+
+                    <nav id="ga-exam-nav" class="ga-exam-nav" hidden aria-label="แถบนำทางข้อสอบ"></nav>
 
                     <div class="ga-drill-workspace">
                         <div id="ga-drill-stage" class="ga-drill-stage"></div>
@@ -1633,25 +1666,90 @@
                         <div id="ga-drill-actions" class="ga-drill-actions">
                             <button type="button" id="btn-ga-drill-check" class="btn btn-primary glass-btn" disabled>ตรวจคำตอบ</button>
                             <button type="button" id="btn-ga-drill-next" class="btn btn-primary glass-btn" hidden>ข้อถัดไป →</button>
+                            <div id="ga-exam-actions-bar" class="ga-exam-actions-bar" hidden>
+                                <button type="button" id="btn-ga-exam-prev" class="btn glass-btn">← ข้อก่อนหน้า</button>
+                                <button type="button" id="btn-ga-exam-flag" class="btn glass-btn ga-exam-flag-btn" aria-pressed="false">🚩 ปักธง</button>
+                                <button type="button" id="btn-ga-exam-next" class="btn btn-primary glass-btn">ข้อถัดไป →</button>
+                                <button type="button" id="btn-ga-exam-submit" class="btn btn-primary glass-btn ga-exam-submit-btn">📤 ส่งข้อสอบ</button>
+                            </div>
                         </div>
 
                         <div id="ga-drill-summary" class="ga-drill-summary" hidden></div>
                     </div>
                 </div>
 
-                <!-- Quick-Peek Formula Drawer Modal -->
-                <div id="grammar-peek-modal" class="modal-overlay" aria-hidden="true">
+                <!-- Quick-Peek Formula Slide-Over Drawer -->
+                <div id="grammar-peek-modal" class="modal-overlay ga-peek-overlay" aria-hidden="true">
                     <div class="glass-panel modal-panel ga-peek-panel" role="dialog" aria-modal="true" aria-labelledby="ga-peek-title">
-                        <div class="wi-header">
+                        <div class="wi-header ga-peek-head">
                             <div>
-                                <span class="hub-page-eyebrow">สรุปสูตรประจำบท</span>
+                                <span class="hub-page-eyebrow">สรุปสูตรประจำบท · กด F เปิด-ปิด</span>
                                 <h3 id="ga-peek-title" style="margin:2px 0 0;">สูตร & กฎสำคัญ</h3>
                             </div>
                             <button type="button" id="btn-ga-peek-close" class="dict-clear-btn" aria-label="ปิดหน้าต่างสูตร">✕</button>
                         </div>
                         <div id="ga-peek-body" class="ga-peek-body"></div>
-                        <div style="margin-top:14px; text-align:right;">
+                        <div class="ga-peek-foot">
                             <button type="button" id="btn-ga-peek-done" class="btn btn-primary glass-btn btn-sm">กลับไปทำโจทย์ต่อ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grammar Real Exam Setup Modal -->
+                <div id="grammar-exam-modal" class="modal-overlay" aria-hidden="true">
+                    <div class="glass-panel modal-panel ga-exam-modal-panel" role="dialog" aria-modal="true" aria-labelledby="ga-exam-modal-title">
+                        <div class="wi-header">
+                            <div>
+                                <span class="hub-page-eyebrow">Grammar Real Exam · คลังข้อสอบจริง 90 ข้อ</span>
+                                <h3 id="ga-exam-modal-title" style="margin:2px 0 0;">ตั้งค่าการสอบ Grammar</h3>
+                            </div>
+                            <button type="button" id="btn-ga-exam-modal-close" class="dict-clear-btn" aria-label="ปิดหน้าต่างตั้งค่าสอบ">✕</button>
+                        </div>
+                        <div class="ga-exam-bank-badge">✨ ข้อสอบจริง 4 พาร์ต (เติมคำ · จับผิด A/B/C/D · บทความ · โครงสร้างประโยค) ไม่ซ้ำแบบฝึกหัดในบทเรียน</div>
+                        <p class="ga-exam-modal-desc">ไม่มีเฉลยระหว่างทำ ปิดการดูสูตร กดย้อนแก้คำตอบหรือปักธงได้ และตรวจผลละเอียดทุกข้อหลังส่งข้อสอบ</p>
+
+                        <div class="ga-exam-setup-group">
+                            <div class="ga-exam-setup-label">เลือกชุดข้อสอบ</div>
+                            <div class="ga-exam-preset-grid" id="ga-exam-preset-grid">
+                                <button type="button" class="ga-exam-preset-btn active" data-exam-scope="all30">
+                                    <strong>📝 ข้อสอบใหญ่ Grammar (แนะนำ)</strong>
+                                    <span>30 ข้อ · 25 นาที · ครบทุกบท 1–30 (A0–C1)</span>
+                                </button>
+                                <button type="button" class="ga-exam-preset-btn" data-exam-scope="all15">
+                                    <strong>⚡ สอบวัดระดับด่วน</strong>
+                                    <span>15 ข้อ · 12 นาที · สุ่มคละทั้ง 3 เฟส ครบ 4 พาร์ต</span>
+                                </button>
+                                <button type="button" class="ga-exam-preset-btn" data-exam-scope="phase1">
+                                    <strong>🌱 สอบจบ Phase 1 (พื้นฐาน)</strong>
+                                    <span>20 ข้อ · 15 นาที · บทที่ 1–10 (A0–A2)</span>
+                                </button>
+                                <button type="button" class="ga-exam-preset-btn" data-exam-scope="phase2">
+                                    <strong>⚡ สอบจบ Phase 2 (12 Tenses & กริยา)</strong>
+                                    <span>20 ข้อ · 18 นาที · บทที่ 11–19 (A1–B2)</span>
+                                </button>
+                                <button type="button" class="ga-exam-preset-btn" data-exam-scope="phase3">
+                                    <strong>🎓 สอบจบ Phase 3 (กลาง–สูง)</strong>
+                                    <span>20 ข้อ · 20 นาที · บทที่ 20–30 (B1–C1)</span>
+                                </button>
+                                <button type="button" class="ga-exam-preset-btn" data-exam-scope="error_id">
+                                    <strong>🔍 สอบจับผิด A/B/C/D (Error ID)</strong>
+                                    <span>15 ข้อ · 12 นาที · แนวข้อสอบ CU-TEP / A-Level</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="ga-exam-setup-group">
+                            <label class="ga-exam-timed-toggle">
+                                <input type="checkbox" id="ga-exam-timed-checkbox" checked>
+                                <span>⏱ จับเวลาถอยหลังตามเกณฑ์มาตรฐาน (หมดเวลาส่งอัตโนมัติ)</span>
+                            </label>
+                        </div>
+
+                        <div id="ga-exam-history-wrap" class="ga-exam-history-wrap" hidden></div>
+
+                        <div class="ga-exam-modal-foot">
+                            <button type="button" id="btn-ga-exam-modal-cancel" class="btn glass-btn">ยกเลิก</button>
+                            <button type="button" id="btn-ga-exam-start" class="btn btn-primary glass-btn">🚀 เริ่มทำข้อสอบ</button>
                         </div>
                     </div>
                 </div>
@@ -2617,6 +2715,7 @@
 
     <script defer src="data.js"></script>
     <script defer src="grammar-data.js"></script>
+    <script defer src="grammar-exam-data.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script defer src="script.js"></script>
 </body>

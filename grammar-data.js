@@ -156,6 +156,7 @@ const GRAMMAR_LESSONS = [
         sentence: 'คำว่า "between" ทำหน้าที่เป็นคำชนิดใดในประโยคนี้?',
         options: ['Adjective (คำคุณศัพท์)', 'Preposition (คำบุพบท)', 'Conjunction (คำสันธาน)', 'Interjection (คำอุทาน)'],
         answerIndex: 1,
+        spokenEn: 'She placed the cup between two books.',
         explanationTh: 'between อยู่หน้าคำนาม two books เพื่อบอกตำแหน่ง (ระหว่างหนังสือสองเล่ม) จึงเป็น Preposition'
       },
       {
@@ -391,6 +392,7 @@ const GRAMMAR_LESSONS = [
         sentence: "Look! Mark's just arrived at the airport. ในประโยคนี้ 's ย่อมาจากคำใด?",
         options: ['is', 'has', 'was', 'does'],
         answerIndex: 1,
+        spokenEn: "Look! Mark's just arrived at the airport.",
         explanationTh: "ตามด้วย just arrived (V3 = Present Perfect) ดังนั้น Mark's ย่อมาจาก Mark has"
       },
       {
@@ -399,6 +401,7 @@ const GRAMMAR_LESSONS = [
         sentence: "I'd rather stay home tonight than drive in the rain. คำว่า 'd ย่อมาจากคำใด?",
         options: ['did', 'had', 'would', 'could'],
         answerIndex: 2,
+        spokenEn: "I'd rather stay home tonight than drive in the rain.",
         explanationTh: "สำนวน 'd rather + V1 ย่อมาจาก would rather (อยากจะ...มากกว่า)"
       },
       {
@@ -410,7 +413,7 @@ const GRAMMAR_LESSONS = [
         explanationTh: "They're = They are (กำลังวางแผนจะเปิด...) ส่วน Their = ของพวกเขา และ There = ที่นั่น"
       },
       {
-        type: 'cloze',
+        type: 'transform',
         promptTh: 'เลือกประโยคที่ใช้ตัวพิมพ์ใหญ่ (Capitalization) ถูกต้อง 100%',
         sentence: 'ข้อใดใช้ตัวพิมพ์ใหญ่ได้ถูกต้องตามหลักภาษาอังกฤษ?',
         options: [
@@ -482,7 +485,7 @@ const GRAMMAR_LESSONS = [
         explanationTh: 'รูปย่อของ will not เปลี่ยนสระเป็น won’t (ต้องมีเครื่องหมาย apostrophe ด้วย)'
       },
       {
-        type: 'cloze',
+        type: 'transform',
         promptTh: 'เลือกใช้เครื่องหมายจุลภาค (Comma) คั่นรายการ 3 สิ่งและเวลาหน้าประโยค',
         sentence: 'ข้อใดใช้เครื่องหมายวรรคตอนถูกต้องทั้งหมด?',
         options: [
@@ -617,14 +620,16 @@ const GRAMMAR_LESSONS = [
         sentence: 'The bottle holds 1.75 liters. ในภาษาอังกฤษอ่านตัวเลข "1.75" ว่าอย่างไร?',
         options: ['one point seventy-five', 'one point seven five', 'one dot seventy-five', 'one comma seven five'],
         answerIndex: 1,
+        spokenEn: 'The bottle holds one point seven five liters.',
         explanationTh: 'จุดทศนิยมภาษาอังกฤษใช้คำว่า point และตัวเลขหลังจุดต้องอ่านเรียงทีละตัว → one point seven five'
       },
       {
-        type: 'cloze',
+        type: 'transform',
         promptTh: 'เลือกประโยคบอกเวลาที่ใช้ o’clock และ a.m./p.m. ถูกต้อง',
         sentence: 'ข้อใดเขียนเวลา "เก้าโมงเช้า" ได้ถูกต้องไม่ซ้ำซ้อน?',
         options: ["at 9 a.m. o'clock", "at nine o'clock a.m.", "at 9 o'clock", "in 9 o'clock"],
         answerIndex: 2,
+        spokenEn: 'The meeting starts at 9 o\'clock.',
         explanationTh: 'คำว่า o’clock ใช้กับชั่วโมงเต็มเท่านั้น และห้ามใช้ซ้อนกับ a.m. / p.m. พร้อมใช้บุพบท at'
       }
     ]
@@ -1045,7 +1050,7 @@ const GRAMMAR_LESSONS = [
       {
         type: 'cloze',
         promptTh: 'เลือกตัวสะกดที่ถูกต้องเมื่อเติม -ing กับคำที่ลงท้าย -e เงียบ vs -ee',
-        sentence: 'Look! She is ___ a handmade gift for her friend and ___ them off tomorrow.',
+        sentence: 'Look! She is ___ a handmade gift for her friends and ___ them off tomorrow.',
         options: ['makeing / seeing', 'making / seeing', 'making / seing', 'makking / seeing'],
         answerIndex: 1,
         explanationTh: 'make ลงท้าย -e เงียบ ต้องตัด e ออกก่อนเติม -ing (making) ส่วน see ลงท้าย -ee ไม่ตัด e (seeing)'
@@ -1178,6 +1183,7 @@ const GRAMMAR_LESSONS = [
         sentence: 'ประโยคตัวอย่างด้านบนจัดเป็นประโยคชนิดใด?',
         options: ['Simple Sentence', 'Compound Sentence', 'Complex Sentence', 'Question Tag'],
         answerIndex: 2,
+        spokenEn: 'Although it was raining, we finished the marathon.',
         explanationTh: 'มีอนุประโยครองที่ขึ้นต้นด้วย Although (Dependent Clause) + ประโยคหลัก (we finished...) จึงเป็น Complex Sentence'
       },
       {
@@ -1709,7 +1715,7 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดเรื่อง State Verb เติม -ing แล้วเลือกตัวแก้',
-        tokens: ['I', 'am believing', 'that', 'daily', 'practice', 'works', 'best.'],
+        tokens: ['I', 'am believing', 'that', 'daily practice', 'works best.'],
         errorIndex: 1,
         corrections: ['believe', 'believes', 'believed'],
         correctOptionIndex: 0,
@@ -2260,8 +2266,8 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดที่ใช้ will หลังคำเชื่อมเวลา before แล้วเลือกตัวแก้',
-        tokens: ['Please', 'turn', 'off', 'the', 'lights', 'before', 'you', 'will leave.'],
-        errorIndex: 7,
+        tokens: ['Please', 'turn off', 'the lights', 'before you', 'will leave.'],
+        errorIndex: 4,
         corrections: ['leave.', 'leaving.', 'left.'],
         correctOptionIndex: 0,
         explanationTh: 'หลัง before (Time Clause) ห้ามใช้ will → ใช้ Present Simple คือ before you leave'
@@ -2269,8 +2275,8 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะกริยาที่ผันผิดหลัง will have ใน Future Perfect แล้วเลือกตัวแก้',
-        tokens: ['By', '6 p.m.,', 'Dad', 'will', 'have', 'cook', 'dinner', 'for', 'us.'],
-        errorIndex: 5,
+        tokens: ['By 6 p.m.,', 'Dad', 'will have', 'cook', 'dinner', 'for us.'],
+        errorIndex: 3,
         corrections: ['cooked', 'cooking', 'cooks'],
         correctOptionIndex: 0,
         explanationTh: 'โครงสร้าง Future Perfect คือ will have + V3 → cooked'
@@ -2400,7 +2406,7 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดที่ใส่ to หลัง Modal Verb (must / should / can) แล้วเลือกตัวแก้',
-        tokens: ['Everyone', 'must', 'to wear', 'a', 'seatbelt', 'in', 'the', 'car.'],
+        tokens: ['Everyone', 'must', 'to wear', 'a seatbelt', 'in the car.'],
         errorIndex: 2,
         corrections: ['wear', 'wearing', 'worn'],
         correctOptionIndex: 0,
@@ -2541,8 +2547,8 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดหลังคำว่า let (อนุญาต) แล้วเลือกตัวแก้',
-        tokens: ['Please', 'let', 'me', 'to know', 'when', 'you', 'arrive', 'safely.'],
-        errorIndex: 3,
+        tokens: ['Please', 'let me', 'to know', 'when you', 'arrive safely.'],
+        errorIndex: 2,
         corrections: ['know', 'knowing', 'known'],
         correctOptionIndex: 0,
         explanationTh: 'let + กรรม (me) ต้องตามด้วย V1 โดยตรง ห้ามมี to → let me know'
@@ -2567,6 +2573,7 @@ const GRAMMAR_LESSONS = [
           'ฉันกำลังจะไปพบเขาในปี 2022'
         ],
         answerIndex: 1,
+        spokenEn: 'I remember meeting him in 2022.',
         explanationTh: 'remember + V-ing หมายถึง จำได้ว่า "เคยทำสิ่งนั้นไปแล้วในอดีต" (ต่างจาก remember to V1 ที่แปลว่าจำไว้ต้องทำ)'
       },
       {
@@ -2683,8 +2690,8 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะบุพบทที่ใส่เกินหลังคำว่า marry แล้วเลือกตัวแก้',
-        tokens: ['David', 'is', 'going', 'to', 'marry with', 'his', 'college', 'sweetheart.'],
-        errorIndex: 4,
+        tokens: ['David', 'is going to', 'marry with', 'his college', 'sweetheart.'],
+        errorIndex: 2,
         corrections: ['marry', 'marry to', 'marry for'],
         correctOptionIndex: 0,
         explanationTh: 'marry someone ไม่ต้องใส่ with ตามหลัง (ยกเว้นโครงสร้าง get married to someone) → marry his college sweetheart'
@@ -3235,8 +3242,8 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดใน Indirect Question ที่สลับกริยาช่วยผิดตำแหน่ง แล้วเลือกตัวแก้',
-        tokens: ['Could', 'you', 'tell', 'me', 'how', 'much', 'does this jacket cost?'],
-        errorIndex: 6,
+        tokens: ['Could you', 'tell me', 'how much', 'does this jacket cost?'],
+        errorIndex: 3,
         corrections: ['this jacket costs?', 'cost this jacket?', 'is this jacket cost?'],
         correctOptionIndex: 0,
         explanationTh: 'ใน Indirect Question ต้องตัด does ออก แล้วเติม -s ที่กริยาหลัก → how much this jacket costs?'
@@ -3244,7 +3251,7 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดในประโยคคำสั่ง (Imperative) แล้วเลือกตัวแก้',
-        tokens: ['Please', 'not to', 'forget', 'your', 'passport', 'at', 'the', 'counter.'],
+        tokens: ['Please', 'not to', 'forget', 'your passport', 'at the counter.'],
         errorIndex: 1,
         corrections: ["don't", 'never to', 'no'],
         correctOptionIndex: 0,
@@ -3393,9 +3400,9 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะคำที่ใช้ Passive ผิดรูปกับกริยา occur แล้วเลือกตัวแก้',
-        tokens: ['Nobody', 'knows', 'exactly', 'how', 'the', 'glitch', 'was occurred.'],
-        errorIndex: 6,
-        corrections: ['occurred.', 'is occurred.', 'had been occurred.'],
+        tokens: ['Nobody knows', 'exactly how', 'the glitch', 'was occurred', 'last night.'],
+        errorIndex: 3,
+        corrections: ['occurred', 'is occurred', 'had been occurred'],
         correctOptionIndex: 0,
         explanationTh: 'occur (เกิดขึ้น) เป็นกริยาไม่ต้องการกรรม ใช้เป็น Passive ไม่ได้ ต้องตัด was ออกเหลือ occurred'
       },
@@ -3524,8 +3531,8 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะคำที่ใช้ will ผิดในฝั่ง If-Clause แล้วเลือกตัวแก้',
-        tokens: ['If', 'she', 'will call', 'tonight,', 'please', 'take', 'a', 'message.'],
-        errorIndex: 2,
+        tokens: ['If she', 'will call', 'tonight,', 'please take', 'a message.'],
+        errorIndex: 1,
         corrections: ['calls', 'calling', 'called'],
         correctOptionIndex: 0,
         explanationTh: 'ในประโยคเงื่อนไข Type 1 ห้ามใส่ will หลัง If → ใช้ Present Simple (calls)'
@@ -3533,11 +3540,11 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดเรื่อง Double Negative หลัง unless แล้วเลือกตัวแก้',
-        tokens: ['Unless', 'you', "don't practice", 'regularly,', 'you', 'will', 'forget', 'quickly.'],
-        errorIndex: 2,
+        tokens: ['Unless you', "don't practice", 'every day,', 'you will', 'forget quickly.'],
+        errorIndex: 1,
         corrections: ['practice', 'not practice', "didn't practice"],
         correctOptionIndex: 0,
-        explanationTh: 'unless แปลว่า "ถ้าไม่..." จึงห้ามใส่ don’t ซ้อน → Unless you practice regularly...'
+        explanationTh: 'unless แปลว่า "ถ้าไม่..." จึงห้ามใส่ don’t ซ้อน → Unless you practice every day...'
       },
       {
         type: 'transform',
@@ -3674,9 +3681,9 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดที่ใช้ to หลัง would rather ... than แล้วเลือกตัวแก้',
-        tokens: ['Actually,', 'I', 'would', 'rather', 'stay', 'home', 'than', 'to go', 'out.'],
-        errorIndex: 7,
-        corrections: ['go', 'going', 'went'],
+        tokens: ['Actually, I', 'would rather', 'stay home', 'than', 'to go out.'],
+        errorIndex: 4,
+        corrections: ['go out.', 'going out.', 'went out.'],
         correctOptionIndex: 0,
         explanationTh: 'โครงสร้าง I would rather + V1 + than + V1 (ห้ามใส่ to ทั้งหน้าและหลัง than) → stay home than go out'
       },
@@ -3969,7 +3976,7 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดใน Reported Question ที่เรียงกริยาแบบคำถามตรง แล้วเลือกตัวแก้',
-        tokens: ['He', 'asked', 'where', 'was the nearest bus stop.'],
+        tokens: ['A new student', 'just asked us', 'where in town', 'was the nearest bus stop.'],
         errorIndex: 3,
         corrections: ['the nearest bus stop was.', 'is the nearest bus stop.', 'had been the nearest bus stop.'],
         correctOptionIndex: 0,
@@ -4113,7 +4120,7 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดที่ใช้ Despite คู่กับ of แล้วเลือกตัวแก้',
-        tokens: ['Despite of', 'the', 'chilly', 'wind,', 'we', 'walked', 'along', 'the', 'pier.'],
+        tokens: ['Despite of', 'the chilly wind,', 'we walked', 'along the pier.'],
         errorIndex: 0,
         corrections: ['Despite', 'In spite', 'Although'],
         correctOptionIndex: 0,
@@ -4265,8 +4272,8 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะคำเชื่อมที่ซ้อนเกินในประโยค Because...so แล้วเลือกตัวแก้',
-        tokens: ['Because', 'his', 'alarm', 'did', 'not', 'ring,', 'so he', 'overslept.'],
-        errorIndex: 6,
+        tokens: ['Because', 'his alarm', 'did not ring,', 'so he', 'overslept today.'],
+        errorIndex: 3,
         corrections: ['he', 'therefore he', 'but he'],
         correctOptionIndex: 0,
         explanationTh: 'มี Because อยู่ข้างหน้าแล้ว ห้ามมี so นำหน้าประโยคผลลัพธ์ → ใช้แค่ he overslept'
@@ -4274,9 +4281,9 @@ const GRAMMAR_LESSONS = [
       {
         type: 'error',
         promptTh: 'แตะจุดผิดที่ใส่ to หน้าคำว่า home / abroad แล้วเลือกตัวแก้',
-        tokens: ['After', 'finishing', 'this', 'lesson,', 'I', 'will', 'go', 'to home.'],
-        errorIndex: 7,
-        corrections: ['home.', 'at home.', 'in home.'],
+        tokens: ['After finishing', 'this lesson,', 'I will go', 'to home', 'right away.'],
+        errorIndex: 3,
+        corrections: ['home', 'at home', 'in home'],
         correctOptionIndex: 0,
         explanationTh: 'home ในความหมาย "กลับบ้าน" ทำหน้าที่เป็น Adverb of Place จึงห้ามใส่ to (พูดว่า go home)'
       },

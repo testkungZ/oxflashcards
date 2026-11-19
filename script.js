@@ -1673,6 +1673,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (prevScreen && prevScreen !== name && !FOCUS_SCREENS.has(prevScreen)) {
       screenScrollMap[prevScreen] = window.scrollY || 0;
     }
+    if (prevScreen === 'grammar-academy' && name !== 'grammar-academy' && typeof clearGrammarExamTimer === 'function') {
+      clearGrammarExamTimer();
+    }
     const prevCat = typeof navCategoryForScreen === 'function' ? navCategoryForScreen(prevScreen) : 'learn';
     const nextCat = typeof navCategoryForScreen === 'function' ? navCategoryForScreen(name) : 'learn';
     const prevOrd = NAV_ORDER.indexOf(prevCat);
@@ -10436,6 +10439,22 @@ document.addEventListener('DOMContentLoaded', () => {
             popover.hidden = true;
             stageBody.querySelectorAll('.hint-word-btn.is-active').forEach(b => b.classList.remove('is-active'));
         };
+        const isStudySheet = stageBody.id === 'ga-study-content' || stageBody.classList.contains('ga-study-content');
+        let popOpenedAt = 0;
+        let popOpenedScrollY = 0;
+        if (isStudySheet && !stageBody.dataset.gaScrollWired) {
+            stageBody.dataset.gaScrollWired = '1';
+            window.addEventListener('scroll', () => {
+                const openPop = stageBody.querySelector('.lesson-word-hint-popover:not([hidden])');
+                if (!openPop) return;
+                const ts = Number(openPop.dataset.openedAt || 0);
+                const sy = Number(openPop.dataset.openedScrollY || 0);
+                if (Date.now() - ts > 220 && Math.abs(window.scrollY - sy) > 20) {
+                    openPop.hidden = true;
+                    stageBody.querySelectorAll('.hint-word-btn.is-active').forEach(b => b.classList.remove('is-active'));
+                }
+            }, { passive: true });
+        }
 
         stageBody.querySelectorAll('.hint-word-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -10459,6 +10478,10 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <button type="button" class="glass-btn-icon small hint-pop-speak" aria-label="ฟังเสียงคำนี้">🔊</button>
         `;
+                popOpenedAt = Date.now();
+                popOpenedScrollY = window.scrollY;
+                popover.dataset.openedAt = String(popOpenedAt);
+                popover.dataset.openedScrollY = String(popOpenedScrollY);
                 popover.hidden = false;
 
                 const bodyRect = stageBody.getBoundingClientRect();
@@ -10469,10 +10492,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const popH = popover.offsetHeight || 56;
                 const belowTop = btnRect.bottom - bodyRect.top + 8;
                 const aboveTop = btnRect.top - bodyRect.top - popH - 8;
-                // Prefer above the sentence so hint popover never blocks the Word Bank tray below
-                const finalTop = aboveTop >= 8
-                    ? aboveTop
-                    : ((belowTop + popH <= stageBody.clientHeight - 8) ? belowTop : Math.max(8, stageBody.clientHeight - popH - 8));
+                let finalTop;
+                if (isStudySheet) {
+                    const stickyBar = stageBody.closest('.ga-study-view')?.querySelector('.ga-focus-topbar');
+                    const minViewTop = (stickyBar ? stickyBar.getBoundingClientRect().bottom : 8) + 8;
+                    const belowFitsView = (btnRect.bottom + popH + 14) <= window.innerHeight;
+                    const aboveFitsView = (btnRect.top - popH - 8) >= minViewTop && aboveTop >= 8;
+                    finalTop = (belowFitsView || !aboveFitsView) ? belowTop : aboveTop;
+                } else {
+                    // Prefer above the sentence so hint popover never blocks the Word Bank tray below
+                    finalTop = aboveTop >= 8
+                        ? aboveTop
+                        : ((belowTop + popH <= stageBody.clientHeight - 8) ? belowTop : Math.max(8, stageBody.clientHeight - popH - 8));
+                }
                 popover.style.left = `${Math.round(clampedLeft)}px`;
                 popover.style.top = `${Math.round(finalTop)}px`;
 
@@ -15211,7 +15243,12 @@ document.addEventListener('DOMContentLoaded', () => {
     collapsedPhases: new Set(),
     search: '',
     activeLessonId: 'g01',
-    drill: null
+    studySlow: false,
+    hideStudyTrans: false,
+    playAllToken: 0,
+    drill: null,
+    examTimerId: null,
+    examSelectedScope: 'all30'
   };
 
   function refreshQuizHubSpecialRecords() {
@@ -16602,7 +16639,10 @@ document.addEventListener('DOMContentLoaded', () => {
       studiedIds: Array.isArray(obj.studiedIds) ? Array.from(new Set(obj.studiedIds)) : [],
       missedKeys: Array.isArray(obj.missedKeys) ? Array.from(new Set(obj.missedKeys)).slice(-80) : [],
       bestAccuracy: (obj.bestAccuracy && typeof obj.bestAccuracy === 'object') ? { ...obj.bestAccuracy } : {},
-      mixedRuns: Number(obj.mixedRuns || 0)
+      mixedRuns: Number(obj.mixedRuns || 0),
+      examBest: (obj.examBest && typeof obj.examBest === 'object') ? { ...obj.examBest } : null,
+      examHistory: Array.isArray(obj.examHistory) ? obj.examHistory.slice(-15) : [],
+      examMissedIds: Array.isArray(obj.examMissedIds) ? Array.from(new Set(obj.examMissedIds)).slice(-90) : []
     };
   }
 
@@ -16610,38 +16650,454 @@ document.addEventListener('DOMContentLoaded', () => {
     storage.set(GRAMMAR_STORAGE_KEY, gp);
   }
 
-  function buildGrammarPeekHtml(lesson) {
+  function containsThaiText(str) {
+    return /[\u0E00-\u0E7F]/.test(String(str || ''));
+  }
+
+  function cleanClozePartForSpeech(part) {
+    let s = String(part || '').trim();
+    if (!s || /^Ø(\s*\([^)]*\))?$/i.test(s) || /^ไม่ใส่/i.test(s)) return '';
+    return s.replace(/\s*\([^)]*[\u0E00-\u0E7F][^)]*\)/g, '').trim();
+  }
+
+  function fillClozeBlanks(sentence, optionText) {
+    const src = String(sentence || '');
+    const blanks = src.match(/_+/g) || [];
+    if (!blanks.length) return { display: src, spoken: '' };
+    const rawParts = blanks.length > 1 && String(optionText || '').includes('/')
+      ? String(optionText).split('/').map(s => s.trim())
+      : [String(optionText || '').trim()];
+    let i = 0;
+    const filled = src.replace(/_+/g, () => {
+      const part = rawParts[Math.min(i, rawParts.length - 1)] || '';
+      i++;
+      return cleanClozePartForSpeech(part);
+    });
+    const normalized = filled.replace(/\s{2,}/g, ' ').replace(/\s+([.,!?;:])/g, '$1').trim();
+    return { display: normalized, spoken: containsThaiText(normalized) ? '' : normalized };
+  }
+
+  function formatGrammarRichText(raw) {
+    let html = escapeHtml(String(raw || ''));
+    html = html
+      .replace(/❌/g, '<span class="ga-mark is-bad" aria-label="ผิด">❌</span>')
+      .replace(/✅/g, '<span class="ga-mark is-good" aria-label="ถูก">✅</span>')
+      .replace(/(\b(?:have\/has|has\/had|is\/am\/are|was\/were|had|have|has|be|will|would|could|should|to)\s*\+\s*V(?:1|2|3|-ing)\b|\b(?:S\s*\+\s*V(?:[123]|-ing)?|to\s+V1|V-ing|V[123])\b|Ø)/g, '<code class="ga-code">$1</code>');
+    return html;
+  }
+
+  function extractCleanTableSentence(cell, headerText) {
+    const hdr = String(headerText || '');
+    if (!/ตัวอย่าง|ประโยค|Passive|Reported|ถูก/i.test(hdr) || /ผิด/.test(hdr)) return '';
+    const plain = String(cell || '').replace(/<[^>]+>/g, '').trim();
+    const first = plain.split(/\s*\/\s*/)[0].replace(/\([^)]*\)/g, '').trim();
+    if (!first || containsThaiText(first) || /[❌✅→=+_·]/.test(first)) return '';
+    if (/\b(V1|V2|V3|V-ing|Adj|Adv|Prep|Aux)\b/.test(first)) return '';
+    const words = first.split(/\s+/).filter(Boolean);
+    if (words.length < 3 || words.length > 16) return '';
+    if (!/^[A-Z“"].*[.!?]$/.test(first)) return '';
+    return first.replace(/[“”]/g, '"');
+  }
+
+  function renderGrammarTableCellHtml(cell, headerText) {
+    const parts = String(cell || '').split(/(<b>|<\/b>)/gi);
+    const formatted = parts.map(seg => {
+      if (seg.toLowerCase() === '<b>') return '<b>';
+      if (seg.toLowerCase() === '</b>') return '</b>';
+      return formatGrammarRichText(seg);
+    }).join('');
+    const speakText = extractCleanTableSentence(cell, headerText);
+    if (!speakText) return formatted;
+    return `<div class="ga-cell-with-speak"><span>${formatted}</span><button type="button" class="ga-cell-speak" data-ga-cell-speak="${escapeHtml(speakText)}" aria-label="ฟังเสียงตัวอย่าง" title="ฟังเสียงตัวอย่าง">🔊</button></div>`;
+  }
+
+  function renderGrammarFormulaPartsHtml(parts) {
+    const rows = [[]];
+    (parts || []).forEach(p => {
+      if (p === '|') rows.push([]);
+      else rows[rows.length - 1].push(String(p));
+    });
+    return rows.filter(r => r.length > 0).map(row => {
+      // Single explanatory rule or multi-clause summary line -> render cleanly without cramped badge stretching
+      if (row.length === 1 && (row[0].includes(':') || row[0].length > 42)) {
+        const text = row[0];
+        const colonIdx = text.indexOf(':');
+        if (colonIdx > 0 && colonIdx <= 26) {
+          const key = text.slice(0, colonIdx).trim();
+          const val = text.slice(colonIdx + 1).trim();
+          return `<div class="ga-frule"><span class="ga-frule-key">${formatGrammarRichText(key)}</span><span class="ga-frule-val">${formatGrammarRichText(val)}</span></div>`;
+        }
+        if (text.includes(' · ')) {
+          const subs = text.split(' · ').map(s => s.trim()).filter(Boolean);
+          if (subs.length >= 2 && subs.every(s => s.length <= 44)) {
+            return `<div class="ga-frow">${subs.map(s => `<span class="ga-fchip is-sub">${formatGrammarRichText(s)}</span>`).join('')}</div>`;
+          }
+        }
+        return `<div class="ga-frow"><span class="ga-fchip is-wide">${formatGrammarRichText(text)}</span></div>`;
+      }
+      return `<div class="ga-frow">${row.map(p => (p === '+' || p === '→')
+        ? `<span class="ga-fop">${escapeHtml(p)}</span>`
+        : `<span class="ga-fchip">${formatGrammarRichText(p)}</span>`).join('')}</div>`;
+    }).join('');
+  }
+
+  function buildWordDiffSegments(wrongWords, rightWords) {
+    const m = wrongWords.length;
+    const n = rightWords.length;
+    const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+    for (let i = m - 1; i >= 0; i--) {
+      for (let j = n - 1; j >= 0; j--) {
+        if (wrongWords[i] === rightWords[j]) dp[i][j] = 1 + dp[i + 1][j + 1];
+        else dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+      }
+    }
+    const wKeep = new Array(m).fill(false);
+    const rKeep = new Array(n).fill(false);
+    let i = 0, j = 0, kept = 0;
+    while (i < m && j < n) {
+      if (wrongWords[i] === rightWords[j]) {
+        wKeep[i] = true;
+        rKeep[j] = true;
+        kept++;
+        i++; j++;
+      } else if (dp[i + 1][j] >= dp[i][j + 1]) {
+        i++;
+      } else {
+        j++;
+      }
+    }
+    const overlapRatio = kept / Math.max(1, Math.min(m, n));
+    if (overlapRatio < 0.34) return null;
+    const renderMarked = (words, keepFlags, cls) => {
+      const out = [];
+      let idx = 0;
+      while (idx < words.length) {
+        if (keepFlags[idx]) {
+          out.push(escapeHtml(words[idx]));
+          idx++;
+        } else {
+          const chunk = [];
+          while (idx < words.length && !keepFlags[idx]) {
+            chunk.push(words[idx]);
+            idx++;
+          }
+          out.push(`<mark class="${cls}">${escapeHtml(chunk.join(' '))}</mark>`);
+        }
+      }
+      return out.join(' ');
+    };
+    return {
+      wrongHtml: renderMarked(wrongWords, wKeep, 'ga-diff-del'),
+      rightHtml: renderMarked(rightWords, rKeep, 'ga-diff-add')
+    };
+  }
+
+  function buildGrammarMistakePairHtml(wrong, right) {
+    const wRaw = String(wrong || '').trim();
+    const rRaw = String(right || '').trim();
+    const altMatch = rRaw.match(/^(.*?)(\s*\(หรือ[^)]*\))$/);
+    const rCore = altMatch ? altMatch[1].trim() : rRaw;
+    const rNote = altMatch ? altMatch[2] : '';
+    const diff = buildWordDiffSegments(wRaw.split(/\s+/), rCore.split(/\s+/));
+    const wrongHtml = diff ? diff.wrongHtml : `<mark class="ga-diff-del">${escapeHtml(wRaw)}</mark>`;
+    const rightHtml = diff ? diff.rightHtml : `<mark class="ga-diff-add">${escapeHtml(rCore)}</mark>`;
+    return `
+      <div class="ga-mistake-pair">
+        <div class="ga-mistake-line is-wrong">
+          <span class="ga-mistake-tag is-wrong">ผิด</span>
+          <span class="ga-wrong">${wrongHtml}</span>
+        </div>
+        <div class="ga-mistake-line is-right">
+          <span class="ga-mistake-tag is-right">ถูก</span>
+          <span class="ga-right">${rightHtml}${rNote ? `<span class="ga-diff-note">${formatGrammarRichText(rNote)}</span>` : ''}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  function wireGrammarTableEnhancements(container) {
+    if (!container) return;
+    container.querySelectorAll('.ga-cell-speak').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const txt = /** @type {HTMLElement} */(btn).dataset.gaCellSpeak;
+        if (txt) speakWordOverride(txt, true, btn);
+      });
+    });
+    container.querySelectorAll('.ga-table-block').forEach(block => {
+      const shell = block.querySelector('.ga-table-shell');
+      const wrap = block.querySelector('.ga-table-wrap');
+      if (!shell || !wrap) return;
+      const syncOverflow = () => {
+        const canScroll = wrap.scrollWidth - wrap.clientWidth > 6;
+        block.classList.toggle('is-scrollable', canScroll);
+        shell.classList.toggle('is-scrollable', canScroll);
+        const atEnd = wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 8;
+        shell.classList.toggle('is-at-end', atEnd);
+        if (wrap.scrollLeft > 12) block.classList.add('has-scrolled');
+      };
+      wrap.addEventListener('scroll', syncOverflow, { passive: true });
+      requestAnimationFrame(syncOverflow);
+    });
+  }
+
+  const GRAMMAR_VISUAL_IDS = new Set(['g01', 'g08', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g20', 'g24', 'g25']);
+
+  function stopGrammarPlayAll() {
+    gaState.playAllToken++;
+    document.querySelectorAll('#ga-study-content .ga-example-item.is-playing').forEach(el => el.classList.remove('is-playing'));
+    const playAllBtn = $('btn-ga-play-all');
+    if (playAllBtn) {
+      playAllBtn.classList.remove('is-active');
+      playAllBtn.textContent = '🔊 ฟังทุกตัวอย่าง';
+    }
+  }
+
+  function buildGrammarVisualAid(lessonId) {
+    const map = {
+      g01: {
+        caption: 'โครงสร้างประโยคหลัก: วางคำให้ถูกตำแหน่งตามหน้าที่',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 120" role="img" aria-label="Sentence Blueprint">
+          <rect x="12" y="26" width="150" height="58" rx="12" class="ga-svg-box is-tint"/>
+          <text x="87" y="50" text-anchor="middle" class="ga-svg-lbl">Subject (ประธาน)</text>
+          <text x="87" y="70" text-anchor="middle" class="ga-svg-sub">Noun / Pronoun</text>
+          <text x="179" y="60" text-anchor="middle" class="ga-svg-op">+</text>
+          <rect x="196" y="26" width="136" height="58" rx="12" class="ga-svg-box is-accent"/>
+          <text x="264" y="50" text-anchor="middle" class="ga-svg-lbl">Verb (กริยา)</text>
+          <text x="264" y="70" text-anchor="middle" class="ga-svg-sub">Action / Linking</text>
+          <text x="349" y="60" text-anchor="middle" class="ga-svg-op">+</text>
+          <rect x="366" y="26" width="150" height="58" rx="12" class="ga-svg-box is-tint"/>
+          <text x="441" y="50" text-anchor="middle" class="ga-svg-lbl">Object / Comp.</text>
+          <text x="441" y="70" text-anchor="middle" class="ga-svg-sub">(Adj +) Noun / Adj</text>
+          <text x="532" y="60" text-anchor="middle" class="ga-svg-op">+</text>
+          <rect x="548" y="26" width="120" height="58" rx="12" class="ga-svg-box"/>
+          <text x="608" y="50" text-anchor="middle" class="ga-svg-lbl">Modifier</text>
+          <text x="608" y="70" text-anchor="middle" class="ga-svg-sub">Adv / Prep Phrase</text>
+        </svg>`
+      },
+      g08: {
+        caption: '3 โครงสร้างประโยคหลัก และหลักกลับขั้ว Question Tags (+ ↔ −)',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 128" role="img" aria-label="Sentence Patterns and Tags">
+          <rect x="12" y="16" width="204" height="44" rx="10" class="ga-svg-box"/>
+          <text x="114" y="35" text-anchor="middle" class="ga-svg-lbl">Simple (1 ใจความ)</text>
+          <text x="114" y="51" text-anchor="middle" class="ga-svg-sub">S + V</text>
+          <rect x="236" y="16" width="212" height="44" rx="10" class="ga-svg-box is-tint"/>
+          <text x="342" y="35" text-anchor="middle" class="ga-svg-lbl">Compound (เชื่อมเท่า)</text>
+          <text x="342" y="51" text-anchor="middle" class="ga-svg-sub">Clause + , FANBOYS + Clause</text>
+          <rect x="468" y="16" width="200" height="44" rx="10" class="ga-svg-box is-accent"/>
+          <text x="568" y="35" text-anchor="middle" class="ga-svg-lbl">Complex (หลัก + รอง)</text>
+          <text x="568" y="51" text-anchor="middle" class="ga-svg-sub">because / although + S + V</text>
+          <rect x="96" y="74" width="488" height="40" rx="20" class="ga-svg-box"/>
+          <text x="206" y="99" text-anchor="middle" class="ga-svg-lbl">บอกเล่า (+) · He can swim,</text>
+          <path d="M312 94 L356 94" class="ga-svg-arrow" marker-end="url(#gaArrow)"/>
+          <text x="468" y="99" text-anchor="middle" class="ga-svg-accent-txt">can't he? (−) · กลับขั้วเสมอ</text>
+        </svg>`
+      },
+      g11: {
+        caption: 'สามเหลี่ยมหัวกลับ: in (กว้าง) → on (พื้นผิว/วัน) → at (จุด/เวลาเจาะจง) + ทิศทาง',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 156" role="img" aria-label="IN ON AT Pyramid and Movement">
+          <polygon points="30,18 330,18 286,58 74,58" class="ga-svg-box is-tint"/>
+          <text x="180" y="43" text-anchor="middle" class="ga-svg-lbl">IN · กว้าง (เมือง / เดือน / ปี / ในกล่อง)</text>
+          <polygon points="78,62 282,62 242,102 118,102" class="ga-svg-box is-accent"/>
+          <text x="180" y="87" text-anchor="middle" class="ga-svg-lbl">ON · ผิว / วัน / ถนน</text>
+          <polygon points="122,106 238,106 180,144" class="ga-svg-box"/>
+          <text x="180" y="125" text-anchor="middle" class="ga-svg-lbl">AT · จุด</text>
+          <rect x="370" y="18" width="296" height="126" rx="14" class="ga-svg-box"/>
+          <text x="518" y="41" text-anchor="middle" class="ga-svg-lbl">Prepositions of Movement (ทิศทาง)</text>
+          <line x1="392" y1="68" x2="462" y2="68" class="ga-svg-arrow" marker-end="url(#gaArrow)"/>
+          <text x="476" y="72" class="ga-svg-sub">into (เข้าใน) · out of (ออก)</text>
+          <path d="M392 98 Q426 80 460 94" fill="none" class="ga-svg-arrow" marker-end="url(#gaArrow)"/>
+          <text x="476" y="98" class="ga-svg-sub">onto (ขึ้นบน) · across (ข้าม)</text>
+          <line x1="392" y1="122" x2="462" y2="122" stroke-dasharray="4 3" class="ga-svg-arrow" marker-end="url(#gaArrow)"/>
+          <text x="476" y="126" class="ga-svg-sub">through (ทะลุอุโมงค์/ป่า)</text>
+        </svg>`
+      },
+      g12: {
+        caption: 'เส้นเวลา Present: กิจวัตร (Simple) · กำลังทำตอนนี้ (Continuous) · เชื่อมอดีตถึงปัจจุบัน (Perfect)',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 144" role="img" aria-label="Present Tenses Timeline">
+          <line x1="36" y1="114" x2="644" y2="114" class="ga-svg-line"/>
+          <line x1="410" y1="22" x2="410" y2="124" stroke-dasharray="4 4" class="ga-svg-line"/>
+          <text x="90" y="134" text-anchor="middle" class="ga-svg-sub">PAST (อดีต)</text>
+          <text x="410" y="138" text-anchor="middle" class="ga-svg-accent-txt">NOW (ปัจจุบัน)</text>
+          <text x="595" y="134" text-anchor="middle" class="ga-svg-sub">FUTURE (อนาคต)</text>
+          <text x="36" y="34" class="ga-svg-sub">Simple (V1)</text>
+          <circle cx="240" cy="30" r="4" class="ga-svg-dot"/><circle cx="325" cy="30" r="4" class="ga-svg-dot"/><circle cx="410" cy="30" r="5" class="ga-svg-dot is-now"/><circle cx="495" cy="30" r="4" class="ga-svg-dot"/>
+          <text x="518" y="34" class="ga-svg-sub">ทำเป็นประจำ/จริงเสมอ</text>
+          <text x="36" y="64" class="ga-svg-sub">Continuous</text>
+          <rect x="355" y="52" width="110" height="16" rx="8" class="ga-svg-bar is-accent"/>
+          <text x="478" y="64" class="ga-svg-sub">is/am/are + V-ing (กำลังทำตอนนี้)</text>
+          <text x="36" y="94" class="ga-svg-sub">Perfect</text>
+          <line x1="175" y1="90" x2="405" y2="90" class="ga-svg-bridge" marker-end="url(#gaArrow)"/>
+          <circle cx="175" cy="90" r="4.5" class="ga-svg-dot"/>
+          <text x="424" y="94" class="ga-svg-sub">have/has + V3 (อดีต→ถึงตอนนี้)</text>
+        </svg>`
+      },
+      g13: {
+        caption: 'เปรียบเทียบ Present Perfect (เชื่อมถึงปัจจุบัน) vs Past Simple (จบขาดในอดีต)',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 128" role="img" aria-label="Present Perfect vs Past Simple">
+          <line x1="40" y1="98" x2="640" y2="98" class="ga-svg-line"/>
+          <line x1="490" y1="16" x2="490" y2="108" stroke-dasharray="4 4" class="ga-svg-line"/>
+          <text x="490" y="121" text-anchor="middle" class="ga-svg-accent-txt">NOW</text>
+          <circle cx="210" cy="36" r="6" class="ga-svg-dot"/>
+          <line x1="252" y1="24" x2="252" y2="48" class="ga-svg-line"/>
+          <text x="272" y="40" class="ga-svg-sub">Past Simple (V2) · จบแล้วระบุเวลาชัด (yesterday / in 2022)</text>
+          <circle cx="210" cy="70" r="5" class="ga-svg-dot is-now"/>
+          <line x1="215" y1="70" x2="484" y2="70" class="ga-svg-bridge" marker-end="url(#gaArrow)"/>
+          <text x="350" y="61" text-anchor="middle" class="ga-svg-accent-txt">since / for / just / already</text>
+          <text x="504" y="74" class="ga-svg-sub">Present Perfect (เชื่อมถึงตอนนี้)</text>
+        </svg>`
+      },
+      g14: {
+        caption: 'เล่าเรื่องอดีต: เหตุการณ์กำลังดำเนินอยู่ (was/were V-ing) แล้วมีเหตุการณ์แทรกเข้ามา (V2)',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 124" role="img" aria-label="Past Continuous Interrupted by Past Simple">
+          <line x1="40" y1="94" x2="640" y2="94" class="ga-svg-line"/>
+          <line x1="560" y1="16" x2="560" y2="104" stroke-dasharray="4 4" class="ga-svg-line"/>
+          <text x="560" y="116" text-anchor="middle" class="ga-svg-sub">NOW</text>
+          <rect x="110" y="34" width="320" height="20" rx="10" class="ga-svg-bar is-tint"/>
+          <text x="270" y="25" text-anchor="middle" class="ga-svg-lbl">1. เหตุการณ์กำลังทำอยู่ (was / were + V-ing)</text>
+          <line x1="290" y1="14" x2="290" y2="66" class="ga-svg-arrow" marker-end="url(#gaArrow)"/>
+          <circle cx="290" cy="44" r="6" class="ga-svg-dot is-now"/>
+          <text x="290" y="82" text-anchor="middle" class="ga-svg-accent-txt">2. เหตุการณ์สั้นๆ เข้ามาแทรก (when + V2)</text>
+        </svg>`
+      },
+      g15: {
+        caption: 'อดีตซ้อนอดีต: เหตุการณ์เกิดก่อนใช้ Past Perfect (had + V3) · เกิดทีหลังใช้ Past Simple (V2)',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 120" role="img" aria-label="Past Perfect Sequence">
+          <line x1="40" y1="74" x2="640" y2="74" class="ga-svg-line"/>
+          <circle cx="170" cy="74" r="8" class="ga-svg-dot is-now"/>
+          <circle cx="380" cy="74" r="7" class="ga-svg-dot"/>
+          <line x1="570" y1="24" x2="570" y2="88" stroke-dasharray="4 4" class="ga-svg-line"/>
+          <text x="170" y="42" text-anchor="middle" class="ga-svg-accent-txt">1. เกิดก่อน (had + V3)</text>
+          <text x="170" y="57" text-anchor="middle" class="ga-svg-sub">e.g. the train had left</text>
+          <text x="380" y="42" text-anchor="middle" class="ga-svg-lbl">2. เกิดตามหลัง (V2)</text>
+          <text x="380" y="57" text-anchor="middle" class="ga-svg-sub">e.g. I arrived</text>
+          <text x="570" y="104" text-anchor="middle" class="ga-svg-sub">NOW</text>
+        </svg>`
+      },
+      g16: {
+        caption: 'เส้นทางอนาคต: will / going to · will be V-ing · will have V3 (เสร็จก่อนจุดอนาคต)',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 130" role="img" aria-label="Future Tenses Timeline">
+          <line x1="40" y1="90" x2="640" y2="90" class="ga-svg-line"/>
+          <circle cx="110" cy="90" r="6" class="ga-svg-dot is-now"/>
+          <text x="110" y="112" text-anchor="middle" class="ga-svg-accent-txt">NOW</text>
+          <rect x="190" y="24" width="145" height="44" rx="10" class="ga-svg-box"/>
+          <text x="262" y="43" text-anchor="middle" class="ga-svg-lbl">will / going to</text>
+          <text x="262" y="59" text-anchor="middle" class="ga-svg-sub">เกิดในอนาคต (+ V1)</text>
+          <rect x="355" y="24" width="140" height="44" rx="10" class="ga-svg-box is-tint"/>
+          <text x="425" y="43" text-anchor="middle" class="ga-svg-lbl">will be + V-ing</text>
+          <text x="425" y="59" text-anchor="middle" class="ga-svg-sub">กำลังทำ ณ เวลานั้น</text>
+          <rect x="515" y="24" width="150" height="44" rx="10" class="ga-svg-box is-accent"/>
+          <text x="590" y="43" text-anchor="middle" class="ga-svg-lbl">will have + V3</text>
+          <text x="590" y="59" text-anchor="middle" class="ga-svg-sub">ทำเสร็จก่อน (by + เวลา)</text>
+        </svg>`
+      },
+      g20: {
+        caption: 'สูตรจำลำดับ Adjective 8 ตำแหน่งหน้าคำนาม: O · S · A · S · C · O · M · P',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 104" role="img" aria-label="OSASCOMP Adjective Order">
+          <rect x="8" y="18" width="68" height="64" rx="10" class="ga-svg-box is-tint"/><text x="42" y="45" text-anchor="middle" class="ga-svg-lbl">O</text><text x="42" y="64" text-anchor="middle" class="ga-svg-sub">ความเห็น</text>
+          <rect x="82" y="18" width="68" height="64" rx="10" class="ga-svg-box"/><text x="116" y="45" text-anchor="middle" class="ga-svg-lbl">S</text><text x="116" y="64" text-anchor="middle" class="ga-svg-sub">ขนาด</text>
+          <rect x="156" y="18" width="68" height="64" rx="10" class="ga-svg-box"/><text x="190" y="45" text-anchor="middle" class="ga-svg-lbl">A</text><text x="190" y="64" text-anchor="middle" class="ga-svg-sub">อายุ</text>
+          <rect x="230" y="18" width="68" height="64" rx="10" class="ga-svg-box"/><text x="264" y="45" text-anchor="middle" class="ga-svg-lbl">S</text><text x="264" y="64" text-anchor="middle" class="ga-svg-sub">รูปทรง</text>
+          <rect x="304" y="18" width="68" height="64" rx="10" class="ga-svg-box"/><text x="338" y="45" text-anchor="middle" class="ga-svg-lbl">C</text><text x="338" y="64" text-anchor="middle" class="ga-svg-sub">สี</text>
+          <rect x="378" y="18" width="68" height="64" rx="10" class="ga-svg-box"/><text x="412" y="45" text-anchor="middle" class="ga-svg-lbl">O</text><text x="412" y="64" text-anchor="middle" class="ga-svg-sub">ที่มา</text>
+          <rect x="452" y="18" width="68" height="64" rx="10" class="ga-svg-box"/><text x="486" y="45" text-anchor="middle" class="ga-svg-lbl">M</text><text x="486" y="64" text-anchor="middle" class="ga-svg-sub">วัสดุ</text>
+          <rect x="526" y="18" width="68" height="64" rx="10" class="ga-svg-box"/><text x="560" y="45" text-anchor="middle" class="ga-svg-lbl">P</text><text x="560" y="64" text-anchor="middle" class="ga-svg-sub">ใช้งาน</text>
+          <rect x="602" y="18" width="70" height="64" rx="10" class="ga-svg-box is-accent"/><text x="637" y="45" text-anchor="middle" class="ga-svg-accent-txt">NOUN</text><text x="637" y="64" text-anchor="middle" class="ga-svg-sub">คำนาม</text>
+        </svg>`
+      },
+      g24: {
+        caption: 'หลักสลับ Active → Passive: ย้ายกรรมขึ้นเป็นประธานใหม่ + ผัน be ตาม Tense + V3',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 132" role="img" aria-label="Active to Passive Voice Swap">
+          <rect x="20" y="14" width="150" height="36" rx="10" class="ga-svg-box"/><text x="95" y="37" text-anchor="middle" class="ga-svg-lbl">Subject (ผู้ทำ)</text>
+          <rect x="235" y="14" width="170" height="36" rx="10" class="ga-svg-box is-tint"/><text x="320" y="37" text-anchor="middle" class="ga-svg-lbl">Active Verb</text>
+          <rect x="470" y="14" width="185" height="36" rx="10" class="ga-svg-box is-accent"/><text x="562" y="37" text-anchor="middle" class="ga-svg-lbl">Object (ผู้ถูกกระทำ)</text>
+          <path d="M510 50 C440 74, 210 64, 118 82" fill="none" class="ga-svg-arrow" marker-end="url(#gaArrow)"/>
+          <path d="M120 50 C200 72, 460 66, 550 82" fill="none" stroke-dasharray="4 4" class="ga-svg-line" marker-end="url(#gaArrow)"/>
+          <rect x="20" y="84" width="185" height="38" rx="10" class="ga-svg-box is-accent"/><text x="112" y="108" text-anchor="middle" class="ga-svg-accent-txt">New Subject (ผู้ถูกทำ)</text>
+          <rect x="235" y="84" width="190" height="38" rx="10" class="ga-svg-box is-tint"/><text x="330" y="108" text-anchor="middle" class="ga-svg-lbl">be (ผัน Tense) + V3</text>
+          <rect x="455" y="84" width="200" height="38" rx="10" class="ga-svg-box"/><text x="555" y="108" text-anchor="middle" class="ga-svg-sub">(+ by ผู้ทำ / with เครื่องมือ)</text>
+        </svg>`
+      },
+      g25: {
+        caption: 'บันไดความจริง & เวลาของ If-Clause ทั้ง 4 แบบ + Mixed Conditionals',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 124" role="img" aria-label="If-Clauses Reality Ladder">
+          <rect x="12" y="18" width="154" height="86" rx="12" class="ga-svg-box is-tint"/>
+          <text x="89" y="42" text-anchor="middle" class="ga-svg-accent-txt">Type 0 · 100%</text>
+          <text x="89" y="62" text-anchor="middle" class="ga-svg-lbl">V1 → V1</text>
+          <text x="89" y="82" text-anchor="middle" class="ga-svg-sub">กฎธรรมชาติ/จริงเสมอ</text>
+          <rect x="178" y="18" width="154" height="86" rx="12" class="ga-svg-box"/>
+          <text x="255" y="42" text-anchor="middle" class="ga-svg-lbl">Type 1 · เป็นไปได้</text>
+          <text x="255" y="62" text-anchor="middle" class="ga-svg-lbl">V1 → will V1</text>
+          <text x="255" y="82" text-anchor="middle" class="ga-svg-sub">อนาคตมีโอกาสเกิด</text>
+          <rect x="344" y="18" width="154" height="86" rx="12" class="ga-svg-box"/>
+          <text x="421" y="42" text-anchor="middle" class="ga-svg-lbl">Type 2 · สมมติตอนนี้</text>
+          <text x="421" y="62" text-anchor="middle" class="ga-svg-lbl">V2/were → would V1</text>
+          <text x="421" y="82" text-anchor="middle" class="ga-svg-sub">ไม่จริงในปัจจุบัน</text>
+          <rect x="510" y="18" width="158" height="86" rx="12" class="ga-svg-box is-accent"/>
+          <text x="589" y="42" text-anchor="middle" class="ga-svg-lbl">Type 3 · เสียดายอดีต</text>
+          <text x="589" y="62" text-anchor="middle" class="ga-svg-lbl">had V3 → would have V3</text>
+          <text x="589" y="82" text-anchor="middle" class="ga-svg-sub">ย้อนอดีตไม่ได้แล้ว</text>
+        </svg>`
+      }
+    };
+    const item = map[lessonId];
+    if (!item) return '';
+    return `
+      <svg width="0" height="0" style="position:absolute;" aria-hidden="true">
+        <defs><marker id="gaArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" class="ga-svg-arrowhead"/></marker></defs>
+      </svg>
+      <section class="ga-study-section ga-visual-card" id="ga-sec-visual">
+        <div class="ga-section-title">🧭 แผนภาพช่วยจำ</div>
+        <div class="ga-visual-frame">${item.svg}</div>
+        <div class="ga-visual-caption">${escapeHtml(item.caption)}</div>
+      </section>
+    `;
+  }
+
+  function wireGrammarStudyScrollProgress() {
+    if (document.body.dataset.gaStudyProgressWired) return;
+    document.body.dataset.gaStudyProgressWired = '1';
+    window.addEventListener('scroll', () => {
+      if (currentScreen !== 'grammar-academy' || gaState.subView !== 'study') return;
+      const fill = $('ga-study-read-fill');
+      if (!fill) return;
+      const doc = document.documentElement;
+      const maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
+      const ratio = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+      fill.style.transform = `scaleX(${ratio.toFixed(3)})`;
+    }, { passive: true });
+  }
+
+  function buildGrammarPeekHtml(lesson, includeSectionIds = false) {
     if (!lesson) return '<p>ไม่พบข้อมูลบทเรียน</p>';
     const formulasHtml = (lesson.formulas || []).map(f => `
       <div class="ga-formula-card">
         <div class="ga-formula-label">${escapeHtml(f.label)}</div>
-        <div class="ga-formula-parts">
-          ${(f.parts || []).map(p => p === '|'
-            ? `<span class="ga-fsep" aria-hidden="true"></span>`
-            : (p === '+' || p === '→')
-              ? `<span class="ga-fop">${escapeHtml(p)}</span>`
-              : `<span class="ga-fchip">${escapeHtml(p)}</span>`).join('')}
-        </div>
+        <div class="ga-formula-parts">${renderGrammarFormulaPartsHtml(f.parts)}</div>
       </div>
     `).join('');
 
-    const tablesHtml = (lesson.tables || []).map(t => `
-      <div style="margin-top:10px;">
+    const tablesHtml = (lesson.tables || []).map((t, idx) => `
+      <div class="ga-table-block" ${includeSectionIds && idx === 0 ? 'id="ga-sec-tables"' : ''}>
         <div class="ga-section-title">📋 ${escapeHtml(t.title)}</div>
-        <div class="ga-table-wrap">
-          <table class="ga-ref-table">
-            <thead><tr>${(t.headers || []).map(h => `<th>${escapeHtml(h)}</th>`).join('')}</tr></thead>
-            <tbody>
-              ${(t.rows || []).map(r => `<tr>${r.map(cell => `<td>${String(cell || '')}</td>`).join('')}</tr>`).join('')}
-            </tbody>
-          </table>
+        <div class="ga-table-shell">
+          <div class="ga-table-wrap">
+            <table class="ga-ref-table">
+              <thead><tr>${(t.headers || []).map(h => `<th>${escapeHtml(h)}</th>`).join('')}</tr></thead>
+              <tbody>
+                ${(t.rows || []).map(r => `<tr>${r.map((cell, ci) => `<td>${renderGrammarTableCellHtml(cell, (t.headers || [])[ci])}</td>`).join('')}</tr>`).join('')}
+              </tbody>
+            </table>
+          </div>
         </div>
+        <div class="ga-table-scroll-hint" aria-hidden="true">⇄ เลื่อนซ้าย-ขวา</div>
       </div>
     `).join('');
 
     return `
-      <p class="ga-study-summary" style="margin-bottom:12px;">${escapeHtml(lesson.summaryTh || '')}</p>
-      <div class="ga-formulas-grid">${formulasHtml}</div>
+      <p class="ga-study-summary" style="margin-bottom:12px;">${formatGrammarRichText(lesson.summaryTh || '')}</p>
+      <div class="ga-formulas-grid" ${includeSectionIds ? 'id="ga-sec-formulas"' : ''}>${formulasHtml}</div>
+      ${includeSectionIds ? buildGrammarVisualAid(lesson.id) : ''}
       ${tablesHtml}
     `;
   }
@@ -16654,7 +17110,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const bodyEl = $('ga-peek-body');
     if (!modal || !lesson) return;
     if (titleEl) titleEl.textContent = `บทที่ ${lesson.num}: ${lesson.titleTh}`;
-    if (bodyEl) bodyEl.innerHTML = buildGrammarPeekHtml(lesson);
+    if (bodyEl) {
+      bodyEl.innerHTML = buildGrammarPeekHtml(lesson, false);
+      wireGrammarTableEnhancements(bodyEl);
+    }
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
   }
@@ -16666,14 +17125,26 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('aria-hidden', 'true');
   }
 
+  function clearGrammarExamTimer() {
+    if (gaState.examTimerId) {
+      clearInterval(gaState.examTimerId);
+      gaState.examTimerId = null;
+    }
+  }
+
   function setGrammarSubView(which) {
     gaState.subView = which;
+    stopGrammarPlayAll();
+    if (which !== 'drill') clearGrammarExamTimer();
+    const studyPop = $('ga-study-content')?.querySelector('.lesson-word-hint-popover');
+    if (studyPop) studyPop.hidden = true;
+    $('ga-study-content')?.querySelectorAll('.hint-word-btn.is-active').forEach(b => b.classList.remove('is-active'));
     const hub = $('grammar-hub-view');
     const study = $('grammar-study-view');
     const drill = $('grammar-drill-view');
-    if (hub) hub.hidden = which !== 'hub';
-    if (study) study.hidden = which !== 'study';
-    if (drill) drill.hidden = which !== 'drill';
+    if (hub) { hub.hidden = which !== 'hub'; if (which === 'hub') hub.classList.add('ga-view-enter'); }
+    if (study) { study.hidden = which !== 'study'; if (which === 'study') study.classList.add('ga-view-enter'); }
+    if (drill) { drill.hidden = which !== 'drill'; if (which === 'drill') drill.classList.add('ga-view-enter'); }
     syncFocusMode();
   }
 
@@ -16686,12 +17157,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const masteredCnt = lessons.filter(l => gp.masteredIds.includes(l.id)).length;
     const totalRoad = lessons.length + upcoming.filter(u => !lessons.some(l => l.id === u.id)).length;
+    const pct = lessons.length > 0 ? Math.round((masteredCnt / lessons.length) * 100) : 0;
     const pillEl = $('ga-overall-pill');
     if (pillEl) pillEl.textContent = `พิชิตแล้ว ${masteredCnt} / ${lessons.length} บท`;
     const overallFill = $('ga-overall-bar-fill');
-    if (overallFill) {
-      const pct = lessons.length > 0 ? Math.round((masteredCnt / lessons.length) * 100) : 0;
-      overallFill.style.width = `${pct}%`;
+    if (overallFill) overallFill.style.width = `${pct}%`;
+
+    const ringFill = $('ga-hero-ring-fill');
+    const ringPct = $('ga-hero-ring-pct');
+    const avgAccEl = $('ga-hero-avg-acc');
+    const studiedCntEl = $('ga-hero-studied-cnt');
+    if (ringFill) {
+      const circ = 219.91;
+      ringFill.style.strokeDashoffset = String((circ * (1 - pct / 100)).toFixed(2));
+    }
+    if (ringPct) ringPct.textContent = `${pct}%`;
+    const accVals = Object.values(gp.bestAccuracy || {}).map(Number).filter(v => Number.isFinite(v) && v >= 0);
+    if (avgAccEl) avgAccEl.textContent = accVals.length ? `${Math.round(accVals.reduce((a, b) => a + b, 0) / accVals.length)}%` : '—';
+    if (studiedCntEl) {
+      const studiedSet = new Set([...(gp.studiedIds || []), ...(gp.masteredIds || [])]);
+      const studiedLive = lessons.filter(l => studiedSet.has(l.id)).length;
+      studiedCntEl.textContent = `${studiedLive} / ${lessons.length} บท`;
+    }
+    const examStatEl = $('ga-hero-exam-stat');
+    const examBestEl = $('ga-hero-exam-best');
+    if (examStatEl && examBestEl) {
+      if (gp.examBest && Number.isFinite(Number(gp.examBest.pct))) {
+        examStatEl.hidden = false;
+        examBestEl.textContent = `${gp.examBest.pct}% (${gp.examBest.correct}/${gp.examBest.total})`;
+      } else {
+        examStatEl.hidden = true;
+      }
     }
 
     const nextPending = lessons.find(l => !gp.masteredIds.includes(l.id)) || lessons[0];
@@ -16717,6 +17213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lessonByNum = new Map(lessons.map(l => [l.num, l]));
     const upcomingByNum = new Map(upcoming.map(u => [u.num, u]));
 
+    let cardAnimIdx = 0;
     container.innerHTML = phases.map(ph => {
       const phaseKey = `phase${ph.number}`;
       if (gaState.phaseFilter !== 'all' && gaState.phaseFilter !== phaseKey) return '';
@@ -16742,8 +17239,11 @@ document.addEventListener('DOMContentLoaded', () => {
           const statusLabel = isMastered
             ? `✓ ผ่าน ${bestPct || 80}%`
             : (bestPct !== undefined ? `ล่าสุด ${bestPct}%` : (isStudied ? 'กำลังเรียน' : 'พร้อมเรียน'));
+          const tblCnt = (live.tables || []).length;
+          const hasVisual = GRAMMAR_VISUAL_IDS.has(live.id);
+          const delayMs = Math.min(6, cardAnimIdx++) * 22;
           cardsHtml.push(`
-            <button type="button" class="ga-lesson-card ${isMastered ? 'is-mastered' : ''}" data-ga-lesson-id="${escapeHtml(live.id)}">
+            <button type="button" class="ga-lesson-card ${isMastered ? 'is-mastered' : ''}" data-ga-phase-accent="${ph.number}" data-ga-lesson-id="${escapeHtml(live.id)}" style="--ga-delay:${delayMs}ms">
               <div class="ga-lesson-top">
                 <div class="ga-lesson-tags">
                   <span class="ga-lesson-num">บทที่ ${live.num}</span>
@@ -16756,9 +17256,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="ga-lesson-desc">${escapeHtml(live.summaryTh)}</p>
               </div>
               <div class="ga-lesson-foot">
-                <span>${(live.exercises || []).length} โจทย์ · ~${live.estMinutes || 4} นาที</span>
+                <span>${hasVisual ? '🧭 แผนภาพ · ' : ''}${tblCnt} ตาราง · ${(live.exercises || []).length} โจทย์</span>
                 <span class="ga-lesson-go">เปิดอ่าน →</span>
               </div>
+              ${bestPct !== undefined ? `<div class="ga-card-acc-track" aria-hidden="true"><div class="ga-card-acc-fill ${isMastered ? 'is-pass' : ''}" style="width:${Math.min(100, Number(bestPct))}%"></div></div>` : ''}
             </button>
           `);
         } else {
@@ -16789,7 +17290,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cardsHtml.length === 0) return '';
       const isCollapsed = !qSearch && gaState.phaseFilter === 'all' && gaState.collapsedPhases.has(ph.number);
       return `
-        <div class="ga-phase-block ${isCollapsed ? 'is-collapsed' : ''}">
+        <div class="ga-phase-block ${isCollapsed ? 'is-collapsed' : ''}" data-ga-phase-accent="${ph.number}">
           <button type="button" class="ga-phase-head" data-ga-phase-toggle="${ph.number}" aria-expanded="${!isCollapsed}">
             <div class="ga-phase-head-text">
               <div class="ga-phase-meta-row">
@@ -16799,9 +17300,11 @@ document.addEventListener('DOMContentLoaded', () => {
               <h3>${escapeHtml(ph.titleTh)}</h3>
               <p>${escapeHtml(ph.subtitleTh)}</p>
             </div>
-            <span class="ga-phase-chevron" aria-hidden="true">${isCollapsed ? '▸' : '▾'}</span>
+            <span class="ga-phase-chevron" aria-hidden="true">▾</span>
           </button>
-          <div class="ga-lessons-grid" ${isCollapsed ? 'hidden' : ''}>${cardsHtml.join('')}</div>
+          <div class="ga-phase-grid-wrap ${isCollapsed ? 'is-collapsed' : ''}" ${isCollapsed ? 'inert aria-hidden="true"' : ''}>
+            <div class="ga-lessons-grid">${cardsHtml.join('')}</div>
+          </div>
         </div>
       `;
     }).join('') || `<p class="ga-empty-state">ไม่พบบทเรียนที่ตรงกับคำค้นหา (หลักสูตรมีทั้งหมด ${totalRoad} บท)</p>`;
@@ -16851,11 +17354,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (contentEl) {
       const examplesHtml = (lesson.examples || []).map((ex, idx) => `
-        <div class="ga-example-item">
+        <div class="ga-example-item" data-ga-ex-card="${idx}">
           <div style="flex:1; min-width:0;">
             <div class="ga-example-en">${renderHintableSentenceHtml(ex.en)}</div>
-            <div class="ga-example-th">${escapeHtml(ex.th)}</div>
-            ${ex.focus ? `<span class="ga-example-focus">💡 ${escapeHtml(ex.focus)}</span>` : ''}
+            <div class="ga-example-th" title="แตะเพื่อดู/ซ่อนคำแปล">
+              <span class="ga-ex-th-text">${escapeHtml(ex.th)}</span>
+              <span class="ga-ex-th-mask" aria-hidden="true">👁 แตะเพื่อดูคำแปล</span>
+            </div>
+            ${ex.focus ? `<span class="ga-example-focus">💡 ${formatGrammarRichText(ex.focus)}</span>` : ''}
           </div>
           <button type="button" class="word-item-speak-btn speak-btn ga-ex-speak" data-ga-speak-ex="${idx}" aria-label="ฟังเสียงตัวอย่างประโยค">
             <svg class="speak-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
@@ -16866,43 +17372,124 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const mistakesHtml = (lesson.mistakes || []).map(m => `
         <div class="ga-mistake-item">
-          <div class="ga-mistake-pair">
-            <div class="ga-mistake-line is-wrong">
-              <span class="ga-mistake-tag is-wrong">ผิด</span>
-              <span class="ga-wrong">${escapeHtml(m.wrong)}</span>
-            </div>
-            <div class="ga-mistake-line is-right">
-              <span class="ga-mistake-tag is-right">ถูก</span>
-              <span class="ga-right">${escapeHtml(m.right)}</span>
-            </div>
-          </div>
-          <div class="ga-mistake-why">${escapeHtml(m.whyTh)}</div>
+          ${buildGrammarMistakePairHtml(m.wrong, m.right)}
+          <div class="ga-mistake-why">${formatGrammarRichText(m.whyTh)}</div>
         </div>
       `).join('');
+
+      const hasVis = GRAMMAR_VISUAL_IDS.has(lesson.id);
+      const jumpLinks = [
+        { target: '#ga-sec-formulas', label: 'สูตรหลัก' },
+        ...(hasVis ? [{ target: '#ga-sec-visual', label: 'แผนภาพ' }] : []),
+        { target: '#ga-sec-tables', label: 'ตารางสรุป' },
+        { target: '#ga-sec-examples', label: 'ตัวอย่าง' },
+        { target: '#ga-sec-mistakes', label: 'จุดผิดคนไทย' }
+      ];
 
       contentEl.innerHTML = `
         <div class="ga-study-header">
           <span class="hub-page-eyebrow">${escapeHtml(lesson.titleEn)}</span>
           <h2>บทที่ ${lesson.num}: ${escapeHtml(lesson.titleTh)}</h2>
         </div>
-        ${buildGrammarPeekHtml(lesson)}
-        <section class="ga-study-section">
+        <div class="ga-study-tools-bar">
+          <div class="ga-study-jumps" aria-label="ทางลัดข้ามหัวข้อ">
+            ${jumpLinks.map(j => `<button type="button" class="ga-jump-pill" data-ga-jump="${j.target}">${j.label}</button>`).join('')}
+          </div>
+          <div class="ga-study-audio-controls">
+            <button type="button" id="btn-ga-play-all" class="ga-tool-btn">🔊 ฟังทุกตัวอย่าง</button>
+            <button type="button" id="btn-ga-speed" class="ga-tool-btn ${gaState.studySlow ? 'is-active' : ''}" title="สลับความเร็วเสียงอ่าน">${gaState.studySlow ? '🐢 0.8x' : '⚡ 1.0x'}</button>
+            <button type="button" id="btn-ga-hide-trans" class="ga-tool-btn ${gaState.hideStudyTrans ? 'is-active' : ''}" title="ซ่อนคำแปลไทยเพื่อฝึกแปลเอง">${gaState.hideStudyTrans ? '👁 แสดงคำแปล' : '🙈 ซ่อนคำแปล'}</button>
+          </div>
+        </div>
+        ${buildGrammarPeekHtml(lesson, true)}
+        <section class="ga-study-section" id="ga-sec-examples">
           <div class="ga-section-title">🔊 ตัวอย่างประโยคจริง (กดปุ่มลำโพงเพื่อฟังทั้งประโยค หรือแตะที่คำเพื่อฟังรายคำ)</div>
-          <div class="ga-examples-list">${examplesHtml}</div>
+          <div class="ga-examples-list ${gaState.hideStudyTrans ? 'is-trans-hidden' : ''}">${examplesHtml}</div>
         </section>
-        <section class="ga-study-section">
+        <section class="ga-study-section" id="ga-sec-mistakes">
           <div class="ga-section-title">⚠️ จุดที่คนไทยมักใช้ผิด</div>
           <div class="ga-mistakes-list">${mistakesHtml}</div>
         </section>
       `;
 
       wireHintButtons(contentEl);
+      wireGrammarTableEnhancements(contentEl);
+      wireGrammarStudyScrollProgress();
+      const readFill = $('ga-study-read-fill');
+      if (readFill) readFill.style.transform = 'scaleX(0)';
+
+      contentEl.querySelectorAll('[data-ga-jump]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sel = /** @type {HTMLElement} */(btn).dataset.gaJump;
+          const targetEl = sel ? contentEl.querySelector(sel) : null;
+          if (!targetEl) return;
+          const topBarH = document.querySelector('#grammar-study-view .ga-focus-topbar')?.getBoundingClientRect().height || 64;
+          const y = window.scrollY + targetEl.getBoundingClientRect().top - topBarH - 14;
+          window.scrollTo({ top: Math.max(0, y), behavior: document.documentElement.classList.contains('ox-reduce-motion') ? 'auto' : 'smooth' });
+        });
+      });
+
+      const speakStudySentence = (text, btn) => speakWordOverride(text, true, btn, gaState.studySlow ? { rate: 0.78 } : null);
       contentEl.querySelectorAll('.ga-ex-speak').forEach(btn => {
         btn.addEventListener('click', () => {
+          stopGrammarPlayAll();
           const exIdx = Number(/** @type {HTMLElement} */(btn).dataset.gaSpeakEx);
           const item = (lesson.examples || [])[exIdx];
-          if (item?.en) speakWordOverride(item.en, btn);
+          if (item?.en) speakStudySentence(item.en, btn);
         });
+      });
+
+      contentEl.querySelectorAll('.ga-example-th').forEach(el => {
+        el.addEventListener('click', () => {
+          if (gaState.hideStudyTrans) el.classList.toggle('is-peeked');
+        });
+      });
+
+      $('btn-ga-speed')?.addEventListener('click', (e) => {
+        gaState.studySlow = !gaState.studySlow;
+        const b = /** @type {HTMLElement} */(e.currentTarget);
+        b.classList.toggle('is-active', gaState.studySlow);
+        b.textContent = gaState.studySlow ? '🐢 0.8x' : '⚡ 1.0x';
+        SoundFX.tick();
+      });
+
+      $('btn-ga-hide-trans')?.addEventListener('click', (e) => {
+        gaState.hideStudyTrans = !gaState.hideStudyTrans;
+        const b = /** @type {HTMLElement} */(e.currentTarget);
+        b.classList.toggle('is-active', gaState.hideStudyTrans);
+        b.textContent = gaState.hideStudyTrans ? '👁 แสดงคำแปล' : '🙈 ซ่อนคำแปล';
+        const listEl = contentEl.querySelector('.ga-examples-list');
+        if (listEl) {
+          listEl.classList.toggle('is-trans-hidden', gaState.hideStudyTrans);
+          listEl.querySelectorAll('.ga-example-th.is-peeked').forEach(x => x.classList.remove('is-peeked'));
+        }
+        SoundFX.tick();
+      });
+
+      $('btn-ga-play-all')?.addEventListener('click', async () => {
+        const playBtn = $('btn-ga-play-all');
+        if (playBtn?.classList.contains('is-active')) {
+          stopGrammarPlayAll();
+          return;
+        }
+        const exList = lesson.examples || [];
+        if (!exList.length) return;
+        const myTok = ++gaState.playAllToken;
+        if (playBtn) {
+          playBtn.classList.add('is-active');
+          playBtn.textContent = '⏹ หยุดเล่น';
+        }
+        for (let i = 0; i < exList.length; i++) {
+          if (gaState.playAllToken !== myTok) break;
+          const card = contentEl.querySelector(`[data-ga-ex-card="${i}"]`);
+          const spkBtn = card?.querySelector('.ga-ex-speak');
+          contentEl.querySelectorAll('.ga-example-item.is-playing').forEach(el => el.classList.remove('is-playing'));
+          card?.classList.add('is-playing');
+          speakStudySentence(exList[i].en, spkBtn || null);
+          const waitMs = Math.max(2100, Math.min(5200, exList[i].en.length * (gaState.studySlow ? 92 : 70)));
+          await new Promise(r => setTimeout(r, waitMs));
+        }
+        if (gaState.playAllToken === myTok) stopGrammarPlayAll();
       });
     }
 
@@ -16976,14 +17563,28 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    clearGrammarExamTimer();
+    const timerEl = $('ga-exam-timer');
+    const navEl = $('ga-exam-nav');
+    const examBarEl = $('ga-exam-actions-bar');
+    const peekBtn = $('btn-ga-peek-formula');
+    if (timerEl) { timerEl.hidden = true; timerEl.classList.remove('is-low'); }
+    if (navEl) { navEl.hidden = true; navEl.innerHTML = ''; }
+    if (examBarEl) examBarEl.hidden = true;
+    if (peekBtn) peekBtn.hidden = false;
+
     gaState.drill = {
       lessonId: isMixed ? lessons[0].id : lessonId,
       isMixed,
+      isExam: false,
       title,
       queue,
       index: 0,
       firstTryTotal: queue.length,
       firstTryCorrect: 0,
+      streak: 0,
+      maxStreak: 0,
+      missedItems: [],
       seenKeys: new Set(),
       requeuedKeys: new Set(),
       answered: false,
@@ -17004,20 +17605,681 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo(0, 0);
   }
 
+  function formatExamClock(totalSec) {
+    const s = Math.max(0, Math.floor(Number(totalSec) || 0));
+    const m = Math.floor(s / 60);
+    const rem = s % 60;
+    return `${String(m).padStart(2, '0')}:${String(rem).padStart(2, '0')}`;
+  }
+
+  const EXAM_PART_META = {
+    completion: { order: 1, label: 'Part 1 · Sentence Completion', shortLabel: 'Part 1: เติมคำในประโยค' },
+    error_id: { order: 2, label: 'Part 2 · Error Identification', shortLabel: 'Part 2: จับผิด A/B/C/D' },
+    passage: { order: 3, label: 'Part 3 · Contextual Passage', shortLabel: 'Part 3: เติมคำในบทความ' },
+    structure: { order: 4, label: 'Part 4 · Sentence Structure', shortLabel: 'Part 4: โครงสร้างประโยค' }
+  };
+
+  function buildBalancedExamQueue(scope) {
+    const lessons = (typeof GRAMMAR_LESSONS !== 'undefined' && Array.isArray(GRAMMAR_LESSONS)) ? GRAMMAR_LESSONS : [];
+    const lessonMetaMap = new Map(lessons.map(l => [l.id, l]));
+    const bank = (typeof GRAMMAR_EXAM_BANK !== 'undefined' && Array.isArray(GRAMMAR_EXAM_BANK)) ? GRAMMAR_EXAM_BANK : [];
+    const presets = (typeof GRAMMAR_EXAM_PRESETS !== 'undefined' && GRAMMAR_EXAM_PRESETS) ? GRAMMAR_EXAM_PRESETS : {};
+    const gp = loadGrammarProgress();
+
+    const decorateExamItem = (item) => {
+      const lm = lessonMetaMap.get(item.lessonId);
+      return {
+        ...item,
+        _lessonId: item.lessonId || 'g01',
+        _lessonNum: lm ? lm.num : (Number(String(item.lessonId || '').replace('g', '')) || 1),
+        _lessonTitleTh: lm ? lm.titleTh : `บทที่ ${String(item.lessonId || '').replace('g', '')}`,
+        _phase: item.phase || (lm ? lm.phase : 'phase1'),
+        _qKey: item.id
+      };
+    };
+
+    if (scope === 'weak_exam') {
+      const missedSet = new Set(gp.examMissedIds || []);
+      const weakItems = bank.filter(q => missedSet.has(q.id)).map(decorateExamItem);
+      const picked = shuffle(weakItems).slice(0, 20).sort((a, b) => (EXAM_PART_META[a.part]?.order || 9) - (EXAM_PART_META[b.part]?.order || 9));
+      return {
+        queue: picked,
+        cfg: { id: 'weak_exam', title: `🔥 ซ่อมข้อสอบจริงที่เคยพลาด (${picked.length} ข้อ)`, count: picked.length, minutes: Math.max(8, picked.length) }
+      };
+    }
+
+    const fallbackPresets = {
+      all30: { id: 'all30', title: '📝 ข้อสอบใหญ่ Grammar (30 ข้อ)', count: 30, minutes: 25 },
+      all15: { id: 'all15', title: '⚡ สอบวัดระดับด่วน (15 ข้อ)', count: 15, minutes: 12 },
+      phase1: { id: 'phase1', title: '🌱 สอบจบ Phase 1 (A0–A2)', count: 20, minutes: 15 },
+      phase2: { id: 'phase2', title: '⚡ สอบจบ Phase 2 (A1–B2)', count: 20, minutes: 18 },
+      phase3: { id: 'phase3', title: '🎓 สอบจบ Phase 3 (B1–C1)', count: 20, minutes: 20 },
+      error_id: { id: 'error_id', title: '🔍 สอบจับผิด A/B/C/D (Error ID)', count: 15, minutes: 12 }
+    };
+    const cfg = presets[scope] || fallbackPresets[scope] || fallbackPresets.all30;
+
+    if (!bank.length) return { queue: [], cfg };
+
+    const groupByLesson = (items) => {
+      const map = new Map();
+      items.forEach(item => {
+        if (!map.has(item.lessonId)) map.set(item.lessonId, []);
+        map.get(item.lessonId).push(item);
+      });
+      return map;
+    };
+
+    let picked = [];
+    const usedIds = new Set();
+
+    if (scope === 'error_id') {
+      const errItems = bank.filter(q => q.part === 'error_id');
+      const byPh = ['phase1', 'phase2', 'phase3'].map(ph => shuffle(errItems.filter(q => q.phase === ph)));
+      let idx = 0;
+      while (picked.length < cfg.count && idx < 30) {
+        for (const list of byPh) {
+          if (picked.length >= cfg.count) break;
+          const cand = list[idx];
+          if (cand && !usedIds.has(cand.id)) {
+            usedIds.add(cand.id);
+            picked.push(decorateExamItem(cand));
+          }
+        }
+        idx++;
+      }
+    } else if (scope === 'all30') {
+      const byLesson = groupByLesson(bank);
+      const lessonIds = shuffle(Array.from(byLesson.keys()));
+      lessonIds.forEach(lid => {
+        const choices = shuffle(byLesson.get(lid) || []);
+        if (choices[0] && !usedIds.has(choices[0].id)) {
+          usedIds.add(choices[0].id);
+          picked.push(decorateExamItem(choices[0]));
+        }
+      });
+      picked = picked.slice(0, cfg.count);
+    } else if (scope === 'all15') {
+      ['phase1', 'phase2', 'phase3'].forEach(ph => {
+        const phMap = groupByLesson(bank.filter(q => q.phase === ph));
+        const phLessons = shuffle(Array.from(phMap.keys())).slice(0, 5);
+        phLessons.forEach(lid => {
+          const choices = shuffle(phMap.get(lid) || []);
+          if (choices[0] && !usedIds.has(choices[0].id)) {
+            usedIds.add(choices[0].id);
+            picked.push(decorateExamItem(choices[0]));
+          }
+        });
+      });
+    } else {
+      const phaseItems = bank.filter(q => q.phase === scope);
+      const byLesson = groupByLesson(phaseItems);
+      const lessonIds = shuffle(Array.from(byLesson.keys()));
+      let round = 0;
+      while (picked.length < cfg.count && round < 4) {
+        let added = false;
+        for (const lid of lessonIds) {
+          if (picked.length >= cfg.count) break;
+          const avail = shuffle((byLesson.get(lid) || []).filter(q => !usedIds.has(q.id)));
+          if (avail[0]) {
+            usedIds.add(avail[0].id);
+            picked.push(decorateExamItem(avail[0]));
+            added = true;
+          }
+        }
+        if (!added) break;
+        round++;
+      }
+    }
+
+    picked = shuffle(picked).sort((a, b) => (EXAM_PART_META[a.part]?.order || 9) - (EXAM_PART_META[b.part]?.order || 9));
+    return { queue: picked, cfg };
+  }
+
+  function startGrammarExam({ scope = 'all30', timed = true } = {}) {
+    const { queue, cfg } = buildBalancedExamQueue(scope);
+    if (!queue.length) {
+      showToast(scope === 'weak_exam' ? 'ยังไม่มีข้อสอบจริงที่เคยตอบผิด!' : 'ไม่พบคลังข้อสอบสำหรับชุดนี้');
+      return;
+    }
+    clearGrammarExamTimer();
+
+    const examResponses = queue.map(q => {
+      let shuffledOpts = [];
+      let orderBank = [];
+      if (q.part === 'error_id') {
+        // Keep A/B/C/D options aligned 1:1 with underlined segments in the sentence
+        shuffledOpts = (q.options || []).map((text, origIdx) => ({ text, origIdx }));
+      } else if (Array.isArray(q.options)) {
+        shuffledOpts = shuffle(q.options.map((text, origIdx) => ({ text, origIdx })));
+      } else if (q.type === 'error') {
+        shuffledOpts = shuffle((q.corrections || []).map((text, origIdx) => ({ text, origIdx })));
+      } else if (q.type === 'order') {
+        orderBank = shuffle((q.tokens || []).map((text, id) => ({ id, text })));
+      }
+      return {
+        shuffledOpts,
+        orderBank,
+        selectedOptIdx: null,
+        orderChosen: [],
+        selectedErrorIdx: null,
+        selectedCorrectionIdx: null,
+        flagged: false
+      };
+    });
+
+    const totalSec = timed ? cfg.minutes * 60 : 0;
+    gaState.drill = {
+      lessonId: queue[0]._lessonId || 'g01',
+      isMixed: true,
+      isExam: true,
+      examScope: scope,
+      examTimed: Boolean(timed),
+      examTotalSec: totalSec,
+      examRemainingSec: totalSec,
+      examStartedAt: Date.now(),
+      examFinished: false,
+      title: cfg.title,
+      queue,
+      index: 0,
+      examResponses,
+      firstTryTotal: queue.length,
+      firstTryCorrect: 0,
+      streak: 0,
+      maxStreak: 0,
+      missedItems: [],
+      seenKeys: new Set(),
+      requeuedKeys: new Set(),
+      answered: false,
+      currentChoiceOpts: [],
+      selectedOptIdx: null,
+      orderBank: [],
+      orderChosen: [],
+      selectedErrorIdx: null,
+      selectedCorrectionIdx: null
+    };
+
+    const peekBtn = $('btn-ga-peek-formula');
+    const timerEl = $('ga-exam-timer');
+    const navEl = $('ga-exam-nav');
+    const examBarEl = $('ga-exam-actions-bar');
+    if (peekBtn) peekBtn.hidden = true;
+    if (navEl) navEl.hidden = false;
+    if (examBarEl) examBarEl.hidden = false;
+    if (timerEl) {
+      timerEl.hidden = !timed;
+      timerEl.classList.remove('is-low');
+      if (timed) timerEl.textContent = `⏱ ${formatExamClock(totalSec)}`;
+    }
+
+    if (timed) {
+      gaState.examTimerId = setInterval(() => {
+        const d = gaState.drill;
+        if (!d || !d.isExam || d.examFinished) {
+          clearGrammarExamTimer();
+          return;
+        }
+        d.examRemainingSec = Math.max(0, d.examRemainingSec - 1);
+        const tEl = $('ga-exam-timer');
+        if (tEl) {
+          tEl.textContent = `⏱ ${formatExamClock(d.examRemainingSec)}`;
+          tEl.classList.toggle('is-low', d.examRemainingSec <= 120);
+        }
+        if (d.examRemainingSec <= 0) {
+          clearGrammarExamTimer();
+          submitGrammarExam(true);
+        }
+      }, 1000);
+    }
+
+    setGrammarSubView('drill');
+    $('ga-drill-stage').hidden = false;
+    $('ga-drill-actions').hidden = false;
+    $('ga-drill-feedback').hidden = true;
+    $('ga-drill-summary').hidden = true;
+    renderGrammarDrillQuestion();
+    window.scrollTo(0, 0);
+  }
+
+  function isExamItemAnswered(resp, q) {
+    if (!resp || !q) return false;
+    if (q.part || q.type === 'cloze' || q.type === 'transform') return resp.selectedOptIdx !== null && resp.selectedOptIdx !== undefined;
+    if (q.type === 'order') return Array.isArray(resp.orderChosen) && resp.orderChosen.length >= (resp.orderBank || []).length && resp.orderBank.length > 0;
+    if (q.type === 'error') return resp.selectedErrorIdx !== null && resp.selectedCorrectionIdx !== null;
+    return false;
+  }
+
+  function saveCurrentExamResponse() {
+    const d = gaState.drill;
+    if (!d || !d.isExam || !d.examResponses) return;
+    const resp = d.examResponses[d.index];
+    if (!resp) return;
+    resp.selectedOptIdx = d.selectedOptIdx;
+    resp.orderChosen = Array.isArray(d.orderChosen) ? d.orderChosen.slice() : [];
+    resp.selectedErrorIdx = d.selectedErrorIdx;
+    resp.selectedCorrectionIdx = d.selectedCorrectionIdx;
+  }
+
+  function renderExamNavigator() {
+    const d = gaState.drill;
+    const navEl = $('ga-exam-nav');
+    if (!d || !d.isExam || !navEl) return;
+    navEl.innerHTML = d.queue.map((q, idx) => {
+      const resp = d.examResponses[idx];
+      const answered = isExamItemAnswered(resp, q);
+      const flagged = Boolean(resp && resp.flagged);
+      const cls = [
+        'ga-exam-nav-btn',
+        idx === d.index ? 'is-current' : '',
+        answered ? 'is-answered' : '',
+        flagged ? 'is-flagged' : ''
+      ].filter(Boolean).join(' ');
+      return `<button type="button" class="${cls}" data-ga-exam-jump="${idx}" aria-label="ข้อที่ ${idx + 1}${answered ? ' ตอบแล้ว' : ''}${flagged ? ' ปักธง' : ''}">${idx + 1}</button>`;
+    }).join('');
+
+    navEl.querySelectorAll('[data-ga-exam-jump]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetIdx = Number(/** @type {HTMLElement} */(btn).dataset.gaExamJump);
+        if (!Number.isFinite(targetIdx) || targetIdx === d.index) return;
+        saveCurrentExamResponse();
+        d.index = targetIdx;
+        SoundFX.tick();
+        renderGrammarDrillQuestion();
+      });
+    });
+
+    const activeBtn = navEl.querySelector('.ga-exam-nav-btn.is-current');
+    if (activeBtn && typeof activeBtn.scrollIntoView === 'function') {
+      activeBtn.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    }
+  }
+
+  function syncExamActionsBar() {
+    const d = gaState.drill;
+    if (!d || !d.isExam) return;
+    const prevBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-exam-prev'));
+    const nextBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-exam-next'));
+    const flagBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-exam-flag'));
+    const submitBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-exam-submit'));
+    const barEl = $('ga-drill-bar-fill');
+    const resp = d.examResponses[d.index];
+    const answeredCnt = d.queue.reduce((acc, q, i) => acc + (isExamItemAnswered(d.examResponses[i], q) ? 1 : 0), 0);
+
+    if (barEl) barEl.style.width = `${Math.round((answeredCnt / Math.max(1, d.queue.length)) * 100)}%`;
+    if (prevBtn) prevBtn.disabled = d.index <= 0;
+    if (nextBtn) nextBtn.disabled = d.index >= d.queue.length - 1;
+    if (flagBtn) {
+      const isFlagged = Boolean(resp && resp.flagged);
+      flagBtn.classList.toggle('is-flagged', isFlagged);
+      flagBtn.setAttribute('aria-pressed', String(isFlagged));
+      flagBtn.textContent = isFlagged ? '🚩 ปักธงแล้ว' : '🚩 ปักธง';
+    }
+    if (submitBtn) {
+      submitBtn.textContent = `📤 ส่งข้อสอบ (${answeredCnt}/${d.queue.length})`;
+    }
+  }
+
+  async function submitGrammarExam(autoTimeout = false) {
+    const d = gaState.drill;
+    if (!d || !d.isExam || d.examFinished) return;
+    saveCurrentExamResponse();
+
+    if (!autoTimeout) {
+      const unansweredCnt = d.queue.reduce((acc, q, i) => acc + (isExamItemAnswered(d.examResponses[i], q) ? 0 : 1), 0);
+      const ok = await confirmDialog({
+        title: unansweredCnt > 0 ? 'ยังมีข้อที่ยังไม่ได้ตอบ' : 'ยืนยันการส่งข้อสอบ?',
+        message: unansweredCnt > 0
+          ? `ยังมีข้อที่ยังไม่ได้ตอบอีก ${unansweredCnt} ข้อ ต้องการส่งข้อสอบเพื่อตรวจคะแนนเลยหรือไม่?`
+          : `ตอบครบทั้ง ${d.queue.length} ข้อแล้ว พร้อมส่งข้อสอบเพื่อตรวจผลคะแนนเลยหรือไม่?`,
+        confirmText: '📤 ส่งข้อสอบเลย',
+        danger: false
+      });
+      if (!ok) return;
+    }
+
+    d.examFinished = true;
+    clearGrammarExamTimer();
+    finishGrammarExam(autoTimeout);
+  }
+
+  function estimateExamCefr(scope, pct) {
+    if (scope === 'phase1') {
+      if (pct >= 85) return 'A2+';
+      if (pct >= 70) return 'A2';
+      if (pct >= 50) return 'A1';
+      return 'A0–A1';
+    }
+    if (scope === 'phase2') {
+      if (pct >= 85) return 'B2';
+      if (pct >= 70) return 'B1';
+      if (pct >= 50) return 'A2';
+      return 'A1–A2';
+    }
+    if (pct >= 90) return 'C1';
+    if (pct >= 75) return 'B2';
+    if (pct >= 60) return 'B1';
+    if (pct >= 45) return 'A2';
+    return 'A1';
+  }
+
+  function finishGrammarExam(autoTimeout = false) {
+    const d = gaState.drill;
+    if (!d) return;
+
+    const elapsedSec = Math.max(1, Math.round((Date.now() - (d.examStartedAt || Date.now())) / 1000));
+    const gp = loadGrammarProgress();
+    const results = [];
+    const lessonBreakdown = new Map();
+    const partBreakdown = new Map();
+    let correctCount = 0;
+
+    d.queue.forEach((q, idx) => {
+      const resp = d.examResponses[idx] || {};
+      let isCorrect = false;
+      let userAnswerDisplay = 'ไม่ได้ตอบ';
+      let answerDisplay = '';
+      let spokenAnswerSentence = q.spokenEn || '';
+
+      if (q.part) {
+        const picked = (resp.selectedOptIdx !== null && resp.selectedOptIdx !== undefined)
+          ? (resp.shuffledOpts || [])[resp.selectedOptIdx]
+          : null;
+        if (picked) {
+          if (q.part === 'error_id') {
+            const lbl = String.fromCharCode(65 + picked.origIdx);
+            userAnswerDisplay = `(${lbl}) ${picked.text}`;
+          } else {
+            userAnswerDisplay = picked.text;
+          }
+        }
+        isCorrect = Boolean(picked && picked.origIdx === q.answerIndex);
+        if (q.part === 'error_id') {
+          const rightLbl = String.fromCharCode(65 + q.answerIndex);
+          const rightSeg = (q.options || [])[q.answerIndex] || '';
+          answerDisplay = `(${rightLbl}) ${rightSeg}${q.correctionText ? ` · แก้เป็น: ${q.correctionText}` : ''}`;
+        } else {
+          answerDisplay = (q.options || [])[q.answerIndex] || '';
+        }
+      } else if (q.type === 'cloze' || q.type === 'transform') {
+        const picked = (resp.selectedOptIdx !== null && resp.selectedOptIdx !== undefined)
+          ? (resp.shuffledOpts || [])[resp.selectedOptIdx]
+          : null;
+        if (picked) userAnswerDisplay = picked.text;
+        isCorrect = Boolean(picked && picked.origIdx === q.answerIndex);
+        answerDisplay = (q.options || [])[q.answerIndex] || '';
+        if (!spokenAnswerSentence && q.type === 'cloze' && q.sentence && /_+/.test(q.sentence)) {
+          spokenAnswerSentence = fillClozeBlanks(q.sentence, answerDisplay).spoken;
+        }
+      }
+
+      if (isCorrect) {
+        correctCount++;
+        if (gp.examMissedIds.includes(q.id)) {
+          gp.examMissedIds = gp.examMissedIds.filter(id => id !== q.id);
+        }
+      } else if (q.id && String(q.id).startsWith('ex') && !gp.examMissedIds.includes(q.id)) {
+        gp.examMissedIds.push(q.id);
+        if (gp.examMissedIds.length > 90) gp.examMissedIds = gp.examMissedIds.slice(-90);
+      }
+
+      const partKey = q.part || 'completion';
+      if (!partBreakdown.has(partKey)) {
+        partBreakdown.set(partKey, {
+          part: partKey,
+          order: EXAM_PART_META[partKey]?.order || 9,
+          label: EXAM_PART_META[partKey]?.shortLabel || partKey,
+          correct: 0,
+          total: 0
+        });
+      }
+      const pStat = partBreakdown.get(partKey);
+      pStat.total++;
+      if (isCorrect) pStat.correct++;
+
+      const lKey = q._lessonId || 'g01';
+      if (!lessonBreakdown.has(lKey)) {
+        lessonBreakdown.set(lKey, {
+          lessonId: lKey,
+          lessonNum: q._lessonNum || 1,
+          titleTh: (q._lessonTitleTh || '').split('(')[0].trim() || `บทที่ ${q._lessonNum || 1}`,
+          correct: 0,
+          total: 0
+        });
+      }
+      const stat = lessonBreakdown.get(lKey);
+      stat.total++;
+      if (isCorrect) stat.correct++;
+
+      results.push({
+        num: idx + 1,
+        part: partKey,
+        examStyle: q.examStyle || 'Exam',
+        cefr: q.cefr || 'B1',
+        lessonId: lKey,
+        lessonNum: q._lessonNum || 1,
+        promptTh: q.promptTh || '',
+        contextText: q.passageEn || q.sentence || (Array.isArray(q.segments) ? q.segments.map(s => s.label ? `(${s.label}) ${s.text}` : s.text).join('') : ''),
+        isCorrect,
+        unanswered: userAnswerDisplay === 'ไม่ได้ตอบ',
+        userAnswerDisplay,
+        answerDisplay,
+        explanationTh: q.explanationTh || '',
+        spokenEn: containsThaiText(spokenAnswerSentence) ? '' : spokenAnswerSentence
+      });
+    });
+
+    const total = d.queue.length;
+    const pct = Math.min(100, Math.round((correctCount / Math.max(1, total)) * 100));
+    const passed = pct >= 70;
+    const grade = pct >= 90 ? 'S' : pct >= 80 ? 'A' : pct >= 70 ? 'B' : pct >= 60 ? 'C' : 'D';
+    const cefrEst = estimateExamCefr(d.examScope, pct);
+    const gradeLabel = pct >= 90 ? 'ยอดเยี่ยมระดับเชี่ยวชาญ' : pct >= 80 ? 'ดีมาก · ผ่านเกณฑ์ระดับสูง' : pct >= 70 ? 'ผ่านเกณฑ์มาตรฐาน' : pct >= 60 ? 'พอใช้ · ควรทบทวนเพิ่ม' : 'ยังไม่ผ่าน · แนะนำซ่อมบทที่พลาด';
+
+    if (d.examScope !== 'weak_exam') {
+      if (!gp.examBest || pct > Number(gp.examBest.pct || 0) || (pct === Number(gp.examBest.pct || 0) && total > Number(gp.examBest.total || 0))) {
+        gp.examBest = { pct, correct: correctCount, total, scope: d.examScope, updatedAt: Date.now() };
+      }
+      gp.examHistory = [...(gp.examHistory || []), { pct, correct: correctCount, total, scope: d.examScope, title: d.title, elapsedSec, at: Date.now() }].slice(-15);
+    }
+    saveGrammarProgress(gp);
+
+    const baseXp = Math.max(15, Math.round(correctCount * 5) + (passed ? 25 : 0));
+    const earnedXp = (typeof isXpBoostActive === 'function' && isXpBoostActive()) ? baseXp * 2 : baseXp;
+    ensureTodayQuests();
+    learnState.xp += earnedXp;
+    learnState.dailyQuests.xpToday += earnedXp;
+    saveLearnState(true);
+    refreshShellTelemetry();
+    refreshQuizHubSpecialRecords();
+
+    if (passed) {
+      SoundFX.quest();
+      OxConfetti.launch('good');
+    }
+
+    $('ga-drill-stage').hidden = true;
+    $('ga-drill-actions').hidden = true;
+    $('ga-drill-feedback').hidden = true;
+    const navEl = $('ga-exam-nav');
+    const timerEl = $('ga-exam-timer');
+    if (navEl) navEl.hidden = true;
+    if (timerEl) timerEl.hidden = true;
+    const barEl = $('ga-drill-bar-fill');
+    if (barEl) barEl.style.width = '100%';
+
+    const partStats = Array.from(partBreakdown.values()).sort((a, b) => a.order - b.order);
+    const weakLessons = Array.from(lessonBreakdown.values())
+      .filter(s => s.correct < s.total)
+      .sort((a, b) => (a.correct / a.total) - (b.correct / b.total));
+
+    const wrongResults = results.filter(r => !r.isCorrect);
+    const examMissedTotal = (gp.examMissedIds || []).length;
+    const sumEl = $('ga-drill-summary');
+    if (sumEl) {
+      sumEl.hidden = false;
+      sumEl.className = 'ga-drill-summary ga-exam-report ga-view-enter';
+      sumEl.innerHTML = `
+        <div class="ga-exam-grade-badge is-grade-${grade.toLowerCase()}">${grade}</div>
+        <h3>${autoTimeout ? '⏱ หมดเวลาสอบ · ส่งข้อสอบอัตโนมัติ' : 'ใบรายงานผลสอบ Grammar'}</h3>
+        <div class="ga-summary-score">${pct}% (${correctCount} / ${total} ข้อ)</div>
+        <p class="ga-sum-xp-line">${gradeLabel} · ประเมินระดับ <strong>${cefrEst}</strong> · ใช้เวลา ${formatExamClock(elapsedSec)} · รับ +${earnedXp} XP</p>
+
+        <div class="ga-summary-actions">
+          <button type="button" class="btn btn-primary glass-btn" id="btn-ga-exam-retry">↻ สอบชุดนี้อีกครั้ง</button>
+          ${examMissedTotal > 0 ? `<button type="button" class="btn glass-btn" id="btn-ga-exam-fix-weak">🔥 ซ่อมข้อสอบที่พลาด (${examMissedTotal})</button>` : ''}
+          <button type="button" class="btn glass-btn" id="btn-ga-exam-choose-other">📝 เลือกชุดสอบอื่น</button>
+          <button type="button" class="btn glass-btn" id="btn-ga-exam-hub">🏠 หน้ารวมบทเรียน</button>
+        </div>
+
+        <div class="ga-exam-part-box">
+          <div class="ga-sum-review-head">📊 วิเคราะห์คะแนนแยกตามพาร์ต</div>
+          <div class="ga-exam-part-grid">
+            ${partStats.map(p => {
+              const pPct = Math.round((p.correct / Math.max(1, p.total)) * 100);
+              return `
+                <div class="ga-exam-part-card">
+                  <div class="ga-exam-part-top">
+                    <span>${escapeHtml(p.label)}</span>
+                    <strong>${p.correct}/${p.total} (${pPct}%)</strong>
+                  </div>
+                  <div class="ga-exam-part-track"><div class="ga-exam-part-fill ${pPct >= 70 ? 'is-pass' : 'is-warn'}" style="width:${pPct}%"></div></div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+
+        ${weakLessons.length > 0 ? `
+          <div class="ga-exam-weak-box">
+            <div class="ga-sum-review-head">📌 บทที่ควรกลับไปทบทวน (${weakLessons.length} บท · กดเพื่ออ่านสูตร)</div>
+            <div class="ga-exam-weak-chips">
+              ${weakLessons.map(w => `
+                <button type="button" class="ga-exam-weak-chip" data-ga-study-weak="${escapeHtml(w.lessonId)}">
+                  <span>บทที่ ${w.lessonNum}: ${escapeHtml(w.titleTh)}</span>
+                  <strong>${w.correct}/${w.total}</strong>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        ` : '<div class="ga-exam-perfect-note">🎉 ตอบถูกครบทุกบทไม่มีข้อผิดพลาดเลย!</div>'}
+
+        <div class="ga-sum-review">
+          <div class="ga-exam-review-head">
+            <span class="ga-sum-review-head">📋 เฉลยละเอียดรายข้อ</span>
+            <div class="ga-exam-review-filters" id="ga-exam-review-filters">
+              <button type="button" class="cefr-pill ${wrongResults.length > 0 ? 'active' : ''}" data-exam-rev-filter="wrong">เฉพาะข้อที่ผิด (${wrongResults.length})</button>
+              <button type="button" class="cefr-pill ${wrongResults.length === 0 ? 'active' : ''}" data-exam-rev-filter="all">ทั้งหมด (${results.length})</button>
+            </div>
+          </div>
+          <div class="ga-sum-review-list" id="ga-exam-review-list"></div>
+        </div>
+      `;
+
+      const renderExamReviewList = (filterMode) => {
+        const listEl = $('ga-exam-review-list');
+        if (!listEl) return;
+        const items = filterMode === 'wrong' ? wrongResults : results;
+        if (!items.length) {
+          listEl.innerHTML = '<p class="ga-exam-perfect-note">ไม่มีข้อที่ตอบผิดในชุดนี้ เยี่ยมมาก!</p>';
+          return;
+        }
+        listEl.innerHTML = items.map(m => `
+          <div class="ga-sum-review-item ${m.isCorrect ? 'is-exam-ok' : 'is-exam-err'}">
+            <div class="ga-sum-rev-top">
+              <span class="ga-sum-rev-q"><strong>ข้อ ${m.num}</strong> · <span class="ga-exam-rev-badge">${escapeHtml(m.examStyle)}</span> · บทที่ ${m.lessonNum} (${escapeHtml(m.cefr)})</span>
+              ${m.spokenEn ? `<button type="button" class="ga-cell-speak ga-sum-rev-spk" data-ga-exam-spk="${m.num}" aria-label="ฟังเสียงเฉลย">🔊</button>` : ''}
+            </div>
+            ${m.contextText ? `<div class="ga-exam-rev-context">${escapeHtml(m.contextText)}</div>` : ''}
+            <div class="ga-exam-rev-user ${m.isCorrect ? 'is-ok' : 'is-err'}">คำตอบของคุณ: <strong>${escapeHtml(m.userAnswerDisplay)}</strong></div>
+            ${!m.isCorrect ? `<div class="ga-sum-rev-ans">เฉลยที่ถูก: <strong>${escapeHtml(m.answerDisplay)}</strong></div>` : ''}
+            <div class="ga-sum-rev-exp">${formatGrammarRichText(m.explanationTh)}</div>
+          </div>
+        `).join('');
+
+        listEl.querySelectorAll('[data-ga-exam-spk]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const num = Number(/** @type {HTMLElement} */(btn).dataset.gaExamSpk);
+            const item = results.find(r => r.num === num);
+            if (item?.spokenEn) speakWordOverride(item.spokenEn, true, btn);
+          });
+        });
+      };
+
+      renderExamReviewList(wrongResults.length > 0 ? 'wrong' : 'all');
+
+      $('ga-exam-review-filters')?.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
+        const pill = e.target.closest('[data-exam-rev-filter]');
+        if (!(pill instanceof HTMLElement)) return;
+        $('ga-exam-review-filters').querySelectorAll('.cefr-pill').forEach(p => p.classList.toggle('active', p === pill));
+        renderExamReviewList(pill.dataset.examRevFilter || 'all');
+      });
+
+      sumEl.querySelectorAll('[data-ga-study-weak]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lid = /** @type {HTMLElement} */(btn).dataset.gaStudyWeak;
+          if (lid) openGrammarStudy(lid);
+        });
+      });
+
+      $('btn-ga-exam-retry')?.addEventListener('click', () => startGrammarExam({ scope: d.examScope, timed: d.examTimed }));
+      $('btn-ga-exam-fix-weak')?.addEventListener('click', () => startGrammarExam({ scope: 'weak_exam', timed: false }));
+      $('btn-ga-exam-choose-other')?.addEventListener('click', () => {
+        renderGrammarHub();
+        if (typeof openGrammarExamModal === 'function') openGrammarExamModal();
+      });
+      $('btn-ga-exam-hub')?.addEventListener('click', () => renderGrammarHub());
+    }
+  }
+
+  function renderClozeSentenceWithSlots(sentence) {
+    const parts = String(sentence || '').split(/(_+)/g);
+    let slotIdx = 0;
+    return parts.map(seg => /^_+$/.test(seg)
+      ? `<span class="ga-blank-slot" data-ga-blank-idx="${slotIdx++}">___</span>`
+      : escapeHtml(seg)).join('');
+  }
+
+  function updateClozeBlankSlots(stageEl, optionText, mode = 'preview') {
+    if (!stageEl) return;
+    const slots = Array.from(stageEl.querySelectorAll('.ga-blank-slot'));
+    if (!slots.length) return;
+    const parts = slots.length > 1 && String(optionText || '').includes('/')
+      ? String(optionText).split('/').map(s => s.trim())
+      : [String(optionText || '').trim()];
+    slots.forEach((slot, i) => {
+      const val = parts[Math.min(i, parts.length - 1)] || '___';
+      const cleanVal = /^Ø(\s*\([^)]*\))?$/i.test(val) ? 'Ø (ไม่ใส่)' : val;
+      slot.textContent = cleanVal;
+      slot.classList.remove('is-preview', 'is-correct', 'is-wrong', 'is-slot-pop');
+      void (/** @type {HTMLElement} */(slot)).offsetWidth;
+      slot.classList.add(`is-${mode}`, 'is-slot-pop');
+    });
+  }
+
+  function triggerGrammarAnim(el, cls) {
+    if (!el || document.documentElement.classList.contains('ox-reduce-motion')) return;
+    el.classList.remove(cls);
+    void el.offsetWidth;
+    el.classList.add(cls);
+  }
+
   function renderGrammarDrillQuestion() {
     const d = gaState.drill;
     if (!d) return;
+    const isExam = Boolean(d.isExam);
     const q = d.queue[d.index];
     if (!q) {
-      finishGrammarDrill();
+      if (isExam) finishGrammarExam(false);
+      else finishGrammarDrill();
       return;
     }
 
+    const resp = isExam ? (d.examResponses[d.index] || null) : null;
     d.answered = false;
-    d.selectedOptIdx = null;
-    d.selectedErrorIdx = null;
-    d.selectedCorrectionIdx = null;
-    d.orderChosen = [];
+    d.selectedOptIdx = resp ? resp.selectedOptIdx : null;
+    d.selectedErrorIdx = resp ? resp.selectedErrorIdx : null;
+    d.selectedCorrectionIdx = resp ? resp.selectedCorrectionIdx : null;
+    d.orderChosen = resp && Array.isArray(resp.orderChosen) ? resp.orderChosen.slice() : [];
 
     const titleEl = $('ga-drill-title');
     const cntEl = $('ga-drill-counter');
@@ -17027,32 +18289,143 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-check'));
     const nextBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-next'));
     const peekBtn = $('btn-ga-peek-formula');
+    const examBarEl = $('ga-exam-actions-bar');
+    const navEl = $('ga-exam-nav');
 
     if (titleEl) titleEl.textContent = d.title;
-    if (cntEl) cntEl.textContent = `${Math.min(d.index + 1, d.queue.length)} / ${d.queue.length}`;
-    if (barEl) barEl.style.width = `${Math.round(((d.index) / Math.max(1, d.queue.length)) * 100)}%`;
-    if (peekBtn) peekBtn.dataset.peekLessonId = q._lessonId || d.lessonId;
+    if (cntEl) {
+      if (isExam) {
+        cntEl.textContent = `ข้อ ${Math.min(d.index + 1, d.queue.length)} / ${d.queue.length}`;
+      } else {
+        const streakBadge = d.streak >= 2 ? `<span class="ga-streak-pill">🔥 ${d.streak}</span>` : '';
+        cntEl.innerHTML = `${streakBadge}${Math.min(d.index + 1, d.queue.length)} / ${d.queue.length}`;
+      }
+    }
+    if (!isExam && barEl) {
+      barEl.style.width = `${Math.round(((d.index) / Math.max(1, d.queue.length)) * 100)}%`;
+    }
+    if (peekBtn) {
+      peekBtn.hidden = isExam;
+      peekBtn.dataset.peekLessonId = q._lessonId || d.lessonId;
+    }
     if (fbEl) { fbEl.hidden = true; fbEl.innerHTML = ''; fbEl.className = 'ga-drill-feedback'; }
-    if (checkBtn) { checkBtn.hidden = false; checkBtn.disabled = true; }
+    if (checkBtn) { checkBtn.hidden = isExam; checkBtn.disabled = true; }
     if (nextBtn) { nextBtn.hidden = true; }
+    if (examBarEl) examBarEl.hidden = !isExam;
+    if (navEl) navEl.hidden = !isExam;
+    if (isExam) {
+      renderExamNavigator();
+      syncExamActionsBar();
+    }
     if (!stageEl) return;
+
+    if (isExam && q.part) {
+      d.currentChoiceOpts = (resp && Array.isArray(resp.shuffledOpts) && resp.shuffledOpts.length)
+        ? resp.shuffledOpts
+        : (q.options || []).map((text, origIdx) => ({ text, origIdx }));
+      const partLabel = EXAM_PART_META[q.part]?.label || 'Grammar Exam';
+      const metaPillsHtml = `
+        <div class="ga-exam-meta-pills">
+          <span class="ga-type-pill">${escapeHtml(partLabel)}</span>
+          ${q.examStyle ? `<span class="ga-exam-style-pill">${escapeHtml(q.examStyle)}</span>` : ''}
+          ${q.cefr ? `<span class="ga-lesson-cefr">${escapeHtml(q.cefr)}</span>` : ''}
+        </div>
+      `;
+
+      let contextHtml = '';
+      if (q.part === 'completion') {
+        contextHtml = `<div class="ga-drill-sentence">${renderClozeSentenceWithSlots(q.sentence || '')}</div>`;
+      } else if (q.part === 'error_id') {
+        let segCounter = 0;
+        const segsHtml = (q.segments || []).map(seg => {
+          if (seg.label) {
+            const idx = segCounter++;
+            const isSel = d.selectedOptIdx === idx;
+            return `<button type="button" class="ga-err-seg ${isSel ? 'is-selected' : ''}" data-ga-opt="${idx}"><span class="ga-err-seg-text">${escapeHtml(seg.text)}</span><span class="ga-err-seg-lbl">(${escapeHtml(seg.label)})</span></button>`;
+          }
+          return `<span class="ga-err-plain">${escapeHtml(seg.text)}</span>`;
+        }).join('');
+        contextHtml = `<div class="ga-drill-sentence ga-exam-err-sentence">${segsHtml}</div>`;
+      } else if (q.part === 'passage') {
+        contextHtml = `
+          <div class="ga-exam-passage-box">
+            ${q.passageTitle ? `<div class="ga-exam-passage-title">${escapeHtml(q.passageTitle)}</div>` : ''}
+            <div class="ga-exam-passage-body">${renderClozeSentenceWithSlots(q.passageEn || '')}</div>
+          </div>
+        `;
+      } else if (q.part === 'structure' && q.sentence) {
+        contextHtml = `<div class="ga-drill-sentence ga-exam-source-sentence">${escapeHtml(q.sentence)}</div>`;
+      }
+
+      const singleCol = q.part === 'structure' ? 'is-single-col' : '';
+      stageEl.innerHTML = `
+        ${metaPillsHtml}
+        <p class="ga-drill-prompt">${escapeHtml(q.promptTh || '')}</p>
+        ${contextHtml}
+        <div class="ga-options-grid ${singleCol}">
+          ${d.currentChoiceOpts.map((opt, uiIdx) => {
+            const isSel = d.selectedOptIdx === uiIdx;
+            return `
+              <button type="button" class="ga-opt-btn ${isSel ? 'is-selected' : ''}" data-ga-opt="${uiIdx}">
+                <span class="ga-opt-key">${String.fromCharCode(65 + uiIdx)}. </span>
+                <span class="ga-opt-text">${escapeHtml(opt.text)}</span>
+              </button>
+            `;
+          }).join('')}
+        </div>
+        <div class="ga-shortcut-hint">💡 คีย์ลัด: กด <b>1–4</b> หรือ <b>A–D</b> เลือกคำตอบ · <b>← / →</b> เปลี่ยนข้อ · <b>Enter</b> ข้อถัดไป · (ปิดการดูสูตรระหว่างสอบ)</div>
+      `;
+
+      if (d.selectedOptIdx !== null && (q.part === 'completion' || q.part === 'passage')) {
+        const prevPicked = d.currentChoiceOpts[d.selectedOptIdx];
+        if (prevPicked) updateClozeBlankSlots(stageEl, prevPicked.text, 'preview');
+      }
+
+      stageEl.querySelectorAll('[data-ga-opt]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (d.examFinished) return;
+          const uiIdx = Number(/** @type {HTMLElement} */(btn).dataset.gaOpt);
+          d.selectedOptIdx = uiIdx;
+          SoundFX.tick();
+          stageEl.querySelectorAll('[data-ga-opt]').forEach(el => {
+            const idx = Number(/** @type {HTMLElement} */(el).dataset.gaOpt);
+            el.classList.toggle('is-selected', idx === uiIdx);
+          });
+          const picked = d.currentChoiceOpts[uiIdx];
+          if (picked && (q.part === 'completion' || q.part === 'passage')) {
+            updateClozeBlankSlots(stageEl, picked.text, 'preview');
+          }
+          saveCurrentExamResponse();
+          renderExamNavigator();
+          syncExamActionsBar();
+        });
+      });
+
+      triggerGrammarAnim(stageEl, 'ga-stage-in');
+      return;
+    }
 
     const TYPE_LABELS = {
       cloze: '✍️ เติมคำให้ถูกหลัก Grammar',
+      analyze: '🔎 วิเคราะห์ประโยค & เลือกคำตอบที่ถูกต้อง',
       transform: '🔄 แปลง/เลือกโครงสร้างประโยค',
       order: '🧩 แตะเรียงคำเป็นประโยคที่ถูกต้อง',
       error: '🔍 จับจุดผิด Grammar แล้วเลือกคำแก้ไข'
     };
-    const typeLabel = TYPE_LABELS[q.type] || TYPE_LABELS.cloze;
+    const effectiveType = (q.type === 'cloze' && (!q.sentence || !/_+/.test(q.sentence))) ? 'analyze' : q.type;
+    const typeLabel = TYPE_LABELS[effectiveType] || TYPE_LABELS.cloze;
     const requeueNote = q._requeued ? ' · (ทบทวนข้อที่เคยพลาด)' : '';
 
     if (q.type === 'cloze' || q.type === 'transform') {
       const mapped = (q.options || []).map((text, origIdx) => ({ text, origIdx }));
       d.currentChoiceOpts = shuffle(mapped);
+      const sentHtml = q.sentence
+        ? (q.type === 'cloze' && /_+/.test(q.sentence) ? renderClozeSentenceWithSlots(q.sentence) : escapeHtml(q.sentence))
+        : '';
       stageEl.innerHTML = `
         <span class="ga-type-pill">${escapeHtml(typeLabel + requeueNote)}</span>
         <p class="ga-drill-prompt">${escapeHtml(q.promptTh)}</p>
-        ${q.sentence ? `<div class="ga-drill-sentence">${escapeHtml(q.sentence)}</div>` : ''}
+        ${sentHtml ? `<div class="ga-drill-sentence">${sentHtml}</div>` : ''}
         <div class="ga-options-grid">
           ${d.currentChoiceOpts.map((opt, uiIdx) => `
             <button type="button" class="ga-opt-btn" data-ga-opt="${uiIdx}">
@@ -17061,7 +18434,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </button>
           `).join('')}
         </div>
-        <div class="ga-shortcut-hint">💡 คีย์ลัด: กด <b>1–4</b> หรือ <b>A–D</b> เลือกคำตอบ · <b>Enter</b> ตรวจ / ข้อถัดไป</div>
+        <div class="ga-shortcut-hint">💡 คีย์ลัด: กด <b>1–4</b> หรือ <b>A–D</b> เลือกคำตอบ · <b>Enter</b> ตรวจ / ข้อถัดไป · <b>F</b> ดูสูตร</div>
       `;
       stageEl.querySelectorAll('[data-ga-opt]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -17070,6 +18443,8 @@ document.addEventListener('DOMContentLoaded', () => {
           d.selectedOptIdx = uiIdx;
           SoundFX.tick();
           stageEl.querySelectorAll('[data-ga-opt]').forEach((b, i) => b.classList.toggle('is-selected', i === uiIdx));
+          const picked = d.currentChoiceOpts[uiIdx];
+          if (picked && q.type === 'cloze') updateClozeBlankSlots(stageEl, picked.text, 'preview');
           if (checkBtn) checkBtn.disabled = false;
         });
       });
@@ -17078,20 +18453,30 @@ document.addEventListener('DOMContentLoaded', () => {
       stageEl.innerHTML = `
         <span class="ga-type-pill">${escapeHtml(typeLabel + requeueNote)}</span>
         <p class="ga-drill-prompt">${escapeHtml(q.promptTh)}</p>
-        <div class="ga-order-tray" id="ga-order-tray"><span style="color:var(--text-muted); font-size:0.86rem;">แตะคำด้านล่างเพื่อเรียงประโยค...</span></div>
-        <div class="ga-order-bank" id="ga-order-bank"></div>
+        <div class="ga-order-tray" id="ga-order-tray"><span class="ga-order-placeholder">แตะคำด้านล่างเพื่อเรียงประโยค...</span></div>
+        <div class="ga-order-controls">
+          <button type="button" class="ga-order-util-btn" id="btn-ga-order-undo" disabled>⌫ ลบคำล่าสุด</button>
+          <button type="button" class="ga-order-util-btn" id="btn-ga-order-clear" disabled>↺ ล้างทั้งหมด</button>
+        </div>
+        <div class="ga-order-bank" id="ga-order-bank">
+          ${d.orderBank.map(item => `<button type="button" class="ga-token-chip" data-ga-bank-id="${item.id}">${escapeHtml(item.text)}</button>`).join('')}
+        </div>
+        <div class="ga-shortcut-hint">💡 คีย์ลัด: กด <b>Backspace</b> ย้อน 1 คำ · <b>Enter</b> ตรวจคำตอบ · <b>F</b> ดูสูตร</div>
       `;
-      const syncOrderUI = () => {
+      const syncOrderUI = (newlyAddedId = null) => {
         const tray = $('ga-order-tray');
         const bank = $('ga-order-bank');
+        const undoBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-order-undo'));
+        const clearBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-order-clear'));
         if (!tray || !bank) return;
         const usedIds = new Set(d.orderChosen.map(x => x.id));
         tray.innerHTML = d.orderChosen.length > 0
-          ? d.orderChosen.map((item, pos) => `<button type="button" class="ga-token-chip" data-ga-tray-pos="${pos}">${escapeHtml(item.text)}</button>`).join('')
-          : '<span style="color:var(--text-muted); font-size:0.86rem;">แตะคำด้านล่างเพื่อเรียงประโยค...</span>';
-        bank.innerHTML = d.orderBank.map(item => `
-          <button type="button" class="ga-token-chip ${usedIds.has(item.id) ? 'is-used' : ''}" data-ga-bank-id="${item.id}">${escapeHtml(item.text)}</button>
-        `).join('');
+          ? d.orderChosen.map((item, pos) => `<button type="button" class="ga-token-chip ${item.id === newlyAddedId ? 'is-chip-pop' : ''}" data-ga-tray-pos="${pos}">${escapeHtml(item.text)}</button>`).join('')
+          : '<span class="ga-order-placeholder">แตะคำด้านล่างเพื่อเรียงประโยค...</span>';
+        bank.querySelectorAll('[data-ga-bank-id]').forEach(btn => {
+          const id = Number(/** @type {HTMLElement} */(btn).dataset.gaBankId);
+          btn.classList.toggle('is-used', usedIds.has(id));
+        });
         tray.querySelectorAll('[data-ga-tray-pos]').forEach(btn => {
           btn.addEventListener('click', () => {
             if (d.answered) return;
@@ -17101,19 +18486,33 @@ document.addEventListener('DOMContentLoaded', () => {
             syncOrderUI();
           });
         });
-        bank.querySelectorAll('[data-ga-bank-id]').forEach(btn => {
-          btn.addEventListener('click', () => {
-            if (d.answered) return;
-            const id = Number(/** @type {HTMLElement} */(btn).dataset.gaBankId);
-            const found = d.orderBank.find(x => x.id === id);
-            if (!found || d.orderChosen.some(x => x.id === id)) return;
-            d.orderChosen.push(found);
-            speakWordBankTile(found.text);
-            syncOrderUI();
-          });
-        });
+        if (undoBtn) undoBtn.disabled = d.answered || d.orderChosen.length === 0;
+        if (clearBtn) clearBtn.disabled = d.answered || d.orderChosen.length === 0;
         if (checkBtn) checkBtn.disabled = d.orderChosen.length < d.orderBank.length;
       };
+      $('ga-order-bank')?.querySelectorAll('[data-ga-bank-id]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (d.answered) return;
+          const id = Number(/** @type {HTMLElement} */(btn).dataset.gaBankId);
+          const found = d.orderBank.find(x => x.id === id);
+          if (!found || d.orderChosen.some(x => x.id === id)) return;
+          d.orderChosen.push(found);
+          speakWordBankTile(found.text);
+          syncOrderUI(id);
+        });
+      });
+      $('btn-ga-order-undo')?.addEventListener('click', () => {
+        if (d.answered || !d.orderChosen.length) return;
+        d.orderChosen.pop();
+        SoundFX.tick();
+        syncOrderUI();
+      });
+      $('btn-ga-order-clear')?.addEventListener('click', () => {
+        if (d.answered || !d.orderChosen.length) return;
+        d.orderChosen = [];
+        SoundFX.tick();
+        syncOrderUI();
+      });
       syncOrderUI();
     } else if (q.type === 'error') {
       const mappedCorr = (q.corrections || []).map((text, origIdx) => ({ text, origIdx }));
@@ -17121,18 +18520,22 @@ document.addEventListener('DOMContentLoaded', () => {
       stageEl.innerHTML = `
         <span class="ga-type-pill">${escapeHtml(typeLabel + requeueNote)}</span>
         <p class="ga-drill-prompt">${escapeHtml(q.promptTh)}</p>
-        <p class="ga-error-step-hint">1) แตะเลือกคำที่ผิดในประโยค:</p>
+        <p class="ga-error-step-hint">1) แตะเลือกคำ/วลีที่ผิดในประโยค:</p>
         <div class="ga-error-tokens" id="ga-error-tokens">
           ${(q.tokens || []).map((tok, i) => `<button type="button" class="ga-token-chip" data-ga-err-tok="${i}">${escapeHtml(tok)}</button>`).join('')}
         </div>
         <div id="ga-error-fix-wrap" hidden>
-          <p class="ga-error-step-hint">2) เลือกคำแก้ไขที่ถูกต้องแทนคำที่เลือก:</p>
+          <p class="ga-error-step-hint">2) เลือกคำแก้ไขที่ถูกต้องแทนส่วนที่เลือก:</p>
           <div class="ga-options-grid">
             ${d.currentChoiceOpts.map((opt, uiIdx) => `
-              <button type="button" class="ga-opt-btn" data-ga-err-fix="${uiIdx}">${escapeHtml(opt.text)}</button>
+              <button type="button" class="ga-opt-btn" data-ga-err-fix="${uiIdx}">
+                <span class="ga-opt-key">${String.fromCharCode(65 + uiIdx)}. </span>
+                <span class="ga-opt-text">${escapeHtml(opt.text)}</span>
+              </button>
             `).join('')}
           </div>
         </div>
+        <div class="ga-shortcut-hint">💡 คีย์ลัด: กด <b>F</b> ดูสูตรระหว่างทำ · <b>Enter</b> ตรวจ / ข้อถัดไป</div>
       `;
       stageEl.querySelectorAll('[data-ga-err-tok]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -17142,7 +18545,10 @@ document.addEventListener('DOMContentLoaded', () => {
           speakWordBankTile((q.tokens || [])[idx] || '');
           stageEl.querySelectorAll('[data-ga-err-tok]').forEach((b, i) => b.classList.toggle('is-selected', i === idx));
           const fixWrap = $('ga-error-fix-wrap');
-          if (fixWrap) fixWrap.hidden = false;
+          if (fixWrap && fixWrap.hidden) {
+            fixWrap.hidden = false;
+            triggerGrammarAnim(fixWrap, 'ga-reveal-down');
+          }
           if (checkBtn) checkBtn.disabled = d.selectedCorrectionIdx === null;
         });
       });
@@ -17157,6 +18563,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     }
+    triggerGrammarAnim(stageEl, 'ga-stage-in');
   }
 
   function checkGrammarDrillAnswer() {
@@ -17175,16 +18582,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const picked = d.currentChoiceOpts[d.selectedOptIdx];
       isCorrect = Boolean(picked && picked.origIdx === q.answerIndex);
       answerDisplay = (q.options || [])[q.answerIndex] || '';
-      if (q.type === 'cloze' && q.sentence && /_+/.test(q.sentence)) {
-        spokenAnswerSentence = q.sentence.replace(/_+/g, answerDisplay);
+      if (q.spokenEn) {
+        spokenAnswerSentence = q.spokenEn;
+      } else if (q.type === 'cloze' && q.sentence && /_+/.test(q.sentence)) {
+        spokenAnswerSentence = fillClozeBlanks(q.sentence, answerDisplay).spoken;
       } else if (q.type === 'transform') {
-        spokenAnswerSentence = answerDisplay;
+        spokenAnswerSentence = containsThaiText(answerDisplay) ? '' : answerDisplay;
+      }
+      if (q.type === 'cloze') {
+        updateClozeBlankSlots(stageEl, answerDisplay, isCorrect ? 'correct' : 'wrong');
       }
       stageEl?.querySelectorAll('[data-ga-opt]').forEach((btn, i) => {
         /** @type {HTMLButtonElement} */(btn).disabled = true;
         const opt = d.currentChoiceOpts[i];
         if (opt && opt.origIdx === q.answerIndex) btn.classList.add('is-correct');
-        else if (i === d.selectedOptIdx && !isCorrect) btn.classList.add('is-wrong');
+        else if (i === d.selectedOptIdx && !isCorrect) {
+          btn.classList.add('is-wrong');
+          triggerGrammarAnim(btn, 'ga-shake');
+        }
       });
     } else if (q.type === 'order') {
       const userSent = d.orderChosen.map(x => x.text).join(' ').trim();
@@ -17192,7 +18607,8 @@ document.addEventListener('DOMContentLoaded', () => {
       isCorrect = userSent === targetSent;
       answerDisplay = targetSent;
       spokenAnswerSentence = targetSent;
-      if (isCorrect) speakWordOverride(targetSent, null);
+      if (isCorrect) speakWordOverride(targetSent, false, null);
+      else if (stageEl) triggerGrammarAnim($('ga-order-tray'), 'ga-shake');
     } else if (q.type === 'error') {
       if (d.selectedErrorIdx === null || d.selectedCorrectionIdx === null) return;
       const pickedFix = d.currentChoiceOpts[d.selectedCorrectionIdx];
@@ -17205,17 +18621,29 @@ document.addEventListener('DOMContentLoaded', () => {
       stageEl?.querySelectorAll('[data-ga-err-tok]').forEach((btn, i) => {
         /** @type {HTMLButtonElement} */(btn).disabled = true;
         if (i === q.errorIndex) btn.classList.add('is-correct');
-        else if (i === d.selectedErrorIdx && d.selectedErrorIdx !== q.errorIndex) btn.classList.add('is-wrong');
+        else if (i === d.selectedErrorIdx && d.selectedErrorIdx !== q.errorIndex) {
+          btn.classList.add('is-wrong');
+          triggerGrammarAnim(btn, 'ga-shake');
+        }
       });
       stageEl?.querySelectorAll('[data-ga-err-fix]').forEach((btn, i) => {
         /** @type {HTMLButtonElement} */(btn).disabled = true;
         const opt = d.currentChoiceOpts[i];
         if (opt && opt.origIdx === q.correctOptionIndex) btn.classList.add('is-correct');
-        else if (i === d.selectedCorrectionIdx && !isCorrect) btn.classList.add('is-wrong');
+        else if (i === d.selectedCorrectionIdx && !isCorrect) {
+          btn.classList.add('is-wrong');
+          triggerGrammarAnim(btn, 'ga-shake');
+        }
       });
     }
 
     d.answered = true;
+    if (isCorrect) {
+      d.streak++;
+      d.maxStreak = Math.max(d.maxStreak, d.streak);
+    } else {
+      d.streak = 0;
+    }
     const isFirstAttempt = !d.seenKeys.has(q._qKey);
     d.seenKeys.add(q._qKey);
     const gpNow = loadGrammarProgress();
@@ -17226,6 +18654,15 @@ document.addEventListener('DOMContentLoaded', () => {
         saveGrammarProgress(gpNow);
       }
     } else if (!isCorrect) {
+      if (isFirstAttempt) {
+        const cleanSpoken = containsThaiText(spokenAnswerSentence) ? '' : spokenAnswerSentence;
+        d.missedItems.push({
+          promptTh: q.promptTh || '',
+          answerDisplay,
+          explanationTh: q.explanationTh || '',
+          spokenEn: cleanSpoken
+        });
+      }
       if (!gpNow.missedKeys.includes(q._qKey)) {
         gpNow.missedKeys.push(q._qKey);
         if (gpNow.missedKeys.length > 80) gpNow.missedKeys = gpNow.missedKeys.slice(-80);
@@ -17240,20 +18677,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isCorrect) SoundFX.known(Math.max(1, d.firstTryCorrect));
     else SoundFX.error();
 
+    if (containsThaiText(spokenAnswerSentence)) spokenAnswerSentence = '';
     const fbEl = $('ga-drill-feedback');
     if (fbEl) {
       fbEl.hidden = false;
-      fbEl.className = `ga-drill-feedback ${isCorrect ? 'is-correct' : 'is-wrong'}`;
+      const comboText = isCorrect && d.streak >= 2 ? ` · 🔥 ${d.streak} ติดต่อกัน!` : '';
+      fbEl.className = `ga-drill-feedback ${isCorrect ? 'is-correct' : 'is-wrong'} ga-fb-dock-in`;
       fbEl.innerHTML = `
         <div class="ga-fb-head">
-          <strong>${isCorrect ? '✅ ถูกต้องยอดเยี่ยม!' : `❌ ยังไม่ถูก (เฉลย: ${escapeHtml(answerDisplay)})`}</strong>
+          <strong>${isCorrect ? `✅ ถูกต้องยอดเยี่ยม!${comboText}` : `❌ ยังไม่ถูก (เฉลย: ${escapeHtml(answerDisplay)})`}</strong>
           ${spokenAnswerSentence ? `<button type="button" class="btn glass-btn btn-xs ga-fb-speak" id="btn-ga-fb-speak">🔊 ฟังประโยคเฉลย</button>` : ''}
         </div>
-        <div class="ga-fb-explain">${escapeHtml(q.explanationTh || '')}</div>
+        <div class="ga-fb-explain">${formatGrammarRichText(q.explanationTh || '')}</div>
       `;
       if (spokenAnswerSentence) {
         $('btn-ga-fb-speak')?.addEventListener('click', (ev) => {
-          speakWordOverride(spokenAnswerSentence, /** @type {HTMLElement} */(ev.currentTarget));
+          speakWordOverride(spokenAnswerSentence, true, /** @type {HTMLElement} */(ev.currentTarget));
         });
       }
     }
@@ -17308,26 +18747,114 @@ document.addEventListener('DOMContentLoaded', () => {
     const curIdx = lessons.findIndex(l => l.id === d.lessonId);
     const nextLesson = !d.isMixed && curIdx >= 0 ? lessons[curIdx + 1] : null;
 
+    const ringCirc = 263.89;
+    const ringTarget = ringCirc * (1 - pct / 100);
+    const reviewHtml = d.missedItems.length > 0 ? `
+      <div class="ga-sum-review">
+        <div class="ga-sum-review-head">📝 ทบทวนข้อที่พลาดในรอบนี้ (${d.missedItems.length} ข้อ)</div>
+        <div class="ga-sum-review-list">
+          ${d.missedItems.map((m, idx) => `
+            <div class="ga-sum-review-item">
+              <div class="ga-sum-rev-top">
+                <span class="ga-sum-rev-q">${escapeHtml(m.promptTh)}</span>
+                ${m.spokenEn ? `<button type="button" class="ga-cell-speak ga-sum-rev-spk" data-ga-rev-spk="${idx}" aria-label="ฟังเสียงเฉลย">🔊</button>` : ''}
+              </div>
+              <div class="ga-sum-rev-ans">เฉลย: <strong>${escapeHtml(m.answerDisplay)}</strong></div>
+              <div class="ga-sum-rev-exp">${formatGrammarRichText(m.explanationTh)}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : '';
+
     const sumEl = $('ga-drill-summary');
     if (sumEl) {
       sumEl.hidden = false;
+      sumEl.className = 'ga-drill-summary ga-view-enter';
       sumEl.innerHTML = `
-        <div style="font-size:2.6rem;">${passed ? '🏆' : '💪'}</div>
+        <div class="ga-sum-ring-wrap">
+          <svg class="ga-sum-ring" viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="ga-ring-track" cx="50" cy="50" r="42"></circle>
+            <circle class="ga-sum-ring-fill ${passed ? 'is-pass' : 'is-retry'}" id="ga-sum-ring-fill" cx="50" cy="50" r="42" stroke-dasharray="${ringCirc}" stroke-dashoffset="${ringCirc}"></circle>
+          </svg>
+          <div class="ga-sum-ring-icon">${passed ? '🏆' : '💪'}</div>
+        </div>
         <h3>${passed ? 'ผ่านบทเรียนเรียบร้อย!' : 'ฝึกต่ออีกนิด เกือบผ่านแล้ว!'}</h3>
-        <div class="ga-summary-score">${pct}% (${d.firstTryCorrect} / ${d.firstTryTotal} ข้อ)</div>
-        <p style="color:var(--text-muted); margin:4px 0 0;">รับ +${earnedXp} XP · ${passed ? 'ปลดล็อกสถานะ "ผ่านแล้ว ✓" เรียบร้อย' : 'ทำให้ได้ 80%+ เพื่อพิชิตบทนี้'}</p>
+        <div class="ga-summary-score"><span id="ga-sum-pct-num">${pct}</span>% (${d.firstTryCorrect} / ${d.firstTryTotal} ข้อ)</div>
+        <p class="ga-sum-xp-line">รับ +${earnedXp} XP${d.maxStreak >= 3 ? ` · คอมโบสูงสุด ${d.maxStreak}` : ''} · ${passed ? 'ปลดล็อกสถานะ "ผ่านแล้ว ✓" เรียบร้อย' : 'ทำให้ได้ 80%+ เพื่อพิชิตบทนี้'}</p>
         <div class="ga-summary-actions">
           ${nextLesson ? `<button type="button" class="btn btn-primary glass-btn" id="btn-ga-sum-next">▶ เรียนบทถัดไป (บทที่ ${nextLesson.num})</button>` : ''}
           <button type="button" class="btn glass-btn" id="btn-ga-sum-retry">↻ ลองทำโจทย์ใหม่</button>
           ${!d.isMixed ? `<button type="button" class="btn glass-btn" id="btn-ga-sum-study">📖 กลับไปอ่านสูตรบทนี้</button>` : ''}
           <button type="button" class="btn glass-btn" id="btn-ga-sum-hub">🏠 หน้ารวมบทเรียน</button>
         </div>
+        ${reviewHtml}
       `;
+      requestAnimationFrame(() => {
+        const ringEl = $('ga-sum-ring-fill');
+        if (ringEl) ringEl.style.strokeDashoffset = String(ringTarget.toFixed(2));
+      });
+      if (!document.documentElement.classList.contains('ox-reduce-motion') && pct > 0) {
+        const numEl = $('ga-sum-pct-num');
+        const startTs = performance.now();
+        const stepNum = (now) => {
+          const t = Math.min(1, (now - startTs) / 300);
+          const eased = 1 - Math.pow(1 - t, 3);
+          if (numEl) numEl.textContent = String(Math.round(pct * eased));
+          if (t < 1) requestAnimationFrame(stepNum);
+          else if (numEl) numEl.textContent = String(pct);
+        };
+        requestAnimationFrame(stepNum);
+      }
+      sumEl.querySelectorAll('[data-ga-rev-spk]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = Number(/** @type {HTMLElement} */(btn).dataset.gaRevSpk);
+          const item = d.missedItems[idx];
+          if (item?.spokenEn) speakWordOverride(item.spokenEn, true, btn);
+        });
+      });
       $('btn-ga-sum-next')?.addEventListener('click', () => nextLesson && openGrammarStudy(nextLesson.id));
       $('btn-ga-sum-retry')?.addEventListener('click', () => startGrammarDrill({ lessonId: d.lessonId, isMixed: d.isMixed }));
       $('btn-ga-sum-study')?.addEventListener('click', () => openGrammarStudy(d.lessonId));
       $('btn-ga-sum-hub')?.addEventListener('click', () => renderGrammarHub());
     }
+  }
+
+  function openGrammarExamModal() {
+    const modal = $('grammar-exam-modal');
+    if (!modal) return;
+    const gp = loadGrammarProgress();
+    const histWrap = $('ga-exam-history-wrap');
+    if (histWrap) {
+      const recent = (gp.examHistory || []).slice(-5).reverse();
+      if (recent.length > 0) {
+        histWrap.hidden = false;
+        histWrap.innerHTML = `
+          <div class="ga-exam-setup-label">ประวัติผลสอบล่าสุด (${recent.length} ครั้ง)</div>
+          <div class="ga-exam-history-list">
+            ${recent.map(h => `
+              <div class="ga-exam-history-row">
+                <span class="ga-exam-hist-title">${escapeHtml(h.title || h.scope || 'Grammar Exam')}</span>
+                <span class="ga-exam-hist-meta">${formatExamClock(h.elapsedSec || 0)}</span>
+                <strong class="ga-exam-hist-score ${Number(h.pct) >= 70 ? 'is-pass' : ''}">${h.pct}% (${h.correct}/${h.total})</strong>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else {
+        histWrap.hidden = true;
+        histWrap.innerHTML = '';
+      }
+    }
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeGrammarExamModal() {
+    const modal = $('grammar-exam-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
   }
 
   function openGrammarAcademy(lessonId = null) {
@@ -17352,6 +18879,30 @@ document.addEventListener('DOMContentLoaded', () => {
     $('btn-ga-weak-drill')?.addEventListener('click', () => {
       startGrammarDrill({ isMixed: true, mixedScope: 'weak' });
     });
+    $('btn-ga-open-exam-modal')?.addEventListener('click', () => {
+      SoundFX.tick();
+      openGrammarExamModal();
+    });
+    $('btn-ga-exam-modal-close')?.addEventListener('click', closeGrammarExamModal);
+    $('btn-ga-exam-modal-cancel')?.addEventListener('click', closeGrammarExamModal);
+    $('grammar-exam-modal')?.addEventListener('click', (e) => {
+      if (e.target === $('grammar-exam-modal')) closeGrammarExamModal();
+    });
+    $('ga-exam-preset-grid')?.addEventListener('click', (e) => {
+      if (!(e.target instanceof Element)) return;
+      const btn = e.target.closest('[data-exam-scope]');
+      if (!(btn instanceof HTMLElement)) return;
+      gaState.examSelectedScope = btn.dataset.examScope || 'all30';
+      $('ga-exam-preset-grid').querySelectorAll('[data-exam-scope]').forEach(b => b.classList.toggle('active', b === btn));
+      SoundFX.tick();
+    });
+    $('btn-ga-exam-start')?.addEventListener('click', () => {
+      const timedEl = /** @type {HTMLInputElement|null} */ ($('ga-exam-timed-checkbox'));
+      const timed = timedEl ? Boolean(timedEl.checked) : true;
+      const scope = gaState.examSelectedScope || 'all30';
+      closeGrammarExamModal();
+      startGrammarExam({ scope, timed });
+    });
     $('ga-search-input')?.addEventListener('input', (e) => {
       gaState.search = (/** @type {HTMLInputElement} */(e.currentTarget)).value || '';
       renderGrammarHub();
@@ -17367,15 +18918,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.addEventListener('keydown', (e) => {
       if (currentScreen !== 'grammar-academy') return;
+      const examModal = $('grammar-exam-modal');
+      if (examModal?.classList.contains('open')) {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeGrammarExamModal();
+        }
+        return;
+      }
       const peekModal = $('grammar-peek-modal');
       if (peekModal?.classList.contains('open')) {
-        if (e.key === 'Escape') closeGrammarPeekModal();
+        if (e.key === 'Escape' || e.key.toLowerCase() === 'f') {
+          e.preventDefault();
+          closeGrammarPeekModal();
+        }
         return;
       }
       const drillView = $('grammar-drill-view');
       const d = gaState.drill;
       if (!drillView || drillView.hidden || !d || !$('ga-drill-summary')?.hidden) return;
       const key = e.key;
+      if (d.isExam) {
+        if (d.examFinished) return;
+        if (key.toLowerCase() === 'f') {
+          e.preventDefault();
+          return;
+        }
+        if (key === 'ArrowLeft') {
+          const prevBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-exam-prev'));
+          if (prevBtn && !prevBtn.disabled) { e.preventDefault(); prevBtn.click(); }
+          return;
+        }
+        if (key === 'ArrowRight' || key === 'Enter') {
+          const nextBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-exam-next'));
+          if (nextBtn && !nextBtn.disabled) { e.preventDefault(); nextBtn.click(); }
+          return;
+        }
+        const idxMap = { '1': 0, '2': 1, '3': 2, '4': 3, 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
+        const pickIdx = idxMap[key.toLowerCase()];
+        if (pickIdx !== undefined) {
+          const btns = $('ga-drill-stage')?.querySelectorAll('.ga-opt-btn[data-ga-opt]');
+          if (btns && btns[pickIdx]) {
+            e.preventDefault();
+            /** @type {HTMLElement} */(btns[pickIdx]).click();
+          }
+        }
+        return;
+      }
+      if (key.toLowerCase() === 'f') {
+        e.preventDefault();
+        $('btn-ga-peek-formula')?.click();
+        return;
+      }
+      if (key === 'Backspace' && !d.answered) {
+        const undoBtn = $('btn-ga-order-undo');
+        if (undoBtn && !/** @type {HTMLButtonElement} */(undoBtn).disabled) {
+          e.preventDefault();
+          undoBtn.click();
+          return;
+        }
+      }
       if (key === 'Enter') {
         const nextBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-next'));
         const checkBtn = /** @type {HTMLButtonElement|null} */ ($('btn-ga-drill-check'));
@@ -17392,7 +18994,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const idxMap = { '1': 0, '2': 1, '3': 2, '4': 3, 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
         const pickIdx = idxMap[key.toLowerCase()];
         if (pickIdx !== undefined) {
-          const btns = $('ga-drill-stage')?.querySelectorAll('[data-ga-opt]');
+          const btns = $('ga-drill-stage')?.querySelectorAll('.ga-opt-btn[data-ga-opt], #ga-error-fix-wrap:not([hidden]) [data-ga-err-fix]');
           if (btns && btns[pickIdx]) {
             e.preventDefault();
             /** @type {HTMLElement} */(btns[pickIdx]).click();
@@ -17414,10 +19016,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const toggleBtn = e.target.closest('[data-ga-phase-toggle]');
       if (toggleBtn instanceof HTMLElement) {
         const phNum = Number(toggleBtn.dataset.gaPhaseToggle);
-        if (gaState.collapsedPhases.has(phNum)) gaState.collapsedPhases.delete(phNum);
-        else gaState.collapsedPhases.add(phNum);
+        const block = toggleBtn.closest('.ga-phase-block');
+        const gridWrap = block?.querySelector('.ga-phase-grid-wrap');
+        const willCollapse = !gaState.collapsedPhases.has(phNum);
+        if (willCollapse) gaState.collapsedPhases.add(phNum);
+        else gaState.collapsedPhases.delete(phNum);
         SoundFX.tick();
-        renderGrammarHub();
+        if (block && gridWrap) {
+          block.classList.toggle('is-collapsed', willCollapse);
+          toggleBtn.setAttribute('aria-expanded', String(!willCollapse));
+          gridWrap.classList.toggle('is-collapsed', willCollapse);
+          if (willCollapse) {
+            gridWrap.setAttribute('inert', '');
+            gridWrap.setAttribute('aria-hidden', 'true');
+          } else {
+            gridWrap.removeAttribute('inert');
+            gridWrap.removeAttribute('aria-hidden');
+          }
+        } else {
+          renderGrammarHub();
+        }
         return;
       }
       const card = e.target.closest('[data-ga-lesson-id]');
@@ -17438,8 +19056,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     $('btn-ga-study-prev')?.addEventListener('click', goNavLesson);
     $('btn-ga-study-next')?.addEventListener('click', goNavLesson);
-    $('btn-ga-drill-exit')?.addEventListener('click', () => {
-      if (gaState.drill && !gaState.drill.isMixed) openGrammarStudy(gaState.drill.lessonId);
+    $('btn-ga-drill-exit')?.addEventListener('click', async () => {
+      const d = gaState.drill;
+      if (d && d.isExam && !d.examFinished) {
+        const ok = await confirmDialog({
+          title: 'ออกจากการสอบ?',
+          message: 'คำตอบในรอบนี้จะไม่ถูกบันทึก ต้องการออกจากการสอบหรือไม่?',
+          confirmText: 'ออกจากการสอบ',
+          danger: true
+        });
+        if (!ok) return;
+        clearGrammarExamTimer();
+        renderGrammarHub();
+        return;
+      }
+      clearGrammarExamTimer();
+      if (d && !d.isMixed) openGrammarStudy(d.lessonId);
       else renderGrammarHub();
     });
     $('btn-ga-drill-check')?.addEventListener('click', () => checkGrammarDrillAnswer());
@@ -17448,6 +19080,31 @@ document.addEventListener('DOMContentLoaded', () => {
       gaState.drill.index++;
       renderGrammarDrillQuestion();
     });
+    $('btn-ga-exam-prev')?.addEventListener('click', () => {
+      const d = gaState.drill;
+      if (!d || !d.isExam || d.index <= 0) return;
+      saveCurrentExamResponse();
+      d.index--;
+      SoundFX.tick();
+      renderGrammarDrillQuestion();
+    });
+    $('btn-ga-exam-next')?.addEventListener('click', () => {
+      const d = gaState.drill;
+      if (!d || !d.isExam || d.index >= d.queue.length - 1) return;
+      saveCurrentExamResponse();
+      d.index++;
+      SoundFX.tick();
+      renderGrammarDrillQuestion();
+    });
+    $('btn-ga-exam-flag')?.addEventListener('click', () => {
+      const d = gaState.drill;
+      if (!d || !d.isExam || !d.examResponses[d.index]) return;
+      d.examResponses[d.index].flagged = !d.examResponses[d.index].flagged;
+      SoundFX.tick();
+      renderExamNavigator();
+      syncExamActionsBar();
+    });
+    $('btn-ga-exam-submit')?.addEventListener('click', () => submitGrammarExam(false));
     $('btn-ga-peek-formula')?.addEventListener('click', (e) => {
       const lid = (/** @type {HTMLElement} */(e.currentTarget)).dataset.peekLessonId || gaState.activeLessonId;
       openGrammarPeekModal(lid);
