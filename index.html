@@ -1497,7 +1497,7 @@
                         </div>
                         <div class="qh-record-chip">
                             <span>📘 Grammar จากศูนย์:</span>
-                            <strong id="qh-grammar-mastered">0 / 30 บท</strong>
+                            <strong id="qh-grammar-mastered">0 / 37 บท</strong>
                         </div>
                     </div>
 
@@ -1539,7 +1539,7 @@
                     <div class="ga-topbar">
                         <button type="button" id="btn-ga-back-quiz" class="btn glass-btn btn-sm">← กลับแบบทดสอบ</button>
                         <div class="ga-overall-wrap">
-                            <div class="ga-progress-pill" id="ga-overall-pill">พิชิตแล้ว 0 / 30 บท</div>
+                            <div class="ga-progress-pill" id="ga-overall-pill">พิชิตแล้ว 0 / 37 บท</div>
                             <div class="ga-overall-bar" aria-hidden="true"><div id="ga-overall-bar-fill" class="ga-overall-bar-fill"></div></div>
                         </div>
                     </div>
@@ -1555,7 +1555,7 @@
                                 <button type="button" id="btn-ga-continue" class="btn btn-primary glass-btn">📖 เริ่มเรียนบทที่ 1</button>
                                 <div class="ga-mixed-control">
                                     <select id="ga-mixed-scope" class="glass-select ga-mixed-select" aria-label="ขอบเขตการสุ่มทดสอบ Grammar">
-                                        <option value="all">🎲 สุ่มทุกบท (30 บท · 10 ข้อ)</option>
+                                        <option value="all">🎲 สุ่มทุกบท (37 บท · 10 ข้อ)</option>
                                         <option value="phase1">🌱 Phase 1: พื้นฐานจาก 0</option>
                                         <option value="phase2">⚡ Phase 2: 12 Tenses & กริยา</option>
                                         <option value="phase3">🏆 Phase 3: กลาง–สูง & กับดักไทย</option>
@@ -1585,7 +1585,7 @@
                                 </div>
                                 <div class="ga-hero-stat">
                                     <span class="ga-stat-label">อ่านสรุปแล้ว</span>
-                                    <strong id="ga-hero-studied-cnt">0 / 30 บท</strong>
+                                    <strong id="ga-hero-studied-cnt">0 / 37 บท</strong>
                                 </div>
                                 <div class="ga-hero-stat" id="ga-hero-exam-stat" hidden>
                                     <span class="ga-stat-label">คะแนนสอบสูงสุด</span>
@@ -1596,10 +1596,10 @@
                     </div>
 
                     <div class="ga-phase-tabs" id="ga-phase-tabs" role="tablist" aria-label="เลือกดูตามระดับ">
-                        <button type="button" class="ga-phase-tab active" data-ga-phase="all">ทุกบท (30)</button>
-                        <button type="button" class="ga-phase-tab" data-ga-phase="phase1">Phase 1 · พื้นฐาน (1–10)</button>
-                        <button type="button" class="ga-phase-tab" data-ga-phase="phase2">Phase 2 · Tenses & กริยา (11–19)</button>
-                        <button type="button" class="ga-phase-tab" data-ga-phase="phase3">Phase 3 · กลาง–สูง (20–30)</button>
+                        <button type="button" class="ga-phase-tab active" data-ga-phase="all">ทุกบท (37)</button>
+                        <button type="button" class="ga-phase-tab" data-ga-phase="phase1">Phase 1 · พื้นฐาน (1–12)</button>
+                        <button type="button" class="ga-phase-tab" data-ga-phase="phase2">Phase 2 · Tenses & กริยา (13–23)</button>
+                        <button type="button" class="ga-phase-tab" data-ga-phase="phase3">Phase 3 · กลาง–สูง (24–37)</button>
                     </div>
 
                     <div class="ga-toolbar">
@@ -1634,7 +1634,7 @@
                         <footer class="ga-study-footer">
                             <button type="button" id="btn-ga-study-prev" class="btn glass-btn ga-nav-lesson-btn" hidden>← บทก่อนหน้า</button>
                             <button type="button" id="btn-ga-start-drill" class="btn btn-primary glass-btn ga-study-cta-btn">
-                                ✍️ เข้าใจแล้ว · ลองทำโจทย์บทนี้ (10 ข้อ)
+                                ✍️ เข้าใจแล้ว · ลองทำโจทย์บทนี้ (12 ข้อ)
                             </button>
                             <button type="button" id="btn-ga-study-next" class="btn glass-btn ga-nav-lesson-btn" hidden>บทถัดไป →</button>
                         </footer>
@@ -1651,6 +1651,7 @@
                                 <strong id="ga-drill-counter">1 / 10</strong>
                             </div>
                             <div class="ga-drill-bar"><div id="ga-drill-bar-fill" class="ga-drill-bar-fill"></div></div>
+                            <div id="ga-drill-segments" class="ga-drill-segments" aria-hidden="true"></div>
                         </div>
                         <div id="ga-exam-timer" class="ga-exam-timer" hidden aria-live="off">⏱ 25:00</div>
                         <button type="button" id="btn-ga-peek-formula" class="btn glass-btn btn-sm" title="เปิดดูสูตรสรุปบทนี้ระหว่างทำโจทย์">📖 ดูสูตร</button>
@@ -2717,6 +2718,7 @@
     <script defer src="grammar-data.js"></script>
     <script defer src="grammar-curriculum-v2.js"></script>
     <script defer src="grammar-exam-data.js"></script>
+    <script defer src="grammar-dialogues.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script defer src="script.js"></script>
 </body>

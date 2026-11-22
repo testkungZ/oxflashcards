@@ -6449,6 +6449,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     accentUpdatedAt: prefsMeta.accentUpdatedAt || 0
                 },
                 learningPath: typeof getLearnSyncPayloadHook === 'function' ? getLearnSyncPayloadHook() : undefined,
+                grammarProgress: typeof loadGrammarProgress === 'function' ? loadGrammarProgress() : undefined,
                 exportedAt: new Date().toISOString(),
                 version: 'ox3k_v2'
             };
@@ -6481,7 +6482,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         throw new Error('Invalid JSON');
                     }
 
-                    const hasRecognizedKey = ['wordStatus', 'sessions', 'quizHistory', 'dailyGoal', 'wordMastery', 'bookmarks', 'activityLog', 'prefs', 'learningPath']
+                    const hasRecognizedKey = ['wordStatus', 'sessions', 'quizHistory', 'dailyGoal', 'wordMastery', 'bookmarks', 'activityLog', 'prefs', 'learningPath', 'grammarProgress']
                         .some((key) => Object.prototype.hasOwnProperty.call(parsed, key));
                     if (!hasRecognizedKey) throw new Error('Unrecognized backup format');
 
@@ -6568,6 +6569,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (parsed.learningPath && typeof importLearnJsonHook === 'function') {
                         importLearnJsonHook(parsed.learningPath);
+                    }
+                    if (parsed.grammarProgress && typeof saveGrammarProgress === 'function') {
+                        saveGrammarProgress(parsed.grammarProgress, { triggerSync: false });
+                        if (typeof refreshQuizHubSpecialRecords === 'function') refreshQuizHubSpecialRecords();
+                        if (currentScreen === 'grammar-academy' && gaState.subView === 'hub' && typeof renderGrammarHub === 'function') {
+                            renderGrammarHub();
+                        }
                     }
                     renderWelcome();
                     renderHistory();
@@ -6931,6 +6939,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const lp = getLearnSyncPayloadHook();
                 if (lp && (lp.xp > 0 || Object.keys(lp.completedStages || {}).length > 0 || (lp.claimedChests || []).length > 0)) return true;
             }
+            if (typeof hasGrammarLocalProgress === 'function' && hasGrammarLocalProgress()) return true;
             return false;
         },
         buildPayload() {
@@ -6953,6 +6962,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 hourlyUsageLog: { ...hourlyUsageLog },
                 dailyGoal: { ...dailyGoal, targetUpdatedAt: dailyGoal.targetUpdatedAt || 0 },
                 learningPath: typeof getLearnSyncPayloadHook === 'function' ? getLearnSyncPayloadHook() : undefined,
+                grammarProgress: typeof loadGrammarProgress === 'function' ? loadGrammarProgress() : undefined,
                 prefs: {
                     size: selectedSize,
                     sizeUpdatedAt: prefsMeta.sizeUpdatedAt || 0,
@@ -7136,6 +7146,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (remote.learningPath && typeof mergeLearnSyncPayloadHook === 'function') {
                 mergeLearnSyncPayloadHook(remote.learningPath);
+            }
+            if (remote.grammarProgress && typeof mergeGrammarProgressData === 'function' && typeof saveGrammarProgress === 'function') {
+                const mergedGp = mergeGrammarProgressData(loadGrammarProgress(), remote.grammarProgress);
+                saveGrammarProgress(mergedGp, { triggerSync: false });
+                if (typeof refreshQuizHubSpecialRecords === 'function') refreshQuizHubSpecialRecords();
+                if (currentScreen === 'grammar-academy' && gaState.subView === 'hub' && typeof renderGrammarHub === 'function') {
+                    renderGrammarHub();
+                }
             }
 
             renderWelcome();
@@ -16439,11 +16457,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (kind === 'reset') {
       learnState = defaultLearnState();
       storage.remove(LEARN_STORAGE_KEY);
+      storage.remove(GRAMMAR_STORAGE_KEY);
       learnFreshness.recentGlobalWords = [];
       learnFreshness.recentStageWords = {};
       learnFreshness.recentGlobalDialogues = [];
       learnFreshness.recentStageDialogues = {};
       saveLearnFreshness();
+      if (typeof refreshQuizHubSpecialRecords === 'function') refreshQuizHubSpecialRecords();
+      if (currentScreen === 'grammar-academy' && typeof renderGrammarHub === 'function') renderGrammarHub();
     }
     renderLearnPath(true);
     renderProfile();
@@ -16631,23 +16652,122 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================
    * Grammar Academy Engine (Zero to Mastery · inside Quiz Tab)
    * ========================================================= */
-  function loadGrammarProgress() {
-    const raw = storage.get(GRAMMAR_STORAGE_KEY, null);
-    const obj = (raw && typeof raw === 'object') ? raw : {};
+  function normalizeGrammarProgress(raw) {
+    const obj = (raw && typeof raw === 'object' && !Array.isArray(raw)) ? raw : {};
+    const cleanBestAcc = {};
+    if (obj.bestAccuracy && typeof obj.bestAccuracy === 'object' && !Array.isArray(obj.bestAccuracy)) {
+      Object.entries(obj.bestAccuracy).forEach(([k, v]) => {
+        const n = Number(v);
+        if (typeof k === 'string' && k && Number.isFinite(n)) {
+          cleanBestAcc[k] = Math.min(100, Math.max(0, Math.round(n)));
+        }
+      });
+    }
+    let cleanExamBest = null;
+    if (obj.examBest && typeof obj.examBest === 'object' && !Array.isArray(obj.examBest)) {
+      const pct = Number(obj.examBest.pct);
+      const correct = Number(obj.examBest.correct);
+      const total = Number(obj.examBest.total);
+      if (Number.isFinite(pct) && Number.isFinite(correct) && Number.isFinite(total) && total > 0) {
+        cleanExamBest = {
+          pct: Math.min(100, Math.max(0, Math.round(pct))),
+          correct: Math.max(0, Math.round(correct)),
+          total: Math.max(1, Math.round(total)),
+          scope: typeof obj.examBest.scope === 'string' ? obj.examBest.scope : 'all30',
+          updatedAt: Number(obj.examBest.updatedAt) || 0
+        };
+      }
+    }
+    const cleanExamHistory = Array.isArray(obj.examHistory)
+      ? obj.examHistory
+          .filter(h => h && typeof h === 'object' && Number.isFinite(Number(h.pct)) && Number(h.total) > 0)
+          .map(h => ({
+            pct: Math.min(100, Math.max(0, Math.round(Number(h.pct)))),
+            correct: Math.max(0, Math.round(Number(h.correct || 0))),
+            total: Math.max(1, Math.round(Number(h.total))),
+            scope: typeof h.scope === 'string' ? h.scope : 'all30',
+            title: typeof h.title === 'string' ? h.title : '',
+            elapsedSec: Math.max(0, Math.round(Number(h.elapsedSec || 0))),
+            at: Number(h.at) || 0
+          }))
+          .slice(-15)
+      : [];
     return {
-      masteredIds: Array.isArray(obj.masteredIds) ? Array.from(new Set(obj.masteredIds)) : [],
-      studiedIds: Array.isArray(obj.studiedIds) ? Array.from(new Set(obj.studiedIds)) : [],
-      missedKeys: Array.isArray(obj.missedKeys) ? Array.from(new Set(obj.missedKeys)).slice(-80) : [],
-      bestAccuracy: (obj.bestAccuracy && typeof obj.bestAccuracy === 'object') ? { ...obj.bestAccuracy } : {},
-      mixedRuns: Number(obj.mixedRuns || 0),
-      examBest: (obj.examBest && typeof obj.examBest === 'object') ? { ...obj.examBest } : null,
-      examHistory: Array.isArray(obj.examHistory) ? obj.examHistory.slice(-15) : [],
-      examMissedIds: Array.isArray(obj.examMissedIds) ? Array.from(new Set(obj.examMissedIds)).slice(-90) : []
+      masteredIds: Array.isArray(obj.masteredIds) ? Array.from(new Set(obj.masteredIds.filter(x => typeof x === 'string' && x))) : [],
+      studiedIds: Array.isArray(obj.studiedIds) ? Array.from(new Set(obj.studiedIds.filter(x => typeof x === 'string' && x))) : [],
+      missedKeys: Array.isArray(obj.missedKeys) ? Array.from(new Set(obj.missedKeys.filter(x => typeof x === 'string' && x))).slice(-80) : [],
+      bestAccuracy: cleanBestAcc,
+      mixedRuns: Math.max(0, Math.round(Number(obj.mixedRuns || 0) || 0)),
+      examBest: cleanExamBest,
+      examHistory: cleanExamHistory,
+      examMissedIds: Array.isArray(obj.examMissedIds) ? Array.from(new Set(obj.examMissedIds.filter(x => typeof x === 'string' && x))).slice(-90) : []
     };
   }
 
-  function saveGrammarProgress(gp) {
-    storage.set(GRAMMAR_STORAGE_KEY, gp);
+  function mergeGrammarProgressData(localRaw, remoteRaw) {
+    const loc = normalizeGrammarProgress(localRaw);
+    const rem = normalizeGrammarProgress(remoteRaw);
+    const mergedBestAcc = { ...loc.bestAccuracy };
+    Object.entries(rem.bestAccuracy).forEach(([k, v]) => {
+      mergedBestAcc[k] = Math.max(Number(mergedBestAcc[k] || 0), Number(v || 0));
+    });
+
+    let mergedExamBest = loc.examBest;
+    if (rem.examBest) {
+      if (!mergedExamBest) {
+        mergedExamBest = { ...rem.examBest };
+      } else if (
+        rem.examBest.pct > mergedExamBest.pct ||
+        (rem.examBest.pct === mergedExamBest.pct && rem.examBest.total > mergedExamBest.total) ||
+        (rem.examBest.pct === mergedExamBest.pct && rem.examBest.total === mergedExamBest.total && rem.examBest.updatedAt > mergedExamBest.updatedAt)
+      ) {
+        mergedExamBest = { ...rem.examBest };
+      }
+    }
+
+    const histSeen = new Set();
+    const mergedExamHistory = [...loc.examHistory, ...rem.examHistory]
+      .sort((a, b) => (a.at || 0) - (b.at || 0))
+      .filter(h => {
+        const key = `${h.at}_${h.scope}_${h.correct}_${h.total}`;
+        if (histSeen.has(key)) return false;
+        histSeen.add(key);
+        return true;
+      })
+      .slice(-15);
+
+    return {
+      masteredIds: Array.from(new Set([...loc.masteredIds, ...rem.masteredIds])),
+      studiedIds: Array.from(new Set([...loc.studiedIds, ...rem.studiedIds])),
+      missedKeys: Array.from(new Set([...loc.missedKeys, ...rem.missedKeys])).slice(-80),
+      bestAccuracy: mergedBestAcc,
+      mixedRuns: Math.max(loc.mixedRuns, rem.mixedRuns),
+      examBest: mergedExamBest,
+      examHistory: mergedExamHistory,
+      examMissedIds: Array.from(new Set([...loc.examMissedIds, ...rem.examMissedIds])).slice(-90)
+    };
+  }
+
+  function hasGrammarLocalProgress() {
+    const gp = loadGrammarProgress();
+    return Boolean(
+      gp.masteredIds.length > 0 ||
+      gp.studiedIds.length > 0 ||
+      gp.mixedRuns > 0 ||
+      gp.examBest ||
+      gp.examHistory.length > 0
+    );
+  }
+
+  function loadGrammarProgress() {
+    return normalizeGrammarProgress(storage.get(GRAMMAR_STORAGE_KEY, null));
+  }
+
+  function saveGrammarProgress(gp, { triggerSync = true } = {}) {
+    storage.set(GRAMMAR_STORAGE_KEY, normalizeGrammarProgress(gp));
+    if (triggerSync && typeof scheduleGoogleAutoSync === 'function') {
+      scheduleGoogleAutoSync();
+    }
   }
 
   function containsThaiText(str) {
@@ -16680,16 +16800,28 @@ document.addEventListener('DOMContentLoaded', () => {
   function formatGrammarRichText(raw) {
     let html = escapeHtml(String(raw || ''));
     html = html
+      .replace(/~~([^~]+)~~/g, '<del class="ga-del">$1</del>')
+      .replace(/`([^`]+)`/g, '<code class="ga-code">$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/❌/g, '<span class="ga-mark is-bad" aria-label="ผิด">❌</span>')
-      .replace(/✅/g, '<span class="ga-mark is-good" aria-label="ถูก">✅</span>')
-      .replace(/(\b(?:have\/has|has\/had|is\/am\/are|was\/were|had|have|has|be|will|would|could|should|to)\s*\+\s*V(?:1|2|3|-ing)\b|\b(?:S\s*\+\s*V(?:[123]|-ing)?|to\s+V1|V-ing|V[123])\b|Ø)/g, '<code class="ga-code">$1</code>');
-    return html;
+      .replace(/✅/g, '<span class="ga-mark is-good" aria-label="ถูก">✅</span>');
+    const tokenRe = /(<code\b[^>]*>[\s\S]*?<\/code>|<del\b[^>]*>[\s\S]*?<\/del>|<span\b[^>]*>[\s\S]*?<\/span>)/g;
+    const formulaRe = /(\b(?:have\/has|has\/had|is\/am\/are|was\/were|had|have|has|be|will|would|could|should|to)\s*\+\s*V(?:1|2|3|-ing)\b|\b(?:S\s*\+\s*V(?:[123]|-ing)?|to\s+V1|V-ing|V[123])\b|Ø)/g;
+    return html.split(tokenRe).map(seg => {
+      if (!seg || seg.startsWith('<')) return seg;
+      return seg.replace(formulaRe, '<code class="ga-code">$1</code>');
+    }).join('');
   }
 
   function extractCleanTableSentence(cell, headerText) {
     const hdr = String(headerText || '');
     if (!/ตัวอย่าง|ประโยค|Passive|Reported|ถูก/i.test(hdr) || /ผิด/.test(hdr)) return '';
-    const plain = String(cell || '').replace(/<[^>]+>/g, '').trim();
+    const plain = String(cell || '')
+      .replace(/<[^>]+>/g, '')
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/~~([^~]+)~~/g, '$1')
+      .replace(/`([^`]+)`/g, '$1')
+      .trim();
     const first = plain.split(/\s*\/\s*/)[0].replace(/\([^)]*\)/g, '').trim();
     if (!first || containsThaiText(first) || /[❌✅→=+_·]/.test(first)) return '';
     if (/\b(V1|V2|V3|V-ing|Adj|Adv|Prep|Aux)\b/.test(first)) return '';
@@ -16841,16 +16973,105 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const GRAMMAR_VISUAL_IDS = new Set(['g01', 'g08', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g20', 'g24', 'g25']);
+  const GRAMMAR_VISUAL_IDS = new Set(['g01', 'g06b', 'g08', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g16b', 'g20', 'g21b', 'g24', 'g25', 'g27b']);
 
   function stopGrammarPlayAll() {
     gaState.playAllToken++;
-    document.querySelectorAll('#ga-study-content .ga-example-item.is-playing').forEach(el => el.classList.remove('is-playing'));
+    gaState.dlgPlayToken = (gaState.dlgPlayToken || 0) + 1;
+    document.querySelectorAll('#ga-study-content .ga-example-item.is-playing, #ga-study-content .ga-dlg-row.is-playing').forEach(el => el.classList.remove('is-playing'));
     const playAllBtn = $('btn-ga-play-all');
     if (playAllBtn) {
       playAllBtn.classList.remove('is-active');
       playAllBtn.textContent = '🔊 ฟังทุกตัวอย่าง';
     }
+    const dlgPlayBtn = $('btn-ga-dlg-play-all');
+    if (dlgPlayBtn) {
+      dlgPlayBtn.classList.remove('is-active');
+      dlgPlayBtn.textContent = '▶ ฟังทั้งบทสนทนา';
+    }
+  }
+
+  function formatGrammarDialogueEn(raw) {
+    return escapeHtml(String(raw || '')).replace(/\*\*([^*]+)\*\*/g, '<mark class="ga-dlg-hl">$1</mark>');
+  }
+
+  function stripGrammarDialogueStars(raw) {
+    return String(raw || '').replace(/\*\*([^*]+)\*\*/g, '$1').trim();
+  }
+
+  function buildGrammarDialogueHtml(lessonId) {
+    const dlg = (typeof GRAMMAR_DIALOGUES !== 'undefined' && GRAMMAR_DIALOGUES && GRAMMAR_DIALOGUES[lessonId])
+      ? GRAMMAR_DIALOGUES[lessonId]
+      : null;
+    if (!dlg || !Array.isArray(dlg.lines) || !dlg.lines.length) return '';
+
+    const spA = dlg.speakers?.A || { name: 'Alex', roleTh: 'ผู้พูด A' };
+    const spB = dlg.speakers?.B || { name: 'May', roleTh: 'ผู้พูด B' };
+    const initA = escapeHtml(String(spA.name || 'A').trim().charAt(0).toUpperCase());
+    const initB = escapeHtml(String(spB.name || 'B').trim().charAt(0).toUpperCase());
+
+    const rowsHtml = dlg.lines.map((line, idx) => {
+      const isB = line.sp === 'B';
+      const sp = isB ? spB : spA;
+      const init = isB ? initB : initA;
+      return `
+        <div class="ga-dlg-row ${isB ? 'is-b' : 'is-a'}" data-ga-dlg-row="${idx}">
+          <div class="ga-dlg-avatar ${isB ? 'is-b' : 'is-a'}" aria-hidden="true">${init}</div>
+          <div class="ga-dlg-bubble">
+            <div class="ga-dlg-speaker-meta">
+              <strong>${escapeHtml(sp.name || line.sp)}</strong>
+              ${sp.roleTh ? `<span>${escapeHtml(sp.roleTh)}</span>` : ''}
+            </div>
+            <div class="ga-dlg-en">${formatGrammarDialogueEn(line.en)}</div>
+            <div class="ga-dlg-th" title="แตะเพื่อดู/ซ่อนคำแปล">
+              <span class="ga-ex-th-text">${escapeHtml(line.th || '')}</span>
+              <span class="ga-ex-th-mask" aria-hidden="true">👁 แตะเพื่อดูคำแปล</span>
+            </div>
+          </div>
+          <button type="button" class="word-item-speak-btn speak-btn ga-dlg-speak" data-ga-dlg-speak="${idx}" aria-label="ฟังเสียงบทสนทนาบรรทัดที่ ${idx + 1}">
+            <svg class="speak-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+        </div>
+      `;
+    }).join('');
+
+    const takeaways = Array.isArray(dlg.takeawayTh) && dlg.takeawayTh.length
+      ? `
+        <div class="ga-dlg-takeaways">
+          <div class="ga-dlg-takeaway-head">💡 สังเกตการใช้ Grammar ในบทสนทนานี้</div>
+          <ul>${dlg.takeawayTh.map(t => `<li>${formatGrammarRichText(t)}</li>`).join('')}</ul>
+        </div>
+      `
+      : '';
+
+    return `
+      <section class="ga-study-section ga-dlg-section" id="ga-sec-dialogue">
+        <div class="ga-section-title">💬 บทสนทนาจริงในบริบท (Real-Life Dialogue)</div>
+        <div class="ga-dlg-card">
+          <div class="ga-dlg-head">
+            <div class="ga-dlg-scene-wrap">
+              <span class="ga-dlg-emoji" aria-hidden="true">${escapeHtml(dlg.emoji || '💬')}</span>
+              <div class="ga-dlg-scene-text">
+                <div class="ga-dlg-title">${escapeHtml(dlg.titleEn || 'Conversation')}</div>
+                <div class="ga-dlg-scene">${escapeHtml(dlg.sceneTh || '')}</div>
+              </div>
+            </div>
+            <div class="ga-dlg-controls">
+              <button type="button" id="btn-ga-dlg-play-all" class="ga-tool-btn ga-dlg-play-btn">▶ ฟังทั้งบทสนทนา</button>
+              <button type="button" id="btn-ga-dlg-hide-th" class="ga-tool-btn ${gaState.hideStudyTrans ? 'is-active' : ''}">${gaState.hideStudyTrans ? '👁 แสดงคำแปล' : '🙈 ซ่อนคำแปล'}</button>
+            </div>
+          </div>
+          <div class="ga-dlg-legend">
+            <span class="ga-dlg-legend-chip"><mark class="ga-dlg-hl">ไฮไลต์</mark> คือโครงสร้าง Grammar ของบทนี้</span>
+          </div>
+          <div class="ga-dlg-stream ${gaState.hideStudyTrans ? 'is-trans-hidden' : ''}" id="ga-dlg-stream">
+            ${rowsHtml}
+          </div>
+          ${takeaways}
+        </div>
+      </section>
+    `;
   }
 
   function buildGrammarVisualAid(lessonId) {
@@ -17038,6 +17259,89 @@ document.addEventListener('DOMContentLoaded', () => {
           <text x="589" y="62" text-anchor="middle" class="ga-svg-lbl">had V3 → would have V3</text>
           <text x="589" y="82" text-anchor="middle" class="ga-svg-sub">ย้อนอดีตไม่ได้แล้ว</text>
         </svg>`
+      },
+      g06b: {
+        caption: 'สูตรตั้งคำถาม: วาง Wh- ไว้หน้าสุด ตามด้วยกริยาช่วย (Aux) แล้วจึงตามด้วยประธาน + กริยาหลัก',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 142" role="img" aria-label="Question Formation Blueprint">
+          <rect x="14" y="16" width="110" height="48" rx="10" class="ga-svg-box is-accent"/>
+          <text x="69" y="37" text-anchor="middle" class="ga-svg-lbl">Wh- Word</text>
+          <text x="69" y="53" text-anchor="middle" class="ga-svg-sub">What / Where / Why</text>
+          <text x="140" y="45" text-anchor="middle" class="ga-svg-op">+</text>
+          <rect x="156" y="16" width="132" height="48" rx="10" class="ga-svg-box is-tint"/>
+          <text x="222" y="37" text-anchor="middle" class="ga-svg-lbl">กริยาช่วย (Aux)</text>
+          <text x="222" y="53" text-anchor="middle" class="ga-svg-sub">do / does / did / is / can</text>
+          <text x="304" y="45" text-anchor="middle" class="ga-svg-op">+</text>
+          <rect x="320" y="16" width="128" height="48" rx="10" class="ga-svg-box"/>
+          <text x="384" y="37" text-anchor="middle" class="ga-svg-lbl">Subject (ประธาน)</text>
+          <text x="384" y="53" text-anchor="middle" class="ga-svg-sub">you / she / they</text>
+          <text x="464" y="45" text-anchor="middle" class="ga-svg-op">+</text>
+          <rect x="480" y="16" width="186" height="48" rx="10" class="ga-svg-box is-tint"/>
+          <text x="573" y="37" text-anchor="middle" class="ga-svg-lbl">กริยาหลัก (V1 / V-ing)</text>
+          <text x="573" y="53" text-anchor="middle" class="ga-svg-sub">live? / doing? / go?</text>
+          <rect x="36" y="82" width="608" height="44" rx="12" class="ga-svg-box"/>
+          <text x="340" y="101" text-anchor="middle" class="ga-svg-lbl">ข้อยกเว้น: Subject Question (ถามหาตัวประธาน) ไม่ต้องใส่ do/does/did</text>
+          <text x="340" y="118" text-anchor="middle" class="ga-svg-accent-txt">Who called you? (ใครโทรหาคุณ?) · What happened? (เกิดอะไรขึ้น?)</text>
+        </svg>`
+      },
+      g16b: {
+        caption: 'แผนที่ 12 Tenses: เลือก "ช่วงเวลา" (อดีต/ปัจจุบัน/อนาคต) แล้วจับคู่กับ "ลักษณะการกระทำ" (4 ด้าน)',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 154" role="img" aria-label="12 Tenses Master Map">
+          <rect x="14" y="14" width="204" height="36" rx="10" class="ga-svg-box"/>
+          <text x="116" y="37" text-anchor="middle" class="ga-svg-lbl">◀ PAST (อดีต · จบแล้ว)</text>
+          <rect x="238" y="14" width="204" height="36" rx="10" class="ga-svg-box is-accent"/>
+          <text x="340" y="37" text-anchor="middle" class="ga-svg-lbl">● PRESENT (ปัจจุบัน)</text>
+          <rect x="462" y="14" width="204" height="36" rx="10" class="ga-svg-box is-tint"/>
+          <text x="564" y="37" text-anchor="middle" class="ga-svg-lbl">FUTURE (อนาคต) ▶</text>
+          <rect x="14" y="64" width="154" height="74" rx="12" class="ga-svg-box"/>
+          <text x="91" y="86" text-anchor="middle" class="ga-svg-lbl">1. Simple</text>
+          <text x="91" y="105" text-anchor="middle" class="ga-svg-sub">นิสัย / ข้อเท็จจริง</text>
+          <text x="91" y="123" text-anchor="middle" class="ga-svg-sub">เหตุการณ์จุดเดียว</text>
+          <rect x="180" y="64" width="154" height="74" rx="12" class="ga-svg-box is-tint"/>
+          <text x="257" y="86" text-anchor="middle" class="ga-svg-lbl">2. Continuous</text>
+          <text x="257" y="105" text-anchor="middle" class="ga-svg-sub">กำลังทำ ณ จุดนั้น</text>
+          <text x="257" y="123" text-anchor="middle" class="ga-svg-sub">be + V-ing</text>
+          <rect x="346" y="64" width="154" height="74" rx="12" class="ga-svg-box is-accent"/>
+          <text x="423" y="86" text-anchor="middle" class="ga-svg-lbl">3. Perfect</text>
+          <text x="423" y="105" text-anchor="middle" class="ga-svg-sub">ทำเสร็จ / เชื่อมถึงจุดนั้น</text>
+          <text x="423" y="123" text-anchor="middle" class="ga-svg-sub">have/had + V3</text>
+          <rect x="512" y="64" width="154" height="74" rx="12" class="ga-svg-box"/>
+          <text x="589" y="86" text-anchor="middle" class="ga-svg-lbl">4. Perfect Cont.</text>
+          <text x="589" y="105" text-anchor="middle" class="ga-svg-sub">ทำต่อเนื่องยาวนาน</text>
+          <text x="589" y="123" text-anchor="middle" class="ga-svg-sub">have been + V-ing</text>
+        </svg>`
+      },
+      g21b: {
+        caption: 'แยก 3 ตระกูลคำเชื่อมให้ขาด: ดู "สิ่งที่ตามหลังช่องว่าง" ว่าเป็น ประโยค (S+V) หรือ คำนาม (Noun)',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 132" role="img" aria-label="Connectors 3 Families">
+          <rect x="14" y="16" width="204" height="98" rx="12" class="ga-svg-box is-tint"/>
+          <text x="116" y="40" text-anchor="middle" class="ga-svg-lbl">1. Conjunction + S + V</text>
+          <text x="116" y="62" text-anchor="middle" class="ga-svg-sub">although / because / while</text>
+          <text x="116" y="82" text-anchor="middle" class="ga-svg-sub">whereas / even though</text>
+          <text x="116" y="102" text-anchor="middle" class="ga-svg-accent-txt">ต้องมี ประธาน + กริยา ตามหลัง</text>
+          <rect x="238" y="16" width="204" height="98" rx="12" class="ga-svg-box is-accent"/>
+          <text x="340" y="40" text-anchor="middle" class="ga-svg-lbl">2. Preposition + Noun</text>
+          <text x="340" y="62" text-anchor="middle" class="ga-svg-sub">despite / in spite of</text>
+          <text x="340" y="82" text-anchor="middle" class="ga-svg-sub">because of / due to / during</text>
+          <text x="340" y="102" text-anchor="middle" class="ga-svg-accent-txt">ตามด้วย คำนาม / V-ing เท่านั้น</text>
+          <rect x="462" y="16" width="204" height="98" rx="12" class="ga-svg-box"/>
+          <text x="564" y="40" text-anchor="middle" class="ga-svg-lbl">3. Transition + , S + V</text>
+          <text x="564" y="62" text-anchor="middle" class="ga-svg-sub">However, / Therefore,</text>
+          <text x="564" y="82" text-anchor="middle" class="ga-svg-sub">Moreover, / Nevertheless,</text>
+          <text x="564" y="102" text-anchor="middle" class="ga-svg-accent-txt">คั่นด้วย . หรือ ; ก่อนเสมอ</text>
+        </svg>`
+      },
+      g27b: {
+        caption: 'ลดรูปประโยคด้วย Participle: ดูประธานประโยคหลักว่า "ทำเอง (V-ing)" หรือ "ถูกทำ (V3)"',
+        svg: `<svg class="ga-visual-svg" viewBox="0 0 680 124" role="img" aria-label="Participle Clauses Reduction">
+          <rect x="16" y="18" width="308" height="88" rx="12" class="ga-svg-box is-tint"/>
+          <text x="170" y="42" text-anchor="middle" class="ga-svg-lbl">Active (ประธานทำเอง) → V-ing</text>
+          <text x="170" y="64" text-anchor="middle" class="ga-svg-sub">The woman who sits near the window</text>
+          <text x="170" y="88" text-anchor="middle" class="ga-svg-accent-txt">→ The woman sitting near the window</text>
+          <rect x="356" y="18" width="308" height="88" rx="12" class="ga-svg-box is-accent"/>
+          <text x="510" y="42" text-anchor="middle" class="ga-svg-lbl">Passive (ประธานถูกทำ) → V3</text>
+          <text x="510" y="64" text-anchor="middle" class="ga-svg-sub">The report which was written by Anna</text>
+          <text x="510" y="88" text-anchor="middle" class="ga-svg-accent-txt">→ The report written by Anna</text>
+        </svg>`
       }
     };
     const item = map[lessonId];
@@ -17094,11 +17398,54 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
+    const conceptHtml = (includeSectionIds && lesson.conceptTh) ? `
+      <section class="ga-study-section ga-concept-card" id="ga-sec-concept">
+        <div class="ga-section-title">💡 เข้าใจแก่นเรื่องนี้ (เทียบวิธีคิดไทย ↔ อังกฤษ)</div>
+        <div class="ga-concept-body">${formatGrammarRichText(lesson.conceptTh)}</div>
+      </section>
+    ` : '';
+
+    const stepsHtml = (includeSectionIds && Array.isArray(lesson.stepGuide) && lesson.stepGuide.length) ? `
+      <section class="ga-study-section ga-steps-card" id="ga-sec-steps">
+        <div class="ga-section-title">🪜 วิธีคิดทีละขั้น (Step-by-Step)</div>
+        <ol class="ga-steps-list">
+          ${lesson.stepGuide.map((st, idx) => `
+            <li class="ga-step-item">
+              <span class="ga-step-num">${st.step || (idx + 1)}</span>
+              <div class="ga-step-body">
+                <strong class="ga-step-title">${escapeHtml(st.titleTh || '')}</strong>
+                <p class="ga-step-detail">${formatGrammarRichText(st.detailTh || '')}</p>
+                ${st.miniEx ? `<div class="ga-step-mini-ex">${formatGrammarRichText(st.miniEx)}</div>` : ''}
+              </div>
+            </li>
+          `).join('')}
+        </ol>
+      </section>
+    ` : '';
+
+    const compareHtml = (includeSectionIds && lesson.compareBox && Array.isArray(lesson.compareBox.items) && lesson.compareBox.items.length) ? `
+      <section class="ga-study-section ga-compare-box" id="ga-sec-compare">
+        <div class="ga-section-title">⚖️ ${escapeHtml(lesson.compareBox.titleTh || 'เทียบชัดๆ อย่าจำสลับ')}</div>
+        <div class="ga-compare-grid">
+          ${lesson.compareBox.items.map(item => `
+            <div class="ga-compare-col">
+              <div class="ga-compare-head">${escapeHtml(item.label || '')}</div>
+              <p class="ga-compare-desc">${formatGrammarRichText(item.descTh || '')}</p>
+              ${item.example ? `<div class="ga-compare-ex">${formatGrammarRichText(item.example)}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    ` : '';
+
     return `
       <p class="ga-study-summary" style="margin-bottom:12px;">${formatGrammarRichText(lesson.summaryTh || '')}</p>
+      ${conceptHtml}
+      ${stepsHtml}
       <div class="ga-formulas-grid" ${includeSectionIds ? 'id="ga-sec-formulas"' : ''}>${formulasHtml}</div>
       ${includeSectionIds ? buildGrammarVisualAid(lesson.id) : ''}
       ${tablesHtml}
+      ${compareHtml}
     `;
   }
 
@@ -17206,6 +17553,21 @@ document.addEventListener('DOMContentLoaded', () => {
       weakBtn.textContent = `🔥 ซ่อมข้อที่เคยพลาด (${missedCnt})`;
     }
 
+    const tabsWrap = $('ga-phase-tabs');
+    if (tabsWrap && phases.length) {
+      const allTab = tabsWrap.querySelector('[data-ga-phase="all"]');
+      if (allTab) allTab.textContent = `ทุกบท (${lessons.length})`;
+      phases.forEach(ph => {
+        const tabBtn = tabsWrap.querySelector(`[data-ga-phase="phase${ph.number}"]`);
+        if (tabBtn && Array.isArray(ph.lessonRange)) {
+          const shortTitle = ph.number === 1 ? 'พื้นฐาน' : (ph.number === 2 ? 'Tenses & กริยา' : 'กลาง–สูง');
+          tabBtn.textContent = `Phase ${ph.number} · ${shortTitle} (${ph.lessonRange[0]}–${ph.lessonRange[1]})`;
+        }
+      });
+    }
+    const mixedAllOpt = document.querySelector('#ga-mixed-scope option[value="all"]');
+    if (mixedAllOpt) mixedAllOpt.textContent = `🎲 สุ่มทุกบท (${lessons.length} บท · 10 ข้อ)`;
+
     const qSearch = String(gaState.search || '').trim().toLowerCase();
     const container = $('ga-phases-container');
     if (!container) return;
@@ -17241,6 +17603,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : (bestPct !== undefined ? `ล่าสุด ${bestPct}%` : (isStudied ? 'กำลังเรียน' : 'พร้อมเรียน'));
           const tblCnt = (live.tables || []).length;
           const hasVisual = GRAMMAR_VISUAL_IDS.has(live.id);
+          const hasDlg = typeof GRAMMAR_DIALOGUES !== 'undefined' && Boolean(GRAMMAR_DIALOGUES?.[live.id]);
           const delayMs = Math.min(6, cardAnimIdx++) * 22;
           cardsHtml.push(`
             <button type="button" class="ga-lesson-card ${isMastered ? 'is-mastered' : ''}" data-ga-phase-accent="${ph.number}" data-ga-lesson-id="${escapeHtml(live.id)}" style="--ga-delay:${delayMs}ms">
@@ -17256,7 +17619,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="ga-lesson-desc">${escapeHtml(live.summaryTh)}</p>
               </div>
               <div class="ga-lesson-foot">
-                <span>${hasVisual ? '🧭 แผนภาพ · ' : ''}${tblCnt} ตาราง · ${(live.exercises || []).length} โจทย์</span>
+                <span>${hasVisual ? '🧭 แผนภาพ · ' : ''}${hasDlg ? '💬 บทสนทนา · ' : ''}${tblCnt} ตาราง · ${(live.exercises || []).length} โจทย์</span>
                 <span class="ga-lesson-go">เปิดอ่าน →</span>
               </div>
               ${bestPct !== undefined ? `<div class="ga-card-acc-track" aria-hidden="true"><div class="ga-card-acc-fill ${isMastered ? 'is-pass' : ''}" style="width:${Math.min(100, Number(bestPct))}%"></div></div>` : ''}
@@ -17378,13 +17741,35 @@ document.addEventListener('DOMContentLoaded', () => {
       `).join('');
 
       const hasVis = GRAMMAR_VISUAL_IDS.has(lesson.id);
+      const hasConcept = Boolean(lesson.conceptTh);
+      const hasSteps = Array.isArray(lesson.stepGuide) && lesson.stepGuide.length > 0;
+      const hasCompare = Boolean(lesson.compareBox && Array.isArray(lesson.compareBox.items) && lesson.compareBox.items.length);
+      const hasChecklist = Array.isArray(lesson.quickChecklist) && lesson.quickChecklist.length > 0;
+      const dlgObj = (typeof GRAMMAR_DIALOGUES !== 'undefined' && GRAMMAR_DIALOGUES) ? GRAMMAR_DIALOGUES[lesson.id] : null;
+      const hasDialogue = Boolean(dlgObj && Array.isArray(dlgObj.lines) && dlgObj.lines.length);
       const jumpLinks = [
+        ...(hasConcept ? [{ target: '#ga-sec-concept', label: 'เข้าใจแก่น' }] : []),
+        ...(hasSteps ? [{ target: '#ga-sec-steps', label: 'วิธีคิด' }] : []),
         { target: '#ga-sec-formulas', label: 'สูตรหลัก' },
         ...(hasVis ? [{ target: '#ga-sec-visual', label: 'แผนภาพ' }] : []),
         { target: '#ga-sec-tables', label: 'ตารางสรุป' },
+        ...(hasCompare ? [{ target: '#ga-sec-compare', label: 'เทียบชัดๆ' }] : []),
         { target: '#ga-sec-examples', label: 'ตัวอย่าง' },
-        { target: '#ga-sec-mistakes', label: 'จุดผิดคนไทย' }
+        ...(hasDialogue ? [{ target: '#ga-sec-dialogue', label: 'บทสนทนา' }] : []),
+        { target: '#ga-sec-mistakes', label: 'จุดผิดคนไทย' },
+        ...(hasChecklist ? [{ target: '#ga-sec-checklist', label: 'เช็กลิสต์' }] : [])
       ];
+
+      const dialogueHtml = hasDialogue ? buildGrammarDialogueHtml(lesson.id) : '';
+
+      const checklistHtml = hasChecklist ? `
+        <section class="ga-study-section ga-checklist-card" id="ga-sec-checklist">
+          <div class="ga-section-title">✅ เช็กลิสต์จำเร็ว 30 วินาทีก่อนทำโจทย์</div>
+          <ul class="ga-checklist-items">
+            ${lesson.quickChecklist.map(item => `<li>${formatGrammarRichText(item)}</li>`).join('')}
+          </ul>
+        </section>
+      ` : '';
 
       contentEl.innerHTML = `
         <div class="ga-study-header">
@@ -17406,10 +17791,12 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="ga-section-title">🔊 ตัวอย่างประโยคจริง (กดปุ่มลำโพงเพื่อฟังทั้งประโยค หรือแตะที่คำเพื่อฟังรายคำ)</div>
           <div class="ga-examples-list ${gaState.hideStudyTrans ? 'is-trans-hidden' : ''}">${examplesHtml}</div>
         </section>
+        ${dialogueHtml}
         <section class="ga-study-section" id="ga-sec-mistakes">
           <div class="ga-section-title">⚠️ จุดที่คนไทยมักใช้ผิด</div>
           <div class="ga-mistakes-list">${mistakesHtml}</div>
         </section>
+        ${checklistHtml}
       `;
 
       wireHintButtons(contentEl);
@@ -17463,8 +17850,78 @@ document.addEventListener('DOMContentLoaded', () => {
           listEl.classList.toggle('is-trans-hidden', gaState.hideStudyTrans);
           listEl.querySelectorAll('.ga-example-th.is-peeked').forEach(x => x.classList.remove('is-peeked'));
         }
+        const dlgStream = contentEl.querySelector('#ga-dlg-stream');
+        const dlgHideBtn = $('btn-ga-dlg-hide-th');
+        if (dlgStream) {
+          dlgStream.classList.toggle('is-trans-hidden', gaState.hideStudyTrans);
+          dlgStream.querySelectorAll('.ga-dlg-th.is-peeked').forEach(x => x.classList.remove('is-peeked'));
+        }
+        if (dlgHideBtn) {
+          dlgHideBtn.classList.toggle('is-active', gaState.hideStudyTrans);
+          dlgHideBtn.textContent = gaState.hideStudyTrans ? '👁 แสดงคำแปล' : '🙈 ซ่อนคำแปล';
+        }
         SoundFX.tick();
       });
+
+      if (hasDialogue && dlgObj) {
+        contentEl.querySelectorAll('.ga-dlg-speak').forEach(btn => {
+          btn.addEventListener('click', () => {
+            stopGrammarPlayAll();
+            const lineIdx = Number(/** @type {HTMLElement} */(btn).dataset.gaDlgSpeak);
+            const item = (dlgObj.lines || [])[lineIdx];
+            const cleanEn = stripGrammarDialogueStars(item?.en);
+            if (cleanEn) speakStudySentence(cleanEn, btn);
+          });
+        });
+
+        contentEl.querySelectorAll('.ga-dlg-th').forEach(el => {
+          el.addEventListener('click', () => {
+            const stream = contentEl.querySelector('#ga-dlg-stream');
+            if (stream?.classList.contains('is-trans-hidden')) el.classList.toggle('is-peeked');
+          });
+        });
+
+        $('btn-ga-dlg-hide-th')?.addEventListener('click', (e) => {
+          const stream = contentEl.querySelector('#ga-dlg-stream');
+          if (!stream) return;
+          const nowHidden = stream.classList.toggle('is-trans-hidden');
+          const b = /** @type {HTMLElement} */(e.currentTarget);
+          b.classList.toggle('is-active', nowHidden);
+          b.textContent = nowHidden ? '👁 แสดงคำแปล' : '🙈 ซ่อนคำแปล';
+          stream.querySelectorAll('.ga-dlg-th.is-peeked').forEach(x => x.classList.remove('is-peeked'));
+          SoundFX.tick();
+        });
+
+        $('btn-ga-dlg-play-all')?.addEventListener('click', async () => {
+          const playBtn = $('btn-ga-dlg-play-all');
+          if (playBtn?.classList.contains('is-active')) {
+            stopGrammarPlayAll();
+            return;
+          }
+          const lines = dlgObj.lines || [];
+          if (!lines.length) return;
+          stopGrammarPlayAll();
+          const myTok = ++gaState.dlgPlayToken;
+          if (playBtn) {
+            playBtn.classList.add('is-active');
+            playBtn.textContent = '⏹ หยุดเล่น';
+          }
+          for (let i = 0; i < lines.length; i++) {
+            if (gaState.dlgPlayToken !== myTok) break;
+            const row = contentEl.querySelector(`[data-ga-dlg-row="${i}"]`);
+            const spkBtn = row?.querySelector('.ga-dlg-speak');
+            contentEl.querySelectorAll('.ga-dlg-row.is-playing').forEach(el => el.classList.remove('is-playing'));
+            row?.classList.add('is-playing');
+            const cleanEn = stripGrammarDialogueStars(lines[i].en);
+            if (cleanEn) {
+              speakStudySentence(cleanEn, spkBtn || null);
+              const waitMs = Math.max(2000, Math.min(5400, cleanEn.length * (gaState.studySlow ? 94 : 72)));
+              await new Promise(r => setTimeout(r, waitMs));
+            }
+          }
+          if (gaState.dlgPlayToken === myTok) stopGrammarPlayAll();
+        });
+      }
 
       $('btn-ga-play-all')?.addEventListener('click', async () => {
         const playBtn = $('btn-ga-play-all');
@@ -17576,6 +18033,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gaState.drill = {
       lessonId: isMixed ? lessons[0].id : lessonId,
       isMixed,
+      mixedScope: isMixed ? mixedScope : 'all',
       isExam: false,
       title,
       queue,
@@ -17593,7 +18051,10 @@ document.addEventListener('DOMContentLoaded', () => {
       orderBank: [],
       orderChosen: [],
       selectedErrorIdx: null,
-      selectedCorrectionIdx: null
+      selectedCorrectionIdx: null,
+      startTs: Date.now(),
+      results: [],
+      typeStats: {}
     };
 
     setGrammarSubView('drill');
@@ -17688,16 +18149,46 @@ document.addEventListener('DOMContentLoaded', () => {
         idx++;
       }
     } else if (scope === 'all30') {
-      const byLesson = groupByLesson(bank);
-      const lessonIds = shuffle(Array.from(byLesson.keys()));
-      lessonIds.forEach(lid => {
-        const choices = shuffle(byLesson.get(lid) || []);
-        if (choices[0] && !usedIds.has(choices[0].id)) {
-          usedIds.add(choices[0].id);
-          picked.push(decorateExamItem(choices[0]));
+      // Guarantee balanced 4-part coverage (5 structure, 5 passage, 8 error_id, 12 completion) across distinct lessons
+      const usedLessons = new Set();
+      const partQuotas = [
+        ['structure', 5],
+        ['passage', 5],
+        ['error_id', 8],
+        ['completion', 12]
+      ];
+      partQuotas.forEach(([partName, quota]) => {
+        const pool = shuffle(bank.filter(q => q.part === partName));
+        let taken = 0;
+        for (const cand of pool) {
+          if (taken >= quota || picked.length >= cfg.count) break;
+          if (!usedIds.has(cand.id) && !usedLessons.has(cand.lessonId)) {
+            usedIds.add(cand.id);
+            usedLessons.add(cand.lessonId);
+            picked.push(decorateExamItem(cand));
+            taken++;
+          }
+        }
+        if (taken < quota) {
+          for (const cand of pool) {
+            if (taken >= quota || picked.length >= cfg.count) break;
+            if (!usedIds.has(cand.id)) {
+              usedIds.add(cand.id);
+              picked.push(decorateExamItem(cand));
+              taken++;
+            }
+          }
         }
       });
-      picked = picked.slice(0, cfg.count);
+      if (picked.length < cfg.count) {
+        for (const cand of shuffle(bank)) {
+          if (picked.length >= cfg.count) break;
+          if (!usedIds.has(cand.id)) {
+            usedIds.add(cand.id);
+            picked.push(decorateExamItem(cand));
+          }
+        }
+      }
     } else if (scope === 'all15') {
       ['phase1', 'phase2', 'phase3'].forEach(ph => {
         const phMap = groupByLesson(bank.filter(q => q.phase === ph));
@@ -18256,6 +18747,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function renderGrammarDrillSegments(d) {
+    const segWrap = $('ga-drill-segments');
+    if (!segWrap) return;
+    if (!d || d.isExam) {
+      segWrap.hidden = true;
+      segWrap.innerHTML = '';
+      return;
+    }
+    segWrap.hidden = false;
+    const total = d.queue.length;
+    segWrap.innerHTML = d.queue.map((item, i) => {
+      const res = d.results?.[i];
+      let cls = 'ga-drill-seg';
+      if (res === 'ok') cls += ' is-ok';
+      else if (res === 'err') cls += ' is-err';
+      else if (i === d.index) cls += ' is-current';
+      if (item._requeued) cls += ' is-requeue';
+      return `<span class="${cls}" style="--seg-i:${i}"></span>`;
+    }).join('');
+    segWrap.dataset.total = String(total);
+  }
+
   function triggerGrammarAnim(el, cls) {
     if (!el || document.documentElement.classList.contains('ox-reduce-motion')) return;
     el.classList.remove(cls);
@@ -18304,6 +18817,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isExam && barEl) {
       barEl.style.width = `${Math.round(((d.index) / Math.max(1, d.queue.length)) * 100)}%`;
     }
+    renderGrammarDrillSegments(d);
     if (peekBtn) {
       peekBtn.hidden = isExam;
       peekBtn.dataset.peekLessonId = q._lessonId || d.lessonId;
@@ -18320,6 +18834,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!stageEl) return;
 
     if (isExam && q.part) {
+      stageEl.dataset.qType = 'exam';
       d.currentChoiceOpts = (resp && Array.isArray(resp.shuffledOpts) && resp.shuffledOpts.length)
         ? resp.shuffledOpts
         : (q.options || []).map((text, origIdx) => ({ text, origIdx }));
@@ -18415,6 +18930,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const effectiveType = (q.type === 'cloze' && (!q.sentence || !/_+/.test(q.sentence))) ? 'analyze' : q.type;
     const typeLabel = TYPE_LABELS[effectiveType] || TYPE_LABELS.cloze;
     const requeueNote = q._requeued ? ' · (ทบทวนข้อที่เคยพลาด)' : '';
+    stageEl.dataset.qType = effectiveType;
 
     if (q.type === 'cloze' || q.type === 'transform') {
       const mapped = (q.options || []).map((text, origIdx) => ({ text, origIdx }));
@@ -18638,6 +19154,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     d.answered = true;
+    if (!Array.isArray(d.results)) d.results = [];
+    d.results[d.index] = isCorrect ? 'ok' : 'err';
+    const effectiveType = (q.type === 'cloze' && (!q.sentence || !/_+/.test(q.sentence))) ? 'analyze' : (q.type || 'cloze');
     if (isCorrect) {
       d.streak++;
       d.maxStreak = Math.max(d.maxStreak, d.streak);
@@ -18645,6 +19164,12 @@ document.addEventListener('DOMContentLoaded', () => {
       d.streak = 0;
     }
     const isFirstAttempt = !d.seenKeys.has(q._qKey);
+    if (isFirstAttempt) {
+      if (!d.typeStats) d.typeStats = {};
+      if (!d.typeStats[effectiveType]) d.typeStats[effectiveType] = { ok: 0, total: 0 };
+      d.typeStats[effectiveType].total++;
+      if (isCorrect) d.typeStats[effectiveType].ok++;
+    }
     d.seenKeys.add(q._qKey);
     const gpNow = loadGrammarProgress();
     if (isFirstAttempt && isCorrect) {
@@ -18674,6 +19199,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    renderGrammarDrillSegments(d);
+    const barElNow = $('ga-drill-bar-fill');
+    if (barElNow) barElNow.style.width = `${Math.round(((d.index + 1) / Math.max(1, d.queue.length)) * 100)}%`;
+
     if (isCorrect) SoundFX.known(Math.max(1, d.firstTryCorrect));
     else SoundFX.error();
 
@@ -18681,13 +19210,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const fbEl = $('ga-drill-feedback');
     if (fbEl) {
       fbEl.hidden = false;
-      const comboText = isCorrect && d.streak >= 2 ? ` · 🔥 ${d.streak} ติดต่อกัน!` : '';
+      const comboPill = isCorrect && d.streak >= 2 ? `<span class="ga-fb-combo-pill">🔥 คอมโบ ${d.streak}</span>` : '';
+      const ansChip = !isCorrect && answerDisplay
+        ? `<div class="ga-fb-ans-row"><span class="ga-fb-ans-label">คำตอบที่ถูกต้อง</span><strong class="ga-fb-ans-val">${escapeHtml(answerDisplay)}</strong></div>`
+        : '';
       fbEl.className = `ga-drill-feedback ${isCorrect ? 'is-correct' : 'is-wrong'} ga-fb-dock-in`;
       fbEl.innerHTML = `
         <div class="ga-fb-head">
-          <strong>${isCorrect ? `✅ ถูกต้องยอดเยี่ยม!${comboText}` : `❌ ยังไม่ถูก (เฉลย: ${escapeHtml(answerDisplay)})`}</strong>
+          <div class="ga-fb-title-wrap">
+            <span class="ga-fb-badge" aria-hidden="true">${isCorrect ? '✓' : '✕'}</span>
+            <strong>${isCorrect ? 'ถูกต้องยอดเยี่ยม!' : 'ยังไม่ถูก — ดูเฉลยด้านล่าง'}</strong>
+            ${comboPill}
+          </div>
           ${spokenAnswerSentence ? `<button type="button" class="btn glass-btn btn-xs ga-fb-speak" id="btn-ga-fb-speak">🔊 ฟังประโยคเฉลย</button>` : ''}
         </div>
+        ${ansChip}
         <div class="ga-fb-explain">${formatGrammarRichText(q.explanationTh || '')}</div>
       `;
       if (spokenAnswerSentence) {
@@ -18749,6 +19286,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const ringCirc = 263.89;
     const ringTarget = ringCirc * (1 - pct / 100);
+    const elapsedSec = Math.max(1, Math.round((Date.now() - (d.startTs || Date.now())) / 1000));
+    const timeLabel = elapsedSec >= 60
+      ? `${Math.floor(elapsedSec / 60)} น. ${elapsedSec % 60} วิ`
+      : `${elapsedSec} วินาที`;
+    const isPerfect = pct === 100;
+    const tierClass = isPerfect ? 'is-perfect' : (passed ? 'is-pass' : 'is-retry');
+    const heroIcon = isPerfect ? '🌟' : (passed ? '🏆' : '💪');
+    const heroHeading = isPerfect
+      ? 'สมบูรณ์แบบ 100%!'
+      : (passed ? 'ผ่านบทเรียนเรียบร้อย!' : (pct >= 60 ? 'เกือบผ่านแล้ว อีกนิดเดียว!' : 'ลองทบทวนสูตรแล้วลุยใหม่นะ!'));
+
+    const SKILL_NAMES = {
+      cloze: 'เติมคำในประโยค',
+      analyze: 'วิเคราะห์ประโยค',
+      order: 'เรียงคำเป็นประโยค',
+      error: 'จับผิด & แก้ไข',
+      transform: 'แปลงโครงสร้าง'
+    };
+    const typeEntries = Object.entries(d.typeStats || {}).filter(([, st]) => st && st.total > 0);
+    const breakdownHtml = typeEntries.length > 1 ? `
+      <div class="ga-sum-breakdown">
+        <div class="ga-sum-breakdown-head">📊 ความแม่นยำแยกตามทักษะ</div>
+        <div class="ga-sum-breakdown-list">
+          ${typeEntries.map(([tKey, st]) => {
+            const tp = Math.round((st.ok / st.total) * 100);
+            const barCls = tp >= 80 ? 'is-good' : (tp >= 50 ? 'is-mid' : 'is-low');
+            return `
+              <div class="ga-sum-bd-row">
+                <div class="ga-sum-bd-meta">
+                  <span>${escapeHtml(SKILL_NAMES[tKey] || tKey)}</span>
+                  <strong>${st.ok}/${st.total} (${tp}%)</strong>
+                </div>
+                <div class="ga-sum-bd-track"><div class="ga-sum-bd-fill ${barCls}" style="width:${tp}%"></div></div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    ` : '';
+
     const reviewHtml = d.missedItems.length > 0 ? `
       <div class="ga-sum-review">
         <div class="ga-sum-review-head">📝 ทบทวนข้อที่พลาดในรอบนี้ (${d.missedItems.length} ข้อ)</div>
@@ -18770,24 +19347,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const sumEl = $('ga-drill-summary');
     if (sumEl) {
       sumEl.hidden = false;
-      sumEl.className = 'ga-drill-summary ga-view-enter';
+      sumEl.className = `ga-drill-summary ${tierClass} ga-view-enter`;
       sumEl.innerHTML = `
-        <div class="ga-sum-ring-wrap">
-          <svg class="ga-sum-ring" viewBox="0 0 100 100" aria-hidden="true">
-            <circle class="ga-ring-track" cx="50" cy="50" r="42"></circle>
-            <circle class="ga-sum-ring-fill ${passed ? 'is-pass' : 'is-retry'}" id="ga-sum-ring-fill" cx="50" cy="50" r="42" stroke-dasharray="${ringCirc}" stroke-dashoffset="${ringCirc}"></circle>
-          </svg>
-          <div class="ga-sum-ring-icon">${passed ? '🏆' : '💪'}</div>
+        <div class="ga-sum-hero">
+          <div class="ga-sum-ring-wrap ${tierClass}">
+            <svg class="ga-sum-ring" viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="ga-ring-track" cx="50" cy="50" r="42"></circle>
+              <circle class="ga-sum-ring-fill ${passed ? 'is-pass' : 'is-retry'}" id="ga-sum-ring-fill" cx="50" cy="50" r="42" stroke-dasharray="${ringCirc}" stroke-dashoffset="${ringCirc}"></circle>
+            </svg>
+            <div class="ga-sum-ring-icon">${heroIcon}</div>
+          </div>
+          <h3>${heroHeading}</h3>
+          <div class="ga-summary-score"><span id="ga-sum-pct-num">${pct}</span>%</div>
+          <p class="ga-sum-xp-line">${passed ? 'ปลดล็อกสถานะ "ผ่านแล้ว ✓" เรียบร้อย' : 'ทำให้ได้ 80%+ เพื่อพิชิตบทนี้'}</p>
         </div>
-        <h3>${passed ? 'ผ่านบทเรียนเรียบร้อย!' : 'ฝึกต่ออีกนิด เกือบผ่านแล้ว!'}</h3>
-        <div class="ga-summary-score"><span id="ga-sum-pct-num">${pct}</span>% (${d.firstTryCorrect} / ${d.firstTryTotal} ข้อ)</div>
-        <p class="ga-sum-xp-line">รับ +${earnedXp} XP${d.maxStreak >= 3 ? ` · คอมโบสูงสุด ${d.maxStreak}` : ''} · ${passed ? 'ปลดล็อกสถานะ "ผ่านแล้ว ✓" เรียบร้อย' : 'ทำให้ได้ 80%+ เพื่อพิชิตบทนี้'}</p>
+        <div class="ga-sum-stats-grid">
+          <div class="ga-sum-stat-card">
+            <span class="ga-sum-stat-label">ตอบถูกครั้งแรก</span>
+            <strong>${d.firstTryCorrect} / ${d.firstTryTotal} ข้อ</strong>
+          </div>
+          <div class="ga-sum-stat-card is-xp">
+            <span class="ga-sum-stat-label">โบนัส XP</span>
+            <strong>+${earnedXp} XP</strong>
+          </div>
+          <div class="ga-sum-stat-card is-streak">
+            <span class="ga-sum-stat-label">คอมโบสูงสุด</span>
+            <strong>🔥 ${d.maxStreak}</strong>
+          </div>
+          <div class="ga-sum-stat-card">
+            <span class="ga-sum-stat-label">เวลาที่ใช้</span>
+            <strong>⏱ ${timeLabel}</strong>
+          </div>
+        </div>
         <div class="ga-summary-actions">
           ${nextLesson ? `<button type="button" class="btn btn-primary glass-btn" id="btn-ga-sum-next">▶ เรียนบทถัดไป (บทที่ ${nextLesson.num})</button>` : ''}
           <button type="button" class="btn glass-btn" id="btn-ga-sum-retry">↻ ลองทำโจทย์ใหม่</button>
           ${!d.isMixed ? `<button type="button" class="btn glass-btn" id="btn-ga-sum-study">📖 กลับไปอ่านสูตรบทนี้</button>` : ''}
           <button type="button" class="btn glass-btn" id="btn-ga-sum-hub">🏠 หน้ารวมบทเรียน</button>
         </div>
+        ${breakdownHtml}
         ${reviewHtml}
       `;
       requestAnimationFrame(() => {
@@ -18814,7 +19412,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
       $('btn-ga-sum-next')?.addEventListener('click', () => nextLesson && openGrammarStudy(nextLesson.id));
-      $('btn-ga-sum-retry')?.addEventListener('click', () => startGrammarDrill({ lessonId: d.lessonId, isMixed: d.isMixed }));
+      $('btn-ga-sum-retry')?.addEventListener('click', () => startGrammarDrill({ lessonId: d.lessonId, isMixed: d.isMixed, mixedScope: d.mixedScope || 'all' }));
       $('btn-ga-sum-study')?.addEventListener('click', () => openGrammarStudy(d.lessonId));
       $('btn-ga-sum-hub')?.addEventListener('click', () => renderGrammarHub());
     }
