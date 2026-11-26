@@ -1673,8 +1673,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (prevScreen && prevScreen !== name && !FOCUS_SCREENS.has(prevScreen)) {
       screenScrollMap[prevScreen] = window.scrollY || 0;
     }
-    if (prevScreen === 'grammar-academy' && name !== 'grammar-academy' && typeof clearGrammarExamTimer === 'function') {
-      clearGrammarExamTimer();
+    if (prevScreen === 'grammar-academy' && name !== 'grammar-academy') {
+      if (typeof clearGrammarExamTimer === 'function') clearGrammarExamTimer();
+      if (typeof stopGrammarPlayAll === 'function') stopGrammarPlayAll();
+      if (typeof closeGrammarPeekModal === 'function') closeGrammarPeekModal();
+      if (typeof closeGrammarExamModal === 'function') closeGrammarExamModal();
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (_) { }
     }
     const prevCat = typeof navCategoryForScreen === 'function' ? navCategoryForScreen(prevScreen) : 'learn';
     const nextCat = typeof navCategoryForScreen === 'function' ? navCategoryForScreen(name) : 'learn';
@@ -2662,7 +2666,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape') closeModal(false);
             return;
         }
-        if (e.target instanceof HTMLElement && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+        if (e.target instanceof HTMLElement && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT')) return;
 
         // Quiz Screen Shortcuts
         if (currentScreen === 'quiz' && quizSession) {
@@ -3592,7 +3596,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $('az-note').textContent = 'แตะตัวอักษรเพื่อดูรายละเอียด · แถบด้านล่าง = สัดส่วนคำที่เรียนแล้ว';
     }
 
-    $('az-heatmap').addEventListener('click', (e) => {
+    $('az-heatmap')?.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
         const cell = e.target.closest('.az-cell');
         if (!(cell instanceof HTMLElement)) return;
@@ -3689,7 +3693,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    $('dash-goto-categories').addEventListener('click', () => setDashTab('dash-categories'));
+    $('dash-goto-categories')?.addEventListener('click', () => setDashTab('dash-categories'));
 
     function formatDate(iso) {
         const d = new Date(iso);
@@ -8009,7 +8013,7 @@ document.addEventListener('DOMContentLoaded', () => {
             openQuickSearch();
             return;
         }
-        if (e.target instanceof HTMLElement && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+        if (e.target instanceof HTMLElement && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT')) return;
         if (e.key === '/') {
             e.preventDefault();
             openQuickSearch();
@@ -15254,6 +15258,17 @@ document.addEventListener('DOMContentLoaded', () => {
      * ========================================================= */
   let qhState = { mode: 'choice', cefr: 'all' };
   const GRAMMAR_STORAGE_KEY = 'ox_grammar_progress_v1';
+  const GRAMMAR_PREFS_KEY = 'ox3k_ga_prefs_v1';
+  function loadGrammarPrefs() {
+    try { return JSON.parse(localStorage.getItem(GRAMMAR_PREFS_KEY) || '{}') || {}; } catch (_) { return {}; }
+  }
+  function saveGrammarPrefs(patch) {
+    try {
+      const next = { ...loadGrammarPrefs(), ...patch };
+      localStorage.setItem(GRAMMAR_PREFS_KEY, JSON.stringify(next));
+    } catch (_) { }
+  }
+  const _initGaPrefs = loadGrammarPrefs();
   let gaState = {
     filter: 'all',
     phaseFilter: 'all',
@@ -15261,8 +15276,8 @@ document.addEventListener('DOMContentLoaded', () => {
     collapsedPhases: new Set(),
     search: '',
     activeLessonId: 'g01',
-    studySlow: false,
-    hideStudyTrans: false,
+    studySlow: Boolean(_initGaPrefs.studySlow),
+    hideStudyTrans: Boolean(_initGaPrefs.hideStudyTrans),
     playAllToken: 0,
     drill: null,
     examTimerId: null,
@@ -17747,6 +17762,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const hasChecklist = Array.isArray(lesson.quickChecklist) && lesson.quickChecklist.length > 0;
       const dlgObj = (typeof GRAMMAR_DIALOGUES !== 'undefined' && GRAMMAR_DIALOGUES) ? GRAMMAR_DIALOGUES[lesson.id] : null;
       const hasDialogue = Boolean(dlgObj && Array.isArray(dlgObj.lines) && dlgObj.lines.length);
+      const qcPool = (lesson.exercises || []).filter(ex => (ex.type === 'cloze' || ex.type === 'transform') && Array.isArray(ex.options) && ex.options.length >= 2 && ex.answerIndex != null);
+      const hasQuickCheck = qcPool.length >= 2;
       const jumpLinks = [
         ...(hasConcept ? [{ target: '#ga-sec-concept', label: 'เข้าใจแก่น' }] : []),
         ...(hasSteps ? [{ target: '#ga-sec-steps', label: 'วิธีคิด' }] : []),
@@ -17757,7 +17774,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { target: '#ga-sec-examples', label: 'ตัวอย่าง' },
         ...(hasDialogue ? [{ target: '#ga-sec-dialogue', label: 'บทสนทนา' }] : []),
         { target: '#ga-sec-mistakes', label: 'จุดผิดคนไทย' },
-        ...(hasChecklist ? [{ target: '#ga-sec-checklist', label: 'เช็กลิสต์' }] : [])
+        ...(hasChecklist ? [{ target: '#ga-sec-checklist', label: 'เช็กลิสต์' }] : []),
+        ...(hasQuickCheck ? [{ target: '#ga-sec-quickcheck', label: 'เช็กความเข้าใจ' }] : [])
       ];
 
       const dialogueHtml = hasDialogue ? buildGrammarDialogueHtml(lesson.id) : '';
@@ -17768,6 +17786,16 @@ document.addEventListener('DOMContentLoaded', () => {
           <ul class="ga-checklist-items">
             ${lesson.quickChecklist.map(item => `<li>${formatGrammarRichText(item)}</li>`).join('')}
           </ul>
+        </section>
+      ` : '';
+
+      const quickCheckHtml = hasQuickCheck ? `
+        <section class="ga-study-section ga-qc-section" id="ga-sec-quickcheck">
+          <div class="ga-qc-header">
+            <div class="ga-section-title">⚡ เช็กความเข้าใจด่วน (2 ข้อ · เฉลยทันที)</div>
+            <button type="button" id="btn-ga-qc-refresh" class="ga-tool-btn">🎲 สุ่มข้อใหม่</button>
+          </div>
+          <div class="ga-qc-grid" id="ga-qc-grid"></div>
         </section>
       ` : '';
 
@@ -17797,6 +17825,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="ga-mistakes-list">${mistakesHtml}</div>
         </section>
         ${checklistHtml}
+        ${quickCheckHtml}
       `;
 
       wireHintButtons(contentEl);
@@ -17804,6 +17833,82 @@ document.addEventListener('DOMContentLoaded', () => {
       wireGrammarStudyScrollProgress();
       const readFill = $('ga-study-read-fill');
       if (readFill) readFill.style.transform = 'scaleX(0)';
+
+      // Active Scrollspy for Jump Pills
+      const jumpBtns = Array.from(contentEl.querySelectorAll('.ga-jump-pill[data-ga-jump]'));
+      if (jumpBtns.length > 0 && 'IntersectionObserver' in window) {
+        if (gaState._studyObserver) { try { gaState._studyObserver.disconnect(); } catch (_) { } }
+        const secMap = new Map();
+        jumpBtns.forEach(jb => {
+          const sel = /** @type {HTMLElement} */(jb).dataset.gaJump;
+          const secEl = sel ? contentEl.querySelector(sel) : null;
+          if (secEl) secMap.set(secEl, jb);
+        });
+        const obs = new IntersectionObserver((entries) => {
+          const vis = entries.filter(en => en.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          if (!vis.length) return;
+          const activeBtn = secMap.get(vis[0].target);
+          if (activeBtn) {
+            jumpBtns.forEach(b => b.classList.toggle('is-active', b === activeBtn));
+          }
+        }, { rootMargin: '-84px 0px -65% 0px', threshold: 0.01 });
+        secMap.forEach((_, secEl) => obs.observe(secEl));
+        gaState._studyObserver = obs;
+      }
+
+      // Quick Check Interactive Renderer
+      const renderQuickCheck = () => {
+        const grid = $('ga-qc-grid');
+        if (!grid || !hasQuickCheck) return;
+        const picked = shuffle(qcPool.slice()).slice(0, 2);
+        grid.innerHTML = picked.map((q, qi) => {
+          const opts = shuffle((q.options || []).map((text, origIdx) => ({ text, origIdx })));
+          const sentHtml = q.sentence
+            ? (q.type === 'cloze' && /_+/.test(q.sentence) ? renderClozeSentenceWithSlots(q.sentence) : escapeHtml(q.sentence))
+            : '';
+          return `
+            <div class="ga-qc-card" data-qc-idx="${qi}">
+              <div class="ga-qc-num">ข้อ ${qi + 1}</div>
+              <p class="ga-qc-prompt">${escapeHtml(q.promptTh || '')}</p>
+              ${sentHtml ? `<div class="ga-qc-sent">${sentHtml}</div>` : ''}
+              <div class="ga-qc-opts">
+                ${opts.map((o, oi) => `<button type="button" class="ga-qc-opt" data-qc-pick="${oi}" data-qc-ok="${o.origIdx === q.answerIndex ? '1' : '0'}"><b>${String.fromCharCode(65 + oi)}.</b> ${escapeHtml(o.text)}</button>`).join('')}
+              </div>
+              <div class="ga-qc-fb" hidden></div>
+            </div>
+          `;
+        }).join('');
+        grid.querySelectorAll('.ga-qc-card').forEach((card, qi) => {
+          const q = picked[qi];
+          const fb = card.querySelector('.ga-qc-fb');
+          card.querySelectorAll('.ga-qc-opt').forEach(btn => {
+            btn.addEventListener('click', () => {
+              if (card.classList.contains('is-done')) return;
+              card.classList.add('is-done');
+              const isOk = btn.getAttribute('data-qc-ok') === '1';
+              card.querySelectorAll('.ga-qc-opt').forEach(b => {
+                /** @type {HTMLButtonElement} */(b).disabled = true;
+                if (b.getAttribute('data-qc-ok') === '1') b.classList.add('is-correct');
+                else if (b === btn && !isOk) b.classList.add('is-wrong');
+              });
+              if (isOk) SoundFX.known(1);
+              else SoundFX.error();
+              if (fb) {
+                fb.removeAttribute('hidden');
+                fb.className = `ga-qc-fb ${isOk ? 'is-correct' : 'is-wrong'}`;
+                fb.innerHTML = `<strong>${isOk ? '✅ ถูกต้อง!' : '❌ ยังไม่ถูก'}</strong> ${formatGrammarRichText(q.explanationTh || '')}`;
+              }
+            });
+          });
+        });
+      };
+      if (hasQuickCheck) {
+        renderQuickCheck();
+        $('btn-ga-qc-refresh')?.addEventListener('click', () => {
+          SoundFX.tick();
+          renderQuickCheck();
+        });
+      }
 
       contentEl.querySelectorAll('[data-ga-jump]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -17834,6 +17939,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       $('btn-ga-speed')?.addEventListener('click', (e) => {
         gaState.studySlow = !gaState.studySlow;
+        saveGrammarPrefs({ studySlow: gaState.studySlow });
         const b = /** @type {HTMLElement} */(e.currentTarget);
         b.classList.toggle('is-active', gaState.studySlow);
         b.textContent = gaState.studySlow ? '🐢 0.8x' : '⚡ 1.0x';
@@ -17842,6 +17948,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       $('btn-ga-hide-trans')?.addEventListener('click', (e) => {
         gaState.hideStudyTrans = !gaState.hideStudyTrans;
+        saveGrammarPrefs({ hideStudyTrans: gaState.hideStudyTrans });
         const b = /** @type {HTMLElement} */(e.currentTarget);
         b.classList.toggle('is-active', gaState.hideStudyTrans);
         b.textContent = gaState.hideStudyTrans ? '👁 แสดงคำแปล' : '🙈 ซ่อนคำแปล';
@@ -19516,6 +19623,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.addEventListener('keydown', (e) => {
       if (currentScreen !== 'grammar-academy') return;
+      if ($('quick-search-modal')?.classList.contains('open') || modal?.classList.contains('open')) return;
+      if (e.target instanceof HTMLElement && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT')) return;
       const examModal = $('grammar-exam-modal');
       if (examModal?.classList.contains('open')) {
         if (e.key === 'Escape') {

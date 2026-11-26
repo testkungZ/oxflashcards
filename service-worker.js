@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oxflashcards-v379';
+const CACHE_NAME = 'oxflashcards-v380';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,8 @@ const STATIC_ASSETS = [
   './grammar-curriculum-v2.js',
   './grammar-exam-data.js',
   './grammar-dialogues.js',
+  './icon-192.png',
+  './icon-512.png',
   './manifest.json'
 ];
 const CHART_JS_URL = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js';
@@ -80,7 +82,7 @@ self.addEventListener('fetch', (event) => {
   // Never intercept Firebase reserved auth handler paths or Admin Dashboard files
   if (reqUrl.pathname.includes('/__/') || reqUrl.pathname.endsWith('/admin.html') || reqUrl.pathname.endsWith('/admin.js')) return;
 
-  // Heavy data bundle (data.js 2.3MB): Stale-While-Revalidate for instant cold start + silent refresh
+  // Heavy data bundle (data.js ~6.5MB): Stale-While-Revalidate for instant cold start + silent refresh
   if (reqUrl.pathname.endsWith('/data.js') || reqUrl.pathname === '/data.js') {
     event.respondWith(
       caches.match(event.request).then((cached) => {
